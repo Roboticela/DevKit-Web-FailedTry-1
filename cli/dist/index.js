@@ -9,6 +9,7 @@ import { listCommand } from "./commands/list.js";
 import { infoCommand } from "./commands/info.js";
 import { updateCommand, upgradeAllCommand } from "./commands/update.js";
 import { doctorCommand } from "./commands/doctor.js";
+import { ejectCommand } from "./commands/eject.js";
 import { themeApplyCommand, themePreviewCommand, themePresetCommand, themeSetCommand, themeListCommand, themeAuditCommand, } from "./commands/theme.js";
 const program = new Command();
 program
@@ -36,11 +37,11 @@ program
     .action(() => initCommand());
 // ── devkit add ────────────────────────────────────────────────────────────────
 program
-    .command("add <components...>")
-    .description("Install one or more components (e.g. devkit add auth hero-section)")
-    .option("--variant <id>", "Variant to install for components that have variants")
+    .command("add [components...]")
+    .description("Install components — run with no args for an interactive picker")
+    .option("--variant <id>", "Variant for components with variants (non-interactive or as default when prompting)")
     .option("--dry-run", "Preview what would be installed without writing files")
-    .action((names, opts) => addCommand(names, opts));
+    .action((names, opts) => addCommand(names ?? [], opts));
 // ── devkit remove ─────────────────────────────────────────────────────────────
 program
     .command("remove <name>")
@@ -124,28 +125,18 @@ program
 });
 // ── devkit eject ──────────────────────────────────────────────────────────────
 program
-    .command("eject <name>")
-    .description("Stop DevKit from tracking a component (files are kept, no more updates via DevKit)")
-    .action(async (name) => {
-    const { readLock, writeLock } = await import("./lib/config.js");
-    const { unlinkSync, existsSync } = await import("fs");
-    const { join } = await import("path");
-    const { log } = await import("./lib/logger.js");
-    const manifestPath = join(process.cwd(), ".devkit", `${name}.manifest.json`);
-    if (existsSync(manifestPath))
-        unlinkSync(manifestPath);
-    const lock = readLock();
-    delete lock.components[name];
-    writeLock(lock);
-    log.success(`${name} ejected. Files are yours — DevKit will no longer manage them.`);
-});
+    .command("eject [name]")
+    .description("Stop DevKit from tracking component(s) — run with no args to pick interactively")
+    .action((name) => ejectCommand(name));
 // ── Help footer ───────────────────────────────────────────────────────────────
 program.addHelpText("after", `
 ${chalk.bold("Examples:")}
   ${chalk.cyan("devkit create my-app")}                       Interactive project creation
   ${chalk.cyan("devkit create my-app --template=nextjs-compact --yes")}   Non-interactive
+  ${chalk.cyan("devkit add")}                                 Interactive component picker
   ${chalk.cyan("devkit add auth")}                            Install auth component
   ${chalk.cyan("devkit add hero-section --variant=split-image")}
+  ${chalk.cyan("devkit eject")}                               Pick component(s) to eject
   ${chalk.cyan("devkit theme set colors.primary #e11d48")}   Change primary color
   ${chalk.cyan("devkit doctor")}                              Check configuration
   ${chalk.cyan("devkit list")}                                Browse all components

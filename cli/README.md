@@ -180,6 +180,12 @@ devkit init
 Install one or more components into the current project.
 
 ```bash
+# Interactive — browse the registry for your template, multi-select, then pick variants when needed
+devkit add
+
+# Same as above but only print what would be installed
+devkit add --dry-run
+
 # Single component
 devkit add auth
 
@@ -195,6 +201,8 @@ devkit add auth@2.0.0
 # Preview what would be installed without touching any files
 devkit add auth --dry-run
 ```
+
+**Interactive mode** (no component names): DevKit loads components from the registry filtered by your template in `devkit.config.json`, excludes anything already in `devkit.lock.json`, and opens a terminal multiselect (space to toggle, enter to confirm). For each selected package that has variants, you get a follow-up prompt unless you passed `--variant=<id>` and that id exists for that component.
 
 **What happens under the hood:**
 
@@ -365,6 +373,10 @@ devkit install
 Stop DevKit from tracking a component without deleting its files. After ejecting, the files become entirely yours — no more updates via `devkit update`.
 
 ```bash
+# Interactive — multiselect from installed components (from devkit.lock.json)
+devkit eject
+
+# Eject one component by name
 devkit eject auth
 ```
 

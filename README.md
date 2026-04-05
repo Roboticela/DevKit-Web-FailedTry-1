@@ -165,7 +165,8 @@ devkit init                       # Initialize DevKit in existing project
 devkit list                       # List available components
 devkit list --installed           # Show only installed
 devkit info <name>                # Component details + variants
-devkit add <name>                 # Install component
+devkit add                        # Interactive picker (registry + variants)
+devkit add <name>                 # Install component(s)
 devkit add <name> --variant=<id>  # Install with specific variant
 devkit remove <name>              # Uninstall component
 devkit update <name>              # Update to latest version
@@ -176,6 +177,7 @@ devkit theme preset <name>        # Switch theme preset
 devkit theme set <key> <value>    # Set single token
 devkit theme list                 # Show current theme
 devkit install                    # CI: restore from lock file
+devkit eject                      # Interactive: pick installed component(s)
 devkit eject <name>               # Stop tracking, keep files
 ```
 
