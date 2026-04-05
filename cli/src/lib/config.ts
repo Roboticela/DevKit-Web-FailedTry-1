@@ -75,7 +75,7 @@ export function isComponentInstalled(name: string, cwd = process.cwd()): boolean
 
 export function defaultConfig(template: DevKitConfig["template"], siteName: string, siteUrl: string): DevKitConfig {
   return {
-    $schema: "https://registry.roboticela.com/schemas/devkit-config.json",
+    $schema: "https://registry.devkit.roboticela.com/schemas/devkit-config.json",
     devkit: "1.0",
     template,
     site: { name: siteName, url: siteUrl },

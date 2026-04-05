@@ -32,7 +32,7 @@ export function isComponentInstalled(name, cwd = process.cwd()) {
 }
 export function defaultConfig(template, siteName, siteUrl) {
     return {
-        $schema: "https://registry.roboticela.com/schemas/devkit-config.json",
+        $schema: "https://registry.devkit.roboticela.com/schemas/devkit-config.json",
         devkit: "1.0",
         template,
         site: { name: siteName, url: siteUrl },

@@ -150,6 +150,6 @@ ${chalk.bold("Examples:")}
   ${chalk.cyan("devkit doctor")}                              Check configuration
   ${chalk.cyan("devkit list")}                                Browse all components
 
-${chalk.dim("Registry:")} ${process.env.DEVKIT_REGISTRY ?? "https://api.devkit.roboticela.com"}
+${chalk.dim("Registry:")} ${process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com"}
 `);
 program.parse();

@@ -8,7 +8,7 @@ import { getManifest } from "./registry.js";
 import { readLock, writeLock } from "./config.js";
 import { log } from "./logger.js";
 
-const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://api.devkit.roboticela.com";
+const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com";
 
 interface FileEntry {
   source: string;

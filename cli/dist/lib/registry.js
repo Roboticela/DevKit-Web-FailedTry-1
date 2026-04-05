@@ -1,4 +1,4 @@
-const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://api.devkit.roboticela.com";
+const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com";
 async function get(path) {
     const res = await fetch(`${REGISTRY_URL}${path}`);
     if (!res.ok)

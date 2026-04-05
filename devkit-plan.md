@@ -168,7 +168,7 @@ system-notifications              ✗                   ✓ (Tauri only)
 ┌──────────────────────────────┐  ┌────────────────────────────────────┐
 │   TEMPLATE REPOS (GitHub)    │  │      DEVKIT REGISTRY (Hosted)      │
 │                              │  │                                    │
-│  NextJS-Template-DevKit      │  │  registry.roboticela.com/api/v1/   │
+│  NextJS-Template-DevKit      │  │  registry.devkit.roboticela.com/api/v1/   │
 │  → /tarball/main (primary)   │  │  ├── components/                   │
 │  → git clone --depth=1       │  │  ├── components/:name              │
 │    (fallback)                │  │  ├── components/:name/variants     │
@@ -744,7 +744,7 @@ This is the single source of truth for all component configuration. It lives at 
 
 ```json
 {
-  "$schema": "https://registry.roboticela.com/schemas/devkit-config.json",
+  "$schema": "https://registry.devkit.roboticela.com/schemas/devkit-config.json",
   "devkit": "1.0",
   "template": "vite-express-tauri",
   "site": {
@@ -2002,7 +2002,7 @@ The `platform.ts` utility is injected once (during `devkit init`) and used by al
 2. **GitHub Actions** CI on every push to validate component metadata and generate release tarballs
 3. **GitHub Releases** used to publish versioned component tarballs (e.g. `auth-2.1.0-vite-express-tauri.tar.gz`)
 4. **Cloudflare CDN** (free tier) in front of GitHub Releases for fast global delivery
-5. **Simple JSON API** served via Cloudflare Workers (free) at `registry.roboticela.com/api/v1/`
+5. **Simple JSON API** served via Cloudflare Workers (free) at `registry.devkit.roboticela.com/api/v1/`
 
 **Cost:** Free at start. Scales to very high traffic on Cloudflare's free tier.
 
@@ -2033,7 +2033,7 @@ VPS or Cloud VM
 └── File storage: local disk or Cloudflare R2
 ```
 
-**Endpoints hosted at:** `registry.roboticela.com`
+**Endpoints hosted at:** `registry.devkit.roboticela.com`
 
 **Docker deployment:**
 ```yaml
@@ -2182,7 +2182,7 @@ devkit update auth@3.0.0
 # > Breaking changes:
 # >   - JWT config keys renamed
 # >   - Google OAuth requires new scope
-# > Read the full migration guide: https://registry.roboticela.com/components/auth/migrate/2-to-3
+# > Read the full migration guide: https://registry.devkit.roboticela.com/components/auth/migrate/2-to-3
 # > Continue? (yes/no): yes
 ```
 

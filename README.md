@@ -36,7 +36,7 @@ npm run dev
 
 ### Terminal 2 — CLI (local dev mode)
 
-> **Default registry:** `https://api.devkit.roboticela.com`
+> **Default registry:** `https://registry.devkit.roboticela.com`
 > **Local override:** set `DEVKIT_REGISTRY=http://localhost:4000` to point at your local registry.
 
 ```bash
