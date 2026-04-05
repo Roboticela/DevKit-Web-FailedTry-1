@@ -1,0 +1,28 @@
+{
+  "name": "hero-section",
+  "displayName": "Hero Section",
+  "description": "Landing page hero banner with multiple design variants. Only the chosen variant is downloaded.",
+  "category": "marketing",
+  "icon": "layout",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": ["hero", "landing", "marketing", "banner"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web"],
+  "hasVariants": true,
+  "variants": [
+    { "id": "centered",      "label": "Centered",       "description": "Classic centered heading + subheading + CTA buttons" },
+    { "id": "split-image",   "label": "Split Image",    "description": "Text on left, product screenshot on right" },
+    { "id": "gradient-mesh", "label": "Gradient Mesh",  "description": "Animated CSS gradient mesh background" },
+    { "id": "minimal",       "label": "Minimal",        "description": "Typography-only, no background decorations" }
+  ],
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      { "version": "1.0.0", "releaseDate": "2026-04-05", "breaking": false }
+    ]
+  },
+  "requiredConfig": ["site.name", "site.description"],
+  "optionalConfig": []
+}

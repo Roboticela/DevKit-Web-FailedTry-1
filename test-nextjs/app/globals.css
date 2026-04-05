@@ -1,0 +1,5 @@
+/* This file will be fully managed by DevKit after running 'devkit init' */
+/* Run: DEVKIT_REGISTRY=http://localhost:4000 node ../../cli/src/index.ts init */
+
+* { box-sizing: border-box; }
+body { margin: 0; }
