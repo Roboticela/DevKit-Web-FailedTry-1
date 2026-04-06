@@ -4,6 +4,7 @@ import { execSync } from "child_process";
 import { createHash } from "crypto";
 import { x as extractTar } from "tar";
 import { pipeline } from "stream/promises";
+import { getBundledComponentsDir } from "./bundled-registry.js";
 import { getManifest } from "./registry.js";
 import { readLock, writeLock } from "./config.js";
 import { log } from "./logger.js";
@@ -175,15 +176,16 @@ async function downloadComponentFiles(
 ): Promise<void> {
   mkdirSync(tmpDir, { recursive: true });
 
-  // For local development with the registry server, we serve files directly.
-  // In production this would stream a tarball. For now we copy from local registry.
-  const registryDir = join(dirname(new URL(import.meta.url).pathname), "../../../registry/components");
+  // Prefer on-disk payloads (bundled in the npm package or monorepo sibling) before HTTP tarball.
+  const registryDir = getBundledComponentsDir();
   const major = `v${version.split(".")[0]}`;
-  const compDir = variant
-    ? join(registryDir, name, template, major, "variants", variant)
-    : join(registryDir, name, template, major);
+  const compDir = registryDir
+    ? variant
+      ? join(registryDir, name, template, major, "variants", variant)
+      : join(registryDir, name, template, major)
+    : "";
 
-  if (existsSync(compDir)) {
+  if (compDir && existsSync(compDir)) {
     cpSync(compDir, tmpDir, { recursive: true });
   } else {
     // Fallback: try to fetch a tarball from registry

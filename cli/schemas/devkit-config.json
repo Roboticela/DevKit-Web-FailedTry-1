@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/Roboticela/DevKit/main/cli/schemas/devkit-config.json",
+  "title": "DevKit project configuration",
+  "type": "object",
+  "required": ["devkit", "template", "site"],
+  "additionalProperties": true,
+  "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "devkit": { "type": "string", "description": "DevKit config format version" },
+    "template": {
+      "type": "string",
+      "enum": ["nextjs-compact", "vite-express-tauri"],
+      "description": "Project template this repo was scaffolded from"
+    },
+    "site": {
+      "type": "object",
+      "required": ["name", "url"],
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "icon": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "theme": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "preset": { "type": "string" },
+        "colors": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "string" },
+            "secondary": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "fonts": {
+          "type": "object",
+          "properties": {
+            "sans": { "type": "string" },
+            "mono": { "type": "string" },
+            "display": { "type": "string" }
+          },
+          "additionalProperties": true
+        },
+        "radius": { "type": "string" },
+        "darkMode": { "type": "boolean" },
+        "darkModeStrategy": { "type": "string", "enum": ["class", "media"] }
+      }
+    },
+    "auth": { "type": "object", "additionalProperties": true },
+    "subscriptions": { "type": "object", "additionalProperties": true },
+    "storage": { "type": "object", "additionalProperties": true },
+    "database": {
+      "type": "object",
+      "properties": { "url": { "type": "string" } },
+      "additionalProperties": true
+    }
+  }
+}

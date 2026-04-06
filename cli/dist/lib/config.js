@@ -2,6 +2,8 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 const CONFIG_FILE = "devkit.config.json";
 const LOCK_FILE = "devkit.lock.json";
+/** Stable URL for editors (works before/without the public registry host). */
+export const DEVKIT_CONFIG_SCHEMA_URL = "https://raw.githubusercontent.com/Roboticela/DevKit/main/cli/schemas/devkit-config.json";
 export function configExists(cwd = process.cwd()) {
     return existsSync(join(cwd, CONFIG_FILE));
 }
@@ -32,7 +34,7 @@ export function isComponentInstalled(name, cwd = process.cwd()) {
 }
 export function defaultConfig(template, siteName, siteUrl) {
     return {
-        $schema: "https://registry.devkit.roboticela.com/schemas/devkit-config.json",
+        $schema: DEVKIT_CONFIG_SCHEMA_URL,
         devkit: "1.0",
         template,
         site: { name: siteName, url: siteUrl },

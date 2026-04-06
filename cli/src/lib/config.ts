@@ -40,6 +40,10 @@ export interface DevKitLock {
 const CONFIG_FILE = "devkit.config.json";
 const LOCK_FILE = "devkit.lock.json";
 
+/** Stable URL for editors (works before/without the public registry host). */
+export const DEVKIT_CONFIG_SCHEMA_URL =
+  "https://raw.githubusercontent.com/Roboticela/DevKit/main/cli/schemas/devkit-config.json";
+
 export function configExists(cwd = process.cwd()): boolean {
   return existsSync(join(cwd, CONFIG_FILE));
 }
@@ -75,7 +79,7 @@ export function isComponentInstalled(name: string, cwd = process.cwd()): boolean
 
 export function defaultConfig(template: DevKitConfig["template"], siteName: string, siteUrl: string): DevKitConfig {
   return {
-    $schema: "https://registry.devkit.roboticela.com/schemas/devkit-config.json",
+    $schema: DEVKIT_CONFIG_SCHEMA_URL,
     devkit: "1.0",
     template,
     site: { name: siteName, url: siteUrl },

@@ -1,3 +1,4 @@
+import { getBundledComponentMeta, getBundledManifest, listBundledComponents, } from "./bundled-registry.js";
 const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com";
 async function get(path) {
     const res = await fetch(`${REGISTRY_URL}${path}`);
@@ -6,14 +7,23 @@ async function get(path) {
     return res.json();
 }
 export async function listComponents(template) {
+    const local = listBundledComponents(template);
+    if (local)
+        return local;
     const qs = template ? `?template=${template}` : "";
     const data = await get(`/api/v1/components${qs}`);
     return data.components;
 }
 export async function getComponentInfo(name) {
+    const local = getBundledComponentMeta(name);
+    if (local)
+        return local;
     return get(`/api/v1/components/${name}`);
 }
 export async function getManifest(name, template, version = "latest", variant) {
+    const local = getBundledManifest(name, template, version, variant);
+    if (local)
+        return local;
     const qs = new URLSearchParams({ template, version });
     if (variant)
         qs.set("variant", variant);

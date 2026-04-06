@@ -41,6 +41,8 @@ export interface DevKitLock {
         installedAt: string;
     }>;
 }
+/** Stable URL for editors (works before/without the public registry host). */
+export declare const DEVKIT_CONFIG_SCHEMA_URL = "https://raw.githubusercontent.com/Roboticela/DevKit/main/cli/schemas/devkit-config.json";
 export declare function configExists(cwd?: string): boolean;
 export declare function readConfig(cwd?: string): DevKitConfig;
 export declare function writeConfig(config: DevKitConfig, cwd?: string): void;
