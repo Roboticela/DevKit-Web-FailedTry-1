@@ -1,6 +1,6 @@
 {
   "name": "@roboticela/devkit",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "Roboticela DevKit CLI — scaffold, extend, and theme full-stack projects with one command",
   "type": "module",
   "bin": {
