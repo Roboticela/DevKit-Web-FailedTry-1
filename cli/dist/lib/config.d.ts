@@ -7,6 +7,11 @@ export interface DevKitConfig {
         url: string;
         icon?: string;
         description?: string;
+        /**
+         * Branding and marketing copy live here (paths under /public, taglines, etc.).
+         * Registry components should read from config so `devkit update` can refresh code without losing your values.
+         */
+        branding?: Record<string, string | undefined>;
     };
     theme?: {
         preset?: string;

@@ -170,13 +170,16 @@ devkit add <name>                 # Install component(s)
 devkit add <name> --variant=<id>  # Install with specific variant
 devkit remove <name>              # Uninstall component
 devkit update <name>              # Update to latest version
+devkit update <name> --force      # Update; overwrite your edits to managed files
 devkit upgrade                    # Upgrade all components
+devkit upgrade --force             # Upgrade; overwrite your edits to managed files
 devkit doctor                     # Check config + env vars
 devkit theme apply                # Regenerate CSS from config
 devkit theme preset <name>        # Switch theme preset
 devkit theme set <key> <value>    # Set single token
 devkit theme list                 # Show current theme
 devkit install                    # CI: restore from lock file
+devkit install --force            # Restore; overwrite local edits to managed files
 devkit eject                      # Interactive: pick installed component(s)
 devkit eject <name>               # Stop tracking, keep files
 ```

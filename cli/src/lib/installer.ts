@@ -36,13 +36,41 @@ function hashFile(path: string): string {
   return createHash("sha256").update(content).digest("hex");
 }
 
+/** Options for installing or updating a component. */
+export interface InstallOptions {
+  /**
+   * When true, replace managed files even if the user edited them since install.
+   * Default: keep local edits (skip copy) and retain their hashes in the manifest.
+   */
+  force?: boolean;
+}
+
 export async function installComponent(
   name: string,
   template: string,
   version = "latest",
   variant: string | undefined,
-  cwd = process.cwd()
+  cwd = process.cwd(),
+  options: InstallOptions = {}
 ): Promise<void> {
+  const force = options.force === true;
+
+  const lockAtStart = readLock(cwd);
+  const lockedComp = lockAtStart.components[name];
+
+  const existingManifestPath = join(cwd, ".devkit", `${name}.manifest.json`);
+  const previousByPath = new Map<string, { path: string; hash: string; userModified?: boolean }>();
+  if (existsSync(existingManifestPath)) {
+    try {
+      const existing = JSON.parse(readFileSync(existingManifestPath, "utf-8"));
+      for (const mf of existing.managedFiles ?? []) {
+        previousByPath.set(mf.path, mf);
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
   // 1. Fetch manifest from registry
   const result = await getManifest(name, template, version, variant);
   const manifest = result.manifest as unknown as Manifest;
@@ -59,25 +87,27 @@ export async function installComponent(
     const src = join(tmpDir, fileEntry.source);
     const dest = join(cwd, fileEntry.destination);
 
-    // Check if file exists and was user-modified
+    // User-modified = on disk differs from last DevKit-installed hash (while component is locked)
     let userModified = false;
-    if (existsSync(dest)) {
-      const existingHash = hashFile(dest);
-      const lock = readLock(cwd);
-      const lockedComp = lock.components[name];
-      if (lockedComp) {
-        const manifestPath = join(cwd, ".devkit", `${name}.manifest.json`);
-        if (existsSync(manifestPath)) {
-          const existingManifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
-          const tracked = (existingManifest.managedFiles ?? []).find((f: { path: string }) => f.path === fileEntry.destination);
-          if (tracked && tracked.hash !== existingHash) userModified = true;
-        }
-      }
+    if (!force && existsSync(dest) && lockedComp) {
+      const tracked = previousByPath.get(fileEntry.destination);
+      if (tracked && tracked.hash !== hashFile(dest)) userModified = true;
     }
 
     if (userModified) {
       log.warn(`Skipped (user-modified): ${fileEntry.destination}`);
+      managedFiles.push({
+        path: fileEntry.destination,
+        hash: hashFile(dest),
+        userModified: true,
+      });
     } else {
+      if (force && existsSync(dest) && lockedComp) {
+        const tracked = previousByPath.get(fileEntry.destination);
+        if (tracked && tracked.hash !== hashFile(dest)) {
+          log.warn(`Overwrote (user-modified, --force): ${fileEntry.destination}`);
+        }
+      }
       mkdirSync(dirname(dest), { recursive: true });
       if (existsSync(src)) {
         cpSync(src, dest);

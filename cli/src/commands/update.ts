@@ -1,10 +1,14 @@
 import ora from "ora";
 import chalk from "chalk";
 import { readConfig, readLock, isComponentInstalled } from "../lib/config.js";
-import { installComponent } from "../lib/installer.js";
+import { installComponent, type InstallOptions } from "../lib/installer.js";
 import { log } from "../lib/logger.js";
 
-export async function updateCommand(nameAtVersion: string, cwd = process.cwd()) {
+export async function updateCommand(
+  nameAtVersion: string,
+  opts: InstallOptions = {},
+  cwd = process.cwd()
+) {
   const [name, version = "latest"] = nameAtVersion.split("@");
   const config = readConfig(cwd);
 
@@ -19,14 +23,14 @@ export async function updateCommand(nameAtVersion: string, cwd = process.cwd()) 
 
   const spinner = ora({ text: `Updating ${name}…`, color: "cyan" }).start();
   try {
-    await installComponent(name, config.template, version, current.variant ?? undefined, cwd);
+    await installComponent(name, config.template, version, current.variant ?? undefined, cwd, opts);
     spinner.succeed(chalk.green(`${name} updated`));
   } catch (e) {
     spinner.fail(chalk.red(`Update failed: ${(e as Error).message}`));
   }
 }
 
-export async function upgradeAllCommand(cwd = process.cwd()) {
+export async function upgradeAllCommand(opts: InstallOptions = {}, cwd = process.cwd()) {
   const config = readConfig(cwd);
   const lock = readLock(cwd);
   const names = Object.keys(lock.components);
@@ -38,7 +42,7 @@ export async function upgradeAllCommand(cwd = process.cwd()) {
     const spinner = ora({ text: `Upgrading ${chalk.cyan(name)}…`, color: "cyan" }).start();
     try {
       const variant = lock.components[name].variant ?? undefined;
-      await installComponent(name, config.template, "latest", variant, cwd);
+      await installComponent(name, config.template, "latest", variant, cwd, opts);
       spinner.succeed(chalk.green(`${name} upgraded`));
     } catch (e) {
       spinner.fail(chalk.yellow(`${name}: ${(e as Error).message}`));
