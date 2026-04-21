@@ -1,3 +1,4 @@
+import { normalizeKind } from "./component-entry.js";
 import { getBundledComponentMeta, getBundledManifest, listBundledComponents, } from "./bundled-registry.js";
 const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com";
 async function get(path) {
@@ -6,19 +7,28 @@ async function get(path) {
         throw new Error(`Registry error ${res.status}: ${path}`);
     return res.json();
 }
-export async function listComponents(template) {
-    const local = listBundledComponents(template);
+function componentsQuery(filters) {
+    const params = new URLSearchParams();
+    if (filters.template)
+        params.set("template", filters.template);
+    if (filters.kind)
+        params.set("kind", filters.kind);
+    const s = params.toString();
+    return s ? `?${s}` : "";
+}
+export async function listComponents(filters = {}) {
+    const local = listBundledComponents(filters);
     if (local)
         return local;
-    const qs = template ? `?template=${template}` : "";
-    const data = await get(`/api/v1/components${qs}`);
-    return data.components;
+    const data = await get(`/api/v1/components${componentsQuery(filters)}`);
+    return data.components.map((c) => ({ ...c, kind: normalizeKind(c.kind) }));
 }
 export async function getComponentInfo(name) {
     const local = getBundledComponentMeta(name);
     if (local)
-        return local;
-    return get(`/api/v1/components/${name}`);
+        return { ...local, kind: normalizeKind(local.kind) };
+    const data = await get(`/api/v1/components/${name}`);
+    return { ...data, kind: normalizeKind(data.kind) };
 }
 export async function getManifest(name, template, version = "latest", variant) {
     const local = getBundledManifest(name, template, version, variant);

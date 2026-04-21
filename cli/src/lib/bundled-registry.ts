@@ -2,7 +2,8 @@ import { readFileSync, existsSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
-import type { ComponentEntry } from "./component-entry.js";
+import type { ComponentEntry, ListComponentsFilters } from "./component-entry.js";
+import { normalizeKind } from "./component-entry.js";
 
 /** Directory containing `dist/` (the published CLI package root). */
 export function getCliPackageRoot(fromImportMetaUrl = import.meta.url): string {
@@ -22,7 +23,8 @@ export function getBundledComponentsDir(fromImportMetaUrl = import.meta.url): st
   return null;
 }
 
-export function listBundledComponents(template: string | undefined, fromImportMetaUrl = import.meta.url): ComponentEntry[] | null {
+export function listBundledComponents(filters: ListComponentsFilters = {}, fromImportMetaUrl = import.meta.url): ComponentEntry[] | null {
+  const { template, kind } = filters;
   const root = getBundledComponentsDir(fromImportMetaUrl);
   if (!root) return null;
   const index = JSON.parse(readFileSync(join(root, "registry.json"), "utf-8")) as {
@@ -34,11 +36,14 @@ export function listBundledComponents(template: string | undefined, fromImportMe
     const metaPath = join(root, c.name, "component.json");
     if (!existsSync(metaPath)) continue;
     const meta = JSON.parse(readFileSync(metaPath, "utf-8")) as Record<string, unknown>;
+    const entryKind = normalizeKind(meta.kind);
+    if (kind && entryKind !== kind) continue;
     out.push({
       name: meta.name as string,
       displayName: meta.displayName as string,
       description: meta.description as string,
       category: meta.category as string,
+      kind: entryKind,
       templates: meta.templates as string[],
       platforms: meta.platforms as string[],
       hasVariants: meta.hasVariants as boolean,

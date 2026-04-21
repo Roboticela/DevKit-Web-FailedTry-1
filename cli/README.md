@@ -237,29 +237,31 @@ DevKit only deletes files it created. Files you have modified are flagged with a
 
 ### `devkit list`
 
-Browse available components in the registry.
+Browse everything in the registry. Each row is a **package** with a **kind**:
+
+- **`component`** — small UI building blocks (buttons, inputs, …) with no routes or backends.
+- **`scaffold`** — full features (auth flows, hero sections, billing, …) that may add routes, APIs, and config.
 
 ```bash
 devkit list
 devkit list --template=nextjs-compact
 devkit list --template=vite-express-tauri
 devkit list --installed
-devkit list --category=auth
+devkit list --kind=component
+devkit list --kind=scaffold
+devkit list --category=authentication
 devkit list --category=ui
 ```
 
 **Example output:**
 
 ```
-┌────────────────────┬───────────────────────────────┬────────────────────────────┬──────────────┐
-│ Component          │ Description                   │ Templates                  │ Installed    │
-├────────────────────┼───────────────────────────────┼────────────────────────────┼──────────────┤
-│ auth               │ Full authentication system    │ nextjs-compact, vite-expr… │ v2.1.0  ✓   │
-│ hero-section       │ Landing hero (6 variants)     │ nextjs-compact, vite-expr… │ -            │
-│ pricing            │ Pricing table (3 variants)    │ nextjs-compact, vite-expr… │ -            │
-│ desktop-tray       │ System tray icon & menu       │ vite-express-tauri only    │ -            │
-│ docs-site          │ MDX documentation site        │ nextjs-compact only        │ -            │
-└────────────────────┴───────────────────────────────┴────────────────────────────┴──────────────┘
+  Package            Kind         Category       Templates                  Installed
+  ────────────────────────────────────────────────────────────────────────────────────────
+  auth               scaffold     authentication nextjs-compact, vite-expr… v2.1.0
+  hero-section       scaffold     marketing      nextjs-compact, vite-expr… -
+  ui-button          component    ui             nextjs-compact, vite-expr… -
+  ui-input           component    ui             nextjs-compact, vite-expr… -
 ```
 
 ---

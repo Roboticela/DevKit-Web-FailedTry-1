@@ -3,6 +3,7 @@
   "displayName": "Hero Section",
   "description": "Landing page hero banner with multiple design variants. Only the chosen variant is downloaded.",
   "category": "marketing",
+  "kind": "scaffold",
   "icon": "layout",
   "author": "Roboticela",
   "license": "MIT",

@@ -14,13 +14,14 @@ import {
   themeApplyCommand, themePreviewCommand, themePresetCommand,
   themeSetCommand, themeListCommand, themeAuditCommand,
 } from "./commands/theme.js";
+import { CLI_VERSION } from "./version.js";
 
 const program = new Command();
 
 program
   .name("devkit")
   .description("Roboticela DevKit — scaffold and extend full-stack projects")
-  .version("1.0.0");
+  .version(CLI_VERSION);
 
 // ── devkit create ─────────────────────────────────────────────────────────────
 
@@ -68,6 +69,7 @@ program
   .command("list")
   .description("List all available components from the registry")
   .option("--template <id>",   "Filter by template")
+  .option("--kind <type>",     "Filter by kind: component (UI) or scaffold (full feature)")
   .option("--category <cat>",  "Filter by category")
   .option("--installed",       "Show only installed components")
   .action((opts) => listCommand(opts));

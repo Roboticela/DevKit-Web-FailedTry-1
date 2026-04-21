@@ -162,7 +162,9 @@ curl "http://localhost:4000/api/v1/components/hero-section/manifest?template=nex
 ```bash
 devkit create [name]              # Scaffold new project interactively
 devkit init                       # Initialize DevKit in existing project
-devkit list                       # List available components
+devkit list                       # List packages (kinds: component vs scaffold)
+devkit list --kind=component      # UI primitives only
+devkit list --kind=scaffold       # Full features only
 devkit list --installed           # Show only installed
 devkit info <name>                # Component details + variants
 devkit add                        # Interactive picker (registry + variants)

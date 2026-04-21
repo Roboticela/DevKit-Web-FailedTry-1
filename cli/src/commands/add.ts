@@ -4,6 +4,7 @@ import { intro, outro, multiselect, select, isCancel } from "@clack/prompts";
 import { readConfig, isComponentInstalled } from "../lib/config.js";
 import { installComponent } from "../lib/installer.js";
 import { listComponents, type ComponentEntry } from "../lib/registry.js";
+import { normalizeKind } from "../lib/component-entry.js";
 import { log } from "../lib/logger.js";
 
 interface AddOptions {
@@ -41,7 +42,7 @@ async function interactiveAddSelections(
 ): Promise<{ name: string; version: string; variant?: string }[] | null> {
   let all: ComponentEntry[];
   try {
-    all = await listComponents(config.template);
+    all = await listComponents({ template: config.template });
   } catch (e) {
     log.error(`Could not reach registry: ${(e as Error).message}`);
     log.info("Check DEVKIT_REGISTRY or start the registry locally (see repo README).");
@@ -58,13 +59,17 @@ async function interactiveAddSelections(
   intro(chalk.cyan("Add components"));
 
   const pickedRaw = await multiselect({
-    message: "Select components to install (space to toggle, enter to confirm)",
-    options: installable.map((c) => ({
-      value: c.name,
-      label: c.name,
-      hint:
-        c.description.length > 64 ? `${c.description.slice(0, 61)}…` : c.description,
-    })),
+    message: "Select packages to install (space to toggle, enter to confirm)",
+    options: installable.map((c) => {
+      const role = normalizeKind(c.kind) === "component" ? "UI" : "app";
+      const short =
+        c.description.length > 52 ? `${c.description.slice(0, 49)}…` : c.description;
+      return {
+        value: c.name,
+        label: `[${role}] ${c.name}`,
+        hint: short,
+      };
+    }),
     required: false,
   });
 

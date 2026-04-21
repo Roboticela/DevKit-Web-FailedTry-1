@@ -8,6 +8,7 @@ import { writeConfig, writeLock, defaultConfig } from "../lib/config.js";
 import { generateThemeCSS } from "../lib/theme.js";
 import { installComponent } from "../lib/installer.js";
 import { log } from "../lib/logger.js";
+import { CLI_VERSION } from "../version.js";
 const TEMPLATES = [
     {
         value: "nextjs-compact",
@@ -37,9 +38,16 @@ const COMPONENTS = [
 ];
 export async function createCommand(projectName, opts) {
     console.log();
+    const inner = 53;
+    const verCentered = (() => {
+        const s = `v${CLI_VERSION}`;
+        const pad = inner - s.length;
+        const left = Math.floor(pad / 2);
+        return " ".repeat(left) + s + " ".repeat(pad - left);
+    })();
     console.log(chalk.bold.white("  ┌─────────────────────────────────────────────────────┐"));
     console.log(chalk.bold.white("  │      Roboticela DevKit — Create New Project         │"));
-    console.log(chalk.bold.white("  │                    v1.0.0                           │"));
+    console.log(chalk.bold.white(`  │${verCentered}│`));
     console.log(chalk.bold.white("  └─────────────────────────────────────────────────────┘"));
     console.log();
     intro(chalk.cyan("Let's scaffold your project"));

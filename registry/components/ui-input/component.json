@@ -1,0 +1,21 @@
+{
+  "name": "ui-input",
+  "displayName": "UI Input",
+  "description": "Themed text input primitive using CSS design tokens — no routes or APIs.",
+  "category": "ui",
+  "kind": "component",
+  "icon": "text-cursor",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": ["input", "form", "ui", "primitive", "text-field"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": false,
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-04-05", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

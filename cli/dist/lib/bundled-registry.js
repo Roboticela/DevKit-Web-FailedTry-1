@@ -1,6 +1,7 @@
 import { readFileSync, existsSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
+import { normalizeKind } from "./component-entry.js";
 /** Directory containing `dist/` (the published CLI package root). */
 export function getCliPackageRoot(fromImportMetaUrl = import.meta.url) {
     return join(dirname(fileURLToPath(fromImportMetaUrl)), "..", "..");
@@ -19,7 +20,8 @@ export function getBundledComponentsDir(fromImportMetaUrl = import.meta.url) {
         return sibling;
     return null;
 }
-export function listBundledComponents(template, fromImportMetaUrl = import.meta.url) {
+export function listBundledComponents(filters = {}, fromImportMetaUrl = import.meta.url) {
+    const { template, kind } = filters;
     const root = getBundledComponentsDir(fromImportMetaUrl);
     if (!root)
         return null;
@@ -32,11 +34,15 @@ export function listBundledComponents(template, fromImportMetaUrl = import.meta.
         if (!existsSync(metaPath))
             continue;
         const meta = JSON.parse(readFileSync(metaPath, "utf-8"));
+        const entryKind = normalizeKind(meta.kind);
+        if (kind && entryKind !== kind)
+            continue;
         out.push({
             name: meta.name,
             displayName: meta.displayName,
             description: meta.description,
             category: meta.category,
+            kind: entryKind,
             templates: meta.templates,
             platforms: meta.platforms,
             hasVariants: meta.hasVariants,

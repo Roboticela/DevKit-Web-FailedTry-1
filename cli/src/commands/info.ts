@@ -1,5 +1,6 @@
 import chalk from "chalk";
 import { getComponentInfo } from "../lib/registry.js";
+import { normalizeKind } from "../lib/component-entry.js";
 import { log } from "../lib/logger.js";
 
 export async function infoCommand(name: string) {
@@ -13,6 +14,10 @@ export async function infoCommand(name: string) {
     console.log(`  ${chalk.dim(info["description"] as string)}`);
     log.blank();
     console.log(`  ${chalk.bold("Version")}     ${versions.latest}`);
+    const k = normalizeKind(info["kind"]);
+    const kindExplain =
+      k === "component" ? "UI building block (button, input, …)" : "full feature (routes, APIs, flows)";
+    console.log(`  ${chalk.bold("Kind")}        ${k}  ${chalk.dim(`(${kindExplain})`)}`);
     console.log(`  ${chalk.bold("Category")}    ${info["category"]}`);
     console.log(`  ${chalk.bold("Templates")}   ${(info["templates"] as string[]).join(", ")}`);
     console.log(`  ${chalk.bold("Platforms")}   ${(info["platforms"] as string[]).join(", ")}`);

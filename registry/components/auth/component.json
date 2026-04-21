@@ -3,6 +3,7 @@
   "displayName": "Authentication",
   "description": "Complete authentication system: email/password login, registration, email verification, forgot/reset password, and Google OAuth.",
   "category": "authentication",
+  "kind": "scaffold",
   "icon": "lock",
   "author": "Roboticela",
   "license": "MIT",

@@ -4,6 +4,7 @@ import { intro, outro, multiselect, select, isCancel } from "@clack/prompts";
 import { readConfig, isComponentInstalled } from "../lib/config.js";
 import { installComponent } from "../lib/installer.js";
 import { listComponents } from "../lib/registry.js";
+import { normalizeKind } from "../lib/component-entry.js";
 import { log } from "../lib/logger.js";
 /** `undefined` = no variant; string = chosen id; `"cancel"` = user aborted */
 async function pickVariantForComponent(meta, optsVariant) {
@@ -31,7 +32,7 @@ async function pickVariantForComponent(meta, optsVariant) {
 async function interactiveAddSelections(config, opts, cwd) {
     let all;
     try {
-        all = await listComponents(config.template);
+        all = await listComponents({ template: config.template });
     }
     catch (e) {
         log.error(`Could not reach registry: ${e.message}`);
@@ -46,12 +47,16 @@ async function interactiveAddSelections(config, opts, cwd) {
     console.log();
     intro(chalk.cyan("Add components"));
     const pickedRaw = await multiselect({
-        message: "Select components to install (space to toggle, enter to confirm)",
-        options: installable.map((c) => ({
-            value: c.name,
-            label: c.name,
-            hint: c.description.length > 64 ? `${c.description.slice(0, 61)}…` : c.description,
-        })),
+        message: "Select packages to install (space to toggle, enter to confirm)",
+        options: installable.map((c) => {
+            const role = normalizeKind(c.kind) === "component" ? "UI" : "app";
+            const short = c.description.length > 52 ? `${c.description.slice(0, 49)}…` : c.description;
+            return {
+                value: c.name,
+                label: `[${role}] ${c.name}`,
+                hint: short,
+            };
+        }),
         required: false,
     });
     if (isCancel(pickedRaw)) {

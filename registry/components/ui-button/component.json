@@ -1,0 +1,21 @@
+{
+  "name": "ui-button",
+  "displayName": "UI Button",
+  "description": "Small themed button primitive using CSS design tokens — no routes or APIs.",
+  "category": "ui",
+  "kind": "component",
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": ["button", "ui", "form", "primitive"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": false,
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-04-05", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -7,6 +7,7 @@
       "displayName": "Authentication",
       "description": "Complete authentication system: email/password login, registration, email verification, forgot/reset password, and Google OAuth.",
       "category": "authentication",
+      "kind": "scaffold",
       "icon": "lock",
       "templates": ["nextjs-compact", "vite-express-tauri"],
       "platforms": ["web", "desktop"],
@@ -19,6 +20,7 @@
       "displayName": "Hero Section",
       "description": "Landing page hero banner with 4 design variants: centered, split-image, gradient-mesh, and minimal.",
       "category": "marketing",
+      "kind": "scaffold",
       "icon": "layout",
       "templates": ["nextjs-compact", "vite-express-tauri"],
       "platforms": ["web"],
@@ -26,6 +28,32 @@
       "variants": ["centered", "split-image", "gradient-mesh", "minimal"],
       "latestVersion": "1.0.0",
       "tags": ["hero", "landing", "marketing", "banner"]
+    },
+    {
+      "name": "ui-button",
+      "displayName": "UI Button",
+      "description": "Small themed button primitive using CSS design tokens — no routes or APIs.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": ["nextjs-compact", "vite-express-tauri"],
+      "platforms": ["web", "desktop"],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": ["button", "ui", "form", "primitive"]
+    },
+    {
+      "name": "ui-input",
+      "displayName": "UI Input",
+      "description": "Themed text input primitive using CSS design tokens — no routes or APIs.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "text-cursor",
+      "templates": ["nextjs-compact", "vite-express-tauri"],
+      "platforms": ["web", "desktop"],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": ["input", "form", "ui", "primitive", "text-field"]
     }
   ]
 }
