@@ -8,6 +8,7 @@ import { writeConfig, writeLock, defaultConfig } from "../lib/config.js";
 import { generateThemeCSS } from "../lib/theme.js";
 import { installComponent } from "../lib/installer.js";
 import { log } from "../lib/logger.js";
+import { listComponents } from "../lib/registry.js";
 import { CLI_VERSION } from "../version.js";
 const TEMPLATES = [
     {
@@ -28,14 +29,21 @@ const PRESETS = [
     { value: "playful", label: "Playful    — Emerald + Orange  — Friendly, rounded" },
     { value: "corporate", label: "Corporate  — Blue + Gray       — Formal, enterprise" },
 ];
-const COMPONENTS = [
-    { value: "auth", label: "auth          — Full authentication system" },
-    { value: "hero-section", label: "hero-section  — Landing page hero banner" },
-    { value: "profile", label: "profile       — User profile pages" },
-    { value: "pricing", label: "pricing       — Pricing table" },
-    { value: "dashboard", label: "dashboard     — App dashboard layout" },
-    { value: "contact-form", label: "contact-form  — Contact / support form" },
-];
+async function getCreatePickerOptions(template, kind) {
+    const entries = await listComponents({ template, kind });
+    return entries
+        .slice()
+        .sort((a, b) => {
+        if (a.kind !== b.kind)
+            return a.kind === "component" ? -1 : 1;
+        return a.name.localeCompare(b.name);
+    })
+        .map((entry) => ({
+        value: entry.name,
+        label: `${entry.name} (${entry.kind})`,
+        hint: entry.description,
+    }));
+}
 export async function createCommand(projectName, opts) {
     console.log();
     const inner = 53;
@@ -83,13 +91,49 @@ export async function createCommand(projectName, opts) {
     }));
     const doGit = opts.git ?? (opts.yes ? true : await confirm({ message: "Initialize a git repository?" }));
     const doInstall = opts.install ?? (opts.yes ? true : await confirm({ message: "Install npm dependencies now?" }));
-    const selectedComponents = opts.add
-        ? opts.add.split(",").map((s) => s.trim())
-        : (opts.yes ? [] : await multiselect({
-            message: "Add components now? (space to select, enter to confirm — you can always run 'devkit add' later)",
-            options: COMPONENTS,
-            required: false,
-        }));
+    let selectedComponents = [];
+    if (opts.add) {
+        selectedComponents = opts.add.split(",").map((s) => s.trim()).filter(Boolean);
+    }
+    else if (!opts.yes) {
+        try {
+            const componentOptions = await getCreatePickerOptions(template, "component");
+            const scaffoldOptions = await getCreatePickerOptions(template, "scaffold");
+            const selectedUiComponents = componentOptions.length > 0
+                ? await multiselect({
+                    message: "Add components now? (space to select, enter to confirm)",
+                    options: componentOptions,
+                    required: false,
+                })
+                : [];
+            if (componentOptions.length === 0) {
+                log.warn("No components available for this template.");
+            }
+            const selectedScaffolds = scaffoldOptions.length > 0
+                ? await multiselect({
+                    message: "Add scaffolds now? (space to select, enter to confirm)",
+                    options: scaffoldOptions,
+                    required: false,
+                })
+                : [];
+            if (scaffoldOptions.length === 0) {
+                log.warn("No scaffolds available for this template.");
+            }
+            const seen = new Set();
+            selectedComponents = [...selectedUiComponents, ...selectedScaffolds].filter((name) => {
+                if (seen.has(name))
+                    return false;
+                seen.add(name);
+                return true;
+            });
+            if (selectedComponents.length === 0) {
+                log.info("No packages selected — you can always run 'devkit add' later.");
+            }
+        }
+        catch (e) {
+            log.warn(`Could not load registry packages for picker: ${e.message}`);
+        }
+    }
     // ── Build ────────────────────────────────────────────────────────────────
     console.log();
     log.header("Creating project…");

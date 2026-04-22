@@ -123,28 +123,42 @@ export async function createCommand(projectName: string | undefined, opts: Creat
   if (opts.add) {
     selectedComponents = opts.add.split(",").map((s) => s.trim()).filter(Boolean);
   } else if (!opts.yes) {
-    const componentKindFilter = await select({
-      message: "What should be shown in component picker?",
-      options: [
-        { value: "all", label: "All packages", hint: "Show both components and scaffolds" },
-        { value: "component", label: "Components only", hint: "UI building blocks" },
-        { value: "scaffold", label: "Scaffolds only", hint: "Feature packages / flows" },
-      ],
-    }) as "all" | PackageKind;
-
     try {
-      const pickerOptions = await getCreatePickerOptions(
-        template,
-        componentKindFilter === "all" ? undefined : componentKindFilter
-      );
-      if (pickerOptions.length === 0) {
-        log.warn("No packages available for the selected filter.");
-      } else {
-        selectedComponents = await multiselect({
-          message: "Add packages now? (space to select, enter to confirm — you can always run 'devkit add' later)",
-          options: pickerOptions,
-          required: false,
-        }) as string[];
+      const componentOptions = await getCreatePickerOptions(template, "component");
+      const scaffoldOptions = await getCreatePickerOptions(template, "scaffold");
+
+      const selectedUiComponents = componentOptions.length > 0
+        ? (await multiselect({
+            message: "Add components now? (space to select, enter to confirm)",
+            options: componentOptions,
+            required: false,
+          }) as string[])
+        : [];
+
+      if (componentOptions.length === 0) {
+        log.warn("No components available for this template.");
+      }
+
+      const selectedScaffolds = scaffoldOptions.length > 0
+        ? (await multiselect({
+            message: "Add scaffolds now? (space to select, enter to confirm)",
+            options: scaffoldOptions,
+            required: false,
+          }) as string[])
+        : [];
+
+      if (scaffoldOptions.length === 0) {
+        log.warn("No scaffolds available for this template.");
+      }
+
+      const seen = new Set<string>();
+      selectedComponents = [...selectedUiComponents, ...selectedScaffolds].filter((name) => {
+        if (seen.has(name)) return false;
+        seen.add(name);
+        return true;
+      });
+      if (selectedComponents.length === 0) {
+        log.info("No packages selected — you can always run 'devkit add' later.");
       }
     } catch (e) {
       log.warn(`Could not load registry packages for picker: ${(e as Error).message}`);
