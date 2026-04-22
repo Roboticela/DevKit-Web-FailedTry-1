@@ -2,22 +2,18 @@
 
 import * as React from "react";
 
-export interface InlineMessageProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface InlineMessageProps extends React.HTMLAttributes<HTMLParagraphElement> {
+  tone?: "info" | "success" | "warning" | "danger";
 }
 
-/**
- * InlineMessage uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function InlineMessage({ className = "", ...props }: InlineMessageProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+export function InlineMessage({ tone = "info", className = "", ...props }: InlineMessageProps) {
+  const toneClass =
+    tone === "success"
+      ? "text-[var(--color-success,#22c55e)]"
+      : tone === "warning"
+        ? "text-[var(--color-warning,#f59e0b)]"
+        : tone === "danger"
+          ? "text-[var(--color-danger,#ef4444)]"
+          : "text-[var(--color-text-subtle,var(--color-text))]";
+  return <p className={`text-sm ${toneClass} ${className}`} {...props} />;
 }

@@ -3,21 +3,9 @@
 import * as React from "react";
 
 export interface FormItemProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+  horizontal?: boolean;
 }
 
-/**
- * FormItem uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function FormItem({ className = "", ...props }: FormItemProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+export function FormItem({ horizontal = false, className = "", ...props }: FormItemProps) {
+  return <div className={`${horizontal ? "flex items-center gap-3" : "space-y-2"} ${className}`} {...props} />;
 }

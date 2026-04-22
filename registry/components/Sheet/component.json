@@ -1,7 +1,7 @@
 {
   "name": "Sheet",
   "displayName": "Sheet",
-  "description": "Reusable Sheet component with token-driven styling and accessible defaults.",
+  "description": "Reusable Sheet component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

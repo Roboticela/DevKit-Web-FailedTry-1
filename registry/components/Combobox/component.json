@@ -1,7 +1,7 @@
 {
   "name": "Combobox",
   "displayName": "Combobox",
-  "description": "Reusable Combobox component with token-driven styling and accessible defaults.",
+  "description": "Reusable Combobox component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

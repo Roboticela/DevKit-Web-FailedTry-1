@@ -3,21 +3,13 @@
 import * as React from "react";
 
 export interface StackProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+  direction?: "column" | "row";
+  gap?: "sm" | "md" | "lg";
+  wrap?: boolean;
 }
 
-/**
- * Stack uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Stack({ className = "", ...props }: StackProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+export function Stack({ direction = "column", gap = "md", wrap = false, className = "", ...props }: StackProps) {
+  const directionClass = direction === "row" ? "flex-row" : "flex-col";
+  const gapClass = gap === "sm" ? "gap-2" : gap === "lg" ? "gap-4" : "gap-3";
+  return <div className={`flex ${directionClass} ${gapClass} ${wrap ? "flex-wrap" : ""} ${className}`} {...props} />;
 }

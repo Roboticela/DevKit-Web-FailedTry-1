@@ -3,21 +3,24 @@
 import * as React from "react";
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+  src?: string;
+  alt?: string;
+  fallback?: React.ReactNode;
 }
 
-/**
- * Avatar uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Avatar({ className = "", ...props }: AvatarProps) {
+export function Avatar({ src, alt = "Avatar", fallback, className = "", ...props }: AvatarProps) {
+  const [imageError, setImageError] = React.useState(false);
+  const showFallback = !src || imageError;
+
   return (
     <div
       className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
+        `inline-flex h-10 w-10 items-center justify-center overflow-hidden rounded-full border border-[var(--color-border)] ` +
+        `bg-[var(--color-bg-subtle,var(--color-bg))] text-sm text-[var(--color-text)] ${className}`
       }
       {...props}
-    />
+    >
+      {showFallback ? fallback ?? alt.slice(0, 1).toUpperCase() : <img src={src} alt={alt} onError={() => setImageError(true)} className="h-full w-full object-cover" />}
+    </div>
   );
 }

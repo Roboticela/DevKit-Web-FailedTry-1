@@ -1,7 +1,7 @@
 {
   "name": "DropdownMenu",
   "displayName": "DropdownMenu",
-  "description": "Reusable DropdownMenu component with token-driven styling and accessible defaults.",
+  "description": "Reusable DropdownMenu component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

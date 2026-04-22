@@ -1,7 +1,7 @@
 {
   "name": "Surface",
   "displayName": "Surface",
-  "description": "Reusable Surface component with token-driven styling and accessible defaults.",
+  "description": "Reusable Surface component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

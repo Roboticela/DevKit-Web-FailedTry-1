@@ -2,22 +2,18 @@
 
 import * as React from "react";
 
-export interface FooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface FooterProps extends React.HTMLAttributes<HTMLElement> {
+  left?: React.ReactNode;
+  right?: React.ReactNode;
 }
 
-/**
- * Footer uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Footer({ className = "", ...props }: FooterProps) {
+export function Footer({ left, right, className = "", children, ...props }: FooterProps) {
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
+    <footer className={`border-t border-[var(--color-border)] bg-[var(--color-bg)] px-4 py-3 text-sm text-[var(--color-text-subtle,var(--color-text))] ${className}`} {...props}>
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>{left ?? children}</div>
+        {right ? <div>{right}</div> : null}
+      </div>
+    </footer>
   );
 }

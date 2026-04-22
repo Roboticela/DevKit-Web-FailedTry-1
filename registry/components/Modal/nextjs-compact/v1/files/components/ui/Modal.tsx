@@ -2,22 +2,19 @@
 
 import * as React from "react";
 
-export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface ModalProps {
+  open: boolean;
+  onOpenChange: (next: boolean) => void;
+  children?: React.ReactNode;
+  className?: string;
 }
 
-/**
- * Modal uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Modal({ className = "", ...props }: ModalProps) {
+export function Modal({ open, onOpenChange, children, className = "" }: ModalProps) {
+  if (!open) return null;
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
+    <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center">
+      <button type="button" aria-label="Close modal" className="absolute inset-0 bg-black/30" onClick={() => onOpenChange(false)} />
+      <div className={`relative z-10 w-full max-w-lg rounded-t-[var(--radius-lg,1rem)] border border-[var(--color-border)] bg-[var(--color-bg)] p-4 text-[var(--color-text)] sm:rounded-[var(--radius-lg,1rem)] ${className}`}>{children}</div>
+    </div>
   );
 }

@@ -2,22 +2,8 @@
 
 import * as React from "react";
 
-export interface SafeAreaWrapperProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
-}
+export type SafeAreaWrapperProps = React.HTMLAttributes<HTMLDivElement>;
 
-/**
- * SafeAreaWrapper uses design tokens from the host app and keeps a flat, modern UI style.
- */
 export function SafeAreaWrapper({ className = "", ...props }: SafeAreaWrapperProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+  return <div className={`px-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pb-[max(1rem,env(safe-area-inset-bottom))] ${className}`} {...props} />;
 }

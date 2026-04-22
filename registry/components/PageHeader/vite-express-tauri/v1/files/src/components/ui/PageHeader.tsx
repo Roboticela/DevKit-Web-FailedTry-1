@@ -2,22 +2,23 @@
 
 import * as React from "react";
 
-export interface PageHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface PageHeaderProps extends React.HTMLAttributes<HTMLElement> {
+  title?: string;
+  subtitle?: string;
+  actions?: React.ReactNode;
 }
 
-/**
- * PageHeader uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function PageHeader({ className = "", ...props }: PageHeaderProps) {
+export function PageHeader({ title, subtitle, actions, className = "", children, ...props }: PageHeaderProps) {
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
+    <header className={`space-y-2 border-b border-[var(--color-border)] pb-3 ${className}`} {...props}>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          {title ? <h1 className="text-xl font-semibold text-[var(--color-text)]">{title}</h1> : null}
+          {subtitle ? <p className="text-sm text-[var(--color-text-subtle,var(--color-text))]">{subtitle}</p> : null}
+        </div>
+        {actions ? <div className="shrink-0">{actions}</div> : null}
+      </div>
+      {children}
+    </header>
   );
 }

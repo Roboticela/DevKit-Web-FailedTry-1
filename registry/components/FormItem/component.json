@@ -1,7 +1,7 @@
 {
   "name": "FormItem",
   "displayName": "FormItem",
-  "description": "Reusable FormItem component with token-driven styling and accessible defaults.",
+  "description": "Reusable FormItem component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

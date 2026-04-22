@@ -8,20 +8,42 @@ export interface SelectOption {
   disabled?: boolean;
 }
 
-export interface SelectProps extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "onChange"> {
+export interface SelectProps
+  extends Omit<React.SelectHTMLAttributes<HTMLSelectElement>, "onChange" | "value" | "defaultValue"> {
   options: SelectOption[];
-  onChange?: (value: string) => void;
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-export function Select({ options, onChange, className = "", ...props }: SelectProps) {
+export function Select({
+  options,
+  value,
+  defaultValue,
+  onValueChange,
+  onChange,
+  className = "",
+  ...props
+}: SelectProps) {
+  const initial = defaultValue ?? options.find((option) => !option.disabled)?.value ?? "";
+  const [internal, setInternal] = React.useState(initial);
+  const isControlled = typeof value === "string";
+  const current = isControlled ? value : internal;
+
   return (
     <select
+      value={current}
       className={
-        `h-10 w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] px-3 text-sm text-[var(--color-text)] outline-none focus:ring-2 ` +
-        `focus:ring-[var(--color-primary)]/30 ${className}`
+        `h-10 w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] bg-[var(--color-bg)] px-3 ` +
+        `text-sm text-[var(--color-text)] outline-none focus:ring-2 focus:ring-[var(--color-primary)]/30 ${className}`
       }
-      onChange={(event) => onChange?.(event.target.value)}
+      onChange={(event) => {
+        const next = event.target.value;
+        if (!isControlled) setInternal(next);
+        onValueChange?.(next);
+        onChange?.(event);
+      }}
       {...props}
     >
       {options.map((option) => (

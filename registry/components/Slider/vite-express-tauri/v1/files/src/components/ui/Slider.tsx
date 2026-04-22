@@ -2,21 +2,43 @@
 
 import * as React from "react";
 
-export interface SliderProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface SliderProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "value" | "defaultValue"> {
+  value?: number;
+  defaultValue?: number;
+  onValueChange?: (value: number) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-/**
- * Slider uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Slider({ className = "", ...props }: SliderProps) {
+export function Slider({
+  value,
+  defaultValue = 0,
+  onValueChange,
+  onChange,
+  className = "",
+  min = 0,
+  max = 100,
+  step = 1,
+  ...props
+}: SliderProps) {
+  const [internal, setInternal] = React.useState(defaultValue);
+  const isControlled = typeof value === "number";
+  const current = isControlled ? value : internal;
+
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
+    <input
+      type="range"
+      value={current}
+      min={min}
+      max={max}
+      step={step}
+      onChange={(event) => {
+        const next = Number(event.target.value);
+        if (!isControlled) setInternal(next);
+        onValueChange?.(next);
+        onChange?.(event);
+      }}
+      className={`h-2 w-full cursor-pointer accent-[var(--color-primary)] ${className}`}
       {...props}
     />
   );

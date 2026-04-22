@@ -3,21 +3,12 @@
 import * as React from "react";
 
 export interface GridProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+  columns?: 1 | 2 | 3 | 4;
+  gap?: "sm" | "md" | "lg";
 }
 
-/**
- * Grid uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Grid({ className = "", ...props }: GridProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+export function Grid({ columns = 3, gap = "md", className = "", ...props }: GridProps) {
+  const cols = columns === 1 ? "grid-cols-1" : columns === 2 ? "grid-cols-1 sm:grid-cols-2" : columns === 4 ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3";
+  const gapClass = gap === "sm" ? "gap-2" : gap === "lg" ? "gap-4" : "gap-3";
+  return <div className={`grid ${cols} ${gapClass} ${className}`} {...props} />;
 }

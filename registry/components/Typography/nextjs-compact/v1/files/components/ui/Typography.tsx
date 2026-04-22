@@ -2,22 +2,14 @@
 
 import * as React from "react";
 
-export interface TypographyProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
+  as?: "p" | "span" | "h1" | "h2" | "h3" | "h4";
+  tone?: "default" | "muted";
 }
 
-/**
- * Typography uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Typography({ className = "", ...props }: TypographyProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+export function Typography({ as = "p", tone = "default", className = "", ...props }: TypographyProps) {
+  const Comp = as;
+  const sizeClass = as === "h1" ? "text-3xl font-semibold" : as === "h2" ? "text-2xl font-semibold" : as === "h3" ? "text-xl font-semibold" : as === "h4" ? "text-lg font-semibold" : "text-sm";
+  const toneClass = tone === "muted" ? "text-[var(--color-text-subtle,var(--color-text))]" : "text-[var(--color-text)]";
+  return <Comp className={`${sizeClass} ${toneClass} ${className}`} {...props} />;
 }

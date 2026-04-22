@@ -2,22 +2,8 @@
 
 import * as React from "react";
 
-export interface BottomNavProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
-}
+export type BottomNavProps = React.HTMLAttributes<HTMLElement>;
 
-/**
- * BottomNav uses design tokens from the host app and keeps a flat, modern UI style.
- */
 export function BottomNav({ className = "", ...props }: BottomNavProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+  return <nav className={`fixed inset-x-0 bottom-0 z-20 flex h-14 items-center justify-around border-t border-[var(--color-border)] bg-[var(--color-bg)] px-2 ${className}`} {...props} />;
 }

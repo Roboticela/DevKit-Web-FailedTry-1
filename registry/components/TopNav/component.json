@@ -1,7 +1,7 @@
 {
   "name": "TopNav",
   "displayName": "TopNav",
-  "description": "Reusable TopNav component with token-driven styling and accessible defaults.",
+  "description": "Reusable TopNav component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

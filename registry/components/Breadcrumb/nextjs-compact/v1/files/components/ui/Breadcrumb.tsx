@@ -2,22 +2,24 @@
 
 import * as React from "react";
 
-export interface BreadcrumbProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
 }
 
-/**
- * Breadcrumb uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Breadcrumb({ className = "", ...props }: BreadcrumbProps) {
+export interface BreadcrumbProps extends React.HTMLAttributes<HTMLElement> {
+  items: BreadcrumbItem[];
+}
+
+export function Breadcrumb({ items, className = "", ...props }: BreadcrumbProps) {
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
+    <nav aria-label="Breadcrumb" className={`flex items-center gap-2 text-sm text-[var(--color-text-subtle,var(--color-text))] ${className}`} {...props}>
+      {items.map((item, index) => (
+        <React.Fragment key={`${item.label}-${index}`}>
+          {item.href ? <a href={item.href} className="hover:text-[var(--color-text)]">{item.label}</a> : <span className="text-[var(--color-text)]">{item.label}</span>}
+          {index < items.length - 1 ? <span aria-hidden>/</span> : null}
+        </React.Fragment>
+      ))}
+    </nav>
   );
 }

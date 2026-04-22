@@ -2,21 +2,14 @@
 
 import * as React from "react";
 
-export interface DividerProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface DividerProps extends React.HTMLAttributes<HTMLHRElement> {
+  orientation?: "horizontal" | "vertical";
 }
 
-/**
- * Divider uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Divider({ className = "", ...props }: DividerProps) {
+export function Divider({ orientation = "horizontal", className = "", ...props }: DividerProps) {
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
+    <hr
+      className={orientation === "vertical" ? `h-full min-h-4 w-px border-0 bg-[var(--color-border)] ${className}` : `h-px w-full border-0 bg-[var(--color-border)] ${className}`}
       {...props}
     />
   );

@@ -1,7 +1,7 @@
 {
   "name": "Badge",
   "displayName": "Badge",
-  "description": "Reusable Badge component with token-driven styling and accessible defaults.",
+  "description": "Reusable Badge component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

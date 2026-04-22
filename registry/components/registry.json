@@ -109,7 +109,7 @@
     {
       "name": "ThemeProvider",
       "displayName": "ThemeProvider",
-      "description": "Reusable ThemeProvider component with token-driven styling and accessible defaults.",
+      "description": "Reusable ThemeProvider component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -133,7 +133,7 @@
     {
       "name": "ThemeScript",
       "displayName": "ThemeScript",
-      "description": "Reusable ThemeScript component with token-driven styling and accessible defaults.",
+      "description": "Reusable ThemeScript component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -157,7 +157,7 @@
     {
       "name": "ThemeToggle",
       "displayName": "ThemeToggle",
-      "description": "Reusable ThemeToggle component with token-driven styling and accessible defaults.",
+      "description": "Reusable ThemeToggle component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -181,7 +181,7 @@
     {
       "name": "Container",
       "displayName": "Container",
-      "description": "Reusable Container component with token-driven styling and accessible defaults.",
+      "description": "Reusable Container component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -205,7 +205,7 @@
     {
       "name": "Surface",
       "displayName": "Surface",
-      "description": "Reusable Surface component with token-driven styling and accessible defaults.",
+      "description": "Reusable Surface component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -229,7 +229,7 @@
     {
       "name": "Stack",
       "displayName": "Stack",
-      "description": "Reusable Stack component with token-driven styling and accessible defaults.",
+      "description": "Reusable Stack component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -253,7 +253,7 @@
     {
       "name": "Grid",
       "displayName": "Grid",
-      "description": "Reusable Grid component with token-driven styling and accessible defaults.",
+      "description": "Reusable Grid component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -277,7 +277,7 @@
     {
       "name": "Typography",
       "displayName": "Typography",
-      "description": "Reusable Typography component with token-driven styling and accessible defaults.",
+      "description": "Reusable Typography component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -301,7 +301,7 @@
     {
       "name": "Icon",
       "displayName": "Icon",
-      "description": "Reusable Icon component with token-driven styling and accessible defaults.",
+      "description": "Reusable Icon component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -325,7 +325,7 @@
     {
       "name": "Divider",
       "displayName": "Divider",
-      "description": "Reusable Divider component with token-driven styling and accessible defaults.",
+      "description": "Reusable Divider component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -349,7 +349,7 @@
     {
       "name": "ScrollArea",
       "displayName": "ScrollArea",
-      "description": "Reusable ScrollArea component with token-driven styling and accessible defaults.",
+      "description": "Reusable ScrollArea component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -373,7 +373,7 @@
     {
       "name": "SafeAreaWrapper",
       "displayName": "SafeAreaWrapper",
-      "description": "Reusable SafeAreaWrapper component with token-driven styling and accessible defaults.",
+      "description": "Reusable SafeAreaWrapper component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -397,7 +397,7 @@
     {
       "name": "Button",
       "displayName": "Button",
-      "description": "Reusable Button component with token-driven styling and accessible defaults.",
+      "description": "Reusable Button component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -421,7 +421,7 @@
     {
       "name": "IconButton",
       "displayName": "IconButton",
-      "description": "Reusable IconButton component with token-driven styling and accessible defaults.",
+      "description": "Reusable IconButton component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -445,7 +445,7 @@
     {
       "name": "Input",
       "displayName": "Input",
-      "description": "Reusable Input component with token-driven styling and accessible defaults.",
+      "description": "Reusable Input component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -469,7 +469,7 @@
     {
       "name": "Textarea",
       "displayName": "Textarea",
-      "description": "Reusable Textarea component with token-driven styling and accessible defaults.",
+      "description": "Reusable Textarea component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -493,7 +493,7 @@
     {
       "name": "Label",
       "displayName": "Label",
-      "description": "Reusable Label component with token-driven styling and accessible defaults.",
+      "description": "Reusable Label component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -517,7 +517,7 @@
     {
       "name": "Badge",
       "displayName": "Badge",
-      "description": "Reusable Badge component with token-driven styling and accessible defaults.",
+      "description": "Reusable Badge component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -541,7 +541,7 @@
     {
       "name": "Avatar",
       "displayName": "Avatar",
-      "description": "Reusable Avatar component with token-driven styling and accessible defaults.",
+      "description": "Reusable Avatar component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -565,7 +565,7 @@
     {
       "name": "Checkbox",
       "displayName": "Checkbox",
-      "description": "Reusable Checkbox component with token-driven styling and accessible defaults.",
+      "description": "Reusable Checkbox component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -589,7 +589,7 @@
     {
       "name": "RadioGroup",
       "displayName": "RadioGroup",
-      "description": "Reusable RadioGroup component with token-driven styling and accessible defaults.",
+      "description": "Reusable RadioGroup component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -613,7 +613,7 @@
     {
       "name": "Switch",
       "displayName": "Switch",
-      "description": "Reusable Switch component with token-driven styling and accessible defaults.",
+      "description": "Reusable Switch component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -637,7 +637,7 @@
     {
       "name": "Slider",
       "displayName": "Slider",
-      "description": "Reusable Slider component with token-driven styling and accessible defaults.",
+      "description": "Reusable Slider component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -661,7 +661,7 @@
     {
       "name": "Select",
       "displayName": "Select",
-      "description": "Reusable Select component with token-driven styling and accessible defaults.",
+      "description": "Reusable Select component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -685,7 +685,7 @@
     {
       "name": "Combobox",
       "displayName": "Combobox",
-      "description": "Reusable Combobox component with token-driven styling and accessible defaults.",
+      "description": "Reusable Combobox component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -709,7 +709,7 @@
     {
       "name": "Tabs",
       "displayName": "Tabs",
-      "description": "Reusable Tabs component with token-driven styling and accessible defaults.",
+      "description": "Reusable Tabs component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -733,7 +733,7 @@
     {
       "name": "Accordion",
       "displayName": "Accordion",
-      "description": "Reusable Accordion component with token-driven styling and accessible defaults.",
+      "description": "Reusable Accordion component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -757,7 +757,7 @@
     {
       "name": "Progress",
       "displayName": "Progress",
-      "description": "Reusable Progress component with token-driven styling and accessible defaults.",
+      "description": "Reusable Progress component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -781,7 +781,7 @@
     {
       "name": "Skeleton",
       "displayName": "Skeleton",
-      "description": "Reusable Skeleton component with token-driven styling and accessible defaults.",
+      "description": "Reusable Skeleton component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -805,7 +805,7 @@
     {
       "name": "Spinner",
       "displayName": "Spinner",
-      "description": "Reusable Spinner component with token-driven styling and accessible defaults.",
+      "description": "Reusable Spinner component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -829,7 +829,7 @@
     {
       "name": "Dialog",
       "displayName": "Dialog",
-      "description": "Reusable Dialog component with token-driven styling and accessible defaults.",
+      "description": "Reusable Dialog component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -853,7 +853,7 @@
     {
       "name": "AlertDialog",
       "displayName": "AlertDialog",
-      "description": "Reusable AlertDialog component with token-driven styling and accessible defaults.",
+      "description": "Reusable AlertDialog component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -877,7 +877,7 @@
     {
       "name": "Drawer",
       "displayName": "Drawer",
-      "description": "Reusable Drawer component with token-driven styling and accessible defaults.",
+      "description": "Reusable Drawer component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -901,7 +901,7 @@
     {
       "name": "Sheet",
       "displayName": "Sheet",
-      "description": "Reusable Sheet component with token-driven styling and accessible defaults.",
+      "description": "Reusable Sheet component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -925,7 +925,7 @@
     {
       "name": "Popover",
       "displayName": "Popover",
-      "description": "Reusable Popover component with token-driven styling and accessible defaults.",
+      "description": "Reusable Popover component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -949,7 +949,7 @@
     {
       "name": "Tooltip",
       "displayName": "Tooltip",
-      "description": "Reusable Tooltip component with token-driven styling and accessible defaults.",
+      "description": "Reusable Tooltip component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -973,7 +973,7 @@
     {
       "name": "DropdownMenu",
       "displayName": "DropdownMenu",
-      "description": "Reusable DropdownMenu component with token-driven styling and accessible defaults.",
+      "description": "Reusable DropdownMenu component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -997,7 +997,7 @@
     {
       "name": "ContextMenu",
       "displayName": "ContextMenu",
-      "description": "Reusable ContextMenu component with token-driven styling and accessible defaults.",
+      "description": "Reusable ContextMenu component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1021,7 +1021,7 @@
     {
       "name": "Toast",
       "displayName": "Toast",
-      "description": "Reusable Toast component with token-driven styling and accessible defaults.",
+      "description": "Reusable Toast component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1045,7 +1045,7 @@
     {
       "name": "Alert",
       "displayName": "Alert",
-      "description": "Reusable Alert component with token-driven styling and accessible defaults.",
+      "description": "Reusable Alert component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1069,7 +1069,7 @@
     {
       "name": "Banner",
       "displayName": "Banner",
-      "description": "Reusable Banner component with token-driven styling and accessible defaults.",
+      "description": "Reusable Banner component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1093,7 +1093,7 @@
     {
       "name": "EmptyState",
       "displayName": "EmptyState",
-      "description": "Reusable EmptyState component with token-driven styling and accessible defaults.",
+      "description": "Reusable EmptyState component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1117,7 +1117,7 @@
     {
       "name": "InlineMessage",
       "displayName": "InlineMessage",
-      "description": "Reusable InlineMessage component with token-driven styling and accessible defaults.",
+      "description": "Reusable InlineMessage component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1141,7 +1141,7 @@
     {
       "name": "TopNav",
       "displayName": "TopNav",
-      "description": "Reusable TopNav component with token-driven styling and accessible defaults.",
+      "description": "Reusable TopNav component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1165,7 +1165,7 @@
     {
       "name": "BottomNav",
       "displayName": "BottomNav",
-      "description": "Reusable BottomNav component with token-driven styling and accessible defaults.",
+      "description": "Reusable BottomNav component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1189,7 +1189,7 @@
     {
       "name": "SideNav",
       "displayName": "SideNav",
-      "description": "Reusable SideNav component with token-driven styling and accessible defaults.",
+      "description": "Reusable SideNav component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1213,7 +1213,7 @@
     {
       "name": "AppHeader",
       "displayName": "AppHeader",
-      "description": "Reusable AppHeader component with token-driven styling and accessible defaults.",
+      "description": "Reusable AppHeader component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1237,7 +1237,7 @@
     {
       "name": "Breadcrumb",
       "displayName": "Breadcrumb",
-      "description": "Reusable Breadcrumb component with token-driven styling and accessible defaults.",
+      "description": "Reusable Breadcrumb component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1261,7 +1261,7 @@
     {
       "name": "Pagination",
       "displayName": "Pagination",
-      "description": "Reusable Pagination component with token-driven styling and accessible defaults.",
+      "description": "Reusable Pagination component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1285,7 +1285,7 @@
     {
       "name": "CommandPalette",
       "displayName": "CommandPalette",
-      "description": "Reusable CommandPalette component with token-driven styling and accessible defaults.",
+      "description": "Reusable CommandPalette component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1309,7 +1309,7 @@
     {
       "name": "Form",
       "displayName": "Form",
-      "description": "Reusable Form component with token-driven styling and accessible defaults.",
+      "description": "Reusable Form component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1333,7 +1333,7 @@
     {
       "name": "FormField",
       "displayName": "FormField",
-      "description": "Reusable FormField component with token-driven styling and accessible defaults.",
+      "description": "Reusable FormField component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1357,7 +1357,7 @@
     {
       "name": "FormItem",
       "displayName": "FormItem",
-      "description": "Reusable FormItem component with token-driven styling and accessible defaults.",
+      "description": "Reusable FormItem component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1381,7 +1381,7 @@
     {
       "name": "FormMessage",
       "displayName": "FormMessage",
-      "description": "Reusable FormMessage component with token-driven styling and accessible defaults.",
+      "description": "Reusable FormMessage component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1405,7 +1405,7 @@
     {
       "name": "PasswordInput",
       "displayName": "PasswordInput",
-      "description": "Reusable PasswordInput component with token-driven styling and accessible defaults.",
+      "description": "Reusable PasswordInput component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1429,7 +1429,7 @@
     {
       "name": "OtpInput",
       "displayName": "OtpInput",
-      "description": "Reusable OtpInput component with token-driven styling and accessible defaults.",
+      "description": "Reusable OtpInput component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1453,7 +1453,7 @@
     {
       "name": "ConfirmDialog",
       "displayName": "ConfirmDialog",
-      "description": "Reusable ConfirmDialog component with token-driven styling and accessible defaults.",
+      "description": "Reusable ConfirmDialog component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1477,7 +1477,7 @@
     {
       "name": "PageHeader",
       "displayName": "PageHeader",
-      "description": "Reusable PageHeader component with token-driven styling and accessible defaults.",
+      "description": "Reusable PageHeader component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1501,7 +1501,7 @@
     {
       "name": "Modal",
       "displayName": "Modal",
-      "description": "Reusable Modal component with token-driven styling and accessible defaults.",
+      "description": "Reusable Modal component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1525,7 +1525,7 @@
     {
       "name": "ModalHeader",
       "displayName": "ModalHeader",
-      "description": "Reusable ModalHeader component with token-driven styling and accessible defaults.",
+      "description": "Reusable ModalHeader component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1549,7 +1549,7 @@
     {
       "name": "ModalBody",
       "displayName": "ModalBody",
-      "description": "Reusable ModalBody component with token-driven styling and accessible defaults.",
+      "description": "Reusable ModalBody component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1573,7 +1573,7 @@
     {
       "name": "ModalFooter",
       "displayName": "ModalFooter",
-      "description": "Reusable ModalFooter component with token-driven styling and accessible defaults.",
+      "description": "Reusable ModalFooter component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",
@@ -1597,7 +1597,7 @@
     {
       "name": "Footer",
       "displayName": "Footer",
-      "description": "Reusable Footer component with token-driven styling and accessible defaults.",
+      "description": "Reusable Footer component with theme-aware token styling and accessible defaults.",
       "category": "ui",
       "kind": "component",
       "icon": "square",

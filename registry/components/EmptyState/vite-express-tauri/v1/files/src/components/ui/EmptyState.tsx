@@ -3,21 +3,23 @@
 import * as React from "react";
 
 export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+  title?: string;
+  description?: string;
+  action?: React.ReactNode;
 }
 
-/**
- * EmptyState uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function EmptyState({ className = "", ...props }: EmptyStateProps) {
+export function EmptyState({ title = "No data", description, action, className = "", ...props }: EmptyStateProps) {
   return (
     <div
       className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
+        `flex min-h-40 w-full flex-col items-center justify-center rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
+        `bg-[var(--color-bg)] p-4 text-center ${className}`
       }
       {...props}
-    />
+    >
+      <p className="text-base font-medium text-[var(--color-text)]">{title}</p>
+      {description ? <p className="mt-1 text-sm text-[var(--color-text-subtle,var(--color-text))]">{description}</p> : null}
+      {action ? <div className="mt-3">{action}</div> : null}
+    </div>
   );
 }

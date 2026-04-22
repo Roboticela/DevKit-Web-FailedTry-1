@@ -2,22 +2,57 @@
 
 import * as React from "react";
 
-export interface OtpInputProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface OtpInputProps {
+  length?: number;
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+  className?: string;
+  inputClassName?: string;
 }
 
-/**
- * OtpInput uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function OtpInput({ className = "", ...props }: OtpInputProps) {
+export function OtpInput({
+  length = 6,
+  value,
+  defaultValue = "",
+  onValueChange,
+  className = "",
+  inputClassName = "",
+}: OtpInputProps) {
+  const [internal, setInternal] = React.useState(defaultValue.slice(0, length));
+  const isControlled = typeof value === "string";
+  const current = (isControlled ? value : internal).slice(0, length);
+
+  const update = React.useCallback(
+    (next: string) => {
+      const trimmed = next.slice(0, length);
+      if (!isControlled) setInternal(trimmed);
+      onValueChange?.(trimmed);
+    },
+    [isControlled, length, onValueChange]
+  );
+
+  const cells = Array.from({ length }, (_, index) => current[index] ?? "");
+
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
+    <div className={`flex items-center gap-2 ${className}`}>
+      {cells.map((digit, index) => (
+        <input
+          key={index}
+          value={digit}
+          maxLength={1}
+          inputMode="numeric"
+          onChange={(event) => {
+            const chars = current.split("");
+            chars[index] = event.target.value.slice(-1);
+            update(chars.join(""));
+          }}
+          className={
+            `h-10 w-10 rounded-[var(--radius-sm,0.375rem)] border border-[var(--color-border)] bg-[var(--color-bg)] text-center ` +
+            `text-sm text-[var(--color-text)] outline-none focus:ring-2 focus:ring-[var(--color-primary)]/30 ${inputClassName}`
+          }
+        />
+      ))}
+    </div>
   );
 }

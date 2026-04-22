@@ -3,21 +3,28 @@
 import * as React from "react";
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+  variant?: "info" | "success" | "warning" | "error";
+  title?: string;
 }
 
-/**
- * Alert uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Alert({ className = "", ...props }: AlertProps) {
+export function Alert({ variant = "info", title, className = "", children, ...props }: AlertProps) {
+  const variantClass =
+    variant === "success"
+      ? "border-[var(--color-success,#22c55e)]"
+      : variant === "warning"
+        ? "border-[var(--color-warning,#f59e0b)]"
+        : variant === "error"
+          ? "border-[var(--color-danger,#ef4444)]"
+          : "border-[var(--color-primary)]";
+
   return (
     <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
+      role="alert"
+      className={`rounded-[var(--radius-md,0.625rem)] border bg-[var(--color-bg)] p-3 text-[var(--color-text)] ${variantClass} ${className}`}
       {...props}
-    />
+    >
+      {title ? <p className="text-sm font-medium">{title}</p> : null}
+      <div className="text-sm text-[var(--color-text-subtle,var(--color-text))]">{children}</div>
+    </div>
   );
 }

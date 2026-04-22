@@ -2,21 +2,25 @@
 
 import * as React from "react";
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
+  variant?: "neutral" | "primary" | "success" | "warning" | "danger";
 }
 
-/**
- * Badge uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Badge({ className = "", ...props }: BadgeProps) {
+export function Badge({ variant = "neutral", className = "", ...props }: BadgeProps) {
+  const variantClass =
+    variant === "primary"
+      ? "border-[var(--color-primary)] text-[var(--color-primary)]"
+      : variant === "success"
+        ? "border-[var(--color-success,#22c55e)] text-[var(--color-success,#22c55e)]"
+        : variant === "warning"
+          ? "border-[var(--color-warning,#f59e0b)] text-[var(--color-warning,#f59e0b)]"
+          : variant === "danger"
+            ? "border-[var(--color-danger,#ef4444)] text-[var(--color-danger,#ef4444)]"
+            : "border-[var(--color-border)] text-[var(--color-text-subtle,var(--color-text))]";
+
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
+    <span
+      className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${variantClass} ${className}`}
       {...props}
     />
   );

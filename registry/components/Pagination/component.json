@@ -1,7 +1,7 @@
 {
   "name": "Pagination",
   "displayName": "Pagination",
-  "description": "Reusable Pagination component with token-driven styling and accessible defaults.",
+  "description": "Reusable Pagination component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

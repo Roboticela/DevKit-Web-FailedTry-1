@@ -1,7 +1,7 @@
 {
   "name": "Accordion",
   "displayName": "Accordion",
-  "description": "Reusable Accordion component with token-driven styling and accessible defaults.",
+  "description": "Reusable Accordion component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

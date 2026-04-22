@@ -2,22 +2,34 @@
 
 import * as React from "react";
 
-export interface PasswordInputProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+export interface PasswordInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
+  revealLabel?: string;
+  hideLabel?: string;
 }
 
-/**
- * PasswordInput uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function PasswordInput({ className = "", ...props }: PasswordInputProps) {
+export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(function PasswordInput(
+  { revealLabel = "Show", hideLabel = "Hide", className = "", ...props },
+  ref
+) {
+  const [visible, setVisible] = React.useState(false);
   return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
+    <div className="relative">
+      <input
+        ref={ref}
+        type={visible ? "text" : "password"}
+        className={
+          `h-10 w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] bg-[var(--color-bg)] px-3 pr-16 text-sm ` +
+          `text-[var(--color-text)] outline-none focus:ring-2 focus:ring-[var(--color-primary)]/30 ${className}`
+        }
+        {...props}
+      />
+      <button
+        type="button"
+        className="absolute inset-y-0 right-0 px-3 text-xs text-[var(--color-text-subtle,var(--color-text))]"
+        onClick={() => setVisible((current) => !current)}
+      >
+        {visible ? hideLabel : revealLabel}
+      </button>
+    </div>
   );
-}
+});

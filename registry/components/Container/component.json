@@ -1,7 +1,7 @@
 {
   "name": "Container",
   "displayName": "Container",
-  "description": "Reusable Container component with token-driven styling and accessible defaults.",
+  "description": "Reusable Container component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

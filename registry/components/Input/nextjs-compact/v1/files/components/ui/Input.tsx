@@ -2,22 +2,18 @@
 
 import * as React from "react";
 
-export interface InputProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
-}
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
 
-/**
- * Input uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Input({ className = "", ...props }: InputProps) {
+export const Input = React.forwardRef<HTMLInputElement, InputProps>(function Input({ className = "", ...props }, ref) {
   return (
-    <div
+    <input
+      ref={ref}
       className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
+        `h-10 w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] bg-[var(--color-bg)] px-3 text-sm ` +
+        `text-[var(--color-text)] outline-none transition-all duration-200 placeholder:text-[var(--color-text-subtle,var(--color-text))] ` +
+        `focus:ring-2 focus:ring-[var(--color-primary)]/30 disabled:opacity-50 ${className}`
       }
       {...props}
     />
   );
-}
+});

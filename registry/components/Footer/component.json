@@ -1,7 +1,7 @@
 {
   "name": "Footer",
   "displayName": "Footer",
-  "description": "Reusable Footer component with token-driven styling and accessible defaults.",
+  "description": "Reusable Footer component with theme-aware token styling and accessible defaults.",
   "category": "ui",
   "kind": "component",
   "icon": "square",

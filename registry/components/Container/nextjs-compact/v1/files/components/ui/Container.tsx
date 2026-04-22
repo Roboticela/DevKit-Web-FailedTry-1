@@ -3,21 +3,22 @@
 import * as React from "react";
 
 export interface ContainerProps extends React.HTMLAttributes<HTMLDivElement> {
-  asChild?: boolean;
+  maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
 }
 
-/**
- * Container uses design tokens from the host app and keeps a flat, modern UI style.
- */
-export function Container({ className = "", ...props }: ContainerProps) {
-  return (
-    <div
-      className={
-        `w-full rounded-[var(--radius-md,0.625rem)] border border-[var(--color-border)] ` +
-        `bg-[var(--color-bg)] text-[var(--color-text)] p-3 ` +
-        `transition-all duration-200 ease-out ${className}`
-      }
-      {...props}
-    />
-  );
+export function Container({ maxWidth = "xl", className = "", ...props }: ContainerProps) {
+  const widthClass =
+    maxWidth === "sm"
+      ? "max-w-xl"
+      : maxWidth === "md"
+        ? "max-w-3xl"
+        : maxWidth === "lg"
+          ? "max-w-5xl"
+          : maxWidth === "2xl"
+            ? "max-w-7xl"
+            : maxWidth === "full"
+              ? "max-w-full"
+              : "max-w-6xl";
+
+  return <div className={`mx-auto w-full px-4 sm:px-6 ${widthClass} ${className}`} {...props} />;
 }
