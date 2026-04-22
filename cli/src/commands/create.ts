@@ -8,6 +8,7 @@ import { writeConfig, writeLock, defaultConfig } from "../lib/config.js";
 import { generateThemeCSS } from "../lib/theme.js";
 import { installComponent } from "../lib/installer.js";
 import { log } from "../lib/logger.js";
+import { listComponents, type PackageKind } from "../lib/registry.js";
 import { CLI_VERSION } from "../version.js";
 
 interface CreateOptions {
@@ -41,14 +42,26 @@ const PRESETS = [
   { value: "corporate", label: "Corporate  — Blue + Gray       — Formal, enterprise" },
 ];
 
-const COMPONENTS = [
-  { value: "auth",          label: "auth          — Full authentication system" },
-  { value: "hero-section",  label: "hero-section  — Landing page hero banner" },
-  { value: "profile",       label: "profile       — User profile pages" },
-  { value: "pricing",       label: "pricing       — Pricing table" },
-  { value: "dashboard",     label: "dashboard     — App dashboard layout" },
-  { value: "contact-form",  label: "contact-form  — Contact / support form" },
-];
+interface CreatePickerOption {
+  value: string;
+  label: string;
+  hint?: string;
+}
+
+async function getCreatePickerOptions(template: string, kind?: PackageKind): Promise<CreatePickerOption[]> {
+  const entries = await listComponents({ template, kind });
+  return entries
+    .slice()
+    .sort((a, b) => {
+      if (a.kind !== b.kind) return a.kind === "component" ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    })
+    .map((entry) => ({
+      value: entry.name,
+      label: `${entry.name} (${entry.kind})`,
+      hint: entry.description,
+    }));
+}
 
 export async function createCommand(projectName: string | undefined, opts: CreateOptions) {
   console.log();
@@ -106,13 +119,37 @@ export async function createCommand(projectName: string | undefined, opts: Creat
   const doGit = opts.git ?? (opts.yes ? true : await confirm({ message: "Initialize a git repository?" }) as boolean);
   const doInstall = opts.install ?? (opts.yes ? true : await confirm({ message: "Install npm dependencies now?" }) as boolean);
 
-  const selectedComponents = opts.add
-    ? opts.add.split(",").map((s) => s.trim())
-    : (opts.yes ? [] : await multiselect({
-        message: "Add components now? (space to select, enter to confirm — you can always run 'devkit add' later)",
-        options: COMPONENTS,
-        required: false,
-      }) as string[]);
+  let selectedComponents: string[] = [];
+  if (opts.add) {
+    selectedComponents = opts.add.split(",").map((s) => s.trim()).filter(Boolean);
+  } else if (!opts.yes) {
+    const componentKindFilter = await select({
+      message: "What should be shown in component picker?",
+      options: [
+        { value: "all", label: "All packages", hint: "Show both components and scaffolds" },
+        { value: "component", label: "Components only", hint: "UI building blocks" },
+        { value: "scaffold", label: "Scaffolds only", hint: "Feature packages / flows" },
+      ],
+    }) as "all" | PackageKind;
+
+    try {
+      const pickerOptions = await getCreatePickerOptions(
+        template,
+        componentKindFilter === "all" ? undefined : componentKindFilter
+      );
+      if (pickerOptions.length === 0) {
+        log.warn("No packages available for the selected filter.");
+      } else {
+        selectedComponents = await multiselect({
+          message: "Add packages now? (space to select, enter to confirm — you can always run 'devkit add' later)",
+          options: pickerOptions,
+          required: false,
+        }) as string[];
+      }
+    } catch (e) {
+      log.warn(`Could not load registry packages for picker: ${(e as Error).message}`);
+    }
+  }
 
   // ── Build ────────────────────────────────────────────────────────────────
 
