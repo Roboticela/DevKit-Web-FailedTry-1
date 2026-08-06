@@ -1,0 +1,137 @@
+/* DevKit Foundation Tokens — Layer 1
+ * Soft surface hierarchy; no loud shadows or gradients.
+ * Import once in your global stylesheet.
+ */
+
+:root {
+  /* ── Color — neutrals ─────────────────────────────────────── */
+  --color-bg: #f5f5f7;
+  --color-bg-elevated: #ffffff;
+  --color-bg-subtle: #ececef;
+  --color-bg-muted: #e4e4e7;
+  --color-text: #1d1d1f;
+  --color-text-secondary: #6e6e73;
+  --color-text-tertiary: #86868b;
+  --color-text-inverse: #f5f5f7;
+  --color-border: #d2d2d7;
+  --color-border-subtle: #e8e8ed;
+  --color-focus: #0071e3;
+
+  /* ── Color — semantic ─────────────────────────────────────── */
+  --color-primary: #0071e3;
+  --color-primary-text: #ffffff;
+  --color-secondary: #6e6e73;
+  --color-success: #34c759;
+  --color-warning: #ff9f0a;
+  --color-error: #ff3b30;
+  --color-info: #64d2ff;
+  --color-ai: #bf5af2;
+  --color-automation: #30d158;
+  --color-billing: #ffd60a;
+  --color-security: #ff453a;
+  --color-notifications: #0a84ff;
+
+  /* ── Typography ───────────────────────────────────────────── */
+  --font-sans: "SF Pro Display", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "Cascadia Code", Menlo, monospace;
+  --font-numeric: "SF Pro Rounded", var(--font-sans);
+
+  --text-display: 2.75rem;
+  --text-heading: 2rem;
+  --text-title: 1.5rem;
+  --text-subtitle: 1.25rem;
+  --text-body: 1rem;
+  --text-caption: 0.875rem;
+  --text-label: 0.8125rem;
+  --text-helper: 0.75rem;
+  --text-code: 0.875rem;
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* ── Spacing ──────────────────────────────────────────────── */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* ── Radii ────────────────────────────────────────────────── */
+  --radius-none: 0;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 9999px;
+
+  /* ── Borders ──────────────────────────────────────────────── */
+  --border-width: 1px;
+  --border-width-thick: 2px;
+
+  /* ── Elevation (surface hierarchy — no heavy shadows) ───── */
+  --elevation-0: var(--color-bg);
+  --elevation-1: var(--color-bg-elevated);
+  --elevation-2: var(--color-bg-subtle);
+  --elevation-3: var(--color-bg-muted);
+
+  /* ── Motion ───────────────────────────────────────────────── */
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 320ms;
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+
+  /* ── Grid ─────────────────────────────────────────────────── */
+  --grid-columns: 12;
+  --grid-gutter: var(--space-4);
+  --grid-max-width: 72rem;
+  --container-padding: var(--space-4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-normal: 0ms;
+    --duration-slow: 0ms;
+  }
+}
+
+.dark,
+[data-theme="dark"] {
+  --color-bg: #000000;
+  --color-bg-elevated: #1c1c1e;
+  --color-bg-subtle: #2c2c2e;
+  --color-bg-muted: #3a3a3c;
+  --color-text: #f5f5f7;
+  --color-text-secondary: #a1a1a6;
+  --color-text-tertiary: #6e6e73;
+  --color-text-inverse: #1d1d1f;
+  --color-border: #38383a;
+  --color-border-subtle: #2c2c2e;
+  --color-focus: #0a84ff;
+  --color-primary: #0a84ff;
+  --color-primary-text: #ffffff;
+  --elevation-0: var(--color-bg);
+  --elevation-1: var(--color-bg-elevated);
+  --elevation-2: var(--color-bg-subtle);
+  --elevation-3: var(--color-bg-muted);
+}
+
+[data-contrast="high"] {
+  --color-border: currentColor;
+  --border-width: var(--border-width-thick);
+  --color-focus: currentColor;
+}

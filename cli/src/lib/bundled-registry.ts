@@ -3,7 +3,7 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 
 import type { ComponentEntry, ListComponentsFilters } from "./component-entry.js";
-import { normalizeKind } from "./component-entry.js";
+import { normalizeKind, normalizeLayer } from "./component-entry.js";
 
 /** Directory containing `dist/` (the published CLI package root). */
 export function getCliPackageRoot(fromImportMetaUrl = import.meta.url): string {
@@ -24,11 +24,11 @@ export function getBundledComponentsDir(fromImportMetaUrl = import.meta.url): st
 }
 
 export function listBundledComponents(filters: ListComponentsFilters = {}, fromImportMetaUrl = import.meta.url): ComponentEntry[] | null {
-  const { template, kind } = filters;
+  const { template, kind, layer, category } = filters;
   const root = getBundledComponentsDir(fromImportMetaUrl);
   if (!root) return null;
   const index = JSON.parse(readFileSync(join(root, "registry.json"), "utf-8")) as {
-    components: { name: string; templates: string[] }[];
+    components: { name: string; templates: string[]; layer?: number; category?: string }[];
   };
   const out: ComponentEntry[] = [];
   for (const c of index.components) {
@@ -38,12 +38,18 @@ export function listBundledComponents(filters: ListComponentsFilters = {}, fromI
     const meta = JSON.parse(readFileSync(metaPath, "utf-8")) as Record<string, unknown>;
     const entryKind = normalizeKind(meta.kind);
     if (kind && entryKind !== kind) continue;
+    const entryLayer = normalizeLayer(meta.layer ?? c.layer);
+    if (layer && entryLayer !== layer) continue;
+    const entryCategory = (meta.category as string) ?? c.category ?? "";
+    if (category && entryCategory !== category) continue;
     out.push({
+      id: meta.id as number | undefined,
       name: meta.name as string,
       displayName: meta.displayName as string,
       description: meta.description as string,
-      category: meta.category as string,
+      category: entryCategory,
       kind: entryKind,
+      layer: entryLayer,
       templates: meta.templates as string[],
       platforms: meta.platforms as string[],
       hasVariants: meta.hasVariants as boolean,

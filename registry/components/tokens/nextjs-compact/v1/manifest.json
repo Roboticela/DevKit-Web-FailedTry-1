@@ -1,0 +1,13 @@
+﻿{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/styles/devkit-tokens.css",
+      "destination": "styles/devkit-tokens.css"
+    }
+  ],
+  "injections": [],
+  "dependencies": { "frontend": [] },
+  "envVars": []
+}

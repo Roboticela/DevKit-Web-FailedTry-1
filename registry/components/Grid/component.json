@@ -1,46 +1,25 @@
-{
-  "name": "Grid",
+﻿{
+  "id": 6,
+  "name": "grid",
   "displayName": "Grid",
-  "description": "Reusable Grid component with theme-aware token styling and accessible defaults.",
-  "category": "ui",
+  "description": "Responsive CSS grid primitive with gutters and optional max-width container.",
+  "category": "foundation",
   "kind": "component",
-  "icon": "square",
+  "layer": 1,
+  "icon": "layout-grid",
   "author": "Roboticela",
   "license": "MIT",
-  "tags": [
-    "grid",
-    "ui",
-    "component",
-    "reusable"
-  ],
-  "templates": [
-    "nextjs-compact",
-    "vite-express-tauri"
-  ],
-  "platforms": [
-    "web",
-    "desktop"
-  ],
+  "tags": ["grid", "layout", "foundation"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
   "hasVariants": false,
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",
     "history": [
-      {
-        "version": "1.0.0",
-        "releaseDate": "2026-04-21",
-        "breaking": false
-      }
+      { "version": "1.0.0", "releaseDate": "2026-08-06", "breaking": false }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.animation",
-    "ui.transitionDuration",
-    "ui.transitionProperty",
-    "ui.radius",
-    "ui.density",
-    "ui.borderWidth",
-    "ui.motionReduced"
-  ]
+  "optionalConfig": []
 }

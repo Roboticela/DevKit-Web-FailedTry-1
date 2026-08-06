@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
@@ -8,8 +8,6 @@
     }
   ],
   "injections": [],
-  "dependencies": {
-    "frontend": []
-  },
+  "dependencies": { "frontend": [] },
   "envVars": []
 }

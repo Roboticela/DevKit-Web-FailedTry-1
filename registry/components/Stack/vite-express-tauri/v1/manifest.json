@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
@@ -8,8 +8,6 @@
     }
   ],
   "injections": [],
-  "dependencies": {
-    "frontend": []
-  },
+  "dependencies": { "frontend": [] },
   "envVars": []
 }

@@ -1,0 +1,47 @@
+{
+  "version": "1",
+  "updatedAt": "2026-08-06T00:00:00Z",
+  "description": "Five-layer reusable UI component catalog. Scaffolds (kind=scaffold) remain supported but empty for now.",
+  "kinds": {
+    "component": "Reusable UI packages selectable by layer. Available for both templates.",
+    "scaffold": "Full-feature packages (routes, APIs, flows). Reserved; catalog empty for now."
+  },
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "layers": [
+    {
+      "layer": 1,
+      "id": "foundation",
+      "name": "Foundation",
+      "idRange": { "min": 1, "max": 100 },
+      "description": "Colors, typography, spacing, icons, elevation, borders, radii, motion, grids, tokens."
+    },
+    {
+      "layer": 2,
+      "id": "basic",
+      "name": "Basic Components",
+      "idRange": { "min": 101, "max": 500 },
+      "description": "Buttons, inputs, chips, avatars, badges, toggles, sliders, cards, tooltips, and other primitives."
+    },
+    {
+      "layer": 3,
+      "id": "composite",
+      "name": "Composite Components",
+      "idRange": { "min": 501, "max": 1500 },
+      "description": "Tables, forms, navigation, charts, calendars, editors, pickers, uploaders, dialogs."
+    },
+    {
+      "layer": 4,
+      "id": "advanced",
+      "name": "Advanced Components",
+      "idRange": { "min": 1501, "max": 2500 },
+      "description": "Kanban, Gantt, workflow builders, AI chat, dashboards, email composer, report builders."
+    },
+    {
+      "layer": 5,
+      "id": "templates",
+      "name": "Templates & Layouts",
+      "idRange": { "min": 2501, "max": 3000 },
+      "description": "Page templates, auth UI flows, admin dashboards, CRM layouts, analytics pages, mobile screens, enterprise workflows."
+    }
+  ]
+}

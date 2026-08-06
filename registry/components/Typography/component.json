@@ -1,46 +1,25 @@
-{
-  "name": "Typography",
+﻿{
+  "id": 2,
+  "name": "typography",
   "displayName": "Typography",
-  "description": "Reusable Typography component with theme-aware token styling and accessible defaults.",
-  "category": "ui",
+  "description": "Text primitives (Display through Caption, Label, Helper, Code, Numeric) driven by design tokens.",
+  "category": "foundation",
   "kind": "component",
-  "icon": "square",
+  "layer": 1,
+  "icon": "type",
   "author": "Roboticela",
   "license": "MIT",
-  "tags": [
-    "typography",
-    "ui",
-    "component",
-    "reusable"
-  ],
-  "templates": [
-    "nextjs-compact",
-    "vite-express-tauri"
-  ],
-  "platforms": [
-    "web",
-    "desktop"
-  ],
+  "tags": ["typography", "text", "foundation"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
   "hasVariants": false,
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",
     "history": [
-      {
-        "version": "1.0.0",
-        "releaseDate": "2026-04-21",
-        "breaking": false
-      }
+      { "version": "1.0.0", "releaseDate": "2026-08-06", "breaking": false }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.animation",
-    "ui.transitionDuration",
-    "ui.transitionProperty",
-    "ui.radius",
-    "ui.density",
-    "ui.borderWidth",
-    "ui.motionReduced"
-  ]
+  "optionalConfig": []
 }

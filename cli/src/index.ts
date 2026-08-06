@@ -69,8 +69,9 @@ program
   .command("list")
   .description("List all available components from the registry")
   .option("--template <id>",   "Filter by template")
-  .option("--kind <type>",     "Filter by kind: component (UI) or scaffold (full feature)")
-  .option("--category <cat>",  "Filter by category")
+  .option("--kind <type>",     "Filter by kind: component (UI) or scaffold (full feature, empty for now)")
+  .option("--layer <n>",       "Filter by layer: 1–5 (foundation…templates)")
+  .option("--category <cat>",  "Filter by category (foundation | basic | composite | advanced | templates)")
   .option("--installed",       "Show only installed components")
   .action((opts) => listCommand(opts));
 
@@ -176,13 +177,13 @@ ${chalk.bold("Examples:")}
   ${chalk.cyan("devkit create my-app")}                       Interactive project creation
   ${chalk.cyan("devkit create my-app --template=nextjs-compact --yes")}   Non-interactive
   ${chalk.cyan("devkit add")}                                 Interactive component picker
-  ${chalk.cyan("devkit add auth")}                            Install auth component
-  ${chalk.cyan("devkit add hero-section --variant=split-image")}
+  ${chalk.cyan("devkit add tokens")}                          Install foundation tokens
+  ${chalk.cyan("devkit add typography")}                      Install typography primitive
+  ${chalk.cyan("devkit list --layer=1")}                      Browse Layer 1 foundation
+  ${chalk.cyan("devkit list --kind=scaffold")}                Scaffolds (empty for now)
   ${chalk.cyan("devkit eject")}                               Pick component(s) to eject
   ${chalk.cyan("devkit theme set colors.primary #e11d48")}   Change primary color
   ${chalk.cyan("devkit doctor")}                              Check configuration
-  ${chalk.cyan("devkit list")}                                Browse all components
-  ${chalk.cyan("devkit update auth --force")}                 Pull upstream; overwrite your local edits to managed files
 
 ${chalk.dim("Registry:")} ${process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com"}
 `);

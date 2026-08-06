@@ -1,17 +1,24 @@
 import { Hono } from "hono";
-import { getRegistryIndex, getComponentMeta, resolveVersion, getManifest } from "../lib/registry.js";
+import {
+  getRegistryIndex,
+  getComponentMeta,
+  resolveVersion,
+  getManifest,
+} from "../lib/registry.js";
 
 const app = new Hono();
 
-// GET /api/v1/components
 function packageKind(comp: { kind?: "component" | "scaffold" }): "component" | "scaffold" {
   return comp.kind === "component" ? "component" : "scaffold";
 }
 
+// GET /api/v1/components
 app.get("/", (c) => {
   const template = c.req.query("template");
   const category = c.req.query("category");
   const kind = c.req.query("kind") as "component" | "scaffold" | undefined;
+  const layerRaw = c.req.query("layer");
+  const layer = layerRaw ? Number(layerRaw) : undefined;
   const index = getRegistryIndex();
 
   let list = index.components;
@@ -19,6 +26,9 @@ app.get("/", (c) => {
   if (category) list = list.filter((comp) => comp.category === category);
   if (kind === "component" || kind === "scaffold") {
     list = list.filter((comp) => packageKind(comp) === kind);
+  }
+  if (layer === 1 || layer === 2 || layer === 3 || layer === 4 || layer === 5) {
+    list = list.filter((comp) => comp.layer === layer);
   }
 
   const withKind = list.map((comp) => ({

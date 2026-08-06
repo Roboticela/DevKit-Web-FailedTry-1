@@ -1,24 +1,26 @@
 import { readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
-import { createRequire } from "module";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const COMPONENTS_DIR = join(__dirname, "../../components");
-
-const require = createRequire(import.meta.url);
 
 function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf-8")) as T;
 }
 
+export type PackageKind = "component" | "scaffold";
+export type ComponentLayer = 1 | 2 | 3 | 4 | 5;
+
 export interface ComponentEntry {
+  id?: number;
   name: string;
   displayName: string;
   description: string;
   category: string;
-  /** `component` = small UI; `scaffold` = full feature. Omitted in older indexes = scaffold. */
-  kind?: "component" | "scaffold";
+  /** `component` = reusable UI; `scaffold` = full feature. Omitted in older indexes = scaffold. */
+  kind?: PackageKind;
+  layer?: ComponentLayer;
   templates: string[];
   platforms: string[];
   hasVariants: boolean;
@@ -33,8 +35,25 @@ export interface RegistryIndex {
   components: ComponentEntry[];
 }
 
+export interface LayersCatalog {
+  version: string;
+  layers: {
+    layer: ComponentLayer;
+    id: string;
+    name: string;
+    idRange: { min: number; max: number };
+    description: string;
+  }[];
+}
+
 export function getRegistryIndex(): RegistryIndex {
   return readJson<RegistryIndex>(join(COMPONENTS_DIR, "registry.json"));
+}
+
+export function getLayersCatalog(): LayersCatalog | null {
+  const path = join(COMPONENTS_DIR, "layers.json");
+  if (!existsSync(path)) return null;
+  return readJson<LayersCatalog>(path);
 }
 
 export function getComponentMeta(name: string) {

@@ -1,46 +1,25 @@
-{
-  "name": "Icon",
+﻿{
+  "id": 3,
+  "name": "icon",
   "displayName": "Icon",
-  "description": "Reusable Icon component with theme-aware token styling and accessible defaults.",
-  "category": "ui",
+  "description": "Accessible SVG icon wrapper with consistent size scale.",
+  "category": "foundation",
   "kind": "component",
-  "icon": "square",
+  "layer": 1,
+  "icon": "shapes",
   "author": "Roboticela",
   "license": "MIT",
-  "tags": [
-    "icon",
-    "ui",
-    "component",
-    "reusable"
-  ],
-  "templates": [
-    "nextjs-compact",
-    "vite-express-tauri"
-  ],
-  "platforms": [
-    "web",
-    "desktop"
-  ],
+  "tags": ["icon", "svg", "foundation"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
   "hasVariants": false,
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",
     "history": [
-      {
-        "version": "1.0.0",
-        "releaseDate": "2026-04-21",
-        "breaking": false
-      }
+      { "version": "1.0.0", "releaseDate": "2026-08-06", "breaking": false }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.animation",
-    "ui.transitionDuration",
-    "ui.transitionProperty",
-    "ui.radius",
-    "ui.density",
-    "ui.borderWidth",
-    "ui.motionReduced"
-  ]
+  "optionalConfig": []
 }
