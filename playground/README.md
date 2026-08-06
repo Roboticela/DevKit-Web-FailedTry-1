@@ -7,8 +7,15 @@ npm run dev
 
 Opens **http://localhost:5173**
 
+- **Density Lab** — compact / comfortable / spacious / custom; cards, tables, nav, forms, scoped
+- **Overflow Lab** — scroll/fade, virtual lists, sync, lazy load
+- **Position Lab** — modes, FAB/sticky/toast presets, floating collision
+- **Alignment Lab** — presets, distribution, responsive items/justify, safe/adaptive
+- **Gap Lab** — presets, axis gaps, nested inheritance, dividers, density
+- **Padding Lab** — presets (none→spacious, hero, modal, card…), logical sides, density
+- **Margin Lab** — semantic presets, logical sides, responsive maps, collapse / density
 - **Breakpoint Lab** — semantic xs→3xl, live snapshot, capabilities, container queries
-- **Visibility Lab** — viewport presets, modes, roles/flags, lazy + intersection
+- **Visibility Lab** — engine: viewport/device presets, modes (incl. accessible), roles/flags/state, lazy + IO
 - **Aspect Lab** — presets (1:1 → A4/mobile), custom ratio, fit/crop, skeleton, responsive
 - **Safe Area Lab** — live insets, edges, nav/FAB/keyboard modes, `useSafeArea` hook
 - **Surface Lab** — roles, materials, elevation 0–5, outline/press, floating layers, modal overlay

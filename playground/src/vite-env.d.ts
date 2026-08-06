@@ -11,6 +11,12 @@ declare module "@devkit/safe-area-system.css";
 declare module "@devkit/aspect-system.css";
 declare module "@devkit/visibility-system.css";
 declare module "@devkit/breakpoint-system.css";
+declare module "@devkit/margin-system.css";
+declare module "@devkit/padding-system.css";
+declare module "@devkit/gap-system.css";
+declare module "@devkit/alignment-system.css";
+declare module "@devkit/position-system.css";
+declare module "@devkit/overflow-system.css";
 declare module "@devkit/responsive-grid.css";
 declare module "@devkit/responsive-spacing.css";
 declare module "@devkit/theme-engine.css";
@@ -674,13 +680,30 @@ declare module "@devkit/ResponsiveVisibility" {
     | "accessibility"
     | "reduced-motion-only"
     | "motion-ok-only"
+    | "touch-only"
+    | "hover-capable"
+    | "fine-pointer"
+    | "coarse-pointer"
+    | "from-sm"
+    | "until-sm"
     | "from-md"
     | "until-md"
     | "from-lg"
-    | "until-lg";
-  export type VisibilityMode = "show" | "hide" | "collapse" | "preserve" | "fade";
+    | "until-lg"
+    | "from-xl"
+    | "until-xl";
+  export type VisibilityMode =
+    | "show"
+    | "hide"
+    | "collapse"
+    | "preserve"
+    | "accessible"
+    | "fade";
   export type VisibilityStrategy = "css" | "js" | "auto";
-  export type VisibilityBreakpoint = "sm" | "md" | "lg" | "xl";
+  export type VisibilityBreakpoint = "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
+  export type VisibilityPointer = "fine" | "coarse" | "none";
+  export type VisibilityHover = "hover" | "none";
+  export type VisibilityMatchMode = "any" | "all";
   export interface VisibilityContextValue {
     roles?: string[];
     permissions?: string[];
@@ -689,8 +712,17 @@ declare module "@devkit/ResponsiveVisibility" {
   }
   export interface VisibilityChangeEvent {
     visible: boolean;
-    reason: "condition" | "media" | "intersection" | "controlled";
+    reason: "condition" | "media" | "intersection" | "controlled" | "hydration";
     entry?: IntersectionObserverEntry;
+  }
+  export interface ViewportObservation {
+    width: number;
+    height: number;
+    offsetTop: number;
+    offsetLeft: number;
+    scale: number;
+    visualWidth: number;
+    visualHeight: number;
   }
   export interface ResponsiveVisibilityProps
     extends Omit<React.HTMLAttributes<HTMLElement>, "role"> {
@@ -706,14 +738,22 @@ declare module "@devkit/ResponsiveVisibility" {
     minWidth?: number;
     maxWidth?: number;
     orientation?: "landscape" | "portrait";
+    pointer?: VisibilityPointer;
+    hover?: VisibilityHover;
+    touch?: boolean;
     role?: string | string[];
     permission?: string | string[];
+    matchMode?: VisibilityMatchMode;
     flag?: string;
+    flagsAll?: string[];
+    flagsAny?: string[];
     flags?: Record<string, boolean>;
     stateKey?: string;
     state?: Record<string, unknown>;
+    whenState?: (state: Record<string, unknown>) => boolean;
     reducedMotion?: boolean | "show" | "hide";
     prefersContrast?: boolean;
+    prefersReducedTransparency?: boolean;
     strategy?: VisibilityStrategy;
     block?: boolean;
     lazy?: boolean;
@@ -721,6 +761,7 @@ declare module "@devkit/ResponsiveVisibility" {
     motion?: boolean;
     intersection?: boolean | IntersectionObserverInit;
     ssrFallback?: boolean;
+    hydrateSafe?: boolean;
     onVisibilityChange?: (event: VisibilityChangeEvent) => void;
     onVisible?: (event: VisibilityChangeEvent) => void;
     as?: keyof React.JSX.IntrinsicElements;
@@ -732,12 +773,14 @@ declare module "@devkit/ResponsiveVisibility" {
     props: VisibilityContextValue & { children?: React.ReactNode }
   ): React.ReactElement;
   export function useVisibilityContext(): VisibilityContextValue;
+  export function useHydrated(): boolean;
   export function useMediaQuery(query: string | null | undefined, ssrFallback?: boolean): boolean;
   export function usePrefersReducedMotion(ssrFallback?: boolean): boolean;
   export function useIntersectionVisibility(
     ref: React.RefObject<Element | null>,
     options?: boolean | IntersectionObserverInit
-  ): boolean;
+  ): { inView: boolean; entry: IntersectionObserverEntry | null };
+  export function useViewportObservation(enabled?: boolean): ViewportObservation | null;
   export function useVisibility(options?: {
     when?: boolean;
     unless?: boolean;
@@ -747,17 +790,26 @@ declare module "@devkit/ResponsiveVisibility" {
     minWidth?: number;
     maxWidth?: number;
     orientation?: "landscape" | "portrait";
+    pointer?: VisibilityPointer;
+    hover?: VisibilityHover;
+    touch?: boolean;
     role?: string | string[];
     permission?: string | string[];
+    matchMode?: VisibilityMatchMode;
     flag?: string;
+    flagsAll?: string[];
+    flagsAny?: string[];
     flags?: Record<string, boolean>;
     stateKey?: string;
     state?: Record<string, unknown>;
+    whenState?: (state: Record<string, unknown>) => boolean;
     reducedMotion?: boolean | "show" | "hide";
     prefersContrast?: boolean;
+    prefersReducedTransparency?: boolean;
     invert?: boolean;
     visible?: boolean;
     ssrFallback?: boolean;
+    hydrateSafe?: boolean;
   }): boolean;
   export const MobileOnly: React.FC<Omit<ResponsiveVisibilityProps, "preset">>;
   export const TabletOnly: React.FC<Omit<ResponsiveVisibilityProps, "preset">>;
@@ -769,10 +821,541 @@ declare module "@devkit/ResponsiveVisibility" {
   export const ScreenOnly: React.FC<Omit<ResponsiveVisibilityProps, "preset">>;
   export const Foldables: React.FC<Omit<ResponsiveVisibilityProps, "preset">>;
   export const AccessibilityMode: React.FC<Omit<ResponsiveVisibilityProps, "preset">>;
+  export const TouchOnly: React.FC<Omit<ResponsiveVisibilityProps, "preset">>;
+  export const HoverCapable: React.FC<Omit<ResponsiveVisibilityProps, "preset">>;
   export function Show(props: Omit<ResponsiveVisibilityProps, "mode">): React.ReactElement | null;
   export function Hide(
     props: Omit<ResponsiveVisibilityProps, "invert">
   ): React.ReactElement | null;
+  export function getVisibilityInitScript(): string;
+  export function VisibilityScript(): React.ReactElement;
+}
+
+declare module "@devkit/Overflow" {
+  import type * as React from "react";
+  export type OverflowMode = "auto" | "hidden" | "clip" | "scroll" | "visible";
+  export type OverflowAxis = "x" | "y" | "both";
+  export type OverscrollBehavior = "auto" | "contain" | "none";
+  export interface OverflowState {
+    overflowX: boolean;
+    overflowY: boolean;
+    top: boolean;
+    bottom: boolean;
+    start: boolean;
+    end: boolean;
+    scrollTop: number;
+    scrollLeft: number;
+    scrollHeight: number;
+    scrollWidth: number;
+    clientHeight: number;
+    clientWidth: number;
+    progressY: number;
+    progressX: number;
+  }
+  export interface ScrollPosition {
+    x: number;
+    y: number;
+    progressX: number;
+    progressY: number;
+  }
+  export interface OverflowVirtualOptions {
+    itemSize?: number;
+    overscan?: number;
+    height?: number | string;
+  }
+  export interface OverflowProps extends React.HTMLAttributes<HTMLElement> {
+    mode?: OverflowMode;
+    axis?: OverflowAxis;
+    fade?: boolean | "mask" | "edges";
+    scrollbar?: boolean | "hidden";
+    momentum?: boolean;
+    overscroll?: OverscrollBehavior;
+    nested?: boolean;
+    smooth?: boolean;
+    snap?: "x" | "y";
+    focusable?: boolean;
+    virtual?: boolean | OverflowVirtualOptions;
+    onEndReached?: () => void;
+    endReachedThreshold?: number;
+    preserveScrollKey?: string;
+    syncId?: string;
+    onOverflowChange?: (state: OverflowState) => void;
+    onScrollPosition?: (pos: ScrollPosition) => void;
+    onRefresh?: () => void | Promise<void>;
+    pullToRefresh?: boolean;
+    as?: keyof React.JSX.IntrinsicElements;
+    children?: React.ReactNode;
+  }
+  export const Overflow: React.ForwardRefExoticComponent<
+    OverflowProps & React.RefAttributes<HTMLElement>
+  >;
+  export const OverflowUtilities: typeof Overflow;
+  export function OverflowX(props: Omit<OverflowProps, "axis">): React.ReactElement;
+  export function OverflowY(props: Omit<OverflowProps, "axis">): React.ReactElement;
+  export function OverflowHidden(props: Omit<OverflowProps, "mode">): React.ReactElement;
+  export function OverflowClip(props: Omit<OverflowProps, "mode">): React.ReactElement;
+  export function overflowClassName(
+    props: Pick<
+      OverflowProps,
+      | "mode"
+      | "axis"
+      | "fade"
+      | "scrollbar"
+      | "momentum"
+      | "overscroll"
+      | "nested"
+      | "smooth"
+      | "snap"
+      | "className"
+    >
+  ): string;
+  export function measureOverflow(el: HTMLElement): OverflowState;
+  export function useOverflowDetection(
+    ref: React.RefObject<HTMLElement | null>,
+    deps?: unknown[]
+  ): OverflowState;
+  export function useScrollPosition(
+    ref: React.RefObject<HTMLElement | null>,
+    onChange?: (pos: ScrollPosition) => void
+  ): ScrollPosition;
+  export function useScrollSync(
+    syncId: string | undefined,
+    ref: React.RefObject<HTMLElement | null>
+  ): void;
+  export function usePreservedScroll(
+    key: string | undefined,
+    ref: React.RefObject<HTMLElement | null>
+  ): void;
+}
+
+declare module "@devkit/Position" {
+  import type * as React from "react";
+  export type PositionMode =
+    | "static"
+    | "relative"
+    | "absolute"
+    | "fixed"
+    | "sticky"
+    | "floating"
+    | "anchor"
+    | "layered";
+  export type PositionPreset =
+    | "fab"
+    | "fab-start"
+    | "sticky-header"
+    | "sticky-footer"
+    | "floating-nav"
+    | "floating-nav-top"
+    | "overlay"
+    | "modal"
+    | "toast"
+    | "toast-bottom"
+    | "badge"
+    | "badge-start"
+    | "tooltip"
+    | "popover"
+    | "menu";
+  export type PositionLayer =
+    | "base"
+    | "raised"
+    | "sticky"
+    | "nav"
+    | "fab"
+    | "overlay"
+    | "dropdown"
+    | "popover"
+    | "tooltip"
+    | "modal"
+    | "toast"
+    | "max";
+  export type PositionInset = 0 | "auto" | "offset" | "safe";
+  export type FloatPlacement =
+    | "top"
+    | "bottom"
+    | "start"
+    | "end"
+    | "top-start"
+    | "top-end"
+    | "bottom-start"
+    | "bottom-end";
+  export interface PositionProps extends React.HTMLAttributes<HTMLElement> {
+    mode?: PositionMode;
+    preset?: PositionPreset;
+    layer?: PositionLayer;
+    inset?: PositionInset;
+    top?: PositionInset;
+    bottom?: PositionInset;
+    start?: PositionInset;
+    end?: PositionInset;
+    safe?: boolean | "t" | "b" | "s" | "e";
+    stickyOffset?: string | number;
+    scrollContainer?: boolean;
+    stacking?: boolean;
+    motion?: boolean;
+    place?: "top" | "bottom" | "start" | "end";
+    as?: keyof React.JSX.IntrinsicElements;
+    children?: React.ReactNode;
+  }
+  export interface FloatingPositionProps extends Omit<PositionProps, "mode" | "preset" | "place"> {
+    anchorRef: React.RefObject<Element | null>;
+    placement?: FloatPlacement;
+    offset?: number;
+    flip?: boolean;
+    shift?: boolean;
+    padding?: number;
+    role?: "tooltip" | "popover" | "menu" | "dropdown";
+    open?: boolean;
+    portal?: boolean;
+  }
+  export interface FloatingCoords {
+    top: number;
+    left: number;
+    placement: FloatPlacement;
+    ready: boolean;
+  }
+  export function Position(props: PositionProps): React.ReactElement;
+  export const PositionUtilities: typeof Position;
+  export const PositionFab: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionStickyHeader: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionStickyFooter: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionFloatingNav: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionOverlay: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionModal: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionToast: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionBadge: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionTooltip: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionPopover: React.FC<Omit<PositionProps, "preset">>;
+  export const PositionMenu: React.FC<Omit<PositionProps, "preset">>;
+  export function PositionAnchor(props: Omit<PositionProps, "mode">): React.ReactElement;
+  export function FloatingPosition(props: FloatingPositionProps): React.ReactElement | null;
+  export function useFloatingPosition(
+    anchorRef: React.RefObject<Element | null>,
+    floatingRef: React.RefObject<Element | null>,
+    options?: {
+      placement?: FloatPlacement;
+      offset?: number;
+      flip?: boolean;
+      shift?: boolean;
+      padding?: number;
+      open?: boolean;
+    }
+  ): FloatingCoords;
+  export function positionClassName(
+    props: Omit<PositionProps, "as" | "children" | "style" | "stickyOffset">
+  ): string;
+}
+
+declare module "@devkit/Align" {
+  import type * as React from "react";
+  export type AlignValue = "start" | "center" | "end" | "stretch" | "baseline";
+  export type JustifyValue =
+    | "start"
+    | "center"
+    | "end"
+    | "between"
+    | "around"
+    | "evenly"
+    | "stretch";
+  export type ContentValue =
+    | "start"
+    | "center"
+    | "end"
+    | "stretch"
+    | "between"
+    | "around"
+    | "evenly"
+    | "baseline";
+  export type PlaceValue = "start" | "center" | "end" | "stretch";
+  export type TextAlignValue = "start" | "center" | "end";
+  export type AlignPreset =
+    | "start"
+    | "center"
+    | "end"
+    | "stretch"
+    | "between"
+    | "around"
+    | "evenly"
+    | "baseline"
+    | "safe"
+    | "adaptive";
+  export type AlignBreakpoint = "base" | "sm" | "md" | "lg" | "xl" | "2xl";
+  export type ResponsiveAlign<T> =
+    | T
+    | (Partial<Record<Exclude<AlignBreakpoint, "base">, T>> & { base?: T });
+  export type AlignDisplay = "row" | "col" | "grid" | false;
+  export interface AlignProps extends React.HTMLAttributes<HTMLElement> {
+    preset?: AlignPreset;
+    items?: ResponsiveAlign<AlignValue>;
+    justify?: ResponsiveAlign<JustifyValue>;
+    distribute?: ResponsiveAlign<JustifyValue>;
+    content?: ResponsiveAlign<ContentValue>;
+    self?: ResponsiveAlign<AlignValue>;
+    place?: ResponsiveAlign<PlaceValue>;
+    text?: ResponsiveAlign<TextAlignValue>;
+    display?: AlignDisplay;
+    nested?: boolean;
+    motion?: boolean;
+    as?: keyof React.JSX.IntrinsicElements;
+    children?: React.ReactNode;
+  }
+  export function Align(props: AlignProps): React.ReactElement;
+  export const AlignmentUtilities: typeof Align;
+  export const AlignStart: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignCenter: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignEnd: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignStretch: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignBetween: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignAround: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignEvenly: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignBaseline: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignSafe: React.FC<Omit<AlignProps, "preset">>;
+  export const AlignAdaptive: React.FC<Omit<AlignProps, "preset">>;
+  export function alignClassName(props: Omit<AlignProps, "as" | "children" | "style">): string;
+}
+
+declare module "@devkit/Gap" {
+  import type * as React from "react";
+  export type GapScale = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12 | 16 | 20 | 24;
+  export type GapPreset =
+    | "none"
+    | "compact"
+    | "comfortable"
+    | "spacious"
+    | "stack"
+    | "inline"
+    | "grid"
+    | "grid-tight"
+    | "grid-loose"
+    | "form"
+    | "form-field"
+    | "nav"
+    | "nav-section"
+    | "toolbar"
+    | "card"
+    | "list"
+    | "table"
+    | "control"
+    | "section"
+    | "responsive";
+  export type GapBreakpoint = "base" | "sm" | "md" | "lg" | "xl" | "2xl";
+  export type ResponsiveGap<T> =
+    | T
+    | (Partial<Record<Exclude<GapBreakpoint, "base">, T>> & { base?: T });
+  export type GapDivider = boolean | "x" | "y";
+  export type GapDisplay = "row" | "col" | "grid" | false;
+  export interface GapProps extends React.HTMLAttributes<HTMLElement> {
+    preset?: GapPreset;
+    gap?: ResponsiveGap<GapScale>;
+    gapX?: ResponsiveGap<GapScale>;
+    gapY?: ResponsiveGap<GapScale>;
+    column?: ResponsiveGap<GapScale>;
+    row?: ResponsiveGap<GapScale>;
+    divider?: GapDivider;
+    dividerStrong?: boolean;
+    dividerGapless?: boolean;
+    nested?: boolean | "x" | "y";
+    inherit?: boolean;
+    auto?: boolean;
+    motion?: boolean;
+    display?: GapDisplay;
+    as?: keyof React.JSX.IntrinsicElements;
+    children?: React.ReactNode;
+  }
+  export function Gap(props: GapProps): React.ReactElement;
+  export const GapUtilities: typeof Gap;
+  export const GapNone: React.FC<Omit<GapProps, "preset">>;
+  export const GapCompact: React.FC<Omit<GapProps, "preset">>;
+  export const GapComfortable: React.FC<Omit<GapProps, "preset">>;
+  export const GapSpacious: React.FC<Omit<GapProps, "preset">>;
+  export const GapStack: React.FC<Omit<GapProps, "preset">>;
+  export const GapInline: React.FC<Omit<GapProps, "preset">>;
+  export const GapGrid: React.FC<Omit<GapProps, "preset">>;
+  export const GapForm: React.FC<Omit<GapProps, "preset">>;
+  export const GapNav: React.FC<Omit<GapProps, "preset">>;
+  export const GapToolbar: React.FC<Omit<GapProps, "preset">>;
+  export const GapCard: React.FC<Omit<GapProps, "preset">>;
+  export const GapList: React.FC<Omit<GapProps, "preset">>;
+  export function gapClassName(props: Omit<GapProps, "as" | "children" | "style">): string;
+}
+
+declare module "@devkit/Padding" {
+  import type * as React from "react";
+  export type PaddingScale =
+    | 0
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 10
+    | 12
+    | 16
+    | 20
+    | 24;
+  export type PaddingPreset =
+    | "none"
+    | "compact"
+    | "comfortable"
+    | "spacious"
+    | "hero"
+    | "hero-x"
+    | "hero-y"
+    | "modal"
+    | "sheet"
+    | "card"
+    | "dashboard"
+    | "table-cell"
+    | "table-header"
+    | "form-field"
+    | "input"
+    | "button"
+    | "nav"
+    | "nav-x"
+    | "nav-y"
+    | "container"
+    | "section"
+    | "page";
+  export type PaddingBreakpoint = "base" | "sm" | "md" | "lg" | "xl" | "2xl";
+  export type ResponsivePadding<T> =
+    | T
+    | (Partial<Record<Exclude<PaddingBreakpoint, "base">, T>> & { base?: T });
+  export type PaddingSafeArea =
+    | boolean
+    | "t"
+    | "b"
+    | "s"
+    | "e"
+    | "x"
+    | "y"
+    | "page"
+    | "nav";
+  export interface PaddingProps extends React.HTMLAttributes<HTMLElement> {
+    preset?: PaddingPreset;
+    p?: ResponsivePadding<PaddingScale>;
+    px?: ResponsivePadding<PaddingScale>;
+    py?: ResponsivePadding<PaddingScale>;
+    pt?: ResponsivePadding<PaddingScale>;
+    pb?: ResponsivePadding<PaddingScale>;
+    ps?: ResponsivePadding<PaddingScale>;
+    pe?: ResponsivePadding<PaddingScale>;
+    pl?: ResponsivePadding<PaddingScale>;
+    pr?: ResponsivePadding<PaddingScale>;
+    safe?: PaddingSafeArea;
+    motion?: boolean;
+    nested?: boolean;
+    flush?: boolean | "x" | "y";
+    stable?: boolean;
+    as?: keyof React.JSX.IntrinsicElements;
+    children?: React.ReactNode;
+  }
+  export function Padding(props: PaddingProps): React.ReactElement;
+  export const PaddingUtilities: typeof Padding;
+  export const PaddingNone: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingCompact: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingComfortable: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingSpacious: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingHero: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingModal: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingCard: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingDashboard: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingTableCell: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingFormField: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingNav: React.FC<Omit<PaddingProps, "preset">>;
+  export const PaddingSheet: React.FC<Omit<PaddingProps, "preset">>;
+  export function paddingClassName(
+    props: Omit<PaddingProps, "as" | "children" | "style">
+  ): string;
+}
+
+declare module "@devkit/Margin" {
+  import type * as React from "react";
+  export type MarginScale =
+    | 0
+    | 1
+    | 2
+    | 3
+    | 4
+    | 5
+    | 6
+    | 8
+    | 10
+    | 12
+    | 16
+    | 20
+    | 24
+    | "auto";
+  export type MarginPreset =
+    | "page"
+    | "page-x"
+    | "page-y"
+    | "section"
+    | "section-gap"
+    | "container"
+    | "card"
+    | "form"
+    | "form-field"
+    | "form-section"
+    | "modal"
+    | "table"
+    | "nav"
+    | "nav-section"
+    | "stack"
+    | "inline"
+    | "control"
+    | "type"
+    | "type-heading"
+    | "gutter"
+    | "gutter-x"
+    | "gutter-y";
+  export type MarginBreakpoint = "base" | "sm" | "md" | "lg" | "xl" | "2xl";
+  export type ResponsiveMargin<T> =
+    | T
+    | (Partial<Record<Exclude<MarginBreakpoint, "base">, T>> & { base?: T });
+  export type MarginSafeArea =
+    | boolean
+    | "t"
+    | "b"
+    | "s"
+    | "e"
+    | "x"
+    | "y"
+    | "page-x"
+    | "page-y";
+  export type MarginCollapse = boolean | "x" | "y" | "max";
+  export interface MarginProps extends React.HTMLAttributes<HTMLElement> {
+    preset?: MarginPreset;
+    m?: ResponsiveMargin<MarginScale>;
+    mx?: ResponsiveMargin<MarginScale>;
+    my?: ResponsiveMargin<MarginScale>;
+    mt?: ResponsiveMargin<MarginScale>;
+    mb?: ResponsiveMargin<MarginScale>;
+    ms?: ResponsiveMargin<MarginScale>;
+    me?: ResponsiveMargin<MarginScale>;
+    ml?: ResponsiveMargin<MarginScale>;
+    mr?: ResponsiveMargin<MarginScale>;
+    safe?: MarginSafeArea;
+    collapse?: MarginCollapse;
+    flow?: "stack" | "form" | "card" | "section";
+    motion?: boolean;
+    nested?: boolean;
+    stable?: boolean;
+    as?: keyof React.JSX.IntrinsicElements;
+    children?: React.ReactNode;
+  }
+  export function Margin(props: MarginProps): React.ReactElement;
+  export const MarginUtilities: typeof Margin;
+  export const MarginPage: React.FC<Omit<MarginProps, "preset">>;
+  export const MarginSection: React.FC<Omit<MarginProps, "preset">>;
+  export const MarginCard: React.FC<Omit<MarginProps, "preset">>;
+  export const MarginForm: React.FC<Omit<MarginProps, "preset">>;
+  export const MarginModal: React.FC<Omit<MarginProps, "preset">>;
+  export const MarginStack: React.FC<Omit<MarginProps, "preset">>;
+  export const MarginInline: React.FC<Omit<MarginProps, "preset">>;
+  export function marginClassName(
+    props: Omit<MarginProps, "as" | "children" | "style">
+  ): string;
 }
 
 declare module "@devkit/BreakpointManager" {
@@ -875,6 +1458,8 @@ declare module "@devkit/BreakpointManager" {
   export function usePrefersReducedMotion(): boolean;
   export function usePrefersReducedTransparency(): boolean;
   export function useFoldable(): boolean;
+  export function useScreenDensity(): { dpr: number; dense: boolean };
+  /** @deprecated Prefer useScreenDensity */
   export function useDensity(): { dpr: number; dense: boolean };
   export function useContainerQuery(
     ref: React.RefObject<Element | null>,
@@ -1294,12 +1879,50 @@ declare module "@devkit/StackLayout" {
 
 declare module "@devkit/DensityProvider" {
   import type * as React from "react";
-  export type DensityMode = "compact" | "comfortable" | "spacious";
+  export type DensityMode = "compact" | "comfortable" | "spacious" | "custom";
+  export type DensityCustomVars = {
+    scale?: number;
+    typeScale?: number;
+    touchMin?: string;
+    controlHeight?: string;
+    rowHeight?: string;
+    tableRowHeight?: string;
+    listItemHeight?: string;
+    scaleSpace?: boolean;
+  };
+  export interface DensityContextValue {
+    density: DensityMode;
+    setDensity: (density: DensityMode) => void;
+    custom: DensityCustomVars;
+    setCustom: (vars: DensityCustomVars) => void;
+    scale: number;
+  }
   export interface DensityProviderProps {
     density?: DensityMode;
+    defaultDensity?: DensityMode;
+    storageKey?: string | false;
+    syncDocument?: boolean;
+    custom?: DensityCustomVars;
+    onDensityChange?: (density: DensityMode) => void;
+    onCustomChange?: (vars: DensityCustomVars) => void;
     children?: React.ReactNode;
   }
   export function DensityProvider(props: DensityProviderProps): React.ReactElement;
+  export function useDensity(): DensityContextValue;
+  export interface DensityScopeProps extends React.HTMLAttributes<HTMLElement> {
+    density: DensityMode;
+    custom?: DensityCustomVars;
+    as?: keyof React.JSX.IntrinsicElements;
+    children?: React.ReactNode;
+  }
+  export function DensityScope(props: DensityScopeProps): React.ReactElement;
+  export function getDensityInitScript(storageKey?: string): string;
+  export function DensityScript(props: { storageKey?: string }): React.ReactElement;
+  export function DensityCard(props: React.HTMLAttributes<HTMLDivElement>): React.ReactElement;
+  export function DensityRow(props: React.HTMLAttributes<HTMLDivElement>): React.ReactElement;
+  export function DensityControl(
+    props: React.ButtonHTMLAttributes<HTMLButtonElement>
+  ): React.ReactElement;
 }
 
 declare module "@devkit/Space" {

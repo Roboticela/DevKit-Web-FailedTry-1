@@ -1,0 +1,1204 @@
+/**
+ * DevKit Gap System — Layer 1 Foundation (id: 23 · gap-utilities)
+ *
+ * Intelligent spacing between children in Grid, Stack, Flex, Nav, Forms,
+ * Tables, Toolbars, Cards, and Lists. Consumes --space-* tokens.
+ *
+ * Load order: responsive-spacing → breakpoint → margin → padding → gap-system
+ */
+
+:root,
+[data-theme] {
+  --gap-transition:
+    gap var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    row-gap var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    column-gap var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease);
+
+  /* Live gap (set by utilities / component) — nested children can inherit */
+  --dk-gap: var(--space-stack-gap, var(--space-4));
+  --dk-gap-x: var(--dk-gap);
+  --dk-gap-y: var(--dk-gap);
+  --dk-gap-scale: 1;
+
+  /* Semantic presets */
+  --gap-none: 0px;
+  --gap-compact: var(--space-2);
+  --gap-comfortable: var(--space-4);
+  --gap-spacious: var(--space-6);
+  --gap-stack: var(--space-stack-gap, var(--space-4));
+  --gap-inline: var(--space-inline-gap, var(--space-2));
+  --gap-grid: var(--grid-gutter, var(--space-4));
+  --gap-grid-tight: var(--grid-gutter-tight, var(--space-3));
+  --gap-grid-loose: var(--grid-gutter-loose, var(--space-6));
+  --gap-form: var(--space-form-gap, var(--space-4));
+  --gap-form-field: var(--space-form-field-gap, var(--space-2));
+  --gap-nav: var(--space-nav-gap, var(--space-1));
+  --gap-nav-section: var(--space-nav-section-gap, var(--space-4));
+  --gap-toolbar: var(--space-2);
+  --gap-card: var(--space-card-gap, var(--space-3));
+  --gap-list: var(--space-2);
+  --gap-table: var(--space-table-gap, var(--space-0));
+  --gap-control: var(--space-control-gap, var(--space-2));
+  --gap-section: var(--space-section-gap, var(--space-8));
+
+  /* Bridge layout packages to Gap System */
+  --stack-gap: var(--dk-gap-y, var(--gap-stack));
+  --inline-gap: var(--dk-gap-x, var(--gap-inline));
+  --flex-gap: var(--dk-gap, var(--gap-comfortable));
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gap-comfortable: var(--space-5);
+    --gap-spacious: var(--space-8);
+    --gap-toolbar: var(--space-3);
+    --gap-list: var(--space-3);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --gap-spacious: var(--space-10);
+    --gap-section: var(--space-10);
+  }
+}
+
+[data-density="compact"] {
+  --dk-gap-scale: 0.85;
+  --gap-compact: var(--space-1-5);
+  --gap-comfortable: var(--space-3);
+  --gap-spacious: var(--space-4);
+  --gap-stack: var(--space-3);
+  --gap-inline: var(--space-1-5);
+  --gap-grid: var(--space-3);
+  --gap-form: var(--space-3);
+  --gap-toolbar: var(--space-1-5);
+  --gap-card: var(--space-2);
+  --gap-list: var(--space-1-5);
+  --gap-section: var(--space-6);
+}
+
+[data-density="spacious"] {
+  --dk-gap-scale: 1.15;
+  --gap-compact: var(--space-3);
+  --gap-comfortable: var(--space-5);
+  --gap-spacious: var(--space-8);
+  --gap-stack: var(--space-5);
+  --gap-inline: var(--space-3);
+  --gap-grid: var(--space-5);
+  --gap-form: var(--space-5);
+  --gap-toolbar: var(--space-3);
+  --gap-card: var(--space-4);
+  --gap-list: var(--space-3);
+  --gap-section: var(--space-10);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) {
+    --gap-transition: none;
+  }
+}
+
+html[data-motion="reduce"] {
+  --gap-transition: none;
+}
+
+.dk-gap-motion,
+.dk-gap-system {
+  transition: var(--gap-transition);
+}
+
+/* Auto-scaling — multiply semantic gap by density scale */
+.dk-gap-auto {
+  gap: calc(var(--dk-gap) * var(--dk-gap-scale, 1));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Semantic presets
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-gap-none { gap: var(--gap-none); --dk-gap: var(--gap-none); --dk-gap-x: 0px; --dk-gap-y: 0px; }
+.dk-gap-compact { gap: var(--gap-compact); --dk-gap: var(--gap-compact); --dk-gap-x: var(--gap-compact); --dk-gap-y: var(--gap-compact); }
+.dk-gap-comfortable { gap: var(--gap-comfortable); --dk-gap: var(--gap-comfortable); --dk-gap-x: var(--gap-comfortable); --dk-gap-y: var(--gap-comfortable); }
+.dk-gap-spacious { gap: var(--gap-spacious); --dk-gap: var(--gap-spacious); --dk-gap-x: var(--gap-spacious); --dk-gap-y: var(--gap-spacious); }
+
+.dk-gap-stack { row-gap: var(--gap-stack); column-gap: 0; --dk-gap-y: var(--gap-stack); --dk-gap: var(--gap-stack); }
+.dk-gap-inline { column-gap: var(--gap-inline); row-gap: 0; --dk-gap-x: var(--gap-inline); --dk-gap: var(--gap-inline); }
+
+.dk-gap-grid { gap: var(--gap-grid); --dk-gap: var(--gap-grid); --dk-gap-x: var(--gap-grid); --dk-gap-y: var(--gap-grid); }
+.dk-gap-grid-tight { gap: var(--gap-grid-tight); --dk-gap: var(--gap-grid-tight); }
+.dk-gap-grid-loose { gap: var(--gap-grid-loose); --dk-gap: var(--gap-grid-loose); }
+
+.dk-gap-form { gap: var(--gap-form); --dk-gap: var(--gap-form); }
+.dk-gap-form-field { gap: var(--gap-form-field); --dk-gap: var(--gap-form-field); }
+.dk-gap-nav { gap: var(--gap-nav); --dk-gap: var(--gap-nav); }
+.dk-gap-nav-section { gap: var(--gap-nav-section); --dk-gap: var(--gap-nav-section); }
+.dk-gap-toolbar { gap: var(--gap-toolbar); --dk-gap: var(--gap-toolbar); --dk-gap-x: var(--gap-toolbar); }
+.dk-gap-card { gap: var(--gap-card); --dk-gap: var(--gap-card); }
+.dk-gap-list { gap: var(--gap-list); --dk-gap: var(--gap-list); --dk-gap-y: var(--gap-list); }
+.dk-gap-table { gap: var(--gap-table); --dk-gap: var(--gap-table); }
+.dk-gap-control { gap: var(--gap-control); --dk-gap: var(--gap-control); }
+.dk-gap-section { gap: var(--gap-section); --dk-gap: var(--gap-section); --dk-gap-y: var(--gap-section); }
+
+/* Display helpers when wrapping non-flex/grid hosts */
+.dk-gap-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dk-gap, var(--gap-inline));
+}
+.dk-gap-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--dk-gap, var(--gap-stack));
+}
+.dk-gap-grid-flow {
+  display: grid;
+  gap: var(--dk-gap, var(--gap-grid));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Nested gap inheritance
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-gap-inherit {
+  gap: inherit;
+  --dk-gap: inherit;
+  --dk-gap-x: inherit;
+  --dk-gap-y: inherit;
+}
+
+.dk-gap-nested {
+  --dk-gap: max(0px, calc(var(--dk-gap, var(--gap-comfortable)) * 0.75));
+  --dk-gap-x: var(--dk-gap);
+  --dk-gap-y: var(--dk-gap);
+  gap: var(--dk-gap);
+}
+
+.dk-gap-nested-x {
+  --dk-gap-x: max(0px, calc(var(--dk-gap-x, var(--gap-inline)) * 0.75));
+  column-gap: var(--dk-gap-x);
+}
+
+.dk-gap-nested-y {
+  --dk-gap-y: max(0px, calc(var(--dk-gap-y, var(--gap-stack)) * 0.75));
+  row-gap: var(--dk-gap-y);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Dividers between children
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-gap-divider,
+.dk-gap-divider-y {
+  --dk-gap-divider-color: var(--color-border-subtle, currentColor);
+  --dk-gap-divider-size: 1px;
+}
+
+.dk-gap-divider-y > * + * {
+  border-block-start: var(--dk-gap-divider-size) solid var(--dk-gap-divider-color);
+  padding-block-start: var(--dk-gap-y, var(--dk-gap, var(--gap-stack)));
+  margin-block-start: 0;
+}
+
+.dk-gap-divider-x > * + * {
+  border-inline-start: var(--dk-gap-divider-size) solid var(--dk-gap-divider-color);
+  padding-inline-start: var(--dk-gap-x, var(--dk-gap, var(--gap-inline)));
+  margin-inline-start: 0;
+}
+
+.dk-gap-divider-strong {
+  --dk-gap-divider-color: var(--color-border-strong, var(--color-border, currentColor));
+}
+
+/* When using CSS gap + divider, prefer gap:0 on axis and padding as spacing */
+.dk-gap-divider-y.dk-gap-divider-gapless {
+  row-gap: 0;
+}
+.dk-gap-divider-x.dk-gap-divider-gapless {
+  column-gap: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Layout integration hooks
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-gap { gap: var(--gap-stack); --dk-gap: var(--gap-stack); }
+.dk-flex-gap-token { gap: var(--flex-gap, var(--dk-gap)); }
+.dk-grid-gap-token { gap: var(--gap-grid); --dk-gap: var(--gap-grid); }
+.dk-nav-gap { gap: var(--gap-nav); }
+.dk-toolbar-gap { gap: var(--gap-toolbar); }
+.dk-form-gap { gap: var(--gap-form); }
+.dk-card-gap { gap: var(--gap-card); }
+.dk-list-gap { gap: var(--gap-list); }
+
+.dk-gap-0 {
+  gap: var(--space-0);
+  --dk-gap: var(--space-0);
+}
+.dk-gap-x-0 {
+  column-gap: var(--space-0);
+  --dk-gap-x: var(--space-0);
+}
+.dk-gap-y-0 {
+  row-gap: var(--space-0);
+  --dk-gap-y: var(--space-0);
+}
+.dk-gap-1 {
+  gap: var(--space-1);
+  --dk-gap: var(--space-1);
+}
+.dk-gap-x-1 {
+  column-gap: var(--space-1);
+  --dk-gap-x: var(--space-1);
+}
+.dk-gap-y-1 {
+  row-gap: var(--space-1);
+  --dk-gap-y: var(--space-1);
+}
+.dk-gap-2 {
+  gap: var(--space-2);
+  --dk-gap: var(--space-2);
+}
+.dk-gap-x-2 {
+  column-gap: var(--space-2);
+  --dk-gap-x: var(--space-2);
+}
+.dk-gap-y-2 {
+  row-gap: var(--space-2);
+  --dk-gap-y: var(--space-2);
+}
+.dk-gap-3 {
+  gap: var(--space-3);
+  --dk-gap: var(--space-3);
+}
+.dk-gap-x-3 {
+  column-gap: var(--space-3);
+  --dk-gap-x: var(--space-3);
+}
+.dk-gap-y-3 {
+  row-gap: var(--space-3);
+  --dk-gap-y: var(--space-3);
+}
+.dk-gap-4 {
+  gap: var(--space-4);
+  --dk-gap: var(--space-4);
+}
+.dk-gap-x-4 {
+  column-gap: var(--space-4);
+  --dk-gap-x: var(--space-4);
+}
+.dk-gap-y-4 {
+  row-gap: var(--space-4);
+  --dk-gap-y: var(--space-4);
+}
+.dk-gap-5 {
+  gap: var(--space-5);
+  --dk-gap: var(--space-5);
+}
+.dk-gap-x-5 {
+  column-gap: var(--space-5);
+  --dk-gap-x: var(--space-5);
+}
+.dk-gap-y-5 {
+  row-gap: var(--space-5);
+  --dk-gap-y: var(--space-5);
+}
+.dk-gap-6 {
+  gap: var(--space-6);
+  --dk-gap: var(--space-6);
+}
+.dk-gap-x-6 {
+  column-gap: var(--space-6);
+  --dk-gap-x: var(--space-6);
+}
+.dk-gap-y-6 {
+  row-gap: var(--space-6);
+  --dk-gap-y: var(--space-6);
+}
+.dk-gap-8 {
+  gap: var(--space-8);
+  --dk-gap: var(--space-8);
+}
+.dk-gap-x-8 {
+  column-gap: var(--space-8);
+  --dk-gap-x: var(--space-8);
+}
+.dk-gap-y-8 {
+  row-gap: var(--space-8);
+  --dk-gap-y: var(--space-8);
+}
+.dk-gap-10 {
+  gap: var(--space-10);
+  --dk-gap: var(--space-10);
+}
+.dk-gap-x-10 {
+  column-gap: var(--space-10);
+  --dk-gap-x: var(--space-10);
+}
+.dk-gap-y-10 {
+  row-gap: var(--space-10);
+  --dk-gap-y: var(--space-10);
+}
+.dk-gap-12 {
+  gap: var(--space-12);
+  --dk-gap: var(--space-12);
+}
+.dk-gap-x-12 {
+  column-gap: var(--space-12);
+  --dk-gap-x: var(--space-12);
+}
+.dk-gap-y-12 {
+  row-gap: var(--space-12);
+  --dk-gap-y: var(--space-12);
+}
+.dk-gap-16 {
+  gap: var(--space-16);
+  --dk-gap: var(--space-16);
+}
+.dk-gap-x-16 {
+  column-gap: var(--space-16);
+  --dk-gap-x: var(--space-16);
+}
+.dk-gap-y-16 {
+  row-gap: var(--space-16);
+  --dk-gap-y: var(--space-16);
+}
+.dk-gap-20 {
+  gap: var(--space-20);
+  --dk-gap: var(--space-20);
+}
+.dk-gap-x-20 {
+  column-gap: var(--space-20);
+  --dk-gap-x: var(--space-20);
+}
+.dk-gap-y-20 {
+  row-gap: var(--space-20);
+  --dk-gap-y: var(--space-20);
+}
+.dk-gap-24 {
+  gap: var(--space-24);
+  --dk-gap: var(--space-24);
+}
+.dk-gap-x-24 {
+  column-gap: var(--space-24);
+  --dk-gap-x: var(--space-24);
+}
+.dk-gap-y-24 {
+  row-gap: var(--space-24);
+  --dk-gap-y: var(--space-24);
+}
+
+@media (min-width: 480px) {
+  .dk-sm\:gap-0 {
+    gap: var(--space-0);
+    --dk-gap: var(--space-0);
+  }
+  .dk-sm\:gap-x-0 {
+    column-gap: var(--space-0);
+    --dk-gap-x: var(--space-0);
+  }
+  .dk-sm\:gap-y-0 {
+    row-gap: var(--space-0);
+    --dk-gap-y: var(--space-0);
+  }
+  .dk-sm\:gap-1 {
+    gap: var(--space-1);
+    --dk-gap: var(--space-1);
+  }
+  .dk-sm\:gap-x-1 {
+    column-gap: var(--space-1);
+    --dk-gap-x: var(--space-1);
+  }
+  .dk-sm\:gap-y-1 {
+    row-gap: var(--space-1);
+    --dk-gap-y: var(--space-1);
+  }
+  .dk-sm\:gap-2 {
+    gap: var(--space-2);
+    --dk-gap: var(--space-2);
+  }
+  .dk-sm\:gap-x-2 {
+    column-gap: var(--space-2);
+    --dk-gap-x: var(--space-2);
+  }
+  .dk-sm\:gap-y-2 {
+    row-gap: var(--space-2);
+    --dk-gap-y: var(--space-2);
+  }
+  .dk-sm\:gap-3 {
+    gap: var(--space-3);
+    --dk-gap: var(--space-3);
+  }
+  .dk-sm\:gap-x-3 {
+    column-gap: var(--space-3);
+    --dk-gap-x: var(--space-3);
+  }
+  .dk-sm\:gap-y-3 {
+    row-gap: var(--space-3);
+    --dk-gap-y: var(--space-3);
+  }
+  .dk-sm\:gap-4 {
+    gap: var(--space-4);
+    --dk-gap: var(--space-4);
+  }
+  .dk-sm\:gap-x-4 {
+    column-gap: var(--space-4);
+    --dk-gap-x: var(--space-4);
+  }
+  .dk-sm\:gap-y-4 {
+    row-gap: var(--space-4);
+    --dk-gap-y: var(--space-4);
+  }
+  .dk-sm\:gap-5 {
+    gap: var(--space-5);
+    --dk-gap: var(--space-5);
+  }
+  .dk-sm\:gap-x-5 {
+    column-gap: var(--space-5);
+    --dk-gap-x: var(--space-5);
+  }
+  .dk-sm\:gap-y-5 {
+    row-gap: var(--space-5);
+    --dk-gap-y: var(--space-5);
+  }
+  .dk-sm\:gap-6 {
+    gap: var(--space-6);
+    --dk-gap: var(--space-6);
+  }
+  .dk-sm\:gap-x-6 {
+    column-gap: var(--space-6);
+    --dk-gap-x: var(--space-6);
+  }
+  .dk-sm\:gap-y-6 {
+    row-gap: var(--space-6);
+    --dk-gap-y: var(--space-6);
+  }
+  .dk-sm\:gap-8 {
+    gap: var(--space-8);
+    --dk-gap: var(--space-8);
+  }
+  .dk-sm\:gap-x-8 {
+    column-gap: var(--space-8);
+    --dk-gap-x: var(--space-8);
+  }
+  .dk-sm\:gap-y-8 {
+    row-gap: var(--space-8);
+    --dk-gap-y: var(--space-8);
+  }
+  .dk-sm\:gap-10 {
+    gap: var(--space-10);
+    --dk-gap: var(--space-10);
+  }
+  .dk-sm\:gap-x-10 {
+    column-gap: var(--space-10);
+    --dk-gap-x: var(--space-10);
+  }
+  .dk-sm\:gap-y-10 {
+    row-gap: var(--space-10);
+    --dk-gap-y: var(--space-10);
+  }
+  .dk-sm\:gap-12 {
+    gap: var(--space-12);
+    --dk-gap: var(--space-12);
+  }
+  .dk-sm\:gap-x-12 {
+    column-gap: var(--space-12);
+    --dk-gap-x: var(--space-12);
+  }
+  .dk-sm\:gap-y-12 {
+    row-gap: var(--space-12);
+    --dk-gap-y: var(--space-12);
+  }
+  .dk-sm\:gap-16 {
+    gap: var(--space-16);
+    --dk-gap: var(--space-16);
+  }
+  .dk-sm\:gap-x-16 {
+    column-gap: var(--space-16);
+    --dk-gap-x: var(--space-16);
+  }
+  .dk-sm\:gap-y-16 {
+    row-gap: var(--space-16);
+    --dk-gap-y: var(--space-16);
+  }
+  .dk-sm\:gap-20 {
+    gap: var(--space-20);
+    --dk-gap: var(--space-20);
+  }
+  .dk-sm\:gap-x-20 {
+    column-gap: var(--space-20);
+    --dk-gap-x: var(--space-20);
+  }
+  .dk-sm\:gap-y-20 {
+    row-gap: var(--space-20);
+    --dk-gap-y: var(--space-20);
+  }
+  .dk-sm\:gap-24 {
+    gap: var(--space-24);
+    --dk-gap: var(--space-24);
+  }
+  .dk-sm\:gap-x-24 {
+    column-gap: var(--space-24);
+    --dk-gap-x: var(--space-24);
+  }
+  .dk-sm\:gap-y-24 {
+    row-gap: var(--space-24);
+    --dk-gap-y: var(--space-24);
+  }
+}
+
+@media (min-width: 768px) {
+  .dk-md\:gap-0 {
+    gap: var(--space-0);
+    --dk-gap: var(--space-0);
+  }
+  .dk-md\:gap-x-0 {
+    column-gap: var(--space-0);
+    --dk-gap-x: var(--space-0);
+  }
+  .dk-md\:gap-y-0 {
+    row-gap: var(--space-0);
+    --dk-gap-y: var(--space-0);
+  }
+  .dk-md\:gap-1 {
+    gap: var(--space-1);
+    --dk-gap: var(--space-1);
+  }
+  .dk-md\:gap-x-1 {
+    column-gap: var(--space-1);
+    --dk-gap-x: var(--space-1);
+  }
+  .dk-md\:gap-y-1 {
+    row-gap: var(--space-1);
+    --dk-gap-y: var(--space-1);
+  }
+  .dk-md\:gap-2 {
+    gap: var(--space-2);
+    --dk-gap: var(--space-2);
+  }
+  .dk-md\:gap-x-2 {
+    column-gap: var(--space-2);
+    --dk-gap-x: var(--space-2);
+  }
+  .dk-md\:gap-y-2 {
+    row-gap: var(--space-2);
+    --dk-gap-y: var(--space-2);
+  }
+  .dk-md\:gap-3 {
+    gap: var(--space-3);
+    --dk-gap: var(--space-3);
+  }
+  .dk-md\:gap-x-3 {
+    column-gap: var(--space-3);
+    --dk-gap-x: var(--space-3);
+  }
+  .dk-md\:gap-y-3 {
+    row-gap: var(--space-3);
+    --dk-gap-y: var(--space-3);
+  }
+  .dk-md\:gap-4 {
+    gap: var(--space-4);
+    --dk-gap: var(--space-4);
+  }
+  .dk-md\:gap-x-4 {
+    column-gap: var(--space-4);
+    --dk-gap-x: var(--space-4);
+  }
+  .dk-md\:gap-y-4 {
+    row-gap: var(--space-4);
+    --dk-gap-y: var(--space-4);
+  }
+  .dk-md\:gap-5 {
+    gap: var(--space-5);
+    --dk-gap: var(--space-5);
+  }
+  .dk-md\:gap-x-5 {
+    column-gap: var(--space-5);
+    --dk-gap-x: var(--space-5);
+  }
+  .dk-md\:gap-y-5 {
+    row-gap: var(--space-5);
+    --dk-gap-y: var(--space-5);
+  }
+  .dk-md\:gap-6 {
+    gap: var(--space-6);
+    --dk-gap: var(--space-6);
+  }
+  .dk-md\:gap-x-6 {
+    column-gap: var(--space-6);
+    --dk-gap-x: var(--space-6);
+  }
+  .dk-md\:gap-y-6 {
+    row-gap: var(--space-6);
+    --dk-gap-y: var(--space-6);
+  }
+  .dk-md\:gap-8 {
+    gap: var(--space-8);
+    --dk-gap: var(--space-8);
+  }
+  .dk-md\:gap-x-8 {
+    column-gap: var(--space-8);
+    --dk-gap-x: var(--space-8);
+  }
+  .dk-md\:gap-y-8 {
+    row-gap: var(--space-8);
+    --dk-gap-y: var(--space-8);
+  }
+  .dk-md\:gap-10 {
+    gap: var(--space-10);
+    --dk-gap: var(--space-10);
+  }
+  .dk-md\:gap-x-10 {
+    column-gap: var(--space-10);
+    --dk-gap-x: var(--space-10);
+  }
+  .dk-md\:gap-y-10 {
+    row-gap: var(--space-10);
+    --dk-gap-y: var(--space-10);
+  }
+  .dk-md\:gap-12 {
+    gap: var(--space-12);
+    --dk-gap: var(--space-12);
+  }
+  .dk-md\:gap-x-12 {
+    column-gap: var(--space-12);
+    --dk-gap-x: var(--space-12);
+  }
+  .dk-md\:gap-y-12 {
+    row-gap: var(--space-12);
+    --dk-gap-y: var(--space-12);
+  }
+  .dk-md\:gap-16 {
+    gap: var(--space-16);
+    --dk-gap: var(--space-16);
+  }
+  .dk-md\:gap-x-16 {
+    column-gap: var(--space-16);
+    --dk-gap-x: var(--space-16);
+  }
+  .dk-md\:gap-y-16 {
+    row-gap: var(--space-16);
+    --dk-gap-y: var(--space-16);
+  }
+  .dk-md\:gap-20 {
+    gap: var(--space-20);
+    --dk-gap: var(--space-20);
+  }
+  .dk-md\:gap-x-20 {
+    column-gap: var(--space-20);
+    --dk-gap-x: var(--space-20);
+  }
+  .dk-md\:gap-y-20 {
+    row-gap: var(--space-20);
+    --dk-gap-y: var(--space-20);
+  }
+  .dk-md\:gap-24 {
+    gap: var(--space-24);
+    --dk-gap: var(--space-24);
+  }
+  .dk-md\:gap-x-24 {
+    column-gap: var(--space-24);
+    --dk-gap-x: var(--space-24);
+  }
+  .dk-md\:gap-y-24 {
+    row-gap: var(--space-24);
+    --dk-gap-y: var(--space-24);
+  }
+}
+
+@media (min-width: 1024px) {
+  .dk-lg\:gap-0 {
+    gap: var(--space-0);
+    --dk-gap: var(--space-0);
+  }
+  .dk-lg\:gap-x-0 {
+    column-gap: var(--space-0);
+    --dk-gap-x: var(--space-0);
+  }
+  .dk-lg\:gap-y-0 {
+    row-gap: var(--space-0);
+    --dk-gap-y: var(--space-0);
+  }
+  .dk-lg\:gap-1 {
+    gap: var(--space-1);
+    --dk-gap: var(--space-1);
+  }
+  .dk-lg\:gap-x-1 {
+    column-gap: var(--space-1);
+    --dk-gap-x: var(--space-1);
+  }
+  .dk-lg\:gap-y-1 {
+    row-gap: var(--space-1);
+    --dk-gap-y: var(--space-1);
+  }
+  .dk-lg\:gap-2 {
+    gap: var(--space-2);
+    --dk-gap: var(--space-2);
+  }
+  .dk-lg\:gap-x-2 {
+    column-gap: var(--space-2);
+    --dk-gap-x: var(--space-2);
+  }
+  .dk-lg\:gap-y-2 {
+    row-gap: var(--space-2);
+    --dk-gap-y: var(--space-2);
+  }
+  .dk-lg\:gap-3 {
+    gap: var(--space-3);
+    --dk-gap: var(--space-3);
+  }
+  .dk-lg\:gap-x-3 {
+    column-gap: var(--space-3);
+    --dk-gap-x: var(--space-3);
+  }
+  .dk-lg\:gap-y-3 {
+    row-gap: var(--space-3);
+    --dk-gap-y: var(--space-3);
+  }
+  .dk-lg\:gap-4 {
+    gap: var(--space-4);
+    --dk-gap: var(--space-4);
+  }
+  .dk-lg\:gap-x-4 {
+    column-gap: var(--space-4);
+    --dk-gap-x: var(--space-4);
+  }
+  .dk-lg\:gap-y-4 {
+    row-gap: var(--space-4);
+    --dk-gap-y: var(--space-4);
+  }
+  .dk-lg\:gap-5 {
+    gap: var(--space-5);
+    --dk-gap: var(--space-5);
+  }
+  .dk-lg\:gap-x-5 {
+    column-gap: var(--space-5);
+    --dk-gap-x: var(--space-5);
+  }
+  .dk-lg\:gap-y-5 {
+    row-gap: var(--space-5);
+    --dk-gap-y: var(--space-5);
+  }
+  .dk-lg\:gap-6 {
+    gap: var(--space-6);
+    --dk-gap: var(--space-6);
+  }
+  .dk-lg\:gap-x-6 {
+    column-gap: var(--space-6);
+    --dk-gap-x: var(--space-6);
+  }
+  .dk-lg\:gap-y-6 {
+    row-gap: var(--space-6);
+    --dk-gap-y: var(--space-6);
+  }
+  .dk-lg\:gap-8 {
+    gap: var(--space-8);
+    --dk-gap: var(--space-8);
+  }
+  .dk-lg\:gap-x-8 {
+    column-gap: var(--space-8);
+    --dk-gap-x: var(--space-8);
+  }
+  .dk-lg\:gap-y-8 {
+    row-gap: var(--space-8);
+    --dk-gap-y: var(--space-8);
+  }
+  .dk-lg\:gap-10 {
+    gap: var(--space-10);
+    --dk-gap: var(--space-10);
+  }
+  .dk-lg\:gap-x-10 {
+    column-gap: var(--space-10);
+    --dk-gap-x: var(--space-10);
+  }
+  .dk-lg\:gap-y-10 {
+    row-gap: var(--space-10);
+    --dk-gap-y: var(--space-10);
+  }
+  .dk-lg\:gap-12 {
+    gap: var(--space-12);
+    --dk-gap: var(--space-12);
+  }
+  .dk-lg\:gap-x-12 {
+    column-gap: var(--space-12);
+    --dk-gap-x: var(--space-12);
+  }
+  .dk-lg\:gap-y-12 {
+    row-gap: var(--space-12);
+    --dk-gap-y: var(--space-12);
+  }
+  .dk-lg\:gap-16 {
+    gap: var(--space-16);
+    --dk-gap: var(--space-16);
+  }
+  .dk-lg\:gap-x-16 {
+    column-gap: var(--space-16);
+    --dk-gap-x: var(--space-16);
+  }
+  .dk-lg\:gap-y-16 {
+    row-gap: var(--space-16);
+    --dk-gap-y: var(--space-16);
+  }
+  .dk-lg\:gap-20 {
+    gap: var(--space-20);
+    --dk-gap: var(--space-20);
+  }
+  .dk-lg\:gap-x-20 {
+    column-gap: var(--space-20);
+    --dk-gap-x: var(--space-20);
+  }
+  .dk-lg\:gap-y-20 {
+    row-gap: var(--space-20);
+    --dk-gap-y: var(--space-20);
+  }
+  .dk-lg\:gap-24 {
+    gap: var(--space-24);
+    --dk-gap: var(--space-24);
+  }
+  .dk-lg\:gap-x-24 {
+    column-gap: var(--space-24);
+    --dk-gap-x: var(--space-24);
+  }
+  .dk-lg\:gap-y-24 {
+    row-gap: var(--space-24);
+    --dk-gap-y: var(--space-24);
+  }
+}
+
+@media (min-width: 1280px) {
+  .dk-xl\:gap-0 {
+    gap: var(--space-0);
+    --dk-gap: var(--space-0);
+  }
+  .dk-xl\:gap-x-0 {
+    column-gap: var(--space-0);
+    --dk-gap-x: var(--space-0);
+  }
+  .dk-xl\:gap-y-0 {
+    row-gap: var(--space-0);
+    --dk-gap-y: var(--space-0);
+  }
+  .dk-xl\:gap-1 {
+    gap: var(--space-1);
+    --dk-gap: var(--space-1);
+  }
+  .dk-xl\:gap-x-1 {
+    column-gap: var(--space-1);
+    --dk-gap-x: var(--space-1);
+  }
+  .dk-xl\:gap-y-1 {
+    row-gap: var(--space-1);
+    --dk-gap-y: var(--space-1);
+  }
+  .dk-xl\:gap-2 {
+    gap: var(--space-2);
+    --dk-gap: var(--space-2);
+  }
+  .dk-xl\:gap-x-2 {
+    column-gap: var(--space-2);
+    --dk-gap-x: var(--space-2);
+  }
+  .dk-xl\:gap-y-2 {
+    row-gap: var(--space-2);
+    --dk-gap-y: var(--space-2);
+  }
+  .dk-xl\:gap-3 {
+    gap: var(--space-3);
+    --dk-gap: var(--space-3);
+  }
+  .dk-xl\:gap-x-3 {
+    column-gap: var(--space-3);
+    --dk-gap-x: var(--space-3);
+  }
+  .dk-xl\:gap-y-3 {
+    row-gap: var(--space-3);
+    --dk-gap-y: var(--space-3);
+  }
+  .dk-xl\:gap-4 {
+    gap: var(--space-4);
+    --dk-gap: var(--space-4);
+  }
+  .dk-xl\:gap-x-4 {
+    column-gap: var(--space-4);
+    --dk-gap-x: var(--space-4);
+  }
+  .dk-xl\:gap-y-4 {
+    row-gap: var(--space-4);
+    --dk-gap-y: var(--space-4);
+  }
+  .dk-xl\:gap-5 {
+    gap: var(--space-5);
+    --dk-gap: var(--space-5);
+  }
+  .dk-xl\:gap-x-5 {
+    column-gap: var(--space-5);
+    --dk-gap-x: var(--space-5);
+  }
+  .dk-xl\:gap-y-5 {
+    row-gap: var(--space-5);
+    --dk-gap-y: var(--space-5);
+  }
+  .dk-xl\:gap-6 {
+    gap: var(--space-6);
+    --dk-gap: var(--space-6);
+  }
+  .dk-xl\:gap-x-6 {
+    column-gap: var(--space-6);
+    --dk-gap-x: var(--space-6);
+  }
+  .dk-xl\:gap-y-6 {
+    row-gap: var(--space-6);
+    --dk-gap-y: var(--space-6);
+  }
+  .dk-xl\:gap-8 {
+    gap: var(--space-8);
+    --dk-gap: var(--space-8);
+  }
+  .dk-xl\:gap-x-8 {
+    column-gap: var(--space-8);
+    --dk-gap-x: var(--space-8);
+  }
+  .dk-xl\:gap-y-8 {
+    row-gap: var(--space-8);
+    --dk-gap-y: var(--space-8);
+  }
+  .dk-xl\:gap-10 {
+    gap: var(--space-10);
+    --dk-gap: var(--space-10);
+  }
+  .dk-xl\:gap-x-10 {
+    column-gap: var(--space-10);
+    --dk-gap-x: var(--space-10);
+  }
+  .dk-xl\:gap-y-10 {
+    row-gap: var(--space-10);
+    --dk-gap-y: var(--space-10);
+  }
+  .dk-xl\:gap-12 {
+    gap: var(--space-12);
+    --dk-gap: var(--space-12);
+  }
+  .dk-xl\:gap-x-12 {
+    column-gap: var(--space-12);
+    --dk-gap-x: var(--space-12);
+  }
+  .dk-xl\:gap-y-12 {
+    row-gap: var(--space-12);
+    --dk-gap-y: var(--space-12);
+  }
+  .dk-xl\:gap-16 {
+    gap: var(--space-16);
+    --dk-gap: var(--space-16);
+  }
+  .dk-xl\:gap-x-16 {
+    column-gap: var(--space-16);
+    --dk-gap-x: var(--space-16);
+  }
+  .dk-xl\:gap-y-16 {
+    row-gap: var(--space-16);
+    --dk-gap-y: var(--space-16);
+  }
+  .dk-xl\:gap-20 {
+    gap: var(--space-20);
+    --dk-gap: var(--space-20);
+  }
+  .dk-xl\:gap-x-20 {
+    column-gap: var(--space-20);
+    --dk-gap-x: var(--space-20);
+  }
+  .dk-xl\:gap-y-20 {
+    row-gap: var(--space-20);
+    --dk-gap-y: var(--space-20);
+  }
+  .dk-xl\:gap-24 {
+    gap: var(--space-24);
+    --dk-gap: var(--space-24);
+  }
+  .dk-xl\:gap-x-24 {
+    column-gap: var(--space-24);
+    --dk-gap-x: var(--space-24);
+  }
+  .dk-xl\:gap-y-24 {
+    row-gap: var(--space-24);
+    --dk-gap-y: var(--space-24);
+  }
+}
+
+@media (min-width: 1440px) {
+  .dk-2xl\:gap-0 {
+    gap: var(--space-0);
+    --dk-gap: var(--space-0);
+  }
+  .dk-2xl\:gap-x-0 {
+    column-gap: var(--space-0);
+    --dk-gap-x: var(--space-0);
+  }
+  .dk-2xl\:gap-y-0 {
+    row-gap: var(--space-0);
+    --dk-gap-y: var(--space-0);
+  }
+  .dk-2xl\:gap-1 {
+    gap: var(--space-1);
+    --dk-gap: var(--space-1);
+  }
+  .dk-2xl\:gap-x-1 {
+    column-gap: var(--space-1);
+    --dk-gap-x: var(--space-1);
+  }
+  .dk-2xl\:gap-y-1 {
+    row-gap: var(--space-1);
+    --dk-gap-y: var(--space-1);
+  }
+  .dk-2xl\:gap-2 {
+    gap: var(--space-2);
+    --dk-gap: var(--space-2);
+  }
+  .dk-2xl\:gap-x-2 {
+    column-gap: var(--space-2);
+    --dk-gap-x: var(--space-2);
+  }
+  .dk-2xl\:gap-y-2 {
+    row-gap: var(--space-2);
+    --dk-gap-y: var(--space-2);
+  }
+  .dk-2xl\:gap-3 {
+    gap: var(--space-3);
+    --dk-gap: var(--space-3);
+  }
+  .dk-2xl\:gap-x-3 {
+    column-gap: var(--space-3);
+    --dk-gap-x: var(--space-3);
+  }
+  .dk-2xl\:gap-y-3 {
+    row-gap: var(--space-3);
+    --dk-gap-y: var(--space-3);
+  }
+  .dk-2xl\:gap-4 {
+    gap: var(--space-4);
+    --dk-gap: var(--space-4);
+  }
+  .dk-2xl\:gap-x-4 {
+    column-gap: var(--space-4);
+    --dk-gap-x: var(--space-4);
+  }
+  .dk-2xl\:gap-y-4 {
+    row-gap: var(--space-4);
+    --dk-gap-y: var(--space-4);
+  }
+  .dk-2xl\:gap-5 {
+    gap: var(--space-5);
+    --dk-gap: var(--space-5);
+  }
+  .dk-2xl\:gap-x-5 {
+    column-gap: var(--space-5);
+    --dk-gap-x: var(--space-5);
+  }
+  .dk-2xl\:gap-y-5 {
+    row-gap: var(--space-5);
+    --dk-gap-y: var(--space-5);
+  }
+  .dk-2xl\:gap-6 {
+    gap: var(--space-6);
+    --dk-gap: var(--space-6);
+  }
+  .dk-2xl\:gap-x-6 {
+    column-gap: var(--space-6);
+    --dk-gap-x: var(--space-6);
+  }
+  .dk-2xl\:gap-y-6 {
+    row-gap: var(--space-6);
+    --dk-gap-y: var(--space-6);
+  }
+  .dk-2xl\:gap-8 {
+    gap: var(--space-8);
+    --dk-gap: var(--space-8);
+  }
+  .dk-2xl\:gap-x-8 {
+    column-gap: var(--space-8);
+    --dk-gap-x: var(--space-8);
+  }
+  .dk-2xl\:gap-y-8 {
+    row-gap: var(--space-8);
+    --dk-gap-y: var(--space-8);
+  }
+  .dk-2xl\:gap-10 {
+    gap: var(--space-10);
+    --dk-gap: var(--space-10);
+  }
+  .dk-2xl\:gap-x-10 {
+    column-gap: var(--space-10);
+    --dk-gap-x: var(--space-10);
+  }
+  .dk-2xl\:gap-y-10 {
+    row-gap: var(--space-10);
+    --dk-gap-y: var(--space-10);
+  }
+  .dk-2xl\:gap-12 {
+    gap: var(--space-12);
+    --dk-gap: var(--space-12);
+  }
+  .dk-2xl\:gap-x-12 {
+    column-gap: var(--space-12);
+    --dk-gap-x: var(--space-12);
+  }
+  .dk-2xl\:gap-y-12 {
+    row-gap: var(--space-12);
+    --dk-gap-y: var(--space-12);
+  }
+  .dk-2xl\:gap-16 {
+    gap: var(--space-16);
+    --dk-gap: var(--space-16);
+  }
+  .dk-2xl\:gap-x-16 {
+    column-gap: var(--space-16);
+    --dk-gap-x: var(--space-16);
+  }
+  .dk-2xl\:gap-y-16 {
+    row-gap: var(--space-16);
+    --dk-gap-y: var(--space-16);
+  }
+  .dk-2xl\:gap-20 {
+    gap: var(--space-20);
+    --dk-gap: var(--space-20);
+  }
+  .dk-2xl\:gap-x-20 {
+    column-gap: var(--space-20);
+    --dk-gap-x: var(--space-20);
+  }
+  .dk-2xl\:gap-y-20 {
+    row-gap: var(--space-20);
+    --dk-gap-y: var(--space-20);
+  }
+  .dk-2xl\:gap-24 {
+    gap: var(--space-24);
+    --dk-gap: var(--space-24);
+  }
+  .dk-2xl\:gap-x-24 {
+    column-gap: var(--space-24);
+    --dk-gap-x: var(--space-24);
+  }
+  .dk-2xl\:gap-y-24 {
+    row-gap: var(--space-24);
+    --dk-gap-y: var(--space-24);
+  }
+}
+
+/* Responsive semantic auto — scales with viewport */
+.dk-gap-responsive {
+  gap: var(--gap-compact);
+  --dk-gap: var(--gap-compact);
+}
+@media (min-width: 768px) {
+  .dk-gap-responsive {
+    gap: var(--gap-comfortable);
+    --dk-gap: var(--gap-comfortable);
+  }
+}
+@media (min-width: 1024px) {
+  .dk-gap-responsive {
+    gap: var(--gap-spacious);
+    --dk-gap: var(--gap-spacious);
+  }
+}

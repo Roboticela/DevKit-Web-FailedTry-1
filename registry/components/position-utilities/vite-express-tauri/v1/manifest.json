@@ -3,8 +3,24 @@
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/position-utilities.css",
-      "destination": "src/styles/position-utilities.css"
+      "source": "files/src/styles/position-system.css",
+      "destination": "src/styles/position-system.css"
+    },
+    {
+      "source": "files/src/styles/position-system.tailwind.css",
+      "destination": "src/styles/position-system.tailwind.css"
+    },
+    {
+      "source": "files/src/components/ui/Position.tsx",
+      "destination": "src/components/ui/Position.tsx"
+    },
+    {
+      "source": "files/src/components/ui/PositionUtilities.tsx",
+      "destination": "src/components/ui/PositionUtilities.tsx"
+    },
+    {
+      "source": "files/docs/POSITION.md",
+      "destination": "docs/devkit/POSITION.md"
     }
   ],
   "injections": [],

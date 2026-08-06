@@ -3,7 +3,8 @@
  * Universal 4px-based scale + semantic roles + density modes.
  * Every component should consume these tokens — never arbitrary spacing.
  *
- * Density: data-density="compact" | "comfortable" (default) | "spacious"
+ * Density: data-density="compact" | "comfortable" (default) | "spacious" | "custom"
+ * Load density-system.css for type / icons / touch / row / form utilities.
  * Mobile-first responsive semantic spacing at 768 / 1024 / 1280.
  */
 

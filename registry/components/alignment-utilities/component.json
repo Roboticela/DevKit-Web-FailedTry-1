@@ -1,8 +1,8 @@
 {
   "id": 27,
   "name": "alignment-utilities",
-  "displayName": "Alignment Utilities",
-  "description": "Use .dk-align-* from responsive-spacing. Companion package for the Spacing System.",
+  "displayName": "Alignment System",
+  "description": "Alignment System — universal horizontal/vertical/baseline/self/content alignment with distribution (between/around/evenly), safe & adaptive presets, RTL-safe logical sides, responsive maps, and motion.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "spacing-system",
-    "alignment-utilities"
+    "alignment-utilities",
+    "alignment",
+    "responsive"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,9 +26,9 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
-  "fileKind": "css",
+  "fileKind": "tsx",
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",

@@ -27,7 +27,9 @@ copy(
   join(nextRoot, "styles/responsive-spacing.tailwind.css"),
   join(viteRoot, "src/styles/responsive-spacing.tailwind.css")
 );
+copy(join(nextRoot, "styles/density-system.css"), join(viteRoot, "src/styles/density-system.css"));
 copy(join(nextRoot, "docs/SPACING.md"), join(viteRoot, "docs/SPACING.md"));
+copy(join(nextRoot, "docs/DENSITY.md"), join(viteRoot, "docs/DENSITY.md"));
 copy(
   join(nextRoot, "components/ui/DensityProvider.tsx"),
   join(viteRoot, "src/components/ui/DensityProvider.tsx")
@@ -40,9 +42,11 @@ const filesNext = [
     source: "files/styles/responsive-spacing.tailwind.css",
     destination: "styles/responsive-spacing.tailwind.css",
   },
+  { source: "files/styles/density-system.css", destination: "styles/density-system.css" },
   { source: "files/components/ui/DensityProvider.tsx", destination: "components/ui/DensityProvider.tsx" },
   { source: "files/components/ui/Space.tsx", destination: "components/ui/Space.tsx" },
   { source: "files/docs/SPACING.md", destination: "docs/devkit/SPACING.md" },
+  { source: "files/docs/DENSITY.md", destination: "docs/devkit/DENSITY.md" },
 ];
 
 const filesVite = [
@@ -51,12 +55,14 @@ const filesVite = [
     source: "files/src/styles/responsive-spacing.tailwind.css",
     destination: "src/styles/responsive-spacing.tailwind.css",
   },
+  { source: "files/src/styles/density-system.css", destination: "src/styles/density-system.css" },
   {
     source: "files/src/components/ui/DensityProvider.tsx",
     destination: "src/components/ui/DensityProvider.tsx",
   },
   { source: "files/src/components/ui/Space.tsx", destination: "src/components/ui/Space.tsx" },
   { source: "files/docs/SPACING.md", destination: "docs/devkit/SPACING.md" },
+  { source: "files/docs/DENSITY.md", destination: "docs/devkit/DENSITY.md" },
 ];
 
 write(
@@ -84,7 +90,7 @@ write(
       name: "responsive-spacing",
       displayName: "Responsive Spacing",
       description:
-        "Universal spacing scale with semantic roles, responsive rhythm, and compact/comfortable/spacious density modes.",
+        "Universal spacing scale with semantic roles, responsive rhythm, and Density System (compact / comfortable / spacious / custom) for app-wide UI density.",
       category: "foundation",
       group: "spacing-system",
       groupName: "Spacing System",
@@ -114,22 +120,6 @@ write(
 
 const companions = [
   {
-    name: "margin-utilities",
-    id: 21,
-    css: `/* Margin utilities — provided by responsive-spacing.css (.dk-m-*, .dk-mx-*, …) */\n@import "../../responsive-spacing/nextjs-compact/v1/files/styles/responsive-spacing.css";\n`,
-    note: "Use .dk-m-* / .dk-mx-* / .dk-my-* from responsive-spacing.",
-  },
-  {
-    name: "padding-utilities",
-    id: 22,
-    note: "Use .dk-p-* / .dk-px-* / .dk-py-* from responsive-spacing.",
-  },
-  {
-    name: "gap-utilities",
-    id: 23,
-    note: "Use .dk-gap-* from responsive-spacing.",
-  },
-  {
     name: "content-width-manager",
     id: 25,
     note: "Use .dk-content-width* from responsive-spacing.",
@@ -140,26 +130,13 @@ const companions = [
     note: "Use .dk-space-stack / .dk-space-inline with spacing tokens.",
   },
   {
-    name: "alignment-utilities",
-    id: 27,
-    note: "Use .dk-align-* from responsive-spacing.",
-  },
-  {
     name: "distribution-utilities",
     id: 28,
-    note: "Use .dk-distribute-* from responsive-spacing.",
-  },
-  {
-    name: "position-utilities",
-    id: 29,
-    note: "Use .dk-pos-* / .dk-inset-* from responsive-spacing.",
-  },
-  {
-    name: "overflow-utilities",
-    id: 30,
-    note: "Use .dk-overflow-* from responsive-spacing.",
+    note: "Use Alignment System (alignment-utilities) — .dk-justify-* / distribute presets.",
   },
 ];
+
+/* 21–23 spacing · 27 align · 29 position · 30 overflow → generate-overflow.mjs */
 
 for (const c of companions) {
   const css = `/**

@@ -1,9 +1,9 @@
 /**
- * DevKit Responsive Visibility — Layer 1 Foundation (id: 96 · responsive-visibility)
+ * DevKit Responsive Visibility Engine — Layer 1 Foundation (id: 96)
  *
- * Show / hide / collapse / preserve-layout by viewport, orientation, print,
- * accessibility preferences, and app conditions. Prefer CSS for viewport
- * presets (no JS) and React gates for roles / flags / intersection.
+ * Show / hide / collapse / preserve / accessible-hide by viewport, device,
+ * orientation, print, accessibility prefs, and app conditions.
+ * Prefer CSS for viewport presets (no JS); React gates for roles / flags / IO.
  */
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -45,15 +45,31 @@ html[data-motion="reduce"] {
   display: none !important;
 }
 
-/* Preserve layout — invisible but occupies space */
+/* Preserve layout — invisible but occupies space (not accessible) */
 .dk-vis-preserve {
   visibility: hidden !important;
   pointer-events: none !important;
   user-select: none;
 }
 
-.dk-vis-preserve[aria-hidden="true"] {
-  /* already hidden from AT when attribute set by React */
+/* Hidden-but-accessible — visually clipped, remains in a11y tree */
+.dk-vis-accessible {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  pointer-events: none;
+}
+
+/* Intersection sentinel when children not yet mounted */
+.dk-vis-sentinel {
+  min-height: 1px;
+  min-width: 1px;
 }
 
 /* Collapse — animate closed without display:none until settled */
@@ -85,13 +101,26 @@ html[data-motion="reduce"] {
   opacity: 1;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) .dk-vis-motion,
+  html:not([data-motion="full"]) .dk-vis-collapse,
+  html:not([data-motion="full"]) .dk-vis-fade {
+    transition: none !important;
+  }
+}
+
+html[data-motion="reduce"] .dk-vis-motion,
+html[data-motion="reduce"] .dk-vis-collapse,
+html[data-motion="reduce"] .dk-vis-fade {
+  transition: none !important;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    Viewport presets — mobile / tablet / desktop / large
-   Breakpoints align with DevKit: phone <768, tablet 768–1023, desktop 1024+,
-   large 1280+
+   Breakpoints: phone <768, tablet 768–1023, desktop 1024+, large 1280+
+   (aligned with Breakpoint Manager md / lg / xl)
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Mobile only (< 768) */
 .dk-vis-mobile-only {
   display: contents;
 }
@@ -99,7 +128,6 @@ html[data-motion="reduce"] {
   .dk-vis-mobile-only { display: none !important; }
 }
 
-/* Tablet only (768–1023) */
 .dk-vis-tablet-only {
   display: none !important;
 }
@@ -107,7 +135,6 @@ html[data-motion="reduce"] {
   .dk-vis-tablet-only { display: contents; }
 }
 
-/* Desktop only (≥ 1024) */
 .dk-vis-desktop-only {
   display: none !important;
 }
@@ -115,7 +142,6 @@ html[data-motion="reduce"] {
   .dk-vis-desktop-only { display: contents; }
 }
 
-/* Large screens (≥ 1280) */
 .dk-vis-large-only {
   display: none !important;
 }
@@ -123,7 +149,20 @@ html[data-motion="reduce"] {
   .dk-vis-large-only { display: contents; }
 }
 
-/* Hide on mobile / show from md */
+.dk-vis-from-sm {
+  display: none !important;
+}
+@media (min-width: 480px) {
+  .dk-vis-from-sm { display: contents; }
+}
+
+.dk-vis-until-sm {
+  display: contents;
+}
+@media (min-width: 480px) {
+  .dk-vis-until-sm { display: none !important; }
+}
+
 .dk-vis-from-md {
   display: none !important;
 }
@@ -152,27 +191,53 @@ html[data-motion="reduce"] {
   .dk-vis-until-lg { display: none !important; }
 }
 
+.dk-vis-from-xl {
+  display: none !important;
+}
+@media (min-width: 1280px) {
+  .dk-vis-from-xl { display: contents; }
+}
+
+.dk-vis-until-xl {
+  display: contents;
+}
+@media (min-width: 1280px) {
+  .dk-vis-until-xl { display: none !important; }
+}
+
 /* Block-level variants when display:contents is undesirable */
 .dk-vis-block.dk-vis-mobile-only,
 .dk-vis-block.dk-vis-tablet-only,
 .dk-vis-block.dk-vis-desktop-only,
 .dk-vis-block.dk-vis-large-only,
+.dk-vis-block.dk-vis-from-sm,
 .dk-vis-block.dk-vis-from-md,
 .dk-vis-block.dk-vis-from-lg,
+.dk-vis-block.dk-vis-from-xl,
 .dk-vis-block.dk-vis-landscape-only,
 .dk-vis-block.dk-vis-portrait-only,
 .dk-vis-block.dk-vis-print-only,
 .dk-vis-block.dk-vis-screen-only,
 .dk-vis-block.dk-vis-a11y-only,
-.dk-vis-block.dk-vis-foldable-only {
+.dk-vis-block.dk-vis-foldable-only,
+.dk-vis-block.dk-vis-touch-only,
+.dk-vis-block.dk-vis-hover-capable,
+.dk-vis-block.dk-vis-fine-pointer,
+.dk-vis-block.dk-vis-coarse-pointer {
   display: block;
 }
 
+.dk-vis-block.dk-vis-until-sm,
 .dk-vis-block.dk-vis-until-md,
-.dk-vis-block.dk-vis-until-lg {
+.dk-vis-block.dk-vis-until-lg,
+.dk-vis-block.dk-vis-until-xl {
   display: block;
 }
 
+@media (min-width: 480px) {
+  .dk-vis-block.dk-vis-from-sm { display: block; }
+  .dk-vis-block.dk-vis-until-sm { display: none !important; }
+}
 @media (min-width: 768px) {
   .dk-vis-block.dk-vis-mobile-only { display: none !important; }
   .dk-vis-block.dk-vis-from-md { display: block; }
@@ -188,10 +253,12 @@ html[data-motion="reduce"] {
 }
 @media (min-width: 1280px) {
   .dk-vis-block.dk-vis-large-only { display: block; }
+  .dk-vis-block.dk-vis-from-xl { display: block; }
+  .dk-vis-block.dk-vis-until-xl { display: none !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   Orientation · print · foldable · a11y
+   Orientation · print · foldable · a11y · device
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .dk-vis-landscape-only {
@@ -223,7 +290,6 @@ html[data-motion="reduce"] {
   display: contents;
 }
 
-/* Foldables — progressive; ignored where unsupported */
 .dk-vis-foldable-only {
   display: none !important;
 }
@@ -232,7 +298,6 @@ html[data-motion="reduce"] {
   .dk-vis-block.dk-vis-foldable-only { display: block; }
 }
 
-/* Accessibility mode — show when user prefers reduced motion OR more contrast */
 .dk-vis-a11y-only {
   display: none !important;
 }
@@ -261,7 +326,40 @@ html[data-motion="reduce"] .dk-vis-motion-ok-only {
   display: none !important;
 }
 
-/* Legacy grid companions — keep working */
+/* Device characteristics */
+.dk-vis-touch-only {
+  display: none !important;
+}
+@media (pointer: coarse) {
+  .dk-vis-touch-only { display: contents; }
+  .dk-vis-block.dk-vis-touch-only { display: block; }
+}
+
+.dk-vis-hover-capable {
+  display: none !important;
+}
+@media (hover: hover) {
+  .dk-vis-hover-capable { display: contents; }
+  .dk-vis-block.dk-vis-hover-capable { display: block; }
+}
+
+.dk-vis-fine-pointer {
+  display: none !important;
+}
+@media (pointer: fine) {
+  .dk-vis-fine-pointer { display: contents; }
+  .dk-vis-block.dk-vis-fine-pointer { display: block; }
+}
+
+.dk-vis-coarse-pointer {
+  display: none !important;
+}
+@media (pointer: coarse) {
+  .dk-vis-coarse-pointer { display: contents; }
+  .dk-vis-block.dk-vis-coarse-pointer { display: block; }
+}
+
+/* Legacy grid companions */
 .dk-hide { display: none !important; }
 @media (max-width: 767.98px) {
   .dk-hide-phone { display: none !important; }

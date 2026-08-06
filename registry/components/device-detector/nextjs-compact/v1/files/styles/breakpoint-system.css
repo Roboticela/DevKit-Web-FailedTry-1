@@ -45,7 +45,7 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    Document capability attributes (set by JS; CSS can react without hooks)
    data-bp · data-orientation · data-pointer · data-hover · data-touch
-   data-density · data-fold · data-motion · data-transparency · data-contrast
+   data-screen-density · data-fold · data-motion · data-transparency · data-contrast
    ═══════════════════════════════════════════════════════════════════════════ */
 
 html[data-bp] {

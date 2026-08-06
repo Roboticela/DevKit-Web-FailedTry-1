@@ -2,7 +2,7 @@
   "id": 28,
   "name": "distribution-utilities",
   "displayName": "Distribution Utilities",
-  "description": "Use .dk-distribute-* from responsive-spacing. Companion package for the Spacing System.",
+  "description": "Use Alignment System (alignment-utilities) — .dk-justify-* / distribute presets. Companion package for the Spacing System.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",

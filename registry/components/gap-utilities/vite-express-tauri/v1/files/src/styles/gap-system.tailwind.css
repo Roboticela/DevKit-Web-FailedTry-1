@@ -1,0 +1,20 @@
+/**
+ * Tailwind v4 bridge — Gap System
+ * Import after responsive-spacing.tailwind.css + gap-system.css
+ */
+
+@theme inline {
+  --spacing-dk-gap-none: var(--gap-none);
+  --spacing-dk-gap-compact: var(--gap-compact);
+  --spacing-dk-gap-comfortable: var(--gap-comfortable);
+  --spacing-dk-gap-spacious: var(--gap-spacious);
+  --spacing-dk-gap-stack: var(--gap-stack);
+  --spacing-dk-gap-inline: var(--gap-inline);
+  --spacing-dk-gap-grid: var(--gap-grid);
+  --spacing-dk-gap-form: var(--gap-form);
+  --spacing-dk-gap-nav: var(--gap-nav);
+  --spacing-dk-gap-toolbar: var(--gap-toolbar);
+  --spacing-dk-gap-card: var(--gap-card);
+  --spacing-dk-gap-list: var(--gap-list);
+  --spacing-dk-gap-section: var(--gap-section);
+}

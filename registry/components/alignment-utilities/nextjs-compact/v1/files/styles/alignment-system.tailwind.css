@@ -1,0 +1,11 @@
+/**
+ * Tailwind v4 bridge — Alignment System
+ */
+
+@theme inline {
+  --align-dk-start: start;
+  --align-dk-center: center;
+  --align-dk-end: end;
+  --align-dk-stretch: stretch;
+  --align-dk-baseline: baseline;
+}

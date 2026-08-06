@@ -1,8 +1,8 @@
 {
   "id": 22,
   "name": "padding-utilities",
-  "displayName": "Padding Utilities",
-  "description": "Use .dk-p-* / .dk-px-* / .dk-py-* from responsive-spacing. Companion package for the Spacing System.",
+  "displayName": "Responsive Padding",
+  "description": "Responsive Padding System — semantic internal spacing with density presets (none→spacious, hero, modal, card, dashboard, table, form, nav), logical sides, safe-area, motion, and layout integration.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "spacing-system",
-    "padding-utilities"
+    "padding-utilities",
+    "padding",
+    "responsive"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,9 +26,9 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
-  "fileKind": "css",
+  "fileKind": "tsx",
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",
@@ -39,5 +41,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.density"
+  ]
 }

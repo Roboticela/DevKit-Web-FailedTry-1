@@ -33,7 +33,7 @@ copy(
 );
 
 const description =
-  "Responsive Visibility — show/hide/collapse by viewport, orientation, print, foldables, a11y prefs, roles, flags, and intersection; CSS presets + lazy gates.";
+  "Responsive Visibility Engine — conditional render by viewport, device, orientation, roles, flags, app state, and a11y prefs; CSS presets, lazy/intersection, preserve/accessible modes, SSR-safe.";
 
 write(
   join(COMP, "responsive-visibility/nextjs-compact/v1/manifest.json"),
@@ -99,7 +99,7 @@ write(
     {
       id: 96,
       name: "responsive-visibility",
-      displayName: "Responsive Visibility",
+      displayName: "Responsive Visibility Engine",
       description,
       category: "foundation",
       group: "utility-components",
@@ -141,7 +141,7 @@ for (const entry of registry.components) {
   entry.stub = false;
   entry.latestVersion = "1.0.0";
   entry.hasVariants = true;
-  entry.displayName = "Responsive Visibility";
+  entry.displayName = "Responsive Visibility Engine";
   entry.description = description;
   entry.tags = [
     "foundation",

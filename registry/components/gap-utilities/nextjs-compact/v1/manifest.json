@@ -3,8 +3,24 @@
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/gap-utilities.css",
-      "destination": "styles/gap-utilities.css"
+      "source": "files/styles/gap-system.css",
+      "destination": "styles/gap-system.css"
+    },
+    {
+      "source": "files/styles/gap-system.tailwind.css",
+      "destination": "styles/gap-system.tailwind.css"
+    },
+    {
+      "source": "files/components/ui/Gap.tsx",
+      "destination": "components/ui/Gap.tsx"
+    },
+    {
+      "source": "files/components/ui/GapUtilities.tsx",
+      "destination": "components/ui/GapUtilities.tsx"
+    },
+    {
+      "source": "files/docs/GAP.md",
+      "destination": "docs/devkit/GAP.md"
     }
   ],
   "injections": [],

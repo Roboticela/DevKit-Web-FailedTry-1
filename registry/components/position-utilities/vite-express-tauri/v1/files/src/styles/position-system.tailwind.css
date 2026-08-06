@@ -1,0 +1,16 @@
+/**
+ * Tailwind v4 bridge — Position System
+ */
+@theme inline {
+  --z-index-dk-base: var(--z-base);
+  --z-index-dk-raised: var(--z-raised);
+  --z-index-dk-sticky: var(--z-sticky);
+  --z-index-dk-nav: var(--z-nav);
+  --z-index-dk-fab: var(--z-fab);
+  --z-index-dk-overlay: var(--z-overlay);
+  --z-index-dk-dropdown: var(--z-dropdown);
+  --z-index-dk-popover: var(--z-popover);
+  --z-index-dk-tooltip: var(--z-tooltip);
+  --z-index-dk-modal: var(--z-modal);
+  --z-index-dk-toast: var(--z-toast);
+}

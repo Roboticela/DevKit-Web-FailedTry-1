@@ -1,10 +1,27 @@
-import * as React from "react";
+export {
+  Gap,
+  GapUtilities,
+  GapNone,
+  GapCompact,
+  GapComfortable,
+  GapSpacious,
+  GapStack,
+  GapInline,
+  GapGrid,
+  GapForm,
+  GapNav,
+  GapToolbar,
+  GapCard,
+  GapList,
+  gapClassName,
+} from "./Gap";
 
-export interface GapUtilitiesProps {
-  children?: React.ReactNode;
-}
-
-/** Gap Utilities — empty stub (Layer 1 Foundation). */
-export function GapUtilities(_props: GapUtilitiesProps = {}) {
-  return null;
-}
+export type {
+  GapScale,
+  GapPreset,
+  GapBreakpoint,
+  ResponsiveGap,
+  GapDivider,
+  GapDisplay,
+  GapProps,
+} from "./Gap";

@@ -47,17 +47,21 @@ Classes: `.dk-space-page`, `.dk-space-section`, `.dk-space-card`, `.dk-space-for
 
 ## Density modes
 
-Set on `<html>`:
+See **[DENSITY.md](./DENSITY.md)** for the full Density System (type, icons, touch, rows, custom, persistence).
+
+Set on `<html>` via `DensityProvider`:
 
 | Mode | Attribute | Feel |
 |------|-----------|------|
 | Compact | `data-density="compact"` | Dense enterprise tables / tools |
 | Comfortable | default / `comfortable` | Balanced product UI |
 | Spacious | `data-density="spacious"` | Marketing / executive calm |
+| Custom | `data-density="custom"` | Admin scale via `setCustom()` |
 
 ```tsx
 import { DensityProvider } from ".../DensityProvider";
-<DensityProvider density="compact">{children}</DensityProvider>
+import ".../density-system.css";
+<DensityProvider density="compact" storageKey="devkit-density">{children}</DensityProvider>
 ```
 
 Semantic tokens and grid bridges (`--grid-gutter`, `--container-padding`, `--section-space-y`) update with density and breakpoints.

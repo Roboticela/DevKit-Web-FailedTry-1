@@ -11,6 +11,10 @@
       "destination": "src/styles/responsive-spacing.tailwind.css"
     },
     {
+      "source": "files/src/styles/density-system.css",
+      "destination": "src/styles/density-system.css"
+    },
+    {
       "source": "files/src/components/ui/DensityProvider.tsx",
       "destination": "src/components/ui/DensityProvider.tsx"
     },
@@ -21,6 +25,10 @@
     {
       "source": "files/docs/SPACING.md",
       "destination": "docs/devkit/SPACING.md"
+    },
+    {
+      "source": "files/docs/DENSITY.md",
+      "destination": "docs/devkit/DENSITY.md"
     }
   ],
   "injections": [],

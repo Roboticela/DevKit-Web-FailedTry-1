@@ -3,8 +3,20 @@
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/overflow-utilities.css",
-      "destination": "src/styles/overflow-utilities.css"
+      "source": "files/src/styles/overflow-system.css",
+      "destination": "src/styles/overflow-system.css"
+    },
+    {
+      "source": "files/src/components/ui/Overflow.tsx",
+      "destination": "src/components/ui/Overflow.tsx"
+    },
+    {
+      "source": "files/src/components/ui/OverflowUtilities.tsx",
+      "destination": "src/components/ui/OverflowUtilities.tsx"
+    },
+    {
+      "source": "files/docs/OVERFLOW.md",
+      "destination": "docs/devkit/OVERFLOW.md"
     }
   ],
   "injections": [],

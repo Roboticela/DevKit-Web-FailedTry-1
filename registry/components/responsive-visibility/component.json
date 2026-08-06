@@ -1,8 +1,8 @@
 {
   "id": 96,
   "name": "responsive-visibility",
-  "displayName": "Responsive Visibility",
-  "description": "Responsive Visibility — show/hide/collapse by viewport, orientation, print, foldables, a11y prefs, roles, flags, and intersection; CSS presets + lazy gates.",
+  "displayName": "Responsive Visibility Engine",
+  "description": "Responsive Visibility Engine — conditional render by viewport, device, orientation, roles, flags, app state, and a11y prefs; CSS presets, lazy/intersection, preserve/accessible modes, SSR-safe.",
   "category": "foundation",
   "group": "utility-components",
   "groupName": "Utility Components",

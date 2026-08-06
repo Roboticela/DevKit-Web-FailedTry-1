@@ -1,8 +1,10 @@
-# Responsive Visibility
+# Responsive Visibility Engine
 
 DevKit Layer 1 foundation (`responsive-visibility`, id **96**).
 
-Controls when UI is shown using **CSS-first viewport presets** and optional **JS gates** for roles, permissions, feature flags, accessibility preferences, intersection, and app state.
+Determines whether UI should render based on **device characteristics**, **viewport size**, **orientation**, **permissions**, **feature flags**, **application state**, **accessibility preferences**, and **responsive breakpoints**.
+
+CSS-first presets (zero JS) plus optional React gates for roles, intersection, lazy mount, and app state — with SSR / hydration safety.
 
 ## Install
 
@@ -10,22 +12,21 @@ Controls when UI is shown using **CSS-first viewport presets** and optional **JS
 npx @roboticela/devkit add responsive-visibility
 ```
 
-Import the system stylesheet once (after spacing / theme):
-
 ```ts
 import "@/styles/visibility-system.css";
+import {
+  Visibility,
+  VisibilityProvider,
+  MobileOnly,
+  DesktopOnly,
+  useVisibility,
+  useViewportObservation,
+} from "@/components/ui/ResponsiveVisibility";
 ```
 
 ## Quick start
 
 ```tsx
-import {
-  Visibility,
-  MobileOnly,
-  DesktopOnly,
-  VisibilityProvider,
-} from "@/components/ui/ResponsiveVisibility";
-
 <MobileOnly>Mobile nav</MobileOnly>
 <DesktopOnly>Desktop sidebar</DesktopOnly>
 
@@ -33,8 +34,8 @@ import {
   Landscape toolbar
 </Visibility>
 
-<VisibilityProvider roles={["admin"]} flags={{ beta: true }}>
-  <Visibility role="admin" flag="beta" lazy>
+<VisibilityProvider roles={["admin"]} flags={{ beta: true }} state={{ onboarded: true }}>
+  <Visibility role="admin" flag="beta" stateKey="onboarded" lazy>
     Admin beta panel
   </Visibility>
 </VisibilityProvider>
@@ -55,23 +56,26 @@ import {
 | `accessibility` / `a11y-only` | Reduced motion **or** more contrast |
 | `reduced-motion-only` | Prefers reduced motion |
 | `motion-ok-only` | Hidden when motion is reduced |
-| `from-md` / `until-md` / `from-lg` / `until-lg` | Breakpoint ranges |
+| `touch-only` / `coarse-pointer` | Coarse pointer |
+| `hover-capable` / `fine-pointer` | Hover / fine pointer |
+| `from-sm` … `until-xl` | Breakpoint ranges |
 
-Helpers: `MobileOnly`, `TabletOnly`, `DesktopOnly`, `LargeScreens`, `LandscapeOnly`, `PortraitOnly`, `PrintMode`, `ScreenOnly`, `Foldables`, `AccessibilityMode`.
+Helpers: `MobileOnly`, `TabletOnly`, `DesktopOnly`, `LargeScreens`, `LandscapeOnly`, `PortraitOnly`, `PrintMode`, `ScreenOnly`, `Foldables`, `AccessibilityMode`, `TouchOnly`, `HoverCapable`.
 
-Use `block` when `display: contents` is undesirable (e.g. measured boxes).
+Use `block` when `display: contents` is undesirable.
 
 ## Modes
 
 | Mode | When gated off |
 |------|----------------|
 | `hide` (default) | Unmount / `display: none` + `hidden` |
-| `preserve` | Keep layout (`visibility: hidden`) |
+| `preserve` | Keep layout (`visibility: hidden`) — not in a11y tree |
+| `accessible` | **Hidden-but-accessible** — visually clipped, stays in a11y tree |
 | `collapse` | Animate closed via grid rows |
 | `fade` | Opacity transition |
-| `show` | Always show (ignore negative gates) |
+| `show` | Always show |
 
-`motion` enables transition tokens (respects reduced motion).
+`motion` enables transition tokens (honors reduced motion).
 
 ## JS gates
 
@@ -80,44 +84,59 @@ Use `block` when `display: contents` is undesirable (e.g. measured boxes).
 <Visibility match="(min-width: 900px)" />
 <Visibility above="md" below="xl" />
 <Visibility minWidth={600} maxWidth={1200} />
-<Visibility orientation="portrait" />
-<Visibility role="editor" permission="docs:write" />
-<Visibility flag="new-dashboard" />
+<Visibility orientation="portrait" pointer="coarse" hover="none" touch />
+<Visibility role="editor" permission="docs:write" matchMode="all" />
+<Visibility flag="new-dashboard" flagsAll={["beta", "charts"]} />
 <Visibility stateKey="onboardingComplete" />
-<Visibility reducedMotion="hide" />
-<Visibility prefersContrast />
+<Visibility whenState={(s) => s.step === 3 && !s.dismissed} />
+<Visibility reducedMotion="hide" prefersContrast />
 <Visibility invert when={isGuest} />
 ```
 
-`strategy`:
+`strategy`: `css` | `js` | `auto` (default — CSS for presets alone; JS when gates need it).
 
-- `css` — class-only (presets)
-- `js` — always evaluate in JS
-- `auto` (default) — CSS for presets alone; JS when gates / modes need it
-
-## Performance & a11y
-
-- **`lazy`** — skip mounting until visible (optional `keepMounted`)
-- **`intersection`** — IntersectionObserver gate + `onVisible` / `onVisibilityChange`
-- Hidden content gets `aria-hidden` / `hidden` as appropriate
-- Prefer CSS presets for pure breakpoint UI to avoid hydration mismatch and listeners
+## Lazy · intersection · viewport
 
 ```tsx
 <Visibility
   lazy
+  keepMounted
   intersection={{ rootMargin: "80px", threshold: 0.1 }}
+  motion
+  mode="fade"
   onVisible={(e) => analytics.track("panel_view", e)}
 >
   Heavy chart
 </Visibility>
+
+const viewport = useViewportObservation();
+// width, height, visualWidth, scale, offsetTop…
 ```
+
+Intersection always mounts a **sentinel** so `lazy` + `hide` still observe the viewport.
+
+## SSR & hydration
+
+- CSS presets are hydration-safe (`suppressHydrationWarning`).
+- JS media gates use `ssrFallback` (default `true`) until hydrated when `hydrateSafe` (default `true`).
+- Prefer CSS presets for pure breakpoint UI to avoid listeners and mismatch.
+
+```tsx
+<Visibility above="lg" ssrFallback={false} hydrateSafe>
+  Desktop-only after hydrate
+</Visibility>
+```
+
+Optional: `<VisibilityScript />` in `<head>` for `data-dk-vis-hydrated`.
 
 ## Hooks
 
 ```tsx
 const wide = useMediaQuery("(min-width: 1024px)");
 const reduce = usePrefersReducedMotion();
-const show = useVisibility({ above: "md", role: "admin" });
+const show = useVisibility({ above: "md", role: "admin", flag: "beta" });
+const vp = useViewportObservation();
+const hydrated = useHydrated();
 ```
 
 ## Provider
@@ -127,7 +146,7 @@ const show = useVisibility({ above: "md", role: "admin" });
   roles={session.roles}
   permissions={session.permissions}
   flags={remoteFlags}
-  state={{ sidebarOpen }}
+  state={{ sidebarOpen, step }}
 >
   {children}
 </VisibilityProvider>

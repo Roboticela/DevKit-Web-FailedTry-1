@@ -1,8 +1,8 @@
 {
   "id": 29,
   "name": "position-utilities",
-  "displayName": "Position Utilities",
-  "description": "Use .dk-pos-* / .dk-inset-* from responsive-spacing. Companion package for the Spacing System.",
+  "displayName": "Position System",
+  "description": "Position System — semantic static/relative/absolute/fixed/sticky/floating/anchor layers with FAB, sticky chrome, overlays, tooltips, badges, z-index tokens, safe-area, and collision-aware floating.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "spacing-system",
-    "position-utilities"
+    "position-utilities",
+    "position",
+    "floating"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,9 +26,9 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
-  "fileKind": "css",
+  "fileKind": "tsx",
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",

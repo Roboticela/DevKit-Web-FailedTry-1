@@ -1,8 +1,8 @@
 {
   "id": 23,
   "name": "gap-utilities",
-  "displayName": "Gap Utilities",
-  "description": "Use .dk-gap-* from responsive-spacing. Companion package for the Spacing System.",
+  "displayName": "Gap System",
+  "description": "Gap System — intelligent child spacing for Grid/Stack/Flex/Nav/Forms/Tables/Toolbars/Cards/Lists with semantic presets, responsive maps, density, nested inheritance, dividers, and motion.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "spacing-system",
-    "gap-utilities"
+    "gap-utilities",
+    "gap",
+    "responsive"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,9 +26,9 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
-  "fileKind": "css",
+  "fileKind": "tsx",
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",
@@ -39,5 +41,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.density"
+  ]
 }

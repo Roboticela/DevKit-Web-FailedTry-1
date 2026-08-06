@@ -582,8 +582,8 @@
     {
       "id": 21,
       "name": "margin-utilities",
-      "displayName": "Margin Utilities",
-      "description": "Use .dk-m-* / .dk-mx-* / .dk-my-* from responsive-spacing. Companion package for the Spacing System.",
+      "displayName": "Responsive Margin",
+      "description": "Responsive Margin System — semantic, density-aware, RTL-safe margins with responsive breakpoints, safe-area, collapse, motion, and layout integration. No hardcoded px.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
@@ -598,20 +598,23 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
-        "margin-utilities"
-      ]
+        "margin-utilities",
+        "margin",
+        "responsive"
+      ],
+      "fileKind": "tsx"
     },
     {
       "id": 22,
       "name": "padding-utilities",
-      "displayName": "Padding Utilities",
-      "description": "Use .dk-p-* / .dk-px-* / .dk-py-* from responsive-spacing. Companion package for the Spacing System.",
+      "displayName": "Responsive Padding",
+      "description": "Responsive Padding System — semantic internal spacing with density presets (none→spacious, hero, modal, card, dashboard, table, form, nav), logical sides, safe-area, motion, and layout integration.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
@@ -626,20 +629,23 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
-        "padding-utilities"
-      ]
+        "padding-utilities",
+        "padding",
+        "responsive"
+      ],
+      "fileKind": "tsx"
     },
     {
       "id": 23,
       "name": "gap-utilities",
-      "displayName": "Gap Utilities",
-      "description": "Use .dk-gap-* from responsive-spacing. Companion package for the Spacing System.",
+      "displayName": "Gap System",
+      "description": "Gap System — intelligent child spacing for Grid/Stack/Flex/Nav/Forms/Tables/Toolbars/Cards/Lists with semantic presets, responsive maps, density, nested inheritance, dividers, and motion.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
@@ -654,14 +660,17 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
-        "gap-utilities"
-      ]
+        "gap-utilities",
+        "gap",
+        "responsive"
+      ],
+      "fileKind": "tsx"
     },
     {
       "id": 24,
@@ -751,8 +760,8 @@
     {
       "id": 27,
       "name": "alignment-utilities",
-      "displayName": "Alignment Utilities",
-      "description": "Use .dk-align-* from responsive-spacing. Companion package for the Spacing System.",
+      "displayName": "Alignment System",
+      "description": "Alignment System — universal horizontal/vertical/baseline/self/content alignment with distribution (between/around/evenly), safe & adaptive presets, RTL-safe logical sides, responsive maps, and motion.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
@@ -767,20 +776,23 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
-        "alignment-utilities"
-      ]
+        "alignment-utilities",
+        "alignment",
+        "responsive"
+      ],
+      "fileKind": "tsx"
     },
     {
       "id": 28,
       "name": "distribution-utilities",
       "displayName": "Distribution Utilities",
-      "description": "Use .dk-distribute-* from responsive-spacing. Companion package for the Spacing System.",
+      "description": "Use Alignment System (alignment-utilities) — .dk-justify-* / distribute presets. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
@@ -807,8 +819,8 @@
     {
       "id": 29,
       "name": "position-utilities",
-      "displayName": "Position Utilities",
-      "description": "Use .dk-pos-* / .dk-inset-* from responsive-spacing. Companion package for the Spacing System.",
+      "displayName": "Position System",
+      "description": "Position System — semantic static/relative/absolute/fixed/sticky/floating/anchor layers with FAB, sticky chrome, overlays, tooltips, badges, z-index tokens, safe-area, and collision-aware floating.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
@@ -823,20 +835,23 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
-        "position-utilities"
-      ]
+        "position-utilities",
+        "position",
+        "floating"
+      ],
+      "fileKind": "tsx"
     },
     {
       "id": 30,
       "name": "overflow-utilities",
-      "displayName": "Overflow Utilities",
-      "description": "Use .dk-overflow-* from responsive-spacing. Companion package for the Spacing System.",
+      "displayName": "Overflow Manager",
+      "description": "Overflow Manager — scroll/clip/auto overflow with fade indicators, custom scrollbars, momentum, nested containment, virtual scroll, sync, lazy load, pull-to-refresh, and keyboard navigation.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
@@ -851,14 +866,17 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
-        "overflow-utilities"
-      ]
+        "overflow-utilities",
+        "overflow",
+        "scroll"
+      ],
+      "fileKind": "tsx"
     },
     {
       "id": 31,
@@ -2687,8 +2705,8 @@
     {
       "id": 96,
       "name": "responsive-visibility",
-      "displayName": "Responsive Visibility",
-      "description": "Responsive Visibility — show/hide/collapse by viewport, orientation, print, foldables, a11y prefs, roles, flags, and intersection; CSS presets + lazy gates.",
+      "displayName": "Responsive Visibility Engine",
+      "description": "Responsive Visibility Engine — conditional render by viewport, device, orientation, roles, flags, app state, and a11y prefs; CSS presets, lazy/intersection, preserve/accessible modes, SSR-safe.",
       "category": "foundation",
       "group": "utility-components",
       "groupName": "Utility Components",

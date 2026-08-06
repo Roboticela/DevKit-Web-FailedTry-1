@@ -3,8 +3,24 @@
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/alignment-utilities.css",
-      "destination": "styles/alignment-utilities.css"
+      "source": "files/styles/alignment-system.css",
+      "destination": "styles/alignment-system.css"
+    },
+    {
+      "source": "files/styles/alignment-system.tailwind.css",
+      "destination": "styles/alignment-system.tailwind.css"
+    },
+    {
+      "source": "files/components/ui/Align.tsx",
+      "destination": "components/ui/Align.tsx"
+    },
+    {
+      "source": "files/components/ui/AlignmentUtilities.tsx",
+      "destination": "components/ui/AlignmentUtilities.tsx"
+    },
+    {
+      "source": "files/docs/ALIGNMENT.md",
+      "destination": "docs/devkit/ALIGNMENT.md"
     }
   ],
   "injections": [],

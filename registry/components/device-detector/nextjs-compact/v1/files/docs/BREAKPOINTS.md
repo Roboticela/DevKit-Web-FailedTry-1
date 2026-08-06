@@ -64,7 +64,7 @@ const landscape = useOrientation() === "landscape";
 const fine = usePointer() === "fine";
 const canHover = useHoverCapability() === "hover";
 const touch = useTouch();
-const { dense, dpr } = useDensity();
+const { dense, dpr } = useScreenDensity();
 const fold = useFoldable();
 const reduceMotion = usePrefersReducedMotion();
 const reduceFx = usePrefersReducedTransparency();
@@ -97,7 +97,9 @@ scheduleLayoutRecalc(() => layout.invalidate());
 ```
 
 Document attributes (when `syncDocument`):  
-`data-bp`, `data-orientation`, `data-pointer`, `data-hover`, `data-touch`, `data-density`, `data-fold`, `data-transparency`, `data-contrast`.
+`data-bp`, `data-orientation`, `data-pointer`, `data-hover`, `data-touch`, `data-screen-density`, `data-fold`, `data-transparency`, `data-contrast`.
+
+UI display density (`data-density` = compact | comfortable | spacious | custom) is owned by **DensityProvider** in responsive-spacing — not this manager.
 
 During resize bursts: `data-bp-resizing="true"` — use `.dk-bp-recalc-quiet` to pause transitions.
 

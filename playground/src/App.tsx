@@ -36,8 +36,11 @@ import {
   PrintMode,
   Foldables,
   AccessibilityMode,
+  TouchOnly,
+  HoverCapable,
   useMediaQuery,
   useVisibility,
+  useViewportObservation,
 } from "@devkit/ResponsiveVisibility";
 import {
   BREAKPOINTS,
@@ -59,6 +62,66 @@ import {
   useTouch,
   useBreakpointMatch,
 } from "@devkit/BreakpointManager";
+import {
+  Margin,
+  MarginPage,
+  MarginSection,
+  MarginCard,
+  MarginForm,
+  marginClassName,
+} from "@devkit/Margin";
+import {
+  Padding,
+  PaddingCompact,
+  PaddingComfortable,
+  PaddingSpacious,
+  PaddingHero,
+  PaddingModal,
+  PaddingCard,
+  PaddingDashboard,
+  PaddingTableCell,
+  PaddingFormField,
+  PaddingNav,
+  paddingClassName,
+} from "@devkit/Padding";
+import {
+  Gap,
+  GapStack,
+  GapInline,
+  GapToolbar,
+  GapForm,
+  GapList,
+  GapCompact,
+  GapComfortable,
+  GapSpacious,
+  gapClassName,
+} from "@devkit/Gap";
+import {
+  Align,
+  AlignCenter,
+  AlignBetween,
+  AlignBaseline,
+  AlignSafe,
+  AlignAdaptive,
+  AlignStart,
+  AlignEnd,
+  alignClassName,
+} from "@devkit/Align";
+import {
+  Position,
+  PositionFab,
+  PositionStickyHeader,
+  PositionToast,
+  PositionBadge,
+  PositionAnchor,
+  FloatingPosition,
+  positionClassName,
+} from "@devkit/Position";
+import {
+  Overflow,
+  OverflowX,
+  useOverflowDetection,
+} from "@devkit/Overflow";
 import {
   Surface,
   CardSurface,
@@ -114,7 +177,16 @@ import {
   FlexStatsRow,
   FlexButtonGroup,
 } from "@devkit/FlexLayout";
-import { DensityProvider, type DensityMode } from "@devkit/DensityProvider";
+import {
+  DensityProvider,
+  DensityScope,
+  DensityCard,
+  DensityRow,
+  DensityControl,
+  useDensity,
+  type DensityMode,
+  type DensityCustomVars,
+} from "@devkit/DensityProvider";
 import { Space } from "@devkit/Space";
 import { useTheme, type ThemeId } from "@devkit/ThemeProvider";
 import { Motion, MotionStagger } from "@devkit/Motion";
@@ -142,6 +214,13 @@ import {
 } from "@devkit/IconExtras";
 
 type View =
+  | "density"
+  | "overflow"
+  | "position"
+  | "align"
+  | "gap"
+  | "padding"
+  | "margin"
   | "breakpoints"
   | "visibility"
   | "aspect"
@@ -363,6 +442,12 @@ function VisibilityModesDemo() {
             <BodyText size="sm">Opacity transition</BodyText>
           </Visibility>
         </GridItem>
+        <GridItem span={{ sm: 4, md: 8, lg: 6 }}>
+          <Caption>accessible (sr-only when off)</Caption>
+          <Visibility visible={open} mode="accessible" block className="vis-demo-tile">
+            <BodyText size="sm">Hidden visually, still in a11y tree</BodyText>
+          </Visibility>
+        </GridItem>
       </ResponsiveGrid>
     </VStack>
   );
@@ -371,12 +456,709 @@ function VisibilityModesDemo() {
 function VisibilityMatchDemo() {
   const wide = useMediaQuery("(min-width: 1024px)");
   const showAdmin = useVisibility({ role: "admin", flag: "beta" });
+  const viewport = useViewportObservation();
   return (
     <Surface stack padding="sm" elevation={1} className="vis-demo-tile">
       <Caption>hooks</Caption>
       <BodyText size="sm">useMediaQuery ≥1024 → {String(wide)}</BodyText>
       <BodyText size="sm">useVisibility admin+beta → {String(showAdmin)}</BodyText>
+      <BodyText size="sm">
+        viewport {viewport ? `${viewport.width}×${viewport.height}` : "…"} · scale=
+        {viewport?.scale.toFixed(2) ?? "—"}
+      </BodyText>
     </Surface>
+  );
+}
+
+function DensityLabPanel() {
+  const { density, setDensity, custom, setCustom, scale } = useDensity();
+
+  return (
+    <div className="density-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Density lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Density System</Title>
+            <BodyText size="sm">
+              App-wide Compact / Comfortable / Spacious / Custom — spacing, type, icons, touch
+              targets, rows, cards, tables, nav, and forms adapt from one preference.
+            </BodyText>
+            <Caption>
+              mode={density} · scale={scale.toFixed(2)} · html data-density
+            </Caption>
+          </VStack>
+
+          <Section title="Modes" description="Same controls as the header — preference is document-wide.">
+            <div className="density-mode-row" role="group" aria-label="Density mode">
+              {(["compact", "comfortable", "spacious", "custom"] as const).map((d) => (
+                <button
+                  key={d}
+                  type="button"
+                  className="theme-btn"
+                  aria-pressed={density === d}
+                  onClick={() => {
+                    if (d === "custom") {
+                      setCustom({
+                        scale: custom.scale ?? 1.08,
+                        typeScale: custom.typeScale ?? 1.02,
+                        scaleSpace: true,
+                      });
+                    } else {
+                      setDensity(d);
+                    }
+                  }}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </Section>
+
+          {density === "custom" ? (
+            <Section title="Custom scale" description="Administrators tune --density-custom-* vars.">
+              <label className="density-slider">
+                <span>Scale {((custom.scale ?? 1) * 100).toFixed(0)}%</span>
+                <input
+                  type="range"
+                  min={70}
+                  max={140}
+                  value={Math.round((custom.scale ?? 1) * 100)}
+                  onChange={(e) =>
+                    setCustom({
+                      ...custom,
+                      scale: Number(e.target.value) / 100,
+                      scaleSpace: true,
+                    })
+                  }
+                />
+              </label>
+              <label className="density-slider">
+                <span>Type {(custom.typeScale ?? 1).toFixed(2)}</span>
+                <input
+                  type="range"
+                  min={85}
+                  max={120}
+                  value={Math.round((custom.typeScale ?? 1) * 100)}
+                  onChange={(e) =>
+                    setCustom({
+                      ...custom,
+                      typeScale: Number(e.target.value) / 100,
+                      scaleSpace: true,
+                    })
+                  }
+                />
+              </label>
+            </Section>
+          ) : null}
+
+          <Section title="Cards · controls · type">
+            <div className="density-demo-grid">
+              <DensityCard className="density-demo-card">
+                <p className="dk-density-type-label">Card</p>
+                <p className="dk-density-type-body">
+                  Padding and gap follow density tokens — no per-card props.
+                </p>
+                <DensityControl>Primary action</DensityControl>
+              </DensityCard>
+              <DensityCard className="density-demo-card">
+                <p className="dk-density-type-caption">Caption scales with density</p>
+                <div className="density-icon-row">
+                  <Icon name="settings" size="sm" />
+                  <Icon name="settings" size="md" />
+                  <Icon name="settings" size="lg" />
+                </div>
+              </DensityCard>
+            </div>
+          </Section>
+
+          <Section title="Table · list · nav">
+            <div className="density-demo-table" role="table" aria-label="Density table demo">
+              {["Name", "Role", "Status"].map((h) => (
+                <div key={h} className="dk-density-table-row density-demo-th" role="columnheader">
+                  {h}
+                </div>
+              ))}
+              {["Ada Lovelace", "Engineer", "Active"].map((cell, i) => (
+                <div key={i} className="dk-density-table-row" role="cell">
+                  {cell}
+                </div>
+              ))}
+              {["Grace Hopper", "Admiral", "Active"].map((cell, i) => (
+                <div key={`b${i}`} className="dk-density-table-row" role="cell">
+                  {cell}
+                </div>
+              ))}
+            </div>
+            <nav className="density-demo-nav" aria-label="Density nav demo">
+              {["Overview", "Projects", "Settings"].map((item) => (
+                <a key={item} href="#density" className="dk-density-nav-item density-demo-nav-item">
+                  {item}
+                </a>
+              ))}
+            </nav>
+            <VStack gap="none">
+              {["Inbox", "Archive", "Trash"].map((item) => (
+                <DensityRow key={item} className="density-demo-list-row">
+                  <Icon name="chevron-right" size="sm" />
+                  <span className="dk-density-type-body">{item}</span>
+                </DensityRow>
+              ))}
+            </VStack>
+          </Section>
+
+          <Section title="Form rhythm">
+            <form className="dk-density-form density-demo-form" onSubmit={(e) => e.preventDefault()}>
+              <div className="dk-density-form-field">
+                <label className="dk-density-type-label" htmlFor="dk-density-name">
+                  Name
+                </label>
+                <input id="dk-density-name" className="dk-density-control density-demo-input" />
+              </div>
+              <div className="dk-density-form-field">
+                <label className="dk-density-type-label" htmlFor="dk-density-email">
+                  Email
+                </label>
+                <input
+                  id="dk-density-email"
+                  type="email"
+                  className="dk-density-control density-demo-input"
+                />
+              </div>
+              <DensityControl type="submit">Save</DensityControl>
+            </form>
+          </Section>
+
+          <Section title="Scoped override" description="Compact table inside the current page density.">
+            <DensityScope density="compact" className="density-scope-demo">
+              <Caption>data-density=&quot;compact&quot; on this scope only</Caption>
+              <DensityRow className="density-demo-list-row">Scoped row A</DensityRow>
+              <DensityRow className="density-demo-list-row">Scoped row B</DensityRow>
+              <DensityControl>Compact control</DensityControl>
+            </DensityScope>
+          </Section>
+
+          <Section title="Touch floor">
+            <div className="density-touch-row">
+              <button type="button" className="dk-density-touch density-demo-touch">
+                <Icon name="plus" size="md" />
+              </button>
+              <Caption>min touch = --density-touch-min (compact ≥ 40px)</Caption>
+            </div>
+          </Section>
+        </VStack>
+      </Container>
+    </div>
+  );
+}
+
+function OverflowLabPanel() {
+  const [rows, setRows] = useState(() =>
+    Array.from({ length: 80 }, (_, i) => `Row ${i + 1}`)
+  );
+  const [loads, setLoads] = useState(0);
+  const overflowProbe = useRef<HTMLDivElement | null>(null);
+  const detected = useOverflowDetection(overflowProbe, [rows]);
+
+  return (
+    <div className="overflow-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Overflow lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Overflow Manager</Title>
+            <BodyText size="sm">
+              Scroll, fade edges, virtual lists, sync channels, and lazy load — tuned for large
+              datasets.
+            </BodyText>
+          </VStack>
+
+          <Section title="Fade · custom scrollbar">
+            <Overflow
+              ref={overflowProbe}
+              fade
+              scrollbar
+              momentum
+              focusable
+              className="overflow-demo-box"
+              style={{ maxHeight: "10rem" }}
+            >
+              {Array.from({ length: 20 }, (_, i) => (
+                <div key={i} className="overflow-demo-row">
+                  Line {i + 1} — scroll to see edge fades
+                </div>
+              ))}
+            </Overflow>
+            <Caption className="overflow-demo-meta">
+              overflowY={String(detected.overflowY)} · top={String(detected.top)} · bottom=
+              {String(detected.bottom)} · progress={detected.progressY.toFixed(2)}
+            </Caption>
+          </Section>
+
+          <Section title="Virtual scroll · lazy load">
+            <Overflow
+              virtual={{ itemSize: 40, height: 240, overscan: 5 }}
+              scrollbar
+              onEndReached={() => {
+                setLoads((n) => n + 1);
+                setRows((r) => [
+                  ...r,
+                  ...Array.from({ length: 20 }, (_, i) => `Row ${r.length + i + 1}`),
+                ]);
+              }}
+              className="overflow-demo-box"
+            >
+              {rows.map((label) => (
+                <div key={label} className="overflow-demo-row" style={{ height: 40 }}>
+                  {label}
+                </div>
+              ))}
+            </Overflow>
+            <Caption className="overflow-demo-meta">
+              {rows.length} rows · endReached loads: {loads}
+            </Caption>
+          </Section>
+
+          <Section title="Horizontal · sync">
+            <OverflowX fade scrollbar className="overflow-demo-box overflow-demo-x">
+              {Array.from({ length: 16 }, (_, i) => (
+                <div key={i} className="overflow-demo-chip">
+                  Chip {i + 1}
+                </div>
+              ))}
+            </OverflowX>
+            <div className="overflow-demo-sync">
+              <Overflow syncId="demo-sync" className="overflow-demo-box" style={{ maxHeight: "6rem" }}>
+                {Array.from({ length: 30 }, (_, i) => (
+                  <div key={i} className="overflow-demo-row">
+                    Sync A · {i + 1}
+                  </div>
+                ))}
+              </Overflow>
+              <Overflow syncId="demo-sync" className="overflow-demo-box" style={{ maxHeight: "6rem" }}>
+                {Array.from({ length: 30 }, (_, i) => (
+                  <div key={i} className="overflow-demo-row">
+                    Sync B · {i + 1}
+                  </div>
+                ))}
+              </Overflow>
+            </div>
+            <Caption className="overflow-demo-meta">syncId=&quot;demo-sync&quot; — scroll either pane</Caption>
+          </Section>
+        </VStack>
+      </Container>
+    </div>
+  );
+}
+
+function PositionLabPanel() {
+  const anchorRef = useRef<HTMLButtonElement | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  return (
+    <div className="position-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Position lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Position System</Title>
+            <BodyText size="sm">
+              Semantic modes and role presets — FAB, sticky, toast, badge, floating menus with
+              viewport collision.
+            </BodyText>
+          </VStack>
+
+          <Section title="Sticky header">
+            <div className="position-demo-scroll dk-pos-scroll">
+              <PositionStickyHeader className="position-demo-sticky">
+                <Caption>sticky-header · safe top</Caption>
+              </PositionStickyHeader>
+              <BodyText size="sm">Scroll this pane — header stays pinned.</BodyText>
+              <div className="position-demo-spacer" />
+            </div>
+          </Section>
+
+          <Section title="Anchor · CSS place">
+            <PositionAnchor className="position-demo-anchor">
+              <button type="button" className="demo-btn">
+                Anchor host
+              </button>
+              <Position place="bottom" preset="popover" className="position-demo-float">
+                <Caption>place=bottom</Caption>
+              </Position>
+            </PositionAnchor>
+          </Section>
+
+          <Section title="Floating collision">
+            <button
+              ref={anchorRef}
+              type="button"
+              className="demo-btn"
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              Toggle menu
+            </button>
+            <FloatingPosition
+              anchorRef={anchorRef}
+              open={menuOpen}
+              placement="bottom-start"
+              role="menu"
+              className="position-demo-float"
+            >
+              <Caption>FloatingPosition · flip + shift</Caption>
+              <BodyText size="sm">Stays in viewport on scroll/resize.</BodyText>
+            </FloatingPosition>
+          </Section>
+
+          <Section title="Badge · toast · layers">
+            <Position mode="relative" className="position-demo-anchor">
+              <div className="position-demo-avatar">A</div>
+              <PositionBadge className="position-demo-badge">3</PositionBadge>
+            </Position>
+            <Caption className="position-demo-code">
+              {positionClassName({ preset: "fab", layer: "fab" })}
+            </Caption>
+            <BodyText size="sm">
+              FAB preview is fixed to the viewport corner (see bottom-end). Toast preset stacks at
+              top center.
+            </BodyText>
+            <PositionToast className="position-demo-toast-inline">
+              <div className="position-demo-float">Toast layer (z-toast)</div>
+            </PositionToast>
+          </Section>
+        </VStack>
+      </Container>
+      <PositionFab className="position-demo-fab" aria-label="Demo FAB">
+        +
+      </PositionFab>
+    </div>
+  );
+}
+
+function AlignLabPanel() {
+  return (
+    <div className="align-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Alignment lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Alignment System</Title>
+            <BodyText size="sm">
+              Logical start/end (RTL-safe), distribution, self/content/place — Apple-clean balance
+              without physical left/right.
+            </BodyText>
+          </VStack>
+
+          <Section title="Presets">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+              {(
+                [
+                  ["start", AlignStart],
+                  ["center", AlignCenter],
+                  ["end", AlignEnd],
+                  ["between", AlignBetween],
+                  ["baseline", AlignBaseline],
+                  ["safe", AlignSafe],
+                ] as const
+              ).map(([label, Comp]) => (
+                <GridItem key={label} span={{ sm: 4, md: 4, lg: 4 }}>
+                  <Caption>{label}</Caption>
+                  <Comp className="align-demo-box">
+                    <div className="align-demo-item">A</div>
+                    <div className="align-demo-item align-demo-tall">B</div>
+                    <div className="align-demo-item">C</div>
+                  </Comp>
+                </GridItem>
+              ))}
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="Adaptive · responsive">
+            <AlignAdaptive className="align-demo-box align-demo-wide">
+              <div className="align-demo-item">Brand</div>
+              <div className="align-demo-item">Actions</div>
+            </AlignAdaptive>
+            <Caption className="align-demo-hint">
+              adaptive: center → between (md) → stretch/between (lg)
+            </Caption>
+            <Align
+              items={{ base: "center", md: "stretch" }}
+              justify={{ base: "center", md: "between" }}
+              motion
+              className="align-demo-box align-demo-wide"
+              style={{ marginTop: "var(--space-4)" }}
+            >
+              <div className="align-demo-item">items/justify maps</div>
+              <div className="align-demo-item">motion</div>
+            </Align>
+            <Caption className="align-demo-code">
+              {alignClassName({
+                items: { base: "center", md: "stretch" },
+                justify: { base: "center", md: "between" },
+                display: false,
+              })}
+            </Caption>
+          </Section>
+
+          <Section title="Baseline · text">
+            <Align items="baseline" justify="start" className="align-demo-box">
+              <span className="align-demo-type-lg">Display</span>
+              <span className="align-demo-type-sm">with body baseline</span>
+            </Align>
+            <Align text="end" display="col" className="align-demo-box" style={{ marginTop: "var(--space-3)" }}>
+              <BodyText size="sm">text=end (logical)</BodyText>
+              <Caption>RTL-safe</Caption>
+            </Align>
+          </Section>
+        </VStack>
+      </Container>
+    </div>
+  );
+}
+
+function GapLabPanel() {
+  return (
+    <div className="gap-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Gap lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Gap System</Title>
+            <BodyText size="sm">
+              Spacing between children — no manual sibling margins. Toggle density in the header to
+              see compact / spacious retarget tokens.
+            </BodyText>
+          </VStack>
+
+          <Section title="Density presets">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+              {(
+                [
+                  ["compact", GapCompact],
+                  ["comfortable", GapComfortable],
+                  ["spacious", GapSpacious],
+                ] as const
+              ).map(([label, Comp]) => (
+                <GridItem key={label} span={{ sm: 4, md: 4, lg: 4 }}>
+                  <Comp className="gap-demo-box">
+                    <div className="gap-demo-item">{label} A</div>
+                    <div className="gap-demo-item">{label} B</div>
+                    <div className="gap-demo-item">{label} C</div>
+                  </Comp>
+                </GridItem>
+              ))}
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="Layout roles">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <Caption>stack</Caption>
+                <GapStack className="gap-demo-box">
+                  <div className="gap-demo-item">One</div>
+                  <div className="gap-demo-item">Two</div>
+                </GapStack>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <Caption>inline / toolbar</Caption>
+                <GapInline className="gap-demo-box">
+                  <div className="gap-demo-chip">A</div>
+                  <div className="gap-demo-chip">B</div>
+                  <div className="gap-demo-chip">C</div>
+                </GapInline>
+                <GapToolbar className="gap-demo-box" style={{ marginTop: "var(--space-3)" }}>
+                  <div className="gap-demo-chip">Save</div>
+                  <div className="gap-demo-chip">Cancel</div>
+                </GapToolbar>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <Caption>form · list</Caption>
+                <GapForm className="gap-demo-box">
+                  <div className="gap-demo-item">Field</div>
+                  <div className="gap-demo-item">Field</div>
+                </GapForm>
+              </GridItem>
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="Responsive · nested · divider">
+            <Gap gap={{ base: 2, md: 4, lg: 6 }} motion className="gap-demo-box">
+              <div className="gap-demo-item">gap base→md→lg · motion</div>
+              <Gap nested className="gap-demo-nested">
+                <div className="gap-demo-item">nested child</div>
+                <div className="gap-demo-item">dampened gap</div>
+              </Gap>
+            </Gap>
+            <GapList divider="y" dividerGapless className="gap-demo-box" style={{ marginTop: "var(--space-4)" }}>
+              <div className="gap-demo-item">Row with divider</div>
+              <div className="gap-demo-item">Next row</div>
+              <div className="gap-demo-item">Third</div>
+            </GapList>
+            <Caption className="gap-demo-code">
+              {gapClassName({ preset: "toolbar", display: false })}
+            </Caption>
+          </Section>
+        </VStack>
+      </Container>
+    </div>
+  );
+}
+
+function PaddingLabPanel() {
+  return (
+    <div className="padding-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Padding lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Responsive Padding</Title>
+            <BodyText size="sm">
+              Semantic internal spacing — change density in the header to see compact / comfortable /
+              spacious retarget tokens. No raw px.
+            </BodyText>
+          </VStack>
+
+          <Section title="Density presets">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+              {(
+                [
+                  ["compact", PaddingCompact],
+                  ["comfortable", PaddingComfortable],
+                  ["spacious", PaddingSpacious],
+                ] as const
+              ).map(([label, Comp]) => (
+                <GridItem key={label} span={{ sm: 4, md: 4, lg: 4 }}>
+                  <Comp className="padding-demo-box">
+                    <Caption>{label}</Caption>
+                    <BodyText size="sm">Density-aware inset</BodyText>
+                  </Comp>
+                </GridItem>
+              ))}
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="Component presets">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+              {(
+                [
+                  ["hero", PaddingHero],
+                  ["modal", PaddingModal],
+                  ["card", PaddingCard],
+                  ["dashboard", PaddingDashboard],
+                  ["table-cell", PaddingTableCell],
+                  ["form-field", PaddingFormField],
+                  ["nav", PaddingNav],
+                ] as const
+              ).map(([label, Comp]) => (
+                <GridItem key={label} span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Comp className="padding-demo-box">
+                    <Caption>{label}</Caption>
+                  </Comp>
+                </GridItem>
+              ))}
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="Logical · responsive">
+            <Padding
+              px={{ base: 3, md: 6, lg: 8 }}
+              py={{ base: 2, md: 4 }}
+              ps="4"
+              motion
+              className="padding-demo-box"
+            >
+              <Caption>px / py maps · ps=4 · motion</Caption>
+              <BodyText size="sm">Resize to see horizontal rhythm expand.</BodyText>
+            </Padding>
+            <Caption className="padding-demo-code">
+              {paddingClassName({ px: { base: 3, md: 6, lg: 8 }, py: { base: 2, md: 4 } })}
+            </Caption>
+          </Section>
+
+          <Section title="Safe area · flush">
+            <Padding preset="nav" safe="nav" className="padding-demo-box">
+              <Caption>nav + safe=nav</Caption>
+              <BodyText size="sm">Bottom inset respects home indicator.</BodyText>
+            </Padding>
+            <Padding preset="card" flush="x" className="padding-demo-box">
+              <Caption>card · flush=x</Caption>
+            </Padding>
+          </Section>
+        </VStack>
+      </Container>
+    </div>
+  );
+}
+
+function MarginLabPanel() {
+  return (
+    <div className="margin-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Margin lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Responsive Margin</Title>
+            <BodyText size="sm">
+              Semantic tokens — no hardcoded px. Logical sides (ms/me), density via the header
+              control, responsive maps, collapse in flex/grid.
+            </BodyText>
+          </VStack>
+
+          <Section title="Presets" description="Roles inherit --space-* + density.">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
+              {(
+                [
+                  ["page-x", MarginPage],
+                  ["section", MarginSection],
+                  ["card", MarginCard],
+                  ["form", MarginForm],
+                ] as const
+              ).map(([label, Comp]) => (
+                <GridItem key={label} span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Comp className="margin-demo-box">
+                    <Caption>{label}</Caption>
+                  </Comp>
+                </GridItem>
+              ))}
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="Logical · responsive">
+            <Margin
+              mt={{ base: 2, md: 6, lg: 10 }}
+              ms="auto"
+              me={{ base: 2, md: 4 }}
+              motion
+              className="margin-demo-box"
+            >
+              <Caption>mt base→md→lg · ms=auto · me responsive · motion</Caption>
+              <BodyText size="sm">Resize the viewport to see rhythm change.</BodyText>
+            </Margin>
+            <Caption className="margin-demo-code">
+              {marginClassName({ mt: { base: 2, md: 6, lg: 10 }, ms: "auto" })}
+            </Caption>
+          </Section>
+
+          <Section title="Flow · collapse" description="Adjacent margins in flex/grid without doubling.">
+            <Margin flow="stack" className="margin-demo-flow">
+              <div className="margin-demo-item">Item A</div>
+              <div className="margin-demo-item">Item B</div>
+              <div className="margin-demo-item">Item C</div>
+            </Margin>
+            <Margin collapse className="margin-demo-flow margin-demo-flex">
+              <Margin mt="6" className="margin-demo-item">
+                mt=6
+              </Margin>
+              <Margin mt="6" className="margin-demo-item">
+                mt=6 (collapsed start)
+              </Margin>
+            </Margin>
+          </Section>
+
+          <Section title="Safe area · nested">
+            <Margin safe="page-x" nested className="margin-demo-box">
+              <Caption>safe=page-x · nested</Caption>
+              <BodyText size="sm">
+                Uses max(page token, env(safe-area-inset-*)). Nested zeroes page-x inside containers.
+              </BodyText>
+            </Margin>
+          </Section>
+        </VStack>
+      </Container>
+    </div>
   );
 }
 
@@ -507,11 +1289,16 @@ function TypeRow({ label, children }: { label: string; children: ReactNode }) {
 export function App() {
   const { theme, setTheme, resolvedTheme, systemTheme, setVars, clearVars, vars, registerTheme } =
     useTheme();
-  const [view, setView] = useState<View>("breakpoints");
+  const [view, setView] = useState<View>("density");
   const [sectionOpen, setSectionOpen] = useState(true);
   const [sectionVisibleLog, setSectionVisibleLog] = useState("—");
   const [activeGroup, setActiveGroup] = useState<string>("all");
   const [density, setDensity] = useState<DensityMode>("comfortable");
+  const [densityCustom, setDensityCustom] = useState<DensityCustomVars>({
+    scale: 1.08,
+    typeScale: 1.02,
+    scaleSpace: true,
+  });
   const [accent, setAccent] = useState("#0071e3");
   const [overlayOpen, setOverlayOpen] = useState(false);
   const [motionPref, setMotionPref] = useState<MotionPreference>("system");
@@ -561,15 +1348,21 @@ export function App() {
   );
 
   return (
-    <DensityProvider density={density}>
+    <DensityProvider
+      density={density}
+      custom={densityCustom}
+      storageKey={false}
+      onDensityChange={setDensity}
+      onCustomChange={setDensityCustom}
+    >
     <div className="playground">
       <header className="playground-header">
         <div>
           <h1 className="playground-brand">DevKit</h1>
           <p className="playground-sub">
-            Foundation labs — aspect, safe area, surface, section, spacer, flex, stack, container,
-            icons, motion, elevation, shape, theme, spacing, grid, typography, and color. Edit
-            packages under <code>registry/components/</code> and hot-reload.
+            Foundation labs — density, overflow, aspect, safe area, surface, section, spacer, flex,
+            stack, container, icons, motion, elevation, shape, theme, spacing, grid, typography, and
+            color. Edit packages under <code>registry/components/</code> and hot-reload.
           </p>
         </div>
         <div className="theme-bar" role="group" aria-label="Theme and density">
@@ -592,13 +1385,20 @@ export function App() {
           >
             Midnight
           </button>
-          {(["compact", "comfortable", "spacious"] as const).map((d) => (
+          {(["compact", "comfortable", "spacious", "custom"] as const).map((d) => (
             <button
               key={d}
               type="button"
               className="theme-btn"
               aria-pressed={density === d}
-              onClick={() => setDensity(d)}
+              onClick={() => {
+                if (d === "custom") {
+                  setDensity("custom");
+                  setDensityCustom((c) => ({ ...c, scaleSpace: true }));
+                } else {
+                  setDensity(d);
+                }
+              }}
             >
               {d}
             </button>
@@ -620,6 +1420,13 @@ export function App() {
       <div className="tabs" role="tablist" aria-label="Playground views">
         {(
           [
+            ["density", "Density Lab"],
+            ["overflow", "Overflow Lab"],
+            ["position", "Position Lab"],
+            ["align", "Alignment Lab"],
+            ["gap", "Gap Lab"],
+            ["padding", "Padding Lab"],
+            ["margin", "Margin Lab"],
             ["breakpoints", "Breakpoint Lab"],
             ["visibility", "Visibility Lab"],
             ["aspect", "Aspect Lab"],
@@ -655,6 +1462,20 @@ export function App() {
         ))}
       </div>
 
+      {view === "density" ? <DensityLabPanel /> : null}
+
+      {view === "overflow" ? <OverflowLabPanel /> : null}
+
+      {view === "position" ? <PositionLabPanel /> : null}
+
+      {view === "align" ? <AlignLabPanel /> : null}
+
+      {view === "gap" ? <GapLabPanel /> : null}
+
+      {view === "padding" ? <PaddingLabPanel /> : null}
+
+      {view === "margin" ? <MarginLabPanel /> : null}
+
       {view === "breakpoints" ? <BreakpointLabPanel /> : null}
 
       {view === "visibility" ? (
@@ -663,10 +1484,10 @@ export function App() {
             <Container variant="dashboard" paddingY="section" as="main" aria-label="Visibility lab">
               <VStack gap="spacious">
                 <VStack gap="sm">
-                  <Title variant="section">Responsive Visibility</Title>
+                  <Title variant="section">Responsive Visibility Engine</Title>
                   <BodyText size="sm">
-                    CSS presets for viewport / orientation / print / a11y, plus JS gates for roles,
-                    flags, lazy mount, and intersection.
+                    Conditional render by viewport, device, orientation, roles, flags, app state, and
+                    a11y — CSS presets, lazy/intersection, preserve &amp; accessible modes, SSR-safe.
                   </BodyText>
                 </VStack>
 
@@ -682,6 +1503,8 @@ export function App() {
                         ["Portrait", PortraitOnly],
                         ["Foldables", Foldables],
                         ["A11y mode", AccessibilityMode],
+                        ["Touch", TouchOnly],
+                        ["Hover", HoverCapable],
                       ] as const
                     ).map(([label, Comp]) => (
                       <GridItem key={label} span={{ sm: 4, md: 4, lg: 3 }}>
@@ -698,11 +1521,11 @@ export function App() {
                   </PrintMode>
                 </Section>
 
-                <Section title="Modes" description="hide · preserve · collapse · fade">
+                <Section title="Modes" description="hide · preserve · accessible · collapse · fade">
                   <VisibilityModesDemo />
                 </Section>
 
-                <Section title="Roles · flags · media">
+                <Section title="Roles · flags · media · state">
                   <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
                     <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
                       <Visibility role="admin" block className="vis-demo-tile">
@@ -722,13 +1545,24 @@ export function App() {
                         <BodyText size="sm">Should stay hidden</BodyText>
                       </Visibility>
                     </GridItem>
-                    <GridItem span={{ sm: 4, md: 8, lg: 6 }}>
+                    <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                      <Visibility
+                        whenState={(s) => Boolean(s.demoReady)}
+                        state={{ demoReady: true }}
+                        block
+                        className="vis-demo-tile"
+                      >
+                        <Caption>whenState</Caption>
+                        <BodyText size="sm">App-state predicate</BodyText>
+                      </Visibility>
+                    </GridItem>
+                    <GridItem span={{ sm: 4, md: 8, lg: 4 }}>
                       <Visibility above="md" block className="vis-demo-tile">
                         <Caption>above=md (JS media)</Caption>
                         <BodyText size="sm">matchMedia ≥ 768px</BodyText>
                       </Visibility>
                     </GridItem>
-                    <GridItem span={{ sm: 4, md: 8, lg: 6 }}>
+                    <GridItem span={{ sm: 4, md: 8, lg: 4 }}>
                       <VisibilityMatchDemo />
                     </GridItem>
                   </ResponsiveGrid>
@@ -736,7 +1570,7 @@ export function App() {
 
                 <Section
                   title="Lazy · intersection"
-                  description="Scroll — heavy block mounts when near the viewport."
+                  description="Scroll — heavy block mounts when near the viewport (sentinel keeps IO alive)."
                 >
                   <div className="vis-demo-scroll">
                     <BodyText size="sm">Scroll down…</BodyText>

@@ -1,10 +1,26 @@
-import * as React from "react";
+export {
+  Padding,
+  PaddingUtilities,
+  PaddingNone,
+  PaddingCompact,
+  PaddingComfortable,
+  PaddingSpacious,
+  PaddingHero,
+  PaddingModal,
+  PaddingCard,
+  PaddingDashboard,
+  PaddingTableCell,
+  PaddingFormField,
+  PaddingNav,
+  PaddingSheet,
+  paddingClassName,
+} from "./Padding";
 
-export interface PaddingUtilitiesProps {
-  children?: React.ReactNode;
-}
-
-/** Padding Utilities — empty stub (Layer 1 Foundation). */
-export function PaddingUtilities(_props: PaddingUtilitiesProps = {}) {
-  return null;
-}
+export type {
+  PaddingScale,
+  PaddingPreset,
+  PaddingBreakpoint,
+  ResponsivePadding,
+  PaddingSafeArea,
+  PaddingProps,
+} from "./Padding";

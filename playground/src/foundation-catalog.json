@@ -151,19 +151,19 @@
         {
           "id": 21,
           "name": "margin-utilities",
-          "displayName": "Margin Utilities",
+          "displayName": "Responsive Margin",
           "fileKind": "tsx"
         },
         {
           "id": 22,
           "name": "padding-utilities",
-          "displayName": "Padding Utilities",
+          "displayName": "Responsive Padding",
           "fileKind": "tsx"
         },
         {
           "id": 23,
           "name": "gap-utilities",
-          "displayName": "Gap Utilities",
+          "displayName": "Gap System",
           "fileKind": "tsx"
         },
         {
@@ -187,7 +187,7 @@
         {
           "id": 27,
           "name": "alignment-utilities",
-          "displayName": "Alignment Utilities",
+          "displayName": "Alignment System",
           "fileKind": "tsx"
         },
         {
@@ -199,13 +199,13 @@
         {
           "id": 29,
           "name": "position-utilities",
-          "displayName": "Position Utilities",
+          "displayName": "Position System",
           "fileKind": "tsx"
         },
         {
           "id": 30,
           "name": "overflow-utilities",
-          "displayName": "Overflow Utilities",
+          "displayName": "Overflow Manager",
           "fileKind": "tsx"
         }
       ]

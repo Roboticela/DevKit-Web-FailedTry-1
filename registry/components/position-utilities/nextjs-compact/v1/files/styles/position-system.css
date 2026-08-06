@@ -1,0 +1,307 @@
+/**
+ * DevKit Position System — Layer 1 Foundation (id: 29 · position-utilities)
+ *
+ * Semantic positioning: static → floating/anchor layers.
+ * Z-index tokens shared with Surface / SafeArea / Container.
+ *
+ * Load after: spacing → safe-area → alignment → position-system
+ */
+
+:root,
+[data-theme] {
+  --position-transition:
+    top var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    right var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    bottom var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    left var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    inset-block-start var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    inset-inline-start var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    transform var(--motion-duration-normal, 200ms) var(--motion-ease-emphasized, cubic-bezier(0.2, 0, 0, 1)),
+    opacity var(--motion-duration-fast, 120ms) var(--motion-ease-standard, ease);
+
+  /* Layer scale — single source for overlays across the design system */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-dropdown-local: 20;
+  --z-sticky: 100;
+  --z-nav: 200;
+  --z-fab: 300;
+  --z-overlay: 1100;
+  --z-dropdown: 1200;
+  --z-popover: 1250;
+  --z-tooltip: 1300;
+  --z-modal: 1400;
+  --z-toast: 1500;
+  --z-max: 9999;
+
+  --pos-offset: var(--space-3, 0.75rem);
+  --pos-fab-offset: var(--space-4, 1rem);
+  --pos-badge-offset: calc(var(--space-2, 0.5rem) * -1);
+  --pos-sticky-offset: 0px;
+  --pos-float-gap: var(--space-2, 0.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) {
+    --position-transition: none;
+  }
+}
+
+html[data-motion="reduce"] {
+  --position-transition: none;
+}
+
+.dk-pos-motion,
+.dk-position-system {
+  transition: var(--position-transition);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Core position modes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-pos-static { position: static; }
+.dk-pos-relative { position: relative; }
+.dk-pos-absolute { position: absolute; }
+.dk-pos-fixed { position: fixed; }
+.dk-pos-sticky { position: sticky; }
+
+/* Floating — fixed + layer + safe default */
+.dk-pos-floating {
+  position: fixed;
+  z-index: var(--z-fab);
+}
+
+/* Anchor host — relative containing block for absolute children */
+.dk-pos-anchor,
+.dk-pos-layered {
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.dk-pos-layered > .dk-pos-layer {
+  position: absolute;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Insets — logical + physical
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-inset-0 { inset: 0; }
+.dk-inset-px { inset: 1px; }
+.dk-inset-auto { inset: auto; }
+
+.dk-inset-t-0 { inset-block-start: 0; }
+.dk-inset-b-0 { inset-block-end: 0; }
+.dk-inset-s-0 { inset-inline-start: 0; }
+.dk-inset-e-0 { inset-inline-end: 0; }
+
+.dk-inset-t-auto { inset-block-start: auto; }
+.dk-inset-b-auto { inset-block-end: auto; }
+.dk-inset-s-auto { inset-inline-start: auto; }
+.dk-inset-e-auto { inset-inline-end: auto; }
+
+.dk-inset-t-offset { inset-block-start: var(--pos-offset); }
+.dk-inset-b-offset { inset-block-end: var(--pos-offset); }
+.dk-inset-s-offset { inset-inline-start: var(--pos-offset); }
+.dk-inset-e-offset { inset-inline-end: var(--pos-offset); }
+
+.dk-inset-safe {
+  top: max(0px, env(safe-area-inset-top, 0px), var(--safe-top, 0px));
+  right: max(0px, env(safe-area-inset-right, 0px), var(--safe-right, 0px));
+  bottom: max(0px, env(safe-area-inset-bottom, 0px), var(--safe-bottom, 0px));
+  left: max(0px, env(safe-area-inset-left, 0px), var(--safe-left, 0px));
+}
+
+.dk-inset-safe-t {
+  inset-block-start: max(var(--pos-sticky-offset, 0px), env(safe-area-inset-top, 0px), var(--safe-top, 0px));
+}
+.dk-inset-safe-b {
+  inset-block-end: max(var(--pos-offset, 0px), env(safe-area-inset-bottom, 0px), var(--safe-bottom, 0px));
+}
+.dk-inset-safe-s {
+  inset-inline-start: max(0px, env(safe-area-inset-left, 0px), var(--safe-left, 0px));
+}
+.dk-inset-safe-e {
+  inset-inline-end: max(0px, env(safe-area-inset-right, 0px), var(--safe-right, 0px));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Z-index layers
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-z-base { z-index: var(--z-base); }
+.dk-z-raised { z-index: var(--z-raised); }
+.dk-z-sticky { z-index: var(--z-sticky); }
+.dk-z-nav { z-index: var(--z-nav); }
+.dk-z-fab { z-index: var(--z-fab); }
+.dk-z-overlay { z-index: var(--z-overlay); }
+.dk-z-dropdown { z-index: var(--z-dropdown); }
+.dk-z-popover { z-index: var(--z-popover); }
+.dk-z-tooltip { z-index: var(--z-tooltip); }
+.dk-z-modal { z-index: var(--z-modal); }
+.dk-z-toast { z-index: var(--z-toast); }
+.dk-z-max { z-index: var(--z-max); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Role presets
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-pos-fab {
+  position: fixed;
+  inset-block-end: max(var(--pos-fab-offset), env(safe-area-inset-bottom, 0px));
+  inset-inline-end: max(var(--pos-fab-offset), env(safe-area-inset-right, 0px));
+  z-index: var(--z-fab);
+}
+
+.dk-pos-fab-start {
+  position: fixed;
+  inset-block-end: max(var(--pos-fab-offset), env(safe-area-inset-bottom, 0px));
+  inset-inline-start: max(var(--pos-fab-offset), env(safe-area-inset-left, 0px));
+  z-index: var(--z-fab);
+}
+
+.dk-pos-sticky-header {
+  position: sticky;
+  inset-block-start: max(var(--pos-sticky-offset), env(safe-area-inset-top, 0px));
+  z-index: var(--z-sticky);
+}
+
+.dk-pos-sticky-footer {
+  position: sticky;
+  inset-block-end: max(0px, env(safe-area-inset-bottom, 0px));
+  z-index: var(--z-sticky);
+}
+
+.dk-pos-floating-nav {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding-block-end: env(safe-area-inset-bottom, 0px);
+  z-index: var(--z-nav);
+}
+
+.dk-pos-floating-nav-top {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-start: 0;
+  padding-block-start: env(safe-area-inset-top, 0px);
+  z-index: var(--z-nav);
+}
+
+.dk-pos-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+}
+
+.dk-pos-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: grid;
+  place-items: center;
+  padding: max(var(--space-4), env(safe-area-inset-top, 0px))
+    max(var(--space-4), env(safe-area-inset-right, 0px))
+    max(var(--space-4), env(safe-area-inset-bottom, 0px))
+    max(var(--space-4), env(safe-area-inset-left, 0px));
+}
+
+.dk-pos-toast {
+  position: fixed;
+  inset-block-start: max(var(--pos-offset), env(safe-area-inset-top, 0px));
+  inset-inline: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: var(--z-toast);
+}
+.dk-pos-toast > * {
+  pointer-events: auto;
+}
+
+.dk-pos-toast-bottom {
+  position: fixed;
+  inset-block-start: auto;
+  inset-block-end: max(var(--pos-offset), env(safe-area-inset-bottom, 0px));
+  inset-inline: 0;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  z-index: var(--z-toast);
+}
+.dk-pos-toast-bottom > * {
+  pointer-events: auto;
+}
+
+.dk-pos-badge {
+  position: absolute;
+  inset-block-start: var(--pos-badge-offset);
+  inset-inline-end: var(--pos-badge-offset);
+  z-index: var(--z-raised);
+}
+
+.dk-pos-badge-start {
+  position: absolute;
+  inset-block-start: var(--pos-badge-offset);
+  inset-inline-start: var(--pos-badge-offset);
+  z-index: var(--z-raised);
+}
+
+.dk-pos-tooltip,
+.dk-pos-popover,
+.dk-pos-menu {
+  position: absolute;
+  z-index: var(--z-tooltip);
+}
+
+.dk-pos-popover { z-index: var(--z-popover); }
+.dk-pos-menu { z-index: var(--z-dropdown); }
+
+/* CSS-only float placements relative to .dk-pos-anchor */
+.dk-pos-anchor > .dk-pos-place-top {
+  position: absolute;
+  inset-block-end: calc(100% + var(--pos-float-gap));
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-popover);
+}
+.dk-pos-anchor > .dk-pos-place-bottom {
+  position: absolute;
+  inset-block-start: calc(100% + var(--pos-float-gap));
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-popover);
+}
+.dk-pos-anchor > .dk-pos-place-start {
+  position: absolute;
+  inset-inline-end: calc(100% + var(--pos-float-gap));
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  z-index: var(--z-popover);
+}
+.dk-pos-anchor > .dk-pos-place-end {
+  position: absolute;
+  inset-inline-start: calc(100% + var(--pos-float-gap));
+  inset-block-start: 50%;
+  transform: translateY(-50%);
+  z-index: var(--z-popover);
+}
+
+/* Contain scroll for sticky descendants */
+.dk-pos-scroll {
+  overflow: auto;
+  overscroll-behavior: contain;
+  position: relative;
+}
+
+/* Viewport clamp hint — used with JS floating coords */
+.dk-pos-viewport-safe {
+  max-width: min(100vw - 1.5rem, 100%);
+  max-height: min(100vh - 1.5rem, 100%);
+}
+
+/* Nested stacking context */
+.dk-pos-stacking {
+  isolation: isolate;
+}

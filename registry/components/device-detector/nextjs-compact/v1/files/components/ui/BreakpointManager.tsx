@@ -335,7 +335,8 @@ function applyDocument(next: BreakpointSnapshot): void {
   root.dataset.pointer = next.pointer;
   root.dataset.hover = next.hover;
   root.dataset.touch = next.touch ? "true" : "false";
-  root.dataset.density = next.dense ? "high" : "standard";
+  /* Pixel / DPR density — not UI density (see DensityProvider · data-density) */
+  root.dataset.screenDensity = next.dense ? "high" : "standard";
   root.dataset.fold = next.foldable ? "true" : "false";
   if (!root.dataset.motion) {
     root.dataset.motionPref = next.reducedMotion ? "reduce" : "full";
@@ -591,10 +592,14 @@ export function useFoldable(): boolean {
   return useBreakpointSnapshot().foldable;
 }
 
-export function useDensity(): { dpr: number; dense: boolean } {
+/** Screen / DPR density (not UI compact|comfortable|spacious — use DensityProvider for that). */
+export function useScreenDensity(): { dpr: number; dense: boolean } {
   const { dpr, dense } = useBreakpointSnapshot();
   return { dpr, dense };
 }
+
+/** @deprecated Prefer useScreenDensity — avoids clash with UI DensityProvider.useDensity */
+export const useDensity = useScreenDensity;
 
 /**
  * Pick a value by active breakpoint (mobile-first cascade).
@@ -736,7 +741,7 @@ export function DeviceDetector({
       data-pointer={mirror ? snap.pointer : undefined}
       data-hover={mirror ? snap.hover : undefined}
       data-touch={mirror ? String(snap.touch) : undefined}
-      data-density={mirror ? (snap.dense ? "high" : "standard") : undefined}
+      data-screen-density={mirror ? (snap.dense ? "high" : "standard") : undefined}
       data-fold={mirror ? String(snap.foldable) : undefined}
       data-hydrated={String(snap.hydrated)}
       {...rest}

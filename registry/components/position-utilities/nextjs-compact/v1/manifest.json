@@ -3,8 +3,24 @@
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/position-utilities.css",
-      "destination": "styles/position-utilities.css"
+      "source": "files/styles/position-system.css",
+      "destination": "styles/position-system.css"
+    },
+    {
+      "source": "files/styles/position-system.tailwind.css",
+      "destination": "styles/position-system.tailwind.css"
+    },
+    {
+      "source": "files/components/ui/Position.tsx",
+      "destination": "components/ui/Position.tsx"
+    },
+    {
+      "source": "files/components/ui/PositionUtilities.tsx",
+      "destination": "components/ui/PositionUtilities.tsx"
+    },
+    {
+      "source": "files/docs/POSITION.md",
+      "destination": "docs/devkit/POSITION.md"
     }
   ],
   "injections": [],

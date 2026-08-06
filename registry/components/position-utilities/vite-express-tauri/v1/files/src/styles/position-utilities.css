@@ -1,9 +1,0 @@
-/**
- * position-utilities — companion to responsive-spacing
- * Use .dk-pos-* / .dk-inset-* from responsive-spacing.
- * Prefer importing responsive-spacing.css once at the app root.
- */
-:root {
-  /* alias marker — tokens live in responsive-spacing */
-  --dk-spacing-companion-position-utilities: 1;
-}

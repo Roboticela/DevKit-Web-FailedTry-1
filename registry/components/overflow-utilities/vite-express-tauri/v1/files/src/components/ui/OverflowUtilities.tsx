@@ -1,10 +1,24 @@
-import * as React from "react";
+export {
+  Overflow,
+  OverflowUtilities,
+  OverflowX,
+  OverflowY,
+  OverflowHidden,
+  OverflowClip,
+  overflowClassName,
+  measureOverflow,
+  useOverflowDetection,
+  useScrollPosition,
+  useScrollSync,
+  usePreservedScroll,
+} from "./Overflow";
 
-export interface OverflowUtilitiesProps {
-  children?: React.ReactNode;
-}
-
-/** Overflow Utilities — empty stub (Layer 1 Foundation). */
-export function OverflowUtilities(_props: OverflowUtilitiesProps = {}) {
-  return null;
-}
+export type {
+  OverflowMode,
+  OverflowAxis,
+  OverscrollBehavior,
+  OverflowState,
+  ScrollPosition,
+  OverflowVirtualOptions,
+  OverflowProps,
+} from "./Overflow";

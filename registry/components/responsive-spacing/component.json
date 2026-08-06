@@ -2,7 +2,7 @@
   "id": 24,
   "name": "responsive-spacing",
   "displayName": "Responsive Spacing",
-  "description": "Universal spacing scale with semantic roles, responsive rhythm, and compact/comfortable/spacious density modes.",
+  "description": "Universal spacing scale with semantic roles, responsive rhythm, and Density System (compact / comfortable / spacious / custom) for app-wide UI density.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",

@@ -1,10 +1,22 @@
-import * as React from "react";
+export {
+  Margin,
+  MarginUtilities,
+  MarginPage,
+  MarginSection,
+  MarginCard,
+  MarginForm,
+  MarginModal,
+  MarginStack,
+  MarginInline,
+  marginClassName,
+} from "./Margin";
 
-export interface MarginUtilitiesProps {
-  children?: React.ReactNode;
-}
-
-/** Margin Utilities — empty stub (Layer 1 Foundation). */
-export function MarginUtilities(_props: MarginUtilitiesProps = {}) {
-  return null;
-}
+export type {
+  MarginScale,
+  MarginPreset,
+  MarginBreakpoint,
+  ResponsiveMargin,
+  MarginSafeArea,
+  MarginCollapse,
+  MarginProps,
+} from "./Margin";

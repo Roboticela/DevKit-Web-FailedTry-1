@@ -1,8 +1,8 @@
 {
   "id": 30,
   "name": "overflow-utilities",
-  "displayName": "Overflow Utilities",
-  "description": "Use .dk-overflow-* from responsive-spacing. Companion package for the Spacing System.",
+  "displayName": "Overflow Manager",
+  "description": "Overflow Manager — scroll/clip/auto overflow with fade indicators, custom scrollbars, momentum, nested containment, virtual scroll, sync, lazy load, pull-to-refresh, and keyboard navigation.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "spacing-system",
-    "overflow-utilities"
+    "overflow-utilities",
+    "overflow",
+    "scroll"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,9 +26,9 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
-  "fileKind": "css",
+  "fileKind": "tsx",
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",

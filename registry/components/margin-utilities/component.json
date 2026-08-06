@@ -1,8 +1,8 @@
 {
   "id": 21,
   "name": "margin-utilities",
-  "displayName": "Margin Utilities",
-  "description": "Use .dk-m-* / .dk-mx-* / .dk-my-* from responsive-spacing. Companion package for the Spacing System.",
+  "displayName": "Responsive Margin",
+  "description": "Responsive Margin System — semantic, density-aware, RTL-safe margins with responsive breakpoints, safe-area, collapse, motion, and layout integration. No hardcoded px.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "spacing-system",
-    "margin-utilities"
+    "margin-utilities",
+    "margin",
+    "responsive"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,9 +26,9 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
-  "fileKind": "css",
+  "fileKind": "tsx",
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",
@@ -39,5 +41,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.density"
+  ]
 }
