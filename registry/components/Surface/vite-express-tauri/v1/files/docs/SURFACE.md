@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Apple-inspired layered surfaces for pages, cards, panels, sheets, popovers, sidebars, modals, dashboards, widgets, and overlays. Hierarchy comes from **elevation** (background + soft border), **materials** (glass / frosted), and spacing — not heavy chrome or shadows.
+Enterprise visual layers for every UI plane — pages, cards, modals, sheets, side panels, tooltips, popovers, dropdowns, menus, widgets, and overlays. Hierarchy comes from **semantic elevation tokens**, **materials**, and spacing — not one-off chrome.
 
 ## Install
 
@@ -20,6 +20,7 @@ devkit add glass-surface frosted-surface shadow-layer overlay
 @import "./color-tokens.css";
 @import "./theme-engine.css";
 @import "./responsive-spacing.css";
+@import "./elevation-system.css"; /* optional — richer elev shadows */
 @import "./surface-system.css";
 ```
 
@@ -31,36 +32,57 @@ devkit add glass-surface frosted-surface shadow-layer overlay
 | `card` | Grouped content |
 | `panel` | Inset / secondary region |
 | `sheet` | Drawer / bottom sheet |
-| `popover` | Compact float |
-| `sidebar` | Persistent nav |
-| `modal` | Dialog face |
+| `side-panel` / `sidebar` | Persistent / floating side chrome |
+| `modal` / `overlay` | Dialog faces |
+| `popover` / `dropdown` / `menu` | Floating menus |
+| `tooltip` | Compact hint chrome |
 | `dashboard` | Spacious shell |
-| `widget` | Dense tile |
+| `widget` | Dense interactive tile |
 
 ## API
 
 ```tsx
-<Surface variant="card" elevation={2} stack>
+<Surface variant="card" elevation={2} interactive stack contain>
   …
 </Surface>
 
 <CardSurface>…</CardSurface>
+<TooltipSurface>Save</TooltipSurface>
+<DropdownSurface>…</DropdownSurface>
+<MenuSurface>…</MenuSurface>
+<SidePanelSurface side="end">…</SidePanelSurface>
 <ModalSurface size="lg">…</ModalSurface>
+<OverlaySurface>…</OverlaySurface>
+
+<Surface outlined interactive>Outline</Surface>
+<Surface material="frosted" veil elevation={3}>Frosted + veil</Surface>
+<Surface interactive pressed>Pressed</Surface>
+
 <GlassSurface>…</GlassSurface>
 <FrostedSurface variant="sheet">…</FrostedSurface>
-<ShadowLayer level={3}>…</ShadowLayer>
 
-<Overlay open={open} onClose={close} placement="center">
+<Overlay open={open} onClose={close}>
   <Title variant="section">Confirm</Title>
 </Overlay>
 ```
 
 ## Materials & elevation
 
-- `material`: `solid` | `glass` | `frosted` | `material`
-- `elevation`: `0`–`4` (maps to theme-engine `--elevation-*`)
+- `material`: `solid` | `glass` | `frosted` | `material` | `translucent` | `veil`
+- `elevation`: `0`–`5` (maps to `--elevation-*` tokens)
+- `outlined` / `quiet` / `sunken` / `veil`
+- `interactive` — hover, press depth, focus ring
+- `motion` — elevation/color transitions (honors reduced motion)
+- `contain` — `contain: layout paint style` + `content-visibility` for lists of cards
 - High contrast disables blur and restores stronger borders
-- `--surface-shadow` defaults to `none` (depth via surfaces)
+- Adaptive dark mode boosts material saturation slightly
+
+## Performance
+
+- Paint containment on frosted/glass layers
+- Optional `contain` for widget/card grids
+- `isolation: isolate` to limit backdrop-filter invalidation
+- No perpetual `will-change`
 
 ## Companions
 

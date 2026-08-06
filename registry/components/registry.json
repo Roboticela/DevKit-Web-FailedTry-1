@@ -321,7 +321,7 @@
       "id": 12,
       "name": "flex-layout",
       "displayName": "Flex Layout",
-      "description": "FlexLayout — layout companion for the responsive grid system.",
+      "description": "Flex Layout — advanced responsive flexbox with grow/shrink/basis, presets (navbar, toolbar, form-row, …), token gaps, and motion-aware resizing.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -336,20 +336,22 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "flex-layout"
+        "flex-layout",
+        "flex",
+        "responsive"
       ]
     },
     {
       "id": 13,
       "name": "stack-layout",
       "displayName": "Stack Layout",
-      "description": "StackLayout — layout companion for the responsive grid system.",
+      "description": "Stack Layout — vertical, horizontal, and inline stacks with token spacing, responsive direction, separators, nested rhythm, motion, and virtualization.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -364,13 +366,15 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "stack-layout"
+        "stack-layout",
+        "stack",
+        "spacing"
       ]
     },
     {
@@ -405,7 +409,7 @@
       "id": 15,
       "name": "spacer",
       "displayName": "Spacer",
-      "description": "Spacer — layout companion for the responsive grid system.",
+      "description": "Spacer — tokenized whitespace with fixed, responsive, proportional, safe-area, and keyboard modes; presets for section/card/form/modal/nav/hero gaps.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -420,20 +424,21 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "spacer"
+        "spacer",
+        "spacing"
       ]
     },
     {
       "id": 16,
       "name": "container",
       "displayName": "Container",
-      "description": "Container — layout companion for the responsive grid system.",
+      "description": "Responsive Container — mobile-first layout wrapper with width variants, token padding, safe areas, nested rhythm, sticky, and scroll lock.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -448,20 +453,21 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "container"
+        "container",
+        "responsive"
       ]
     },
     {
       "id": 17,
       "name": "section",
       "displayName": "Section",
-      "description": "Section — layout companion for the responsive grid system.",
+      "description": "Section — logical content groups with header/body/footer, collapse, sticky headers, empty/loading states, width inheritance, and visibility analytics.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -476,20 +482,21 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "section"
+        "section",
+        "landmark"
       ]
     },
     {
       "id": 18,
       "name": "surface",
       "displayName": "Surface",
-      "description": "Surface System — layered page/card/panel/sheet/popover/sidebar/modal/dashboard/widget/overlay surfaces with elevation, materials, and frosted glass.",
+      "description": "Surface System — enterprise visual layers (page/card/modal/sheet/tooltip/dropdown/menu/side-panel) with semantic elevation, materials, interactive press, and paint containment.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -504,7 +511,7 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
@@ -518,7 +525,7 @@
       "id": 19,
       "name": "safe-area",
       "displayName": "Safe Area",
-      "description": "SafeArea — layout companion for the responsive grid system.",
+      "description": "Safe Area — device insets for notches, Dynamic Island, foldables, keyboards, and browser chrome; modes for nav/FAB/fullscreen; useSafeArea hooks.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -533,20 +540,21 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "safe-area"
+        "safe-area",
+        "inset"
       ]
     },
     {
       "id": 20,
       "name": "aspect-ratio",
       "displayName": "Aspect Ratio",
-      "description": "AspectRatio — layout companion for the responsive grid system.",
+      "description": "Aspect Ratio — consistent proportions for media and layouts with presets (1:1, 16:9, A4, card, mobile…), fit/crop, skeleton, and lazy loading.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
@@ -561,13 +569,14 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
+      "hasVariants": true,
       "stub": false,
       "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "aspect-ratio"
+        "aspect-ratio",
+        "media"
       ]
     },
     {
@@ -1024,13 +1033,13 @@
       "id": 37,
       "name": "elevation-tokens",
       "displayName": "Elevation Tokens",
-      "description": "Use .dk-elev-* and --elevation-* from theme-engine.css. Companion package for the Theme Engine.",
+      "description": "Shadow & Elevation System — subtle layered shadows, semantic roles, hover/press/focus states, adaptive dark mode.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
       "kind": "component",
       "layer": 1,
-      "icon": "sun",
+      "icon": "layers",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1045,20 +1054,21 @@
       "tags": [
         "foundation",
         "theme-engine",
-        "elevation-tokens"
+        "elevation-tokens",
+        "shadow"
       ]
     },
     {
       "id": 38,
       "name": "motion-tokens",
       "displayName": "Motion Tokens",
-      "description": "Use --motion-* tokens from theme-engine.css; honor data-motion / prefers-reduced-motion. Companion package for the Theme Engine.",
+      "description": "Motion System — Apple-inspired purposeful animations, reduced-motion support, stagger, hover/press, loading, and success feedback.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
       "kind": "component",
       "layer": 1,
-      "icon": "sun",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1073,7 +1083,8 @@
       "tags": [
         "foundation",
         "theme-engine",
-        "motion-tokens"
+        "motion-tokens",
+        "motion-system"
       ]
     },
     {
@@ -1416,13 +1427,13 @@
       "id": 51,
       "name": "icon",
       "displayName": "Icon",
-      "description": "Icon — empty Layer 1 foundation stub.",
+      "description": "Icon System — consistent stroke icons with outlined/filled/duotone/status variants, searchable registry, a11y labels, and text alignment.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1431,9 +1442,9 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1444,13 +1455,13 @@
       "id": 52,
       "name": "icon-button",
       "displayName": "Icon Button",
-      "description": "Icon Button — empty Layer 1 foundation stub.",
+      "description": "IconButton — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1460,8 +1471,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1472,13 +1483,13 @@
       "id": 53,
       "name": "animated-icon",
       "displayName": "Animated Icon",
-      "description": "Animated Icon — empty Layer 1 foundation stub.",
+      "description": "AnimatedIcon — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1488,8 +1499,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1500,13 +1511,13 @@
       "id": 54,
       "name": "status-icon",
       "displayName": "Status Icon",
-      "description": "Status Icon — empty Layer 1 foundation stub.",
+      "description": "StatusIcon — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1516,8 +1527,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1528,13 +1539,13 @@
       "id": 55,
       "name": "brand-icon",
       "displayName": "Brand Icon",
-      "description": "Brand Icon — empty Layer 1 foundation stub.",
+      "description": "BrandIcon — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1544,8 +1555,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1556,13 +1567,13 @@
       "id": 56,
       "name": "file-icon",
       "displayName": "File Icon",
-      "description": "File Icon — empty Layer 1 foundation stub.",
+      "description": "FileIcon — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1572,8 +1583,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1584,13 +1595,13 @@
       "id": 57,
       "name": "social-icon",
       "displayName": "Social Icon",
-      "description": "Social Icon — empty Layer 1 foundation stub.",
+      "description": "SocialIcon — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1600,8 +1611,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1612,13 +1623,13 @@
       "id": 58,
       "name": "ai-icon",
       "displayName": "AI Icon",
-      "description": "AI Icon — empty Layer 1 foundation stub.",
+      "description": "AiIcon — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1628,8 +1639,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1640,13 +1651,13 @@
       "id": 59,
       "name": "emoji-renderer",
       "displayName": "Emoji Renderer",
-      "description": "Emoji Renderer — empty Layer 1 foundation stub.",
+      "description": "EmojiRenderer — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1656,8 +1667,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1668,13 +1679,13 @@
       "id": 60,
       "name": "icon-badge",
       "displayName": "Icon Badge",
-      "description": "Icon Badge — empty Layer 1 foundation stub.",
+      "description": "IconBadge — part of the Icon System.",
       "category": "foundation",
       "group": "icon-system",
       "groupName": "Icon System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sparkles",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1684,8 +1695,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "icon-system",
@@ -1696,13 +1707,13 @@
       "id": 61,
       "name": "fade-animation",
       "displayName": "Fade Animation",
-      "description": "Fade Animation — empty Layer 1 foundation stub.",
+      "description": "FadeAnimation — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1712,8 +1723,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1724,13 +1735,13 @@
       "id": 62,
       "name": "scale-animation",
       "displayName": "Scale Animation",
-      "description": "Scale Animation — empty Layer 1 foundation stub.",
+      "description": "ScaleAnimation — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1740,8 +1751,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1752,13 +1763,13 @@
       "id": 63,
       "name": "slide-animation",
       "displayName": "Slide Animation",
-      "description": "Slide Animation — empty Layer 1 foundation stub.",
+      "description": "SlideAnimation — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1768,8 +1779,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1780,13 +1791,13 @@
       "id": 64,
       "name": "page-transition",
       "displayName": "Page Transition",
-      "description": "Page Transition — empty Layer 1 foundation stub.",
+      "description": "PageTransition — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1796,8 +1807,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1808,13 +1819,13 @@
       "id": 65,
       "name": "loading-transition",
       "displayName": "Loading Transition",
-      "description": "Loading Transition — empty Layer 1 foundation stub.",
+      "description": "LoadingTransition — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1824,8 +1835,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1836,13 +1847,13 @@
       "id": 66,
       "name": "hover-animation",
       "displayName": "Hover Animation",
-      "description": "Hover Animation — empty Layer 1 foundation stub.",
+      "description": "HoverAnimation — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1852,8 +1863,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1864,13 +1875,13 @@
       "id": 67,
       "name": "press-animation",
       "displayName": "Press Animation",
-      "description": "Press Animation — empty Layer 1 foundation stub.",
+      "description": "PressAnimation — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1880,8 +1891,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1892,13 +1903,13 @@
       "id": 68,
       "name": "ripple-alternative",
       "displayName": "Ripple Alternative",
-      "description": "Ripple Alternative — empty Layer 1 foundation stub.",
+      "description": "RippleAlternative — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1908,8 +1919,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1920,13 +1931,13 @@
       "id": 69,
       "name": "drag-animation",
       "displayName": "Drag Animation",
-      "description": "Drag Animation — empty Layer 1 foundation stub.",
+      "description": "DragAnimation — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1936,8 +1947,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -1948,13 +1959,13 @@
       "id": 70,
       "name": "skeleton-animation",
       "displayName": "Skeleton Animation",
-      "description": "Skeleton Animation — empty Layer 1 foundation stub.",
+      "description": "SkeletonAnimation — part of the Motion System (motion-tokens).",
       "category": "foundation",
       "group": "motion-system",
       "groupName": "Motion System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "zap",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1964,8 +1975,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "motion-system",
@@ -2677,13 +2688,13 @@
       "id": 96,
       "name": "responsive-visibility",
       "displayName": "Responsive Visibility",
-      "description": "Responsive Visibility — empty Layer 1 foundation stub.",
+      "description": "Responsive Visibility — show/hide/collapse by viewport, orientation, print, foldables, a11y prefs, roles, flags, and intersection; CSS presets + lazy gates.",
       "category": "foundation",
       "group": "utility-components",
       "groupName": "Utility Components",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "eye",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2692,13 +2703,15 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "utility-components",
-        "responsive-visibility"
+        "responsive-visibility",
+        "responsive",
+        "a11y"
       ]
     },
     {
@@ -2732,14 +2745,14 @@
     {
       "id": 98,
       "name": "device-detector",
-      "displayName": "Device Detector",
-      "description": "Device Detector — empty Layer 1 foundation stub.",
+      "displayName": "Breakpoint Manager",
+      "description": "Breakpoint Manager — semantic xs→3xl breakpoints with viewport/container queries, orientation, foldables, pointer/hover/touch, density, and a11y prefs; hooks, events, SSR-safe provider.",
       "category": "foundation",
       "group": "utility-components",
       "groupName": "Utility Components",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "monitor",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2748,13 +2761,16 @@
         "web",
         "desktop"
       ],
-      "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "utility-components",
-        "device-detector"
+        "breakpoint-manager",
+        "device-detector",
+        "responsive",
+        "a11y"
       ]
     },
     {

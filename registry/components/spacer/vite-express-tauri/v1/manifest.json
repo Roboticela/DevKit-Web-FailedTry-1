@@ -3,13 +3,23 @@
   "template": "vite-express-tauri",
   "files": [
     {
+      "source": "files/src/styles/spacer-system.css",
+      "destination": "src/styles/spacer-system.css"
+    },
+    {
       "source": "files/src/components/ui/Spacer.tsx",
       "destination": "src/components/ui/Spacer.tsx"
+    },
+    {
+      "source": "files/docs/SPACER.md",
+      "destination": "docs/devkit/SPACER.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "responsive-spacing"
+    ]
   },
   "envVars": []
 }

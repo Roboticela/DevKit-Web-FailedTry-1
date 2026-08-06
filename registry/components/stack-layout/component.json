@@ -2,7 +2,7 @@
   "id": 13,
   "name": "stack-layout",
   "displayName": "Stack Layout",
-  "description": "StackLayout — layout companion for the responsive grid system.",
+  "description": "Stack Layout — vertical, horizontal, and inline stacks with token spacing, responsive direction, separators, nested rhythm, motion, and virtualization.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "layout-system",
-    "stack-layout"
+    "stack-layout",
+    "stack",
+    "spacing"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,7 +26,7 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
   "fileKind": "tsx",
   "versions": {
@@ -39,5 +41,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.density"
+  ]
 }

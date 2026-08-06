@@ -1,20 +1,23 @@
 {
   "id": 98,
   "name": "device-detector",
-  "displayName": "Device Detector",
-  "description": "Device Detector — empty Layer 1 foundation stub.",
+  "displayName": "Breakpoint Manager",
+  "description": "Breakpoint Manager — semantic xs→3xl breakpoints with viewport/container queries, orientation, foldables, pointer/hover/touch, density, and a11y prefs; hooks, events, SSR-safe provider.",
   "category": "foundation",
   "group": "utility-components",
   "groupName": "Utility Components",
   "kind": "component",
   "layer": 1,
-  "icon": "square",
+  "icon": "monitor",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "utility-components",
-    "device-detector"
+    "breakpoint-manager",
+    "device-detector",
+    "responsive",
+    "a11y"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,15 +27,15 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
-  "stub": true,
+  "hasVariants": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

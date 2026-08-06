@@ -1,0 +1,5 @@
+/**
+ * scale-animation — companion to motion-tokens
+ * Prefer importing motion-system.css once.
+ */
+:root { --dk-motion-companion-scale-animation: 1; }

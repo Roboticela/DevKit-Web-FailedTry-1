@@ -3,13 +3,23 @@
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/styles/spacer-system.css",
+      "destination": "styles/spacer-system.css"
+    },
+    {
       "source": "files/components/ui/Spacer.tsx",
       "destination": "components/ui/Spacer.tsx"
+    },
+    {
+      "source": "files/docs/SPACER.md",
+      "destination": "docs/devkit/SPACER.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "responsive-spacing"
+    ]
   },
   "envVars": []
 }

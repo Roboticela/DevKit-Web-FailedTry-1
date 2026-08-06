@@ -3,13 +3,23 @@
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/styles/section-system.css",
+      "destination": "styles/section-system.css"
+    },
+    {
       "source": "files/components/ui/Section.tsx",
       "destination": "components/ui/Section.tsx"
+    },
+    {
+      "source": "files/docs/SECTION.md",
+      "destination": "docs/devkit/SECTION.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "responsive-spacing"
+    ]
   },
   "envVars": []
 }

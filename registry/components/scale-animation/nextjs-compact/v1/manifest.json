@@ -1,15 +1,29 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/components/ui/Motion.tsx",
+      "destination": "components/ui/Motion.tsx"
+    },
+    {
+      "source": "files/components/ui/MotionPresets.tsx",
+      "destination": "components/ui/MotionPresets.tsx"
+    },
+    {
       "source": "files/components/ui/ScaleAnimation.tsx",
       "destination": "components/ui/ScaleAnimation.tsx"
+    },
+    {
+      "source": "files/styles/scale-animation.css",
+      "destination": "styles/scale-animation.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "motion-tokens"
+    ]
   },
   "envVars": []
 }

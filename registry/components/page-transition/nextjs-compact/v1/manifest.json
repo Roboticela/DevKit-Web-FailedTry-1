@@ -1,15 +1,29 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/components/ui/Motion.tsx",
+      "destination": "components/ui/Motion.tsx"
+    },
+    {
+      "source": "files/components/ui/MotionPresets.tsx",
+      "destination": "components/ui/MotionPresets.tsx"
+    },
+    {
       "source": "files/components/ui/PageTransition.tsx",
       "destination": "components/ui/PageTransition.tsx"
+    },
+    {
+      "source": "files/styles/page-transition.css",
+      "destination": "styles/page-transition.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "motion-tokens"
+    ]
   },
   "envVars": []
 }

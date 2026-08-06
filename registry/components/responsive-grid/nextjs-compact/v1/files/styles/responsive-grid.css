@@ -11,14 +11,23 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Breakpoint reference (for docs / JS); CSS uses min-width media queries */
-  --bp-phone: 0px;
-  --bp-phablet: 480px;
-  --bp-tablet: 768px;
-  --bp-laptop: 1024px;
-  --bp-desktop: 1280px;
-  --bp-ultrawide: 1440px;
-  --bp-ultrawide-xl: 1680px;
+  /* Breakpoints — semantic scale (Breakpoint Manager is source of truth).
+     Keep numerics here so grid works standalone; prefer loading breakpoint-system.css first. */
+  --bp-xs: 0px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1440px;
+  --bp-3xl: 1680px;
+
+  --bp-phone: var(--bp-xs);
+  --bp-phablet: var(--bp-sm);
+  --bp-tablet: var(--bp-md);
+  --bp-laptop: var(--bp-lg);
+  --bp-desktop: var(--bp-xl);
+  --bp-ultrawide: var(--bp-2xl);
+  --bp-ultrawide-xl: var(--bp-3xl);
 
   /* Columns — mobile-first */
   --grid-columns: 4;

@@ -2,7 +2,7 @@
   "id": 17,
   "name": "section",
   "displayName": "Section",
-  "description": "Section — layout companion for the responsive grid system.",
+  "description": "Section — logical content groups with header/body/footer, collapse, sticky headers, empty/loading states, width inheritance, and visibility analytics.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
@@ -14,7 +14,8 @@
   "tags": [
     "foundation",
     "layout-system",
-    "section"
+    "section",
+    "landmark"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,7 +25,7 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
   "fileKind": "tsx",
   "versions": {
@@ -39,5 +40,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.density"
+  ]
 }

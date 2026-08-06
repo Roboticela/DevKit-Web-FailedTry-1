@@ -2,7 +2,7 @@
   "id": 15,
   "name": "spacer",
   "displayName": "Spacer",
-  "description": "Spacer — layout companion for the responsive grid system.",
+  "description": "Spacer — tokenized whitespace with fixed, responsive, proportional, safe-area, and keyboard modes; presets for section/card/form/modal/nav/hero gaps.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
@@ -14,7 +14,8 @@
   "tags": [
     "foundation",
     "layout-system",
-    "spacer"
+    "spacer",
+    "spacing"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,7 +25,7 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
   "fileKind": "tsx",
   "versions": {
@@ -39,5 +40,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.density"
+  ]
 }

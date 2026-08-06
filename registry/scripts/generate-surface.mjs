@@ -93,7 +93,7 @@ write(
       name: "surface",
       displayName: "Surface",
       description:
-        "Surface System — layered page/card/panel/sheet/popover/sidebar/modal/dashboard/widget/overlay surfaces with elevation, materials, and frosted glass.",
+        "Surface System — enterprise visual layers (page/card/modal/sheet/tooltip/dropdown/menu/side-panel) with semantic elevation, materials, interactive press, and paint containment.",
       category: "foundation",
       group: "layout-system",
       groupName: "Layout System",
@@ -105,7 +105,7 @@ write(
       tags: ["foundation", "layout-system", "surface", "surface-system"],
       templates: ["nextjs-compact", "vite-express-tauri"],
       platforms: ["web", "desktop"],
-      hasVariants: false,
+      hasVariants: true,
       stub: false,
       fileKind: "tsx",
       versions: {
@@ -280,9 +280,10 @@ const patch = {
   surface: {
     stub: false,
     latestVersion: "1.0.0",
+    hasVariants: true,
     displayName: "Surface",
     description:
-      "Surface System — layered page/card/panel/sheet/popover/sidebar/modal/dashboard/widget/overlay surfaces with elevation, materials, and frosted glass.",
+      "Surface System — enterprise visual layers (page/card/modal/sheet/tooltip/dropdown/menu/side-panel) with semantic elevation, materials, interactive press, and paint containment.",
     icon: "layers",
     tags: ["foundation", "layout-system", "surface", "surface-system"],
   },

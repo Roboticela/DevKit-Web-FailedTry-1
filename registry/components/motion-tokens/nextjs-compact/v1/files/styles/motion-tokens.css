@@ -1,8 +1,2 @@
-/**
- * Motion Tokens — companion to Theme Engine (dynamic-theme).
- * Prefer theme-engine.css. Tokens: --motion-duration-*, --motion-ease-*, --motion-distance-*.
- * Honors prefers-reduced-motion and data-motion="reduce".
- */
-:root {
-  --dk-motion-companion: 1;
-}
+/* Prefer motion-system.css */
+@import "./motion-system.css";

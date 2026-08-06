@@ -3,13 +3,24 @@
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/styles/container-system.css",
+      "destination": "styles/container-system.css"
+    },
+    {
       "source": "files/components/ui/Container.tsx",
       "destination": "components/ui/Container.tsx"
+    },
+    {
+      "source": "files/docs/CONTAINER.md",
+      "destination": "docs/devkit/CONTAINER.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "responsive-spacing",
+      "responsive-grid"
+    ]
   },
   "envVars": []
 }

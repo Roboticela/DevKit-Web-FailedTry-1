@@ -1,10 +1,22 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
+      "source": "files/src/styles/breakpoint-system.css",
+      "destination": "src/styles/breakpoint-system.css"
+    },
+    {
+      "source": "files/src/components/ui/BreakpointManager.tsx",
+      "destination": "src/components/ui/BreakpointManager.tsx"
+    },
+    {
       "source": "files/src/components/ui/DeviceDetector.tsx",
       "destination": "src/components/ui/DeviceDetector.tsx"
+    },
+    {
+      "source": "files/docs/BREAKPOINTS.md",
+      "destination": "docs/devkit/BREAKPOINTS.md"
     }
   ],
   "injections": [],

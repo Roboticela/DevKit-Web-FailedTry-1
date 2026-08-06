@@ -1,10 +1,22 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/styles/breakpoint-system.css",
+      "destination": "styles/breakpoint-system.css"
+    },
+    {
+      "source": "files/components/ui/BreakpointManager.tsx",
+      "destination": "components/ui/BreakpointManager.tsx"
+    },
+    {
       "source": "files/components/ui/DeviceDetector.tsx",
       "destination": "components/ui/DeviceDetector.tsx"
+    },
+    {
+      "source": "files/docs/BREAKPOINTS.md",
+      "destination": "docs/devkit/BREAKPOINTS.md"
     }
   ],
   "injections": [],

@@ -1,10 +1,3 @@
-import * as React from "react";
-
-export interface FadeAnimationProps {
-  children?: React.ReactNode;
-}
-
-/** Fade Animation — empty stub (Layer 1 Foundation). */
-export function FadeAnimation(_props: FadeAnimationProps = {}) {
-  return null;
-}
+export { FadeAnimation } from "./MotionPresets";
+export { Motion, MotionStagger } from "./Motion";
+export type { MotionProps, MotionPreset } from "./Motion";

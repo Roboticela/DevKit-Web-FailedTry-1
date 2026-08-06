@@ -1,0 +1,5 @@
+/**
+ * hover-animation — companion to motion-tokens
+ * Prefer importing motion-system.css once.
+ */
+:root { --dk-motion-companion-hover-animation: 1; }

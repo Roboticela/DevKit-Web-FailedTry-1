@@ -1,0 +1,449 @@
+/**
+ * DevKit Section — Layer 1 Foundation (id: 17 · section)
+ *
+ * Logical content groups: header / body / footer, collapse, sticky headers,
+ * empty & loading states, width & surface inheritance, motion, anchors.
+ *
+ * Load after responsive-spacing.css (+ container / surface / motion optional).
+ * Extends .dk-section from the grid companion layer.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tokens
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme] {
+  --section-pad-y: var(--section-space-y, var(--space-section-y, var(--space-10, 2.5rem)));
+  --section-pad-x: 0px;
+  --section-gap: var(--space-section-gap, var(--space-6, 1.5rem));
+  --section-header-gap: var(--space-3, 0.75rem);
+  --section-body-gap: var(--space-4, 1rem);
+  --section-footer-gap: var(--space-3, 0.75rem);
+  --section-radius: var(--radius-lg, 0.875rem);
+  --section-bg: transparent;
+  --section-border: transparent;
+  --section-max-w: none;
+  --section-sticky-offset: 0px;
+  --section-sticky-z: 2;
+
+  --section-transition:
+    padding var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    background-color var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    max-width var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease);
+
+  --section-collapse-duration: var(--motion-duration-enter, 240ms);
+  --section-collapse-ease: var(--motion-ease-emphasized, cubic-bezier(0.2, 0, 0, 1));
+  --section-enter-duration: var(--motion-duration-enter, 240ms);
+  --section-enter-ease: var(--motion-ease-decelerate, cubic-bezier(0, 0, 0.2, 1));
+  --section-enter-distance: 0.5rem;
+}
+
+[data-density="compact"] {
+  --section-pad-y: calc(var(--section-space-y, var(--space-8, 2rem)) * 0.75);
+  --section-gap: var(--space-4, 1rem);
+  --section-header-gap: var(--space-2, 0.5rem);
+  --section-body-gap: var(--space-3, 0.75rem);
+}
+
+[data-density="spacious"] {
+  --section-pad-y: var(--section-space-y, var(--space-12, 3rem));
+  --section-gap: var(--space-8, 2rem);
+  --section-header-gap: var(--space-4, 1rem);
+  --section-body-gap: var(--space-5, 1.25rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) {
+    --section-transition: none;
+    --section-collapse-duration: 0ms;
+    --section-enter-duration: 0ms;
+    --section-enter-distance: 0px;
+  }
+}
+
+html[data-motion="reduce"] {
+  --section-transition: none;
+  --section-collapse-duration: 0ms;
+  --section-enter-duration: 0ms;
+  --section-enter-distance: 0px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  width: 100%;
+  max-width: var(--section-max-w);
+  margin-inline: auto;
+  padding-block: var(--section-pad-y);
+  padding-inline: var(--section-pad-x);
+  box-sizing: border-box;
+  background: var(--section-bg);
+  border: 1px solid var(--section-border);
+  color: inherit;
+  min-width: 0;
+  scroll-margin-top: calc(var(--section-sticky-offset) + var(--space-4, 1rem));
+}
+
+.dk-section-motion {
+  transition: var(--section-transition);
+}
+
+.dk-section-compact {
+  --section-pad-y: calc(var(--section-space-y, var(--space-10, 2.5rem)) * 0.6);
+  --section-gap: var(--space-4, 1rem);
+}
+
+.dk-section-flush {
+  --section-pad-y: 0px;
+  --section-pad-x: 0px;
+}
+
+.dk-section-padded {
+  --section-pad-x: var(--space-page-x, var(--space-4, 1rem));
+}
+
+.dk-section-nested {
+  --section-pad-y: var(--space-6, 1.5rem);
+  --section-gap: var(--space-4, 1rem);
+  --section-max-w: none;
+}
+
+.dk-section-nested.dk-section-compact {
+  --section-pad-y: var(--space-4, 1rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Width · background · surface · elevation hooks
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section-width-full { --section-max-w: none; }
+.dk-section-width-form { --section-max-w: var(--container-width-form, 28rem); }
+.dk-section-width-reading { --section-max-w: var(--container-width-reading, 40rem); }
+.dk-section-width-narrow { --section-max-w: var(--container-width-narrow, 40rem); }
+.dk-section-width-modal { --section-max-w: var(--container-width-modal, 32rem); }
+.dk-section-width-default { --section-max-w: var(--container-width-default, 70rem); }
+.dk-section-width-wide { --section-max-w: var(--container-width-wide, 72rem); }
+.dk-section-width-hero { --section-max-w: var(--container-width-hero, 80rem); }
+.dk-section-width-dashboard { --section-max-w: var(--container-width-dashboard, 90rem); }
+
+.dk-section-bg-transparent { --section-bg: transparent; --section-border: transparent; }
+.dk-section-bg-canvas { --section-bg: var(--color-bg-canvas); --section-border: transparent; }
+.dk-section-bg-base { --section-bg: var(--color-bg-base); --section-border: transparent; }
+.dk-section-bg-subtle { --section-bg: var(--color-bg-subtle); --section-border: transparent; }
+.dk-section-bg-muted { --section-bg: var(--color-bg-muted); --section-border: transparent; }
+.dk-section-bg-surface {
+  --section-bg: var(--color-surface-card, var(--color-surface-1));
+  --section-border: var(--color-border-subtle);
+  border-radius: var(--section-radius);
+}
+
+.dk-section-elevated {
+  --section-bg: var(--color-surface-card, var(--color-surface-1));
+  --section-border: var(--color-border-subtle);
+  border-radius: var(--section-radius);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Header · body · footer
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--section-header-gap);
+  width: 100%;
+  min-width: 0;
+}
+
+.dk-section-header-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1-5, 0.375rem);
+  min-width: 0;
+  flex: 1 1 12rem;
+}
+
+.dk-section-title {
+  margin: 0;
+  font: inherit;
+  font-size: var(--text-title-section, var(--text-xl, 1.25rem));
+  font-weight: var(--font-weight-semibold, 600);
+  letter-spacing: var(--tracking-tight, -0.01em);
+  color: var(--color-text-primary, inherit);
+  line-height: var(--leading-snug, 1.3);
+}
+
+.dk-section-description {
+  margin: 0;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-secondary, inherit);
+  line-height: var(--leading-normal, 1.5);
+  max-width: 40rem;
+}
+
+.dk-section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2, 0.5rem);
+  flex: none;
+  margin-inline-start: auto;
+}
+
+.dk-section-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-body-gap);
+  width: 100%;
+  min-width: 0;
+}
+
+.dk-section-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--section-footer-gap);
+  width: 100%;
+  padding-top: var(--space-2, 0.5rem);
+  border-top: 1px solid var(--color-border-subtle, transparent);
+  color: var(--color-text-secondary, inherit);
+  font-size: var(--text-sm, 0.875rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Sticky header
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section-sticky > .dk-section-header,
+.dk-section-header-sticky {
+  position: sticky;
+  top: var(--section-sticky-offset);
+  z-index: var(--section-sticky-z);
+  background: var(--section-bg, var(--color-bg-canvas, Canvas));
+  padding-block: var(--space-2, 0.5rem);
+  margin-block: calc(var(--space-2, 0.5rem) * -1);
+}
+
+.dk-section-bg-transparent.dk-section-sticky > .dk-section-header,
+.dk-section-bg-transparent > .dk-section-header-sticky {
+  background: var(--color-bg-canvas, Canvas);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Collapsible
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--color-border-subtle, transparent);
+  border-radius: var(--radius-sm, 0.375rem);
+  background: transparent;
+  color: var(--color-text-secondary, inherit);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1;
+}
+
+.dk-section-trigger:hover {
+  background: var(--color-bg-muted, transparent);
+  color: var(--color-text-primary, inherit);
+}
+
+.dk-section-trigger:focus-visible {
+  outline: 2px solid var(--color-focus-ring, Highlight);
+  outline-offset: 2px;
+}
+
+.dk-section-trigger-icon {
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-inline-end: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--section-collapse-duration) var(--section-collapse-ease);
+  translate: 0 -0.1rem;
+}
+
+.dk-section[data-open="true"] .dk-section-trigger-icon {
+  transform: rotate(225deg);
+  translate: 0 0.1rem;
+}
+
+.dk-section-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--section-collapse-duration) var(--section-collapse-ease);
+}
+
+.dk-section[data-open="true"] > .dk-section-collapse {
+  grid-template-rows: 1fr;
+}
+
+.dk-section-collapse-inner {
+  overflow: hidden;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+.dk-section-header-button {
+  all: unset;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--section-header-gap);
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: inherit;
+}
+
+.dk-section-header-button:focus-visible {
+  outline: 2px solid var(--color-focus-ring, Highlight);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm, 0.375rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   States — loading · empty
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section-loading,
+.dk-section-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3, 0.75rem);
+  width: 100%;
+  min-height: 4rem;
+  padding: var(--space-4, 1rem) 0;
+  color: var(--color-text-secondary, inherit);
+}
+
+.dk-section-empty {
+  align-items: center;
+  text-align: center;
+  padding-block: var(--space-8, 2rem);
+}
+
+.dk-section-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+  width: 100%;
+}
+
+.dk-section-skeleton-line {
+  height: 0.75rem;
+  width: 100%;
+  border-radius: var(--radius-sm, 0.375rem);
+  background: var(--color-bg-muted, var(--color-surface-2));
+}
+
+.dk-section-skeleton-line:nth-child(2) { width: 82%; }
+.dk-section-skeleton-line:nth-child(3) { width: 64%; }
+
+.dk-section-empty-title {
+  margin: 0;
+  font-size: var(--text-base, 1rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--color-text-primary, inherit);
+}
+
+.dk-section-empty-description {
+  margin: 0;
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--color-text-secondary, inherit);
+  max-width: 28rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Motion — enter / lazy reveal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section-animate {
+  animation: dk-section-enter var(--section-enter-duration) var(--section-enter-ease) both;
+}
+
+.dk-section-lazy:not([data-visible="true"]) .dk-section-body,
+.dk-section-lazy:not([data-visible="true"]) .dk-section-footer {
+  content-visibility: hidden;
+  contain-intrinsic-size: auto 8rem;
+}
+
+.dk-section-lazy[data-visible="true"] {
+  animation: dk-section-enter var(--section-enter-duration) var(--section-enter-ease) both;
+}
+
+@keyframes dk-section-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--section-enter-distance));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) .dk-section-animate,
+  html:not([data-motion="full"]) .dk-section-lazy[data-visible="true"] {
+    animation: none;
+  }
+}
+
+html[data-motion="reduce"] .dk-section-animate,
+html[data-motion="reduce"] .dk-section-lazy[data-visible="true"] {
+  animation: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Anchor target
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-section-anchor {
+  position: absolute;
+  top: calc(var(--section-sticky-offset) * -1);
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.dk-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,8 +1,2 @@
-/**
- * Elevation Tokens — companion to Theme Engine (dynamic-theme).
- * Prefer importing theme-engine.css once; classes: .dk-elev-0 … .dk-elev-4
- * Depth via surface hierarchy; --elevation-*-shadow defaults to none.
- */
-:root {
-  --dk-elevation-companion: 1;
-}
+/* Prefer elevation-system.css */
+@import "./elevation-system.css";

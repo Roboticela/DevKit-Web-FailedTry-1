@@ -80,7 +80,8 @@ html[data-theme-transition="none"] *::after {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   Elevation — surface hierarchy (shadows reserved / none by default)
+   Elevation — surface hierarchy; shadows from elevation-tokens (elevation-system.css)
+   Defaults stay none until elevation-system.css loads.
    ═══════════════════════════════════════════════════════════════════════════ */
 
 :root,
@@ -96,11 +97,11 @@ html[data-theme-transition="none"] *::after {
   --elevation-4-bg: var(--color-surface-overlay, var(--color-surface-card));
   --elevation-4-border: var(--color-border-strong);
 
-  --elevation-0-shadow: none;
-  --elevation-1-shadow: none;
-  --elevation-2-shadow: none;
-  --elevation-3-shadow: none;
-  --elevation-4-shadow: none;
+  --elevation-0-shadow: var(--shadow-0, none);
+  --elevation-1-shadow: var(--shadow-1, none);
+  --elevation-2-shadow: var(--shadow-2, none);
+  --elevation-3-shadow: var(--shadow-3, none);
+  --elevation-4-shadow: var(--shadow-4, none);
 }
 
 [data-theme="dark"],

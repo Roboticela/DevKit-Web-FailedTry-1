@@ -1,0 +1,5 @@
+/**
+ * slide-animation — companion to motion-tokens
+ * Prefer importing motion-system.css once.
+ */
+:root { --dk-motion-companion-slide-animation: 1; }

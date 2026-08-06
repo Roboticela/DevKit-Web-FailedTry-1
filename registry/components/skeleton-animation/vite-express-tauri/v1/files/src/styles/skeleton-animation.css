@@ -1,0 +1,5 @@
+/**
+ * skeleton-animation — companion to motion-tokens
+ * Prefer importing motion-system.css once.
+ */
+:root { --dk-motion-companion-skeleton-animation: 1; }

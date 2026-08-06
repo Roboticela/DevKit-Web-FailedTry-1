@@ -1,0 +1,477 @@
+/**
+ * DevKit Stack Layout — Layer 1 Foundation (id: 13 · stack-layout)
+ *
+ * Preferred spacing layout: vertical / horizontal / inline stacks with
+ * token gaps, responsive direction & alignment, separators, nested rhythm,
+ * motion-aware insert, and content-visibility for long lists.
+ *
+ * Load after responsive-spacing.css (+ optional motion-system.css).
+ * Extends .dk-stack / .dk-inline from the grid companion layer.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tokens
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme] {
+  --stack-gap: var(--space-stack-gap, var(--space-4, 1rem));
+  --stack-gap-compact: var(--space-2, 0.5rem);
+  --stack-gap-comfortable: var(--space-4, 1rem);
+  --stack-gap-spacious: var(--space-6, 1.5rem);
+  --stack-gap-equal: var(--stack-gap);
+  --stack-gap-xs: var(--space-1, 0.25rem);
+  --stack-gap-sm: var(--space-2, 0.5rem);
+  --stack-gap-md: var(--space-4, 1rem);
+  --stack-gap-lg: var(--space-6, 1.5rem);
+  --stack-gap-xl: var(--space-8, 2rem);
+  --stack-gap-2xl: var(--space-12, 3rem);
+
+  --stack-inline-gap: var(--space-inline-gap, var(--space-2, 0.5rem));
+  --stack-separator-color: var(--color-separator, var(--color-border-subtle));
+  --stack-separator-size: var(--border-width-hairline, 1px);
+  --stack-separator-strong: var(--border-width-thin, 1.5px);
+
+  --stack-transition:
+    gap var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    flex-direction var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease);
+
+  --stack-enter-duration: var(--motion-duration-enter, 240ms);
+  --stack-exit-duration: var(--motion-duration-exit, 180ms);
+  --stack-enter-ease: var(--motion-ease-decelerate, cubic-bezier(0, 0, 0.2, 1));
+  --stack-enter-distance: 0.375rem;
+}
+
+[data-density="compact"] {
+  --stack-gap: var(--space-stack-gap, var(--space-3, 0.75rem));
+  --stack-gap-comfortable: var(--space-3, 0.75rem);
+  --stack-gap-spacious: var(--space-5, 1.25rem);
+  --stack-inline-gap: var(--space-1-5, 0.375rem);
+}
+
+[data-density="spacious"] {
+  --stack-gap: var(--space-stack-gap, var(--space-5, 1.25rem));
+  --stack-gap-comfortable: var(--space-5, 1.25rem);
+  --stack-gap-spacious: var(--space-8, 2rem);
+  --stack-inline-gap: var(--space-3, 0.75rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) {
+    --stack-transition: none;
+    --stack-enter-duration: 0ms;
+    --stack-exit-duration: 0ms;
+    --stack-enter-distance: 0px;
+  }
+}
+
+html[data-motion="reduce"] {
+  --stack-transition: none;
+  --stack-enter-duration: 0ms;
+  --stack-exit-duration: 0ms;
+  --stack-enter-distance: 0px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: var(--stack-gap);
+  min-width: 0;
+  min-height: 0;
+  box-sizing: border-box;
+}
+
+.dk-stack-motion {
+  transition: var(--stack-transition);
+}
+
+.dk-stack-h,
+.dk-stack[data-direction="row"] {
+  flex-direction: row;
+  align-items: center;
+}
+
+.dk-stack-v,
+.dk-stack[data-direction="column"] {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.dk-stack-inline,
+.dk-inline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--stack-inline-gap, var(--inline-gap, var(--stack-gap-sm)));
+  min-width: 0;
+}
+
+.dk-stack-reverse {
+  flex-direction: column-reverse;
+}
+
+.dk-stack-h.dk-stack-reverse,
+.dk-stack[data-direction="row"].dk-stack-reverse {
+  flex-direction: row-reverse;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Spacing presets
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-gap-none { --stack-gap: 0px; gap: 0; }
+.dk-stack-gap-xs { --stack-gap: var(--stack-gap-xs); gap: var(--stack-gap); }
+.dk-stack-gap-sm { --stack-gap: var(--stack-gap-sm); gap: var(--stack-gap); }
+.dk-stack-gap-md { --stack-gap: var(--stack-gap-md); gap: var(--stack-gap); }
+.dk-stack-gap-lg { --stack-gap: var(--stack-gap-lg); gap: var(--stack-gap); }
+.dk-stack-gap-xl { --stack-gap: var(--stack-gap-xl); gap: var(--stack-gap); }
+.dk-stack-gap-2xl { --stack-gap: var(--stack-gap-2xl); gap: var(--stack-gap); }
+
+.dk-stack-gap-compact { --stack-gap: var(--stack-gap-compact); gap: var(--stack-gap); }
+.dk-stack-gap-comfortable { --stack-gap: var(--stack-gap-comfortable); gap: var(--stack-gap); }
+.dk-stack-gap-spacious { --stack-gap: var(--stack-gap-spacious); gap: var(--stack-gap); }
+.dk-stack-gap-equal { --stack-gap: var(--stack-gap-equal); gap: var(--stack-gap); }
+
+/* Responsive default: tighter on phone, opens up */
+.dk-stack-gap-responsive {
+  --stack-gap: var(--stack-gap-compact);
+  gap: var(--stack-gap);
+}
+
+@media (min-width: 768px) {
+  .dk-stack-gap-responsive {
+    --stack-gap: var(--stack-gap-comfortable);
+  }
+}
+
+@media (min-width: 1280px) {
+  .dk-stack-gap-responsive {
+    --stack-gap: var(--stack-gap-spacious);
+  }
+}
+
+/* Token scale aliases (0–12 common) */
+.dk-stack-gap-0 { --stack-gap: var(--space-0, 0); gap: var(--stack-gap); }
+.dk-stack-gap-1 { --stack-gap: var(--space-1); gap: var(--stack-gap); }
+.dk-stack-gap-2 { --stack-gap: var(--space-2); gap: var(--stack-gap); }
+.dk-stack-gap-3 { --stack-gap: var(--space-3); gap: var(--stack-gap); }
+.dk-stack-gap-4 { --stack-gap: var(--space-4); gap: var(--stack-gap); }
+.dk-stack-gap-5 { --stack-gap: var(--space-5); gap: var(--stack-gap); }
+.dk-stack-gap-6 { --stack-gap: var(--space-6); gap: var(--stack-gap); }
+.dk-stack-gap-8 { --stack-gap: var(--space-8); gap: var(--stack-gap); }
+.dk-stack-gap-10 { --stack-gap: var(--space-10); gap: var(--stack-gap); }
+.dk-stack-gap-12 { --stack-gap: var(--space-12); gap: var(--stack-gap); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Alignment & distribution
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-align-start { align-items: flex-start; }
+.dk-stack-align-center { align-items: center; }
+.dk-stack-align-end { align-items: flex-end; }
+.dk-stack-align-stretch { align-items: stretch; }
+.dk-stack-align-baseline { align-items: baseline; }
+
+.dk-stack-justify-start { justify-content: flex-start; }
+.dk-stack-justify-center { justify-content: center; }
+.dk-stack-justify-end { justify-content: flex-end; }
+.dk-stack-justify-between { justify-content: space-between; }
+.dk-stack-justify-around { justify-content: space-around; }
+.dk-stack-justify-evenly { justify-content: space-evenly; }
+.dk-stack-justify-stretch { justify-content: stretch; }
+
+.dk-stack-wrap { flex-wrap: wrap; }
+.dk-stack-nowrap { flex-wrap: nowrap; }
+
+.dk-stack-full > .dk-stack-item,
+.dk-stack-full > :not(.dk-stack-separator) {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Nested stacks — preserve rhythm (tighten one step)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-nested {
+  --stack-gap: max(0px, calc(var(--stack-gap-comfortable) * 0.75));
+}
+
+.dk-stack-gap-spacious.dk-stack-nested,
+.dk-stack-nested.dk-stack-gap-spacious {
+  --stack-gap: var(--stack-gap-comfortable);
+}
+
+.dk-stack-gap-comfortable.dk-stack-nested,
+.dk-stack-nested.dk-stack-gap-comfortable {
+  --stack-gap: var(--stack-gap-compact);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Separators
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-separator {
+  flex: none;
+  align-self: stretch;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: var(--stack-separator-color);
+}
+
+.dk-stack-v > .dk-stack-separator,
+.dk-stack:not(.dk-stack-h):not(.dk-stack-inline) > .dk-stack-separator {
+  width: 100%;
+  height: var(--stack-separator-size);
+}
+
+.dk-stack-h > .dk-stack-separator,
+.dk-stack-inline > .dk-stack-separator,
+.dk-stack[data-direction="row"] > .dk-stack-separator {
+  width: var(--stack-separator-size);
+  height: auto;
+  align-self: stretch;
+  min-height: 1em;
+}
+
+.dk-stack-separator-strong {
+  background: var(--color-separator-opaque, var(--color-border));
+}
+
+.dk-stack-v > .dk-stack-separator-strong {
+  height: var(--stack-separator-strong);
+}
+
+.dk-stack-h > .dk-stack-separator-strong,
+.dk-stack-inline > .dk-stack-separator-strong {
+  width: var(--stack-separator-strong);
+}
+
+/* Gapless separator stacks use margin for breathing room */
+.dk-stack-divided {
+  gap: 0;
+}
+
+.dk-stack-divided.dk-stack-v > .dk-stack-item + .dk-stack-item,
+.dk-stack-divided:not(.dk-stack-h):not(.dk-stack-inline) > :not(.dk-stack-separator) + :not(.dk-stack-separator) {
+  border-top: var(--stack-separator-size) solid var(--stack-separator-color);
+  padding-top: var(--stack-gap-comfortable);
+  margin-top: var(--stack-gap-comfortable);
+}
+
+.dk-stack-divided.dk-stack-h > .dk-stack-item + .dk-stack-item {
+  border-left: var(--stack-separator-size) solid var(--stack-separator-color);
+  padding-left: var(--stack-gap-comfortable);
+  margin-left: var(--stack-gap-comfortable);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Empty collapse
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-collapse-empty > :empty,
+.dk-stack-collapse-empty > [hidden],
+.dk-stack-collapse-empty > [data-empty="true"] {
+  display: none !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Items · motion · lazy / virtual shell
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-item {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.dk-stack-item-grow {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dk-stack-lazy > .dk-stack-item,
+.dk-stack-item-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 2.5rem;
+}
+
+.dk-stack-virtual {
+  overflow: auto;
+  overscroll-behavior: contain;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  gap: 0;
+}
+
+.dk-stack-virtual-spacer {
+  flex: none;
+  width: 100%;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.dk-stack-animate > .dk-stack-item,
+.dk-stack-item-enter {
+  animation: dk-stack-enter var(--stack-enter-duration) var(--stack-enter-ease) both;
+}
+
+.dk-stack-item-exit {
+  animation: dk-stack-exit var(--stack-exit-duration) var(--motion-ease-accelerate, cubic-bezier(0.3, 0, 1, 1)) both;
+  pointer-events: none;
+}
+
+@keyframes dk-stack-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--stack-enter-distance));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dk-stack-exit {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(calc(var(--stack-enter-distance) * -0.5));
+  }
+}
+
+.dk-stack-h.dk-stack-animate > .dk-stack-item {
+  --stack-enter-axis: 1;
+}
+
+@keyframes dk-stack-enter-x {
+  from {
+    opacity: 0;
+    transform: translateX(var(--stack-enter-distance));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dk-stack-h.dk-stack-animate > .dk-stack-item,
+.dk-stack[data-direction="row"].dk-stack-animate > .dk-stack-item {
+  animation-name: dk-stack-enter-x;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) .dk-stack-animate > .dk-stack-item,
+  html:not([data-motion="full"]) .dk-stack-item-enter,
+  html:not([data-motion="full"]) .dk-stack-item-exit {
+    animation: none;
+  }
+}
+
+html[data-motion="reduce"] .dk-stack-animate > .dk-stack-item,
+html[data-motion="reduce"] .dk-stack-item-enter,
+html[data-motion="reduce"] .dk-stack-item-exit {
+  animation: none;
+}
+
+/* Stagger helper — set --stack-stagger-index on items */
+.dk-stack-stagger > .dk-stack-item {
+  animation-delay: calc(var(--stack-stagger-index, 0) * var(--motion-stagger-step, 40ms));
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Keyboard focus · a11y
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-nav:focus {
+  outline: none;
+}
+
+.dk-stack-nav:focus-visible {
+  outline: 2px solid var(--color-focus-ring, Highlight);
+  outline-offset: 2px;
+}
+
+.dk-stack-nav > .dk-stack-item:focus-visible {
+  outline: 2px solid var(--color-focus-ring, Highlight);
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Responsive direction / gap / align (mobile-first)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-stack-dir-column { flex-direction: column; align-items: stretch; }
+.dk-stack-dir-row { flex-direction: row; align-items: center; }
+
+@media (min-width: 480px) {
+  .dk-stack-sm-dir-column { flex-direction: column; }
+  .dk-stack-sm-dir-row { flex-direction: row; }
+  .dk-stack-sm-gap-none { gap: 0; }
+  .dk-stack-sm-gap-compact { gap: var(--stack-gap-compact); }
+  .dk-stack-sm-gap-comfortable { gap: var(--stack-gap-comfortable); }
+  .dk-stack-sm-gap-spacious { gap: var(--stack-gap-spacious); }
+  .dk-stack-sm-align-start { align-items: flex-start; }
+  .dk-stack-sm-align-center { align-items: center; }
+  .dk-stack-sm-align-end { align-items: flex-end; }
+  .dk-stack-sm-align-stretch { align-items: stretch; }
+  .dk-stack-sm-align-baseline { align-items: baseline; }
+  .dk-stack-sm-wrap { flex-wrap: wrap; }
+  .dk-stack-sm-nowrap { flex-wrap: nowrap; }
+}
+
+@media (min-width: 768px) {
+  .dk-stack-md-dir-column { flex-direction: column; }
+  .dk-stack-md-dir-row { flex-direction: row; }
+  .dk-stack-md-gap-none { gap: 0; }
+  .dk-stack-md-gap-compact { gap: var(--stack-gap-compact); }
+  .dk-stack-md-gap-comfortable { gap: var(--stack-gap-comfortable); }
+  .dk-stack-md-gap-spacious { gap: var(--stack-gap-spacious); }
+  .dk-stack-md-align-start { align-items: flex-start; }
+  .dk-stack-md-align-center { align-items: center; }
+  .dk-stack-md-align-end { align-items: flex-end; }
+  .dk-stack-md-align-stretch { align-items: stretch; }
+  .dk-stack-md-align-baseline { align-items: baseline; }
+  .dk-stack-md-wrap { flex-wrap: wrap; }
+  .dk-stack-md-nowrap { flex-wrap: nowrap; }
+}
+
+@media (min-width: 1024px) {
+  .dk-stack-lg-dir-column { flex-direction: column; }
+  .dk-stack-lg-dir-row { flex-direction: row; }
+  .dk-stack-lg-gap-none { gap: 0; }
+  .dk-stack-lg-gap-compact { gap: var(--stack-gap-compact); }
+  .dk-stack-lg-gap-comfortable { gap: var(--stack-gap-comfortable); }
+  .dk-stack-lg-gap-spacious { gap: var(--stack-gap-spacious); }
+  .dk-stack-lg-align-start { align-items: flex-start; }
+  .dk-stack-lg-align-center { align-items: center; }
+  .dk-stack-lg-align-end { align-items: flex-end; }
+  .dk-stack-lg-align-stretch { align-items: stretch; }
+  .dk-stack-lg-align-baseline { align-items: baseline; }
+  .dk-stack-lg-wrap { flex-wrap: wrap; }
+  .dk-stack-lg-nowrap { flex-wrap: nowrap; }
+}
+
+@media (min-width: 1280px) {
+  .dk-stack-xl-dir-column { flex-direction: column; }
+  .dk-stack-xl-dir-row { flex-direction: row; }
+  .dk-stack-xl-gap-none { gap: 0; }
+  .dk-stack-xl-gap-compact { gap: var(--stack-gap-compact); }
+  .dk-stack-xl-gap-comfortable { gap: var(--stack-gap-comfortable); }
+  .dk-stack-xl-gap-spacious { gap: var(--stack-gap-spacious); }
+  .dk-stack-xl-align-start { align-items: flex-start; }
+  .dk-stack-xl-align-center { align-items: center; }
+  .dk-stack-xl-align-end { align-items: flex-end; }
+  .dk-stack-xl-align-stretch { align-items: stretch; }
+  .dk-stack-xl-align-baseline { align-items: baseline; }
+}

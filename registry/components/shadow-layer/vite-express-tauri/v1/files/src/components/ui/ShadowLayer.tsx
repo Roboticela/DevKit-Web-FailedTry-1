@@ -1,19 +1,28 @@
 import * as React from "react";
-import { Surface, type SurfaceElevation, type SurfaceProps } from "./Surface";
+import { Elevation, type ElevationLevel, type ElevationProps } from "./Elevation";
 
-export interface ShadowLayerProps extends Omit<SurfaceProps, "elevation"> {
-  /** Depth band 0–4 — uses elevation tokens, not box-shadow. */
-  level?: SurfaceElevation;
+export interface ShadowLayerProps extends Omit<ElevationProps, "level" | "semantic"> {
+  /** Depth band 0–5 */
+  level?: ElevationLevel;
+  interactive?: boolean;
 }
 
 /**
- * Shadow Layer — named depth band via surface elevation (shadow CSS vars stay none).
+ * Shadow Layer — named elevation band with subtle layered shadows.
+ * Alias of Elevation with level semantics for the shape-system companion slot.
  */
-export function ShadowLayer({ level = 2, className = "", ...props }: ShadowLayerProps) {
+export function ShadowLayer({
+  level = 2,
+  interactive = false,
+  className = "",
+  ...props
+}: ShadowLayerProps) {
   return (
-    <Surface
-      elevation={level}
+    <Elevation
+      level={level}
+      interactive={interactive}
       className={`dk-shadow-layer ${className}`.trim()}
+      data-level={level}
       {...props}
     />
   );

@@ -1,15 +1,29 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
+      "source": "files/src/components/ui/Motion.tsx",
+      "destination": "src/components/ui/Motion.tsx"
+    },
+    {
+      "source": "files/src/components/ui/MotionPresets.tsx",
+      "destination": "src/components/ui/MotionPresets.tsx"
+    },
+    {
       "source": "files/src/components/ui/SlideAnimation.tsx",
       "destination": "src/components/ui/SlideAnimation.tsx"
+    },
+    {
+      "source": "files/src/styles/slide-animation.css",
+      "destination": "src/styles/slide-animation.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "motion-tokens"
+    ]
   },
   "envVars": []
 }

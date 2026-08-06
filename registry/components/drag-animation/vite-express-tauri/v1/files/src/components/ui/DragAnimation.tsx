@@ -1,10 +1,3 @@
-import * as React from "react";
-
-export interface DragAnimationProps {
-  children?: React.ReactNode;
-}
-
-/** Drag Animation — empty stub (Layer 1 Foundation). */
-export function DragAnimation(_props: DragAnimationProps = {}) {
-  return null;
-}
+export { DragAnimation } from "./MotionPresets";
+export { Motion, MotionStagger } from "./Motion";
+export type { MotionProps, MotionPreset } from "./Motion";

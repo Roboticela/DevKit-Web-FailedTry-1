@@ -2,7 +2,7 @@
   "id": 12,
   "name": "flex-layout",
   "displayName": "Flex Layout",
-  "description": "FlexLayout — layout companion for the responsive grid system.",
+  "description": "Flex Layout — advanced responsive flexbox with grow/shrink/basis, presets (navbar, toolbar, form-row, …), token gaps, and motion-aware resizing.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
@@ -14,7 +14,9 @@
   "tags": [
     "foundation",
     "layout-system",
-    "flex-layout"
+    "flex-layout",
+    "flex",
+    "responsive"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,7 +26,7 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
   "fileKind": "tsx",
   "versions": {
@@ -39,5 +41,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.density"
+  ]
 }

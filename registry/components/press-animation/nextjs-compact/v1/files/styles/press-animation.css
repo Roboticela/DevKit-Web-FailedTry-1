@@ -1,0 +1,5 @@
+/**
+ * press-animation — companion to motion-tokens
+ * Prefer importing motion-system.css once.
+ */
+:root { --dk-motion-companion-press-animation: 1; }

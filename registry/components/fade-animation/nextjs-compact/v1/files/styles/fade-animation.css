@@ -1,0 +1,5 @@
+/**
+ * fade-animation — companion to motion-tokens
+ * Prefer importing motion-system.css once.
+ */
+:root { --dk-motion-companion-fade-animation: 1; }

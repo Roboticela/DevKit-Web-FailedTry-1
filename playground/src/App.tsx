@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import catalog from "./foundation-catalog.json";
 import { DisplayText } from "@devkit/DisplayText";
 import { Heading } from "@devkit/Heading";
@@ -12,11 +12,69 @@ import { CodeText } from "@devkit/CodeText";
 import { NumericDisplay } from "@devkit/NumericDisplay";
 import { ResponsiveGrid, GridItem } from "@devkit/ResponsiveGrid";
 import { Container } from "@devkit/Container";
-import { SafeArea } from "@devkit/SafeArea";
-import { Surface, CardSurface, PanelSurface, WidgetSurface, ModalSurface } from "@devkit/Surface";
+import { SafeArea, useSafeArea } from "@devkit/SafeArea";
+import {
+  AspectRatio,
+  AspectVideo,
+  AspectSquare,
+  AspectCard,
+  AspectA4,
+  AspectMobile,
+  AspectWidget,
+  AspectStory,
+  AspectUltrawide,
+} from "@devkit/AspectRatio";
+import {
+  Visibility,
+  VisibilityProvider,
+  MobileOnly,
+  TabletOnly,
+  DesktopOnly,
+  LargeScreens,
+  LandscapeOnly,
+  PortraitOnly,
+  PrintMode,
+  Foldables,
+  AccessibilityMode,
+  useMediaQuery,
+  useVisibility,
+} from "@devkit/ResponsiveVisibility";
+import {
+  BREAKPOINTS,
+  BREAKPOINT_ORDER,
+  BreakpointMatch,
+  DeviceDetector,
+  mq,
+  useBreakpoint,
+  useBreakpointSnapshot,
+  useBreakpointValue,
+  useContainerQuery,
+  useDensity,
+  useFoldable,
+  useHoverCapability,
+  useOrientation,
+  usePointer,
+  usePrefersReducedMotion,
+  usePrefersReducedTransparency,
+  useTouch,
+  useBreakpointMatch,
+} from "@devkit/BreakpointManager";
+import {
+  Surface,
+  CardSurface,
+  PanelSurface,
+  WidgetSurface,
+  ModalSurface,
+  TooltipSurface,
+  DropdownSurface,
+  MenuSurface,
+  SidePanelSurface,
+  OverlaySurface,
+} from "@devkit/Surface";
 import { Overlay } from "@devkit/Overlay";
 import { GlassSurface } from "@devkit/GlassSurface";
 import { FrostedSurface } from "@devkit/FrostedSurface";
+import { Elevation } from "@devkit/Elevation";
 import { ShadowLayer } from "@devkit/ShadowLayer";
 import { RoundedCorner, ShapeNested } from "@devkit/RoundedCorner";
 import { CircleShape } from "@devkit/CircleShape";
@@ -25,12 +83,85 @@ import { AvatarShape } from "@devkit/AvatarShape";
 import { Border } from "@devkit/Border";
 import { Divider } from "@devkit/Divider";
 import { Section } from "@devkit/Section";
-import { StackLayout } from "@devkit/StackLayout";
+import { StackLayout, Stack, HStack, VStack, InlineStack } from "@devkit/StackLayout";
+import {
+  Spacer,
+  SpacerTiny,
+  SpacerSmall,
+  SpacerMedium,
+  SpacerLarge,
+  SpacerXL,
+  SpacerSection,
+  SpacerCard,
+  SpacerForm,
+  SpacerModal,
+  SpacerNav,
+  SpacerHero,
+  FlexGrowSpacer,
+} from "@devkit/Spacer";
+import {
+  Flex,
+  FlexItem,
+  FlexSpacer,
+  FlexNavbar,
+  FlexToolbar,
+  FlexFormRow,
+  FlexDashboardSummary,
+  FlexActionGroup,
+  FlexProfileHeader,
+  FlexCardFooter,
+  FlexFilterBar,
+  FlexStatsRow,
+  FlexButtonGroup,
+} from "@devkit/FlexLayout";
 import { DensityProvider, type DensityMode } from "@devkit/DensityProvider";
 import { Space } from "@devkit/Space";
 import { useTheme, type ThemeId } from "@devkit/ThemeProvider";
+import { Motion, MotionStagger } from "@devkit/Motion";
+import {
+  HoverAnimation,
+  PressAnimation,
+  SkeletonAnimation,
+  LoadingTransition,
+  DragAnimation,
+} from "@devkit/MotionPresets";
+import { useReducedMotion, useMotionPreference, type MotionPreference } from "@devkit/useReducedMotion";
+import {
+  Icon,
+  IconLabel,
+  ICON_CATEGORIES,
+  searchIcons,
+  type IconVariant,
+} from "@devkit/Icon";
+import {
+  IconButton,
+  StatusIcon,
+  AiIcon,
+  IconBadge,
+  AnimatedIcon,
+} from "@devkit/IconExtras";
 
-type View = "shape" | "theme" | "surface" | "spacing" | "grid" | "typography" | "colors" | "catalog";
+type View =
+  | "breakpoints"
+  | "visibility"
+  | "aspect"
+  | "safe-area"
+  | "surface"
+  | "section"
+  | "spacer"
+  | "flex"
+  | "stack"
+  | "container"
+  | "icons"
+  | "motion"
+  | "elevation"
+  | "shape"
+  | "theme"
+  | "spacing"
+  | "grid"
+  | "typography"
+  | "colors"
+  | "catalog";
 
 type CatalogGroup = {
   id: string;
@@ -114,6 +245,26 @@ const READY = new Set([
   "dynamic-theme",
   "elevation-tokens",
   "motion-tokens",
+  "fade-animation",
+  "scale-animation",
+  "slide-animation",
+  "page-transition",
+  "loading-transition",
+  "hover-animation",
+  "press-animation",
+  "ripple-alternative",
+  "drag-animation",
+  "skeleton-animation",
+  "icon",
+  "icon-button",
+  "animated-icon",
+  "status-icon",
+  "brand-icon",
+  "file-icon",
+  "social-icon",
+  "ai-icon",
+  "emoji-renderer",
+  "icon-badge",
   "blur-tokens",
   "gradient-tokens",
   "theme-provider",
@@ -150,6 +301,8 @@ const READY = new Set([
   "separator",
   "safe-area",
   "aspect-ratio",
+  "responsive-visibility",
+  "device-detector",
   "responsive-spacing",
   "margin-utilities",
   "padding-utilities",
@@ -178,6 +331,170 @@ function SwatchGrid({ items }: { items: Swatch[] }) {
   );
 }
 
+function VisibilityModesDemo() {
+  const [open, setOpen] = useState(true);
+  return (
+    <VStack gap="md">
+      <button type="button" className="demo-btn" onClick={() => setOpen((v) => !v)}>
+        Toggle visible={String(open)}
+      </button>
+      <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+        <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+          <Caption>hide</Caption>
+          <Visibility visible={open} mode="hide" block className="vis-demo-tile">
+            <BodyText size="sm">Unmounts when off</BodyText>
+          </Visibility>
+        </GridItem>
+        <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+          <Caption>preserve</Caption>
+          <Visibility visible={open} mode="preserve" block className="vis-demo-tile">
+            <BodyText size="sm">Keeps layout space</BodyText>
+          </Visibility>
+        </GridItem>
+        <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+          <Caption>collapse</Caption>
+          <Visibility visible={open} mode="collapse" motion block className="vis-demo-tile">
+            <BodyText size="sm">Animates closed</BodyText>
+          </Visibility>
+        </GridItem>
+        <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+          <Caption>fade</Caption>
+          <Visibility visible={open} mode="fade" motion block className="vis-demo-tile">
+            <BodyText size="sm">Opacity transition</BodyText>
+          </Visibility>
+        </GridItem>
+      </ResponsiveGrid>
+    </VStack>
+  );
+}
+
+function VisibilityMatchDemo() {
+  const wide = useMediaQuery("(min-width: 1024px)");
+  const showAdmin = useVisibility({ role: "admin", flag: "beta" });
+  return (
+    <Surface stack padding="sm" elevation={1} className="vis-demo-tile">
+      <Caption>hooks</Caption>
+      <BodyText size="sm">useMediaQuery ≥1024 → {String(wide)}</BodyText>
+      <BodyText size="sm">useVisibility admin+beta → {String(showAdmin)}</BodyText>
+    </Surface>
+  );
+}
+
+function BreakpointLabPanel() {
+  const snap = useBreakpointSnapshot();
+  const bp = useBreakpoint();
+  const cols = useBreakpointValue({ xs: 1, sm: 2, md: 3, lg: 4, xl: 5 });
+  const fromLg = useBreakpointMatch("lg", "up");
+  const orientation = useOrientation();
+  const pointer = usePointer();
+  const hover = useHoverCapability();
+  const touch = useTouch();
+  const { dpr, dense } = useDensity();
+  const fold = useFoldable();
+  const reduceMotion = usePrefersReducedMotion();
+  const reduceFx = usePrefersReducedTransparency();
+  const cqRef = useRef<HTMLDivElement>(null);
+  const cqMd = useContainerQuery(cqRef, { from: "md" });
+
+  return (
+    <div className="breakpoint-lab">
+      <Container variant="dashboard" paddingY="section" as="main" aria-label="Breakpoint lab">
+        <VStack gap="spacious">
+          <VStack gap="sm">
+            <Title variant="section">Breakpoint Manager</Title>
+            <BodyText size="sm">
+              Semantic xs→3xl scale — live viewport, capabilities, container queries. Provider syncs{" "}
+              <CodeText>data-bp</CodeText> on{" "}
+              <CodeText>&lt;html&gt;</CodeText>.
+            </BodyText>
+          </VStack>
+
+          <Section title="Live snapshot" description="Resize / rotate — values update from the centralized manager.">
+            <DeviceDetector className="bp-demo-snapshot">
+              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
+                {(
+                  [
+                    ["breakpoint", bp],
+                    ["width", `${snap.width}px`],
+                    ["height", `${snap.height}px`],
+                    ["orientation", orientation],
+                    ["pointer", pointer],
+                    ["hover", hover],
+                    ["touch", String(touch)],
+                    ["dpr", String(dpr)],
+                    ["dense", String(dense)],
+                    ["foldable", String(fold)],
+                    ["reduced motion", String(reduceMotion)],
+                    ["reduced transparency", String(reduceFx)],
+                    ["hydrated", String(snap.hydrated)],
+                    ["columns (value map)", String(cols)],
+                    ["from lg", String(fromLg)],
+                  ] as const
+                ).map(([label, value]) => (
+                  <GridItem key={label} span={{ sm: 2, md: 4, lg: 3 }}>
+                    <Surface stack padding="sm" elevation={1}>
+                      <Caption>{label}</Caption>
+                      <BodyText size="sm">{value}</BodyText>
+                    </Surface>
+                  </GridItem>
+                ))}
+              </ResponsiveGrid>
+            </DeviceDetector>
+          </Section>
+
+          <Section title="Semantic scale" description="Token · min-width · legacy alias">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
+              {BREAKPOINT_ORDER.map((token) => {
+                const active = token === bp;
+                return (
+                  <GridItem key={token} span={{ sm: 2, md: 4, lg: 3 }}>
+                    <div className={`bp-demo-token${active ? " is-active" : ""}`}>
+                      <Caption>
+                        {token} · {BREAKPOINTS[token]}px
+                      </Caption>
+                      <BodyText size="sm">{active ? "active" : "—"}</BodyText>
+                    </div>
+                  </GridItem>
+                );
+              })}
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="BreakpointMatch" description="Conditional render via manager (no ad-hoc matchMedia).">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <BreakpointMatch above="md">
+                  <div className="bp-demo-tile">above=md</div>
+                </BreakpointMatch>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <BreakpointMatch only="lg" fallback={<div className="bp-demo-tile is-muted">only=lg (idle)</div>}>
+                  <div className="bp-demo-tile">only=lg</div>
+                </BreakpointMatch>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <BreakpointMatch below="sm">
+                  <div className="bp-demo-tile">below=sm</div>
+                </BreakpointMatch>
+              </GridItem>
+            </ResponsiveGrid>
+            <Caption className="bp-demo-mq">mq.up(&quot;lg&quot;) → {mq.up("lg")}</Caption>
+          </Section>
+
+          <Section title="Container query" description="Resize the panel — independent of viewport breakpoint.">
+            <div ref={cqRef} className="dk-cq bp-demo-cq">
+              <BodyText size="sm">
+                Panel width ≥ md (768)? <strong>{String(cqMd)}</strong>
+              </BodyText>
+              <div className="dk-cq-from-md bp-demo-tile">.dk-cq-from-md (CSS)</div>
+            </div>
+          </Section>
+        </VStack>
+      </Container>
+    </div>
+  );
+}
+
 function TypeRow({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="type-row">
@@ -190,11 +507,28 @@ function TypeRow({ label, children }: { label: string; children: ReactNode }) {
 export function App() {
   const { theme, setTheme, resolvedTheme, systemTheme, setVars, clearVars, vars, registerTheme } =
     useTheme();
-  const [view, setView] = useState<View>("shape");
+  const [view, setView] = useState<View>("breakpoints");
+  const [sectionOpen, setSectionOpen] = useState(true);
+  const [sectionVisibleLog, setSectionVisibleLog] = useState("—");
   const [activeGroup, setActiveGroup] = useState<string>("all");
   const [density, setDensity] = useState<DensityMode>("comfortable");
   const [accent, setAccent] = useState("#0071e3");
   const [overlayOpen, setOverlayOpen] = useState(false);
+  const [motionPref, setMotionPref] = useState<MotionPreference>("system");
+  const [showModalDemo, setShowModalDemo] = useState(true);
+  const [loadingDemo, setLoadingDemo] = useState(false);
+  const [dragDemo, setDragDemo] = useState(false);
+  const [iconQuery, setIconQuery] = useState("");
+  const [iconCategory, setIconCategory] = useState<string>("all");
+  const [iconVariant, setIconVariant] = useState<IconVariant>("outlined");
+  const reducedMotion = useReducedMotion();
+  useMotionPreference(motionPref);
+  const safeInsets = useSafeArea();
+
+  const iconResults = useMemo(() => {
+    const list = searchIcons(iconQuery);
+    return iconCategory === "all" ? list : list.filter((i) => i.category === iconCategory);
+  }, [iconQuery, iconCategory]);
 
   useEffect(() => {
     registerTheme({
@@ -233,7 +567,8 @@ export function App() {
         <div>
           <h1 className="playground-brand">DevKit</h1>
           <p className="playground-sub">
-            Foundation labs — shape, surfaces, theme, spacing, grid, typography, and color. Edit
+            Foundation labs — aspect, safe area, surface, section, spacer, flex, stack, container,
+            icons, motion, elevation, shape, theme, spacing, grid, typography, and color. Edit
             packages under <code>registry/components/</code> and hot-reload.
           </p>
         </div>
@@ -268,14 +603,37 @@ export function App() {
               {d}
             </button>
           ))}
+          {(["system", "full", "reduce"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              className="theme-btn"
+              aria-pressed={motionPref === m}
+              onClick={() => setMotionPref(m)}
+            >
+              motion:{m}
+            </button>
+          ))}
         </div>
       </header>
 
       <div className="tabs" role="tablist" aria-label="Playground views">
         {(
           [
-            ["shape", "Shape Lab"],
+            ["breakpoints", "Breakpoint Lab"],
+            ["visibility", "Visibility Lab"],
+            ["aspect", "Aspect Lab"],
+            ["safe-area", "Safe Area Lab"],
             ["surface", "Surface Lab"],
+            ["section", "Section Lab"],
+            ["spacer", "Spacer Lab"],
+            ["flex", "Flex Lab"],
+            ["stack", "Stack Lab"],
+            ["container", "Container Lab"],
+            ["icons", "Icon Lab"],
+            ["motion", "Motion Lab"],
+            ["elevation", "Elevation Lab"],
+            ["shape", "Shape Lab"],
             ["theme", "Theme Lab"],
             ["spacing", "Spacing Lab"],
             ["grid", "Grid Lab"],
@@ -296,6 +654,1122 @@ export function App() {
           </button>
         ))}
       </div>
+
+      {view === "breakpoints" ? <BreakpointLabPanel /> : null}
+
+      {view === "visibility" ? (
+        <div className="visibility-lab">
+          <VisibilityProvider roles={["admin", "editor"]} flags={{ beta: true, legacy: false }}>
+            <Container variant="dashboard" paddingY="section" as="main" aria-label="Visibility lab">
+              <VStack gap="spacious">
+                <VStack gap="sm">
+                  <Title variant="section">Responsive Visibility</Title>
+                  <BodyText size="sm">
+                    CSS presets for viewport / orientation / print / a11y, plus JS gates for roles,
+                    flags, lazy mount, and intersection.
+                  </BodyText>
+                </VStack>
+
+                <Section title="Viewport presets" description="Resize the window — only matching tiles stay visible.">
+                  <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                    {(
+                      [
+                        ["Mobile", MobileOnly],
+                        ["Tablet", TabletOnly],
+                        ["Desktop", DesktopOnly],
+                        ["Large", LargeScreens],
+                        ["Landscape", LandscapeOnly],
+                        ["Portrait", PortraitOnly],
+                        ["Foldables", Foldables],
+                        ["A11y mode", AccessibilityMode],
+                      ] as const
+                    ).map(([label, Comp]) => (
+                      <GridItem key={label} span={{ sm: 4, md: 4, lg: 3 }}>
+                        <Comp block className="vis-demo-tile">
+                          <Caption>{label}</Caption>
+                          <BodyText size="sm">Visible now</BodyText>
+                        </Comp>
+                      </GridItem>
+                    ))}
+                  </ResponsiveGrid>
+                  <PrintMode block className="vis-demo-tile vis-demo-print">
+                    <Caption>Print Mode</Caption>
+                    <BodyText size="sm">Only in print preview</BodyText>
+                  </PrintMode>
+                </Section>
+
+                <Section title="Modes" description="hide · preserve · collapse · fade">
+                  <VisibilityModesDemo />
+                </Section>
+
+                <Section title="Roles · flags · media">
+                  <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
+                    <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                      <Visibility role="admin" block className="vis-demo-tile">
+                        <Caption>role=admin</Caption>
+                        <BodyText size="sm">Shown via VisibilityProvider</BodyText>
+                      </Visibility>
+                    </GridItem>
+                    <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                      <Visibility flag="beta" block className="vis-demo-tile">
+                        <Caption>flag=beta</Caption>
+                        <BodyText size="sm">Feature flag on</BodyText>
+                      </Visibility>
+                    </GridItem>
+                    <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                      <Visibility flag="legacy" block className="vis-demo-tile">
+                        <Caption>flag=legacy</Caption>
+                        <BodyText size="sm">Should stay hidden</BodyText>
+                      </Visibility>
+                    </GridItem>
+                    <GridItem span={{ sm: 4, md: 8, lg: 6 }}>
+                      <Visibility above="md" block className="vis-demo-tile">
+                        <Caption>above=md (JS media)</Caption>
+                        <BodyText size="sm">matchMedia ≥ 768px</BodyText>
+                      </Visibility>
+                    </GridItem>
+                    <GridItem span={{ sm: 4, md: 8, lg: 6 }}>
+                      <VisibilityMatchDemo />
+                    </GridItem>
+                  </ResponsiveGrid>
+                </Section>
+
+                <Section
+                  title="Lazy · intersection"
+                  description="Scroll — heavy block mounts when near the viewport."
+                >
+                  <div className="vis-demo-scroll">
+                    <BodyText size="sm">Scroll down…</BodyText>
+                    <div className="vis-demo-spacer" />
+                    <Visibility
+                      lazy
+                      intersection={{ rootMargin: "40px", threshold: 0.15 }}
+                      motion
+                      mode="fade"
+                      block
+                      className="vis-demo-tile vis-demo-heavy"
+                    >
+                      <Caption>lazy + intersection</Caption>
+                      <BodyText size="sm">Mounted when intersecting</BodyText>
+                    </Visibility>
+                  </div>
+                </Section>
+              </VStack>
+            </Container>
+          </VisibilityProvider>
+        </div>
+      ) : null}
+
+      {view === "aspect" ? (
+        <div className="aspect-lab">
+          <Container variant="dashboard" paddingY="section" as="main" aria-label="Aspect lab">
+            <VStack gap="spacious">
+              <VStack gap="sm">
+                <Title variant="section">Aspect Ratio</Title>
+                <BodyText size="sm">
+                  Consistent proportions for media, charts, previews, and embeds — presets, fit, crop,
+                  skeleton, lazy.
+                </BodyText>
+              </VStack>
+
+              <Section title="Presets">
+                <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                  {(
+                    [
+                      ["1:1", AspectSquare],
+                      ["16:9", AspectVideo],
+                      ["4:3 / card", AspectCard],
+                      ["9:16", AspectStory],
+                      ["21:9", AspectUltrawide],
+                      ["A4", AspectA4],
+                      ["Mobile", AspectMobile],
+                      ["Widget", AspectWidget],
+                    ] as const
+                  ).map(([label, Comp]) => (
+                    <GridItem key={label} span={{ sm: 4, md: 4, lg: 3 }}>
+                      <VStack gap="sm">
+                        <Caption>{label}</Caption>
+                        <Comp radius="md">
+                          <div className="aspect-demo-fill">
+                            <Caption>{label}</Caption>
+                          </div>
+                        </Comp>
+                      </VStack>
+                    </GridItem>
+                  ))}
+                </ResponsiveGrid>
+              </Section>
+
+              <Section title="Custom · fit · crop">
+                <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                  <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                    <Caption>ratio=1.618 (golden)</Caption>
+                    <AspectRatio ratio={1.618} radius="lg">
+                      <div className="aspect-demo-fill">φ</div>
+                    </AspectRatio>
+                  </GridItem>
+                  <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                    <Caption>fit=contain</Caption>
+                    <AspectRatio preset="16:9" fit="contain" radius="lg">
+                      <div className="aspect-demo-letterbox">Contained</div>
+                    </AspectRatio>
+                  </GridItem>
+                  <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                    <Caption>position=top</Caption>
+                    <AspectRatio preset="card" position="top" radius="lg">
+                      <div className="aspect-demo-crop">Top crop focus</div>
+                    </AspectRatio>
+                  </GridItem>
+                </ResponsiveGrid>
+              </Section>
+
+              <Section title="Skeleton · responsive">
+                <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                  <GridItem span={{ sm: 4, md: 4, lg: 6 }}>
+                    <Caption>loading skeleton</Caption>
+                    <AspectRatio preset="16:9" loading="skeleton" radius="lg" />
+                  </GridItem>
+                  <GridItem span={{ sm: 4, md: 4, lg: 6 }}>
+                    <Caption>preset base 9:16 → md 16:9</Caption>
+                    <AspectRatio
+                      preset={{ base: "9:16", md: "16:9" }}
+                      motion
+                      radius="lg"
+                    >
+                      <div className="aspect-demo-fill">Resize viewport</div>
+                    </AspectRatio>
+                  </GridItem>
+                </ResponsiveGrid>
+              </Section>
+            </VStack>
+          </Container>
+        </div>
+      ) : null}
+
+      {view === "safe-area" ? (
+        <div className="safe-area-lab" data-safe-debug>
+          <Container variant="dashboard" paddingY="section" as="main" aria-label="Safe area lab">
+            <VStack gap="spacious">
+              <VStack gap="sm">
+                <Title variant="section">Safe Area</Title>
+                <BodyText size="sm">
+                  Device insets for notches, Dynamic Island, keyboards, and browser chrome. Debug
+                  outline is on for this lab.
+                </BodyText>
+              </VStack>
+
+              <Section title="Live insets" description="From useSafeArea() — updates on resize / orientation / visualViewport.">
+                <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight">
+                  {(
+                    [
+                      ["top", safeInsets.top],
+                      ["right", safeInsets.right],
+                      ["bottom", safeInsets.bottom],
+                      ["left", safeInsets.left],
+                      ["keyboard", safeInsets.keyboard],
+                    ] as const
+                  ).map(([label, value]) => (
+                    <GridItem key={label} span={{ sm: 2, md: 4, lg: 2 }}>
+                      <Surface stack padding="sm" elevation={1}>
+                        <Caption>{label}</Caption>
+                        <BodyText size="sm">{value}px</BodyText>
+                      </Surface>
+                    </GridItem>
+                  ))}
+                  <GridItem span={{ sm: 4, md: 4, lg: 2 }}>
+                    <Surface stack padding="sm" elevation={1}>
+                      <Caption>orientation</Caption>
+                      <BodyText size="sm">{safeInsets.orientation}</BodyText>
+                    </Surface>
+                  </GridItem>
+                </ResponsiveGrid>
+                <button type="button" className="demo-btn" onClick={() => safeInsets.refresh()}>
+                  Refresh
+                </button>
+              </Section>
+
+              <Section title="Edges">
+                <VStack gap="md">
+                  <SafeArea edges="all" className="safe-demo-box">
+                    <Caption>edges=all</Caption>
+                  </SafeArea>
+                  <SafeArea edges="x" className="safe-demo-box">
+                    <Caption>edges=x</Caption>
+                  </SafeArea>
+                  <SafeArea edges="y" className="safe-demo-box">
+                    <Caption>edges=y</Caption>
+                  </SafeArea>
+                  <SafeArea top bottom left={false} right={false} className="safe-demo-box">
+                    <Caption>top + bottom only</Caption>
+                  </SafeArea>
+                </VStack>
+              </Section>
+
+              <Section title="Modes" description="Nav, FAB, panel, and keyboard clearance.">
+                <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                  {(
+                    [
+                      ["nav", "Bottom nav clearance"],
+                      ["fab", "FAB clearance"],
+                      ["panel", "Floating panel gutters"],
+                      ["keyboard", "Keyboard inset"],
+                      ["fullscreen", "Fullscreen + titlebar"],
+                      ["immersive", "Insets only"],
+                    ] as const
+                  ).map(([mode, label]) => (
+                    <GridItem key={mode} span={{ sm: 4, md: 4, lg: 4 }}>
+                      <SafeArea mode={mode} edges="all" className="safe-demo-box safe-demo-mode">
+                        <Caption>{mode}</Caption>
+                        <BodyText size="sm">{label}</BodyText>
+                      </SafeArea>
+                    </GridItem>
+                  ))}
+                </ResponsiveGrid>
+              </Section>
+
+              <Section title="Fixed chrome helpers">
+                <div className="safe-demo-stage">
+                  <BodyText size="sm">
+                    SafeAreaBottomBar and SafeAreaFab pin to the safe viewport. On desktop insets are
+                    often 0 — use a notched device or DevTools device mode to see padding.
+                  </BodyText>
+                  <div className="safe-demo-fake-chrome">
+                    <SafeArea mode="nav" edges="bottom" className="safe-demo-box">
+                      <Caption>Content above nav</Caption>
+                    </SafeArea>
+                    <div className="safe-demo-nav-preview">
+                      <Caption>simulated tab bar · mode=nav adds clearance</Caption>
+                    </div>
+                  </div>
+                </div>
+              </Section>
+            </VStack>
+          </Container>
+        </div>
+      ) : null}
+
+      {view === "section" ? (
+        <div className="section-lab">
+          <Container variant="dashboard" paddingY="section" as="main" aria-label="Section lab">
+            <VStack gap="spacious">
+              <VStack gap="sm">
+                <Title variant="section">Section</Title>
+                <BodyText size="sm">
+                  Logical content groups — header, body, footer, collapse, sticky, empty/loading,
+                  anchors, visibility hooks.
+                </BodyText>
+                <Caption>Visibility log: {sectionVisibleLog}</Caption>
+              </VStack>
+
+              <Section
+                id="overview"
+                title="Overview"
+                description="Dashboard-width section with actions and footer."
+                actions={<span className="section-chip">Export</span>}
+                footer={<Caption>Updated just now</Caption>}
+                width="dashboard"
+                background="surface"
+                elevated
+                animate
+                onVisible={({ visible, ratio }) =>
+                  setSectionVisibleLog(visible ? `visible · ${(ratio * 100).toFixed(0)}%` : "hidden")
+                }
+              >
+                <BodyText size="sm">
+                  Body content sits in a semantic region. Heading level starts at h2 and nests
+                  automatically.
+                </BodyText>
+              </Section>
+
+              <Section
+                title="Collapsible"
+                description="Controlled open state with motion-aware expand/collapse."
+                collapsible
+                open={sectionOpen}
+                onToggle={setSectionOpen}
+                background="subtle"
+                padded
+              >
+                <BodyText size="sm">
+                  Collapse uses a grid 0fr→1fr transition and marks the panel inert while closed.
+                </BodyText>
+              </Section>
+
+              <Section title="Loading" loading background="surface" width="reading" />
+
+              <Section
+                title="Empty inbox"
+                empty
+                emptyState={{
+                  title: "No messages",
+                  description: "When new activity arrives, it will show up in this section.",
+                  action: <span className="section-chip">Refresh</span>,
+                }}
+                background="surface"
+                width="reading"
+              />
+
+              <Section
+                title="Sticky header"
+                description="Scroll within the page to see the header pin."
+                stickyHeader
+                stickyOffset={0}
+                background="canvas"
+                width="wide"
+              >
+                <VStack gap="md">
+                  {Array.from({ length: 4 }, (_, i) => (
+                    <div key={i} className="section-demo-block">
+                      Sticky content block {i + 1}
+                    </div>
+                  ))}
+                </VStack>
+              </Section>
+
+              <Section title="Parent" background="muted" width="default">
+                <BodyText size="sm">Nested sections tighten padding and bump heading level.</BodyText>
+                <Section nested title="Nested child" description="Automatic h3 under parent h2." elevated>
+                  <BodyText size="sm">Nested body</BodyText>
+                </Section>
+              </Section>
+
+              <Section flush width="reading" elevated background="surface">
+                <Section.Header title="Compound API" actions={<span className="section-chip">Edit</span>} />
+                <Section.Body>
+                  <BodyText size="sm">Use Section.Header / Body / Footer for full control.</BodyText>
+                </Section.Body>
+                <Section.Footer>
+                  <Caption>Compound footer</Caption>
+                </Section.Footer>
+              </Section>
+            </VStack>
+          </Container>
+        </div>
+      ) : null}
+
+      {view === "spacer" ? (
+        <div className="spacer-lab" data-spacer-debug>
+          <Container variant="dashboard" paddingY="section" as="main" aria-label="Spacer lab">
+            <VStack gap="spacious">
+              <VStack gap="sm">
+                <Title variant="section">Spacer</Title>
+                <BodyText size="sm">
+                  Tokenized whitespace — presets replace empty margins. Debug tint is on for this
+                  lab.
+                </BodyText>
+              </VStack>
+
+              <Title variant="section">Presets</Title>
+              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                {(
+                  [
+                    ["tiny", SpacerTiny],
+                    ["small", SpacerSmall],
+                    ["medium", SpacerMedium],
+                    ["large", SpacerLarge],
+                    ["xl", SpacerXL],
+                    ["section", SpacerSection],
+                    ["card", SpacerCard],
+                    ["form", SpacerForm],
+                    ["modal", SpacerModal],
+                    ["nav", SpacerNav],
+                    ["hero", SpacerHero],
+                  ] as const
+                ).map(([name, Comp]) => (
+                  <GridItem key={name} span={{ sm: 4, md: 4, lg: 3 }}>
+                    <div className="spacer-demo-frame">
+                      <Caption>{name}</Caption>
+                      <div className="spacer-demo-panel">
+                        <div className="spacer-demo-block">Above</div>
+                        <Comp />
+                        <div className="spacer-demo-block">Below</div>
+                      </div>
+                    </div>
+                  </GridItem>
+                ))}
+              </ResponsiveGrid>
+
+              <Title variant="section">Horizontal · grow · adaptive</Title>
+              <Flex direction="row" align="center" className="spacer-demo-panel">
+                <div className="spacer-demo-block">A</div>
+                <Spacer axis="x" preset="card" />
+                <div className="spacer-demo-block">B</div>
+                <FlexGrowSpacer />
+                <div className="spacer-demo-block">C</div>
+              </Flex>
+
+              <VStack gap="none" className="spacer-demo-panel">
+                <Caption>adaptive in vertical stack</Caption>
+                <div className="spacer-demo-block">Top</div>
+                <Spacer axis="adaptive" preset="medium" />
+                <div className="spacer-demo-block">Bottom</div>
+              </VStack>
+
+              <Flex direction="row" align="stretch" className="spacer-demo-panel">
+                <div className="spacer-demo-block">Left</div>
+                <Spacer axis="adaptive" preset="large" />
+                <div className="spacer-demo-block">Right</div>
+              </Flex>
+
+              <Title variant="section">Responsive · separator · safe</Title>
+              <div className="spacer-demo-panel">
+                <div className="spacer-demo-block">Responsive preset</div>
+                <Spacer preset={{ base: "small", md: "large", lg: "section" }} />
+                <div className="spacer-demo-block">Grows with viewport</div>
+              </div>
+
+              <div className="spacer-demo-panel">
+                <div className="spacer-demo-block">With separator</div>
+                <Spacer preset="medium" separator />
+                <div className="spacer-demo-block">Hairline through gap</div>
+              </div>
+
+              <div className="spacer-demo-panel">
+                <Caption>safeArea=bottom + nav (includes home indicator when present)</Caption>
+                <div className="spacer-demo-block">Content</div>
+                <Spacer safeArea="bottom" preset="nav" />
+              </div>
+            </VStack>
+          </Container>
+        </div>
+      ) : null}
+
+      {view === "flex" ? (
+        <div className="flex-lab">
+          <Container variant="dashboard" paddingY="section" as="main" aria-label="Flex lab">
+            <VStack gap="spacious">
+              <VStack gap="sm">
+                <Title variant="section">Flex Layout</Title>
+                <BodyText size="sm">
+                  Advanced flexbox without raw CSS — grow, shrink, basis, presets, responsive maps.
+                </BodyText>
+              </VStack>
+
+              <Title variant="section">Core</Title>
+              <Flex direction="row" align="center" justify="between" gap="comfortable" className="flex-demo-panel">
+                <FlexItem>
+                  <div className="flex-demo-block">Start</div>
+                </FlexItem>
+                <FlexSpacer />
+                <FlexItem shrink={false}>
+                  <div className="flex-demo-block">Pinned</div>
+                </FlexItem>
+                <FlexItem grow>
+                  <div className="flex-demo-block">Grow</div>
+                </FlexItem>
+              </Flex>
+
+              <Flex
+                direction={{ base: "column", md: "row" }}
+                gap={{ base: "compact", md: "comfortable" }}
+                align={{ base: "stretch", md: "center" }}
+                className="flex-demo-panel"
+              >
+                <FlexItem flex>
+                  <div className="flex-demo-block">Responsive · column → row</div>
+                </FlexItem>
+                <FlexItem>
+                  <div className="flex-demo-block">Item</div>
+                </FlexItem>
+                <FlexItem maxWidth="8rem">
+                  <div className="flex-demo-block">max 8rem</div>
+                </FlexItem>
+              </Flex>
+
+              <Flex equal gap="sm" className="flex-demo-panel">
+                <div className="flex-demo-block">Equal</div>
+                <div className="flex-demo-block">Equal</div>
+                <div className="flex-demo-block">Equal</div>
+              </Flex>
+
+              <Title variant="section">Presets</Title>
+              <FlexNavbar className="flex-demo-panel">
+                <FlexItem>
+                  <strong className="flex-demo-brand">Brand</strong>
+                </FlexItem>
+                <FlexItem>
+                  <FlexActionGroup>
+                    <span className="flex-chip">Search</span>
+                    <span className="flex-chip">Account</span>
+                  </FlexActionGroup>
+                </FlexItem>
+              </FlexNavbar>
+
+              <FlexToolbar className="flex-demo-panel">
+                <span className="flex-chip">Bold</span>
+                <span className="flex-chip">Italic</span>
+                <span className="flex-chip">Link</span>
+                <FlexSpacer />
+                <span className="flex-chip">More</span>
+              </FlexToolbar>
+
+              <FlexFormRow className="flex-demo-panel">
+                <FlexItem flexRole="label">
+                  <Label>Email</Label>
+                </FlexItem>
+                <FlexItem flexRole="control">
+                  <div className="flex-demo-field">control grows</div>
+                </FlexItem>
+              </FlexFormRow>
+
+              <FlexDashboardSummary className="flex-demo-panel">
+                {["Revenue", "Users", "Latency", "Uptime"].map((t) => (
+                  <FlexItem key={t}>
+                    <div className="flex-demo-stat">
+                      <Caption>{t}</Caption>
+                      <BodyText size="sm">—</BodyText>
+                    </div>
+                  </FlexItem>
+                ))}
+              </FlexDashboardSummary>
+
+              <FlexProfileHeader className="flex-demo-panel">
+                <FlexItem flexRole="avatar">
+                  <div className="flex-demo-avatar" aria-hidden />
+                </FlexItem>
+                <FlexItem flexRole="identity">
+                  <BodyText size="sm">Alex Rivera</BodyText>
+                  <Caption>Product design</Caption>
+                </FlexItem>
+                <FlexItem flexRole="actions">
+                  <FlexActionGroup>
+                    <span className="flex-chip">Message</span>
+                    <span className="flex-chip">Follow</span>
+                  </FlexActionGroup>
+                </FlexItem>
+              </FlexProfileHeader>
+
+              <FlexCardFooter className="flex-demo-panel">
+                <Caption>Updated 2h ago</Caption>
+                <FlexActionGroup>
+                  <span className="flex-chip">Share</span>
+                  <span className="flex-chip">Edit</span>
+                </FlexActionGroup>
+              </FlexCardFooter>
+
+              <FlexFilterBar className="flex-demo-panel">
+                <div data-flex-role="filters">
+                  <span className="flex-chip">Status</span>
+                  <span className="flex-chip">Owner</span>
+                  <span className="flex-chip">Date</span>
+                </div>
+                <div data-flex-role="actions">
+                  <span className="flex-chip">Clear</span>
+                </div>
+              </FlexFilterBar>
+
+              <FlexStatsRow className="flex-demo-panel">
+                {["12k", "98%", "4.2", "31"].map((n, i) => (
+                  <FlexItem key={n}>
+                    <div className="flex-demo-stat">
+                      <BodyText size="sm">{n}</BodyText>
+                      <Caption>{["Views", "Health", "Score", "Open"][i]}</Caption>
+                    </div>
+                  </FlexItem>
+                ))}
+              </FlexStatsRow>
+
+              <FlexButtonGroup className="flex-demo-panel" data-equal="true">
+                <span className="flex-chip flex-chip-fill">Cancel</span>
+                <span className="flex-chip flex-chip-fill">Save draft</span>
+                <span className="flex-chip flex-chip-fill">Publish</span>
+              </FlexButtonGroup>
+            </VStack>
+          </Container>
+        </div>
+      ) : null}
+
+      {view === "stack" ? (
+        <div className="stack-lab">
+          <Container variant="dashboard" paddingY="section" as="main" aria-label="Stack lab">
+            <VStack gap="spacious" as="div">
+              <VStack gap="sm">
+                <Title variant="section">Stack Layout</Title>
+                <BodyText size="sm">
+                  Preferred spacing layout — vertical, horizontal, inline. Token gaps replace manual
+                  margins. Resize for responsive direction.
+                </BodyText>
+              </VStack>
+
+              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                {(
+                  [
+                    ["compact", "Compact"],
+                    ["comfortable", "Comfortable"],
+                    ["spacious", "Spacious"],
+                    ["responsive", "Responsive"],
+                  ] as const
+                ).map(([g, label]) => (
+                  <GridItem key={g} span={{ sm: 4, md: 4, lg: 3 }}>
+                    <div className="stack-demo-frame">
+                      <Caption>{label}</Caption>
+                      <VStack gap={g} className="stack-demo-panel">
+                        <div className="stack-demo-block">A</div>
+                        <div className="stack-demo-block">B</div>
+                        <div className="stack-demo-block">C</div>
+                      </VStack>
+                    </div>
+                  </GridItem>
+                ))}
+              </ResponsiveGrid>
+
+              <Title variant="section">Horizontal · inline · distribute</Title>
+              <VStack gap="md">
+                <Caption>HStack · justify=between</Caption>
+                <HStack gap="compact" justify="between" className="stack-demo-panel">
+                  <div className="stack-demo-block">Start</div>
+                  <div className="stack-demo-block">End</div>
+                </HStack>
+                <Caption>InlineStack · wrap</Caption>
+                <InlineStack gap="sm" className="stack-demo-panel">
+                  {["Design", "Tokens", "Layout", "Motion", "A11y", "Density"].map((t) => (
+                    <span key={t} className="stack-chip">
+                      {t}
+                    </span>
+                  ))}
+                </InlineStack>
+              </VStack>
+
+              <Title variant="section">Responsive direction</Title>
+              <Stack
+                direction={{ base: "vertical", md: "horizontal" }}
+                gap={{ base: "compact", md: "comfortable" }}
+                align={{ base: "stretch", md: "center" }}
+                className="stack-demo-panel stack-responsive-demo"
+              >
+                <div className="stack-demo-block stack-demo-grow">Column → Row at md</div>
+                <div className="stack-demo-block">Item</div>
+                <div className="stack-demo-block">Item</div>
+              </Stack>
+
+              <Title variant="section">Nested · separators · collapse</Title>
+              <VStack gap="comfortable" separator className="stack-demo-panel">
+                <BodyText size="sm">Outer with separators</BodyText>
+                <VStack gap="compact" nested>
+                  <Caption>Nested compact</Caption>
+                  <BodyText size="sm">Empty siblings collapse automatically.</BodyText>
+                  {null}
+                  <div hidden>Hidden</div>
+                  <BodyText size="sm">Still spaced evenly.</BodyText>
+                </VStack>
+                <HStack gap="sm" separator="strong" align="center">
+                  <span className="stack-chip">One</span>
+                  <span className="stack-chip">Two</span>
+                  <span className="stack-chip">Three</span>
+                </HStack>
+              </VStack>
+
+              <Title variant="section">Animate · virtual</Title>
+              <HStack gap="md" align="start" wrap className="stack-animate-row">
+                <VStack gap="sm" animate stagger className="stack-demo-panel stack-demo-grow">
+                  <Caption>animate + stagger</Caption>
+                  <div className="stack-demo-block">Enter 1</div>
+                  <div className="stack-demo-block">Enter 2</div>
+                  <div className="stack-demo-block">Enter 3</div>
+                </VStack>
+                <VStack
+                  gap="none"
+                  virtual={{ itemSize: 40, height: 160, overscan: 2 }}
+                  className="stack-demo-panel stack-demo-grow"
+                  aria-label="Virtualized stack"
+                >
+                  {Array.from({ length: 40 }, (_, i) => (
+                    <div key={i} className="stack-demo-virtual-row">
+                      Row {i + 1}
+                    </div>
+                  ))}
+                </VStack>
+              </HStack>
+            </VStack>
+          </Container>
+        </div>
+      ) : null}
+
+      {view === "container" ? (
+        <div className="container-lab">
+          <Container variant="dashboard" paddingY="section" stack as="main" aria-label="Container lab">
+            <Title variant="section">Responsive Container</Title>
+            <BodyText size="sm">
+              Mobile-first · safe-area · token padding · nested rhythm. Resize the viewport to see
+              max-width and padding adapt.
+            </BodyText>
+
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+              {(
+                [
+                  ["fluid", "Fluid"],
+                  ["full", "Full"],
+                  ["centered", "Centered"],
+                  ["narrow", "Narrow"],
+                  ["reading", "Reading"],
+                  ["form", "Form"],
+                  ["modal", "Modal"],
+                  ["wide", "Wide"],
+                  ["hero", "Hero"],
+                  ["dashboard", "Dashboard"],
+                ] as const
+              ).map(([v, label]) => (
+                <GridItem key={v} span={{ sm: 4, md: 4, lg: 3 }}>
+                  <div className="container-variant-frame">
+                    <Caption>{label}</Caption>
+                    <Container variant={v} nested elevated paddingY="sm" className="container-variant-inner">
+                      <BodyText size="sm">variant=&quot;{v}&quot;</BodyText>
+                    </Container>
+                  </div>
+                </GridItem>
+              ))}
+            </ResponsiveGrid>
+
+            <Title variant="section">Nested</Title>
+            <Container variant="wide" elevated paddingY="md" stack className="container-nest-demo">
+              <Caption>Outer · wide</Caption>
+              <Container variant="reading" nested elevated paddingY="sm" stack>
+                <Caption>Inner · reading (nested)</Caption>
+                <BodyText size="sm">
+                  Nested containers tighten padding and skip double safe-area insets so rhythm stays
+                  consistent.
+                </BodyText>
+                <Container variant="form" nested surface paddingY="sm">
+                  <Caption>Form nest</Caption>
+                </Container>
+              </Container>
+            </Container>
+
+            <Title variant="section">Custom · sticky · overflow</Title>
+            <Container
+              variant="custom"
+              maxWidth="36rem"
+              elevated
+              paddingY="md"
+              stack
+              className="container-custom-demo"
+            >
+              <Caption>custom maxWidth=36rem</Caption>
+              <BodyText size="sm">Use maxWidth for one-off measure without forking variants.</BodyText>
+            </Container>
+            <Container variant="reading" overflow="auto" elevated className="container-scroll-demo" paddingY="sm">
+              <Caption>overflow=auto</Caption>
+              <BodyText size="sm">
+                Long content scrolls inside the container without shifting the page chrome. Safe for
+                panels and modal bodies.
+              </BodyText>
+              <BodyText size="sm">
+                Additional lines keep the scroll region intentional and contained for nested
+                dashboards.
+              </BodyText>
+            </Container>
+          </Container>
+        </div>
+      ) : null}
+
+      {view === "icons" ? (
+        <Container>
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Icon System</Title>
+              <BodyText size="sm">
+                {iconResults.length} icons · stroke 1.5 · 24×24 · text-aligned · themed via
+                currentColor
+              </BodyText>
+              <div className="icon-toolbar">
+                <label className="icon-search">
+                  <Icon name="search" label="Search icons" size="sm" />
+                  <input
+                    type="search"
+                    value={iconQuery}
+                    onChange={(e) => setIconQuery(e.target.value)}
+                    placeholder="Search name, alias, category…"
+                    aria-label="Search icons"
+                  />
+                </label>
+                <select
+                  value={iconCategory}
+                  onChange={(e) => setIconCategory(e.target.value)}
+                  aria-label="Category"
+                >
+                  <option value="all">All categories</option>
+                  {ICON_CATEGORIES.map((c) => (
+                    <option key={c} value={c}>
+                      {c}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  value={iconVariant}
+                  onChange={(e) => setIconVariant(e.target.value as IconVariant)}
+                  aria-label="Variant"
+                >
+                  <option value="outlined">Outlined</option>
+                  <option value="filled">Filled</option>
+                  <option value="duotone">Duotone</option>
+                  <option value="status">Status</option>
+                </select>
+              </div>
+            </StackLayout>
+          </Section>
+
+          <Section>
+            <div className="icon-grid">
+              {iconResults.map((item) => (
+                <button
+                  key={item.name}
+                  type="button"
+                  className="icon-tile dk-theme-transition"
+                  title={`${item.name} · ${item.aliases.join(", ")}`}
+                >
+                  <Icon
+                    name={item.name}
+                    variant={iconVariant}
+                    size="lg"
+                    status={iconVariant === "status" ? "info" : undefined}
+                  />
+                  <Caption className="icon-tile-name">{item.name}</Caption>
+                </button>
+              ))}
+            </div>
+          </Section>
+
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">With text · buttons · status · badge</Title>
+              <div className="icon-demo-row">
+                <IconLabel icon="settings" iconProps={{ size: "sm" }}>
+                  <BodyText size="sm" as="span">
+                    Settings
+                  </BodyText>
+                </IconLabel>
+                <IconLabel icon="mail" iconProps={{ size: "sm" }}>
+                  <BodyText size="sm" as="span">
+                    Inbox
+                  </BodyText>
+                </IconLabel>
+                <IconButton name="plus" label="Create" tone="primary" />
+                <IconButton name="trash" label="Delete" tone="danger" />
+                <IconButton name="share" label="Share" iconOnly={false} tone="filled" />
+                <StatusIcon status="success" size="lg" label="Success" />
+                <StatusIcon status="warning" size="lg" label="Warning" />
+                <StatusIcon status="danger" size="lg" label="Error" />
+                <AiIcon size="lg" label="AI assist" />
+                <IconBadge name="bell" label="Notifications" count={3} size="lg" />
+                <AnimatedIcon name="sparkles" animation="pulse" size="lg" label="Animating" status="ai" />
+              </div>
+            </StackLayout>
+          </Section>
+        </Container>
+      ) : null}
+
+      {view === "motion" ? (
+        <Container>
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Motion System</Title>
+              <BodyText size="sm">
+                Reduced motion active: <strong>{reducedMotion ? "yes" : "no"}</strong> · preference{" "}
+                <strong>{motionPref}</strong>. Replay presets with the controls below.
+              </BodyText>
+              <div className="motion-controls">
+                <button
+                  type="button"
+                  className="demo-btn demo-btn-secondary"
+                  onClick={() => {
+                    setShowModalDemo(false);
+                    requestAnimationFrame(() => setShowModalDemo(true));
+                  }}
+                >
+                  Replay enters
+                </button>
+                <button
+                  type="button"
+                  className="demo-btn demo-btn-secondary"
+                  onClick={() => {
+                    setLoadingDemo(true);
+                    window.setTimeout(() => setLoadingDemo(false), 1200);
+                  }}
+                >
+                  Loading
+                </button>
+              </div>
+            </StackLayout>
+          </Section>
+
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Enter presets</Title>
+              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                {(
+                  [
+                    ["fade", "Fade"],
+                    ["scale", "Scale / modal"],
+                    ["slide-up", "Slide up"],
+                    ["page", "Page"],
+                    ["notify", "Notify"],
+                    ["success", "Success"],
+                  ] as const
+                ).map(([preset, label]) => (
+                  <GridItem key={preset} span={{ sm: 4, md: 4, lg: 2 }}>
+                    {showModalDemo ? (
+                      <Motion
+                        key={`${preset}-${showModalDemo}`}
+                        preset={preset}
+                        className="dk-surface dk-surface-card dk-surface-stack motion-tile"
+                      >
+                        <Caption>{label}</Caption>
+                      </Motion>
+                    ) : (
+                      <div className="dk-surface dk-surface-card motion-tile" />
+                    )}
+                  </GridItem>
+                ))}
+              </ResponsiveGrid>
+            </StackLayout>
+          </Section>
+
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Stagger · hover · press</Title>
+              <MotionStagger className="motion-stagger-row" speed="fast">
+                {["One", "Two", "Three", "Four"].map((label) => (
+                  <div key={label} className="dk-surface dk-surface-panel motion-stagger-item">
+                    <Caption>{label}</Caption>
+                  </div>
+                ))}
+              </MotionStagger>
+              <div className="motion-controls">
+                <HoverAnimation className="dk-surface dk-surface-card motion-tile">
+                  <Caption>Hover lift</Caption>
+                </HoverAnimation>
+                <PressAnimation className="demo-btn demo-btn-primary" highlight type="button">
+                  Press + highlight
+                </PressAnimation>
+                <DragAnimation
+                  dragging={dragDemo}
+                  className="dk-surface dk-surface-card motion-tile"
+                  onPointerDown={() => setDragDemo(true)}
+                  onPointerUp={() => setDragDemo(false)}
+                  onPointerLeave={() => setDragDemo(false)}
+                >
+                  <Caption>{dragDemo ? "Dragging" : "Hold to drag"}</Caption>
+                </DragAnimation>
+              </div>
+            </StackLayout>
+          </Section>
+
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Loading · skeleton</Title>
+              <div className="motion-controls">
+                <LoadingTransition loading={loadingDemo}>
+                  <button type="button" className="demo-btn demo-btn-primary">
+                    Ready
+                  </button>
+                </LoadingTransition>
+                <div className="motion-skeleton-card dk-surface dk-surface-card">
+                  <SkeletonAnimation variant="avatar" />
+                  <div style={{ flex: 1 }}>
+                    <SkeletonAnimation variant="title" />
+                    <SkeletonAnimation variant="text" />
+                    <SkeletonAnimation variant="text" style={{ width: "70%" }} />
+                  </div>
+                </div>
+              </div>
+            </StackLayout>
+          </Section>
+        </Container>
+      ) : null}
+
+      {view === "elevation" ? (
+        <Container>
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Elevation levels</Title>
+              <BodyText size="sm">
+                Subtle multi-layer shadows · adaptive in dark mode · off in high contrast. Hover /
+                press interactive tiles.
+              </BodyText>
+              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} equalHeight gap="tight">
+                {([0, 1, 2, 3, 4, 5] as const).map((level) => (
+                  <GridItem key={level} span={{ sm: 4, md: 4, lg: 2 }}>
+                    <Elevation
+                      level={level}
+                      interactive={level > 0}
+                      className="dk-surface dk-surface-card dk-surface-stack elev-demo-tile"
+                    >
+                      <Caption>Level {level}</Caption>
+                      <BodyText size="sm">{level === 0 ? "Flat" : "Hover me"}</BodyText>
+                    </Elevation>
+                  </GridItem>
+                ))}
+              </ResponsiveGrid>
+            </StackLayout>
+          </Section>
+
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Semantic roles</Title>
+              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} equalHeight gap="tight">
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Elevation semantic="button" as="button" type="button" className="demo-btn demo-btn-primary elev-demo-full">
+                    Button
+                  </Elevation>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Elevation semantic="card" interactive className="dk-surface dk-surface-card dk-surface-stack">
+                    <Caption>Card</Caption>
+                    <BodyText size="sm">Hover raises</BodyText>
+                  </Elevation>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Elevation semantic="fab" as="button" type="button" className="elev-fab dk-theme-transition" aria-label="FAB">
+                    +
+                  </Elevation>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Elevation semantic="dropdown" className="dk-surface dk-surface-popover dk-surface-stack">
+                    <Caption>Dropdown</Caption>
+                    <BodyText size="sm">Menu face</BodyText>
+                  </Elevation>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Elevation semantic="popover" className="dk-surface dk-surface-popover dk-surface-stack">
+                    <Caption>Popover</Caption>
+                    <BodyText size="sm">Floating</BodyText>
+                  </Elevation>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Elevation semantic="tooltip" className="elev-tooltip dk-theme-transition">
+                    Tooltip
+                  </Elevation>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Elevation semantic="modal" className="dk-surface dk-surface-modal dk-surface-stack elev-demo-modal">
+                    <Caption>Modal</Caption>
+                    <BodyText size="sm">Dialog depth</BodyText>
+                  </Elevation>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <ShadowLayer level={3} className="dk-surface dk-surface-panel dk-surface-stack">
+                    <Caption>Shadow layer</Caption>
+                    <BodyText size="sm">Level 3 band</BodyText>
+                  </ShadowLayer>
+                </GridItem>
+              </ResponsiveGrid>
+            </StackLayout>
+          </Section>
+
+          <Section>
+            <StackLayout gap="var(--space-stack-gap)">
+              <Title variant="section">Nav · panel</Title>
+              <Elevation semantic="nav" className="elev-nav dk-theme-transition">
+                <Caption>Navigation bar</Caption>
+              </Elevation>
+              <Elevation semantic="panel-float" className="dk-surface dk-surface-panel dk-surface-stack">
+                <Caption>Floating panel</Caption>
+                <BodyText size="sm">Side inspector / tray</BodyText>
+              </Elevation>
+            </StackLayout>
+          </Section>
+        </Container>
+      ) : null}
 
       {view === "shape" ? (
         <Container>
@@ -394,111 +1868,146 @@ export function App() {
 
       {view === "surface" ? (
         <Container>
-          <Section>
-            <StackLayout gap="var(--space-stack-gap)">
-              <Title variant="section">Roles</Title>
-              <BodyText size="sm">
-                Hierarchy through elevation and materials — soft borders, no heavy chrome.
-              </BodyText>
-              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} equalHeight gap="tight">
-                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
-                  <CardSurface>
-                    <Caption>Card</Caption>
-                    <BodyText size="sm">Grouped content</BodyText>
-                  </CardSurface>
-                </GridItem>
-                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
-                  <PanelSurface>
-                    <Caption>Panel</Caption>
-                    <BodyText size="sm">Inset region</BodyText>
-                  </PanelSurface>
-                </GridItem>
-                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
-                  <WidgetSurface>
-                    <Caption>Widget</Caption>
-                    <NumericDisplay variant="stat">98%</NumericDisplay>
-                  </WidgetSurface>
-                </GridItem>
-                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
-                  <ShadowLayer level={3} stack>
-                    <Caption>Shadow layer</Caption>
-                    <BodyText size="sm">Elev 3 · no box-shadow</BodyText>
-                  </ShadowLayer>
-                </GridItem>
-              </ResponsiveGrid>
-            </StackLayout>
+          <Section
+            title="Surface System"
+            description="Enterprise layers — semantic elevation, materials, interactive press, paint containment."
+          >
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} equalHeight gap="tight">
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <CardSurface contain>
+                  <Caption>Card</Caption>
+                  <BodyText size="sm">Grouped content</BodyText>
+                </CardSurface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <PanelSurface>
+                  <Caption>Panel</Caption>
+                  <BodyText size="sm">Inset region</BodyText>
+                </PanelSurface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <WidgetSurface>
+                  <Caption>Widget</Caption>
+                  <NumericDisplay variant="stat">98%</NumericDisplay>
+                </WidgetSurface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <OverlaySurface>
+                  <Caption>Overlay face</Caption>
+                  <BodyText size="sm">Elev 5 band</BodyText>
+                </OverlaySurface>
+              </GridItem>
+            </ResponsiveGrid>
           </Section>
 
-          <Section>
-            <StackLayout gap="var(--space-stack-gap)">
-              <Title variant="section">Materials</Title>
-              <div className="surface-material-stage dk-theme-transition">
-                <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
-                  <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
-                    <GlassSurface stack>
-                      <Caption>Glass</Caption>
-                      <BodyText size="sm">Thin material + blur</BodyText>
-                    </GlassSurface>
-                  </GridItem>
-                  <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
-                    <FrostedSurface stack>
-                      <Caption>Frosted</Caption>
-                      <BodyText size="sm">Thick material</BodyText>
-                    </FrostedSurface>
-                  </GridItem>
-                  <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
-                    <Surface variant="card" material="material" elevation={2} stack>
-                      <Caption>Material</Caption>
-                      <BodyText size="sm">Regular chrome</BodyText>
-                    </Surface>
-                  </GridItem>
-                </ResponsiveGrid>
-              </div>
-            </StackLayout>
+          <Section title="Floating roles" description="Tooltip, dropdown, menu, side panel.">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <TooltipSurface>Save changes</TooltipSurface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <DropdownSurface>
+                  <Caption>Dropdown</Caption>
+                  <BodyText size="sm">Filter · Sort · Export</BodyText>
+                </DropdownSurface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <MenuSurface>
+                  <Caption>Menu</Caption>
+                  <BodyText size="sm">New · Open · Share</BodyText>
+                </MenuSurface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                <SidePanelSurface>
+                  <Caption>Side panel</Caption>
+                  <BodyText size="sm">Inspector chrome</BodyText>
+                </SidePanelSurface>
+              </GridItem>
+            </ResponsiveGrid>
           </Section>
 
-          <Section>
-            <StackLayout gap="var(--space-stack-gap)">
-              <Title variant="section">Elevation scale</Title>
-              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} equalHeight gap="tight">
-                {([0, 1, 2, 3, 4] as const).map((level) => (
-                  <GridItem key={level} span={{ sm: 4, md: 4, lg: 2 }}>
-                    <Surface elevation={level} stack>
-                      <Caption>Elev {level}</Caption>
-                      <BodyText size="sm">Layer</BodyText>
-                    </Surface>
-                  </GridItem>
-                ))}
-                <GridItem span={{ sm: 4, md: 4, lg: 2 }}>
-                  <Surface sunken quiet stack>
-                    <Caption>Sunken</Caption>
-                    <BodyText size="sm">Recessed</BodyText>
+          <Section title="Materials">
+            <div className="surface-material-stage dk-theme-transition">
+              <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <GlassSurface stack>
+                    <Caption>Glass</Caption>
+                    <BodyText size="sm">Thin + blur</BodyText>
+                  </GlassSurface>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <FrostedSurface stack>
+                    <Caption>Frosted</Caption>
+                    <BodyText size="sm">Thick material</BodyText>
+                  </FrostedSurface>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Surface variant="card" material="translucent" elevation={2} stack>
+                    <Caption>Translucent</Caption>
+                    <BodyText size="sm">Soft blur</BodyText>
+                  </Surface>
+                </GridItem>
+                <GridItem span={{ sm: 4, md: 4, lg: 3 }}>
+                  <Surface variant="card" elevation={2} veil stack>
+                    <Caption>Veil</Caption>
+                    <BodyText size="sm">Accent wash</BodyText>
                   </Surface>
                 </GridItem>
               </ResponsiveGrid>
-            </StackLayout>
+            </div>
           </Section>
 
-          <Section>
-            <StackLayout gap="var(--space-stack-gap)">
-              <Title variant="section">Modal / overlay</Title>
-              <button type="button" className="demo-btn demo-btn-primary" onClick={() => setOverlayOpen(true)}>
-                Open modal
+          <Section title="Elevation · outline · press">
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} equalHeight gap="tight">
+              {([0, 1, 2, 3, 4, 5] as const).map((level) => (
+                <GridItem key={level} span={{ sm: 2, md: 4, lg: 2 }}>
+                  <Surface elevation={level} stack motion>
+                    <Caption>Elev {level}</Caption>
+                  </Surface>
+                </GridItem>
+              ))}
+            </ResponsiveGrid>
+            <Spacer preset="section" />
+            <ResponsiveGrid columns={{ sm: 4, md: 8, lg: 12 }} gap="tight" equalHeight>
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <Surface outlined interactive stack>
+                  <Caption>Outlined</Caption>
+                  <BodyText size="sm">Hover me</BodyText>
+                </Surface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <Surface interactive stack elevation={2}>
+                  <Caption>Interactive</Caption>
+                  <BodyText size="sm">Press for depth</BodyText>
+                </Surface>
+              </GridItem>
+              <GridItem span={{ sm: 4, md: 4, lg: 4 }}>
+                <Surface sunken quiet stack>
+                  <Caption>Sunken</Caption>
+                  <BodyText size="sm">Recessed</BodyText>
+                </Surface>
+              </GridItem>
+            </ResponsiveGrid>
+          </Section>
+
+          <Section title="Modal / overlay">
+            <button type="button" className="demo-btn demo-btn-primary" onClick={() => setOverlayOpen(true)}>
+              Open modal
+            </button>
+            <Overlay open={overlayOpen} onClose={() => setOverlayOpen(false)} size="md">
+              <Title variant="section">Confirm action</Title>
+              <BodyText size="sm">
+                Overlay pairs a scrim with a modal surface. Escape or scrim click closes.
+              </BodyText>
+              <button type="button" className="demo-btn demo-btn-primary" onClick={() => setOverlayOpen(false)}>
+                Done
               </button>
-              <Overlay open={overlayOpen} onClose={() => setOverlayOpen(false)} size="md">
-                <Title variant="section">Confirm action</Title>
-                <BodyText size="sm">
-                  Overlay pairs a scrim with a modal surface. Escape or scrim click closes.
-                </BodyText>
-                <button type="button" className="demo-btn demo-btn-primary" onClick={() => setOverlayOpen(false)}>
-                  Done
-                </button>
-              </Overlay>
-              <ModalSurface size="sm" className="surface-inline-modal">
-                <Caption>Inline modal face</Caption>
-                <BodyText size="sm">Same chrome without the overlay root.</BodyText>
-              </ModalSurface>
-            </StackLayout>
+            </Overlay>
+            <Spacer preset="medium" />
+            <ModalSurface size="sm" className="surface-inline-modal">
+              <Caption>Inline modal face</Caption>
+              <BodyText size="sm">Same chrome without the overlay root.</BodyText>
+            </ModalSurface>
           </Section>
         </Container>
       ) : null}

@@ -1,0 +1,327 @@
+/**
+ * DevKit Responsive Container — Layer 1 Foundation (id: 16 · container)
+ *
+ * Primary layout wrapper: mobile-first, safe-area aware, nested-safe.
+ * Variants: fluid, fixed, centered, full, narrow, wide, reading, dashboard,
+ * form, hero, modal, custom. Padding via spacing tokens — never hardcode.
+ *
+ * Load after responsive-spacing.css + responsive-grid.css (extends .dk-container).
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tokens — widths, padding, safe areas
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme] {
+  --container-pad-x: var(--space-page-x, var(--space-4, 1rem));
+  --container-pad-y: 0px;
+  --container-gap: var(--space-stack-gap, var(--space-4, 1rem));
+
+  --container-width-form: 28rem;
+  --container-width-reading: 40rem;
+  --container-width-narrow: 40rem;
+  --container-width-modal: 32rem;
+  --container-width-default: var(--container-max, 70rem);
+  --container-width-wide: 72rem;
+  --container-width-hero: 80rem;
+  --container-width-dashboard: 90rem;
+  --container-width-full: none;
+
+  --container-max-w: var(--container-width-default);
+  --container-align: center;
+  --container-bg: transparent;
+
+  --container-safe-left: env(safe-area-inset-left, 0px);
+  --container-safe-right: env(safe-area-inset-right, 0px);
+  --container-safe-top: env(safe-area-inset-top, 0px);
+  --container-safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* Fold / hinge (progressive — ignored where unsupported) */
+  --container-hinge: env(fold-left, 0px);
+
+  --container-transition:
+    max-width var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    padding var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --container-pad-x: var(--space-page-x, var(--space-5, 1.25rem));
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-pad-x: var(--space-page-x, var(--space-6, 1.5rem));
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-pad-x: var(--space-page-x, var(--space-8, 2rem));
+  }
+}
+
+[data-density="compact"] {
+  --container-pad-x: var(--space-3, 0.75rem);
+  --container-pad-y: var(--space-2, 0.5rem);
+}
+
+[data-density="spacious"] {
+  --container-pad-x: var(--space-8, 2rem);
+  --container-pad-y: var(--space-6, 1.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) {
+    --container-transition: none;
+  }
+}
+
+html[data-motion="reduce"] {
+  --container-transition: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-container,
+.dk-rc {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--container-max-w);
+  margin-inline: auto;
+  padding-inline: max(var(--container-pad-x), var(--container-safe-left), var(--container-safe-right));
+  padding-block: var(--container-pad-y);
+  background: var(--container-bg);
+  min-width: 0; /* prevent flex/grid blowout */
+  position: relative;
+}
+
+.dk-container-motion,
+.dk-rc-motion {
+  transition: var(--container-transition);
+}
+
+/* Nested — tighter pad, no double safe-area on inner edges */
+.dk-container .dk-container,
+.dk-rc .dk-rc,
+.dk-container-nested,
+.dk-rc-nested {
+  --container-safe-left: 0px;
+  --container-safe-right: 0px;
+  --container-pad-x: var(--space-3, 0.75rem);
+  padding-inline: var(--container-pad-x);
+  max-width: 100%;
+}
+
+.dk-container .dk-container .dk-container,
+.dk-rc .dk-rc .dk-rc {
+  --container-pad-x: var(--space-2, 0.5rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Width / role variants
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-container-fluid,
+.dk-rc-fluid {
+  max-width: none;
+  width: 100%;
+}
+
+.dk-container-full,
+.dk-rc-full {
+  max-width: none;
+  width: 100%;
+  padding-inline: max(0px, var(--container-safe-left), var(--container-safe-right));
+}
+
+.dk-container-fixed,
+.dk-container-centered,
+.dk-rc-fixed,
+.dk-rc-centered {
+  --container-max-w: var(--container-width-default);
+  margin-inline: auto;
+}
+
+.dk-container-narrow,
+.dk-rc-narrow {
+  --container-max-w: var(--container-width-narrow);
+}
+
+.dk-container-wide,
+.dk-rc-wide {
+  --container-max-w: var(--container-width-wide);
+}
+
+.dk-container-reading,
+.dk-rc-reading {
+  --container-max-w: var(--container-width-reading);
+}
+
+.dk-container-dashboard,
+.dk-rc-dashboard {
+  --container-max-w: var(--container-width-dashboard);
+}
+
+.dk-container-form,
+.dk-rc-form {
+  --container-max-w: var(--container-width-form);
+}
+
+.dk-container-hero,
+.dk-rc-hero {
+  --container-max-w: var(--container-width-hero);
+}
+
+.dk-container-modal,
+.dk-rc-modal {
+  --container-max-w: var(--container-width-modal);
+}
+
+.dk-container-custom,
+.dk-rc-custom {
+  --container-max-w: var(--container-custom-width, var(--container-width-default));
+}
+
+/* Alignment */
+.dk-container-align-start,
+.dk-rc-align-start {
+  margin-inline: 0 auto;
+}
+
+.dk-container-align-center,
+.dk-rc-align-center {
+  margin-inline: auto;
+}
+
+.dk-container-align-end,
+.dk-rc-align-end {
+  margin-inline: auto 0;
+}
+
+.dk-container-align-stretch,
+.dk-rc-align-stretch {
+  margin-inline: 0;
+  max-width: none;
+  width: 100%;
+}
+
+/* Padding presets (token-driven) */
+.dk-container-px-none,
+.dk-rc-px-none { --container-pad-x: 0px; padding-inline: max(0px, var(--container-safe-left), var(--container-safe-right)); }
+.dk-container-px-sm,
+.dk-rc-px-sm { --container-pad-x: var(--space-3, 0.75rem); }
+.dk-container-px-md,
+.dk-rc-px-md { --container-pad-x: var(--space-4, 1rem); }
+.dk-container-px-lg,
+.dk-rc-px-lg { --container-pad-x: var(--space-6, 1.5rem); }
+.dk-container-px-xl,
+.dk-rc-px-xl { --container-pad-x: var(--space-8, 2rem); }
+
+.dk-container-py-none,
+.dk-rc-py-none { --container-pad-y: 0px; }
+.dk-container-py-sm,
+.dk-rc-py-sm { --container-pad-y: var(--space-3, 0.75rem); }
+.dk-container-py-md,
+.dk-rc-py-md { --container-pad-y: var(--space-4, 1rem); }
+.dk-container-py-lg,
+.dk-rc-py-lg { --container-pad-y: var(--space-6, 1.5rem); }
+.dk-container-py-xl,
+.dk-rc-py-xl { --container-pad-y: var(--space-8, 2rem); }
+.dk-container-py-section,
+.dk-rc-py-section { --container-pad-y: var(--space-section-y, var(--space-8, 2rem)); }
+
+/* Safe area extras */
+.dk-container-safe,
+.dk-rc-safe {
+  padding-top: max(var(--container-pad-y), var(--container-safe-top));
+  padding-bottom: max(var(--container-pad-y), var(--container-safe-bottom));
+  padding-left: max(var(--container-pad-x), var(--container-safe-left));
+  padding-right: max(var(--container-pad-x), var(--container-safe-right));
+}
+
+.dk-container-safe-x,
+.dk-rc-safe-x {
+  padding-left: max(var(--container-pad-x), var(--container-safe-left));
+  padding-right: max(var(--container-pad-x), var(--container-safe-right));
+}
+
+.dk-container-safe-y,
+.dk-rc-safe-y {
+  padding-top: max(var(--container-pad-y), var(--container-safe-top));
+  padding-bottom: max(var(--container-pad-y), var(--container-safe-bottom));
+}
+
+/* Sticky / overflow */
+.dk-container-sticky,
+.dk-rc-sticky {
+  position: sticky;
+  top: max(0px, var(--container-safe-top));
+  z-index: var(--z-sticky, 100);
+}
+
+.dk-container-sticky-bottom,
+.dk-rc-sticky-bottom {
+  position: sticky;
+  bottom: max(0px, var(--container-safe-bottom));
+  top: auto;
+  z-index: var(--z-sticky, 100);
+}
+
+.dk-container-overflow-auto,
+.dk-rc-overflow-auto {
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dk-container-overflow-hidden,
+.dk-rc-overflow-hidden {
+  overflow: hidden;
+}
+
+.dk-container-overflow-clip,
+.dk-rc-overflow-clip {
+  overflow: clip;
+}
+
+/* Surface / elevation inheritance */
+.dk-container-surface,
+.dk-rc-surface {
+  --container-bg: var(--color-bg-base);
+  color: var(--color-text-primary);
+}
+
+.dk-container-elevated,
+.dk-rc-elevated {
+  --container-bg: var(--color-surface-card);
+  border-radius: var(--radius-container, var(--radius-xl, 1rem));
+  box-shadow: var(--elevation-1-shadow, none);
+}
+
+/* Stack children with token gap */
+.dk-container-stack,
+.dk-rc-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--container-gap);
+}
+
+/* Scroll lock helper applied to body via JS — class marker */
+html.dk-scroll-lock,
+body.dk-scroll-lock {
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Dual-screen / foldable progressive enhancement */
+@media (horizontal-viewport-segments: 2) {
+  .dk-container-fold,
+  .dk-rc-fold {
+    max-width: env(viewport-segment-width 0 0, 100%);
+  }
+}

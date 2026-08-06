@@ -2,7 +2,7 @@
   "id": 20,
   "name": "aspect-ratio",
   "displayName": "Aspect Ratio",
-  "description": "AspectRatio — layout companion for the responsive grid system.",
+  "description": "Aspect Ratio — consistent proportions for media and layouts with presets (1:1, 16:9, A4, card, mobile…), fit/crop, skeleton, and lazy loading.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
@@ -14,7 +14,8 @@
   "tags": [
     "foundation",
     "layout-system",
-    "aspect-ratio"
+    "aspect-ratio",
+    "media"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,7 +25,7 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
   "fileKind": "tsx",
   "versions": {

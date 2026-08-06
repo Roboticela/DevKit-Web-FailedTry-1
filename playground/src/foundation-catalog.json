@@ -683,7 +683,7 @@
         {
           "id": 98,
           "name": "device-detector",
-          "displayName": "Device Detector",
+          "displayName": "Breakpoint Manager",
           "fileKind": "tsx"
         },
         {

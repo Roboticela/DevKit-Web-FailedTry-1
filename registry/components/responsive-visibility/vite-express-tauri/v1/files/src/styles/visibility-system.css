@@ -1,0 +1,278 @@
+/**
+ * DevKit Responsive Visibility — Layer 1 Foundation (id: 96 · responsive-visibility)
+ *
+ * Show / hide / collapse / preserve-layout by viewport, orientation, print,
+ * accessibility preferences, and app conditions. Prefer CSS for viewport
+ * presets (no JS) and React gates for roles / flags / intersection.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tokens
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme] {
+  --visibility-transition:
+    opacity var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    transform var(--motion-duration-normal, 200ms) var(--motion-ease-standard, ease),
+    max-height var(--motion-duration-normal, 200ms) var(--motion-ease-emphasized, cubic-bezier(0.2, 0, 0, 1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) {
+    --visibility-transition: none;
+  }
+}
+
+html[data-motion="reduce"] {
+  --visibility-transition: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Modes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-vis {
+  box-sizing: border-box;
+}
+
+.dk-vis-motion {
+  transition: var(--visibility-transition);
+}
+
+/* Hard hide — removed from layout & a11y tree via CSS */
+.dk-vis-hide {
+  display: none !important;
+}
+
+/* Preserve layout — invisible but occupies space */
+.dk-vis-preserve {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  user-select: none;
+}
+
+.dk-vis-preserve[aria-hidden="true"] {
+  /* already hidden from AT when attribute set by React */
+}
+
+/* Collapse — animate closed without display:none until settled */
+.dk-vis-collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  overflow: hidden;
+  transition: grid-template-rows var(--motion-duration-normal, 200ms)
+    var(--motion-ease-emphasized, cubic-bezier(0.2, 0, 0, 1));
+}
+
+.dk-vis-collapse > .dk-vis-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dk-vis-collapse[data-open="false"] {
+  grid-template-rows: 0fr;
+  pointer-events: none;
+}
+
+/* Fade / soft hide while keeping for animation frames */
+.dk-vis-fade[data-visible="false"] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.dk-vis-fade[data-visible="true"] {
+  opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Viewport presets — mobile / tablet / desktop / large
+   Breakpoints align with DevKit: phone <768, tablet 768–1023, desktop 1024+,
+   large 1280+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Mobile only (< 768) */
+.dk-vis-mobile-only {
+  display: contents;
+}
+@media (min-width: 768px) {
+  .dk-vis-mobile-only { display: none !important; }
+}
+
+/* Tablet only (768–1023) */
+.dk-vis-tablet-only {
+  display: none !important;
+}
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .dk-vis-tablet-only { display: contents; }
+}
+
+/* Desktop only (≥ 1024) */
+.dk-vis-desktop-only {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  .dk-vis-desktop-only { display: contents; }
+}
+
+/* Large screens (≥ 1280) */
+.dk-vis-large-only {
+  display: none !important;
+}
+@media (min-width: 1280px) {
+  .dk-vis-large-only { display: contents; }
+}
+
+/* Hide on mobile / show from md */
+.dk-vis-from-md {
+  display: none !important;
+}
+@media (min-width: 768px) {
+  .dk-vis-from-md { display: contents; }
+}
+
+.dk-vis-until-md {
+  display: contents;
+}
+@media (min-width: 768px) {
+  .dk-vis-until-md { display: none !important; }
+}
+
+.dk-vis-from-lg {
+  display: none !important;
+}
+@media (min-width: 1024px) {
+  .dk-vis-from-lg { display: contents; }
+}
+
+.dk-vis-until-lg {
+  display: contents;
+}
+@media (min-width: 1024px) {
+  .dk-vis-until-lg { display: none !important; }
+}
+
+/* Block-level variants when display:contents is undesirable */
+.dk-vis-block.dk-vis-mobile-only,
+.dk-vis-block.dk-vis-tablet-only,
+.dk-vis-block.dk-vis-desktop-only,
+.dk-vis-block.dk-vis-large-only,
+.dk-vis-block.dk-vis-from-md,
+.dk-vis-block.dk-vis-from-lg,
+.dk-vis-block.dk-vis-landscape-only,
+.dk-vis-block.dk-vis-portrait-only,
+.dk-vis-block.dk-vis-print-only,
+.dk-vis-block.dk-vis-screen-only,
+.dk-vis-block.dk-vis-a11y-only,
+.dk-vis-block.dk-vis-foldable-only {
+  display: block;
+}
+
+.dk-vis-block.dk-vis-until-md,
+.dk-vis-block.dk-vis-until-lg {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .dk-vis-block.dk-vis-mobile-only { display: none !important; }
+  .dk-vis-block.dk-vis-from-md { display: block; }
+  .dk-vis-block.dk-vis-until-md { display: none !important; }
+}
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .dk-vis-block.dk-vis-tablet-only { display: block; }
+}
+@media (min-width: 1024px) {
+  .dk-vis-block.dk-vis-desktop-only { display: block; }
+  .dk-vis-block.dk-vis-from-lg { display: block; }
+  .dk-vis-block.dk-vis-until-lg { display: none !important; }
+}
+@media (min-width: 1280px) {
+  .dk-vis-block.dk-vis-large-only { display: block; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Orientation · print · foldable · a11y
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-vis-landscape-only {
+  display: none !important;
+}
+@media (orientation: landscape) {
+  .dk-vis-landscape-only { display: contents; }
+  .dk-vis-block.dk-vis-landscape-only { display: block; }
+}
+
+.dk-vis-portrait-only {
+  display: none !important;
+}
+@media (orientation: portrait) {
+  .dk-vis-portrait-only { display: contents; }
+  .dk-vis-block.dk-vis-portrait-only { display: block; }
+}
+
+.dk-vis-print-only {
+  display: none !important;
+}
+@media print {
+  .dk-vis-print-only { display: contents !important; }
+  .dk-vis-block.dk-vis-print-only { display: block !important; }
+  .dk-vis-screen-only { display: none !important; }
+}
+
+.dk-vis-screen-only {
+  display: contents;
+}
+
+/* Foldables — progressive; ignored where unsupported */
+.dk-vis-foldable-only {
+  display: none !important;
+}
+@media (horizontal-viewport-segments: 2), (vertical-viewport-segments: 2) {
+  .dk-vis-foldable-only { display: contents; }
+  .dk-vis-block.dk-vis-foldable-only { display: block; }
+}
+
+/* Accessibility mode — show when user prefers reduced motion OR more contrast */
+.dk-vis-a11y-only {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce), (prefers-contrast: more) {
+  .dk-vis-a11y-only { display: contents; }
+  .dk-vis-block.dk-vis-a11y-only { display: block; }
+}
+
+.dk-vis-reduced-motion-only {
+  display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .dk-vis-reduced-motion-only { display: contents; }
+  .dk-vis-block.dk-vis-reduced-motion-only { display: block; }
+}
+
+.dk-vis-motion-ok-only {
+  display: contents;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:not([data-motion="full"]) .dk-vis-motion-ok-only {
+    display: none !important;
+  }
+}
+html[data-motion="reduce"] .dk-vis-motion-ok-only {
+  display: none !important;
+}
+
+/* Legacy grid companions — keep working */
+.dk-hide { display: none !important; }
+@media (max-width: 767.98px) {
+  .dk-hide-phone { display: none !important; }
+}
+@media (min-width: 768px) {
+  .dk-show-md-up { display: revert; }
+  .dk-hide-md-up { display: none !important; }
+}
+@media (min-width: 1024px) {
+  .dk-hide-lg-up { display: none !important; }
+}
+@media (max-width: 1023.98px) {
+  .dk-hide-until-lg { display: none !important; }
+}

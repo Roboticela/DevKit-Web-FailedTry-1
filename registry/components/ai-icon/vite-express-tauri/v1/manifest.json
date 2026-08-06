@@ -1,15 +1,33 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
+      "source": "files/src/components/ui/icon-registry.ts",
+      "destination": "src/components/ui/icon-registry.ts"
+    },
+    {
+      "source": "files/src/components/ui/Icon.tsx",
+      "destination": "src/components/ui/Icon.tsx"
+    },
+    {
+      "source": "files/src/components/ui/IconExtras.tsx",
+      "destination": "src/components/ui/IconExtras.tsx"
+    },
+    {
       "source": "files/src/components/ui/AiIcon.tsx",
       "destination": "src/components/ui/AiIcon.tsx"
+    },
+    {
+      "source": "files/src/styles/ai-icon.css",
+      "destination": "src/styles/ai-icon.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "icon"
+    ]
   },
   "envVars": []
 }

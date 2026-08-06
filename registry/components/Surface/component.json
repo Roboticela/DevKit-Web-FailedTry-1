@@ -2,7 +2,7 @@
   "id": 18,
   "name": "surface",
   "displayName": "Surface",
-  "description": "Surface System — layered page/card/panel/sheet/popover/sidebar/modal/dashboard/widget/overlay surfaces with elevation, materials, and frosted glass.",
+  "description": "Surface System — enterprise visual layers (page/card/modal/sheet/tooltip/dropdown/menu/side-panel) with semantic elevation, materials, interactive press, and paint containment.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
@@ -25,7 +25,7 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
   "fileKind": "tsx",
   "versions": {

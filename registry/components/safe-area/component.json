@@ -2,7 +2,7 @@
   "id": 19,
   "name": "safe-area",
   "displayName": "Safe Area",
-  "description": "SafeArea — layout companion for the responsive grid system.",
+  "description": "Safe Area — device insets for notches, Dynamic Island, foldables, keyboards, and browser chrome; modes for nav/FAB/fullscreen; useSafeArea hooks.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
@@ -14,7 +14,8 @@
   "tags": [
     "foundation",
     "layout-system",
-    "safe-area"
+    "safe-area",
+    "inset"
   ],
   "templates": [
     "nextjs-compact",
@@ -24,7 +25,7 @@
     "web",
     "desktop"
   ],
-  "hasVariants": false,
+  "hasVariants": true,
   "stub": false,
   "fileKind": "tsx",
   "versions": {

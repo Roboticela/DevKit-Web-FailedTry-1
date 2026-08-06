@@ -1,0 +1,263 @@
+/**
+ * DevKit Breakpoint Manager — Layer 1 Foundation (id: 98 · device-detector)
+ *
+ * Semantic breakpoints (xs→3xl) — not device product names.
+ * Single source of CSS tokens for viewport / container queries and document sync.
+ * Pair with BreakpointProvider for live JS state across the design system.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Semantic breakpoint tokens (source of truth)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme] {
+  --bp-xs: 0px;
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1024px;
+  --bp-xl: 1280px;
+  --bp-2xl: 1440px;
+  --bp-3xl: 1680px;
+
+  /* Legacy aliases (grid / older packages) — map to semantic scale */
+  --bp-phone: var(--bp-xs);
+  --bp-phablet: var(--bp-sm);
+  --bp-tablet: var(--bp-md);
+  --bp-laptop: var(--bp-lg);
+  --bp-desktop: var(--bp-xl);
+  --bp-ultrawide: var(--bp-2xl);
+  --bp-ultrawide-xl: var(--bp-3xl);
+
+  /* Live viewport (written by BreakpointProvider when syncCssVars) */
+  --bp-current: var(--bp-md);
+  --bp-width: 1024px;
+  --bp-height: 768px;
+  --bp-dpr: 1;
+
+  /* Container query defaults */
+  --cq-sm: 480px;
+  --cq-md: 768px;
+  --cq-lg: 1024px;
+  --cq-xl: 1280px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Document capability attributes (set by JS; CSS can react without hooks)
+   data-bp · data-orientation · data-pointer · data-hover · data-touch
+   data-density · data-fold · data-motion · data-transparency · data-contrast
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+html[data-bp] {
+  /* hook for theme/tooling */
+}
+
+/* Adaptive layout helpers driven by synced attributes */
+.dk-bp-only-xs,
+.dk-bp-only-sm,
+.dk-bp-only-md,
+.dk-bp-only-lg,
+.dk-bp-only-xl,
+.dk-bp-only-2xl,
+.dk-bp-only-3xl {
+  display: none !important;
+}
+
+html[data-bp="xs"] .dk-bp-only-xs,
+html[data-bp="sm"] .dk-bp-only-sm,
+html[data-bp="md"] .dk-bp-only-md,
+html[data-bp="lg"] .dk-bp-only-lg,
+html[data-bp="xl"] .dk-bp-only-xl,
+html[data-bp="2xl"] .dk-bp-only-2xl,
+html[data-bp="3xl"] .dk-bp-only-3xl {
+  display: contents;
+}
+
+.dk-bp-block.dk-bp-only-xs,
+.dk-bp-block.dk-bp-only-sm,
+.dk-bp-block.dk-bp-only-md,
+.dk-bp-block.dk-bp-only-lg,
+.dk-bp-block.dk-bp-only-xl,
+.dk-bp-block.dk-bp-only-2xl,
+.dk-bp-block.dk-bp-only-3xl {
+  display: none !important;
+}
+
+html[data-bp="xs"] .dk-bp-block.dk-bp-only-xs,
+html[data-bp="sm"] .dk-bp-block.dk-bp-only-sm,
+html[data-bp="md"] .dk-bp-block.dk-bp-only-md,
+html[data-bp="lg"] .dk-bp-block.dk-bp-only-lg,
+html[data-bp="xl"] .dk-bp-block.dk-bp-only-xl,
+html[data-bp="2xl"] .dk-bp-block.dk-bp-only-2xl,
+html[data-bp="3xl"] .dk-bp-block.dk-bp-only-3xl {
+  display: block;
+}
+
+.dk-bp-from-sm { display: none !important; }
+.dk-bp-from-md { display: none !important; }
+.dk-bp-from-lg { display: none !important; }
+.dk-bp-from-xl { display: none !important; }
+.dk-bp-from-2xl { display: none !important; }
+
+html[data-bp="sm"] .dk-bp-from-sm,
+html[data-bp="md"] .dk-bp-from-sm,
+html[data-bp="lg"] .dk-bp-from-sm,
+html[data-bp="xl"] .dk-bp-from-sm,
+html[data-bp="2xl"] .dk-bp-from-sm,
+html[data-bp="3xl"] .dk-bp-from-sm,
+html[data-bp="md"] .dk-bp-from-md,
+html[data-bp="lg"] .dk-bp-from-md,
+html[data-bp="xl"] .dk-bp-from-md,
+html[data-bp="2xl"] .dk-bp-from-md,
+html[data-bp="3xl"] .dk-bp-from-md,
+html[data-bp="lg"] .dk-bp-from-lg,
+html[data-bp="xl"] .dk-bp-from-lg,
+html[data-bp="2xl"] .dk-bp-from-lg,
+html[data-bp="3xl"] .dk-bp-from-lg,
+html[data-bp="xl"] .dk-bp-from-xl,
+html[data-bp="2xl"] .dk-bp-from-xl,
+html[data-bp="3xl"] .dk-bp-from-xl,
+html[data-bp="2xl"] .dk-bp-from-2xl,
+html[data-bp="3xl"] .dk-bp-from-2xl {
+  display: contents;
+}
+
+/* Viewport media fallbacks (work before JS hydrate) */
+@media (min-width: 480px) {
+  .dk-mq-from-sm { display: contents; }
+}
+@media (max-width: 479.98px) {
+  .dk-mq-from-sm { display: none !important; }
+}
+@media (min-width: 768px) {
+  .dk-mq-from-md { display: contents; }
+}
+@media (max-width: 767.98px) {
+  .dk-mq-from-md { display: none !important; }
+}
+@media (min-width: 1024px) {
+  .dk-mq-from-lg { display: contents; }
+}
+@media (max-width: 1023.98px) {
+  .dk-mq-from-lg { display: none !important; }
+}
+@media (min-width: 1280px) {
+  .dk-mq-from-xl { display: contents; }
+}
+@media (max-width: 1279.98px) {
+  .dk-mq-from-xl { display: none !important; }
+}
+
+.dk-mq-from-sm,
+.dk-mq-from-md,
+.dk-mq-from-lg,
+.dk-mq-from-xl {
+  display: none !important;
+}
+
+/* Orientation · density · pointer · hover · a11y (CSS-first) */
+@media (orientation: landscape) {
+  .dk-mq-landscape { display: contents; }
+  .dk-mq-portrait { display: none !important; }
+}
+@media (orientation: portrait) {
+  .dk-mq-portrait { display: contents; }
+  .dk-mq-landscape { display: none !important; }
+}
+
+.dk-mq-landscape { display: none !important; }
+.dk-mq-portrait { display: none !important; }
+
+@media (pointer: fine) {
+  .dk-mq-pointer-fine { display: contents; }
+  .dk-mq-pointer-coarse { display: none !important; }
+}
+@media (pointer: coarse) {
+  .dk-mq-pointer-coarse { display: contents; }
+  .dk-mq-pointer-fine { display: none !important; }
+}
+.dk-mq-pointer-fine,
+.dk-mq-pointer-coarse {
+  display: none !important;
+}
+
+@media (hover: hover) {
+  .dk-mq-hover { display: contents; }
+  .dk-mq-no-hover { display: none !important; }
+}
+@media (hover: none) {
+  .dk-mq-no-hover { display: contents; }
+  .dk-mq-hover { display: none !important; }
+}
+.dk-mq-hover,
+.dk-mq-no-hover {
+  display: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-mq-reduced-motion { display: contents; }
+  .dk-mq-motion-ok { display: none !important; }
+}
+.dk-mq-reduced-motion { display: none !important; }
+.dk-mq-motion-ok { display: contents; }
+
+@media (prefers-reduced-transparency: reduce) {
+  .dk-mq-reduced-transparency { display: contents; }
+}
+.dk-mq-reduced-transparency { display: none !important; }
+
+@media (prefers-contrast: more) {
+  .dk-mq-contrast-more { display: contents; }
+}
+.dk-mq-contrast-more { display: none !important; }
+
+@media (resolution >= 2dppx), (-webkit-min-device-pixel-ratio: 2) {
+  .dk-mq-dense { display: contents; }
+}
+.dk-mq-dense { display: none !important; }
+
+@media (horizontal-viewport-segments: 2), (vertical-viewport-segments: 2) {
+  .dk-mq-foldable { display: contents; }
+}
+.dk-mq-foldable { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Container queries — adaptive layouts inside named containers
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-cq {
+  container-type: inline-size;
+  container-name: dk;
+}
+
+.dk-cq-size {
+  container-type: size;
+  container-name: dk;
+}
+
+.dk-cq-from-sm,
+.dk-cq-from-md,
+.dk-cq-from-lg,
+.dk-cq-from-xl {
+  display: none !important;
+}
+
+@container dk (min-width: 480px) {
+  .dk-cq-from-sm { display: contents; }
+}
+@container dk (min-width: 768px) {
+  .dk-cq-from-md { display: contents; }
+}
+@container dk (min-width: 1024px) {
+  .dk-cq-from-lg { display: contents; }
+}
+@container dk (min-width: 1280px) {
+  .dk-cq-from-xl { display: contents; }
+}
+
+/* Layout recalc coordination — pause transitions during resize bursts */
+html[data-bp-resizing="true"] .dk-bp-recalc-quiet,
+html[data-bp-resizing="true"].dk-bp-recalc-quiet {
+  transition: none !important;
+  animation: none !important;
+}

@@ -2,19 +2,20 @@
   "id": 37,
   "name": "elevation-tokens",
   "displayName": "Elevation Tokens",
-  "description": "Use .dk-elev-* and --elevation-* from theme-engine.css. Companion package for the Theme Engine.",
+  "description": "Shadow & Elevation System — subtle layered shadows, semantic roles, hover/press/focus states, adaptive dark mode.",
   "category": "foundation",
   "group": "theme-engine",
   "groupName": "Theme Engine",
   "kind": "component",
   "layer": 1,
-  "icon": "sun",
+  "icon": "layers",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "theme-engine",
-    "elevation-tokens"
+    "elevation-tokens",
+    "shadow"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,7 +27,7 @@
   ],
   "hasVariants": false,
   "stub": false,
-  "fileKind": "css",
+  "fileKind": "tsx",
   "versions": {
     "latest": "1.0.0",
     "stable": "1.0.0",
@@ -39,5 +40,7 @@
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": []
+  "optionalConfig": [
+    "ui.elevation"
+  ]
 }
