@@ -1,0 +1,48 @@
+/**
+ * Tailwind CSS v4 bridge for DevKit typography tokens.
+ * Import after typography-tokens.css.
+ */
+
+@theme inline {
+  --font-dk-sans: var(--font-sans);
+  --font-dk-display: var(--font-display);
+  --font-dk-mono: var(--font-mono);
+  --font-dk-numeric: var(--font-numeric);
+
+  --text-dk-display: var(--text-display-size);
+  --text-dk-hero: var(--text-hero-size);
+  --text-dk-page-title: var(--text-page-title-size);
+  --text-dk-section-title: var(--text-section-title-size);
+  --text-dk-h1: var(--text-h1-size);
+  --text-dk-h2: var(--text-h2-size);
+  --text-dk-h3: var(--text-h3-size);
+  --text-dk-h4: var(--text-h4-size);
+  --text-dk-h5: var(--text-h5-size);
+  --text-dk-h6: var(--text-h6-size);
+  --text-dk-subtitle: var(--text-subtitle-size);
+  --text-dk-body: var(--text-body-size);
+  --text-dk-body-sm: var(--text-body-sm-size);
+  --text-dk-caption: var(--text-caption-size);
+  --text-dk-label: var(--text-label-size);
+  --text-dk-helper: var(--text-helper-size);
+  --text-dk-button: var(--text-button-size);
+  --text-dk-code: var(--text-code-size);
+  --text-dk-numeric: var(--text-numeric-size);
+  --text-dk-stat: var(--text-stat-size);
+  --text-dk-table: var(--text-table-size);
+  --text-dk-badge: var(--text-badge-size);
+
+  --font-weight-dk-regular: var(--font-weight-regular);
+  --font-weight-dk-medium: var(--font-weight-medium);
+  --font-weight-dk-semibold: var(--font-weight-semibold);
+  --font-weight-dk-bold: var(--font-weight-bold);
+
+  --tracking-dk-tight: var(--tracking-tight);
+  --tracking-dk-normal: var(--tracking-normal);
+  --tracking-dk-wide: var(--tracking-wide);
+
+  --leading-dk-tight: var(--leading-tight);
+  --leading-dk-snug: var(--leading-snug);
+  --leading-dk-normal: var(--leading-normal);
+  --leading-dk-relaxed: var(--leading-relaxed);
+}

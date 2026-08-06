@@ -1,10 +1,14 @@
 import * as React from "react";
 
-export interface LabelProps {
-  children?: React.ReactNode;
+export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
+  truncate?: boolean;
 }
 
-/** Label — empty stub (Layer 1 Foundation). */
-export function Label(_props: LabelProps = {}) {
-  return null;
+/** Form and UI label text. */
+export function Label({ truncate = false, className = "", children, ...props }: LabelProps) {
+  return (
+    <label className={`dk-type-label ${truncate ? "dk-truncate" : ""} ${className}`.trim()} {...props}>
+      {children}
+    </label>
+  );
 }

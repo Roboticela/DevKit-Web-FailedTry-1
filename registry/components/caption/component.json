@@ -2,13 +2,13 @@
   "id": 46,
   "name": "caption",
   "displayName": "Caption",
-  "description": "Caption — empty Layer 1 foundation stub.",
+  "description": "Caption — Typography System component (responsive semantic type).",
   "category": "foundation",
   "group": "typography-system",
   "groupName": "Typography System",
   "kind": "component",
   "layer": 1,
-  "icon": "square",
+  "icon": "type",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

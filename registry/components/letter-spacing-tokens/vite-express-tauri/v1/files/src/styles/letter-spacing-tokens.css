@@ -1,7 +1,8 @@
-/* Letter Spacing Tokens — empty stub (Layer 1 Foundation)
- * TODO: implement design tokens
- */
-
+/* Letter spacing tokens — companion aliases */
 :root {
-  /* reserved */
+  --dk-tracking-tighter: var(--tracking-tighter);
+  --dk-tracking-tight: var(--tracking-tight);
+  --dk-tracking-normal: var(--tracking-normal);
+  --dk-tracking-wide: var(--tracking-wide);
+  --dk-tracking-wider: var(--tracking-wider);
 }

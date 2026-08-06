@@ -2,13 +2,13 @@
   "id": 6,
   "name": "line-height-tokens",
   "displayName": "Line Height Tokens",
-  "description": "Line Height Tokens — empty Layer 1 foundation stub.",
+  "description": "LineHeightTokens — companion aliases to typography-tokens.",
   "category": "foundation",
   "group": "design-tokens",
   "groupName": "Design Tokens",
   "kind": "component",
   "layer": 1,
-  "icon": "square",
+  "icon": "type",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "css",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

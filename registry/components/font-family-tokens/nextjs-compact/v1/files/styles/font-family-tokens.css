@@ -1,7 +1,7 @@
-/* Font Family Tokens — empty stub (Layer 1 Foundation)
- * TODO: implement design tokens
- */
-
+/* Font family tokens — provided by typography-tokens; companion aliases */
 :root {
-  /* reserved */
+  --dk-font-sans: var(--font-sans);
+  --dk-font-display: var(--font-display);
+  --dk-font-mono: var(--font-mono);
+  --dk-font-numeric: var(--font-numeric);
 }

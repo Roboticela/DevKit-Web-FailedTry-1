@@ -37,13 +37,13 @@
       "id": 2,
       "name": "typography-tokens",
       "displayName": "Typography Tokens",
-      "description": "Typography Tokens — empty Layer 1 foundation stub.",
+      "description": "Complete typography token system: families, weights, fluid responsive scales, semantic text roles, truncation, localization, and accessibility.",
       "category": "foundation",
       "group": "design-tokens",
       "groupName": "Design Tokens",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -53,19 +53,21 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "design-tokens",
-        "typography-tokens"
+        "typography-tokens",
+        "responsive",
+        "a11y"
       ]
     },
     {
       "id": 3,
       "name": "font-family-tokens",
       "displayName": "Font Family Tokens",
-      "description": "Font Family Tokens — empty Layer 1 foundation stub.",
+      "description": "Font Family Tokens — companion to typography-tokens.",
       "category": "foundation",
       "group": "design-tokens",
       "groupName": "Design Tokens",
@@ -81,8 +83,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "design-tokens",
@@ -93,7 +95,7 @@
       "id": 4,
       "name": "font-weight-tokens",
       "displayName": "Font Weight Tokens",
-      "description": "Font Weight Tokens — empty Layer 1 foundation stub.",
+      "description": "Font Weight Tokens — companion to typography-tokens.",
       "category": "foundation",
       "group": "design-tokens",
       "groupName": "Design Tokens",
@@ -109,8 +111,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "design-tokens",
@@ -121,7 +123,7 @@
       "id": 5,
       "name": "font-size-tokens",
       "displayName": "Font Size Tokens",
-      "description": "Font Size Tokens — empty Layer 1 foundation stub.",
+      "description": "Font Size Tokens — companion to typography-tokens.",
       "category": "foundation",
       "group": "design-tokens",
       "groupName": "Design Tokens",
@@ -137,8 +139,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "design-tokens",
@@ -149,7 +151,7 @@
       "id": 6,
       "name": "line-height-tokens",
       "displayName": "Line Height Tokens",
-      "description": "Line Height Tokens — empty Layer 1 foundation stub.",
+      "description": "Line Height Tokens — companion to typography-tokens.",
       "category": "foundation",
       "group": "design-tokens",
       "groupName": "Design Tokens",
@@ -165,8 +167,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "design-tokens",
@@ -177,7 +179,7 @@
       "id": 7,
       "name": "letter-spacing-tokens",
       "displayName": "Letter Spacing Tokens",
-      "description": "Letter Spacing Tokens — empty Layer 1 foundation stub.",
+      "description": "Letter Spacing Tokens — companion to typography-tokens.",
       "category": "foundation",
       "group": "design-tokens",
       "groupName": "Design Tokens",
@@ -193,8 +195,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "design-tokens",
@@ -1129,13 +1131,13 @@
       "id": 41,
       "name": "display-text",
       "displayName": "Display Text",
-      "description": "Display Text — empty Layer 1 foundation stub.",
+      "description": "DisplayText — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1145,8 +1147,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1157,13 +1159,13 @@
       "id": 42,
       "name": "heading",
       "displayName": "Heading",
-      "description": "Heading — empty Layer 1 foundation stub.",
+      "description": "Heading — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1173,8 +1175,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1185,13 +1187,13 @@
       "id": 43,
       "name": "title",
       "displayName": "Title",
-      "description": "Title — empty Layer 1 foundation stub.",
+      "description": "Title — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1201,8 +1203,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1213,13 +1215,13 @@
       "id": 44,
       "name": "subtitle",
       "displayName": "Subtitle",
-      "description": "Subtitle — empty Layer 1 foundation stub.",
+      "description": "Subtitle — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1229,8 +1231,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1241,13 +1243,13 @@
       "id": 45,
       "name": "body-text",
       "displayName": "Body Text",
-      "description": "Body Text — empty Layer 1 foundation stub.",
+      "description": "BodyText — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1257,8 +1259,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1269,13 +1271,13 @@
       "id": 46,
       "name": "caption",
       "displayName": "Caption",
-      "description": "Caption — empty Layer 1 foundation stub.",
+      "description": "Caption — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1285,8 +1287,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1297,13 +1299,13 @@
       "id": 47,
       "name": "label",
       "displayName": "Label",
-      "description": "Label — empty Layer 1 foundation stub.",
+      "description": "Label — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1313,8 +1315,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1325,13 +1327,13 @@
       "id": 48,
       "name": "helper-text",
       "displayName": "Helper Text",
-      "description": "Helper Text — empty Layer 1 foundation stub.",
+      "description": "HelperText — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1341,8 +1343,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1353,13 +1355,13 @@
       "id": 49,
       "name": "code-text",
       "displayName": "Code Text",
-      "description": "Code Text — empty Layer 1 foundation stub.",
+      "description": "CodeText — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1369,8 +1371,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",
@@ -1381,13 +1383,13 @@
       "id": 50,
       "name": "numeric-display",
       "displayName": "Numeric Display",
-      "description": "Numeric Display — empty Layer 1 foundation stub.",
+      "description": "NumericDisplay — Typography System component (responsive semantic type).",
       "category": "foundation",
       "group": "typography-system",
       "groupName": "Typography System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "type",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1397,8 +1399,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "typography-system",

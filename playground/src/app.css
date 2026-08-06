@@ -253,6 +253,33 @@ button {
   border-color: var(--color-success-border);
 }
 
+.type-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.type-row {
+  display: grid;
+  gap: 0.35rem;
+}
+
+@media (min-width: 768px) {
+  .type-row {
+    grid-template-columns: 7.5rem 1fr;
+    align-items: baseline;
+    gap: 1rem;
+  }
+}
+
+.type-row-label {
+  margin: 0;
+}
+
+.type-row-sample {
+  min-width: 0;
+}
+
 @media (min-width: 768px) {
   .playground {
     padding-top: 2.5rem;

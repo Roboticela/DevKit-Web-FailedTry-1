@@ -1,8 +1,18 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import catalog from "./foundation-catalog.json";
+import { DisplayText } from "@devkit/DisplayText";
+import { Heading } from "@devkit/Heading";
+import { Title } from "@devkit/Title";
+import { Subtitle } from "@devkit/Subtitle";
+import { BodyText } from "@devkit/BodyText";
+import { Caption } from "@devkit/Caption";
+import { Label } from "@devkit/Label";
+import { HelperText } from "@devkit/HelperText";
+import { CodeText } from "@devkit/CodeText";
+import { NumericDisplay } from "@devkit/NumericDisplay";
 
 type ThemeMode = "light" | "dark" | "high-contrast" | "high-contrast-dark";
-type View = "colors" | "catalog";
+type View = "colors" | "typography" | "catalog";
 
 type CatalogGroup = {
   id: string;
@@ -71,6 +81,31 @@ const CHART_SWATCHES: Swatch[] = Array.from({ length: 8 }, (_, i) => ({
   token: `--color-chart-${i + 1}`,
 }));
 
+const READY = new Set([
+  "color-tokens",
+  "typography-tokens",
+  "font-family-tokens",
+  "font-weight-tokens",
+  "font-size-tokens",
+  "line-height-tokens",
+  "letter-spacing-tokens",
+  "light-theme",
+  "dark-theme",
+  "high-contrast-theme",
+  "semantic-colors",
+  "accent-color-system",
+  "display-text",
+  "heading",
+  "title",
+  "subtitle",
+  "body-text",
+  "caption",
+  "label",
+  "helper-text",
+  "code-text",
+  "numeric-display",
+]);
+
 function SwatchGrid({ items }: { items: Swatch[] }) {
   return (
     <div className="swatch-grid">
@@ -83,6 +118,15 @@ function SwatchGrid({ items }: { items: Swatch[] }) {
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+function TypeRow({ label, children }: { label: string; children: ReactNode }) {
+  return (
+    <div className="type-row">
+      <Caption className="type-row-label">{label}</Caption>
+      <div className="type-row-sample">{children}</div>
     </div>
   );
 }
@@ -100,7 +144,7 @@ export function App() {
     }
     return "light";
   });
-  const [view, setView] = useState<View>("colors");
+  const [view, setView] = useState<View>("typography");
   const [activeGroup, setActiveGroup] = useState<string>("all");
 
   useEffect(() => {
@@ -122,8 +166,8 @@ export function App() {
         <div>
           <h1 className="playground-brand">DevKit</h1>
           <p className="playground-sub">
-            Color Token System — semantic foundations for light, dark, and high-contrast themes.
-            Edit <code>registry/components/color-tokens</code> and refresh.
+            Foundation labs — Color Tokens and Typography System. Edit packages under{" "}
+            <code>registry/components/</code> and hot-reload.
           </p>
         </div>
         <div className="theme-bar" role="group" aria-label="Theme">
@@ -142,109 +186,177 @@ export function App() {
       </header>
 
       <div className="tabs" role="tablist" aria-label="Playground views">
-        <button
-          type="button"
-          className="tab"
-          role="tab"
-          aria-current={view === "colors" ? "true" : undefined}
-          onClick={() => setView("colors")}
-        >
-          Color Lab
-        </button>
-        <button
-          type="button"
-          className="tab"
-          role="tab"
-          aria-current={view === "catalog" ? "true" : undefined}
-          onClick={() => setView("catalog")}
-        >
-          Layer 1 Catalog
-        </button>
+        {(
+          [
+            ["typography", "Typography Lab"],
+            ["colors", "Color Lab"],
+            ["catalog", "Layer 1 Catalog"],
+          ] as const
+        ).map(([id, label]) => (
+          <button
+            key={id}
+            type="button"
+            className="tab"
+            role="tab"
+            aria-current={view === id ? "true" : undefined}
+            onClick={() => setView(id)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
+
+      {view === "typography" ? (
+        <>
+          <section className="section">
+            <h2 className="section-title">Hierarchy</h2>
+            <p className="section-meta">
+              Fluid scale across mobile → tablet → desktop. Resize the window to see clamp() adapt.
+            </p>
+            <div className="demo-card type-stack">
+              <TypeRow label="Display">
+                <DisplayText>Display — Impact moments</DisplayText>
+              </TypeRow>
+              <TypeRow label="Hero">
+                <DisplayText variant="hero">Hero — Feature statement</DisplayText>
+              </TypeRow>
+              <TypeRow label="Page title">
+                <Title variant="page">Page title — Workspace</Title>
+              </TypeRow>
+              <TypeRow label="Section">
+                <Title variant="section">Section title — Overview</Title>
+              </TypeRow>
+              <TypeRow label="Subtitle">
+                <Subtitle>Subtitle — Supporting line under a title</Subtitle>
+              </TypeRow>
+            </div>
+          </section>
+
+          <section className="section">
+            <h2 className="section-title">Heading levels</h2>
+            <p className="section-meta">Semantic h1–h6 with responsive metrics.</p>
+            <div className="demo-card type-stack">
+              {([1, 2, 3, 4, 5, 6] as const).map((level) => (
+                <TypeRow key={level} label={`H${level}`}>
+                  <Heading level={level}>Heading level {level}</Heading>
+                </TypeRow>
+              ))}
+            </div>
+          </section>
+
+          <section className="section">
+            <h2 className="section-title">Reading & UI text</h2>
+            <div className="demo-card type-stack">
+              <TypeRow label="Body">
+                <BodyText>
+                  Body — Enterprise interfaces need calm, readable copy with comfortable line height
+                  and room to breathe across languages.
+                </BodyText>
+              </TypeRow>
+              <TypeRow label="Small body">
+                <BodyText size="sm">
+                  Small body — Dense secondary reading for side panels and descriptions.
+                </BodyText>
+              </TypeRow>
+              <TypeRow label="Caption">
+                <Caption>Caption — Updated 2 hours ago · Metadata</Caption>
+              </TypeRow>
+              <TypeRow label="Label">
+                <Label>Label — Email address</Label>
+              </TypeRow>
+              <TypeRow label="Helper">
+                <HelperText>Helper — Use your work email for SSO.</HelperText>
+              </TypeRow>
+              <TypeRow label="Button">
+                <span className="dk-type-button">Button text</span>
+                {" · "}
+                <span className="dk-type-button dk-type-button-sm">Small</span>
+                {" · "}
+                <span className="dk-type-button dk-type-button-lg">Large</span>
+              </TypeRow>
+              <TypeRow label="Badge">
+                <span className="dk-type-badge" style={{ color: "var(--color-primary)" }}>
+                  Active
+                </span>
+              </TypeRow>
+            </div>
+          </section>
+
+          <section className="section">
+            <h2 className="section-title">Code, numbers & tables</h2>
+            <div className="demo-card type-stack">
+              <TypeRow label="Code">
+                <CodeText>const token = &quot;--text-body-size&quot;;</CodeText>
+              </TypeRow>
+              <TypeRow label="Numeric">
+                <NumericDisplay>1,234,567.89</NumericDisplay>
+              </TypeRow>
+              <TypeRow label="Statistics">
+                <NumericDisplay variant="stat">98.6%</NumericDisplay>
+              </TypeRow>
+              <TypeRow label="Table">
+                <span className="dk-type-table-header">Status</span>
+                {" · "}
+                <span className="dk-type-table">In progress</span>
+              </TypeRow>
+            </div>
+          </section>
+
+          <section className="section">
+            <h2 className="section-title">Truncation & wrapping</h2>
+            <div className="demo-row">
+              <div className="demo-card" style={{ maxWidth: "14rem" }}>
+                <Caption>Truncate</Caption>
+                <BodyText truncate>
+                  This line will ellipsis when it overflows the narrow card width.
+                </BodyText>
+              </div>
+              <div className="demo-card" style={{ maxWidth: "16rem" }}>
+                <Caption>Line clamp 2</Caption>
+                <BodyText clamp={2}>
+                  Two-line clamp keeps dense lists readable while preserving hierarchy and avoiding
+                  layout collapse on long localized strings.
+                </BodyText>
+              </div>
+              <div className="demo-card" style={{ maxWidth: "16rem" }}>
+                <Caption>Hyphens / wrap</Caption>
+                <BodyText hyphens>
+                  Localization-friendly wrapping for exceptionallylongcompoundwords and narrow
+                  columns.
+                </BodyText>
+              </div>
+            </div>
+          </section>
+        </>
+      ) : null}
 
       {view === "colors" ? (
         <>
           <section className="section">
             <h2 className="section-title">Surfaces</h2>
-            <p className="section-meta">Layered backgrounds — soft light, deep dark (not pure black).</p>
+            <p className="section-meta">Layered backgrounds — soft light, deep dark.</p>
             <SwatchGrid items={SURFACE_SWATCHES} />
           </section>
-
           <section className="section">
-            <h2 className="section-title">Text</h2>
-            <p className="section-meta">Hierarchy with AA-oriented contrast on base surfaces.</p>
+            <h2 className="section-title">Text colors</h2>
             <SwatchGrid items={TEXT_SWATCHES} />
-            <div className="demo-card dk-theme-transition" style={{ marginTop: "1rem" }}>
-              <div className="text-stack">
-                <p style={{ color: "var(--color-text-primary)", fontSize: "1.25rem", fontWeight: 600 }}>
-                  Primary — The quick brown fox
-                </p>
-                <p style={{ color: "var(--color-text-secondary)" }}>Secondary — Supporting copy</p>
-                <p style={{ color: "var(--color-text-tertiary)", fontSize: "0.875rem" }}>
-                  Tertiary — Metadata and captions
-                </p>
-                <p style={{ color: "var(--color-text-link)" }}>Link — Learn more</p>
-              </div>
-            </div>
           </section>
-
           <section className="section">
             <h2 className="section-title">Actions & status</h2>
-            <p className="section-meta">Primary / secondary actions and semantic status colors.</p>
             <SwatchGrid items={ACTION_SWATCHES} />
-            <div className="demo-row" style={{ marginTop: "1rem" }}>
-              <button type="button" className="demo-btn demo-btn-primary">
-                Primary
-              </button>
-              <button type="button" className="demo-btn demo-btn-secondary">
-                Secondary
-              </button>
-              <button type="button" className="demo-btn demo-btn-danger">
-                Danger
-              </button>
-            </div>
           </section>
-
           <section className="section">
             <h2 className="section-title">Product domains</h2>
-            <p className="section-meta">AI, automation, billing, security, notifications.</p>
             <SwatchGrid items={DOMAIN_SWATCHES} />
           </section>
-
           <section className="section">
             <h2 className="section-title">Charts</h2>
-            <p className="section-meta">Eight series tokens for analytics surfaces.</p>
             <SwatchGrid items={CHART_SWATCHES} />
           </section>
-
-          <section className="section">
-            <h2 className="section-title">Materials</h2>
-            <p className="section-meta">Translucent overlays and chrome fills.</p>
-            <div className="demo-row">
-              {(
-                [
-                  ["Scrim", "var(--color-overlay-scrim)"],
-                  ["Material thin", "var(--color-material-thin)"],
-                  ["Material regular", "var(--color-material-regular)"],
-                  ["Selected", "var(--color-selected)"],
-                ] as const
-              ).map(([label, bg]) => (
-                <div
-                  key={label}
-                  className="demo-card dk-theme-transition"
-                  style={{
-                    background: bg,
-                    borderColor: "var(--color-border)",
-                    minHeight: "5rem",
-                  }}
-                >
-                  <span style={{ color: "var(--color-text-primary)", fontWeight: 600 }}>{label}</span>
-                </div>
-              ))}
-            </div>
-          </section>
         </>
-      ) : (
+      ) : null}
+
+      {view === "catalog" ? (
         <>
           <nav className="tabs" aria-label="Foundation groups">
             <button
@@ -276,12 +388,7 @@ export function App() {
               </p>
               <div className="card-grid">
                 {group.components.map((comp) => {
-                  const ready = comp.name === "color-tokens" ||
-                    comp.name === "light-theme" ||
-                    comp.name === "dark-theme" ||
-                    comp.name === "high-contrast-theme" ||
-                    comp.name === "semantic-colors" ||
-                    comp.name === "accent-color-system";
+                  const ready = READY.has(comp.name);
                   return (
                     <article className="stub-card dk-theme-transition" key={comp.name}>
                       <span className="stub-id">#{comp.id}</span>
@@ -297,7 +404,7 @@ export function App() {
             </section>
           ))}
         </>
-      )}
+      ) : null}
     </div>
   );
 }

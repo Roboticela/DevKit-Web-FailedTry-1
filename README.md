@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:5173` — **Color Lab** (live token themes) + Layer 1 catalog. Switch Light / Dark / High contrast in the header.
+Opens `http://localhost:5173` — **Typography Lab**, **Color Lab**, and Layer 1 catalog. Switch Light / Dark / High contrast in the header.
 
 ---
 
@@ -20,18 +20,18 @@ Opens `http://localhost:5173` — **Color Lab** (live token themes) + Layer 1 ca
 
 | Group | IDs | Packages |
 |-------|-----|----------|
-| Design Tokens | 1–10 | **color-tokens (ready)**, typography/font/radius/shadow/opacity tokens |
+| Design Tokens | 1–10 | **color-tokens**, **typography-tokens** + font/weight/size/leading/tracking companions |
 | Layout System | 11–20 | grid, flex, stack, inline, spacer, container, section, surface, safe-area, aspect-ratio |
 | Spacing System | 21–30 | margin/padding/gap utilities, responsive spacing, alignment, … |
-| Theme Engine | 31–40 | **light/dark/high-contrast themes, semantic + accent (ready)**; elevation/motion/blur/gradient stubs |
-| Typography System | 41–50 | display → numeric text primitives |
+| Theme Engine | 31–40 | **light/dark/high-contrast**, **semantic + accent**; elevation/motion/blur/gradient stubs |
+| Typography System | 41–50 | **display, heading, title, subtitle, body, caption, label, helper, code, numeric** |
 | Icon System | 51–60 | icon, icon-button, status/brand/file/social/ai icons, … |
 | Motion System | 61–70 | fade/scale/slide, transitions, hover/press, skeleton, … |
 | Shape System | 71–80 | divider, separator, border, shapes, glass/frosted, shadow-layer |
 | Accessibility System | 81–90 | focus ring, SR/ARIA helpers, touch targets, skip nav, … |
 | Utility Components | 91–100 | portal, overlay, observers, theme/design providers |
 
-**Ready now:** `color-tokens` (+ theme companions). Docs install with the package at `docs/devkit/COLOR_TOKENS.md`.
+**Ready:** color + typography systems (tokens, companions, React type packages). Docs: `docs/devkit/COLOR_TOKENS.md`, `docs/devkit/TYPOGRAPHY.md`.
 ---
 
 ## Five layers

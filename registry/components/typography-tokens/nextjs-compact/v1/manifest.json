@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/styles/typography-tokens.css",
       "destination": "styles/typography-tokens.css"
+    },
+    {
+      "source": "files/styles/typography-tokens.tailwind.css",
+      "destination": "styles/typography-tokens.tailwind.css"
+    },
+    {
+      "source": "files/docs/TYPOGRAPHY.md",
+      "destination": "docs/devkit/TYPOGRAPHY.md"
     }
   ],
   "injections": [],
