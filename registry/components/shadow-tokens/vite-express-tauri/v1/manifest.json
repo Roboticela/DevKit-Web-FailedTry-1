@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/styles/shadow-tokens.css",
+      "destination": "src/styles/shadow-tokens.css"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/styles/motion-tokens.css",
+      "destination": "src/styles/motion-tokens.css"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

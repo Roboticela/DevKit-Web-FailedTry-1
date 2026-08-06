@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/FrostedSurface.tsx",
+      "destination": "src/components/ui/FrostedSurface.tsx"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

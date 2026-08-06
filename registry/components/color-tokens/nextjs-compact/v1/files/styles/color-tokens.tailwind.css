@@ -1,0 +1,85 @@
+/**
+ * Tailwind CSS v4 compatibility map for DevKit color tokens.
+ * Import AFTER color-tokens.css:
+ *   @import "./color-tokens.css";
+ *   @import "./color-tokens.tailwind.css";
+ *
+ * Usage: bg-dk-primary, text-dk-secondary, border-dk-border, …
+ */
+
+@theme inline {
+  --color-dk-canvas: var(--color-bg-canvas);
+  --color-dk-base: var(--color-bg-base);
+  --color-dk-subtle: var(--color-bg-subtle);
+  --color-dk-muted: var(--color-bg-muted);
+  --color-dk-emphasis: var(--color-bg-emphasis);
+  --color-dk-inverse: var(--color-bg-inverse);
+
+  --color-dk-surface-0: var(--color-surface-0);
+  --color-dk-surface-1: var(--color-surface-1);
+  --color-dk-surface-2: var(--color-surface-2);
+  --color-dk-surface-3: var(--color-surface-3);
+  --color-dk-card: var(--color-surface-card);
+  --color-dk-popover: var(--color-surface-popover);
+  --color-dk-overlay: var(--color-surface-overlay);
+  --color-dk-sunken: var(--color-surface-sunken);
+
+  --color-dk-border: var(--color-border);
+  --color-dk-border-subtle: var(--color-border-subtle);
+  --color-dk-border-strong: var(--color-border-strong);
+  --color-dk-separator: var(--color-separator);
+
+  --color-dk-text: var(--color-text-primary);
+  --color-dk-text-secondary: var(--color-text-secondary);
+  --color-dk-text-tertiary: var(--color-text-tertiary);
+  --color-dk-text-quaternary: var(--color-text-quaternary);
+  --color-dk-text-inverse: var(--color-text-inverse);
+  --color-dk-link: var(--color-text-link);
+  --color-dk-placeholder: var(--color-text-placeholder);
+
+  --color-dk-icon: var(--color-icon-primary);
+  --color-dk-icon-secondary: var(--color-icon-secondary);
+  --color-dk-icon-disabled: var(--color-icon-disabled);
+
+  --color-dk-primary: var(--color-primary);
+  --color-dk-primary-hover: var(--color-primary-hover);
+  --color-dk-primary-pressed: var(--color-primary-pressed);
+  --color-dk-primary-muted: var(--color-primary-muted);
+  --color-dk-on-primary: var(--color-primary-text);
+
+  --color-dk-secondary: var(--color-secondary);
+  --color-dk-secondary-hover: var(--color-secondary-hover);
+  --color-dk-on-secondary: var(--color-secondary-text);
+
+  --color-dk-success: var(--color-success);
+  --color-dk-success-muted: var(--color-success-muted);
+  --color-dk-warning: var(--color-warning);
+  --color-dk-warning-muted: var(--color-warning-muted);
+  --color-dk-danger: var(--color-danger);
+  --color-dk-danger-muted: var(--color-danger-muted);
+  --color-dk-info: var(--color-info);
+  --color-dk-info-muted: var(--color-info-muted);
+
+  --color-dk-ai: var(--color-ai);
+  --color-dk-automation: var(--color-automation);
+  --color-dk-billing: var(--color-billing);
+  --color-dk-security: var(--color-security);
+  --color-dk-notifications: var(--color-notifications);
+
+  --color-dk-hover: var(--color-hover);
+  --color-dk-pressed: var(--color-pressed);
+  --color-dk-selected: var(--color-selected);
+  --color-dk-focus: var(--color-focus-ring);
+  --color-dk-disabled: var(--color-disabled-text);
+  --color-dk-scrim: var(--color-overlay-scrim);
+  --color-dk-material: var(--color-material-regular);
+
+  --color-dk-chart-1: var(--color-chart-1);
+  --color-dk-chart-2: var(--color-chart-2);
+  --color-dk-chart-3: var(--color-chart-3);
+  --color-dk-chart-4: var(--color-chart-4);
+  --color-dk-chart-5: var(--color-chart-5);
+  --color-dk-chart-6: var(--color-chart-6);
+  --color-dk-chart-7: var(--color-chart-7);
+  --color-dk-chart-8: var(--color-chart-8);
+}

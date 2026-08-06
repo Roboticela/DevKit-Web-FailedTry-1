@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/DisplayText.tsx",
+      "destination": "components/ui/DisplayText.tsx"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

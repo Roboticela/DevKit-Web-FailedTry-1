@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/RoundedCorner.tsx",
+      "destination": "components/ui/RoundedCorner.tsx"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

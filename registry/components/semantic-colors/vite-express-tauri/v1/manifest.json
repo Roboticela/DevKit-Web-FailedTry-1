@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/styles/semantic-colors.css",
+      "destination": "src/styles/semantic-colors.css"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

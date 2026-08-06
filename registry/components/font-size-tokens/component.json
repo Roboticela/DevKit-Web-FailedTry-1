@@ -1,0 +1,43 @@
+{
+  "id": 5,
+  "name": "font-size-tokens",
+  "displayName": "Font Size Tokens",
+  "description": "Font Size Tokens — empty Layer 1 foundation stub.",
+  "category": "foundation",
+  "group": "design-tokens",
+  "groupName": "Design Tokens",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "design-tokens",
+    "font-size-tokens"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": true,
+  "fileKind": "css",
+  "versions": {
+    "latest": "0.0.0",
+    "stable": "0.0.0",
+    "history": [
+      {
+        "version": "0.0.0",
+        "releaseDate": "2026-08-06",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -27,6 +27,7 @@ function componentsQuery(filters: ListComponentsFilters): string {
   if (filters.kind) params.set("kind", filters.kind);
   if (filters.layer) params.set("layer", String(filters.layer));
   if (filters.category) params.set("category", filters.category);
+  if (filters.group) params.set("group", filters.group);
   const s = params.toString();
   return s ? `?${s}` : "";
 }

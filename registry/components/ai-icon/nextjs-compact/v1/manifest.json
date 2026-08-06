@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/AiIcon.tsx",
+      "destination": "components/ui/AiIcon.tsx"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

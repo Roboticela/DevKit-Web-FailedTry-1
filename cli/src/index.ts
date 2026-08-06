@@ -72,6 +72,7 @@ program
   .option("--kind <type>",     "Filter by kind: component (UI) or scaffold (full feature, empty for now)")
   .option("--layer <n>",       "Filter by layer: 1–5 (foundation…templates)")
   .option("--category <cat>",  "Filter by category (foundation | basic | composite | advanced | templates)")
+  .option("--group <id>",      "Filter by Layer 1 group (e.g. design-tokens, layout-system)")
   .option("--installed",       "Show only installed components")
   .action((opts) => listCommand(opts));
 

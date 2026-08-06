@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/MarginUtilities.tsx",
+      "destination": "components/ui/MarginUtilities.tsx"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

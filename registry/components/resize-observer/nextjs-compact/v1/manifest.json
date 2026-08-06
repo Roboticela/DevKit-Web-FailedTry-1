@@ -1,0 +1,15 @@
+{
+  "version": "0.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ResizeObserver.tsx",
+      "destination": "components/ui/ResizeObserver.tsx"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

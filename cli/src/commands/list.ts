@@ -8,6 +8,7 @@ interface ListOptions {
   template?: string;
   installed?: boolean;
   category?: string;
+  group?: string;
   kind?: string;
   layer?: string;
 }
@@ -40,6 +41,7 @@ export async function listCommand(opts: ListOptions, cwd = process.cwd()) {
       kind: kindFilter,
       layer: layerFilter,
       category: opts.category,
+      group: opts.group,
     });
     const lock = (() => { try { return readLock(cwd); } catch { return { lockVersion: 1, template: "", components: {} } satisfies import("../lib/config.js").DevKitLock; } })();
 
@@ -62,32 +64,34 @@ export async function listCommand(opts: ListOptions, cwd = process.cwd()) {
       chalk.gray(
         "  " +
           col("ID", 6) +
-          col("Package", 16) +
-          col("Layer", 8) +
-          col("Kind", 12) +
-          col("Category", 14) +
-          col("Templates", 26) +
+          col("Package", 28) +
+          col("Group", 22) +
+          col("Layer", 7) +
+          col("Stub", 6) +
           "Installed"
       )
     );
-    console.log(chalk.gray("  " + "─".repeat(100)));
+    console.log(chalk.gray("  " + "─".repeat(90)));
 
     for (const comp of filtered) {
       const installed = lock.components[comp.name];
       const installedStr = installed ? chalk.green(`v${installed.version}`) : chalk.gray("-");
-      const templateStr = comp.templates.join(", ");
       const pk = normalizeKind(comp.kind);
       const idStr = comp.id != null ? String(comp.id) : "-";
       const layerStr = comp.layer != null ? String(comp.layer) : "-";
+      const groupStr = comp.group ?? "-";
+      const stubStr = comp.stub ? "yes" : "no";
 
       console.log(
         "  " +
         chalk.dim(col(idStr, 6)) +
-        chalk.bold(col(comp.name, 16)) +
-        col(layerStr, 8) +
-        col(kindLabel(pk), 12) +
-        chalk.dim(col(comp.category, 14)) +
-        col(templateStr, 26) +
+        chalk.bold(col(comp.name, 28)) +
+        chalk.dim(col(groupStr, 22)) +
+        col(layerStr, 7) +
+        col(stubStr === "yes" ? chalk.yellow(stubStr) : stubStr, 6) +
+        " " +
+        kindLabel(pk) +
+        " " +
         installedStr
       );
     }

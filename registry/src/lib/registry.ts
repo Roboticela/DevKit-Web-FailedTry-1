@@ -18,9 +18,12 @@ export interface ComponentEntry {
   displayName: string;
   description: string;
   category: string;
+  group?: string;
+  groupName?: string;
   /** `component` = reusable UI; `scaffold` = full feature. Omitted in older indexes = scaffold. */
   kind?: PackageKind;
   layer?: ComponentLayer;
+  stub?: boolean;
   templates: string[];
   platforms: string[];
   hasVariants: boolean;
@@ -43,6 +46,7 @@ export interface LayersCatalog {
     name: string;
     idRange: { min: number; max: number };
     description: string;
+    groups?: unknown[];
   }[];
 }
 

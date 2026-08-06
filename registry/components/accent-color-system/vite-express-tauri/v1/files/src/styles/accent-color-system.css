@@ -1,0 +1,14 @@
+/**
+ * Accent Color System — primary brand accent mapped from Color Token System.
+ * Requires: color-tokens.css
+ * Override brand: set --color-primary* under a custom [data-theme] or :root.
+ */
+:root {
+  --accent: var(--color-primary);
+  --accent-hover: var(--color-primary-hover);
+  --accent-pressed: var(--color-primary-pressed);
+  --accent-muted: var(--color-primary-muted);
+  --accent-border: var(--color-primary-border);
+  --accent-text: var(--color-primary-text);
+  --accent-foreground: var(--color-primary-text);
+}

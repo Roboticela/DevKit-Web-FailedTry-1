@@ -1,0 +1,43 @@
+{
+  "id": 90,
+  "name": "skip-navigation",
+  "displayName": "Skip Navigation",
+  "description": "Skip Navigation — empty Layer 1 foundation stub.",
+  "category": "foundation",
+  "group": "accessibility-system",
+  "groupName": "Accessibility System",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "accessibility-system",
+    "skip-navigation"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": true,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "0.0.0",
+    "stable": "0.0.0",
+    "history": [
+      {
+        "version": "0.0.0",
+        "releaseDate": "2026-08-06",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": 58,
+  "name": "ai-icon",
+  "displayName": "AI Icon",
+  "description": "AI Icon — empty Layer 1 foundation stub.",
+  "category": "foundation",
+  "group": "icon-system",
+  "groupName": "Icon System",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "icon-system",
+    "ai-icon"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": true,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "0.0.0",
+    "stable": "0.0.0",
+    "history": [
+      {
+        "version": "0.0.0",
+        "releaseDate": "2026-08-06",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

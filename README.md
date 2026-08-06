@@ -4,44 +4,45 @@
 
 ---
 
-## Folder Structure
+## Preview components (easiest)
 
+```bash
+cd playground
+npm install
+npm run dev
 ```
-DevKit/
-├── .cursor/rule/design-rule.md   ← Apple-level design language
-├── devkit-plan.md                ← Historical full-system plan
-├── registry/                     ← Hono registry + component packages
-│   └── components/
-│       ├── layers.json           ← Layer taxonomy (IDs 1–3000)
-│       ├── registry.json         ← Installable package index
-│       └── <name>/               ← One package per component
-└── cli/                          ← @roboticela/devkit CLI
-```
+
+Opens `http://localhost:5173` — **Color Lab** (live token themes) + Layer 1 catalog. Switch Light / Dark / High contrast in the header.
 
 ---
 
-## Package kinds
+## Layer 1 — Foundation (IDs 1–100)
 
-| Kind | Meaning | Status |
-|------|---------|--------|
-| `component` | Reusable UI (tokens → templates) | Layer 1 shipping; layers 2–5 next |
-| `scaffold` | Full features (routes, APIs, flows) | Supported in schema; **empty for now** |
+| Group | IDs | Packages |
+|-------|-----|----------|
+| Design Tokens | 1–10 | **color-tokens (ready)**, typography/font/radius/shadow/opacity tokens |
+| Layout System | 11–20 | grid, flex, stack, inline, spacer, container, section, surface, safe-area, aspect-ratio |
+| Spacing System | 21–30 | margin/padding/gap utilities, responsive spacing, alignment, … |
+| Theme Engine | 31–40 | **light/dark/high-contrast themes, semantic + accent (ready)**; elevation/motion/blur/gradient stubs |
+| Typography System | 41–50 | display → numeric text primitives |
+| Icon System | 51–60 | icon, icon-button, status/brand/file/social/ai icons, … |
+| Motion System | 61–70 | fade/scale/slide, transitions, hover/press, skeleton, … |
+| Shape System | 71–80 | divider, separator, border, shapes, glass/frosted, shadow-layer |
+| Accessibility System | 81–90 | focus ring, SR/ARIA helpers, touch targets, skip nav, … |
+| Utility Components | 91–100 | portal, overlay, observers, theme/design providers |
 
-Every reusable component targets **both** `nextjs-compact` and `vite-express-tauri`. Users select packages with `devkit add <name>`.
-
+**Ready now:** `color-tokens` (+ theme companions). Docs install with the package at `docs/devkit/COLOR_TOKENS.md`.
 ---
 
 ## Five layers
 
 | Layer | IDs | Category | Scope |
 |-------|-----|----------|--------|
-| 1 Foundation | 1–100 | `foundation` | Tokens, typography, icons, surfaces, layout |
-| 2 Basic | 101–500 | `basic` | Buttons, inputs, chips, avatars, badges, … |
-| 3 Composite | 501–1500 | `composite` | Tables, forms, nav, charts, dialogs, … |
-| 4 Advanced | 1501–2500 | `advanced` | Kanban, Gantt, AI chat, dashboards, … |
-| 5 Templates | 2501–3000 | `templates` | Page templates, auth UI, admin/CRM layouts |
-
-Currently published: **Layer 1** (`tokens`, `typography`, `icon`, `surface`, `stack`, `grid`, `divider`).
+| 1 Foundation | 1–100 | `foundation` | 10 systems above |
+| 2 Basic | 101–500 | `basic` | Buttons, inputs, chips, … |
+| 3 Composite | 501–1500 | `composite` | Tables, forms, nav, … |
+| 4 Advanced | 1501–2500 | `advanced` | Kanban, dashboards, … |
+| 5 Templates | 2501–3000 | `templates` | Page templates & layouts |
 
 ---
 
@@ -51,12 +52,9 @@ Currently published: **Layer 1** (`tokens`, `typography`, `icon`, `surface`, `st
 cd registry
 npm install
 npm run dev
-# → http://localhost:4000
-# → GET /health
 # → GET /api/v1/layers
-# → GET /api/v1/components
-# → GET /api/v1/components?layer=1&kind=component
-# → GET /api/v1/components?kind=scaffold   # empty for now
+# → GET /api/v1/components?layer=1
+# → GET /api/v1/components?group=design-tokens
 ```
 
 ---
@@ -66,17 +64,8 @@ npm run dev
 ```bash
 cd cli
 npm install
-
-# Browse
-npx tsx src/index.ts list
 npx tsx src/index.ts list --layer=1
-npx tsx src/index.ts list --category=foundation
-npx tsx src/index.ts list --kind=component
-npx tsx src/index.ts list --kind=scaffold
-
-# Install (from a DevKit project)
-npx tsx src/index.ts add tokens
-npx tsx src/index.ts add typography
+npx tsx src/index.ts list --group=typography-system
 ```
 
 Local registry: `DEVKIT_REGISTRY=http://localhost:4000`

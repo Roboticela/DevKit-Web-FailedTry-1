@@ -24,11 +24,11 @@ export function getBundledComponentsDir(fromImportMetaUrl = import.meta.url): st
 }
 
 export function listBundledComponents(filters: ListComponentsFilters = {}, fromImportMetaUrl = import.meta.url): ComponentEntry[] | null {
-  const { template, kind, layer, category } = filters;
+  const { template, kind, layer, category, group } = filters;
   const root = getBundledComponentsDir(fromImportMetaUrl);
   if (!root) return null;
   const index = JSON.parse(readFileSync(join(root, "registry.json"), "utf-8")) as {
-    components: { name: string; templates: string[]; layer?: number; category?: string }[];
+    components: { name: string; templates: string[]; layer?: number; category?: string; group?: string }[];
   };
   const out: ComponentEntry[] = [];
   for (const c of index.components) {
@@ -42,14 +42,19 @@ export function listBundledComponents(filters: ListComponentsFilters = {}, fromI
     if (layer && entryLayer !== layer) continue;
     const entryCategory = (meta.category as string) ?? c.category ?? "";
     if (category && entryCategory !== category) continue;
+    const entryGroup = (meta.group as string | undefined) ?? c.group;
+    if (group && entryGroup !== group) continue;
     out.push({
       id: meta.id as number | undefined,
       name: meta.name as string,
       displayName: meta.displayName as string,
       description: meta.description as string,
       category: entryCategory,
+      group: entryGroup,
+      groupName: meta.groupName as string | undefined,
       kind: entryKind,
       layer: entryLayer,
+      stub: meta.stub as boolean | undefined,
       templates: meta.templates as string[],
       platforms: meta.platforms as string[],
       hasVariants: meta.hasVariants as boolean,

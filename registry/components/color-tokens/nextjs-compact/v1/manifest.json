@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/styles/color-tokens.css",
+      "destination": "styles/color-tokens.css"
+    },
+    {
+      "source": "files/styles/color-tokens.tailwind.css",
+      "destination": "styles/color-tokens.tailwind.css"
+    },
+    {
+      "source": "files/docs/COLOR_TOKENS.md",
+      "destination": "docs/devkit/COLOR_TOKENS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": { "frontend": [] },
+  "envVars": []
+}

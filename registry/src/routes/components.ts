@@ -16,6 +16,7 @@ function packageKind(comp: { kind?: "component" | "scaffold" }): "component" | "
 app.get("/", (c) => {
   const template = c.req.query("template");
   const category = c.req.query("category");
+  const group = c.req.query("group");
   const kind = c.req.query("kind") as "component" | "scaffold" | undefined;
   const layerRaw = c.req.query("layer");
   const layer = layerRaw ? Number(layerRaw) : undefined;
@@ -24,6 +25,7 @@ app.get("/", (c) => {
   let list = index.components;
   if (template) list = list.filter((comp) => comp.templates.includes(template));
   if (category) list = list.filter((comp) => comp.category === category);
+  if (group) list = list.filter((comp) => comp.group === group);
   if (kind === "component" || kind === "scaffold") {
     list = list.filter((comp) => packageKind(comp) === kind);
   }

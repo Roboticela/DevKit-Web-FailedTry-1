@@ -1,0 +1,9 @@
+/**
+ * Light Theme activator — uses Color Token System defaults.
+ * Requires: color-tokens.css
+ * Apply: <html data-theme="light">
+ */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+}

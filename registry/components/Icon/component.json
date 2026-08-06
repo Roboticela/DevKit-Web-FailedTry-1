@@ -1,23 +1,41 @@
 {
-  "id": 3,
+  "id": 51,
   "name": "icon",
   "displayName": "Icon",
-  "description": "Accessible SVG icon wrapper with consistent size scale.",
+  "description": "Icon — empty Layer 1 foundation stub.",
   "category": "foundation",
+  "group": "icon-system",
+  "groupName": "Icon System",
   "kind": "component",
   "layer": 1,
-  "icon": "shapes",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
-  "tags": ["icon", "svg", "foundation"],
-  "templates": ["nextjs-compact", "vite-express-tauri"],
-  "platforms": ["web", "desktop"],
+  "tags": [
+    "foundation",
+    "icon-system",
+    "icon"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
   "hasVariants": false,
+  "stub": true,
+  "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
-      { "version": "1.0.0", "releaseDate": "2026-08-06", "breaking": false }
+      {
+        "version": "0.0.0",
+        "releaseDate": "2026-08-06",
+        "breaking": false
+      }
     ]
   },
   "requiredConfig": [],
