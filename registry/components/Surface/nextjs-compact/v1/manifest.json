@@ -1,15 +1,43 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/styles/surface-system.css",
+      "destination": "styles/surface-system.css"
+    },
+    {
       "source": "files/components/ui/Surface.tsx",
       "destination": "components/ui/Surface.tsx"
+    },
+    {
+      "source": "files/components/ui/Overlay.tsx",
+      "destination": "components/ui/Overlay.tsx"
+    },
+    {
+      "source": "files/components/ui/GlassSurface.tsx",
+      "destination": "components/ui/GlassSurface.tsx"
+    },
+    {
+      "source": "files/components/ui/FrostedSurface.tsx",
+      "destination": "components/ui/FrostedSurface.tsx"
+    },
+    {
+      "source": "files/components/ui/ShadowLayer.tsx",
+      "destination": "components/ui/ShadowLayer.tsx"
+    },
+    {
+      "source": "files/docs/SURFACE.md",
+      "destination": "docs/devkit/SURFACE.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "color-tokens",
+      "dynamic-theme",
+      "responsive-spacing"
+    ]
   },
   "envVars": []
 }

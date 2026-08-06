@@ -1,7 +1,7 @@
 /**
- * Light Theme activator — uses Color Token System defaults.
- * Requires: color-tokens.css
- * Apply: <html data-theme="light">
+ * Light Theme — Theme Engine profile.
+ * Requires: color-tokens.css, theme-engine.css
+ * Apply: <html data-theme="light"> (ThemeProvider)
  */
 :root,
 [data-theme="light"] {

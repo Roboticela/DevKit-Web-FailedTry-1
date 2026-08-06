@@ -1,7 +1,8 @@
-/* Motion Tokens — empty stub (Layer 1 Foundation)
- * TODO: implement design tokens
+/**
+ * Motion Tokens — companion to Theme Engine (dynamic-theme).
+ * Prefer theme-engine.css. Tokens: --motion-duration-*, --motion-ease-*, --motion-distance-*.
+ * Honors prefers-reduced-motion and data-motion="reduce".
  */
-
 :root {
-  /* reserved */
+  --dk-motion-companion: 1;
 }

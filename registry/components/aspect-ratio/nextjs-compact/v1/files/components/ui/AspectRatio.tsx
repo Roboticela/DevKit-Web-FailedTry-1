@@ -1,10 +1,38 @@
 import * as React from "react";
 
-export interface AspectRatioProps {
-  children?: React.ReactNode;
+export type AspectPreset = "video" | "square" | "photo" | "portrait" | "custom";
+
+export interface AspectRatioProps extends React.HTMLAttributes<HTMLDivElement> {
+  preset?: AspectPreset;
+  ratio?: string;
 }
 
-/** Aspect Ratio — empty stub (Layer 1 Foundation). */
-export function AspectRatio(_props: AspectRatioProps = {}) {
-  return null;
+/** Aspect-ratio box for media inside grid cells. */
+export function AspectRatio({
+  preset = "video",
+  ratio,
+  className = "",
+  style,
+  children,
+  ...props
+}: AspectRatioProps) {
+  const presetClass =
+    preset === "square"
+      ? "dk-aspect-square"
+      : preset === "photo"
+        ? "dk-aspect-photo"
+        : preset === "portrait"
+          ? "dk-aspect-portrait"
+          : preset === "video"
+            ? "dk-aspect-video"
+            : "";
+  return (
+    <div
+      className={`dk-aspect ${presetClass} ${className}`.trim()}
+      style={{ ...(ratio ? { ["--aspect-ratio" as string]: ratio } : null), ...style }}
+      {...props}
+    >
+      {children}
+    </div>
+  );
 }

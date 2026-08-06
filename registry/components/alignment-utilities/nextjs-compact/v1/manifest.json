@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/AlignmentUtilities.tsx",
-      "destination": "components/ui/AlignmentUtilities.tsx"
+      "source": "files/styles/alignment-utilities.css",
+      "destination": "styles/alignment-utilities.css"
     }
   ],
   "injections": [],

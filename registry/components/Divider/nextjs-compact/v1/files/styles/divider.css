@@ -1,0 +1,6 @@
+/**
+ * divider — companion to rounded-corner (Shape System)
+ * Divider — hairline separators. Part of the Shape System.
+ * Prefer importing shape-system.css once at the app root.
+ */
+:root { --dk-shape-companion-divider: 1; }

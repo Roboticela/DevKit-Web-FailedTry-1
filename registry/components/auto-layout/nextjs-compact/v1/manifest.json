@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/AutoLayout.tsx",
-      "destination": "components/ui/AutoLayout.tsx"
+      "source": "files/styles/auto-layout.css",
+      "destination": "styles/auto-layout.css"
     }
   ],
   "injections": [],

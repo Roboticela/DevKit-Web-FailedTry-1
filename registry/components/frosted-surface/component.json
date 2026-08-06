@@ -2,19 +2,20 @@
   "id": 79,
   "name": "frosted-surface",
   "displayName": "Frosted Surface",
-  "description": "Frosted Surface — empty Layer 1 foundation stub.",
+  "description": "FrostedSurface — thick frosted material. Part of the Surface System.",
   "category": "foundation",
   "group": "shape-system",
   "groupName": "Shape System",
   "kind": "component",
   "layer": 1,
-  "icon": "square",
+  "icon": "layers",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "shape-system",
-    "frosted-surface"
+    "frosted-surface",
+    "surface-system"
   ],
   "templates": [
     "nextjs-compact",
@@ -25,14 +26,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

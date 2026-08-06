@@ -24,7 +24,7 @@ button {
 .playground {
   max-width: 72rem;
   margin: 0 auto;
-  padding: 1.5rem 1rem 4rem;
+  padding: var(--space-6) var(--space-4) var(--space-16);
 }
 
 .playground-header {
@@ -280,8 +280,123 @@ button {
   min-width: 0;
 }
 
+.theme-accent-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.theme-accent-row input[type="color"] {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  background: var(--color-surface-card);
+  cursor: pointer;
+}
+
+.surface-material-stage {
+  padding: var(--space-6);
+  border-radius: var(--radius-xl, 1.25rem);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.surface-inline-modal {
+  max-width: 22rem;
+}
+
+.shape-scale {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.shape-scale-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  width: 4.5rem;
+}
+
+.shape-scale-swatch {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--color-primary);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.shape-inline-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.shape-fill {
+  background: var(--color-primary-muted);
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary-border);
+}
+
+.shape-role-demo {
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.shape-fake-input {
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.shape-border-demo {
+  padding: var(--space-4);
+  background: var(--color-surface-1);
+}
+
+.grid-demo-nested {
+  padding: var(--space-3);
+  border-radius: 0.5rem;
+  background: var(--color-bg-subtle);
+  color: var(--color-text-secondary);
+  font-size: var(--text-caption-size);
+  text-align: center;
+}
+
+.space-scale {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.space-scale-row {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.space-scale-label {
+  margin: 0;
+  font-family: ui-monospace, Menlo, monospace;
+}
+
+.space-scale-bar {
+  height: var(--space-3);
+  background: var(--color-primary);
+  border-radius: 0.25rem;
+}
+
 @media (min-width: 768px) {
   .playground {
-    padding-top: 2.5rem;
+    padding-top: var(--space-10);
   }
 }

@@ -1,15 +1,25 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
+      "source": "files/components/ui/Surface.tsx",
+      "destination": "components/ui/Surface.tsx"
+    },
+    {
       "source": "files/components/ui/GlassSurface.tsx",
       "destination": "components/ui/GlassSurface.tsx"
+    },
+    {
+      "source": "files/styles/glass-surface.css",
+      "destination": "styles/glass-surface.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "surface"
+    ]
   },
   "envVars": []
 }

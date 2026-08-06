@@ -1,0 +1,9 @@
+/**
+ * content-width-manager — companion to responsive-spacing
+ * Use .dk-content-width* from responsive-spacing.
+ * Prefer importing responsive-spacing.css once at the app root.
+ */
+:root {
+  /* alias marker — tokens live in responsive-spacing */
+  --dk-spacing-companion-content-width-manager: 1;
+}

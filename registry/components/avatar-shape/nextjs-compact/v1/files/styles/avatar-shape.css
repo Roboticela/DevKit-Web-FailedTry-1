@@ -1,0 +1,6 @@
+/**
+ * avatar-shape — companion to rounded-corner (Shape System)
+ * AvatarShape — circle/soft/square avatar silhouettes. Part of the Shape System.
+ * Prefer importing shape-system.css once at the app root.
+ */
+:root { --dk-shape-companion-avatar-shape: 1; }

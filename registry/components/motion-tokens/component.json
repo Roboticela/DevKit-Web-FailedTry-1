@@ -2,13 +2,13 @@
   "id": 38,
   "name": "motion-tokens",
   "displayName": "Motion Tokens",
-  "description": "Motion Tokens — empty Layer 1 foundation stub.",
+  "description": "Use --motion-* tokens from theme-engine.css; honor data-motion / prefers-reduced-motion. Companion package for the Theme Engine.",
   "category": "foundation",
   "group": "theme-engine",
   "groupName": "Theme Engine",
   "kind": "component",
   "layer": 1,
-  "icon": "square",
+  "icon": "sun",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "css",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

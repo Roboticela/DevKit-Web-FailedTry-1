@@ -1,7 +1,7 @@
 /**
- * Dark Theme activator — layered surfaces from Color Token System.
- * Requires: color-tokens.css
- * Apply: <html data-theme="dark"> or class "dark"
+ * Dark Theme — Theme Engine profile.
+ * Requires: color-tokens.css, theme-engine.css
+ * Apply: <html data-theme="dark"> or class "dark" (ThemeProvider)
  */
 [data-theme="dark"],
 .dark {

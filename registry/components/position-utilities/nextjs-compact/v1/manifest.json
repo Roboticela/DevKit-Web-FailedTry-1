@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/PositionUtilities.tsx",
-      "destination": "components/ui/PositionUtilities.tsx"
+      "source": "files/styles/position-utilities.css",
+      "destination": "styles/position-utilities.css"
     }
   ],
   "injections": [],

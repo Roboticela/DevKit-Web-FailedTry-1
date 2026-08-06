@@ -1,0 +1,6 @@
+/**
+ * border — companion to rounded-corner (Shape System)
+ * Border — tone and edge borders using Shape System tokens.
+ * Prefer importing shape-system.css once at the app root.
+ */
+:root { --dk-shape-companion-border: 1; }

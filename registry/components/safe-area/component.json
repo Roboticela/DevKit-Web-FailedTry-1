@@ -2,13 +2,13 @@
   "id": 19,
   "name": "safe-area",
   "displayName": "Safe Area",
-  "description": "Safe Area — empty Layer 1 foundation stub.",
+  "description": "SafeArea — layout companion for the responsive grid system.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
   "kind": "component",
   "layer": 1,
-  "icon": "square",
+  "icon": "layout",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

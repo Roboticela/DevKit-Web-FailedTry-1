@@ -1,15 +1,43 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
+      "source": "files/src/styles/surface-system.css",
+      "destination": "src/styles/surface-system.css"
+    },
+    {
       "source": "files/src/components/ui/Surface.tsx",
       "destination": "src/components/ui/Surface.tsx"
+    },
+    {
+      "source": "files/src/components/ui/Overlay.tsx",
+      "destination": "src/components/ui/Overlay.tsx"
+    },
+    {
+      "source": "files/src/components/ui/GlassSurface.tsx",
+      "destination": "src/components/ui/GlassSurface.tsx"
+    },
+    {
+      "source": "files/src/components/ui/FrostedSurface.tsx",
+      "destination": "src/components/ui/FrostedSurface.tsx"
+    },
+    {
+      "source": "files/src/components/ui/ShadowLayer.tsx",
+      "destination": "src/components/ui/ShadowLayer.tsx"
+    },
+    {
+      "source": "files/docs/SURFACE.md",
+      "destination": "docs/devkit/SURFACE.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "color-tokens",
+      "dynamic-theme",
+      "responsive-spacing"
+    ]
   },
   "envVars": []
 }

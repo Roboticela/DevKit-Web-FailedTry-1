@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/components/ui/PaddingUtilities.tsx",
-      "destination": "src/components/ui/PaddingUtilities.tsx"
+      "source": "files/src/styles/padding-utilities.css",
+      "destination": "src/styles/padding-utilities.css"
     }
   ],
   "injections": [],

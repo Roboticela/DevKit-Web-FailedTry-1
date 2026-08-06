@@ -1,15 +1,21 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/CircleShape.tsx",
       "destination": "src/components/ui/CircleShape.tsx"
+    },
+    {
+      "source": "files/src/styles/circle-shape.css",
+      "destination": "src/styles/circle-shape.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "rounded-corner"
+    ]
   },
   "envVars": []
 }

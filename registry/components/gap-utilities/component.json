@@ -2,13 +2,13 @@
   "id": 23,
   "name": "gap-utilities",
   "displayName": "Gap Utilities",
-  "description": "Gap Utilities — empty Layer 1 foundation stub.",
+  "description": "Use .dk-gap-* from responsive-spacing. Companion package for the Spacing System.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
   "kind": "component",
   "layer": 1,
-  "icon": "square",
+  "icon": "move",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
-  "fileKind": "tsx",
+  "stub": false,
+  "fileKind": "css",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/components/ui/PositionUtilities.tsx",
-      "destination": "src/components/ui/PositionUtilities.tsx"
+      "source": "files/src/styles/position-utilities.css",
+      "destination": "src/styles/position-utilities.css"
     }
   ],
   "injections": [],

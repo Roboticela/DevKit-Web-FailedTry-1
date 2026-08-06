@@ -1,0 +1,6 @@
+/**
+ * circle-shape — companion to rounded-corner (Shape System)
+ * CircleShape — perfect circles for icons and thumbs. Part of the Shape System.
+ * Prefer importing shape-system.css once at the app root.
+ */
+:root { --dk-shape-companion-circle-shape: 1; }

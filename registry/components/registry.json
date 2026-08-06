@@ -291,13 +291,13 @@
       "id": 11,
       "name": "responsive-grid",
       "displayName": "Responsive Grid",
-      "description": "Responsive Grid — empty Layer 1 foundation stub.",
+      "description": "Mobile-first grid system with adaptive breakpoints, gutters, containers, nested grids, autofit, masonry, alignment, and safe-area aware layout.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout-grid",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -307,25 +307,27 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "responsive-grid"
+        "responsive-grid",
+        "grid",
+        "container"
       ]
     },
     {
       "id": 12,
       "name": "flex-layout",
       "displayName": "Flex Layout",
-      "description": "Flex Layout — empty Layer 1 foundation stub.",
+      "description": "FlexLayout — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -335,8 +337,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -347,13 +349,13 @@
       "id": 13,
       "name": "stack-layout",
       "displayName": "Stack Layout",
-      "description": "Stack Layout — empty Layer 1 foundation stub.",
+      "description": "StackLayout — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -363,8 +365,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -375,13 +377,13 @@
       "id": 14,
       "name": "inline-layout",
       "displayName": "Inline Layout",
-      "description": "Inline Layout — empty Layer 1 foundation stub.",
+      "description": "InlineLayout — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -391,8 +393,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -402,14 +404,14 @@
     {
       "id": 15,
       "name": "spacer",
-      "displayName": "Spacer Component",
-      "description": "Spacer Component — empty Layer 1 foundation stub.",
+      "displayName": "Spacer",
+      "description": "Spacer — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -419,8 +421,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -431,13 +433,13 @@
       "id": 16,
       "name": "container",
       "displayName": "Container",
-      "description": "Container — empty Layer 1 foundation stub.",
+      "description": "Container — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -447,8 +449,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -459,13 +461,13 @@
       "id": 17,
       "name": "section",
       "displayName": "Section",
-      "description": "Section — empty Layer 1 foundation stub.",
+      "description": "Section — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -475,8 +477,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -487,13 +489,13 @@
       "id": 18,
       "name": "surface",
       "displayName": "Surface",
-      "description": "Surface — empty Layer 1 foundation stub.",
+      "description": "Surface System — layered page/card/panel/sheet/popover/sidebar/modal/dashboard/widget/overlay surfaces with elevation, materials, and frosted glass.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layers",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -503,25 +505,26 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
-        "surface"
+        "surface",
+        "surface-system"
       ]
     },
     {
       "id": 19,
       "name": "safe-area",
       "displayName": "Safe Area",
-      "description": "Safe Area — empty Layer 1 foundation stub.",
+      "description": "SafeArea — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -531,8 +534,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -543,13 +546,13 @@
       "id": 20,
       "name": "aspect-ratio",
       "displayName": "Aspect Ratio",
-      "description": "Aspect Ratio — empty Layer 1 foundation stub.",
+      "description": "AspectRatio — layout companion for the responsive grid system.",
       "category": "foundation",
       "group": "layout-system",
       "groupName": "Layout System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layout",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -559,8 +562,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "layout-system",
@@ -571,13 +574,13 @@
       "id": 21,
       "name": "margin-utilities",
       "displayName": "Margin Utilities",
-      "description": "Margin Utilities — empty Layer 1 foundation stub.",
+      "description": "Use .dk-m-* / .dk-mx-* / .dk-my-* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -587,8 +590,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -599,13 +602,13 @@
       "id": 22,
       "name": "padding-utilities",
       "displayName": "Padding Utilities",
-      "description": "Padding Utilities — empty Layer 1 foundation stub.",
+      "description": "Use .dk-p-* / .dk-px-* / .dk-py-* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -615,8 +618,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -627,13 +630,13 @@
       "id": 23,
       "name": "gap-utilities",
       "displayName": "Gap Utilities",
-      "description": "Gap Utilities — empty Layer 1 foundation stub.",
+      "description": "Use .dk-gap-* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -643,8 +646,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -655,13 +658,13 @@
       "id": 24,
       "name": "responsive-spacing",
       "displayName": "Responsive Spacing",
-      "description": "Responsive Spacing — empty Layer 1 foundation stub.",
+      "description": "Universal spacing scale with semantic roles, responsive rhythm, and compact/comfortable/spacious density modes.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -671,25 +674,26 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
-        "responsive-spacing"
+        "responsive-spacing",
+        "density"
       ]
     },
     {
       "id": 25,
       "name": "content-width-manager",
       "displayName": "Content Width Manager",
-      "description": "Content Width Manager — empty Layer 1 foundation stub.",
+      "description": "Use .dk-content-width* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -699,8 +703,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -711,13 +715,13 @@
       "id": 26,
       "name": "auto-layout",
       "displayName": "Auto Layout",
-      "description": "Auto Layout — empty Layer 1 foundation stub.",
+      "description": "Use .dk-space-stack / .dk-space-inline with spacing tokens. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -727,8 +731,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -739,13 +743,13 @@
       "id": 27,
       "name": "alignment-utilities",
       "displayName": "Alignment Utilities",
-      "description": "Alignment Utilities — empty Layer 1 foundation stub.",
+      "description": "Use .dk-align-* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -755,8 +759,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -767,13 +771,13 @@
       "id": 28,
       "name": "distribution-utilities",
       "displayName": "Distribution Utilities",
-      "description": "Distribution Utilities — empty Layer 1 foundation stub.",
+      "description": "Use .dk-distribute-* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -783,8 +787,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -795,13 +799,13 @@
       "id": 29,
       "name": "position-utilities",
       "displayName": "Position Utilities",
-      "description": "Position Utilities — empty Layer 1 foundation stub.",
+      "description": "Use .dk-pos-* / .dk-inset-* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -811,8 +815,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -823,13 +827,13 @@
       "id": 30,
       "name": "overflow-utilities",
       "displayName": "Overflow Utilities",
-      "description": "Overflow Utilities — empty Layer 1 foundation stub.",
+      "description": "Use .dk-overflow-* from responsive-spacing. Companion package for the Spacing System.",
       "category": "foundation",
       "group": "spacing-system",
       "groupName": "Spacing System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "move",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -839,8 +843,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "spacing-system",
@@ -851,7 +855,7 @@
       "id": 31,
       "name": "light-theme",
       "displayName": "Light Theme",
-      "description": "Light Theme — companion to color-tokens.",
+      "description": "Light theme activator profile for the Theme Engine.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
@@ -879,7 +883,7 @@
       "id": 32,
       "name": "dark-theme",
       "displayName": "Dark Theme",
-      "description": "Dark Theme — companion to color-tokens.",
+      "description": "Dark theme activator profile for the Theme Engine.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
@@ -907,7 +911,7 @@
       "id": 33,
       "name": "high-contrast-theme",
       "displayName": "High Contrast Theme",
-      "description": "High Contrast Theme — companion to color-tokens.",
+      "description": "High contrast theme activator profile for the Theme Engine.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
@@ -935,13 +939,13 @@
       "id": 34,
       "name": "dynamic-theme",
       "displayName": "Dynamic Theme",
-      "description": "Dynamic Theme — empty Layer 1 foundation stub.",
+      "description": "Theme Engine — light/dark/high-contrast/system/custom themes with persistence, FOUC-safe boot, runtime CSS vars, elevation, motion, and blur profiles.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sun",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -951,12 +955,13 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "theme-engine",
-        "dynamic-theme"
+        "dynamic-theme",
+        "theme-provider"
       ]
     },
     {
@@ -1019,13 +1024,13 @@
       "id": 37,
       "name": "elevation-tokens",
       "displayName": "Elevation Tokens",
-      "description": "Elevation Tokens — empty Layer 1 foundation stub.",
+      "description": "Use .dk-elev-* and --elevation-* from theme-engine.css. Companion package for the Theme Engine.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sun",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1035,8 +1040,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "theme-engine",
@@ -1047,13 +1052,13 @@
       "id": 38,
       "name": "motion-tokens",
       "displayName": "Motion Tokens",
-      "description": "Motion Tokens — empty Layer 1 foundation stub.",
+      "description": "Use --motion-* tokens from theme-engine.css; honor data-motion / prefers-reduced-motion. Companion package for the Theme Engine.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sun",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1063,8 +1068,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "theme-engine",
@@ -1075,13 +1080,13 @@
       "id": 39,
       "name": "blur-tokens",
       "displayName": "Blur Tokens",
-      "description": "Blur Tokens — empty Layer 1 foundation stub.",
+      "description": "Use .dk-material / .dk-blur-* from theme-engine.css. Companion package for the Theme Engine.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sun",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1091,8 +1096,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "theme-engine",
@@ -1103,13 +1108,13 @@
       "id": 40,
       "name": "gradient-tokens",
       "displayName": "Gradient Tokens",
-      "description": "Gradient Tokens — empty Layer 1 foundation stub.",
+      "description": "Gradient slots (--gradient-*) default to none; override on custom themes. Companion package for the Theme Engine.",
       "category": "foundation",
       "group": "theme-engine",
       "groupName": "Theme Engine",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sun",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1119,8 +1124,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "theme-engine",
@@ -1971,13 +1976,13 @@
       "id": 71,
       "name": "divider",
       "displayName": "Divider",
-      "description": "Divider — empty Layer 1 foundation stub.",
+      "description": "Divider — hairline separators. Part of the Shape System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "circle",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -1987,8 +1992,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -1999,13 +2004,13 @@
       "id": 72,
       "name": "separator",
       "displayName": "Separator",
-      "description": "Separator — empty Layer 1 foundation stub.",
+      "description": "Separator — alias of Divider. Part of the Shape System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "circle",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2015,8 +2020,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2027,13 +2032,13 @@
       "id": 73,
       "name": "border",
       "displayName": "Border",
-      "description": "Border — empty Layer 1 foundation stub.",
+      "description": "Border — tone and edge borders using Shape System tokens.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "circle",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2043,8 +2048,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2055,13 +2060,13 @@
       "id": 74,
       "name": "rounded-corner",
       "displayName": "Rounded Corner",
-      "description": "Rounded Corner — empty Layer 1 foundation stub.",
+      "description": "Shape System — semantic radius tokens (sharp → full), nested radii, circle/pill/avatar shapes, borders and dividers.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "circle",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2071,25 +2076,26 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
-        "rounded-corner"
+        "rounded-corner",
+        "radius"
       ]
     },
     {
       "id": 75,
       "name": "circle-shape",
       "displayName": "Circle Shape",
-      "description": "Circle Shape — empty Layer 1 foundation stub.",
+      "description": "CircleShape — perfect circles for icons and thumbs. Part of the Shape System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "circle",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2099,8 +2105,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2111,13 +2117,13 @@
       "id": 76,
       "name": "pill-shape",
       "displayName": "Pill Shape",
-      "description": "Pill Shape — empty Layer 1 foundation stub.",
+      "description": "PillShape — capsules and chips. Part of the Shape System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "circle",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2127,8 +2133,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2139,13 +2145,13 @@
       "id": 77,
       "name": "avatar-shape",
       "displayName": "Avatar Shape",
-      "description": "Avatar Shape — empty Layer 1 foundation stub.",
+      "description": "AvatarShape — circle/soft/square avatar silhouettes. Part of the Shape System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "circle",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2155,8 +2161,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2167,13 +2173,13 @@
       "id": 78,
       "name": "glass-surface",
       "displayName": "Glass Surface",
-      "description": "Glass Surface — empty Layer 1 foundation stub.",
+      "description": "GlassSurface — translucent blur material. Part of the Surface System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layers",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2183,8 +2189,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2195,13 +2201,13 @@
       "id": 79,
       "name": "frosted-surface",
       "displayName": "Frosted Surface",
-      "description": "Frosted Surface — empty Layer 1 foundation stub.",
+      "description": "FrostedSurface — thick frosted material. Part of the Surface System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layers",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2211,8 +2217,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2223,13 +2229,13 @@
       "id": 80,
       "name": "shadow-layer",
       "displayName": "Shadow Layer",
-      "description": "Shadow Layer — empty Layer 1 foundation stub.",
+      "description": "ShadowLayer — elevation depth band (no box-shadow). Part of the Surface System.",
       "category": "foundation",
       "group": "shape-system",
       "groupName": "Shape System",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layers",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2239,8 +2245,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "shape-system",
@@ -2559,13 +2565,13 @@
       "id": 92,
       "name": "overlay",
       "displayName": "Overlay",
-      "description": "Overlay — empty Layer 1 foundation stub.",
+      "description": "Overlay — scrim + modal/sheet content. Part of the Surface System.",
       "category": "foundation",
       "group": "utility-components",
       "groupName": "Utility Components",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "layers",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2575,8 +2581,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "utility-components",
@@ -2755,13 +2761,13 @@
       "id": 99,
       "name": "theme-provider",
       "displayName": "Theme Provider",
-      "description": "Theme Provider — empty Layer 1 foundation stub.",
+      "description": "Utilities re-export of the Theme Engine (dynamic-theme).",
       "category": "foundation",
       "group": "utility-components",
       "groupName": "Utility Components",
       "kind": "component",
       "layer": 1,
-      "icon": "square",
+      "icon": "sun",
       "templates": [
         "nextjs-compact",
         "vite-express-tauri"
@@ -2771,8 +2777,8 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "utility-components",

@@ -1,10 +1,10 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/GapUtilities.tsx",
-      "destination": "components/ui/GapUtilities.tsx"
+      "source": "files/styles/gap-utilities.css",
+      "destination": "styles/gap-utilities.css"
     }
   ],
   "injections": [],

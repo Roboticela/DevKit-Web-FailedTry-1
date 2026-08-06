@@ -1,7 +1,7 @@
 /**
- * High Contrast Theme activator.
- * Requires: color-tokens.css
- * Apply: <html data-theme="high-contrast"> or data-contrast="high"
+ * High Contrast Theme — Theme Engine profile.
+ * Requires: color-tokens.css, theme-engine.css
+ * Apply: data-theme="high-contrast" | data-contrast="high"
  * Dark HC: data-theme="high-contrast-dark"
  */
 [data-theme="high-contrast"],

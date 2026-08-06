@@ -1,0 +1,356 @@
+/**
+ * DevKit Surface System — Layer 1 Foundation (id: 18 · surface)
+ *
+ * Apple-inspired layered surfaces: page, card, panel, sheet, popover, sidebar,
+ * modal, dashboard, widget, overlay. Hierarchy via elevation (background + soft
+ * border), translucent materials, and frosted glass — not heavy chrome or shadows.
+ *
+ * Requires: color-tokens.css, theme-engine.css (elevation/blur), responsive-spacing.css
+ * Load after theme-engine; may follow responsive-grid (extends .dk-surface).
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Tokens — radius, padding, depth (shadow slots remain none by default)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme] {
+  /* Radius primitives live in shape-system.css (--radius-*). Fallbacks if shape not loaded. */
+  --surface-radius: var(--radius-lg, 0.875rem);
+  --surface-border-width: 1px;
+  --surface-border-color: var(--color-border-subtle);
+  --surface-bg: var(--color-surface-card);
+  --surface-fg: var(--color-text-primary);
+  --surface-padding: var(--space-card-padding, var(--space-4, 1rem));
+  --surface-gap: var(--space-card-gap, var(--space-3, 0.75rem));
+  --surface-shadow: none;
+  --surface-blur: var(--blur-material, 16px);
+  --surface-saturate: var(--material-saturate, 1.4);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Base surface
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-surface {
+  box-sizing: border-box;
+  min-width: 0;
+  background: var(--surface-bg);
+  color: var(--surface-fg);
+  border: var(--surface-border-width) solid var(--surface-border-color);
+  border-radius: var(--surface-radius);
+  box-shadow: var(--surface-shadow);
+  padding: var(--surface-padding);
+}
+
+.dk-surface-flush {
+  padding: 0;
+}
+
+.dk-surface-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--surface-gap);
+}
+
+.dk-surface-interactive {
+  transition:
+    background-color var(--theme-duration, 200ms) var(--theme-ease, ease),
+    border-color var(--theme-duration, 200ms) var(--theme-ease, ease);
+}
+
+.dk-surface-interactive:hover {
+  background: var(--color-surface-2, var(--surface-bg));
+  border-color: var(--color-border);
+}
+
+.dk-surface-interactive:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Radius scale */
+.dk-surface-radius-none { --surface-radius: 0; }
+.dk-surface-radius-sm { --surface-radius: var(--radius-sm, 0.5rem); }
+.dk-surface-radius-md { --surface-radius: var(--radius-md, 0.75rem); }
+.dk-surface-radius-lg { --surface-radius: var(--radius-lg, 0.875rem); }
+.dk-surface-radius-xl { --surface-radius: var(--radius-xl, 1rem); }
+.dk-surface-radius-2xl { --surface-radius: var(--radius-2xl, 1.25rem); }
+
+/* Padding presets (spacing tokens) */
+.dk-surface-pad-none { --surface-padding: 0; }
+.dk-surface-pad-sm { --surface-padding: var(--space-3, 0.75rem); }
+.dk-surface-pad-md { --surface-padding: var(--space-4, 1rem); }
+.dk-surface-pad-lg { --surface-padding: var(--space-6, 1.5rem); }
+.dk-surface-pad-xl { --surface-padding: var(--space-8, 2rem); }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Elevation — depth via layered backgrounds (aligns with theme-engine elev)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-surface-elev-0 {
+  --surface-bg: var(--elevation-0-bg, var(--color-surface-0, var(--color-bg-base)));
+  --surface-border-color: var(--elevation-0-border, var(--color-border-subtle));
+  --surface-shadow: var(--elevation-0-shadow, none);
+}
+
+.dk-surface-elev-1 {
+  --surface-bg: var(--elevation-1-bg, var(--color-surface-1));
+  --surface-border-color: var(--elevation-1-border, var(--color-border-subtle));
+  --surface-shadow: var(--elevation-1-shadow, none);
+}
+
+.dk-surface-elev-2 {
+  --surface-bg: var(--elevation-2-bg, var(--color-surface-2, var(--color-surface-card)));
+  --surface-border-color: var(--elevation-2-border, var(--color-border));
+  --surface-shadow: var(--elevation-2-shadow, none);
+}
+
+.dk-surface-elev-3 {
+  --surface-bg: var(--elevation-3-bg, var(--color-surface-3, var(--color-surface-popover)));
+  --surface-border-color: var(--elevation-3-border, var(--color-border));
+  --surface-shadow: var(--elevation-3-shadow, none);
+}
+
+.dk-surface-elev-4 {
+  --surface-bg: var(--elevation-4-bg, var(--color-surface-overlay, var(--color-surface-card)));
+  --surface-border-color: var(--elevation-4-border, var(--color-border-strong));
+  --surface-shadow: var(--elevation-4-shadow, none);
+}
+
+.dk-surface-sunken {
+  --surface-bg: var(--color-surface-sunken, var(--color-bg-subtle));
+  --surface-border-color: transparent;
+}
+
+/* Soft borderless hierarchy (spacing separates; optional hairline) */
+.dk-surface-quiet {
+  --surface-border-width: 0;
+  --surface-border-color: transparent;
+}
+
+[data-theme="high-contrast"] .dk-surface-quiet,
+[data-theme="high-contrast-dark"] .dk-surface-quiet,
+[data-contrast="high"] .dk-surface-quiet {
+  --surface-border-width: 1px;
+  --surface-border-color: var(--color-border-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Materials — translucent / frosted / glass
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-surface-solid {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.dk-surface-glass,
+.dk-surface-frosted,
+.dk-surface-material {
+  -webkit-backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-saturate));
+  backdrop-filter: blur(var(--surface-blur)) saturate(var(--surface-saturate));
+  border-color: var(--color-material-border, var(--surface-border-color));
+}
+
+.dk-surface-material {
+  --surface-bg: var(--color-material-regular);
+}
+
+.dk-surface-glass {
+  --surface-bg: var(--color-material-thin);
+  --surface-blur: var(--blur-md, 16px);
+}
+
+.dk-surface-frosted {
+  --surface-bg: var(--color-material-thick);
+  --surface-blur: var(--blur-lg, 24px);
+  --surface-saturate: 1.8;
+}
+
+[data-theme="high-contrast"] .dk-surface-glass,
+[data-theme="high-contrast"] .dk-surface-frosted,
+[data-theme="high-contrast"] .dk-surface-material,
+[data-theme="high-contrast-dark"] .dk-surface-glass,
+[data-theme="high-contrast-dark"] .dk-surface-frosted,
+[data-theme="high-contrast-dark"] .dk-surface-material,
+[data-contrast="high"] .dk-surface-glass,
+[data-contrast="high"] .dk-surface-frosted,
+[data-contrast="high"] .dk-surface-material {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  --surface-bg: var(--color-surface-card);
+  --surface-border-color: var(--color-border-strong);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Semantic roles
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Page canvas — full bleed, no card chrome */
+.dk-surface-page {
+  --surface-bg: var(--color-bg-base);
+  --surface-border-width: 0;
+  --surface-border-color: transparent;
+  --surface-radius: 0;
+  --surface-padding: var(--space-page-y, var(--space-6, 1.5rem))
+    var(--space-page-x, var(--space-4, 1rem));
+  --surface-shadow: none;
+  min-height: 100%;
+  width: 100%;
+}
+
+/* Card — default interactive grouping */
+.dk-surface-card {
+  --surface-bg: var(--color-surface-card);
+  --surface-border-color: var(--color-border-subtle);
+  --surface-radius: var(--radius-lg);
+  --surface-padding: var(--space-card-padding, var(--space-4, 1rem));
+  --surface-gap: var(--space-card-gap, var(--space-3, 0.75rem));
+}
+
+/* Panel — secondary region / inset group */
+.dk-surface-panel {
+  --surface-bg: var(--color-surface-1);
+  --surface-border-color: var(--color-border-subtle);
+  --surface-radius: var(--radius-md);
+  --surface-padding: var(--space-4, 1rem);
+}
+
+/* Sheet — bottom sheet / drawer face */
+.dk-surface-sheet {
+  --surface-bg: var(--color-surface-overlay, var(--color-surface-card));
+  --surface-border-color: var(--color-border);
+  --surface-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  --surface-padding: var(--space-5, 1.25rem);
+  --surface-shadow: none;
+  width: 100%;
+  max-height: min(92vh, 100%);
+  overflow: auto;
+}
+
+@media (min-width: 768px) {
+  .dk-surface-sheet {
+    --surface-radius: var(--radius-xl);
+    max-width: 28rem;
+    max-height: min(85vh, 100%);
+  }
+}
+
+/* Popover — compact floating surface */
+.dk-surface-popover {
+  --surface-bg: var(--color-surface-popover, var(--color-surface-card));
+  --surface-border-color: var(--color-border);
+  --surface-radius: var(--radius-md);
+  --surface-padding: var(--space-3, 0.75rem);
+  --surface-shadow: none;
+  min-width: 10rem;
+  max-width: min(20rem, 100vw - 2rem);
+}
+
+/* Sidebar — persistent nav chrome */
+.dk-surface-sidebar {
+  --surface-bg: var(--color-surface-1);
+  --surface-border-color: var(--color-border-subtle);
+  --surface-radius: 0;
+  --surface-padding: var(--space-nav-padding, var(--space-4, 1rem));
+  --surface-border-width: 0 1px 0 0;
+  height: 100%;
+  min-height: 100%;
+  width: 100%;
+  max-width: 18rem;
+  box-sizing: border-box;
+}
+
+.dk-surface-sidebar-end {
+  --surface-border-width: 0 0 0 1px;
+}
+
+/* Modal dialog face */
+.dk-surface-modal {
+  --surface-bg: var(--color-surface-overlay, var(--color-surface-card));
+  --surface-border-color: var(--color-border);
+  --surface-radius: var(--radius-xl);
+  --surface-padding: var(--space-modal-padding, var(--space-5, 1.25rem));
+  --surface-gap: var(--space-modal-gap, var(--space-4, 1rem));
+  --surface-shadow: none;
+  width: min(100%, 32rem);
+  max-height: min(90vh, 100%);
+  overflow: auto;
+}
+
+.dk-surface-modal-sm { width: min(100%, 22rem); }
+.dk-surface-modal-lg { width: min(100%, 42rem); }
+.dk-surface-modal-full {
+  width: 100%;
+  min-height: 100%;
+  max-height: none;
+  --surface-radius: 0;
+}
+
+@media (max-width: 639px) {
+  .dk-surface-modal:not(.dk-surface-modal-sm) {
+    width: 100%;
+    max-height: 100%;
+    min-height: 100%;
+    --surface-radius: 0;
+  }
+}
+
+/* Dashboard shell — spacious work surface */
+.dk-surface-dashboard {
+  --surface-bg: var(--color-bg-subtle, var(--color-bg-base));
+  --surface-border-width: 0;
+  --surface-radius: var(--radius-xl);
+  --surface-padding: var(--space-section-y, var(--space-6, 1.5rem))
+    var(--space-5, 1.25rem);
+}
+
+/* Widget — dense metric / tile */
+.dk-surface-widget {
+  --surface-bg: var(--color-surface-card);
+  --surface-border-color: var(--color-border-subtle);
+  --surface-radius: var(--radius-md);
+  --surface-padding: var(--space-3, 0.75rem);
+  --surface-gap: var(--space-2, 0.5rem);
+}
+
+/* Overlay root — scrim + centered / bottom content */
+.dk-surface-overlay-root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay, 1100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4, 1rem);
+  box-sizing: border-box;
+}
+
+.dk-surface-overlay-root[data-placement="bottom"] {
+  align-items: flex-end;
+  padding: 0;
+}
+
+.dk-surface-scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay-scrim);
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.dk-surface-overlay-content {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+}
+
+/* Shadow layer — named depth band (no box-shadow; uses elev tokens) */
+.dk-shadow-layer {
+  /* alias of elev-2 quiet stack helper */
+  --surface-bg: var(--elevation-2-bg, var(--color-surface-card));
+  --surface-border-color: var(--elevation-2-border, var(--color-border-subtle));
+  --surface-shadow: none;
+}

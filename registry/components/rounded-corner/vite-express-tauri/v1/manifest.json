@@ -1,15 +1,46 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
+      "source": "files/src/styles/shape-system.css",
+      "destination": "src/styles/shape-system.css"
+    },
+    {
       "source": "files/src/components/ui/RoundedCorner.tsx",
       "destination": "src/components/ui/RoundedCorner.tsx"
+    },
+    {
+      "source": "files/src/components/ui/CircleShape.tsx",
+      "destination": "src/components/ui/CircleShape.tsx"
+    },
+    {
+      "source": "files/src/components/ui/PillShape.tsx",
+      "destination": "src/components/ui/PillShape.tsx"
+    },
+    {
+      "source": "files/src/components/ui/AvatarShape.tsx",
+      "destination": "src/components/ui/AvatarShape.tsx"
+    },
+    {
+      "source": "files/src/components/ui/Border.tsx",
+      "destination": "src/components/ui/Border.tsx"
+    },
+    {
+      "source": "files/src/components/ui/Divider.tsx",
+      "destination": "src/components/ui/Divider.tsx"
+    },
+    {
+      "source": "files/docs/SHAPE.md",
+      "destination": "docs/devkit/SHAPE.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "color-tokens",
+      "responsive-spacing"
+    ]
   },
   "envVars": []
 }

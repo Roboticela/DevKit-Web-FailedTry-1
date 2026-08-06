@@ -1,15 +1,21 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/Divider.tsx",
       "destination": "components/ui/Divider.tsx"
+    },
+    {
+      "source": "files/styles/divider.css",
+      "destination": "styles/divider.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": []
+    "frontend": [
+      "rounded-corner"
+    ]
   },
   "envVars": []
 }

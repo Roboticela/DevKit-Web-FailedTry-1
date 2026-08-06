@@ -1,0 +1,8 @@
+/**
+ * shadow-layer — companion to surface
+ * ShadowLayer — elevation depth band (no box-shadow). Part of the Surface System.
+ * Prefer importing surface-system.css once at the app root.
+ */
+:root {
+  --dk-surface-companion-shadow-layer: 1;
+}

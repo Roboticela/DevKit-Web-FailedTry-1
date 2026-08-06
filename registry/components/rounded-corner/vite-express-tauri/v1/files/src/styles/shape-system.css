@@ -1,0 +1,392 @@
+/**
+ * DevKit Shape System — Layer 1 Foundation (id: 74 · rounded-corner)
+ *
+ * Semantic corner radii from sharp → fully rounded for buttons, inputs, cards,
+ * chips, avatars, containers, and nested surfaces. Apple-inspired smooth curves.
+ *
+ * Load before surface-system.css so --radius-* tokens are shared.
+ * Density: data-density compact | comfortable | spacious slightly scales roles.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Primitive scale
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme] {
+  --radius-none: 0;
+  --radius-px: 1px;
+  --radius-xs: 0.25rem; /* 4 */
+  --radius-sm: 0.375rem; /* 6 */
+  --radius-md: 0.5rem; /* 8 */
+  --radius-lg: 0.75rem; /* 12 */
+  --radius-xl: 1rem; /* 16 */
+  --radius-2xl: 1.25rem; /* 20 */
+  --radius-3xl: 1.5rem; /* 24 */
+  --radius-4xl: 2rem; /* 32 */
+  --radius-full: 9999px;
+
+  /* Continuous / squircle-ish soft default for cards (Apple-like) */
+  --radius-smooth: var(--radius-xl);
+
+  /* Nested radius helpers */
+  --shape-parent-radius: var(--radius-xl);
+  --shape-inset: var(--space-3, 0.75rem);
+  --shape-nested-radius: max(0px, calc(var(--shape-parent-radius) - var(--shape-inset)));
+
+  /* ── Semantic roles ───────────────────────────────────────────────────── */
+  --radius-button: var(--radius-md);
+  --radius-button-sm: var(--radius-sm);
+  --radius-button-lg: var(--radius-lg);
+  --radius-input: var(--radius-md);
+  --radius-textarea: var(--radius-lg);
+  --radius-checkbox: var(--radius-xs);
+  --radius-switch: var(--radius-full);
+  --radius-chip: var(--radius-full);
+  --radius-badge: var(--radius-full);
+  --radius-tag: var(--radius-sm);
+  --radius-card: var(--radius-xl);
+  --radius-panel: var(--radius-lg);
+  --radius-container: var(--radius-2xl);
+  --radius-modal: var(--radius-2xl);
+  --radius-sheet: var(--radius-3xl);
+  --radius-popover: var(--radius-lg);
+  --radius-tooltip: var(--radius-sm);
+  --radius-menu: var(--radius-lg);
+  --radius-avatar: var(--radius-full);
+  --radius-avatar-square: var(--radius-md);
+  --radius-avatar-soft: var(--radius-lg);
+  --radius-thumb: var(--radius-sm);
+  --radius-image: var(--radius-lg);
+  --radius-skeleton: var(--radius-md);
+
+  /* Borders (paired with shape language) */
+  --border-width-hairline: 1px;
+  --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+  --border-color: var(--color-border, currentColor);
+  --border-color-subtle: var(--color-border-subtle, currentColor);
+  --border-color-strong: var(--color-border-strong, currentColor);
+}
+
+/* Responsive: slightly softer on larger canvases */
+@media (min-width: 768px) {
+  :root,
+  [data-theme] {
+    --radius-card: var(--radius-2xl);
+    --radius-container: var(--radius-3xl);
+    --radius-modal: var(--radius-3xl);
+    --radius-button-lg: var(--radius-xl);
+  }
+}
+
+@media (min-width: 1280px) {
+  :root,
+  [data-theme] {
+    --radius-dashboard: var(--radius-3xl);
+  }
+}
+
+:root {
+  --radius-dashboard: var(--radius-2xl);
+}
+
+/* Density adaptation */
+[data-density="compact"] {
+  --radius-button: var(--radius-sm);
+  --radius-input: var(--radius-sm);
+  --radius-card: var(--radius-lg);
+  --radius-panel: var(--radius-md);
+  --radius-chip: var(--radius-full);
+  --shape-inset: var(--space-2, 0.5rem);
+}
+
+[data-density="spacious"] {
+  --radius-button: var(--radius-lg);
+  --radius-input: var(--radius-lg);
+  --radius-card: var(--radius-2xl);
+  --radius-panel: var(--radius-xl);
+  --radius-container: var(--radius-3xl);
+  --shape-inset: var(--space-4, 1rem);
+}
+
+/* High contrast: keep radii; borders get stronger via color tokens */
+[data-theme="high-contrast"],
+[data-theme="high-contrast-dark"],
+[data-contrast="high"] {
+  --border-width-thin: 2px;
+  --border-width-medium: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Utility: primitive radii
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-radius-none { border-radius: var(--radius-none); }
+.dk-radius-xs { border-radius: var(--radius-xs); }
+.dk-radius-sm { border-radius: var(--radius-sm); }
+.dk-radius-md { border-radius: var(--radius-md); }
+.dk-radius-lg { border-radius: var(--radius-lg); }
+.dk-radius-xl { border-radius: var(--radius-xl); }
+.dk-radius-2xl { border-radius: var(--radius-2xl); }
+.dk-radius-3xl { border-radius: var(--radius-3xl); }
+.dk-radius-4xl { border-radius: var(--radius-4xl); }
+.dk-radius-full { border-radius: var(--radius-full); }
+.dk-radius-smooth { border-radius: var(--radius-smooth); }
+
+/* Per-corner */
+.dk-radius-t-lg {
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+}
+.dk-radius-b-lg {
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+}
+.dk-radius-t-sheet {
+  border-top-left-radius: var(--radius-sheet);
+  border-top-right-radius: var(--radius-sheet);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Semantic role utilities */
+.dk-radius-button { border-radius: var(--radius-button); }
+.dk-radius-button-sm { border-radius: var(--radius-button-sm); }
+.dk-radius-button-lg { border-radius: var(--radius-button-lg); }
+.dk-radius-input { border-radius: var(--radius-input); }
+.dk-radius-card { border-radius: var(--radius-card); }
+.dk-radius-panel { border-radius: var(--radius-panel); }
+.dk-radius-container { border-radius: var(--radius-container); }
+.dk-radius-modal { border-radius: var(--radius-modal); }
+.dk-radius-popover { border-radius: var(--radius-popover); }
+.dk-radius-chip { border-radius: var(--radius-chip); }
+.dk-radius-badge { border-radius: var(--radius-badge); }
+.dk-radius-avatar { border-radius: var(--radius-avatar); }
+.dk-radius-avatar-square { border-radius: var(--radius-avatar-square); }
+.dk-radius-avatar-soft { border-radius: var(--radius-avatar-soft); }
+.dk-radius-image { border-radius: var(--radius-image); }
+.dk-radius-tooltip { border-radius: var(--radius-tooltip); }
+
+/* Nested: parent sets --shape-parent-radius; children use nested formula */
+.dk-shape-nest {
+  --shape-parent-radius: var(--radius-card);
+  border-radius: var(--shape-parent-radius);
+}
+
+.dk-shape-nest[data-radius="lg"] { --shape-parent-radius: var(--radius-lg); }
+.dk-shape-nest[data-radius="xl"] { --shape-parent-radius: var(--radius-xl); }
+.dk-shape-nest[data-radius="2xl"] { --shape-parent-radius: var(--radius-2xl); }
+.dk-shape-nest[data-radius="3xl"] { --shape-parent-radius: var(--radius-3xl); }
+.dk-shape-nest[data-radius="card"] { --shape-parent-radius: var(--radius-card); }
+.dk-shape-nest[data-radius="container"] { --shape-parent-radius: var(--radius-container); }
+
+.dk-shape-nested,
+.dk-radius-nested {
+  border-radius: var(--shape-nested-radius);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Circle / pill / avatar shapes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: var(--shape-size, 2.5rem);
+  height: var(--shape-size, 2.5rem);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  flex: none;
+  box-sizing: border-box;
+}
+
+.dk-circle-sm { --shape-size: 1.75rem; }
+.dk-circle-md { --shape-size: 2.5rem; }
+.dk-circle-lg { --shape-size: 3.5rem; }
+.dk-circle-xl { --shape-size: 4.5rem; }
+
+.dk-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1-5, 0.375rem);
+  min-height: var(--shape-pill-height, 2rem);
+  padding: var(--space-1, 0.25rem) var(--space-3, 0.75rem);
+  border-radius: var(--radius-chip);
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.dk-pill-sm {
+  --shape-pill-height: 1.5rem;
+  padding: var(--space-0-5, 0.125rem) var(--space-2, 0.5rem);
+  font-size: var(--text-caption-size, 0.75rem);
+}
+
+.dk-pill-lg {
+  --shape-pill-height: 2.5rem;
+  padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+}
+
+.dk-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  width: var(--avatar-size, 2.5rem);
+  height: var(--avatar-size, 2.5rem);
+  border-radius: var(--radius-avatar);
+  overflow: hidden;
+  flex: none;
+  background: var(--color-bg-muted, var(--color-bg-subtle));
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  font-size: calc(var(--avatar-size, 2.5rem) * 0.36);
+  line-height: 1;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.dk-avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dk-avatar-sm { --avatar-size: 1.75rem; }
+.dk-avatar-md { --avatar-size: 2.5rem; }
+.dk-avatar-lg { --avatar-size: 3.5rem; }
+.dk-avatar-xl { --avatar-size: 4.5rem; }
+
+.dk-avatar-square { border-radius: var(--radius-avatar-square); }
+.dk-avatar-soft { border-radius: var(--radius-avatar-soft); }
+
+/* Chip = pill + surface chrome */
+.dk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1-5, 0.375rem);
+  min-height: 1.75rem;
+  padding: var(--space-1, 0.25rem) var(--space-2-5, 0.625rem);
+  border-radius: var(--radius-chip);
+  background: var(--color-bg-subtle);
+  border: var(--border-width-hairline) solid var(--border-color-subtle);
+  color: var(--color-text-primary);
+  font-size: var(--text-caption-size, 0.75rem);
+  box-sizing: border-box;
+}
+
+.dk-chip-interactive {
+  cursor: pointer;
+  transition: background-color var(--theme-duration, 200ms) var(--theme-ease, ease);
+}
+
+.dk-chip-interactive:hover {
+  background: var(--color-bg-muted);
+  border-color: var(--color-border);
+}
+
+.dk-chip-interactive:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Demo / control shape presets (for future Button/Input to consume) */
+.dk-shape-button {
+  border-radius: var(--radius-button);
+  min-height: 2.5rem;
+  padding: 0 var(--space-4, 1rem);
+}
+
+.dk-shape-input {
+  border-radius: var(--radius-input);
+  min-height: 2.5rem;
+  padding: 0 var(--space-3, 0.75rem);
+}
+
+.dk-shape-card {
+  border-radius: var(--radius-card);
+}
+
+.dk-shape-container {
+  border-radius: var(--radius-container);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   Border / divider / separator
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk-border {
+  border-style: solid;
+  border-width: var(--border-width-thin);
+  border-color: var(--border-color);
+}
+
+.dk-border-subtle {
+  border-style: solid;
+  border-width: var(--border-width-hairline);
+  border-color: var(--border-color-subtle);
+}
+
+.dk-border-strong {
+  border-style: solid;
+  border-width: var(--border-width-medium);
+  border-color: var(--border-color-strong);
+}
+
+.dk-border-0 { border-width: 0; }
+.dk-border-t {
+  border-top: var(--border-width-hairline) solid var(--border-color-subtle);
+}
+.dk-border-b {
+  border-bottom: var(--border-width-hairline) solid var(--border-color-subtle);
+}
+.dk-border-x {
+  border-left: var(--border-width-hairline) solid var(--border-color-subtle);
+  border-right: var(--border-width-hairline) solid var(--border-color-subtle);
+}
+.dk-border-y {
+  border-top: var(--border-width-hairline) solid var(--border-color-subtle);
+  border-bottom: var(--border-width-hairline) solid var(--border-color-subtle);
+}
+
+.dk-divider,
+.dk-separator {
+  border: 0;
+  background: var(--color-separator, var(--color-border-subtle));
+  flex: none;
+}
+
+.dk-divider-h,
+.dk-separator-h {
+  display: block;
+  width: 100%;
+  height: var(--border-width-hairline);
+  margin-block: var(--space-3, 0.75rem);
+}
+
+.dk-divider-v,
+.dk-separator-v {
+  display: inline-block;
+  width: var(--border-width-hairline);
+  align-self: stretch;
+  min-height: 1em;
+  margin-inline: var(--space-3, 0.75rem);
+  vertical-align: middle;
+}
+
+.dk-divider-strong,
+.dk-separator-strong {
+  background: var(--color-separator-opaque, var(--color-border));
+  height: var(--border-width-thin);
+}
+
+.dk-divider-inset {
+  margin-inline: var(--space-4, 1rem);
+  width: auto;
+}
