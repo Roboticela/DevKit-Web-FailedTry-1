@@ -8,6 +8,8 @@ import { writeConfig, writeLock, defaultConfig } from "../lib/config.js";
 import { generateThemeCSS } from "../lib/theme.js";
 import { installComponent } from "../lib/installer.js";
 import { log } from "../lib/logger.js";
+import { listComponents, type PackageKind } from "../lib/registry.js";
+import { CLI_VERSION } from "../version.js";
 
 interface CreateOptions {
   template?: string;
@@ -40,20 +42,39 @@ const PRESETS = [
   { value: "corporate", label: "Corporate  — Blue + Gray       — Formal, enterprise" },
 ];
 
-const COMPONENTS = [
-  { value: "auth",          label: "auth          — Full authentication system" },
-  { value: "hero-section",  label: "hero-section  — Landing page hero banner" },
-  { value: "profile",       label: "profile       — User profile pages" },
-  { value: "pricing",       label: "pricing       — Pricing table" },
-  { value: "dashboard",     label: "dashboard     — App dashboard layout" },
-  { value: "contact-form",  label: "contact-form  — Contact / support form" },
-];
+interface CreatePickerOption {
+  value: string;
+  label: string;
+  hint?: string;
+}
+
+async function getCreatePickerOptions(template: string, kind?: PackageKind): Promise<CreatePickerOption[]> {
+  const entries = await listComponents({ template, kind });
+  return entries
+    .slice()
+    .sort((a, b) => {
+      if (a.kind !== b.kind) return a.kind === "component" ? -1 : 1;
+      return a.name.localeCompare(b.name);
+    })
+    .map((entry) => ({
+      value: entry.name,
+      label: `${entry.name} (${entry.kind})`,
+      hint: entry.description,
+    }));
+}
 
 export async function createCommand(projectName: string | undefined, opts: CreateOptions) {
   console.log();
+  const inner = 53;
+  const verCentered = (() => {
+    const s = `v${CLI_VERSION}`;
+    const pad = inner - s.length;
+    const left = Math.floor(pad / 2);
+    return " ".repeat(left) + s + " ".repeat(pad - left);
+  })();
   console.log(chalk.bold.white("  ┌─────────────────────────────────────────────────────┐"));
   console.log(chalk.bold.white("  │      Roboticela DevKit — Create New Project         │"));
-  console.log(chalk.bold.white("  │                    v1.0.0                           │"));
+  console.log(chalk.bold.white(`  │${verCentered}│`));
   console.log(chalk.bold.white("  └─────────────────────────────────────────────────────┘"));
   console.log();
 
@@ -98,13 +119,51 @@ export async function createCommand(projectName: string | undefined, opts: Creat
   const doGit = opts.git ?? (opts.yes ? true : await confirm({ message: "Initialize a git repository?" }) as boolean);
   const doInstall = opts.install ?? (opts.yes ? true : await confirm({ message: "Install npm dependencies now?" }) as boolean);
 
-  const selectedComponents = opts.add
-    ? opts.add.split(",").map((s) => s.trim())
-    : (opts.yes ? [] : await multiselect({
-        message: "Add components now? (space to select, enter to confirm — you can always run 'devkit add' later)",
-        options: COMPONENTS,
-        required: false,
-      }) as string[]);
+  let selectedComponents: string[] = [];
+  if (opts.add) {
+    selectedComponents = opts.add.split(",").map((s) => s.trim()).filter(Boolean);
+  } else if (!opts.yes) {
+    try {
+      const componentOptions = await getCreatePickerOptions(template, "component");
+      const scaffoldOptions = await getCreatePickerOptions(template, "scaffold");
+
+      const selectedUiComponents = componentOptions.length > 0
+        ? (await multiselect({
+            message: "Add components now? (space to select, enter to confirm)",
+            options: componentOptions,
+            required: false,
+          }) as string[])
+        : [];
+
+      if (componentOptions.length === 0) {
+        log.warn("No components available for this template.");
+      }
+
+      const selectedScaffolds = scaffoldOptions.length > 0
+        ? (await multiselect({
+            message: "Add scaffolds now? (space to select, enter to confirm)",
+            options: scaffoldOptions,
+            required: false,
+          }) as string[])
+        : [];
+
+      if (scaffoldOptions.length === 0) {
+        log.warn("No scaffolds available for this template.");
+      }
+
+      const seen = new Set<string>();
+      selectedComponents = [...selectedUiComponents, ...selectedScaffolds].filter((name) => {
+        if (seen.has(name)) return false;
+        seen.add(name);
+        return true;
+      });
+      if (selectedComponents.length === 0) {
+        log.info("No packages selected — you can always run 'devkit add' later.");
+      }
+    } catch (e) {
+      log.warn(`Could not load registry packages for picker: ${(e as Error).message}`);
+    }
+  }
 
   // ── Build ────────────────────────────────────────────────────────────────
 

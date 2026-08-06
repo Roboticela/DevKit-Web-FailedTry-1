@@ -4,16 +4,29 @@ import { getRegistryIndex, getComponentMeta, resolveVersion, getManifest } from 
 const app = new Hono();
 
 // GET /api/v1/components
+function packageKind(comp: { kind?: "component" | "scaffold" }): "component" | "scaffold" {
+  return comp.kind === "component" ? "component" : "scaffold";
+}
+
 app.get("/", (c) => {
   const template = c.req.query("template");
   const category = c.req.query("category");
+  const kind = c.req.query("kind") as "component" | "scaffold" | undefined;
   const index = getRegistryIndex();
 
   let list = index.components;
   if (template) list = list.filter((comp) => comp.templates.includes(template));
   if (category) list = list.filter((comp) => comp.category === category);
+  if (kind === "component" || kind === "scaffold") {
+    list = list.filter((comp) => packageKind(comp) === kind);
+  }
 
-  return c.json({ components: list, total: list.length });
+  const withKind = list.map((comp) => ({
+    ...comp,
+    kind: packageKind(comp),
+  }));
+
+  return c.json({ components: withKind, total: withKind.length });
 });
 
 // GET /api/v1/components/:name
@@ -21,7 +34,10 @@ app.get("/:name", (c) => {
   const { name } = c.req.param();
   const meta = getComponentMeta(name);
   if (!meta) return c.json({ message: "Component not found" }, 404);
-  return c.json(meta);
+  return c.json({
+    ...meta,
+    kind: packageKind(meta as { kind?: "component" | "scaffold" }),
+  });
 });
 
 // GET /api/v1/components/:name/versions

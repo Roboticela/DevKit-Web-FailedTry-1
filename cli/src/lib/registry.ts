@@ -1,11 +1,16 @@
-import type { ComponentEntry } from "./component-entry.js";
+import type {
+  ComponentEntry,
+  PackageKind,
+  ListComponentsFilters,
+} from "./component-entry.js";
+import { normalizeKind } from "./component-entry.js";
 import {
   getBundledComponentMeta,
   getBundledManifest,
   listBundledComponents,
 } from "./bundled-registry.js";
 
-export type { ComponentEntry };
+export type { ComponentEntry, PackageKind, ListComponentsFilters };
 
 const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com";
 
@@ -15,18 +20,26 @@ async function get<T>(path: string): Promise<T> {
   return res.json() as Promise<T>;
 }
 
-export async function listComponents(template?: string): Promise<ComponentEntry[]> {
-  const local = listBundledComponents(template);
+function componentsQuery(filters: ListComponentsFilters): string {
+  const params = new URLSearchParams();
+  if (filters.template) params.set("template", filters.template);
+  if (filters.kind) params.set("kind", filters.kind);
+  const s = params.toString();
+  return s ? `?${s}` : "";
+}
+
+export async function listComponents(filters: ListComponentsFilters = {}): Promise<ComponentEntry[]> {
+  const local = listBundledComponents(filters);
   if (local) return local;
-  const qs = template ? `?template=${template}` : "";
-  const data = await get<{ components: ComponentEntry[] }>(`/api/v1/components${qs}`);
-  return data.components;
+  const data = await get<{ components: ComponentEntry[] }>(`/api/v1/components${componentsQuery(filters)}`);
+  return data.components.map((c) => ({ ...c, kind: normalizeKind(c.kind) }));
 }
 
 export async function getComponentInfo(name: string): Promise<Record<string, unknown>> {
   const local = getBundledComponentMeta(name);
-  if (local) return local;
-  return get<Record<string, unknown>>(`/api/v1/components/${name}`);
+  if (local) return { ...local, kind: normalizeKind(local.kind) };
+  const data = await get<Record<string, unknown>>(`/api/v1/components/${name}`);
+  return { ...data, kind: normalizeKind(data.kind) };
 }
 
 export async function getManifest(

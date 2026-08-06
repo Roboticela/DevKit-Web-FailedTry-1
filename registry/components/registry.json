@@ -1,5 +1,1627 @@
 {
   "version": "1",
+<<<<<<< HEAD
   "updatedAt": "2026-08-06T00:00:00Z",
   "components": []
+=======
+  "updatedAt": "2026-04-21T00:00:00Z",
+  "components": [
+    {
+      "name": "auth",
+      "displayName": "Authentication",
+      "description": "Complete authentication system: email/password login, registration, email verification, forgot/reset password, and Google OAuth.",
+      "category": "authentication",
+      "kind": "scaffold",
+      "icon": "lock",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "auth",
+        "login",
+        "register",
+        "oauth",
+        "jwt",
+        "email"
+      ]
+    },
+    {
+      "name": "hero-section",
+      "displayName": "Hero Section",
+      "description": "Landing page hero banner with 4 design variants: centered, split-image, gradient-mesh, and minimal.",
+      "category": "marketing",
+      "kind": "scaffold",
+      "icon": "layout",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web"
+      ],
+      "hasVariants": true,
+      "variants": [
+        "centered",
+        "split-image",
+        "gradient-mesh",
+        "minimal"
+      ],
+      "latestVersion": "1.0.0",
+      "tags": [
+        "hero",
+        "landing",
+        "marketing",
+        "banner"
+      ]
+    },
+    {
+      "name": "ui-button",
+      "displayName": "UI Button",
+      "description": "Small themed button primitive using CSS design tokens \u2014 no routes or APIs.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "button",
+        "ui",
+        "form",
+        "primitive"
+      ]
+    },
+    {
+      "name": "ui-input",
+      "displayName": "UI Input",
+      "description": "Themed text input primitive using CSS design tokens \u2014 no routes or APIs.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "text-cursor",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "input",
+        "form",
+        "ui",
+        "primitive",
+        "text-field"
+      ]
+    },
+    {
+      "name": "ThemeProvider",
+      "displayName": "ThemeProvider",
+      "description": "Reusable ThemeProvider component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "themeprovider",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ThemeScript",
+      "displayName": "ThemeScript",
+      "description": "Reusable ThemeScript component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "themescript",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ThemeToggle",
+      "displayName": "ThemeToggle",
+      "description": "Reusable ThemeToggle component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "themetoggle",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Container",
+      "displayName": "Container",
+      "description": "Reusable Container component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "container",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Surface",
+      "displayName": "Surface",
+      "description": "Reusable Surface component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "surface",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Stack",
+      "displayName": "Stack",
+      "description": "Reusable Stack component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "stack",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Grid",
+      "displayName": "Grid",
+      "description": "Reusable Grid component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "grid",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Typography",
+      "displayName": "Typography",
+      "description": "Reusable Typography component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "typography",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Icon",
+      "displayName": "Icon",
+      "description": "Reusable Icon component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "icon",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Divider",
+      "displayName": "Divider",
+      "description": "Reusable Divider component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "divider",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ScrollArea",
+      "displayName": "ScrollArea",
+      "description": "Reusable ScrollArea component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "scrollarea",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "SafeAreaWrapper",
+      "displayName": "SafeAreaWrapper",
+      "description": "Reusable SafeAreaWrapper component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "safeareawrapper",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Button",
+      "displayName": "Button",
+      "description": "Reusable Button component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "button",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "IconButton",
+      "displayName": "IconButton",
+      "description": "Reusable IconButton component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "iconbutton",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Input",
+      "displayName": "Input",
+      "description": "Reusable Input component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "input",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Textarea",
+      "displayName": "Textarea",
+      "description": "Reusable Textarea component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "textarea",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Label",
+      "displayName": "Label",
+      "description": "Reusable Label component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "label",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Badge",
+      "displayName": "Badge",
+      "description": "Reusable Badge component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "badge",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Avatar",
+      "displayName": "Avatar",
+      "description": "Reusable Avatar component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "avatar",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Checkbox",
+      "displayName": "Checkbox",
+      "description": "Reusable Checkbox component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "checkbox",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "RadioGroup",
+      "displayName": "RadioGroup",
+      "description": "Reusable RadioGroup component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "radiogroup",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Switch",
+      "displayName": "Switch",
+      "description": "Reusable Switch component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "switch",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Slider",
+      "displayName": "Slider",
+      "description": "Reusable Slider component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "slider",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Select",
+      "displayName": "Select",
+      "description": "Reusable Select component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "select",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Combobox",
+      "displayName": "Combobox",
+      "description": "Reusable Combobox component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "combobox",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Tabs",
+      "displayName": "Tabs",
+      "description": "Reusable Tabs component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "tabs",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Accordion",
+      "displayName": "Accordion",
+      "description": "Reusable Accordion component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "accordion",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Progress",
+      "displayName": "Progress",
+      "description": "Reusable Progress component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "progress",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Skeleton",
+      "displayName": "Skeleton",
+      "description": "Reusable Skeleton component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "skeleton",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Spinner",
+      "displayName": "Spinner",
+      "description": "Reusable Spinner component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "spinner",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Dialog",
+      "displayName": "Dialog",
+      "description": "Reusable Dialog component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "dialog",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "AlertDialog",
+      "displayName": "AlertDialog",
+      "description": "Reusable AlertDialog component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "alertdialog",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Drawer",
+      "displayName": "Drawer",
+      "description": "Reusable Drawer component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "drawer",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Sheet",
+      "displayName": "Sheet",
+      "description": "Reusable Sheet component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "sheet",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Popover",
+      "displayName": "Popover",
+      "description": "Reusable Popover component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "popover",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Tooltip",
+      "displayName": "Tooltip",
+      "description": "Reusable Tooltip component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "tooltip",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "DropdownMenu",
+      "displayName": "DropdownMenu",
+      "description": "Reusable DropdownMenu component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "dropdownmenu",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ContextMenu",
+      "displayName": "ContextMenu",
+      "description": "Reusable ContextMenu component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "contextmenu",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Toast",
+      "displayName": "Toast",
+      "description": "Reusable Toast component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "toast",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Alert",
+      "displayName": "Alert",
+      "description": "Reusable Alert component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "alert",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Banner",
+      "displayName": "Banner",
+      "description": "Reusable Banner component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "banner",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "EmptyState",
+      "displayName": "EmptyState",
+      "description": "Reusable EmptyState component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "emptystate",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "InlineMessage",
+      "displayName": "InlineMessage",
+      "description": "Reusable InlineMessage component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "inlinemessage",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "TopNav",
+      "displayName": "TopNav",
+      "description": "Reusable TopNav component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "topnav",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "BottomNav",
+      "displayName": "BottomNav",
+      "description": "Reusable BottomNav component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "bottomnav",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "SideNav",
+      "displayName": "SideNav",
+      "description": "Reusable SideNav component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "sidenav",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "AppHeader",
+      "displayName": "AppHeader",
+      "description": "Reusable AppHeader component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "appheader",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Breadcrumb",
+      "displayName": "Breadcrumb",
+      "description": "Reusable Breadcrumb component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "breadcrumb",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Pagination",
+      "displayName": "Pagination",
+      "description": "Reusable Pagination component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "pagination",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "CommandPalette",
+      "displayName": "CommandPalette",
+      "description": "Reusable CommandPalette component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "commandpalette",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Form",
+      "displayName": "Form",
+      "description": "Reusable Form component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "form",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "FormField",
+      "displayName": "FormField",
+      "description": "Reusable FormField component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "formfield",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "FormItem",
+      "displayName": "FormItem",
+      "description": "Reusable FormItem component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "formitem",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "FormMessage",
+      "displayName": "FormMessage",
+      "description": "Reusable FormMessage component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "formmessage",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "PasswordInput",
+      "displayName": "PasswordInput",
+      "description": "Reusable PasswordInput component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "passwordinput",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "OtpInput",
+      "displayName": "OtpInput",
+      "description": "Reusable OtpInput component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "otpinput",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ConfirmDialog",
+      "displayName": "ConfirmDialog",
+      "description": "Reusable ConfirmDialog component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "confirmdialog",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "PageHeader",
+      "displayName": "PageHeader",
+      "description": "Reusable PageHeader component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "pageheader",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Modal",
+      "displayName": "Modal",
+      "description": "Reusable Modal component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "modal",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ModalHeader",
+      "displayName": "ModalHeader",
+      "description": "Reusable ModalHeader component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "modalheader",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ModalBody",
+      "displayName": "ModalBody",
+      "description": "Reusable ModalBody component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "modalbody",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "ModalFooter",
+      "displayName": "ModalFooter",
+      "description": "Reusable ModalFooter component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "modalfooter",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    },
+    {
+      "name": "Footer",
+      "displayName": "Footer",
+      "description": "Reusable Footer component with theme-aware token styling and accessible defaults.",
+      "category": "ui",
+      "kind": "component",
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "footer",
+        "ui",
+        "component",
+        "reusable"
+      ]
+    }
+  ]
+>>>>>>> 7591010560bffb2a1c177bd24e01dffd3e3bbb02
 }

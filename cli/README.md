@@ -28,6 +28,7 @@ npx @roboticela/devkit create my-app
   - [theme](#devkit-theme)
   - [install](#devkit-install)
   - [eject](#devkit-eject)
+- [Customization that survives updates](#customization-that-survives-updates)
 - [Configuration Files](#configuration-files)
 - [Design Token System](#design-token-system)
 - [Environment Variables](#environment-variables)
@@ -236,29 +237,31 @@ DevKit only deletes files it created. Files you have modified are flagged with a
 
 ### `devkit list`
 
-Browse available components in the registry.
+Browse everything in the registry. Each row is a **package** with a **kind**:
+
+- **`component`** — small UI building blocks (buttons, inputs, …) with no routes or backends.
+- **`scaffold`** — full features (auth flows, hero sections, billing, …) that may add routes, APIs, and config.
 
 ```bash
 devkit list
 devkit list --template=nextjs-compact
 devkit list --template=vite-express-tauri
 devkit list --installed
-devkit list --category=auth
+devkit list --kind=component
+devkit list --kind=scaffold
+devkit list --category=authentication
 devkit list --category=ui
 ```
 
 **Example output:**
 
 ```
-┌────────────────────┬───────────────────────────────┬────────────────────────────┬──────────────┐
-│ Component          │ Description                   │ Templates                  │ Installed    │
-├────────────────────┼───────────────────────────────┼────────────────────────────┼──────────────┤
-│ auth               │ Full authentication system    │ nextjs-compact, vite-expr… │ v2.1.0  ✓   │
-│ hero-section       │ Landing hero (6 variants)     │ nextjs-compact, vite-expr… │ -            │
-│ pricing            │ Pricing table (3 variants)    │ nextjs-compact, vite-expr… │ -            │
-│ desktop-tray       │ System tray icon & menu       │ vite-express-tauri only    │ -            │
-│ docs-site          │ MDX documentation site        │ nextjs-compact only        │ -            │
-└────────────────────┴───────────────────────────────┴────────────────────────────┴──────────────┘
+  Package            Kind         Category       Templates                  Installed
+  ────────────────────────────────────────────────────────────────────────────────────────
+  auth               scaffold     authentication nextjs-compact, vite-expr… v2.1.0
+  hero-section       scaffold     marketing      nextjs-compact, vite-expr… -
+  ui-button          component    ui             nextjs-compact, vite-expr… -
+  ui-input           component    ui             nextjs-compact, vite-expr… -
 ```
 
 ---
@@ -284,7 +287,22 @@ devkit update auth@2.2.0
 devkit update --all
 ```
 
-Only **managed files** (those DevKit originally created and you have not modified) are updated. User-modified files are left alone with a warning shown.
+**Updates vs. your edits**
+
+For every file listed in the component manifest, DevKit stores a SHA-256 hash in `.devkit/<name>.manifest.json` after it writes the file. On a later `update` / `upgrade` / `install`, if the file on disk no longer matches that hash, DevKit treats it as **user-modified**: it **does not overwrite** that file, logs `Skipped (user-modified): <path>`, and **keeps** the file’s entry in the manifest with `userModified: true` and the current hash so the next run still respects your edit.
+
+Registry **component authors** steer customization toward `devkit.config.json`, theme tokens, env vars, and user-owned assets—so managed code can update without clobbering your brand. See **[Customization that survives updates](#customization-that-survives-updates)** for backgrounds, logos, text, and other values that should stay stable across updates.
+
+**Overwrite your own changes (`--force`)**
+
+To replace managed files with the version from the registry **even when you edited them** (discarding those local edits for those paths):
+
+```bash
+devkit update auth --force
+devkit update --all --force
+```
+
+Alias: `-f`.
 
 ---
 
@@ -295,8 +313,8 @@ Upgrade all installed components to their latest versions in one step.
 ```bash
 devkit upgrade
 
-# Preview changes without applying them
-devkit upgrade --dry-run
+# Overwrite locally edited managed files with registry versions
+devkit upgrade --force
 ```
 
 ---
@@ -364,6 +382,9 @@ Restore all components from `devkit.lock.json`. Designed for CI/CD pipelines and
 
 ```bash
 devkit install
+
+# Same, but overwrite any locally modified managed files (CI clean tree)
+devkit install --force
 ```
 
 ---
@@ -382,6 +403,53 @@ devkit eject auth
 
 ---
 
+## Customization that survives updates
+
+You can change **backgrounds, logos, typography, marketing text, and almost everything visible** and still run `devkit update` to get **new component code** (bugfixes, features, security patches) without losing those customizations.
+
+**How that works**
+
+DevKit does not magic-merge hand-edited source files. The supported pattern is: **keep your product-specific values in data**, and **let generated pages/components read that data**. Then when an update ships new `.tsx` / `.ts` files, your strings and asset paths are still in `devkit.config.json`, theme tokens, and `public/` — so nothing important is overwritten.
+
+| What you customize | Where it lives | On `devkit update` |
+|--------------------|----------------|-------------------|
+| **Brand colors, surfaces, radii, type scale** | `theme` in `devkit.config.json` + `devkit theme apply` → CSS variables | Component **code** can update; visuals stay controlled by tokens |
+| **Site name, tagline, descriptions, logo/icon paths** | `site` and `site.branding` in `devkit.config.json` | Same — components should read `site`, not hardcode copy |
+| **Image / logo files** | Files under `public/` (paths referenced from `site.branding.logo`, etc.) | Replace assets anytime; managed code only **references** paths |
+| **Secrets, API keys** | `.env` + `${VAR}` placeholders in config | Unchanged by DevKit file copies |
+| **Component-specific options** | Namespaced keys, e.g. `auth`, future `hero`, etc. (see each component’s docs / `devkit info`) | Same pattern |
+
+**Registry expectation:** Roboticela components are authored to pull **labels, URLs, and asset paths** from `devkit.config.json` (and theme tokens for styling) instead of baking in “Acme Inc.” or `/default-logo.svg`. If you bypass that and edit managed files directly, `devkit update` will **skip** those files when it detects edits; use `--force` only when you accept losing local edits to those paths.
+
+**Example — branding and copy in config**
+
+```json
+{
+  "site": {
+    "name": "Acme Analytics",
+    "url": "https://acme.com",
+    "icon": "/favicon.svg",
+    "description": "Real-time dashboards for your team",
+    "branding": {
+      "logo": "/brand/logo.svg",
+      "logoDark": "/brand/logo-dark.svg",
+      "loginHeadline": "Welcome back",
+      "loginSubtext": "Sign in to your workspace",
+      "heroTagline": "Ship faster with confidence",
+      "heroBackground": "/brand/hero-mesh.webp"
+    }
+  },
+  "theme": {
+    "preset": "bold",
+    "colors": { "primary": "#7c3aed", "secondary": "#ec4899" }
+  }
+}
+```
+
+Add keys your templates actually read — the schema allows extra `branding` keys. Extend `theme` with additional color or surface tokens as your template supports (`theme` accepts extra properties for generated CSS variables).
+
+---
+
 ## Configuration Files
 
 ### `devkit.config.json`
@@ -396,7 +464,11 @@ The single source of truth for all component configuration. Committed to git. Se
   "site": {
     "name": "My App",
     "url": "https://myapp.com",
-    "description": "My awesome application"
+    "description": "My awesome application",
+    "branding": {
+      "logo": "/brand/logo.svg",
+      "loginHeadline": "Welcome back"
+    }
   },
   "theme": {
     "preset": "default",

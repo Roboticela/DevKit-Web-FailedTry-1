@@ -14,13 +14,14 @@ import {
   themeApplyCommand, themePreviewCommand, themePresetCommand,
   themeSetCommand, themeListCommand, themeAuditCommand,
 } from "./commands/theme.js";
+import { CLI_VERSION } from "./version.js";
 
 const program = new Command();
 
 program
   .name("devkit")
   .description("Roboticela DevKit — scaffold and extend full-stack projects")
-  .version("1.0.0");
+  .version(CLI_VERSION);
 
 // ── devkit create ─────────────────────────────────────────────────────────────
 
@@ -68,6 +69,7 @@ program
   .command("list")
   .description("List all available components from the registry")
   .option("--template <id>",   "Filter by template")
+  .option("--kind <type>",     "Filter by kind: component (UI) or scaffold (full feature)")
   .option("--category <cat>",  "Filter by category")
   .option("--installed",       "Show only installed components")
   .action((opts) => listCommand(opts));
@@ -85,9 +87,11 @@ program
   .command("update [component]")
   .description("Update a component (or all components with --all)")
   .option("--all", "Update all installed components")
+  .option("-f, --force", "Overwrite managed files even when you edited them since install")
   .action((comp, opts) => {
-    if (opts.all || !comp) return upgradeAllCommand();
-    return updateCommand(comp);
+    const installOpts = { force: opts.force === true };
+    if (opts.all || !comp) return upgradeAllCommand(installOpts);
+    return updateCommand(comp, installOpts);
   });
 
 // ── devkit upgrade ────────────────────────────────────────────────────────────
@@ -95,7 +99,8 @@ program
 program
   .command("upgrade")
   .description("Upgrade all installed components to their latest versions")
-  .action(() => upgradeAllCommand());
+  .option("-f, --force", "Overwrite managed files even when you edited them since install")
+  .action((opts) => upgradeAllCommand({ force: opts.force === true }));
 
 // ── devkit doctor ─────────────────────────────────────────────────────────────
 
@@ -137,16 +142,18 @@ theme.command("audit")
 program
   .command("install")
   .description("Install all components from devkit.lock.json (for CI/deployment)")
-  .action(async () => {
+  .option("-f, --force", "Overwrite managed files even when you edited them since install")
+  .action(async (opts) => {
     const { readLock, readConfig } = await import("./lib/config.js");
     const { installComponent } = await import("./lib/installer.js");
     const { log } = await import("./lib/logger.js");
+    const force = opts.force === true;
     const lock = readLock();
     const config = readConfig();
     for (const [name, entry] of Object.entries(lock.components)) {
       const s = (await import("ora")).default(`Installing ${name}…`).start();
       try {
-        await installComponent(name, config.template, entry.version, entry.variant ?? undefined);
+        await installComponent(name, config.template, entry.version, entry.variant ?? undefined, process.cwd(), { force });
         s.succeed(`${name}@${entry.version}`);
       } catch (e) {
         s.fail(`${name}: ${(e as Error).message}`);
@@ -175,6 +182,7 @@ ${chalk.bold("Examples:")}
   ${chalk.cyan("devkit theme set colors.primary #e11d48")}   Change primary color
   ${chalk.cyan("devkit doctor")}                              Check configuration
   ${chalk.cyan("devkit list")}                                Browse all components
+  ${chalk.cyan("devkit update auth --force")}                 Pull upstream; overwrite your local edits to managed files
 
 ${chalk.dim("Registry:")} ${process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com"}
 `);

@@ -17,6 +17,8 @@ export interface ComponentEntry {
   displayName: string;
   description: string;
   category: string;
+  /** `component` = small UI; `scaffold` = full feature. Omitted in older indexes = scaffold. */
+  kind?: "component" | "scaffold";
   templates: string[];
   platforms: string[];
   hasVariants: boolean;

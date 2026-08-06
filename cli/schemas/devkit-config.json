@@ -19,8 +19,13 @@
       "properties": {
         "name": { "type": "string" },
         "url": { "type": "string", "format": "uri" },
-        "icon": { "type": "string" },
-        "description": { "type": "string" }
+        "icon": { "type": "string", "description": "Favicon or app icon path (e.g. /favicon.svg)" },
+        "description": { "type": "string" },
+        "branding": {
+          "type": "object",
+          "description": "Logo URLs, hero copy, CTA labels — anything components should render from data instead of hardcoding, so updates can refresh implementation files without overwriting your brand.",
+          "additionalProperties": { "type": "string" }
+        }
       },
       "additionalProperties": true
     },

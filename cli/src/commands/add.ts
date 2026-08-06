@@ -41,7 +41,7 @@ async function interactiveAddSelections(
 ): Promise<{ name: string; version: string; variant?: string }[] | null> {
   let all: ComponentEntry[];
   try {
-    all = await listComponents(config.template);
+    all = await listComponents({ template: config.template });
   } catch (e) {
     log.error(`Could not reach registry: ${(e as Error).message}`);
     log.info("Check DEVKIT_REGISTRY or start the registry locally (see repo README).");
@@ -57,23 +57,60 @@ async function interactiveAddSelections(
   console.log();
   intro(chalk.cyan("Add components"));
 
-  const pickedRaw = await multiselect({
-    message: "Select components to install (space to toggle, enter to confirm)",
-    options: installable.map((c) => ({
-      value: c.name,
-      label: c.name,
-      hint:
-        c.description.length > 64 ? `${c.description.slice(0, 61)}…` : c.description,
-    })),
-    required: false,
-  });
+  const toPickerOptions = (kind: "component" | "scaffold") =>
+    installable
+      .filter((c) => c.kind === kind)
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((c) => ({
+        value: c.name,
+        label: c.name,
+        hint: c.description.length > 52 ? `${c.description.slice(0, 49)}…` : c.description,
+      }));
 
-  if (isCancel(pickedRaw)) {
+  const componentOptions = toPickerOptions("component");
+  const scaffoldOptions = toPickerOptions("scaffold");
+
+  const pickedComponentsRaw = componentOptions.length > 0
+    ? await multiselect({
+        message: "Select components to install (space to toggle, enter to confirm)",
+        options: componentOptions,
+        required: false,
+      })
+    : [];
+
+  if (isCancel(pickedComponentsRaw)) {
     outro("Cancelled.");
     return [];
   }
 
-  const picked = pickedRaw as string[];
+  if (componentOptions.length === 0) {
+    log.warn("No components available to install.");
+  }
+
+  const pickedScaffoldsRaw = scaffoldOptions.length > 0
+    ? await multiselect({
+        message: "Select scaffolds to install (space to toggle, enter to confirm)",
+        options: scaffoldOptions,
+        required: false,
+      })
+    : [];
+
+  if (isCancel(pickedScaffoldsRaw)) {
+    outro("Cancelled.");
+    return [];
+  }
+
+  if (scaffoldOptions.length === 0) {
+    log.warn("No scaffolds available to install.");
+  }
+
+  const seen = new Set<string>();
+  const picked = [...(pickedComponentsRaw as string[]), ...(pickedScaffoldsRaw as string[])].filter((name) => {
+    if (seen.has(name)) return false;
+    seen.add(name);
+    return true;
+  });
+
   if (picked.length === 0) {
     outro("No components selected.");
     return [];
