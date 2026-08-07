@@ -133,6 +133,16 @@
   display: block;
 }
 
+.dk-select__leading > img,
+.dk-select__leading .dk-country-flag {
+  width: 1.25em;
+  height: auto;
+  max-height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
 .dk-select__trigger {
   display: flex;
   flex: 1 1 auto;
@@ -245,17 +255,57 @@
   pointer-events: none;
 }
 
+.dk-select__popup {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: var(--border-width-default, 1px) solid var(--color-border-default, #d2d2d7);
+  border-radius: var(--dk-select-radius);
+  background: var(--color-surface-primary, #ffffff);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-select__search {
+  flex-shrink: 0;
+  padding: var(--space-2, 8px) var(--space-3, 12px) 0;
+}
+
+.dk-select__search-input {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: max(40px, var(--touch-target-min, 44px));
+  margin: 0;
+  padding: 0 var(--space-3, 12px);
+  border: var(--border-width-default, 1px) solid var(--color-border-default, #d2d2d7);
+  border-radius: calc(var(--dk-select-radius) - 2px);
+  background: var(--color-surface-secondary, #f5f5f7);
+  color: inherit;
+  font: inherit;
+  font-size: var(--dk-select-font-size);
+  line-height: var(--dk-select-line-height);
+}
+
+.dk-select__search-input:focus {
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: 0;
+  border-color: var(--color-focus, var(--color-accent-primary, #0071e3));
+}
+
 .dk-select__listbox {
   box-sizing: border-box;
+  flex: 1 1 auto;
+  min-height: 0;
   margin: 0;
   padding: var(--space-2, 8px);
   overflow-x: hidden;
   overflow-y: auto;
   list-style: none;
-  border: var(--border-width-default, 1px) solid var(--color-border-default, #d2d2d7);
-  border-radius: var(--dk-select-radius);
-  background: var(--color-surface-primary, #ffffff);
-  color: var(--color-text-primary, #1d1d1f);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
   outline: none;
   overscroll-behavior: contain;
   scrollbar-gutter: stable;
@@ -264,7 +314,17 @@
 .dk-select__listbox:focus-visible {
   outline: var(--focus-ring-width, 2px) solid
     var(--color-focus, var(--color-accent-primary, #0071e3));
-  outline-offset: 0;
+  outline-offset: -2px;
+}
+
+.dk-select__empty {
+  margin: 0;
+  padding: var(--space-3, 12px);
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--dk-select-meta-size, var(--font-size-caption, 12px));
+  line-height: var(--dk-select-meta-line, var(--line-height-caption, 16px));
+  text-align: center;
+  list-style: none;
 }
 
 .dk-select__option {
@@ -305,6 +365,16 @@
   width: var(--icon-18, 18px);
   height: var(--icon-18, 18px);
   display: block;
+}
+
+.dk-select__option-icon > img,
+.dk-select__option-icon .dk-country-flag {
+  width: 1.25em;
+  height: auto;
+  max-height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 2px;
 }
 
 .dk-select__option-text {
@@ -384,12 +454,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .dk-select__control,
+  .dk-select__chevron,
   .dk-select__option {
     transition: none;
   }
 }
-
-/* Validation */
 .dk-select.dk-field--error .dk-select__control {
   border-color: var(--color-error-border, var(--color-error, #d70015));
   background: var(--color-error-bg, #ffebee);
@@ -501,25 +571,25 @@
   --dk-select-icon: var(--icon-24, 24px);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .dk-select__control,
-  .dk-select__chevron {
-    transition: none;
-  }
-}
-
 @media (prefers-contrast: more) {
   .dk-select__control,
-  .dk-select__listbox {
+  .dk-select__popup {
     border-width: var(--border-width-emphasis, 2px);
   }
 }
 
 [data-theme="dark"] .dk-select__control,
 .dark .dk-select__control,
-[data-theme="dark"] .dk-select__listbox,
-.dark .dk-select__listbox {
+[data-theme="dark"] .dk-select__popup,
+.dark .dk-select__popup {
   background: var(--color-surface-primary, #2c2c2e);
+}
+
+[data-theme="dark"] .dk-select__search-input,
+.dark .dk-select__search-input {
+  background: var(--color-surface-secondary, #3a3a3c);
+  border-color: var(--color-border-default, #48484a);
+  color: var(--color-text-primary, #f5f5f7);
 }
 
 [data-theme="dark"] .dk-select__option:hover:not(.dk-select__option--disabled),

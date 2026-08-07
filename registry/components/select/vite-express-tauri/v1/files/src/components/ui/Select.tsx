@@ -56,6 +56,14 @@ export interface SelectProps
   name?: string;
   /** Accessible name for the listbox. Defaults from label. */
   listLabel?: string;
+  /**
+   * Show a filter field in the listbox popover.
+   * Defaults to `true` when there are 8+ options (large lists need search).
+   */
+  searchable?: boolean;
+  searchPlaceholder?: string;
+  /** Empty-state copy when search yields no options. */
+  noResultsLabel?: string;
 }
 
 const SIZE_CLASS: Record<SelectSize, string> = {
@@ -159,6 +167,18 @@ function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
 
+const SEARCHABLE_OPTION_THRESHOLD = 8;
+
+function defaultOptionFilter(query: string, opt: SelectOption) {
+  const q = query.trim().toLowerCase();
+  if (!q) return true;
+  return (
+    opt.label.toLowerCase().includes(q) ||
+    opt.value.toLowerCase().includes(q) ||
+    (opt.description?.toLowerCase().includes(q) ?? false)
+  );
+}
+
 /**
  * Select (ID 026) — choose one option from a predefined list.
  *
@@ -195,6 +215,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       presentation = "auto",
       name,
       listLabel,
+      searchable: searchableProp,
+      searchPlaceholder = "Search…",
+      noResultsLabel = "No results",
       id: idProp,
       className,
       ...rest
@@ -210,6 +233,10 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     const successId = `${rootId}-success`;
     const warningId = `${rootId}-warning`;
     const listboxId = `${rootId}-listbox`;
+    const searchId = `${rootId}-search`;
+
+    const isSearchable =
+      searchableProp ?? options.length >= SEARCHABLE_OPTION_THRESHOLD;
 
     const isControlled = valueProp !== undefined;
     const [uncontrolled, setUncontrolled] = React.useState<string | null>(defaultValue);
@@ -217,13 +244,16 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 
     const [open, setOpen] = React.useState(false);
     const [activeIndex, setActiveIndex] = React.useState(0);
+    const [query, setQuery] = React.useState("");
     const [useNative, setUseNative] = React.useState(presentation === "native");
     const [menuStyle, setMenuStyle] = React.useState<React.CSSProperties>({});
 
     const rootRef = React.useRef<HTMLDivElement | null>(null);
     const controlRef = React.useRef<HTMLDivElement | null>(null);
     const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+    const popupRef = React.useRef<HTMLDivElement | null>(null);
     const listRef = React.useRef<HTMLUListElement | null>(null);
+    const searchRef = React.useRef<HTMLInputElement | null>(null);
     const nativeRef = React.useRef<HTMLSelectElement | null>(null);
     const typeaheadRef = React.useRef({ query: "", timer: 0 as number | null });
 
@@ -257,18 +287,26 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       };
     }, [presentation]);
 
+    const filtered = React.useMemo(
+      () =>
+        isSearchable
+          ? options.filter((opt) => defaultOptionFilter(query, opt))
+          : options,
+      [isSearchable, options, query]
+    );
+
     const enabledIndexes = React.useMemo(
       () =>
-        options
+        filtered
           .map((opt, index) => ({ opt, index }))
           .filter(({ opt }) => !opt.disabled)
           .map(({ index }) => index),
-      [options]
+      [filtered]
     );
 
     const selectedOption = options.find((o) => o.value === selected) ?? null;
-    const selectedIndex = selectedOption
-      ? options.findIndex((o) => o.value === selected)
+    const selectedFilteredIndex = selected
+      ? filtered.findIndex((o) => o.value === selected)
       : -1;
 
     const resolvedValidation: SelectValidation =
@@ -304,6 +342,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
 
     const close = React.useCallback(() => {
       setOpen(false);
+      setQuery("");
       triggerRef.current?.focus();
     }, []);
 
@@ -312,7 +351,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       if (!control) return;
       const rect = control.getBoundingClientRect();
       const gap = 4;
-      const maxH = Math.min(280, window.innerHeight - 16);
+      const maxH = Math.min(isSearchable ? 320 : 280, window.innerHeight - 16);
       const spaceBelow = window.innerHeight - rect.bottom - gap - 8;
       const spaceAbove = rect.top - gap - 8;
       const placeAbove = spaceBelow < 160 && spaceAbove > spaceBelow;
@@ -335,17 +374,18 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         boxSizing: "border-box",
         zIndex: 40,
       });
-    }, []);
+    }, [isSearchable]);
 
     const openListbox = React.useCallback(() => {
       if (disabled) return;
+      setQuery("");
       const start =
-        selectedIndex >= 0 && enabledIndexes.includes(selectedIndex)
-          ? selectedIndex
+        selectedFilteredIndex >= 0 && enabledIndexes.includes(selectedFilteredIndex)
+          ? selectedFilteredIndex
           : enabledIndexes[0] ?? 0;
       setActiveIndex(start);
       setOpen(true);
-    }, [disabled, enabledIndexes, selectedIndex]);
+    }, [disabled, enabledIndexes, selectedFilteredIndex]);
 
     React.useLayoutEffect(() => {
       if (!open || useNative) return;
@@ -357,7 +397,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         window.removeEventListener("resize", onResize);
         window.removeEventListener("scroll", onResize, true);
       };
-    }, [open, useNative, positionMenu]);
+    }, [open, useNative, positionMenu, filtered.length, isSearchable]);
 
     React.useEffect(() => {
       if (!open) return;
@@ -365,6 +405,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         const target = event.target as Node | null;
         if (rootRef.current && target && !rootRef.current.contains(target)) {
           setOpen(false);
+          setQuery("");
         }
       };
       document.addEventListener("pointerdown", onPointerDown);
@@ -377,15 +418,30 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         `[data-index="${activeIndex}"]`
       );
       el?.scrollIntoView({ block: "nearest" });
-    }, [activeIndex, open, useNative]);
+    }, [activeIndex, open, useNative, filtered]);
 
     React.useEffect(() => {
       if (!open || useNative) return;
+      if (isSearchable) {
+        searchRef.current?.focus();
+        return;
+      }
       listRef.current?.focus();
-    }, [open, useNative]);
+    }, [open, useNative, isSearchable]);
+
+    React.useEffect(() => {
+      if (!open || !isSearchable) return;
+      const next =
+        selectedFilteredIndex >= 0 && enabledIndexes.includes(selectedFilteredIndex)
+          ? selectedFilteredIndex
+          : enabledIndexes[0] ?? 0;
+      setActiveIndex(next);
+      // Only re-sync highlight when the filter query changes.
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [query]);
 
     const selectIndex = (index: number) => {
-      const opt = options[index];
+      const opt = filtered[index];
       if (!opt || opt.disabled) return;
       commit(opt.value);
       close();
@@ -403,6 +459,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
     };
 
     const typeahead = (key: string) => {
+      if (isSearchable) return;
       if (key.length !== 1 || /\s/.test(key)) return;
       const state = typeaheadRef.current;
       if (state.timer) window.clearTimeout(state.timer);
@@ -412,19 +469,49 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       }, 500);
       const q = state.query;
       const from = Math.max(0, activeIndex);
-      const order = [
-        ...options.slice(from),
-        ...options.slice(0, from),
-      ];
+      const order = [...filtered.slice(from), ...filtered.slice(0, from)];
       const match = order.find(
         (opt) => !opt.disabled && opt.label.toLowerCase().startsWith(q)
       );
       if (match) {
-        const index = options.indexOf(match);
+        const index = filtered.indexOf(match);
         if (open) setActiveIndex(index);
         else {
           commit(match.value);
         }
+      }
+    };
+
+    const onSearchKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        close();
+        return;
+      }
+      if (event.key === "ArrowDown") {
+        event.preventDefault();
+        moveActive(1);
+        return;
+      }
+      if (event.key === "ArrowUp") {
+        event.preventDefault();
+        moveActive(-1);
+        return;
+      }
+      if (event.key === "Home") {
+        event.preventDefault();
+        if (enabledIndexes[0] !== undefined) setActiveIndex(enabledIndexes[0]);
+        return;
+      }
+      if (event.key === "End") {
+        event.preventDefault();
+        const last = enabledIndexes[enabledIndexes.length - 1];
+        if (last !== undefined) setActiveIndex(last);
+        return;
+      }
+      if (event.key === "Enter") {
+        event.preventDefault();
+        selectIndex(activeIndex);
       }
     };
 
@@ -477,6 +564,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         )}
         data-size={size}
         data-presentation={useNative ? "native" : "listbox"}
+        data-searchable={isSearchable || undefined}
         data-validation={resolvedValidation}
         data-disabled={disabled || undefined}
         data-open={open || undefined}
@@ -611,96 +699,132 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         </div>
 
         {open && !useNative ? (
-          <ul
-            ref={listRef}
-            id={listboxId}
-            className="dk-select__listbox dk-scroll"
-            role="listbox"
-            aria-label={listLabel ?? label ?? "Options"}
-            aria-activedescendant={`${rootId}-opt-${activeIndex}`}
+          <div
+            ref={popupRef}
+            className="dk-select__popup"
             style={menuStyle}
-            tabIndex={-1}
-            onKeyDown={(event) => {
-              if (event.key === "Escape") {
-                event.preventDefault();
-                close();
-                return;
-              }
-              if (event.key === "ArrowDown") {
-                event.preventDefault();
-                moveActive(1);
-                return;
-              }
-              if (event.key === "ArrowUp") {
-                event.preventDefault();
-                moveActive(-1);
-                return;
-              }
-              if (event.key === "Home") {
-                event.preventDefault();
-                if (enabledIndexes[0] !== undefined) setActiveIndex(enabledIndexes[0]);
-                return;
-              }
-              if (event.key === "End") {
-                event.preventDefault();
-                const last = enabledIndexes[enabledIndexes.length - 1];
-                if (last !== undefined) setActiveIndex(last);
-                return;
-              }
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                selectIndex(activeIndex);
-                return;
-              }
-              if (event.key.length === 1) typeahead(event.key);
-            }}
+            data-searchable={isSearchable || undefined}
           >
-            {options.map((opt, index) => {
-              const isSelected = opt.value === selected;
-              const isActive = index === activeIndex;
-              return (
-                <li
-                  key={opt.value}
-                  id={`${rootId}-opt-${index}`}
-                  role="option"
-                  data-index={index}
-                  aria-selected={isSelected}
-                  aria-disabled={opt.disabled || undefined}
-                  className={cx(
-                    "dk-select__option",
-                    isSelected && "dk-select__option--selected",
-                    isActive && "dk-select__option--active",
-                    opt.disabled && "dk-select__option--disabled"
-                  )}
-                  onMouseEnter={() => {
-                    if (!opt.disabled) setActiveIndex(index);
-                  }}
-                  onClick={() => selectIndex(index)}
-                >
-                  {opt.icon ? (
-                    <span className="dk-select__option-icon" aria-hidden="true">
-                      {opt.icon}
-                    </span>
-                  ) : null}
-                  <span className="dk-select__option-text">
-                    <span className="dk-select__option-label">{opt.label}</span>
-                    {opt.description ? (
-                      <span className="dk-select__option-desc">{opt.description}</span>
-                    ) : null}
-                  </span>
-                  <span
-                    className={cx(
-                      "dk-select__option-check",
-                      isSelected && "dk-select__option-check--on"
-                    )}
-                    aria-hidden="true"
-                  >
-                    {isSelected ? <OptionCheckIcon /> : null}
-                  </span>
+            {isSearchable ? (
+              <div className="dk-select__search">
+                <input
+                  ref={searchRef}
+                  id={searchId}
+                  type="search"
+                  className="dk-select__search-input"
+                  placeholder={searchPlaceholder}
+                  value={query}
+                  autoComplete="off"
+                  autoCorrect="off"
+                  spellCheck={false}
+                  aria-autocomplete="list"
+                  aria-controls={listboxId}
+                  aria-activedescendant={
+                    filtered.length > 0 ? `${rootId}-opt-${activeIndex}` : undefined
+                  }
+                  onChange={(event) => setQuery(event.target.value)}
+                  onKeyDown={onSearchKeyDown}
+                />
+              </div>
+            ) : null}
+
+            <ul
+              ref={listRef}
+              id={listboxId}
+              className="dk-select__listbox dk-scroll"
+              role="listbox"
+              aria-label={listLabel ?? label ?? "Options"}
+              aria-activedescendant={
+                filtered.length > 0 ? `${rootId}-opt-${activeIndex}` : undefined
+              }
+              tabIndex={isSearchable ? -1 : 0}
+              onKeyDown={(event) => {
+                if (event.key === "Escape") {
+                  event.preventDefault();
+                  close();
+                  return;
+                }
+                if (event.key === "ArrowDown") {
+                  event.preventDefault();
+                  moveActive(1);
+                  return;
+                }
+                if (event.key === "ArrowUp") {
+                  event.preventDefault();
+                  moveActive(-1);
+                  return;
+                }
+                if (event.key === "Home") {
+                  event.preventDefault();
+                  if (enabledIndexes[0] !== undefined) setActiveIndex(enabledIndexes[0]);
+                  return;
+                }
+                if (event.key === "End") {
+                  event.preventDefault();
+                  const last = enabledIndexes[enabledIndexes.length - 1];
+                  if (last !== undefined) setActiveIndex(last);
+                  return;
+                }
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  selectIndex(activeIndex);
+                  return;
+                }
+                if (event.key.length === 1) typeahead(event.key);
+              }}
+            >
+              {filtered.length === 0 ? (
+                <li className="dk-select__empty" role="presentation">
+                  {noResultsLabel}
                 </li>
-              );
-            })}
-          </ul>
+              ) : null}
+              {filtered.map((opt, index) => {
+                const isSelected = opt.value === selected;
+                const isActive = index === activeIndex;
+                return (
+                  <li
+                    key={opt.value}
+                    id={`${rootId}-opt-${index}`}
+                    role="option"
+                    data-index={index}
+                    aria-selected={isSelected}
+                    aria-disabled={opt.disabled || undefined}
+                    className={cx(
+                      "dk-select__option",
+                      isSelected && "dk-select__option--selected",
+                      isActive && "dk-select__option--active",
+                      opt.disabled && "dk-select__option--disabled"
+                    )}
+                    onMouseEnter={() => {
+                      if (!opt.disabled) setActiveIndex(index);
+                    }}
+                    onClick={() => selectIndex(index)}
+                  >
+                    {opt.icon ? (
+                      <span className="dk-select__option-icon" aria-hidden="true">
+                        {opt.icon}
+                      </span>
+                    ) : null}
+                    <span className="dk-select__option-text">
+                      <span className="dk-select__option-label">{opt.label}</span>
+                      {opt.description ? (
+                        <span className="dk-select__option-desc">{opt.description}</span>
+                      ) : null}
+                    </span>
+                    <span
+                      className={cx(
+                        "dk-select__option-check",
+                        isSelected && "dk-select__option-check--on"
+                      )}
+                      aria-hidden="true"
+                    >
+                      {isSelected ? <OptionCheckIcon /> : null}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         ) : null}
 
         <div className="dk-field__footer">

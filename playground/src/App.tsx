@@ -2661,17 +2661,19 @@ function SelectLab() {
         <h3 className="catalog-subgroup-title">Basic</h3>
         <Select
           label="Country"
-          description="From countries module — flags in the list and trigger"
+          description="All countries — searchable listbox with flags in the list and trigger"
           helpText={
             selectedCountry
-              ? `${selectedCountry.flag} ${selectedCountry.name}`
-              : "Type-ahead works when the listbox is open on desktop"
+              ? `Selected: ${selectedCountry.name}`
+              : "Search or scroll — 250 countries"
           }
           options={COUNTRY_OPTIONS}
           value={country}
           onValueChange={setCountry}
           clearable
           presentation="listbox"
+          searchable
+          searchPlaceholder="Search countries…"
         />
         <Select
           label="Role"
@@ -2703,9 +2705,9 @@ function SelectLab() {
           helpText="Selected option shows a check mark, not color alone"
         />
         <Select
-          label="Timezone (native)"
-          presentation="native"
-          description="Forces the platform select UI"
+          label="Timezone"
+          presentation="listbox"
+          description="Custom listbox — same chrome as Theme and Country"
           options={[
             { value: "utc", label: "UTC", description: "Coordinated Universal Time" },
             { value: "pkt", label: "Asia/Karachi", description: "PKT · UTC+5" },
@@ -2725,17 +2727,27 @@ function SelectLab() {
         <Select
           label="Many options"
           presentation="listbox"
-          description="Scrollable listbox with viewport clamping"
+          description="Scrollable searchable listbox with viewport clamping"
           options={LARGE_OPTIONS}
           defaultValue="opt-12"
+          searchable
+          searchPlaceholder="Filter options…"
         />
-        <Select label="Disabled" options={COUNTRY_OPTIONS} defaultValue="ae" disabled />
+        <Select
+          label="Disabled"
+          options={COUNTRY_OPTIONS}
+          defaultValue="ae"
+          disabled
+          searchable
+        />
         <Select
           label="Success"
           options={COUNTRY_OPTIONS}
           defaultValue="pk"
           validation="success"
           successMessage="Country saved"
+          searchable
+          searchPlaceholder="Search countries…"
         />
       </div>
     </section>

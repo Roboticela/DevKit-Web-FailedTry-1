@@ -214,6 +214,9 @@
 /* Segments — stretch to shell content box; shared text metrics with nested inputs */
 .dk-input-group__addon,
 .dk-input-group__icon {
+  --dk-ig-content-height: calc(
+    var(--dk-ig-shell-height) - (var(--border-width-default, 1px) * 2)
+  );
   display: inline-flex;
   flex-shrink: 0;
   align-items: center;
@@ -223,9 +226,10 @@
   height: auto;
   align-self: stretch;
   padding-inline: var(--dk-ig-pad-x);
+  padding-block: 0;
   color: var(--color-text-secondary, #6e6e73);
   font-size: var(--dk-ig-font-size);
-  line-height: var(--dk-ig-line-height);
+  line-height: var(--dk-ig-content-height);
   font-weight: var(--weight-regular, 400);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -280,7 +284,7 @@
 
 /* Nested form controls — absorb ALL chrome into the group shell */
 .dk-input-group__input > .dk-field,
-.dk-input-group__input > .dk-text,
+.dk-input-group__input > .dk-text-input,
 .dk-input-group__input > .dk-number,
 .dk-input-group__input > .dk-search,
 .dk-input-group__input > .dk-password,
@@ -289,6 +293,7 @@
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
+  justify-content: center;
   width: 100%;
   min-width: 0;
   min-height: 0;
@@ -308,7 +313,7 @@
 .dk-input-group__input .dk-password__hit,
 .dk-input-group__input .dk-date__hit,
 .dk-input-group__input .dk-time__hit {
-  display: none;
+  display: none !important;
 }
 
 .dk-input-group--attached .dk-input-group__input .dk-field__control,
@@ -320,6 +325,7 @@
 .dk-input-group--attached .dk-input-group__input .dk-time__control {
   position: relative;
   display: flex;
+  flex-direction: row;
   align-items: center;
   flex: 1 1 auto;
   width: 100%;
@@ -381,15 +387,18 @@
 .dk-input-group--attached .dk-input-group__input input[type="url"],
 .dk-input-group--attached .dk-input-group__input input[type="tel"],
 .dk-input-group--attached .dk-input-group__input input[type="password"] {
-  /* Same text band as addons: fixed line box, flex-centered in the shell */
+  /* Fill shell height; line-height = content box so glyphs share addon midline */
+  --dk-ig-content-height: calc(
+    var(--dk-ig-shell-height) - (var(--border-width-default, 1px) * 2)
+  );
   box-sizing: border-box;
   flex: 1 1 auto;
-  align-self: center;
+  align-self: stretch;
   width: 100%;
   min-width: 0;
-  height: var(--dk-ig-line-height);
-  min-height: var(--dk-ig-line-height);
-  max-height: var(--dk-ig-line-height);
+  height: var(--dk-ig-content-height);
+  min-height: var(--dk-ig-content-height);
+  max-height: var(--dk-ig-content-height);
   margin: 0;
   padding: 0;
   border: 0;
@@ -397,10 +406,25 @@
   color: var(--color-text-primary, #1d1d1f);
   font-family: inherit;
   font-size: var(--dk-ig-font-size);
-  line-height: var(--dk-ig-line-height);
+  line-height: var(--dk-ig-content-height);
   font-weight: var(--weight-regular, 400);
   appearance: none;
   -webkit-appearance: none;
+  display: block;
+}
+
+.dk-input-group--attached .dk-input-group__input input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.dk-input-group--attached
+  .dk-input-group__input
+  input[type="number"]::-webkit-outer-spin-button,
+.dk-input-group--attached
+  .dk-input-group__input
+  input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Nested number steppers / search trail stay inside the shared height */
