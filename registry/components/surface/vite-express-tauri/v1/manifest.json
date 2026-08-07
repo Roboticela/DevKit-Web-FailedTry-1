@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Surface.tsx",
+      "destination": "src/components/ui/Surface.tsx"
+    },
+    {
+      "source": "files/src/styles/surface.css",
+      "destination": "src/styles/surface.css"
+    },
+    {
+      "source": "files/docs/SURFACE.md",
+      "destination": "docs/devkit/SURFACE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

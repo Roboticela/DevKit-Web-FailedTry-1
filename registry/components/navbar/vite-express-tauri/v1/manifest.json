@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Navbar.tsx",
+      "destination": "src/components/ui/Navbar.tsx"
+    },
+    {
+      "source": "files/src/styles/navbar.css",
+      "destination": "src/styles/navbar.css"
+    },
+    {
+      "source": "files/docs/NAVBAR.md",
+      "destination": "docs/devkit/NAVBAR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

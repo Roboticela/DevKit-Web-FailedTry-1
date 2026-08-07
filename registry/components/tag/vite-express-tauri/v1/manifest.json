@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Tag.tsx",
+      "destination": "src/components/ui/Tag.tsx"
+    },
+    {
+      "source": "files/src/styles/tag.css",
+      "destination": "src/styles/tag.css"
+    },
+    {
+      "source": "files/docs/TAG.md",
+      "destination": "docs/devkit/TAG.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

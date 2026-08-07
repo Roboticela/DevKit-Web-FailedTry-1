@@ -1,0 +1,44 @@
+/* Avatar Group — stack with overlap. No gradients. No box-shadows. */
+
+.dk-avatar-group {
+  --dk-avatar-group-size: 32px;
+  --dk-avatar-group-overlap: calc(var(--dk-avatar-group-size) * 0.28);
+  --dk-avatar-group-border: var(--color-surface-primary, #fff);
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.dk-avatar-group__item {
+  position: relative;
+  margin-inline-start: calc(var(--dk-avatar-group-overlap) * -1);
+  border-radius: var(--radius-full, 9999px);
+  box-sizing: border-box;
+}
+
+.dk-avatar-group__item:first-child {
+  margin-inline-start: 0;
+}
+
+.dk-avatar-group__item .dk-avatar,
+.dk-avatar-group__overflow {
+  outline: 2px solid var(--dk-avatar-group-border);
+}
+
+.dk-avatar-group__overflow {
+  display: inline-grid;
+  place-items: center;
+  width: var(--dk-avatar-group-size);
+  height: var(--dk-avatar-group-size);
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-surface-tertiary, #f5f5f7);
+  color: var(--color-text-secondary, #6e6e73);
+  font-family: var(--font-sans, inherit);
+  font-size: calc(var(--dk-avatar-group-size) * 0.32);
+  font-weight: var(--weight-semibold, 600);
+  line-height: 1;
+  border: 1px solid var(--color-border-subtle, #e8e8ed);
+  box-sizing: border-box;
+}

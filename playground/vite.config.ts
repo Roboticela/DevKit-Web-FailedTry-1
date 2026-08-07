@@ -1,24 +1,43 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { defineConfig, loadEnv } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
-const root = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(root, "..");
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, "..");
 
-export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@registry": path.join(repoRoot, "registry"),
-      "@devkit-theme": path.join(repoRoot, "cli/src/lib/theme.ts"),
+// https://vite.dev/config/
+export default defineConfig(({ mode }) => {
+  // Pin env files to this directory so variables load during `vite build` even if cwd differs (e.g. tooling wrappers).
+  const envDir = __dirname;
+  const env = loadEnv(mode, envDir, "");
+  const appUrl = env.VITE_APP_URL ?? env.APP_URL ?? "";
+  const apiUrl = env.VITE_API_URL ?? env.API_URL ?? "";
+
+  return {
+    envDir,
+    define: {
+      "import.meta.env.VITE_APP_URL": JSON.stringify(appUrl),
+      "import.meta.env.VITE_API_URL": JSON.stringify(apiUrl),
     },
-  },
-  server: {
-    port: 5173,
-    open: true,
-    fs: {
-      allow: [repoRoot],
+    plugins: [react(), tailwindcss()],
+    resolve: {
+      alias: {
+        "@registry": path.join(repoRoot, "registry"),
+        "@devkit-theme": path.join(repoRoot, "cli/src/lib/theme.ts"),
+      },
     },
-  },
+    // Tauri (Android / iOS dev) must reach the Vite process from the device/emulator (e.g. 10.8.0.2:5173).
+    // The default (localhost only) will hang with "Waiting for your frontend dev server" on mobile.
+    clearScreen: false,
+    server: {
+      port: 5173,
+      strictPort: true,
+      host: "0.0.0.0",
+      fs: {
+        allow: [repoRoot],
+      },
+    },
+  };
 });

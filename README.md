@@ -6,7 +6,7 @@ Reusable UI system. Components catalog is populated; pages and scaffolds are rea
 
 | Category | Directory | Status |
 |----------|-----------|--------|
-| Components | `registry/components` | 44 packages |
+| Components | `registry/components` | 56 packages |
 | Pages | `registry/pages` | empty |
 | Scaffolds | `registry/scaffolds` | empty |
 

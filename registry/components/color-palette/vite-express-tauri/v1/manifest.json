@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ColorPalette.tsx",
+      "destination": "src/components/ui/ColorPalette.tsx"
+    },
+    {
+      "source": "files/src/styles/color-palette.css",
+      "destination": "src/styles/color-palette.css"
+    },
+    {
+      "source": "files/docs/COLOR_PALETTE.md",
+      "destination": "docs/devkit/COLOR_PALETTE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

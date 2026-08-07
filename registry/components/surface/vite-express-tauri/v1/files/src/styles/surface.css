@@ -1,0 +1,85 @@
+/* Surface — chrome container. No shadows. No blur glass. */
+
+.dk-surface {
+  --dk-surface-bg: var(--color-surface-primary, #fff);
+  --dk-surface-border: var(--color-border-subtle, #e8e8ed);
+  --dk-surface-pad: var(--space-4, 16px);
+  --dk-surface-radius: 0;
+
+  box-sizing: border-box;
+  margin: 0;
+  background: var(--dk-surface-bg);
+  color: var(--color-text-primary, #1d1d1f);
+  font-family: var(--font-sans, inherit);
+}
+
+.dk-surface--subtle {
+  --dk-surface-bg: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-surface--elevated {
+  --dk-surface-bg: var(--color-surface-elevated, #fff);
+  --dk-surface-border: var(--color-border-default, #d2d2d7);
+}
+
+.dk-surface--sticky {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-navigation, 200);
+  --dk-surface-bg: var(--color-surface-primary, #fff);
+}
+
+.dk-surface--bordered {
+  border-bottom: 1px solid var(--dk-surface-border);
+}
+
+.dk-surface--pad-none {
+  --dk-surface-pad: 0;
+  padding: 0;
+}
+
+.dk-surface--pad-sm {
+  --dk-surface-pad: var(--space-2, 8px);
+  padding: var(--dk-surface-pad) var(--space-3, 12px);
+}
+
+.dk-surface--pad-md {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+}
+
+.dk-surface--pad-lg {
+  padding: var(--space-4, 16px) var(--space-6, 24px);
+}
+
+.dk-surface--density-compact.dk-surface--pad-md {
+  padding-block: var(--space-2, 8px);
+}
+
+.dk-surface--density-comfortable.dk-surface--pad-md {
+  padding-block: var(--space-4, 16px);
+}
+
+.dk-surface--safe {
+  padding-top: max(var(--dk-surface-pad, 0px), env(safe-area-inset-top, 0px));
+  padding-bottom: max(var(--dk-surface-pad, 0px), env(safe-area-inset-bottom, 0px));
+  padding-inline-start: max(var(--space-4, 16px), env(safe-area-inset-left, 0px));
+  padding-inline-end: max(var(--space-4, 16px), env(safe-area-inset-right, 0px));
+}
+
+.dk-surface--safe-top {
+  padding-top: max(var(--dk-surface-pad, 0px), env(safe-area-inset-top, 0px));
+}
+
+.dk-surface--safe-bottom {
+  padding-bottom: max(var(--dk-surface-pad, 0px), env(safe-area-inset-bottom, 0px));
+}
+
+.dk-surface--safe-x {
+  padding-inline-start: max(var(--space-4, 16px), env(safe-area-inset-left, 0px));
+  padding-inline-end: max(var(--space-4, 16px), env(safe-area-inset-right, 0px));
+}
+
+.dk-surface--safe-y {
+  padding-top: max(var(--dk-surface-pad, 0px), env(safe-area-inset-top, 0px));
+  padding-bottom: max(var(--dk-surface-pad, 0px), env(safe-area-inset-bottom, 0px));
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/NavigationDrawer.tsx",
+      "destination": "components/ui/NavigationDrawer.tsx"
+    },
+    {
+      "source": "files/styles/navigation-drawer.css",
+      "destination": "styles/navigation-drawer.css"
+    },
+    {
+      "source": "files/docs/NAVIGATION_DRAWER.md",
+      "destination": "docs/devkit/NAVIGATION_DRAWER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

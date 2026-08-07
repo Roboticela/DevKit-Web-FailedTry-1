@@ -1,0 +1,49 @@
+{
+  "id": 56,
+  "name": "color-palette",
+  "displayName": "Color Palette",
+  "description": "Selectable color swatch radiogroup for accents — grid or popover trigger for toolbars.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "identity-primitives",
+  "subgroupName": "Identity",
+  "kind": "component",
+  "layer": 1,
+  "icon": "palette",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "identity-primitives",
+    "color",
+    "palette",
+    "accent",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

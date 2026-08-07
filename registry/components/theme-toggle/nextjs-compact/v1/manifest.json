@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ThemeToggle.tsx",
+      "destination": "components/ui/ThemeToggle.tsx"
+    },
+    {
+      "source": "files/styles/theme-toggle.css",
+      "destination": "styles/theme-toggle.css"
+    },
+    {
+      "source": "files/docs/THEME_TOGGLE.md",
+      "destination": "docs/devkit/THEME_TOGGLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

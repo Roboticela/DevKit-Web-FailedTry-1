@@ -6,7 +6,7 @@ import {
   Heading,
   Paragraph,
   Tabs,
-  TextInput,
+  SearchField,
   ActionSegmentedControl,
 } from "../ui/registry";
 import {
@@ -89,28 +89,38 @@ export function CatalogPage() {
 
   return (
     <div className="pg-catalog">
-      <header className="pg-catalog__intro">
-        <Heading level={2} size="title">
-          Catalog
-        </Heading>
-        <Paragraph variant="secondary">
-          Browse registry packages. Everything here is installed from the DevKit registry — reuse,
-          do not rebuild.
-        </Paragraph>
-      </header>
+      <header className="pg-catalog__hero">
+        <div className="pg-catalog__intro">
+          <Heading level={2} size="title">
+            Catalog
+          </Heading>
+          <Paragraph variant="secondary" className="pg-catalog__lede">
+            Browse registry packages. Everything here is installed from the DevKit registry — reuse,
+            do not rebuild.
+          </Paragraph>
+        </div>
 
-      <div className="pg-catalog__toolbar">
-        <TextInput
-          label="Search packages"
-          hideLabel
-          type="search"
-          placeholder="Search name, description, tags…"
-          value={query}
-          onValueChange={setQuery}
-          clearable
-          fullWidth
-        />
-      </div>
+        <div className="pg-catalog__toolbar">
+          <SearchField
+            label="Search packages"
+            hideLabel
+            appearance="toolbar"
+            placeholder="Search name, description, tags…"
+            value={query}
+            onValueChange={setQuery}
+            clearable
+            fullWidth
+            resultsStatus={query.trim() ? (filtered.length > 0 ? "available" : "empty") : "idle"}
+            resultsStatusLabel={
+              query.trim()
+                ? filtered.length > 0
+                  ? `${filtered.length} packages found`
+                  : "No packages match your search"
+                : undefined
+            }
+          />
+        </div>
+      </header>
 
       <Tabs
         label="Package kind"

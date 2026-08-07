@@ -136,6 +136,45 @@ import "@registry/components/search-field/vite-express-tauri/v1/files/src/styles
 import { Skeleton, SkeletonGroup } from "@registry/components/skeleton/vite-express-tauri/v1/files/src/components/ui/Skeleton";
 import "@registry/components/skeleton/vite-express-tauri/v1/files/src/styles/skeleton.css";
 
+import { Brand } from "@registry/components/brand/vite-express-tauri/v1/files/src/components/ui/Brand";
+import "@registry/components/brand/vite-express-tauri/v1/files/src/styles/brand.css";
+
+import { Avatar } from "@registry/components/avatar/vite-express-tauri/v1/files/src/components/ui/Avatar";
+import "@registry/components/avatar/vite-express-tauri/v1/files/src/styles/avatar.css";
+
+import { AvatarGroup } from "@registry/components/avatar-group/vite-express-tauri/v1/files/src/components/ui/AvatarGroup";
+import "@registry/components/avatar-group/vite-express-tauri/v1/files/src/styles/avatar-group.css";
+
+import { Tag } from "@registry/components/tag/vite-express-tauri/v1/files/src/components/ui/Tag";
+import "@registry/components/tag/vite-express-tauri/v1/files/src/styles/tag.css";
+
+import { Divider } from "@registry/components/divider/vite-express-tauri/v1/files/src/components/ui/Divider";
+import "@registry/components/divider/vite-express-tauri/v1/files/src/styles/divider.css";
+
+import { Surface } from "@registry/components/surface/vite-express-tauri/v1/files/src/components/ui/Surface";
+import "@registry/components/surface/vite-express-tauri/v1/files/src/styles/surface.css";
+
+import { NavItem } from "@registry/components/nav-item/vite-express-tauri/v1/files/src/components/ui/NavItem";
+import "@registry/components/nav-item/vite-express-tauri/v1/files/src/styles/nav-item.css";
+
+import { Breadcrumb } from "@registry/components/breadcrumb/vite-express-tauri/v1/files/src/components/ui/Breadcrumb";
+import "@registry/components/breadcrumb/vite-express-tauri/v1/files/src/styles/breadcrumb.css";
+
+import { NavigationDrawer } from "@registry/components/navigation-drawer/vite-express-tauri/v1/files/src/components/ui/NavigationDrawer";
+import "@registry/components/navigation-drawer/vite-express-tauri/v1/files/src/styles/navigation-drawer.css";
+
+import { Navbar } from "@registry/components/navbar/vite-express-tauri/v1/files/src/components/ui/Navbar";
+import "@registry/components/navbar/vite-express-tauri/v1/files/src/styles/navbar.css";
+
+import { NavActions } from "@registry/components/nav-actions/vite-express-tauri/v1/files/src/components/ui/NavActions";
+import "@registry/components/nav-actions/vite-express-tauri/v1/files/src/styles/nav-actions.css";
+
+import { ThemeToggle, DEFAULT_THEMES } from "@registry/components/theme-toggle/vite-express-tauri/v1/files/src/components/ui/ThemeToggle";
+import "@registry/components/theme-toggle/vite-express-tauri/v1/files/src/styles/theme-toggle.css";
+
+import { ColorPalette } from "@registry/components/color-palette/vite-express-tauri/v1/files/src/components/ui/ColorPalette";
+import "@registry/components/color-palette/vite-express-tauri/v1/files/src/styles/color-palette.css";
+
 
 export type PreviewEntry = {
   Preview: ComponentType;
@@ -650,6 +689,198 @@ export const PREVIEWS: Record<string, PreviewEntry> = {
           <Badge appearance="numeric" count={3} accessibleLabel="3 unread" tone="accent" />
         </ListItem.Trailing>
       </ListItem>
+    ),
+  },
+  brand: {
+    Preview: () => <Brand label="DevKit" name="DevKit" descriptor="Design system" layout="lockup" />,
+    Mini: () => <Brand label="DevKit" layout="lockup" size="sm" />,
+  },
+  avatar: {
+    Preview: () => <Avatar label="Alex Rivera" initials="AR" size={40} status="online" />,
+    Mini: () => <Avatar label="Alex" initials="AR" size={32} />,
+  },
+  "avatar-group": {
+    Preview: () => (
+      <AvatarGroup label="Team" max={3} size={32}>
+        <Avatar label="Alex" initials="AR" size={32} />
+        <Avatar label="Jordan" initials="JL" size={32} />
+        <Avatar label="Sam" initials="SP" size={32} />
+        <Avatar label="Riley" initials="RK" size={32} />
+      </AvatarGroup>
+    ),
+  },
+  tag: {
+    Preview: () => (
+      <Tag.Group label="Filters">
+        <Tag tone="accent" selected icon={<StarIcon />}>
+          Components
+        </Tag>
+        <Tag removable onRemove={() => undefined}>
+          Pages
+        </Tag>
+        <Tag tone="neutral" count={12}>
+          Scaffolds
+        </Tag>
+      </Tag.Group>
+    ),
+  },
+  divider: {
+    Preview: () => <Divider variant="section" label="Or continue" />,
+    Mini: () => <Divider />,
+  },
+  surface: {
+    Preview: () => (
+      <Surface variant="elevated" padding="md" bordered>
+        <Paragraph>Surface content region</Paragraph>
+      </Surface>
+    ),
+  },
+  "nav-item": {
+    Preview: () => (
+      <div className="pg-variant-grid" style={{ flexDirection: "column", alignItems: "stretch" }}>
+        <NavItem label="Catalog" icon={<StarIcon />} current />
+        <NavItem label="Docs" icon={<StarIcon />} />
+        <NavItem label="Settings" icon={<StarIcon />} disabled />
+      </div>
+    ),
+  },
+  breadcrumb: {
+    Preview: () => (
+      <Breadcrumb
+        items={[
+          { id: "home", label: "Home", href: "#" },
+          { id: "lib", label: "Library", href: "#" },
+          { id: "comp", label: "Components", current: true },
+        ]}
+      />
+    ),
+  },
+  "navigation-drawer": {
+    Preview: () => {
+      const [open, setOpen] = useState(false);
+      return (
+        <>
+          <Button variant="secondary" onClick={() => setOpen(true)}>
+            Open menu
+          </Button>
+          <NavigationDrawer
+            open={open}
+            onOpenChange={setOpen}
+            label="Mobile navigation"
+            header={<Brand label="DevKit" layout="lockup" size="sm" />}
+            closeControl={
+              <IconButton label="Close" icon={<MoreIcon />} onClick={() => setOpen(false)} />
+            }
+          >
+            <NavItem label="Catalog" current onClick={() => setOpen(false)} />
+            <NavItem label="Docs" onClick={() => setOpen(false)} />
+          </NavigationDrawer>
+        </>
+      );
+    },
+  },
+  navbar: {
+    Preview: () => (
+      <Navbar
+        brand={<Brand label="DevKit" layout="lockup" size="sm" />}
+        primary={
+          <>
+            <NavItem label="Catalog" current />
+            <NavItem label="Docs" />
+          </>
+        }
+        actions={<Button size="sm" variant="secondary">Accent</Button>}
+        account={<Avatar label="You" initials="YO" size={32} />}
+      />
+    ),
+    Mini: () => (
+      <Navbar
+        layout="minimal"
+        density="compact"
+        brand={<Brand label="DevKit" layout="wordmark" size="sm" />}
+      />
+    ),
+  },
+  "nav-actions": {
+    Preview: () => (
+      <NavActions label="Utility navigation" density="standard">
+        <NavActions.Item>
+          <ThemeToggle appearance="system" themes={DEFAULT_THEMES} size="sm" />
+        </NavActions.Item>
+        <NavActions.Item>
+          <NavItem label="GitHub" href="https://github.com/Roboticela/DevKit" external size="md" />
+        </NavActions.Item>
+      </NavActions>
+    ),
+    Mini: () => (
+      <NavActions label="Utilities" density="compact">
+        <NavActions.Item>
+          <NavItem label="Docs" size="sm" />
+        </NavActions.Item>
+        <NavActions.Item>
+          <NavItem label="GitHub" size="sm" />
+        </NavActions.Item>
+      </NavActions>
+    ),
+  },
+  "theme-toggle": {
+    Preview: () => {
+      const [appearance, setAppearance] = useState<"system" | "light" | "dark">("system");
+      const [theme, setTheme] = useState("default");
+      return (
+        <ThemeToggle
+          appearance={appearance}
+          onAppearanceChange={setAppearance}
+          theme={theme}
+          onThemeChange={setTheme}
+          themes={DEFAULT_THEMES}
+          primaryColor="var(--color-accent-primary, #0071e3)"
+          colorPalette={
+            <ColorPalette
+              label="Accent color"
+              variant="grid"
+              size="sm"
+              colors={[
+                { id: "blue", label: "Blue", color: "#0071e3" },
+                { id: "green", label: "Green", color: "#30d158" },
+                { id: "orange", label: "Orange", color: "#ff9500" },
+                { id: "rose", label: "Rose", color: "#ff2d55" },
+                { id: "violet", label: "Violet", color: "#af52de" },
+                { id: "teal", label: "Teal", color: "#40c8e0" },
+              ]}
+              defaultValue="blue"
+            />
+          }
+        />
+      );
+    },
+  },
+  "color-palette": {
+    Preview: () => (
+      <ColorPalette
+        variant="popover"
+        triggerLabel="Colors"
+        colors={[
+          { id: "blue", label: "Blue", color: "#0071e3" },
+          { id: "green", label: "Green", color: "#30d158" },
+          { id: "orange", label: "Orange", color: "#ff9500" },
+          { id: "rose", label: "Rose", color: "#ff2d55" },
+          { id: "violet", label: "Violet", color: "#af52de" },
+          { id: "teal", label: "Teal", color: "#40c8e0" },
+        ]}
+        defaultValue="blue"
+      />
+    ),
+    Mini: () => (
+      <ColorPalette
+        colors={[
+          { id: "blue", label: "Blue", color: "#0071e3" },
+          { id: "green", label: "Green", color: "#30d158" },
+          { id: "orange", label: "Orange", color: "#ff9500" },
+        ]}
+        defaultValue="blue"
+        size="sm"
+      />
     ),
   },
 };

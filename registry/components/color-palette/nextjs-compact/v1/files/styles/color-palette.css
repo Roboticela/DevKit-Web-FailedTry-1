@@ -1,0 +1,174 @@
+/* Color Palette — swatch radiogroup. No gradients. No box-shadows. */
+
+.dk-color-palette {
+  --dk-cp-size: 28px;
+  --dk-cp-gap: 8px;
+  --dk-cp-radius: var(--radius-full, 9999px);
+  --dk-cp-border: var(--color-border-subtle, #e8e8ed);
+  --dk-cp-focus: var(--color-focus, var(--color-accent-primary, #0071e3));
+  font-family: var(--font-sans, inherit);
+  vertical-align: middle;
+}
+
+.dk-color-palette__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--dk-cp-size), 1fr));
+  gap: var(--dk-cp-gap);
+  align-items: start;
+  max-width: 100%;
+}
+
+.dk-color-palette--sm .dk-color-palette__grid {
+  --dk-cp-size: 24px;
+  --dk-cp-gap: 6px;
+}
+
+.dk-color-palette--md .dk-color-palette__grid {
+  --dk-cp-size: 28px;
+}
+
+.dk-color-palette--lg .dk-color-palette__grid {
+  --dk-cp-size: 36px;
+  --dk-cp-gap: 10px;
+}
+
+.dk-color-palette--labels .dk-color-palette__grid {
+  grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+}
+
+.dk-color-palette--disabled {
+  opacity: 0.48;
+  pointer-events: none;
+}
+
+.dk-color-palette--popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.dk-color-palette__trigger {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  min-width: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--dk-cp-border);
+  border-radius: var(--radius-3, 8px);
+  background: var(--color-surface-secondary, #fafafa);
+  color: var(--color-text-primary, #1d1d1f);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: var(--weight-medium, 500);
+}
+
+.dk-color-palette__trigger:hover,
+.dk-color-palette__trigger--open {
+  border-color: var(--color-border-default, #d2d2d7);
+}
+
+.dk-color-palette__trigger:focus-visible {
+  outline: 2px solid var(--dk-cp-focus);
+  outline-offset: 1px;
+}
+
+.dk-color-palette__trigger-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--dk-cp-radius);
+  background: var(--dk-cp-color, #0071e3);
+  border: 1px solid color-mix(in srgb, var(--color-text-primary, #000) 12%, transparent);
+  flex: 0 0 auto;
+}
+
+.dk-color-palette__trigger-icon {
+  display: none;
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+@media (max-width: 767px) {
+  .dk-color-palette__trigger-label {
+    display: none;
+  }
+  .dk-color-palette__trigger-icon {
+    display: inline-flex;
+  }
+}
+
+.dk-color-palette__panel {
+  position: absolute;
+  inset-inline-end: 0;
+  top: calc(100% + 6px);
+  z-index: var(--z-dropdown, 400);
+  width: min(280px, 80vw);
+  padding: 12px;
+  border: 1px solid var(--dk-cp-border);
+  border-radius: var(--radius-4, 10px);
+  background: var(--color-surface-primary, #fff);
+  box-sizing: border-box;
+}
+
+.dk-color-palette__swatch {
+  appearance: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  margin: 0;
+  padding: 6px;
+  border: 0;
+  border-radius: var(--radius-3, 8px);
+  background: transparent;
+  color: var(--color-text-secondary, #6e6e73);
+  cursor: pointer;
+  font: inherit;
+}
+
+.dk-color-palette__swatch:hover .dk-color-palette__dot {
+  transform: scale(1.06);
+}
+
+.dk-color-palette__swatch:focus-visible {
+  outline: 2px solid var(--dk-cp-focus);
+  outline-offset: 2px;
+}
+
+.dk-color-palette__dot {
+  display: block;
+  width: var(--dk-cp-size);
+  height: var(--dk-cp-size);
+  border-radius: var(--dk-cp-radius);
+  background: var(--dk-cp-color, #0071e3);
+  border: 1px solid color-mix(in srgb, var(--color-text-primary, #000) 12%, transparent);
+  box-sizing: border-box;
+  transition: transform 120ms ease-out;
+}
+
+.dk-color-palette__swatch--selected .dk-color-palette__dot {
+  outline: 2px solid var(--dk-cp-focus);
+  outline-offset: 2px;
+  border-color: var(--color-surface-primary, #fff);
+}
+
+.dk-color-palette__label {
+  font-size: 11px;
+  font-weight: var(--weight-medium, 500);
+  line-height: 1.2;
+  text-align: center;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-color-palette__dot {
+    transition: none;
+  }
+}

@@ -1,0 +1,112 @@
+/* Navigation Drawer — overlay panel. No shadows. No blur glass. */
+
+.dk-nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer, 700);
+  display: grid;
+}
+
+.dk-nav-drawer__scrim {
+  appearance: none;
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-scrim, rgba(0, 0, 0, 0.45));
+  cursor: pointer;
+}
+
+.dk-nav-drawer__panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, 320px);
+  height: 100%;
+  background: var(--color-surface-primary, #fff);
+  color: var(--color-text-primary, #1d1d1f);
+  border-inline-end: 1px solid var(--color-border-subtle, #e8e8ed);
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  overflow: auto;
+  outline: none;
+}
+
+.dk-nav-drawer--start .dk-nav-drawer__panel {
+  justify-self: start;
+  animation: dk-nav-drawer-in-start 180ms ease-out;
+}
+
+.dk-nav-drawer--end .dk-nav-drawer__panel {
+  justify-self: end;
+  border-inline-end: 0;
+  border-inline-start: 1px solid var(--color-border-subtle, #e8e8ed);
+  animation: dk-nav-drawer-in-end 180ms ease-out;
+}
+
+.dk-nav-drawer__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  border-bottom: 1px solid var(--color-border-subtle, #e8e8ed);
+}
+
+.dk-nav-drawer__header-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dk-nav-drawer__close {
+  flex: 0 0 auto;
+}
+
+.dk-nav-drawer__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+  padding: var(--space-3, 12px);
+  flex: 1 1 auto;
+}
+
+.dk-nav-drawer__footer {
+  margin-top: auto;
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  border-top: 1px solid var(--color-border-subtle, #e8e8ed);
+}
+
+@keyframes dk-nav-drawer-in-start {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes dk-nav-drawer-in-end {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-nav-drawer--start .dk-nav-drawer__panel,
+  .dk-nav-drawer--end .dk-nav-drawer__panel {
+    animation: none;
+  }
+}
+
+[dir="rtl"] .dk-nav-drawer--start .dk-nav-drawer__panel {
+  animation-name: dk-nav-drawer-in-end;
+}
+
+[dir="rtl"] .dk-nav-drawer--end .dk-nav-drawer__panel {
+  animation-name: dk-nav-drawer-in-start;
+}

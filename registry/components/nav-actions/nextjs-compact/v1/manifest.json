@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/NavActions.tsx",
+      "destination": "components/ui/NavActions.tsx"
+    },
+    {
+      "source": "files/styles/nav-actions.css",
+      "destination": "styles/nav-actions.css"
+    },
+    {
+      "source": "files/docs/NAV_ACTIONS.md",
+      "destination": "docs/devkit/NAV_ACTIONS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

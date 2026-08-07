@@ -1,0 +1,77 @@
+/* Nav Actions — navbar utility spacing cluster. No shadows. No gradients. */
+
+.dk-nav-actions {
+  --dk-na-gap: var(--space-3, 12px);
+
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: var(--dk-na-gap);
+  min-width: 0;
+  max-width: 100%;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.dk-nav-actions--compact {
+  --dk-na-gap: var(--space-2, 8px);
+}
+
+.dk-nav-actions--standard {
+  --dk-na-gap: var(--space-3, 12px);
+}
+
+.dk-nav-actions--spacious {
+  --dk-na-gap: var(--space-4, 16px);
+}
+
+.dk-nav-actions--align-start {
+  justify-content: flex-start;
+}
+
+.dk-nav-actions--align-center {
+  justify-content: center;
+}
+
+.dk-nav-actions--align-end {
+  justify-content: flex-end;
+}
+
+.dk-nav-actions__item {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+@media (max-width: 767px) {
+  .dk-nav-actions--collapse-mobile {
+    --dk-na-gap: var(--space-2, 8px);
+  }
+
+  .dk-nav-actions--collapse-mobile .dk-nav-item {
+    --dk-nav-height: 32px;
+    --dk-nav-pad-x: 8px;
+    --dk-nav-icon: 16px;
+    font-size: 13px;
+  }
+
+  .dk-nav-actions--collapse-mobile .dk-nav-item:not(.dk-nav-item--icon-only) .dk-nav-item__label,
+  .dk-nav-actions--collapse-mobile .dk-nav-item:not(.dk-nav-item--icon-only) .dk-nav-item__description,
+  .dk-nav-actions--collapse-mobile .dk-link__label,
+  .dk-nav-actions--collapse-mobile .pg-nav-github__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .dk-nav-actions--collapse-mobile .dk-link__external {
+    display: none;
+  }
+}

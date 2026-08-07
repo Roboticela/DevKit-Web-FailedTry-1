@@ -9,6 +9,9 @@ import "@registry/components/icon-button/vite-express-tauri/v1/files/src/styles/
 export { TextInput } from "@registry/components/text-input/vite-express-tauri/v1/files/src/components/ui/TextInput";
 import "@registry/components/text-input/vite-express-tauri/v1/files/src/styles/text-input.css";
 
+export { SearchField } from "@registry/components/search-field/vite-express-tauri/v1/files/src/components/ui/SearchField";
+import "@registry/components/search-field/vite-express-tauri/v1/files/src/styles/search-field.css";
+
 export { Tabs } from "@registry/components/tabs/vite-express-tauri/v1/files/src/components/ui/Tabs";
 import "@registry/components/tabs/vite-express-tauri/v1/files/src/styles/tabs.css";
 
@@ -51,3 +54,30 @@ import "@registry/components/action-segmented-control/vite-express-tauri/v1/file
 
 export { DropdownMenu } from "@registry/components/dropdown-menu/vite-express-tauri/v1/files/src/components/ui/DropdownMenu";
 import "@registry/components/dropdown-menu/vite-express-tauri/v1/files/src/styles/dropdown-menu.css";
+
+export { Badge } from "@registry/components/badge/vite-express-tauri/v1/files/src/components/ui/Badge";
+import "@registry/components/badge/vite-express-tauri/v1/files/src/styles/badge.css";
+
+export { Brand } from "@registry/components/brand/vite-express-tauri/v1/files/src/components/ui/Brand";
+import "@registry/components/brand/vite-express-tauri/v1/files/src/styles/brand.css";
+
+export { Avatar } from "@registry/components/avatar/vite-express-tauri/v1/files/src/components/ui/Avatar";
+import "@registry/components/avatar/vite-express-tauri/v1/files/src/styles/avatar.css";
+
+export { NavItem } from "@registry/components/nav-item/vite-express-tauri/v1/files/src/components/ui/NavItem";
+import "@registry/components/nav-item/vite-express-tauri/v1/files/src/styles/nav-item.css";
+
+export { NavigationDrawer } from "@registry/components/navigation-drawer/vite-express-tauri/v1/files/src/components/ui/NavigationDrawer";
+import "@registry/components/navigation-drawer/vite-express-tauri/v1/files/src/styles/navigation-drawer.css";
+
+export { Navbar } from "@registry/components/navbar/vite-express-tauri/v1/files/src/components/ui/Navbar";
+import "@registry/components/navbar/vite-express-tauri/v1/files/src/styles/navbar.css";
+
+export { NavActions } from "@registry/components/nav-actions/vite-express-tauri/v1/files/src/components/ui/NavActions";
+import "@registry/components/nav-actions/vite-express-tauri/v1/files/src/styles/nav-actions.css";
+
+export { ThemeToggle } from "@registry/components/theme-toggle/vite-express-tauri/v1/files/src/components/ui/ThemeToggle";
+import "@registry/components/theme-toggle/vite-express-tauri/v1/files/src/styles/theme-toggle.css";
+
+export { ColorPalette } from "@registry/components/color-palette/vite-express-tauri/v1/files/src/components/ui/ColorPalette";
+import "@registry/components/color-palette/vite-express-tauri/v1/files/src/styles/color-palette.css";

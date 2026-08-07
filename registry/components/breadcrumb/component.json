@@ -1,0 +1,48 @@
+{
+  "id": 52,
+  "name": "breadcrumb",
+  "displayName": "Breadcrumb",
+  "description": "Hierarchical navigation trail with collapse for long paths and RTL-aware separators.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "navigation-controls",
+  "subgroupName": "Navigation",
+  "kind": "component",
+  "layer": 1,
+  "icon": "chevrons-right",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "navigation-controls",
+    "breadcrumb",
+    "navigation",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

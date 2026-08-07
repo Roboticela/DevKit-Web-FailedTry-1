@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ColorPalette.tsx",
+      "destination": "components/ui/ColorPalette.tsx"
+    },
+    {
+      "source": "files/styles/color-palette.css",
+      "destination": "styles/color-palette.css"
+    },
+    {
+      "source": "files/docs/COLOR_PALETTE.md",
+      "destination": "docs/devkit/COLOR_PALETTE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

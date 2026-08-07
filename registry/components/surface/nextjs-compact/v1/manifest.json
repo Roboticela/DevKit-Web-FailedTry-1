@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Surface.tsx",
+      "destination": "components/ui/Surface.tsx"
+    },
+    {
+      "source": "files/styles/surface.css",
+      "destination": "styles/surface.css"
+    },
+    {
+      "source": "files/docs/SURFACE.md",
+      "destination": "docs/devkit/SURFACE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

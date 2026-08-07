@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/NavigationDrawer.tsx",
+      "destination": "src/components/ui/NavigationDrawer.tsx"
+    },
+    {
+      "source": "files/src/styles/navigation-drawer.css",
+      "destination": "src/styles/navigation-drawer.css"
+    },
+    {
+      "source": "files/docs/NAVIGATION_DRAWER.md",
+      "destination": "docs/devkit/NAVIGATION_DRAWER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,49 @@
+{
+  "id": 47,
+  "name": "avatar-group",
+  "displayName": "Avatar Group",
+  "description": "Stacked group of Avatar children with overflow count for compact team identity.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "identity-primitives",
+  "subgroupName": "Identity",
+  "kind": "component",
+  "layer": 1,
+  "icon": "users",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "identity-primitives",
+    "avatar",
+    "group",
+    "identity",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

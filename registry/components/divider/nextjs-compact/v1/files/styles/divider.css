@@ -1,0 +1,63 @@
+/* Divider — structural rule. No shadows. */
+
+.dk-divider {
+  --dk-divider-color: var(--color-border-subtle, #e8e8ed);
+  --dk-divider-thickness: 1px;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+
+.dk-divider--horizontal {
+  display: block;
+  width: 100%;
+  height: var(--dk-divider-thickness);
+  background: var(--dk-divider-color);
+}
+
+.dk-divider--vertical {
+  display: inline-block;
+  width: var(--dk-divider-thickness);
+  align-self: stretch;
+  min-height: 1em;
+  background: var(--dk-divider-color);
+  vertical-align: middle;
+}
+
+.dk-divider--standard {
+  --dk-divider-color: var(--color-border-default, #d2d2d7);
+}
+
+.dk-divider--strong {
+  --dk-divider-color: var(--color-border-strong, #c7c7cc);
+}
+
+.dk-divider--section.dk-divider--horizontal {
+  margin-block: var(--space-4, 16px);
+}
+
+.dk-divider--labeled.dk-divider--horizontal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  height: auto;
+  background: transparent;
+}
+
+.dk-divider--labeled.dk-divider--horizontal::before,
+.dk-divider--labeled.dk-divider--horizontal::after {
+  content: "";
+  flex: 1 1 auto;
+  height: var(--dk-divider-thickness);
+  background: var(--dk-divider-color);
+}
+
+.dk-divider__label {
+  flex: 0 0 auto;
+  font-family: var(--font-sans, inherit);
+  font-size: var(--font-size-caption-1, 12px);
+  font-weight: var(--weight-medium, 500);
+  color: var(--color-text-tertiary, #8e8e93);
+  white-space: nowrap;
+}

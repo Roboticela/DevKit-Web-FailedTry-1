@@ -1170,6 +1170,370 @@
         "list-item",
         "a11y"
       ]
+    },
+    {
+      "id": 45,
+      "name": "brand",
+      "displayName": "Brand",
+      "description": "Product and organization identity lockup — symbol, wordmark, or combined mark with optional descriptor.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "identity-primitives",
+        "brand",
+        "identity",
+        "logo",
+        "a11y"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "avatar",
+      "displayName": "Avatar",
+      "description": "Person or entity face with image, initials, or placeholder — optional presence status and badge slot.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "identity-primitives",
+        "avatar",
+        "identity",
+        "status",
+        "a11y"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "avatar-group",
+      "displayName": "Avatar Group",
+      "description": "Stacked group of Avatar children with overflow count for compact team identity.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "identity-primitives",
+        "avatar",
+        "group",
+        "identity",
+        "a11y"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "tag",
+      "displayName": "Tag",
+      "description": "Compact category and filter chip with icon, count, selectable and removable modes — distinct from Label and Badge.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "identity-primitives",
+        "tag",
+        "filter",
+        "chip",
+        "a11y"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "divider",
+      "displayName": "Divider",
+      "description": "Structural horizontal or vertical separator with optional section label.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "structural-primitives",
+        "divider",
+        "separator",
+        "structure",
+        "a11y"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "surface",
+      "displayName": "Surface",
+      "description": "Structural chrome container for navigation and panels — flat, subtle, elevated, or sticky via background and border only.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "structural-primitives",
+        "surface",
+        "container",
+        "structure",
+        "a11y"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "nav-item",
+      "displayName": "Nav Item",
+      "description": "Core navigation control with icon, label, description, and badge slots — current, selected, and disabled states.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "nav",
+        "navigation",
+        "link",
+        "a11y"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "breadcrumb",
+      "displayName": "Breadcrumb",
+      "description": "Hierarchical navigation trail with collapse for long paths and RTL-aware separators.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "breadcrumb",
+        "navigation",
+        "a11y"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "navigation-drawer",
+      "displayName": "Navigation Drawer",
+      "description": "Responsive overlay drawer for primary navigation on compact viewports — focus trap, Escape, and scrim dismiss.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "drawer",
+        "navigation",
+        "mobile",
+        "a11y"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "navbar",
+      "displayName": "Navbar",
+      "description": "Slot-based primary navigation composition for brand, primary links, search, actions, and account — responsive collapse below md.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "navbar",
+        "navigation",
+        "composition",
+        "a11y"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "theme-toggle",
+      "displayName": "Theme Toggle",
+      "description": "Icon-based System / Light / Dark appearance control with a curated theme preset menu — not tabs.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "identity-primitives",
+        "theme",
+        "appearance",
+        "dark-mode",
+        "a11y"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "color-palette",
+      "displayName": "Color Palette",
+      "description": "Selectable color swatch radiogroup for accents — grid or popover trigger for toolbars.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "identity-primitives",
+        "color",
+        "palette",
+        "accent",
+        "a11y"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "nav-actions",
+      "displayName": "Nav Actions",
+      "description": "Navbar utility spacing cluster for theme, links, and icon actions — consistent density gaps and optional mobile label collapse.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "nav",
+        "navbar",
+        "actions",
+        "spacing",
+        "a11y"
+      ]
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/AvatarGroup.tsx",
+      "destination": "src/components/ui/AvatarGroup.tsx"
+    },
+    {
+      "source": "files/src/styles/avatar-group.css",
+      "destination": "src/styles/avatar-group.css"
+    },
+    {
+      "source": "files/docs/AVATAR_GROUP.md",
+      "destination": "docs/devkit/AVATAR_GROUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

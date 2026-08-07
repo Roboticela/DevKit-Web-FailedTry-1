@@ -1,0 +1,49 @@
+{
+  "id": 54,
+  "name": "navbar",
+  "displayName": "Navbar",
+  "description": "Slot-based primary navigation composition for brand, primary links, search, actions, and account — responsive collapse below md.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "navigation-controls",
+  "subgroupName": "Navigation",
+  "kind": "component",
+  "layer": 1,
+  "icon": "layout",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "navigation-controls",
+    "navbar",
+    "navigation",
+    "composition",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

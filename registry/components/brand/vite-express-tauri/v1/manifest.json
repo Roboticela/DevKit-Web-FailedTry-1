@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Brand.tsx",
+      "destination": "src/components/ui/Brand.tsx"
+    },
+    {
+      "source": "files/src/styles/brand.css",
+      "destination": "src/styles/brand.css"
+    },
+    {
+      "source": "files/docs/BRAND.md",
+      "destination": "docs/devkit/BRAND.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}
