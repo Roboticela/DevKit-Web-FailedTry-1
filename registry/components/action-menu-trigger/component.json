@@ -2,7 +2,7 @@
   "id": 10,
   "name": "action-menu-trigger",
   "displayName": "Action Menu Trigger",
-  "description": "Action Menu Trigger - empty Interaction Controls stub (Foundations & Interface Primitives).",
+  "description": "Opens a contextual action menu with clear disclosure affordance, connected open state, keyboard support, mobile bottom sheet, and confirmed destructive actions.",
   "category": "foundation",
   "group": "foundations-interface-primitives",
   "groupName": "Foundations & Interface Primitives",
@@ -19,7 +19,8 @@
     "interaction-controls",
     "action-menu-trigger",
     "interaction",
-    "stub"
+    "a11y",
+    "menu"
   ],
   "templates": [
     "nextjs-compact",
@@ -30,14 +31,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-07",
         "breaking": false
       }

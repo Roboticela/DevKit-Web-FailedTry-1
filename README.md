@@ -40,10 +40,10 @@ Opens `http://localhost:5173` — shows reserved group/subgroups (0 packages).
 | 004 | `split-button` | Split Button | ready (`1.0.0`) |
 | 005 | `link-button` | Link Button | ready (`1.0.0`) |
 | 006 | `floating-action-button` | Floating Action Button | ready (`1.0.0`) |
-| 007 | `toggle-button` | Toggle Button | stub |
-| 008 | `segmented-control` | Segmented Control | stub |
+| 007 | `toggle-button` | Toggle Button | ready (`1.0.0`) |
+| 008 | `segmented-control` | Segmented Control | ready (`1.0.0`) |
 | 009 | `command-button` | Command Button | stub |
-| 010 | `action-menu-trigger` | Action Menu Trigger | stub |
+| 010 | `action-menu-trigger` | Action Menu Trigger | ready (`1.0.0`) |
 
 Other subgroups are reserved with no packages yet:
 

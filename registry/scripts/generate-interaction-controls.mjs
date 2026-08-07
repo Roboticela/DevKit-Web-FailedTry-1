@@ -19,6 +19,9 @@ const SKIP_IMPLEMENTED = new Set([
   "split-button",
   "link-button",
   "floating-action-button",
+  "toggle-button",
+  "segmented-control",
+  "action-menu-trigger",
 ]);
 
 const GROUP = {

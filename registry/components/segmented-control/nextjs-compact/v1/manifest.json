@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/SegmentedControl.tsx",
       "destination": "components/ui/SegmentedControl.tsx"
+    },
+    {
+      "source": "files/styles/segmented-control.css",
+      "destination": "styles/segmented-control.css"
+    },
+    {
+      "source": "files/docs/SEGMENTED_CONTROL.md",
+      "destination": "docs/devkit/SEGMENTED_CONTROL.md"
     }
   ],
   "injections": [],

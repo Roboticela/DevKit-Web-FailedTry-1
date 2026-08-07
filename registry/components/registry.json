@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-08-07T13:30:00Z",
+  "updatedAt": "2026-08-07T15:00:00Z",
   "components": [
     {
       "id": 1,
@@ -204,7 +204,7 @@
       "id": 7,
       "name": "toggle-button",
       "displayName": "Toggle Button",
-      "description": "Toggle Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "description": "Binary stateful action control with aria-pressed, multi-cue selected state (border, surface, indicator, optional icon/text swap), and icon/text/icon-text appearances.",
       "category": "foundation",
       "group": "foundations-interface-primitives",
       "groupName": "Foundations & Interface Primitives",
@@ -222,22 +222,22 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "foundations-interface-primitives",
         "interaction-controls",
         "toggle-button",
         "interaction",
-        "stub"
+        "a11y"
       ]
     },
     {
       "id": 8,
       "name": "segmented-control",
       "displayName": "Segmented Control",
-      "description": "Segmented Control - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "description": "Mutually exclusive selection among 2–5 options with integrated selected fill, radiogroup keyboard navigation, icon/label segments, and scroll or stack overflow on narrow viewports.",
       "category": "foundation",
       "group": "foundations-interface-primitives",
       "groupName": "Foundations & Interface Primitives",
@@ -255,15 +255,15 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "foundations-interface-primitives",
         "interaction-controls",
         "segmented-control",
         "interaction",
-        "stub"
+        "a11y"
       ]
     },
     {
@@ -303,7 +303,7 @@
       "id": 10,
       "name": "action-menu-trigger",
       "displayName": "Action Menu Trigger",
-      "description": "Action Menu Trigger - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "description": "Opens a contextual action menu with clear disclosure affordance, connected open state, keyboard support, mobile bottom sheet, and confirmed destructive actions.",
       "category": "foundation",
       "group": "foundations-interface-primitives",
       "groupName": "Foundations & Interface Primitives",
@@ -321,15 +321,16 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "foundations-interface-primitives",
         "interaction-controls",
         "action-menu-trigger",
         "interaction",
-        "stub"
+        "a11y",
+        "menu"
       ]
     }
   ]

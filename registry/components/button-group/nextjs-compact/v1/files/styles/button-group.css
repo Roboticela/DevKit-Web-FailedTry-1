@@ -52,6 +52,7 @@
   overscroll-behavior-x: contain;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, var(--color-border-strong)) var(--scrollbar-track, transparent);
 }
 
 .dk-button-group--overflow-stack.dk-button-group--responsive {

@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/ActionMenuTrigger.tsx",
       "destination": "components/ui/ActionMenuTrigger.tsx"
+    },
+    {
+      "source": "files/styles/action-menu-trigger.css",
+      "destination": "styles/action-menu-trigger.css"
+    },
+    {
+      "source": "files/docs/ACTION_MENU_TRIGGER.md",
+      "destination": "docs/devkit/ACTION_MENU_TRIGGER.md"
     }
   ],
   "injections": [],

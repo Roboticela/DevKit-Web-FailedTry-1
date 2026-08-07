@@ -13,6 +13,9 @@ import { ButtonGroup } from "../../registry/components/button-group/vite-express
 import { SplitButton } from "../../registry/components/split-button/vite-express-tauri/v1/files/src/components/ui/SplitButton";
 import { LinkButton } from "../../registry/components/link-button/vite-express-tauri/v1/files/src/components/ui/LinkButton";
 import { FloatingActionButton } from "../../registry/components/floating-action-button/vite-express-tauri/v1/files/src/components/ui/FloatingActionButton";
+import { ToggleButton } from "../../registry/components/toggle-button/vite-express-tauri/v1/files/src/components/ui/ToggleButton";
+import { SegmentedControl } from "../../registry/components/segmented-control/vite-express-tauri/v1/files/src/components/ui/SegmentedControl";
+import { ActionMenuTrigger } from "../../registry/components/action-menu-trigger/vite-express-tauri/v1/files/src/components/ui/ActionMenuTrigger";
 import catalog from "./foundation-catalog.json";
 
 type CatalogComponent = {
@@ -654,6 +657,439 @@ function FabLab() {
   );
 }
 
+function BoldIcon({ filled = false }: { filled?: boolean }) {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M6 4.5h5.2a3.1 3.1 0 0 1 0 6.2H6V4.5Zm0 6.2h5.8a3.2 3.2 0 0 1 0 6.4H6v-6.4Z"
+        stroke="currentColor"
+        strokeWidth={filled ? 2 : 1.5}
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ListIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M6.5 5.5h9M6.5 10h9M6.5 14.5h9M4 5.5h.01M4 10h.01M4 14.5h.01"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function GridIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="3.5" y="3.5" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="11.5" y="3.5" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="3.5" y="11.5" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+      <rect x="11.5" y="11.5" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function ToggleButtonLab() {
+  const [bold, setBold] = useState(false);
+  const [view, setView] = useState<"list" | "grid">("list");
+  const [notify, setNotify] = useState(true);
+
+  return (
+    <section className="catalog-group" aria-labelledby="toggle-button-lab-heading">
+      <h2 id="toggle-button-lab-heading">007 Toggle Button</h2>
+      <p className="catalog-group-desc">
+        Stateful action with <code>aria-pressed</code>. Selected uses border,
+        surface, indicator, and optional icon/text — not color alone. Prefer
+        Switch for settings.
+      </p>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Icon + text with indicator</h3>
+        <div className="lab-row">
+          <ToggleButton
+            label="Bold"
+            pressedLabel="Bold on"
+            icon={<BoldIcon />}
+            pressedIcon={<BoldIcon filled />}
+            pressed={bold}
+            onPressedChange={setBold}
+          />
+          <ToggleButton label="Notifications" pressed={notify} onPressedChange={setNotify} />
+          <ToggleButton label="Disabled" defaultPressed disabled />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Icon-only (icon swap)</h3>
+        <div className="lab-row">
+          <ToggleButton
+            appearance="icon"
+            label={view === "list" ? "List view selected" : "List view"}
+            icon={<ListIcon />}
+            pressed={view === "list"}
+            onPressedChange={(on) => on && setView("list")}
+          />
+          <ToggleButton
+            appearance="icon"
+            label={view === "grid" ? "Grid view selected" : "Grid view"}
+            icon={<GridIcon />}
+            pressed={view === "grid"}
+            onPressedChange={(on) => on && setView("grid")}
+          />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Variants</h3>
+        <div className="lab-row">
+          <ToggleButton label="Outline" variant="outline" defaultPressed />
+          <ToggleButton label="Subtle" variant="subtle" defaultPressed />
+          <ToggleButton label="Filled" variant="filled" defaultPressed />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SegmentedControlLab() {
+  const [plan, setPlan] = useState("pro");
+  const [view, setView] = useState("list");
+  const [align, setAlign] = useState("left");
+  const [period, setPeriod] = useState("week");
+
+  return (
+    <section className="catalog-group" aria-labelledby="segmented-control-lab-heading">
+      <h2 id="segmented-control-lab-heading">008 Segmented Control</h2>
+      <p className="catalog-group-desc">
+        Mutually exclusive selection among 2–5 options. Selected segment uses an
+        integrated track fill — not a floating indicator. Arrow keys move
+        selection; Home/End jump to ends.
+      </p>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Label only</h3>
+        <SegmentedControl
+          label="Plan"
+          value={plan}
+          onValueChange={setPlan}
+          options={[
+            { id: "free", label: "Free" },
+            { id: "pro", label: "Pro" },
+            { id: "team", label: "Team" },
+          ]}
+        />
+        <p className="catalog-group-meta">Selected: {plan}</p>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Icon + label</h3>
+        <SegmentedControl
+          label="View mode"
+          value={view}
+          onValueChange={setView}
+          options={[
+            { id: "list", label: "List", icon: <ListIcon /> },
+            { id: "grid", label: "Grid", icon: <GridIcon /> },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Icon only</h3>
+        <SegmentedControl
+          label="Text alignment"
+          equalWidth={false}
+          value={align}
+          onValueChange={setAlign}
+          options={[
+            { id: "left", label: "Align left", icon: <AlignLeftIcon />, iconOnly: true },
+            { id: "center", label: "Align center", icon: <AlignCenterIcon />, iconOnly: true },
+            { id: "right", label: "Align right", icon: <AlignRightIcon />, iconOnly: true },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Sizes</h3>
+        <div className="lab-row">
+          <SegmentedControl
+            label="Size small"
+            size="sm"
+            defaultValue="a"
+            options={[
+              { id: "a", label: "Day" },
+              { id: "b", label: "Week" },
+              { id: "c", label: "Month" },
+            ]}
+          />
+          <SegmentedControl
+            label="Size large"
+            size="lg"
+            defaultValue="b"
+            options={[
+              { id: "a", label: "Day" },
+              { id: "b", label: "Week" },
+              { id: "c", label: "Month" },
+            ]}
+          />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Overflow — scroll</h3>
+        <div style={{ maxWidth: 280 }}>
+          <SegmentedControl
+            label="Period"
+            overflow="scroll"
+            value={period}
+            onValueChange={setPeriod}
+            options={[
+              { id: "day", label: "Today" },
+              { id: "week", label: "This week" },
+              { id: "month", label: "This month" },
+              { id: "quarter", label: "This quarter" },
+              { id: "year", label: "This year" },
+            ]}
+          />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Overflow — stack</h3>
+        <div style={{ maxWidth: 240 }}>
+          <SegmentedControl
+            label="Shipping method"
+            overflow="stack"
+            defaultValue="standard"
+            options={[
+              { id: "standard", label: "Standard shipping (3–5 days)" },
+              { id: "express", label: "Express shipping (1–2 days)" },
+              { id: "pickup", label: "Store pickup today" },
+            ]}
+          />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Disabled segment</h3>
+        <SegmentedControl
+          label="Billing cycle"
+          defaultValue="monthly"
+          options={[
+            { id: "monthly", label: "Monthly" },
+            { id: "yearly", label: "Yearly" },
+            { id: "lifetime", label: "Lifetime", disabled: true },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function AlignLeftIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M3 4h12M3 9h8M3 14h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function AlignCenterIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M3 4h12M5 9h8M4 14h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function AlignRightIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path d="M3 4h12M7 9h8M5 14h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function EditIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <path
+        d="M12.5 3.5 14.5 5.5 6.75 13.25 4.5 13.5l.25-2.25L12.5 3.5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function DuplicateIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <rect x="6" y="6" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M4 12V4.5A1.5 1.5 0 0 1 5.5 3H12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ActionMenuTriggerLab() {
+  const [last, setLast] = useState("—");
+
+  const fileActions = [
+    {
+      id: "edit",
+      label: "Edit",
+      icon: <EditIcon />,
+      onSelect: () => setLast("Edit"),
+    },
+    {
+      id: "duplicate",
+      label: "Duplicate",
+      icon: <DuplicateIcon />,
+      onSelect: () => setLast("Duplicate"),
+    },
+    {
+      id: "share",
+      label: "Share",
+      onSelect: () => setLast("Share"),
+    },
+    {
+      id: "delete",
+      label: "Delete",
+      icon: <TrashIcon />,
+      destructive: true,
+      confirmLabel: "Delete item",
+      onSelect: () => setLast("Delete (confirmed)"),
+    },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="action-menu-trigger-lab-heading">
+      <h2 id="action-menu-trigger-lab-heading">010 Action Menu Trigger</h2>
+      <p className="catalog-group-desc">
+        Opens a contextual action collection. Disclosure chevron / more glyph
+        signals more actions. Open state connects to the menu; on narrow touch
+        screens it becomes a bottom sheet. Destructive items require confirmation.
+      </p>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Labeled button</h3>
+        <div className="lab-row">
+          <ActionMenuTrigger label="Actions" items={fileActions}>
+            Actions
+          </ActionMenuTrigger>
+          <ActionMenuTrigger
+            label="File actions"
+            icon={<EditIcon />}
+            variant="outline"
+            items={fileActions}
+          >
+            File
+          </ActionMenuTrigger>
+          <ActionMenuTrigger label="Disabled" items={fileActions} disabled>
+            Actions
+          </ActionMenuTrigger>
+        </div>
+        <p className="catalog-group-meta">Last action: {last}</p>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Icon-only</h3>
+        <div className="lab-row">
+          <ActionMenuTrigger
+            appearance="icon"
+            label="More actions"
+            variant="subtle"
+            items={fileActions}
+          />
+          <ActionMenuTrigger
+            appearance="icon"
+            label="More actions"
+            variant="outline"
+            items={fileActions}
+          />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Contextual (row)</h3>
+        <div className="lab-row">
+          <span>Project brief.pdf</span>
+          <ActionMenuTrigger
+            appearance="contextual"
+            variant="ghost"
+            label="Row actions"
+            items={fileActions}
+          />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Force sheet / force menu</h3>
+        <div className="lab-row">
+          <ActionMenuTrigger
+            label="Sheet demo"
+            presentation="sheet"
+            items={fileActions}
+          >
+            Open as sheet
+          </ActionMenuTrigger>
+          <ActionMenuTrigger
+            label="Menu demo"
+            presentation="menu"
+            items={fileActions}
+          >
+            Open as menu
+          </ActionMenuTrigger>
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Grouped hierarchy</h3>
+        <ActionMenuTrigger
+          label="Organize"
+          groups={[
+            {
+              id: "organize",
+              label: "Organize",
+              items: [
+                { id: "rename", label: "Rename", onSelect: () => setLast("Rename") },
+                { id: "move", label: "Move…", onSelect: () => setLast("Move") },
+              ],
+            },
+            {
+              id: "danger",
+              label: "Danger zone",
+              items: [
+                {
+                  id: "archive",
+                  label: "Archive",
+                  destructive: true,
+                  onSelect: () => setLast("Archive (confirmed)"),
+                },
+                {
+                  id: "purge",
+                  label: "Delete forever",
+                  destructive: true,
+                  confirmLabel: "Delete forever",
+                  onSelect: () => setLast("Purge (confirmed)"),
+                },
+              ],
+            },
+          ]}
+        >
+          Organize
+        </ActionMenuTrigger>
+      </div>
+    </section>
+  );
+}
+
 export function App() {
   return (
     <div className="playground">
@@ -661,8 +1097,8 @@ export function App() {
         <div>
           <h1>DevKit</h1>
           <p>
-            Layer 1 Interaction Controls — through Floating Action Button (006)
-            ready; remaining packages are stubs.
+            Layer 1 Interaction Controls — through Action Menu Trigger (010) ready;
+            Command Button (009) remains a stub.
           </p>
         </div>
       </header>
@@ -673,6 +1109,9 @@ export function App() {
       <SplitButtonLab />
       <LinkButtonLab />
       <FabLab />
+      <ToggleButtonLab />
+      <SegmentedControlLab />
+      <ActionMenuTriggerLab />
 
       {groups.map((group) => (
         <section

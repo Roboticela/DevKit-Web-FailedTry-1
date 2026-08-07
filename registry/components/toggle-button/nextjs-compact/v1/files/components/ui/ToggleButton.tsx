@@ -12,27 +12,27 @@ export interface ToggleButtonProps
     "children" | "onChange" | "aria-pressed"
   > {
   size?: ToggleButtonSize;
-  /** Content layout. Default: `icon-text` when both icon and label exist. */
+  /**
+   * - `icon` — icon-only (`label` is accessible name)
+   * - `text` — text only
+   * - `icon-text` — icon + text
+   */
   appearance?: ToggleButtonAppearance;
   variant?: ToggleButtonVariant;
-  /**
-   * Accessible + visible label when not icon-only.
-   * For icon-only, this is the accessible name (and default tooltip).
-   */
+  /** Accessible name always; visible unless `appearance="icon"`. */
   label: string;
-  /** Optional label while pressed/selected. */
+  /** Optional visible label while pressed. */
   pressedLabel?: string;
   icon?: React.ReactNode;
-  /** Optional icon while pressed/selected (semantic icon change). */
+  /** Optional icon while pressed (semantic icon change). */
   pressedIcon?: React.ReactNode;
-  /** Controlled pressed state. */
+  /** Controlled pressed/selected state. */
   pressed?: boolean;
-  /** Uncontrolled initial state. */
   defaultPressed?: boolean;
   onPressedChange?: (pressed: boolean) => void;
   /**
-   * Shows a leading selection checkmark when pressed (non-color cue).
-   * Default: true for text / icon-text; false for icon-only (prefer icon swap).
+   * Leading selection checkmark when pressed.
+   * Default: off for icon-only (prefer `pressedIcon`); on for text modes.
    */
   showIndicator?: boolean;
 }
@@ -75,11 +75,19 @@ function CheckIcon() {
   );
 }
 
+function resolveAppearance(
+  appearance: ToggleButtonAppearance | undefined,
+  hasIcon: boolean
+): ToggleButtonAppearance {
+  if (appearance) return appearance;
+  return hasIcon ? "icon-text" : "text";
+}
+
 /**
  * Toggle Button (ID 007) — binary / stateful action control.
  *
- * Use Switch for settings on/off preferences. Do not use for navigation.
- * Selected state is conveyed with surface, border, indicator, and optional icon/text changes — not color alone.
+ * Prefer Switch for preference on/off. Do not use for navigation.
+ * Selected state uses surface, stronger border, indicator, and optional icon/text changes — not color alone.
  */
 export const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
   function ToggleButton(
@@ -108,43 +116,14 @@ export const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProp
     const [uncontrolled, setUncontrolled] = React.useState(defaultPressed);
     const pressed = isControlled ? Boolean(pressedProp) : uncontrolled;
 
-    const appearance: ToggleButtonAppearance =
-      appearanceProp ??
-      (icon && !pressedLabel && !label
-        ? "icon"
-        : icon
-          ? "icon-text"
-          : "text");
-
-    // Resolve: icon-only always needs label for a11y; text modes show label
-    const resolvedAppearance: ToggleButtonAppearance =
-      appearanceProp ?? (icon ? (appearanceProp === "text" ? "text" : "icon-text") : "text");
-
-    const finalAppearance = appearanceProp
-      ? appearanceProp
-      : icon
-        ? "icon-text"
-        : "text";
-
-    // If caller set appearance icon, use icon-only
-    const mode = appearanceProp ?? (icon ? "icon-text" : "text");
-    const useMode = mode === "icon" && !icon ? "text" : mode;
-
-    const showIndicator =
-      showIndicatorProp ?? (useMode === "icon" ? false : true);
-
+    const appearance = resolveAppearance(appearanceProp, Boolean(icon));
+    const showIndicator = showIndicatorProp ?? appearance !== "icon";
     const visibleLabel = pressed && pressedLabel ? pressedLabel : label;
     const visibleIcon = pressed && pressedIcon ? pressedIcon : icon;
 
     const setPressed = (next: boolean) => {
       if (!isControlled) setUncontrolled(next);
       onPressedChange?.(next);
-    };
-
-    const toggle = (event: React.MouseEvent<HTMLButtonElement>) => {
-      if (disabled) return;
-      setPressed(!pressed);
-      onClick?.(event);
     };
 
     return (
@@ -155,7 +134,7 @@ export const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProp
         className={cx(
           "dk-toggle-button",
           SIZE_CLASS[size],
-          APPEARANCE_CLASS[useMode],
+          APPEARANCE_CLASS[appearance],
           VARIANT_CLASS[variant],
           pressed && "dk-toggle-button--pressed",
           className
@@ -163,13 +142,17 @@ export const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProp
         disabled={disabled}
         aria-disabled={disabled || undefined}
         aria-pressed={pressed}
-        aria-label={useMode === "icon" ? label : undefined}
-        title={useMode === "icon" ? (title ?? label) : title}
+        aria-label={appearance === "icon" ? label : undefined}
+        title={appearance === "icon" ? (title ?? label) : title}
         data-size={size}
-        data-appearance={useMode}
+        data-appearance={appearance}
         data-variant={variant}
         data-pressed={pressed || undefined}
-        onClick={toggle}
+        onClick={(event) => {
+          if (disabled) return;
+          setPressed(!pressed);
+          onClick?.(event);
+        }}
       >
         <span className="dk-toggle-button__hit" aria-hidden="true" />
 
@@ -184,13 +167,13 @@ export const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProp
             </span>
           ) : null}
 
-          {useMode !== "text" && visibleIcon ? (
+          {appearance !== "text" && visibleIcon ? (
             <span className="dk-toggle-button__icon" aria-hidden="true">
               {visibleIcon}
             </span>
           ) : null}
 
-          {useMode !== "icon" ? (
+          {appearance !== "icon" ? (
             <span className="dk-toggle-button__label">{visibleLabel}</span>
           ) : null}
         </span>

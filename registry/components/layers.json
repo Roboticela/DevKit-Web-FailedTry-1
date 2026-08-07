@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-08-07T13:30:00Z",
+  "updatedAt": "2026-08-07T15:00:00Z",
   "description": "Five-layer reusable UI component catalog. Scaffolds (kind=scaffold) remain supported but empty for now.",
   "kinds": {
     "component": "Reusable UI packages selectable by layer. Available for both templates.",
@@ -88,14 +88,16 @@
                   "name": "toggle-button",
                   "displayName": "Toggle Button",
                   "fileKind": "tsx",
-                  "stub": true
+                  "stub": false,
+                  "latestVersion": "1.0.0"
                 },
                 {
                   "id": 8,
                   "name": "segmented-control",
                   "displayName": "Segmented Control",
                   "fileKind": "tsx",
-                  "stub": true
+                  "stub": false,
+                  "latestVersion": "1.0.0"
                 },
                 {
                   "id": 9,
@@ -109,7 +111,8 @@
                   "name": "action-menu-trigger",
                   "displayName": "Action Menu Trigger",
                   "fileKind": "tsx",
-                  "stub": true
+                  "stub": false,
+                  "latestVersion": "1.0.0"
                 }
               ],
               "idRange": {

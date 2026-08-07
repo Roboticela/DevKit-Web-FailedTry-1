@@ -2,7 +2,7 @@
   "id": 7,
   "name": "toggle-button",
   "displayName": "Toggle Button",
-  "description": "Toggle Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+  "description": "Binary stateful action control with aria-pressed, multi-cue selected state (border, surface, indicator, optional icon/text swap), and icon/text/icon-text appearances.",
   "category": "foundation",
   "group": "foundations-interface-primitives",
   "groupName": "Foundations & Interface Primitives",
@@ -19,7 +19,7 @@
     "interaction-controls",
     "toggle-button",
     "interaction",
-    "stub"
+    "a11y"
   ],
   "templates": [
     "nextjs-compact",
@@ -30,14 +30,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-07",
         "breaking": false
       }

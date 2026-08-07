@@ -364,7 +364,7 @@ devkit theme list
 devkit theme audit
 ```
 
-**Built-in presets** (Design Constitution — system fonts, tonal elevation, no shadow/gradient tokens):
+**Built-in presets** (Design Constitution — system fonts, tonal elevation, no shadow/gradient tokens, DevKit scrollbars):
 
 | Preset | Primary | Secondary | Radius personality | Style |
 |--------|---------|-----------|--------------------|-------|

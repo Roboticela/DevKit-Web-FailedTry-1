@@ -510,6 +510,16 @@ ${imports ? imports + "\n" : ""}
   /* ── Density (§83) — comfortable default ── */
   --density-scale: 1;
   --radius-personality: ${personality};
+
+  /* ── Scrollbars (foundation chrome) ── */
+  --scrollbar-size: var(--space-2);
+  --scrollbar-size-thin: 6px;
+  --scrollbar-thumb: var(--color-border-strong);
+  --scrollbar-thumb-hover: var(--color-text-tertiary);
+  --scrollbar-thumb-active: var(--color-text-secondary);
+  --scrollbar-track: transparent;
+  --scrollbar-track-subtle: var(--color-surface-secondary);
+  --scrollbar-radius: var(--radius-full);
 }
 ${
   theme.darkMode !== false
@@ -595,6 +605,89 @@ ${
     --duration-medium: 120ms;
     --duration-large: 120ms;
     --duration-dramatic: 120ms;
+  }
+}
+
+/* ── Scrollbars — calm, thin, token-driven (no shadows / no gradients) ── */
+*,
+*::before,
+*::after {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: var(--scrollbar-size);
+  height: var(--scrollbar-size);
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+  border-radius: var(--scrollbar-radius);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb);
+  border-radius: var(--scrollbar-radius);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: var(--scrollbar-thumb-active);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.dk-scroll {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track-subtle);
+}
+
+.dk-scroll::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-subtle);
+}
+
+.dk-scroll--thin {
+  scrollbar-width: thin;
+}
+
+.dk-scroll--thin::-webkit-scrollbar {
+  width: var(--scrollbar-size-thin);
+  height: var(--scrollbar-size-thin);
+}
+
+.dk-scroll--thin::-webkit-scrollbar-thumb {
+  border-width: 1px;
+}
+
+.dk-scroll--hidden {
+  scrollbar-width: none;
+}
+
+.dk-scroll--hidden::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --scrollbar-thumb: var(--color-border-strong);
+    --scrollbar-thumb-hover: var(--color-text-secondary);
+    --scrollbar-thumb-active: var(--color-text-primary);
+    --scrollbar-track: var(--color-surface-secondary);
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-width: 0;
   }
 }
 

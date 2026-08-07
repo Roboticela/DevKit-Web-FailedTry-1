@@ -17,6 +17,7 @@ Do not copy Apple’s proprietary UI, assets, icons, exact layouts, or branded e
 - **Hierarchy**: One primary action per local context. Primary → Secondary → Tertiary attention.
 - **Surfaces over decoration**: Whitespace, typography, tonal contrast, proportion. No excessive cards, borders, glass, badges, or animation.
 - **No shadows / no gradients** in DevKit UI (use tonal elevation and borders instead).
+- **Scrollbars**: DevKit-managed thin scrollbars via `--scrollbar-*` tokens (never browser chrome defaults). Use `.dk-scroll` / `.dk-scroll--thin` / `.dk-scroll--hidden` on overflow regions.
 - **Themes**: Light, Dark, High Contrast, and Custom Brand are independent palettes—not inversions.
 - **A11y**: Visible focus, keyboard, ≥44×44 touch targets, never color-only status, honor `prefers-reduced-motion`.
 

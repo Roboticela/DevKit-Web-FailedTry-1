@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/SegmentedControl.tsx",
       "destination": "src/components/ui/SegmentedControl.tsx"
+    },
+    {
+      "source": "files/src/styles/segmented-control.css",
+      "destination": "src/styles/segmented-control.css"
+    },
+    {
+      "source": "files/docs/SEGMENTED_CONTROL.md",
+      "destination": "docs/devkit/SEGMENTED_CONTROL.md"
     }
   ],
   "injections": [],
