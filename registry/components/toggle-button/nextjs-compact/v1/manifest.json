@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ToggleButton.tsx",
+      "destination": "components/ui/ToggleButton.tsx"
+    },
+    {
+      "source": "files/styles/toggle-button.css",
+      "destination": "styles/toggle-button.css"
+    },
+    {
+      "source": "files/docs/TOGGLE_BUTTON.md",
+      "destination": "docs/devkit/TOGGLE_BUTTON.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

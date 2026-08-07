@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Checkbox.tsx",
+      "destination": "src/components/ui/Checkbox.tsx"
+    },
+    {
+      "source": "files/src/styles/checkbox.css",
+      "destination": "src/styles/checkbox.css"
+    },
+    {
+      "source": "files/docs/CHECKBOX.md",
+      "destination": "docs/devkit/CHECKBOX.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,159 @@
+/* Icon Button Group (ID 092) — Action & Control Compositions
+ * Layout cluster for Icon Button (002) only.
+ * Do not redefine icon-button sizes, hit areas, or chrome.
+ * Selected / active / disabled come from each IconButton.
+ * Touch targets remain those of Icon Button (≥ global minimum).
+ * Ordinary sets: wrap or stack — do not overcrowd mobile.
+ * No box-shadow. No gradients.
+ */
+
+.dk-icon-button-group {
+  --dk-ibg-gap: var(--space-2, 8px);
+
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dk-ibg-gap);
+  max-width: 100%;
+  min-width: 0;
+  vertical-align: middle;
+}
+
+.dk-icon-button-group *,
+.dk-icon-button-group *::before,
+.dk-icon-button-group *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Orientation ——— */
+
+.dk-icon-button-group--horizontal {
+  flex-direction: row;
+}
+
+.dk-icon-button-group--vertical {
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+
+/* ——— Density ——— */
+
+.dk-icon-button-group--standard {
+  --dk-ibg-gap: var(--space-2, 8px);
+}
+
+.dk-icon-button-group--compact {
+  --dk-ibg-gap: var(--space-1, 4px);
+}
+
+.dk-icon-button-group--standard.dk-icon-button-group--joined,
+.dk-icon-button-group--compact.dk-icon-button-group--joined {
+  --dk-ibg-gap: 0px;
+}
+
+.dk-icon-button-group--standard.dk-icon-button-group--separated {
+  --dk-ibg-gap: var(--space-2, 8px);
+}
+
+.dk-icon-button-group--compact.dk-icon-button-group--separated {
+  --dk-ibg-gap: var(--space-1, 4px);
+}
+
+/* ——— Overflow ——— */
+
+.dk-icon-button-group--overflow-wrap {
+  flex-wrap: wrap;
+}
+
+.dk-icon-button-group--overflow-stack.dk-icon-button-group--horizontal {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.dk-icon-button-group--overflow-stack.dk-icon-button-group--vertical {
+  flex-wrap: nowrap;
+}
+
+/* ——— Children: Icon Button primitives only ——— */
+
+.dk-icon-button-group > .dk-icon-button {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.dk-icon-button-group--horizontal > .dk-icon-button {
+  align-self: center;
+}
+
+.dk-icon-button-group--vertical > .dk-icon-button,
+.dk-icon-button-group--overflow-stack > .dk-icon-button {
+  align-self: stretch;
+  width: 100%;
+}
+
+/* ——— Joined cluster ——— */
+
+.dk-icon-button-group--joined.dk-icon-button-group--horizontal > .dk-icon-button + .dk-icon-button {
+  margin-inline-start: calc(var(--border-width-default, 1px) * -1);
+}
+
+.dk-icon-button-group--joined.dk-icon-button-group--vertical > .dk-icon-button + .dk-icon-button,
+.dk-icon-button-group--joined.dk-icon-button-group--overflow-stack > .dk-icon-button + .dk-icon-button {
+  margin-block-start: calc(var(--border-width-default, 1px) * -1);
+}
+
+.dk-icon-button-group--joined.dk-icon-button-group--horizontal > .dk-icon-button:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.dk-icon-button-group--joined.dk-icon-button-group--horizontal > .dk-icon-button:first-child:not(:last-child) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.dk-icon-button-group--joined.dk-icon-button-group--horizontal > .dk-icon-button:last-child:not(:first-child) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+.dk-icon-button-group--joined.dk-icon-button-group--vertical > .dk-icon-button:not(:first-child):not(:last-child),
+.dk-icon-button-group--joined.dk-icon-button-group--overflow-stack > .dk-icon-button:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.dk-icon-button-group--joined.dk-icon-button-group--vertical > .dk-icon-button:first-child:not(:last-child),
+.dk-icon-button-group--joined.dk-icon-button-group--overflow-stack > .dk-icon-button:first-child:not(:last-child) {
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.dk-icon-button-group--joined.dk-icon-button-group--vertical > .dk-icon-button:last-child:not(:first-child),
+.dk-icon-button-group--joined.dk-icon-button-group--overflow-stack > .dk-icon-button:last-child:not(:first-child) {
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+/* Independent focus / hover / selected when joined */
+.dk-icon-button-group--joined > .dk-icon-button:hover,
+.dk-icon-button-group--joined > .dk-icon-button:focus-visible,
+.dk-icon-button-group--joined > .dk-icon-button[data-loading],
+.dk-icon-button-group--joined > .dk-icon-button[data-selected],
+.dk-icon-button-group--joined > .dk-icon-button--selected {
+  z-index: 1;
+}
+
+.dk-icon-button-group--joined > .dk-icon-button:focus-visible {
+  z-index: 2;
+}
+
+/* Selected: Icon Button selected styles (surface + border + aria-pressed) */
+.dk-icon-button-group > .dk-icon-button--selected,
+.dk-icon-button-group > .dk-icon-button[data-selected] {
+  z-index: 1;
+}
+
+/* Disabled child does not disable siblings */

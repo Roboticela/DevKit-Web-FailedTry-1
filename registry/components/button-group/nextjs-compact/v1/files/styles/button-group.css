@@ -1,0 +1,250 @@
+/* Button Group (ID 003) — Interaction Controls
+ * Tokens from DevKit Design Constitution. No gradients. No box-shadows.
+ */
+
+.dk-button-group {
+  --dk-bg-gap: 0px;
+  --dk-bg-radius: var(--radius-button, var(--radius-5, 12px));
+
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  gap: var(--dk-bg-gap);
+  max-width: 100%;
+  min-width: 0;
+  vertical-align: middle;
+}
+
+.dk-button-group--horizontal {
+  flex-direction: row;
+}
+
+.dk-button-group--vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.dk-button-group--responsive {
+  flex-direction: row;
+}
+
+.dk-button-group--gap-none {
+  --dk-bg-gap: 0px;
+}
+
+.dk-button-group--gap-sm {
+  --dk-bg-gap: var(--space-2, 8px);
+}
+
+.dk-button-group--gap-md {
+  --dk-bg-gap: var(--space-3, 12px);
+}
+
+.dk-button-group--overflow-wrap {
+  flex-wrap: wrap;
+}
+
+.dk-button-group--overflow-scroll {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, var(--color-border-strong)) var(--scrollbar-track, transparent);
+}
+
+.dk-button-group--overflow-stack.dk-button-group--responsive {
+  flex-wrap: nowrap;
+}
+
+.dk-button-group--equal {
+  width: 100%;
+}
+
+.dk-button-group--equal > .dk-button,
+.dk-button-group--equal > .dk-icon-button {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.dk-button-group--equal > .dk-button {
+  justify-content: center;
+}
+
+/* Default: suppress mixed visual heights unless allowMixedSizes */
+.dk-button-group:not(.dk-button-group--mixed-sizes) > .dk-button,
+.dk-button-group:not(.dk-button-group--mixed-sizes) > .dk-icon-button {
+  /* Keep layout stable when one sibling enters loading */
+  flex-shrink: 0;
+}
+
+.dk-button-group:not(.dk-button-group--mixed-sizes).dk-button-group--horizontal > .dk-button,
+.dk-button-group:not(.dk-button-group--mixed-sizes).dk-button-group--responsive > .dk-button,
+.dk-button-group:not(.dk-button-group--mixed-sizes).dk-button-group--horizontal > .dk-icon-button,
+.dk-button-group:not(.dk-button-group--mixed-sizes).dk-button-group--responsive > .dk-icon-button {
+  align-self: center;
+}
+
+/* ── Attached (joined) groups: gap 0, shared edges, independent identity ── */
+
+.dk-button-group--attached.dk-button-group--horizontal > .dk-button + .dk-button,
+.dk-button-group--attached.dk-button-group--horizontal > .dk-icon-button + .dk-icon-button,
+.dk-button-group--attached.dk-button-group--horizontal > .dk-button + .dk-icon-button,
+.dk-button-group--attached.dk-button-group--horizontal > .dk-icon-button + .dk-button,
+.dk-button-group--attached.dk-button-group--responsive > .dk-button + .dk-button,
+.dk-button-group--attached.dk-button-group--responsive > .dk-icon-button + .dk-icon-button,
+.dk-button-group--attached.dk-button-group--responsive > .dk-button + .dk-icon-button,
+.dk-button-group--attached.dk-button-group--responsive > .dk-icon-button + .dk-button {
+  margin-inline-start: calc(var(--border-width-default, 1px) * -1);
+}
+
+.dk-button-group--attached.dk-button-group--vertical > .dk-button + .dk-button,
+.dk-button-group--attached.dk-button-group--vertical > .dk-icon-button + .dk-icon-button,
+.dk-button-group--attached.dk-button-group--vertical > .dk-button + .dk-icon-button,
+.dk-button-group--attached.dk-button-group--vertical > .dk-icon-button + .dk-button {
+  margin-block-start: calc(var(--border-width-default, 1px) * -1);
+}
+
+/* Horizontal attached radii */
+.dk-button-group--attached.dk-button-group--horizontal > .dk-button:not(:first-child):not(:last-child),
+.dk-button-group--attached.dk-button-group--horizontal > .dk-icon-button:not(:first-child):not(:last-child),
+.dk-button-group--attached.dk-button-group--responsive > .dk-button:not(:first-child):not(:last-child),
+.dk-button-group--attached.dk-button-group--responsive > .dk-icon-button:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.dk-button-group--attached.dk-button-group--horizontal > .dk-button:first-child:not(:last-child),
+.dk-button-group--attached.dk-button-group--horizontal > .dk-icon-button:first-child:not(:last-child),
+.dk-button-group--attached.dk-button-group--responsive > .dk-button:first-child:not(:last-child),
+.dk-button-group--attached.dk-button-group--responsive > .dk-icon-button:first-child:not(:last-child) {
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.dk-button-group--attached.dk-button-group--horizontal > .dk-button:last-child:not(:first-child),
+.dk-button-group--attached.dk-button-group--horizontal > .dk-icon-button:last-child:not(:first-child),
+.dk-button-group--attached.dk-button-group--responsive > .dk-button:last-child:not(:first-child),
+.dk-button-group--attached.dk-button-group--responsive > .dk-icon-button:last-child:not(:first-child) {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+/* Vertical attached radii */
+.dk-button-group--attached.dk-button-group--vertical > .dk-button:not(:first-child):not(:last-child),
+.dk-button-group--attached.dk-button-group--vertical > .dk-icon-button:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+.dk-button-group--attached.dk-button-group--vertical > .dk-button:first-child:not(:last-child),
+.dk-button-group--attached.dk-button-group--vertical > .dk-icon-button:first-child:not(:last-child) {
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+}
+
+.dk-button-group--attached.dk-button-group--vertical > .dk-button:last-child:not(:first-child),
+.dk-button-group--attached.dk-button-group--vertical > .dk-icon-button:last-child:not(:first-child) {
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+}
+
+/* Keep each control identifiable under focus / hover when attached */
+.dk-button-group--attached > .dk-button,
+.dk-button-group--attached > .dk-icon-button {
+  position: relative;
+}
+
+.dk-button-group--attached > .dk-button:hover,
+.dk-button-group--attached > .dk-button:focus-visible,
+.dk-button-group--attached > .dk-button[data-loading],
+.dk-button-group--attached > .dk-icon-button:hover,
+.dk-button-group--attached > .dk-icon-button:focus-visible,
+.dk-button-group--attached > .dk-icon-button[data-loading] {
+  z-index: 1;
+}
+
+.dk-button-group--attached > .dk-button:focus-visible,
+.dk-button-group--attached > .dk-icon-button:focus-visible {
+  z-index: 2;
+}
+
+/* Content-width by default; long labels ellipsis inside Button */
+.dk-button-group > .dk-button {
+  max-width: 100%;
+}
+
+/* Full-width vertical stack */
+.dk-button-group--vertical {
+  width: 100%;
+}
+
+.dk-button-group--vertical > .dk-button,
+.dk-button-group--vertical.dk-button-group--equal > .dk-icon-button {
+  width: 100%;
+}
+
+/* Compact: responsive adaptations */
+@media (max-width: 479px) {
+  .dk-button-group--responsive.dk-button-group--overflow-stack {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .dk-button-group--responsive.dk-button-group--overflow-stack > .dk-button,
+  .dk-button-group--responsive.dk-button-group--overflow-stack > .dk-icon-button {
+    width: 100%;
+  }
+
+  /* Re-join vertically when stacked + attached */
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-button + .dk-button,
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-icon-button + .dk-icon-button,
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-button + .dk-icon-button,
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-icon-button + .dk-button {
+    margin-inline-start: 0;
+    margin-block-start: calc(var(--border-width-default, 1px) * -1);
+  }
+
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-button:not(:first-child):not(:last-child),
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-icon-button:not(:first-child):not(:last-child) {
+    border-radius: 0;
+  }
+
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-button:first-child:not(:last-child),
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-icon-button:first-child:not(:last-child) {
+    border-radius: var(--dk-bg-radius);
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-button:last-child:not(:first-child),
+  .dk-button-group--attached.dk-button-group--responsive.dk-button-group--overflow-stack > .dk-icon-button:last-child:not(:first-child) {
+    border-radius: var(--dk-bg-radius);
+    border-start-start-radius: 0;
+    border-start-end-radius: 0;
+  }
+
+  .dk-button-group--responsive.dk-button-group--overflow-wrap {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .dk-button-group--responsive.dk-button-group--overflow-scroll {
+    width: 100%;
+  }
+}
+
+/* RTL: logical margins already used; first/last still work with DOM order */
+[dir="rtl"] .dk-button-group--attached.dk-button-group--horizontal > .dk-button + .dk-button,
+[dir="rtl"] .dk-button-group--attached.dk-button-group--horizontal > .dk-icon-button + .dk-icon-button,
+[dir="rtl"] .dk-button-group--attached.dk-button-group--responsive > .dk-button + .dk-button,
+[dir="rtl"] .dk-button-group--attached.dk-button-group--responsive > .dk-icon-button + .dk-icon-button {
+  /* margin-inline-start handles direction */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-button-group--overflow-scroll {
+    scroll-behavior: auto;
+  }
+}

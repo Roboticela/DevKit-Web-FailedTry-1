@@ -1,0 +1,47 @@
+{
+  "id": 24,
+  "name": "heading",
+  "displayName": "Heading",
+  "description": "Semantic h1–h6 with visual size independent of level — subtitle, alignment, wrap-by-default, opt-in truncate, responsive typography tokens.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "typography-content",
+  "subgroupName": "Typography & Content",
+  "kind": "component",
+  "layer": 1,
+  "icon": "heading",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "typography-content",
+    "heading",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

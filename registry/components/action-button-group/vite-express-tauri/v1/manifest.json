@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ActionButtonGroup.tsx",
+      "destination": "src/components/ui/ActionButtonGroup.tsx"
+    },
+    {
+      "source": "files/src/styles/action-button-group.css",
+      "destination": "src/styles/action-button-group.css"
+    },
+    {
+      "source": "files/docs/ACTION_BUTTON_GROUP.md",
+      "destination": "docs/devkit/ACTION_BUTTON_GROUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

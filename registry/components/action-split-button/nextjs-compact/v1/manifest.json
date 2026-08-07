@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ActionSplitButton.tsx",
+      "destination": "components/ui/ActionSplitButton.tsx"
+    },
+    {
+      "source": "files/styles/action-split-button.css",
+      "destination": "styles/action-split-button.css"
+    },
+    {
+      "source": "files/docs/ACTION_SPLIT_BUTTON.md",
+      "destination": "docs/devkit/ACTION_SPLIT_BUTTON.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

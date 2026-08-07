@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/TabBar.tsx",
+      "destination": "src/components/ui/TabBar.tsx"
+    },
+    {
+      "source": "files/src/styles/tab-bar.css",
+      "destination": "src/styles/tab-bar.css"
+    },
+    {
+      "source": "files/docs/TAB_BAR.md",
+      "destination": "docs/devkit/TAB_BAR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

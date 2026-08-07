@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ActionSegmentedControl.tsx",
+      "destination": "components/ui/ActionSegmentedControl.tsx"
+    },
+    {
+      "source": "files/styles/action-segmented-control.css",
+      "destination": "styles/action-segmented-control.css"
+    },
+    {
+      "source": "files/docs/ACTION_SEGMENTED_CONTROL.md",
+      "destination": "docs/devkit/ACTION_SEGMENTED_CONTROL.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

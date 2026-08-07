@@ -1,0 +1,48 @@
+{
+  "id": 1,
+  "name": "button",
+  "displayName": "Button",
+  "description": "Foundational generic action control with sizes XS–XL, seven variants, loading that preserves layout, and full a11y (keyboard, focus, touch ≥44px, RTL, reduced motion).",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "interaction-controls",
+  "subgroupName": "Interaction Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "interaction-controls",
+    "button",
+    "interaction",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

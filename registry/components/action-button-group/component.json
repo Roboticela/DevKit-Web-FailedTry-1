@@ -1,0 +1,48 @@
+{
+  "id": 29,
+  "name": "action-button-group",
+  "displayName": "Button Group",
+  "description": "Clusters related Button actions with joined/separated layout, compact/standard density, horizontal/vertical orientation, and wrap/stack overflow. Each button stays independently focusable and disableable. Prefer Action Group for large sets.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "action-control-compositions",
+  "subgroupName": "Action & Control Compositions",
+  "kind": "component",
+  "layer": 1,
+  "icon": "button-group",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "action-control-compositions",
+    "button-group",
+    "action-button-group",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/TimeInput.tsx",
+      "destination": "src/components/ui/TimeInput.tsx"
+    },
+    {
+      "source": "files/src/styles/time-input.css",
+      "destination": "src/styles/time-input.css"
+    },
+    {
+      "source": "files/docs/TIME_INPUT.md",
+      "destination": "docs/devkit/TIME_INPUT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/CommandButton.tsx",
+      "destination": "components/ui/CommandButton.tsx"
+    },
+    {
+      "source": "files/styles/command-button.css",
+      "destination": "styles/command-button.css"
+    },
+    {
+      "source": "files/docs/COMMAND_BUTTON.md",
+      "destination": "docs/devkit/COMMAND_BUTTON.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Card.tsx",
+      "destination": "src/components/ui/Card.tsx"
+    },
+    {
+      "source": "files/src/styles/card.css",
+      "destination": "src/styles/card.css"
+    },
+    {
+      "source": "files/docs/CARD.md",
+      "destination": "docs/devkit/CARD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

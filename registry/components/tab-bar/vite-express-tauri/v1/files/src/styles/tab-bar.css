@@ -1,0 +1,334 @@
+/* Tab Bar (ID 032) — Navigation Controls
+ * Persistent primary destinations (2–5) in a bounded app context.
+ * Related to Tabs, optimized for navigation — not in-page panels.
+ * No gradients. No box-shadows. ≥44×44 hit. Safe-area aware.
+ */
+
+.dk-tab-bar {
+  --dk-tab-bar-height: 52px;
+  --dk-tab-bar-pad-x: var(--space-1, 4px);
+  --dk-tab-bar-pad-y: var(--space-1, 4px);
+  --dk-tab-bar-gap: 0;
+  --dk-tab-bar-font-size: var(--font-size-caption, 12px);
+  --dk-tab-bar-line-height: var(--line-height-caption, 16px);
+  --dk-tab-bar-icon: var(--icon-24, 24px);
+  --dk-tab-bar-badge-size: 16px;
+  --dk-tab-bar-indicator: 2px;
+  --dk-tab-bar-duration: var(--duration-quick, 160ms);
+  --dk-tab-bar-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+  --dk-tab-bar-safe-bottom: 0px;
+  --dk-tab-bar-safe-top: 0px;
+
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-surface-primary, #ffffff);
+  color: var(--color-text-primary, #1d1d1f);
+  font-family: var(--font-sans, inherit);
+}
+
+.dk-tab-bar--bottom {
+  position: sticky;
+  inset-block-end: 0;
+  inset-inline: 0;
+  z-index: 30;
+  border-block-start: var(--border-width-default, 1px) solid
+    var(--color-border-default, #d2d2d7);
+  padding-block-end: var(--dk-tab-bar-safe-bottom);
+  /* Keep chrome compact — do not fight the home indicator with excess height */
+  min-height: calc(var(--dk-tab-bar-height) + var(--dk-tab-bar-safe-bottom));
+}
+
+.dk-tab-bar--top {
+  position: sticky;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 30;
+  border-block-end: var(--border-width-default, 1px) solid
+    var(--color-border-default, #d2d2d7);
+  padding-block-start: var(--dk-tab-bar-safe-top);
+}
+
+.dk-tab-bar--contextual {
+  position: relative;
+  border: var(--border-width-default, 1px) solid
+    var(--color-border-default, #d2d2d7);
+  border-radius: var(--radius-5, 12px);
+  overflow: hidden;
+}
+
+.dk-tab-bar--safe-area.dk-tab-bar--bottom {
+  --dk-tab-bar-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.dk-tab-bar--safe-area.dk-tab-bar--top {
+  --dk-tab-bar-safe-top: env(safe-area-inset-top, 0px);
+}
+
+.dk-tab-bar__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: var(--dk-tab-bar-gap);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--dk-tab-bar-height);
+  margin: 0;
+  padding: var(--dk-tab-bar-pad-y) var(--dk-tab-bar-pad-x);
+  list-style: none;
+}
+
+.dk-tab-bar__item {
+  position: relative;
+  display: inline-flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: max(var(--dk-tab-bar-height), var(--touch-target-min, 44px));
+  margin: 0;
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  border: 0;
+  border-radius: var(--radius-3, 8px);
+  background: transparent;
+  color: var(--color-text-secondary, #6e6e73);
+  font: inherit;
+  font-size: var(--dk-tab-bar-font-size);
+  line-height: var(--dk-tab-bar-line-height);
+  font-weight: var(--weight-medium, 500);
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    color var(--dk-tab-bar-duration) var(--dk-tab-bar-ease),
+    background-color var(--dk-tab-bar-duration) var(--dk-tab-bar-ease);
+}
+
+.dk-tab-bar__hit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--touch-target-min, 44px));
+  height: max(100%, var(--touch-target-min, 44px));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.dk-tab-bar__icon-wrap {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-tab-bar-icon);
+  height: var(--dk-tab-bar-icon);
+}
+
+.dk-tab-bar__icon {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  color: currentColor;
+}
+
+.dk-tab-bar__icon > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dk-tab-bar__badge {
+  position: absolute;
+  top: -4px;
+  inset-inline-end: -6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--dk-tab-bar-badge-size);
+  height: var(--dk-tab-bar-badge-size);
+  padding: 0 4px;
+  border: var(--border-width-default, 1px) solid
+    var(--color-surface-primary, #ffffff);
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-error, #d70015);
+  color: var(--color-text-on-accent, #ffffff);
+  font-size: 10px;
+  line-height: 1;
+  font-weight: var(--weight-semibold, 600);
+  pointer-events: none;
+}
+
+.dk-tab-bar__label {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dk-tab-bar__sr-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-tab-bar__item:hover:not(:disabled):not(.dk-tab-bar__item--disabled) {
+  color: var(--color-text-primary, #1d1d1f);
+  background: var(--color-surface-secondary, #f5f5f7);
+}
+
+.dk-tab-bar__item:active:not(:disabled):not(.dk-tab-bar__item--disabled) {
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-tab-bar__item:focus {
+  outline: none;
+}
+
+.dk-tab-bar__item:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+/* Active — label weight + edge indicator (not color alone) */
+.dk-tab-bar__item--active {
+  color: var(--color-accent-primary, #0071e3);
+  font-weight: var(--weight-semibold, 600);
+}
+
+.dk-tab-bar--bottom .dk-tab-bar__item--active::before {
+  content: "";
+  position: absolute;
+  inset-inline: 20%;
+  inset-block-start: 0;
+  height: var(--dk-tab-bar-indicator);
+  background: var(--color-accent-primary, #0071e3);
+  border-radius: 0 0 1px 1px;
+}
+
+.dk-tab-bar--top .dk-tab-bar__item--active::after,
+.dk-tab-bar--contextual .dk-tab-bar__item--active::after {
+  content: "";
+  position: absolute;
+  inset-inline: 20%;
+  inset-block-end: 0;
+  height: var(--dk-tab-bar-indicator);
+  background: var(--color-accent-primary, #0071e3);
+  border-radius: 1px 1px 0 0;
+}
+
+.dk-tab-bar__item--disabled,
+.dk-tab-bar__item:disabled {
+  color: var(--color-text-disabled, #a1a1a6);
+  cursor: not-allowed;
+}
+
+.dk-tab-bar--disabled {
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.dk-tab-bar--sm {
+  --dk-tab-bar-height: 48px;
+  --dk-tab-bar-icon: var(--icon-20, 20px);
+  --dk-tab-bar-font-size: 11px;
+}
+
+.dk-tab-bar--md {
+  --dk-tab-bar-height: 52px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-tab-bar__item {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dk-tab-bar--bottom,
+  .dk-tab-bar--top,
+  .dk-tab-bar--contextual {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+
+  .dk-tab-bar--bottom .dk-tab-bar__item--active::before,
+  .dk-tab-bar--top .dk-tab-bar__item--active::after,
+  .dk-tab-bar--contextual .dk-tab-bar__item--active::after {
+    height: 3px;
+  }
+
+  .dk-tab-bar__badge {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+}
+
+/* Avoid gesture conflict: no swipe handlers; keep bar compact on landscape phones */
+@media (max-height: 480px) and (orientation: landscape) {
+  .dk-tab-bar--bottom,
+  .dk-tab-bar--top {
+    --dk-tab-bar-height: 44px;
+    --dk-tab-bar-icon: var(--icon-20, 20px);
+  }
+
+  .dk-tab-bar--bottom .dk-tab-bar__label,
+  .dk-tab-bar--top .dk-tab-bar__label {
+    /* Keep labels; do not drop them — shrink icon/chrome instead */
+    font-size: 10px;
+  }
+}
+
+[data-theme="dark"] .dk-tab-bar,
+.dark .dk-tab-bar {
+  background: var(--color-surface-primary, #2c2c2e);
+  color: var(--color-text-primary, #f5f5f7);
+}
+
+[data-theme="dark"] .dk-tab-bar--bottom,
+.dark .dk-tab-bar--bottom {
+  border-block-start-color: var(--color-border-default, #48484a);
+}
+
+[data-theme="dark"] .dk-tab-bar--top,
+.dark .dk-tab-bar--top,
+[data-theme="dark"] .dk-tab-bar--contextual,
+.dark .dk-tab-bar--contextual {
+  border-color: var(--color-border-default, #48484a);
+}
+
+[data-theme="dark"] .dk-tab-bar__item,
+.dark .dk-tab-bar__item {
+  color: var(--color-text-secondary, #a1a1a6);
+}
+
+[data-theme="dark"] .dk-tab-bar__item:hover:not(:disabled):not(.dk-tab-bar__item--disabled),
+.dark .dk-tab-bar__item:hover:not(:disabled):not(.dk-tab-bar__item--disabled) {
+  color: var(--color-text-primary, #f5f5f7);
+  background: var(--color-surface-secondary, #3a3a3c);
+}
+
+[data-theme="dark"] .dk-tab-bar__item--active,
+.dark .dk-tab-bar__item--active {
+  color: var(--color-accent-primary, #0a84ff);
+}
+
+[data-theme="dark"] .dk-tab-bar__badge,
+.dark .dk-tab-bar__badge {
+  border-color: var(--color-surface-primary, #2c2c2e);
+}

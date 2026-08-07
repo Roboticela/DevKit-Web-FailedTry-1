@@ -1,0 +1,324 @@
+/* Icon Button (ID 002) — Interaction Controls
+ * Tokens from DevKit Design Constitution. No gradients. No box-shadows.
+ */
+
+.dk-icon-button {
+  --dk-ib-size: var(--control-height-md, 40px);
+  --dk-ib-icon: var(--icon-20, 20px);
+  --dk-ib-radius: var(--radius-button, var(--radius-5, 12px));
+  --dk-ib-duration: var(--duration-quick, 160ms);
+  --dk-ib-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+  --dk-ib-press: var(--duration-micro, 80ms);
+  /* Optical nudge — slightly below geometric center for most stroke icons */
+  --dk-ib-optical-y: 0.5px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--dk-ib-size);
+  height: var(--dk-ib-size);
+  min-width: var(--dk-ib-size);
+  min-height: var(--dk-ib-size);
+  padding: 0;
+  margin: 0;
+  border-width: var(--border-width-default, 1px);
+  border-style: solid;
+  border-radius: var(--dk-ib-radius);
+  font: inherit;
+  line-height: 0;
+  color: inherit;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  touch-action: manipulation;
+  transition:
+    background-color var(--dk-ib-duration) var(--dk-ib-ease),
+    border-color var(--dk-ib-duration) var(--dk-ib-ease),
+    color var(--dk-ib-duration) var(--dk-ib-ease),
+    opacity var(--dk-ib-duration) var(--dk-ib-ease),
+    transform var(--dk-ib-press) var(--dk-ib-ease);
+}
+
+.dk-icon-button__hit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--touch-target-min, 44px));
+  height: max(100%, var(--touch-target-min, 44px));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.dk-icon-button__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-ib-icon);
+  height: var(--dk-ib-icon);
+  font-size: var(--dk-ib-icon);
+  line-height: 1;
+  /* Optical centering */
+  transform: translateY(var(--dk-ib-optical-y));
+}
+
+.dk-icon-button__glyph > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dk-icon-button__glyph[data-hidden] {
+  opacity: 0;
+}
+
+.dk-icon-button__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dk-icon-button__spinner {
+  box-sizing: border-box;
+  width: var(--dk-ib-icon);
+  height: var(--dk-ib-icon);
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--radius-full, 9999px);
+  opacity: 0.85;
+  animation: dk-icon-button-spin var(--duration-medium, 300ms) linear infinite;
+}
+
+/* ── Sizes: visual control vs 16–24px icon ── */
+
+.dk-icon-button--xs {
+  --dk-ib-size: var(--control-height-xs, 28px);
+  --dk-ib-icon: var(--icon-16, 16px);
+  --dk-ib-radius: var(--radius-3, 8px);
+}
+
+.dk-icon-button--sm {
+  --dk-ib-size: var(--control-height-sm, 32px);
+  --dk-ib-icon: var(--icon-16, 16px);
+  --dk-ib-radius: var(--radius-4, 10px);
+}
+
+.dk-icon-button--md {
+  --dk-ib-size: var(--control-height-md, 40px);
+  --dk-ib-icon: var(--icon-20, 20px);
+  --dk-ib-radius: var(--radius-button, var(--radius-5, 12px));
+}
+
+.dk-icon-button--lg {
+  --dk-ib-size: var(--control-height-lg, 48px);
+  --dk-ib-icon: var(--icon-24, 24px);
+  --dk-ib-radius: var(--radius-6, 14px);
+}
+
+.dk-icon-button--xl {
+  --dk-ib-size: var(--control-height-xl, 56px);
+  --dk-ib-icon: var(--icon-24, 24px);
+  --dk-ib-radius: var(--radius-6, 14px);
+}
+
+/* ── Variants ── */
+
+.dk-icon-button--neutral {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-icon-button--neutral:hover:not(:disabled):not([data-loading]) {
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-icon-button--neutral:active:not(:disabled):not([data-loading]) {
+  background: var(--color-background-tertiary, #ececef);
+  transform: scale(0.96);
+}
+
+.dk-icon-button--subtle {
+  background: var(--color-surface-secondary, #fafafa);
+  border-color: transparent;
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-icon-button--subtle:hover:not(:disabled):not([data-loading]) {
+  background: var(--color-background-tertiary, #ececef);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-icon-button--subtle:active:not(:disabled):not([data-loading]) {
+  background: var(--neutral-200, #e8e8ed);
+  transform: scale(0.96);
+}
+
+.dk-icon-button--filled {
+  background: var(--color-accent-primary, #0071e3);
+  border-color: var(--color-accent-primary, #0071e3);
+  color: var(--color-accent-on, #ffffff);
+}
+
+.dk-icon-button--filled:hover:not(:disabled):not([data-loading]) {
+  background: var(--color-accent-hover, #2997ff);
+  border-color: var(--color-accent-hover, #2997ff);
+}
+
+.dk-icon-button--filled:active:not(:disabled):not([data-loading]) {
+  background: var(--color-accent-pressed, #0058b0);
+  border-color: var(--color-accent-pressed, #0058b0);
+  transform: scale(0.96);
+}
+
+.dk-icon-button--outlined {
+  background: var(--color-surface-primary, #ffffff);
+  border-color: var(--color-border-default, #d2d2d7);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-icon-button--outlined:hover:not(:disabled):not([data-loading]) {
+  background: var(--color-surface-secondary, #fafafa);
+  border-color: var(--color-border-strong, #c7c7cc);
+}
+
+.dk-icon-button--outlined:active:not(:disabled):not([data-loading]) {
+  background: var(--color-background-tertiary, #ececef);
+  transform: scale(0.96);
+}
+
+.dk-icon-button--destructive {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-error, #d70015);
+}
+
+.dk-icon-button--destructive:hover:not(:disabled):not([data-loading]) {
+  background: var(--color-error-bg, #ffebee);
+  color: var(--color-error-fg, #8b000e);
+}
+
+.dk-icon-button--destructive:active:not(:disabled):not([data-loading]) {
+  background: var(--color-error, #d70015);
+  color: var(--color-text-inverse, #ffffff);
+  transform: scale(0.96);
+}
+
+.dk-icon-button--inverse {
+  background: transparent;
+  border-color: transparent;
+  color: var(--color-text-inverse, #ffffff);
+}
+
+.dk-icon-button--inverse:hover:not(:disabled):not([data-loading]) {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.dk-icon-button--inverse:active:not(:disabled):not([data-loading]) {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(0.96);
+}
+
+/* Selected — tonal + border emphasis (not color alone) */
+.dk-icon-button--selected,
+.dk-icon-button[data-selected] {
+  background: var(--color-accent-subtle, #e8f2fc);
+  border-color: var(--color-accent-primary, #0071e3);
+  color: var(--color-accent-primary, #0071e3);
+}
+
+.dk-icon-button--filled.dk-icon-button--selected,
+.dk-icon-button--filled[data-selected] {
+  background: var(--color-accent-pressed, #0058b0);
+  border-color: var(--color-accent-pressed, #0058b0);
+  color: var(--color-accent-on, #ffffff);
+}
+
+.dk-icon-button--destructive.dk-icon-button--selected,
+.dk-icon-button--destructive[data-selected] {
+  background: var(--color-error-bg, #ffebee);
+  border-color: var(--color-error-border, #ff3b30);
+  color: var(--color-error-fg, #8b000e);
+}
+
+.dk-icon-button--inverse.dk-icon-button--selected,
+.dk-icon-button--inverse[data-selected] {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+/* Focus */
+.dk-icon-button:focus {
+  outline: none;
+}
+
+.dk-icon-button:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+.dk-icon-button--inverse:focus-visible {
+  outline-color: var(--color-text-inverse, #ffffff);
+}
+
+/* Disabled / loading */
+.dk-icon-button:disabled,
+.dk-icon-button[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: var(--opacity-disabled, 0.5);
+  transform: none;
+}
+
+.dk-icon-button--loading {
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-icon-button {
+    transition-duration: var(--duration-fast, 120ms);
+  }
+
+  .dk-icon-button:active:not(:disabled):not([data-loading]) {
+    transform: none;
+  }
+
+  .dk-icon-button__spinner {
+    animation: none;
+    border-right-color: currentColor;
+    opacity: 0.55;
+  }
+}
+
+@keyframes dk-icon-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dk-icon-button--filled,
+  .dk-icon-button--outlined,
+  .dk-icon-button--selected {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+
+  .dk-icon-button--neutral,
+  .dk-icon-button--subtle,
+  .dk-icon-button--destructive,
+  .dk-icon-button--inverse {
+    border-color: currentColor;
+  }
+}
+
+[data-theme="hc"] .dk-icon-button--filled,
+[data-theme="hc"] .dk-icon-button--outlined,
+.hc .dk-icon-button--filled,
+.hc .dk-icon-button--outlined {
+  border-width: var(--border-width-emphasis, 2px);
+}

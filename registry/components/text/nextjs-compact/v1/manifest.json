@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Text.tsx",
+      "destination": "components/ui/Text.tsx"
+    },
+    {
+      "source": "files/styles/text.css",
+      "destination": "styles/text.css"
+    },
+    {
+      "source": "files/docs/TEXT.md",
+      "destination": "docs/devkit/TEXT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

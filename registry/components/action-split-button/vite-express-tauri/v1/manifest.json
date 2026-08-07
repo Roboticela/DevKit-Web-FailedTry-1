@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ActionSplitButton.tsx",
+      "destination": "src/components/ui/ActionSplitButton.tsx"
+    },
+    {
+      "source": "files/src/styles/action-split-button.css",
+      "destination": "src/styles/action-split-button.css"
+    },
+    {
+      "source": "files/docs/ACTION_SPLIT_BUTTON.md",
+      "destination": "docs/devkit/ACTION_SPLIT_BUTTON.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

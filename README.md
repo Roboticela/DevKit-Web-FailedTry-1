@@ -1,12 +1,12 @@
 # Roboticela DevKit — Monorepo
 
-Reusable UI system. Categories are empty and ready to fill.
+Reusable UI system. Components catalog is populated; pages and scaffolds are ready to fill.
 
 ## Categories
 
 | Category | Directory | Status |
 |----------|-----------|--------|
-| Components | `registry/components` | empty |
+| Components | `registry/components` | 35 packages |
 | Pages | `registry/pages` | empty |
 | Scaffolds | `registry/scaffolds` | empty |
 
@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:5173` — Components / Pages / Scaffolds (0 packages).
+Opens `http://localhost:5173` — Components / Pages / Scaffolds.
 
 ## Registry Server
 

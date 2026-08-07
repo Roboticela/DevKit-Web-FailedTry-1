@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/DateInput.tsx",
+      "destination": "components/ui/DateInput.tsx"
+    },
+    {
+      "source": "files/styles/date-input.css",
+      "destination": "styles/date-input.css"
+    },
+    {
+      "source": "files/docs/DATE_INPUT.md",
+      "destination": "docs/devkit/DATE_INPUT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

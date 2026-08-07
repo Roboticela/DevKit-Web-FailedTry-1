@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/DropdownMenu.tsx",
+      "destination": "src/components/ui/DropdownMenu.tsx"
+    },
+    {
+      "source": "files/src/styles/dropdown-menu.css",
+      "destination": "src/styles/dropdown-menu.css"
+    },
+    {
+      "source": "files/docs/DROPDOWN-MENU.md",
+      "destination": "docs/devkit/DROPDOWN-MENU.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

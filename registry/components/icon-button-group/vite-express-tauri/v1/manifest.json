@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/IconButtonGroup.tsx",
+      "destination": "src/components/ui/IconButtonGroup.tsx"
+    },
+    {
+      "source": "files/src/styles/icon-button-group.css",
+      "destination": "src/styles/icon-button-group.css"
+    },
+    {
+      "source": "files/docs/ICON_BUTTON_GROUP.md",
+      "destination": "docs/devkit/ICON_BUTTON_GROUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

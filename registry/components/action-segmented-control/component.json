@@ -1,0 +1,48 @@
+{
+  "id": 32,
+  "name": "action-segmented-control",
+  "displayName": "Segmented Control",
+  "description": "Small mutually exclusive choice set (2–5). Single selection with fill+border+weight selected state. Overflow wrap/stack/scroll (scroll opt-in; no auto-dropdown). RTL-aware keyboard. Optional semantic icons.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "action-control-compositions",
+  "subgroupName": "Action & Control Compositions",
+  "kind": "component",
+  "layer": 1,
+  "icon": "segmented-control",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "action-control-compositions",
+    "segmented-control",
+    "action-segmented-control",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

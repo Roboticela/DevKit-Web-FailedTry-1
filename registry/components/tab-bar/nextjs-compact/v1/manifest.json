@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/TabBar.tsx",
+      "destination": "components/ui/TabBar.tsx"
+    },
+    {
+      "source": "files/styles/tab-bar.css",
+      "destination": "styles/tab-bar.css"
+    },
+    {
+      "source": "files/docs/TAB_BAR.md",
+      "destination": "docs/devkit/TAB_BAR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

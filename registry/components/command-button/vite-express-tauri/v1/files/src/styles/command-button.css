@@ -1,0 +1,435 @@
+/* Command Button (ID 009) — Interaction Controls
+ * Rich metadata, simple chrome. Shortcut hints desktop-only. No gradients. No box-shadows.
+ */
+
+.dk-cmd {
+  --dk-cmd-min-height: var(--control-height-md, 40px);
+  --dk-cmd-pad-x: var(--space-3, 12px);
+  --dk-cmd-pad-y: var(--space-2, 8px);
+  --dk-cmd-radius: var(--radius-5, 12px);
+  --dk-cmd-gap: var(--space-3, 12px);
+  --dk-cmd-icon: var(--icon-18, 18px);
+  --dk-cmd-label-size: var(--font-size-label, 14px);
+  --dk-cmd-label-line: var(--line-height-label, 20px);
+  --dk-cmd-desc-size: var(--font-size-caption, 12px);
+  --dk-cmd-desc-line: var(--line-height-caption, 16px);
+  --dk-cmd-weight: var(--weight-medium, 500);
+  --dk-cmd-duration: var(--duration-quick, 160ms);
+  --dk-cmd-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: auto;
+  min-width: 0;
+  min-height: max(var(--dk-cmd-min-height), var(--touch-target-min, 44px));
+  margin: 0;
+  padding: var(--dk-cmd-pad-y) var(--dk-cmd-pad-x);
+  border: var(--border-width-default, 1px) solid transparent;
+  border-radius: var(--dk-cmd-radius);
+  font-family: var(--font-sans, inherit);
+  text-align: start;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  touch-action: manipulation;
+  transition:
+    background-color var(--dk-cmd-duration) var(--dk-cmd-ease),
+    border-color var(--dk-cmd-duration) var(--dk-cmd-ease),
+    color var(--dk-cmd-duration) var(--dk-cmd-ease);
+}
+
+.dk-cmd--full {
+  display: flex;
+  width: 100%;
+}
+
+.dk-cmd__hit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--touch-target-min, 44px));
+  height: max(100%, var(--touch-target-min, 44px));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.dk-cmd__body {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--dk-cmd-gap);
+  min-width: 0;
+  width: 100%;
+}
+
+.dk-cmd__body[data-hidden] {
+  visibility: hidden;
+}
+
+.dk-cmd__icon,
+.dk-cmd__trailing {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-cmd-icon);
+  height: var(--dk-cmd-icon);
+  color: var(--color-text-secondary, #6e6e73);
+  line-height: 1;
+}
+
+.dk-cmd__icon > svg,
+.dk-cmd__trailing > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dk-cmd__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-0, 0);
+  min-width: 0;
+}
+
+.dk-cmd__title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-cmd__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-primary, #1d1d1f);
+  font-size: var(--dk-cmd-label-size);
+  line-height: var(--dk-cmd-label-line);
+  font-weight: var(--dk-cmd-weight);
+  letter-spacing: var(--tracking-label, 0);
+}
+
+.dk-cmd__description {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-tertiary, #86868b);
+  font-size: var(--dk-cmd-desc-size);
+  line-height: var(--dk-cmd-desc-line);
+  font-weight: var(--weight-regular, 400);
+}
+
+.dk-cmd--described {
+  --dk-cmd-min-height: calc(var(--control-height-md, 40px) + var(--space-2, 8px));
+  align-items: flex-start;
+}
+
+.dk-cmd--described .dk-cmd__icon,
+.dk-cmd--described .dk-cmd__trailing,
+.dk-cmd--described .dk-cmd__shortcut {
+  margin-block-start: 2px;
+}
+
+/* Status indicator — never color-only: also uses shape via filled disc */
+.dk-cmd__status {
+  flex-shrink: 0;
+  width: var(--space-2, 8px);
+  height: var(--space-2, 8px);
+  border-radius: var(--radius-full, 9999px);
+  border: var(--border-width-default, 1px) solid transparent;
+  background: var(--color-text-tertiary, #86868b);
+}
+
+.dk-cmd__status--info {
+  background: var(--color-info, #0071e3);
+  border-color: var(--color-info-border, var(--color-info, #0071e3));
+}
+
+.dk-cmd__status--success {
+  background: var(--color-success, #248a3d);
+  border-color: var(--color-success-border, var(--color-success, #248a3d));
+}
+
+.dk-cmd__status--warning {
+  background: var(--color-warning, #ff9f0a);
+  border-color: var(--color-warning-border, var(--color-warning, #ff9f0a));
+}
+
+.dk-cmd__status--error {
+  background: var(--color-error, #d70015);
+  border-color: var(--color-error-border, var(--color-error, #d70015));
+}
+
+/* Shortcut — desktop chrome */
+.dk-cmd__shortcut {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  margin-inline-start: auto;
+}
+
+.dk-cmd__kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--space-5, 20px);
+  min-height: var(--space-5, 20px);
+  padding: 0 var(--space-1, 4px);
+  border: var(--border-width-default, 1px) solid var(--color-border-default, #d2d2d7);
+  border-radius: var(--radius-2, 6px);
+  background: var(--color-surface-secondary, #fafafa);
+  color: var(--color-text-secondary, #6e6e73);
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: var(--font-size-micro, 11px);
+  line-height: 1;
+  font-weight: var(--weight-medium, 500);
+}
+
+.dk-cmd__trailing {
+  margin-inline-start: 0;
+}
+
+.dk-cmd__shortcut + .dk-cmd__trailing {
+  margin-inline-start: 0;
+}
+
+/* Variants */
+.dk-cmd--subtle {
+  background: transparent;
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-cmd--subtle:hover:not(:disabled) {
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-cmd--subtle:active:not(:disabled) {
+  background: var(--color-background-tertiary, #ececef);
+}
+
+.dk-cmd--outline {
+  background: var(--color-surface-primary, #ffffff);
+  border-color: var(--color-border-default, #d2d2d7);
+}
+
+.dk-cmd--outline:hover:not(:disabled) {
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-cmd--outline:active:not(:disabled) {
+  background: var(--color-background-tertiary, #ececef);
+}
+
+.dk-cmd--quiet {
+  background: transparent;
+}
+
+.dk-cmd--quiet:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--color-surface-secondary, #fafafa) 80%, transparent);
+}
+
+.dk-cmd--quiet:active:not(:disabled) {
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-cmd--destructive .dk-cmd__label {
+  color: var(--color-error, #d70015);
+}
+
+.dk-cmd--destructive .dk-cmd__icon {
+  color: var(--color-error, #d70015);
+}
+
+.dk-cmd--destructive:hover:not(:disabled) {
+  background: var(--color-error-bg, #ffebee);
+}
+
+.dk-cmd--destructive:active:not(:disabled) {
+  background: color-mix(in srgb, var(--color-error-bg, #ffebee) 85%, var(--color-error, #d70015));
+}
+
+/* Selected — multi-cue (surface + border + weight), not color alone */
+.dk-cmd--selected,
+.dk-cmd[data-selected] {
+  background: var(--color-accent-subtle, #e8f2fc);
+  border-color: var(--color-border-default, #d2d2d7);
+}
+
+.dk-cmd--selected .dk-cmd__label,
+.dk-cmd[data-selected] .dk-cmd__label {
+  font-weight: var(--weight-semibold, 600);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-cmd--selected .dk-cmd__icon,
+.dk-cmd[data-selected] .dk-cmd__icon {
+  color: var(--color-accent-primary, #0071e3);
+}
+
+.dk-cmd:focus {
+  outline: none;
+}
+
+.dk-cmd:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: var(--focus-ring-offset, 2px);
+  z-index: 1;
+}
+
+.dk-cmd:disabled {
+  cursor: not-allowed;
+  opacity: var(--opacity-disabled, 0.5);
+}
+
+.dk-cmd--loading {
+  cursor: progress;
+}
+
+.dk-cmd__loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dk-cmd__spinner {
+  box-sizing: border-box;
+  width: var(--dk-cmd-icon);
+  height: var(--dk-cmd-icon);
+  border: 2px solid var(--color-border-default, #d2d2d7);
+  border-right-color: var(--color-accent-primary, #0071e3);
+  border-radius: var(--radius-full, 9999px);
+  animation: dk-cmd-spin var(--duration-medium, 300ms) linear infinite;
+}
+
+@keyframes dk-cmd-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sizes */
+.dk-cmd--xs {
+  --dk-cmd-min-height: var(--control-height-xs, 28px);
+  --dk-cmd-pad-x: var(--space-2, 8px);
+  --dk-cmd-pad-y: var(--space-1, 4px);
+  --dk-cmd-icon: var(--icon-14, 14px);
+  --dk-cmd-label-size: var(--font-size-caption, 12px);
+  --dk-cmd-label-line: var(--line-height-caption, 16px);
+  --dk-cmd-desc-size: var(--font-size-micro, 11px);
+  --dk-cmd-radius: var(--radius-3, 8px);
+  --dk-cmd-gap: var(--space-2, 8px);
+}
+
+.dk-cmd--sm {
+  --dk-cmd-min-height: var(--control-height-sm, 32px);
+  --dk-cmd-pad-x: var(--space-2, 8px);
+  --dk-cmd-pad-y: var(--space-1, 4px);
+  --dk-cmd-icon: var(--icon-16, 16px);
+  --dk-cmd-label-size: var(--font-size-caption, 12px);
+  --dk-cmd-label-line: var(--line-height-caption, 16px);
+  --dk-cmd-radius: var(--radius-4, 10px);
+  --dk-cmd-gap: var(--space-2, 8px);
+}
+
+.dk-cmd--md {
+  --dk-cmd-min-height: var(--control-height-md, 40px);
+}
+
+.dk-cmd--lg {
+  --dk-cmd-min-height: var(--control-height-lg, 48px);
+  --dk-cmd-pad-x: var(--space-4, 16px);
+  --dk-cmd-pad-y: var(--space-3, 12px);
+  --dk-cmd-icon: var(--icon-20, 20px);
+  --dk-cmd-label-size: var(--font-size-body, 16px);
+  --dk-cmd-label-line: var(--line-height-body, 24px);
+  --dk-cmd-desc-size: var(--font-size-body-sm, 14px);
+  --dk-cmd-desc-line: var(--line-height-body-sm, 20px);
+  --dk-cmd-radius: var(--radius-6, 14px);
+}
+
+.dk-cmd--xl {
+  --dk-cmd-min-height: var(--control-height-xl, 56px);
+  --dk-cmd-pad-x: var(--space-5, 20px);
+  --dk-cmd-pad-y: var(--space-3, 12px);
+  --dk-cmd-icon: var(--icon-24, 24px);
+  --dk-cmd-label-size: var(--font-size-body, 16px);
+  --dk-cmd-label-line: var(--line-height-body, 24px);
+  --dk-cmd-desc-size: var(--font-size-body-sm, 14px);
+  --dk-cmd-desc-line: var(--line-height-body-sm, 20px);
+  --dk-cmd-radius: var(--radius-7, 16px);
+  --dk-cmd-gap: var(--space-4, 16px);
+}
+
+/* Mobile / coarse: hide nonessential shortcut chrome */
+@media (max-width: 767px) {
+  .dk-cmd__shortcut {
+    display: none;
+  }
+
+  .dk-cmd__description {
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@media (pointer: coarse) and (max-width: 1023px) {
+  .dk-cmd__shortcut {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-cmd {
+    transition-duration: var(--duration-fast, 120ms);
+  }
+
+  .dk-cmd__spinner {
+    animation: none;
+    border-right-color: currentColor;
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dk-cmd {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+
+  .dk-cmd--selected,
+  .dk-cmd[data-selected] {
+    border-color: var(--color-text-primary, #1d1d1f);
+  }
+
+  .dk-cmd__kbd {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+}
+
+[data-theme="dark"] .dk-cmd--outline,
+.dark .dk-cmd--outline {
+  background: var(--color-surface-primary, #2c2c2e);
+}
+
+[data-theme="dark"] .dk-cmd--selected,
+.dark .dk-cmd--selected {
+  background: var(--color-accent-subtle, #00263d);
+}
+
+[data-theme="dark"] .dk-cmd__kbd,
+.dark .dk-cmd__kbd {
+  background: var(--color-surface-secondary, #3a3a3c);
+  border-color: var(--color-border-default, #48484a);
+}

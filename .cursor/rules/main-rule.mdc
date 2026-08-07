@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+All the components/scaffolds/pages must reuse each other instead of again and again create one thing. Everything must be used from registry instead of creating new. EVERYTHING MUST BE REUSABLE AND YOU MUST NOT CREATE THINGS YOURSELF UNLESS I TELL EXPLICITLY.

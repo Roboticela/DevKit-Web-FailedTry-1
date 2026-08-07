@@ -1,5 +1,939 @@
 {
   "version": "1.0.0",
   "updatedAt": "2026-08-07",
-  "components": []
+  "components": [
+    {
+      "id": 1,
+      "name": "button",
+      "displayName": "Button",
+      "description": "Foundational generic action control with sizes XS–XL, seven variants, loading that preserves layout, and full a11y (keyboard, focus, touch ≥44px, RTL, reduced motion).",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "button",
+        "interaction",
+        "a11y"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "icon-button",
+      "displayName": "Icon Button",
+      "description": "Compact icon-only action control with required accessible name, optional desktop tooltip, sizes XS–XL, six variants, selected/loading states, and ≥44×44 touch targets.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "icon-button",
+        "interaction",
+        "a11y"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "button-group",
+      "displayName": "Button Group",
+      "description": "Groups related Button and Icon Button actions with joined or spaced layouts, equal-width option, horizontal/vertical/responsive orientation, and stable loading layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "button-group",
+        "interaction",
+        "a11y"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "split-button",
+      "displayName": "Split Button",
+      "description": "Primary action plus an independently focusable menu of alternatives, with loading-stable layout, keyboard menu navigation, and ≥44px menu trigger.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "split-button",
+        "interaction",
+        "a11y"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "link-button",
+      "displayName": "Link Button",
+      "description": "Action control with link-like appearance (always a button, never an anchor), inline/standalone layouts, optional icons and external indicator, and accessible focus/touch targets.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "link-button",
+        "interaction",
+        "a11y"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "toggle-button",
+      "displayName": "Toggle Button",
+      "description": "Binary stateful action control with aria-pressed, multi-cue selected state (border, surface, indicator, optional icon/text swap), and icon/text/icon-text appearances.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "toggle-button",
+        "interaction",
+        "a11y"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "command-button",
+      "displayName": "Command Button",
+      "description": "Workflow action with label, description, shortcut hint, status, and trailing affordance — built for command palettes and menus with keyboard-first interaction.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "command-button",
+        "interaction",
+        "a11y",
+        "command-palette"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "action-menu-trigger",
+      "displayName": "Action Menu Trigger",
+      "description": "Opens a contextual action menu with clear disclosure affordance, connected open state, keyboard support, mobile bottom sheet, and confirmed destructive actions.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "action-menu-trigger",
+        "interaction",
+        "a11y",
+        "menu"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "text-input",
+      "displayName": "Text Input",
+      "description": "Foundational single-line textual field with visible label, semantic types (text/email/url/tel/search/username), validation messages, clear action, counter, prefix/suffix, and sizes XS–XL.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "text-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "number-input",
+      "displayName": "Number Input",
+      "description": "Numeric field with integer/decimal modes, min/max/step/precision, optional steppers, prefix/suffix, and distinct empty (null) vs zero semantics — without reformatting while typing.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "number-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "password-input",
+      "displayName": "Password Input",
+      "description": "Masked credential field with accessible show/hide, password-manager autocomplete by purpose (new/confirm/current), and composable requirements/strength slots — no built-in strength engine.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "password-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "otp-input",
+      "displayName": "OTP / Verification Input",
+      "description": "Short verification code field with multi-cell visuals, one logical value, paste/autofill, auto-advance, and stable error messaging — default 6 digits, lengths 4–8.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "otp-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "date-input",
+      "displayName": "Date Input",
+      "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker — ISO YYYY-MM-DD values.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "date-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "time-input",
+      "displayName": "Time Input",
+      "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, and a clock trigger that composes with an external Time Picker — values as HH:mm / HH:mm:ss.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "time-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "date-time-input",
+      "displayName": "Date & Time Input",
+      "description": "Coherent date + time composition with modes (date / time / datetime), progressive seconds and timezone disclosure, shared validation shell, and responsive stacking — composes Date Input and Time Input.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "date-time-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "input-group",
+      "displayName": "Input Group",
+      "description": "Compositional primitive that joins an input with related prefixes, suffixes, icons, units, currency, or actions — attached borders, independent focus, responsive stacking. Not a generic layout component.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "input-group",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "checkbox",
+      "displayName": "Checkbox",
+      "description": "Independent boolean or multi-select item with checked, unchecked, and derived indeterminate states — 20px visual at MD, ≥44×44 hit, clickable label, error/required/optional.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "checkbox",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "checkbox-group",
+      "displayName": "Checkbox Group",
+      "description": "Related independent multi-select choices with group label, description, validation, optional select-all (derived indeterminate), and vertical/horizontal/responsive layouts.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "checkbox-group",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "toast",
+      "displayName": "Toast",
+      "description": "Temporary event feedback with variants, action, dismiss, configurable auto-dismiss, queued viewport placement, safe-area awareness, and subtle reduced-motion-safe animation.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "toast",
+        "a11y"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "spinner",
+      "displayName": "Spinner",
+      "description": "Indeterminate activity indicator (xs–xl) with subtle motion, reduced-motion static fallback, accessible status text, and composition-friendly inline/block layouts — no page overlay.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "spinner",
+        "a11y"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "tooltip",
+      "displayName": "Tooltip",
+      "description": "Brief supplementary information on hover, focus, or touch long-press — non-interactive, viewport-aware placement, role=tooltip.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "tooltip",
+        "a11y"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "dropdown-menu",
+      "displayName": "Dropdown Menu",
+      "description": "Command-oriented action menu with shortcuts, destructive items, nested submenus, checkbox/radio items, type-ahead, and mobile sheet adaptation.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "dropdown-menu",
+        "a11y"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "text",
+      "displayName": "Text",
+      "description": "Fundamental typography primitive — tokenized size/weight/color, semantic `as` independent of style, wrap by default, opt-in truncate/clamp/transform.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "text",
+        "a11y"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "heading",
+      "displayName": "Heading",
+      "description": "Semantic h1–h6 with visual size independent of level — subtitle, alignment, wrap-by-default, opt-in truncate, responsive typography tokens.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "heading",
+        "a11y"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "paragraph",
+      "displayName": "Paragraph",
+      "description": "Readable body content — standard/lead/secondary via tokens, comfortable line-height, reading measure, modest consecutive rhythm, accessible inline links.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "paragraph",
+        "a11y"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "label",
+      "displayName": "Label",
+      "description": "Concise control/content identification — htmlFor association, required/optional not color-only, wraps long labels, readable token sizes. Not Caption.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "label",
+        "a11y"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "caption",
+      "displayName": "Caption",
+      "description": "Secondary explanatory text — short/multiline, readable caption tokens, figcaption or aria-describedby association. Not Label; not for primary instructions or sole warnings.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "caption",
+        "a11y"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "link",
+      "displayName": "Link",
+      "description": "Navigation anchor — inline/standalone, underline not color-only, opt-in external mark, visited/focus/hover, wraps long URLs. Not a Button.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "link",
+        "a11y"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "action-button-group",
+      "displayName": "Button Group",
+      "description": "Clusters related Button actions with joined/separated layout, compact/standard density, horizontal/vertical orientation, and wrap/stack overflow. Each button stays independently focusable and disableable. Prefer Action Group for large sets.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "button-group",
+        "action-button-group",
+        "a11y"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "icon-button-group",
+      "displayName": "Icon Button Group",
+      "description": "Clusters related Icon Button actions — horizontal/vertical, joined/separated, wrap/stack. Selected/disabled/active via Icon Button. Accessible labels required. Prefer Overflow Action for large sets.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "icon-button-group",
+        "a11y"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "action-split-button",
+      "displayName": "Split Button",
+      "description": "Primary action + menu trigger composition. Uses Button styles; menu via Dropdown Menu + ActionSplitMenuTrigger — menu not implemented inside. Independent primary/menu disabled states; touch-safe trigger.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "split-button",
+        "action-split-button",
+        "a11y"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "action-segmented-control",
+      "displayName": "Segmented Control",
+      "description": "Small mutually exclusive choice set (2–5). Single selection with fill+border+weight selected state. Overflow wrap/stack/scroll (scroll opt-in; no auto-dropdown). RTL-aware keyboard. Optional semantic icons.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "segmented-control",
+        "action-segmented-control",
+        "a11y"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "action-group",
+      "displayName": "Action Group",
+      "description": "Flexible semantic action cluster with mixed treatments — primary/secondary/icon/menu/destructive via composed primitives. Responsive wrap/stack; hidden items leave no gaps; overflow slot for Overflow Action handoff.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "action-group",
+        "a11y"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "tabs",
+      "displayName": "Tabs",
+      "description": "Switch between a small set of related peer views — underline/surface/pill indicators, automatic or manual activation, scrollable overflow, semantic tab panels.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "tabs",
+        "a11y"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "tab-bar",
+      "displayName": "Tab Bar",
+      "description": "Persistent primary navigation for 2–5 destinations — icons, labels, badges, safe-area bottom/top placement, keyboard and screen-reader friendly.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "tab-bar",
+        "a11y"
+      ]
+    }
+  ]
 }

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Label.tsx",
+      "destination": "src/components/ui/Label.tsx"
+    },
+    {
+      "source": "files/src/styles/label.css",
+      "destination": "src/styles/label.css"
+    },
+    {
+      "source": "files/docs/LABEL.md",
+      "destination": "docs/devkit/LABEL.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

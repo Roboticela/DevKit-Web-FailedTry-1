@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Spinner.tsx",
+      "destination": "components/ui/Spinner.tsx"
+    },
+    {
+      "source": "files/styles/spinner.css",
+      "destination": "styles/spinner.css"
+    },
+    {
+      "source": "files/docs/SPINNER.md",
+      "destination": "docs/devkit/SPINNER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}
