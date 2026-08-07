@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-08-07T15:00:00Z",
+  "updatedAt": "2026-08-07T23:00:00Z",
   "description": "DevKit component catalog - groups and subgroups. Packages are empty stubs until implemented.",
   "kinds": {
     "component": "Reusable UI packages selectable by layer. Available for both templates.",
@@ -87,7 +87,8 @@
               "id": 9,
               "name": "command-button",
               "displayName": "Command Button",
-              "stub": true
+              "stub": false,
+              "latestVersion": "1.0.0"
             },
             {
               "id": 10,
@@ -101,7 +102,78 @@
         {
           "id": "form-controls",
           "name": "Form Controls",
-          "components": []
+          "components": [
+            {
+              "id": 11,
+              "name": "text-input",
+              "displayName": "Text Input",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 12,
+              "name": "textarea",
+              "displayName": "Textarea",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 13,
+              "name": "search-field",
+              "displayName": "Search Field",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 14,
+              "name": "number-input",
+              "displayName": "Number Input",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 15,
+              "name": "password-input",
+              "displayName": "Password Input",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 16,
+              "name": "otp-input",
+              "displayName": "OTP / Verification Input",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 17,
+              "name": "date-input",
+              "displayName": "Date Input",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 18,
+              "name": "time-input",
+              "displayName": "Time Input",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 19,
+              "name": "date-time-input",
+              "displayName": "Date & Time Input",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 20,
+              "name": "input-group",
+              "displayName": "Input Group",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
         },
         {
           "id": "selection-controls",

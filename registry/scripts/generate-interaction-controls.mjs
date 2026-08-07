@@ -1,6 +1,7 @@
 /**
  * Generate empty Interaction Controls stubs (IDs 1–10) for both templates.
  * Skips packages listed in SKIP_IMPLEMENTED so real implementations are not overwritten.
+ * Merges into registry.json / layers.json without wiping other subgroups.
  * Run: node scripts/generate-interaction-controls.mjs
  */
 import { mkdirSync, writeFileSync, readFileSync, existsSync } from "fs";
@@ -21,6 +22,7 @@ const SKIP_IMPLEMENTED = new Set([
   "floating-action-button",
   "toggle-button",
   "segmented-control",
+  "command-button",
   "action-menu-trigger",
 ]);
 
@@ -227,18 +229,17 @@ for (const [id, name, displayName] of ITEMS) {
   });
 }
 
-write(
-  join(COMPONENTS, "registry.json"),
-  JSON.stringify(
-    {
-      version: "1",
-      updatedAt: `${TODAY}T00:00:00Z`,
-      components: catalog,
-    },
-    null,
-    2
-  ) + "\n"
-);
+const registryPath = join(COMPONENTS, "registry.json");
+const registry = existsSync(registryPath)
+  ? JSON.parse(readFileSync(registryPath, "utf8"))
+  : { version: "1", components: [] };
+const interactionNames = new Set(ITEMS.map(([, name]) => name));
+registry.components = [
+  ...registry.components.filter((c) => !interactionNames.has(c.name)),
+  ...catalog,
+].sort((a, b) => a.id - b.id);
+registry.updatedAt = `${TODAY}T00:00:00Z`;
+write(registryPath, JSON.stringify(registry, null, 2) + "\n");
 
 const layersPath = join(COMPONENTS, "layers.json");
 const layers = JSON.parse(readFileSync(layersPath, "utf8"));
@@ -252,4 +253,6 @@ subgroup.idRange = { min: 1, max: 10 };
 
 write(layersPath, JSON.stringify(layers, null, 2) + "\n");
 
-console.log(`Interaction Controls catalog synced (${catalog.length} packages).`);
+console.log(
+  `Interaction Controls catalog synced (${catalog.length} packages; registry total ${registry.components.length}).`
+);

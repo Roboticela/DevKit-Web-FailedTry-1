@@ -89,6 +89,13 @@
   --color-success-border: #34c759;
   --color-success-fg: #1b5e2a;
 
+  --color-warning: #b25000;
+  --color-warning-bg: #fff4e5;
+  --color-warning-border: #ff9f0a;
+  --color-warning-fg: #6b3200;
+
+  --color-info: #0071e3;
+
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --font-size-title-2: 32px;

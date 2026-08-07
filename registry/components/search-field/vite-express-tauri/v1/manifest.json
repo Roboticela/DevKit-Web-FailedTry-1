@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/SearchField.tsx",
+      "destination": "src/components/ui/SearchField.tsx"
+    },
+    {
+      "source": "files/src/styles/search-field.css",
+      "destination": "src/styles/search-field.css"
+    },
+    {
+      "source": "files/docs/SEARCH_FIELD.md",
+      "destination": "docs/devkit/SEARCH_FIELD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

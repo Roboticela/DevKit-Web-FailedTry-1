@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-08-07T15:00:00Z",
+  "updatedAt": "2026-08-07T23:00:00Z",
   "components": [
     {
       "id": 1,
@@ -270,7 +270,7 @@
       "id": 9,
       "name": "command-button",
       "displayName": "Command Button",
-      "description": "Command Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "description": "Workflow action with label, description, shortcut hint, status, and trailing affordance — built for command palettes and menus with keyboard-first interaction.",
       "category": "foundation",
       "group": "foundations-interface-primitives",
       "groupName": "Foundations & Interface Primitives",
@@ -288,15 +288,16 @@
         "desktop"
       ],
       "hasVariants": false,
-      "stub": true,
-      "latestVersion": "0.0.0",
+      "stub": false,
+      "latestVersion": "1.0.0",
       "tags": [
         "foundation",
         "foundations-interface-primitives",
         "interaction-controls",
         "command-button",
         "interaction",
-        "stub"
+        "a11y",
+        "command-palette"
       ]
     },
     {
@@ -331,6 +332,337 @@
         "interaction",
         "a11y",
         "menu"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "text-input",
+      "displayName": "Text Input",
+      "description": "Foundational single-line textual field with visible label, semantic types (text/email/url/tel/search/username), validation messages, clear action, counter, prefix/suffix, and sizes XS–XL.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "text-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "textarea",
+      "displayName": "Textarea",
+      "description": "Multi-line textual field with fixed, manual-resize, and auto-grow (min→max then scroll) modes, shared field validation chrome, and quiet character counting.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "textarea",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "search-field",
+      "displayName": "Search Field",
+      "description": "Specialized search entry with leading search icon, optional clear, reserved loading slot, host-driven instant/debounce/submit hooks, and results-status signals — without embedding suggestions or results UI.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "search-field",
+        "form",
+        "search",
+        "a11y"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "number-input",
+      "displayName": "Number Input",
+      "description": "Numeric field with integer/decimal modes, min/max/step/precision, optional steppers, prefix/suffix, and distinct empty (null) vs zero semantics — without reformatting while typing.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "number-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "password-input",
+      "displayName": "Password Input",
+      "description": "Masked credential field with accessible show/hide, password-manager autocomplete by purpose (new/confirm/current), and composable requirements/strength slots — no built-in strength engine.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "password-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "otp-input",
+      "displayName": "OTP / Verification Input",
+      "description": "Short verification code field with multi-cell visuals, one logical value, paste/autofill, auto-advance, and stable error messaging — default 6 digits, lengths 4–8.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "otp-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "date-input",
+      "displayName": "Date Input",
+      "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker — ISO YYYY-MM-DD values, no embedded calendar.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "date-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "time-input",
+      "displayName": "Time Input",
+      "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, optional platform picker behind DevKit chrome, and a clock trigger that composes with an external Time Picker — values as HH:mm / HH:mm:ss.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "time-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "date-time-input",
+      "displayName": "Date & Time Input",
+      "description": "Coherent date + time composition with modes (date / time / datetime), progressive seconds and timezone disclosure, shared validation shell, and responsive stacking — composes Date Input and Time Input.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "date-time-input",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "input-group",
+      "displayName": "Input Group",
+      "description": "Compositional primitive that joins an input with related prefixes, suffixes, icons, units, currency, or actions — attached borders, independent focus, responsive stacking. Not a generic layout component.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "form-controls",
+      "subgroupName": "Form Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "input-group",
+        "form",
+        "a11y"
       ]
     }
   ]

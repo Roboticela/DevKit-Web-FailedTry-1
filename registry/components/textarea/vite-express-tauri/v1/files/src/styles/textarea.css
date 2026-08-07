@@ -1,0 +1,445 @@
+/* Textarea (ID 012) — Form Controls
+ * Multi-line sibling of Text Input. Shared field language. No gradients. No box-shadows.
+ */
+
+.dk-field.dk-textarea {
+  --dk-field-label-gap: 6px;
+  --dk-field-message-gap: 6px;
+  --dk-field-to-field: var(--space-4, 16px);
+  --dk-field-pad-x: var(--space-3, 12px);
+  --dk-field-pad-y: var(--space-3, 12px);
+  --dk-field-radius: var(--radius-5, 12px);
+  --dk-field-font-size: var(--font-size-body, 16px);
+  --dk-field-line-height: var(--line-height-body, 24px);
+  --dk-field-label-size: var(--font-size-label, 14px);
+  --dk-field-label-line: var(--line-height-label, 20px);
+  --dk-field-meta-size: var(--font-size-caption, 12px);
+  --dk-field-meta-line: var(--line-height-caption, 16px);
+  --dk-field-icon: var(--icon-18, 18px);
+  --dk-field-duration: var(--duration-quick, 160ms);
+  --dk-field-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+  --dk-textarea-min: 96px;
+  --dk-textarea-max: 240px;
+  --dk-textarea-height: 96px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--dk-field-label-gap);
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  margin-block-end: var(--dk-field-to-field);
+  font-family: var(--font-sans, inherit);
+}
+
+.dk-textarea.dk-field--full {
+  width: 100%;
+}
+
+.dk-textarea.dk-field:last-child {
+  margin-block-end: 0;
+}
+
+.dk-textarea .dk-field__label-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-textarea .dk-field__label-row--sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-textarea .dk-field__label {
+  color: var(--color-text-primary, #1d1d1f);
+  font-size: var(--dk-field-label-size);
+  line-height: var(--dk-field-label-line);
+  font-weight: var(--weight-medium, 500);
+}
+
+.dk-textarea .dk-field__required {
+  color: var(--color-error, #d70015);
+  font-weight: var(--weight-semibold, 600);
+}
+
+.dk-textarea .dk-field__optional {
+  color: var(--color-text-tertiary, #86868b);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+}
+
+.dk-textarea .dk-field__description {
+  margin: 0;
+  margin-block-start: calc(var(--dk-field-label-gap) * -1 + 2px);
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+}
+
+.dk-textarea__control {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2, 8px);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--dk-textarea-min);
+  height: var(--dk-textarea-height);
+  max-width: 100%;
+  padding: var(--dk-field-pad-y) var(--dk-field-pad-x);
+  border: var(--border-width-default, 1px) solid var(--color-border-default, #d2d2d7);
+  border-radius: var(--dk-field-radius);
+  background: var(--color-surface-primary, #ffffff);
+  color: var(--color-text-primary, #1d1d1f);
+  transition:
+    border-color var(--dk-field-duration) var(--dk-field-ease),
+    background-color var(--dk-field-duration) var(--dk-field-ease);
+}
+
+.dk-textarea__affordance {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: flex-start;
+  justify-content: center;
+  width: var(--dk-field-icon);
+  padding-block-start: 2px;
+  color: var(--color-text-tertiary, #86868b);
+  line-height: 1;
+}
+
+.dk-textarea__affordance > svg {
+  width: var(--dk-field-icon);
+  height: var(--dk-field-icon);
+  display: block;
+}
+
+.dk-textarea__input {
+  display: block;
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--dk-field-font-size);
+  line-height: var(--dk-field-line-height);
+  font-weight: var(--weight-regular, 400);
+  outline: none;
+  appearance: none;
+  resize: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, var(--color-border-strong)) var(--scrollbar-track, transparent);
+  /* Keep caret visible */
+  caret-color: var(--color-accent-primary, #0071e3);
+}
+
+.dk-textarea__input::placeholder {
+  color: var(--color-text-tertiary, #86868b);
+  opacity: 1;
+}
+
+.dk-textarea__input:focus {
+  outline: none;
+}
+
+.dk-textarea__control:hover:not(:focus-within) {
+  border-color: var(--color-border-strong, #86868b);
+}
+
+.dk-textarea__control:focus-within {
+  border-color: var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: 0;
+}
+
+/* Resize modes */
+.dk-textarea--resize-none .dk-textarea__input {
+  resize: none;
+}
+
+/* Manual resize: unlock the shell; size the textarea itself (not height:100%). */
+.dk-textarea--resize-vertical .dk-textarea__control,
+.dk-textarea--resize-both .dk-textarea__control {
+  height: auto;
+  max-height: none;
+  align-items: stretch;
+}
+
+.dk-textarea--resize-vertical .dk-textarea__input,
+.dk-textarea--resize-both .dk-textarea__input {
+  flex: 1 1 auto;
+  align-self: stretch;
+  width: 100%;
+  min-width: 0;
+  /* Explicit height — percentage height prevents native resize handles */
+  height: var(--dk-textarea-height);
+  min-height: var(--dk-textarea-min);
+  max-height: var(--dk-textarea-max);
+  overflow: auto;
+}
+
+.dk-textarea--resize-vertical .dk-textarea__input {
+  resize: vertical;
+}
+
+.dk-textarea--resize-both .dk-textarea__input {
+  resize: both;
+  max-width: 100%;
+}
+
+/* Auto-grow: JS sets textarea height; shell follows content (no shared max clamp). */
+.dk-textarea--resize-auto .dk-textarea__control {
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  align-items: stretch;
+}
+
+.dk-textarea--resize-auto .dk-textarea__input {
+  flex: 0 0 auto;
+  resize: none;
+  width: 100%;
+  height: auto;
+  min-height: var(--dk-textarea-min);
+  max-height: var(--dk-textarea-max);
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.dk-textarea__loading {
+  position: absolute;
+  inset-block-start: var(--dk-field-pad-y);
+  inset-inline-end: var(--dk-field-pad-x);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-5, 20px);
+  height: var(--space-5, 20px);
+  pointer-events: none;
+}
+
+.dk-textarea .dk-field__spinner {
+  box-sizing: border-box;
+  width: var(--dk-field-icon);
+  height: var(--dk-field-icon);
+  border: 2px solid var(--color-border-default, #d2d2d7);
+  border-right-color: var(--color-accent-primary, #0071e3);
+  border-radius: var(--radius-full, 9999px);
+  animation: dk-textarea-spin var(--duration-medium, 300ms) linear infinite;
+}
+
+@keyframes dk-textarea-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Validation — border + message (not color alone) */
+.dk-textarea.dk-field--error .dk-textarea__control {
+  border-color: var(--color-error-border, var(--color-error, #d70015));
+  background: var(--color-error-bg, #ffebee);
+}
+
+.dk-textarea.dk-field--error .dk-textarea__control:focus-within {
+  border-color: var(--color-error, #d70015);
+  outline-color: var(--color-error, #d70015);
+}
+
+.dk-textarea.dk-field--success .dk-textarea__control {
+  border-color: var(--color-success-border, var(--color-success, #248a3d));
+  background: var(--color-success-bg, #e8f8ed);
+}
+
+.dk-textarea.dk-field--success .dk-textarea__control:focus-within {
+  border-color: var(--color-success, #248a3d);
+  outline-color: var(--color-success, #248a3d);
+}
+
+.dk-textarea.dk-field--warning .dk-textarea__control {
+  border-color: var(--color-warning-border, var(--color-warning, #ff9f0a));
+  background: var(--color-warning-bg, #fff4e5);
+}
+
+.dk-textarea.dk-field--warning .dk-textarea__control:focus-within {
+  border-color: var(--color-warning, #ff9f0a);
+  outline-color: var(--color-warning, #ff9f0a);
+}
+
+.dk-textarea.dk-field--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+  pointer-events: none;
+}
+
+.dk-textarea.dk-field--disabled .dk-textarea__control {
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-textarea.dk-field--readonly .dk-textarea__control {
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-textarea.dk-field--loading .dk-textarea__input {
+  cursor: progress;
+}
+
+.dk-textarea .dk-field__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  margin: 0;
+  margin-block-start: calc(var(--dk-field-message-gap) - var(--dk-field-label-gap));
+  min-width: 0;
+}
+
+.dk-textarea.dk-field--stable-messages .dk-field__footer {
+  min-height: var(--dk-field-meta-line);
+}
+
+.dk-textarea .dk-field__messages {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dk-textarea .dk-field__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1, 4px);
+  margin: 0;
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+}
+
+.dk-textarea .dk-field__message-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--icon-14, 14px);
+  height: var(--icon-14, 14px);
+  margin-block-start: 1px;
+}
+
+.dk-textarea .dk-field__message-icon > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dk-textarea .dk-field__message--error {
+  color: var(--color-error-fg, var(--color-error, #d70015));
+}
+
+.dk-textarea .dk-field__message--success {
+  color: var(--color-success-fg, var(--color-success, #248a3d));
+}
+
+.dk-textarea .dk-field__message--warning {
+  color: var(--color-warning-fg, var(--color-warning, #b25000));
+}
+
+.dk-textarea .dk-field__message--help {
+  color: var(--color-text-tertiary, #86868b);
+}
+
+.dk-textarea__count {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--color-text-tertiary, #86868b);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  /* Quiet trailing counter — readable, not dominant */
+  opacity: 0.9;
+}
+
+.dk-textarea .dk-field__count--limit {
+  color: var(--color-error, #d70015);
+  font-weight: var(--weight-medium, 500);
+  opacity: 1;
+}
+
+@media (max-width: 479px) {
+  .dk-textarea {
+    width: 100%;
+  }
+
+  .dk-textarea__control {
+    max-width: 100%;
+  }
+
+  /* Prefer vertical resize only — avoid horizontal page overflow */
+  .dk-textarea--resize-both .dk-textarea__input {
+    resize: vertical;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  /* Touch-primary: native resize grips are unreliable; keep vertical when possible */
+  .dk-textarea--resize-both .dk-textarea__input {
+    resize: vertical;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-textarea__control {
+    transition-duration: var(--duration-fast, 120ms);
+  }
+
+  .dk-textarea .dk-field__spinner {
+    animation: none;
+    border-right-color: currentColor;
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dk-textarea__control {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+
+  .dk-textarea__control:focus-within {
+    outline-width: var(--border-width-emphasis, 2px);
+  }
+}
+
+[data-theme="dark"] .dk-textarea__control,
+.dark .dk-textarea__control {
+  background: var(--color-surface-primary, #2c2c2e);
+}
+
+[data-theme="dark"] .dk-textarea.dk-field--disabled .dk-textarea__control,
+.dark .dk-textarea.dk-field--disabled .dk-textarea__control,
+[data-theme="dark"] .dk-textarea.dk-field--readonly .dk-textarea__control,
+.dark .dk-textarea.dk-field--readonly .dk-textarea__control {
+  background: var(--color-surface-secondary, #3a3a3c);
+}
+
+.dk-textarea__input:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text-primary, #1d1d1f);
+  caret-color: var(--color-accent-primary, #0071e3);
+  transition: background-color 99999s ease-out;
+}

@@ -1,0 +1,516 @@
+/* Text Input (ID 011) — Form Controls
+ * Visible label (not floating). Semantic types share one visual identity.
+ * No gradients. No box-shadows.
+ */
+
+.dk-field {
+  /* Form relationship tokens (Form Controls rule) */
+  --dk-field-label-gap: 6px;
+  --dk-field-message-gap: 6px;
+  --dk-field-to-field: var(--space-4, 16px);
+  --dk-field-height: var(--control-height-md, 40px);
+  --dk-field-pad-x: var(--space-3, 12px);
+  --dk-field-radius: var(--radius-5, 12px);
+  --dk-field-font-size: var(--font-size-body, 16px);
+  --dk-field-line-height: var(--line-height-body, 24px);
+  --dk-field-label-size: var(--font-size-label, 14px);
+  --dk-field-label-line: var(--line-height-label, 20px);
+  --dk-field-meta-size: var(--font-size-caption, 12px);
+  --dk-field-meta-line: var(--line-height-caption, 16px);
+  --dk-field-icon: var(--icon-18, 18px);
+  --dk-field-affordance: var(--space-5, 20px);
+  --dk-field-duration: var(--duration-quick, 160ms);
+  --dk-field-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--dk-field-label-gap);
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  margin-block-end: var(--dk-field-to-field);
+  font-family: var(--font-sans, inherit);
+}
+
+.dk-field--full {
+  width: 100%;
+}
+
+.dk-field:last-child {
+  margin-block-end: 0;
+}
+
+.dk-field__label-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-field__label-row--sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-field__label {
+  color: var(--color-text-primary, #1d1d1f);
+  font-size: var(--dk-field-label-size);
+  line-height: var(--dk-field-label-line);
+  font-weight: var(--weight-medium, 500);
+  letter-spacing: var(--tracking-label, 0);
+}
+
+.dk-field__required {
+  color: var(--color-error, #d70015);
+  font-size: var(--dk-field-label-size);
+  line-height: var(--dk-field-label-line);
+  font-weight: var(--weight-semibold, 600);
+}
+
+.dk-field__optional {
+  color: var(--color-text-tertiary, #86868b);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+  font-weight: var(--weight-regular, 400);
+}
+
+.dk-field__description {
+  margin: 0;
+  margin-block-start: calc(var(--dk-field-label-gap) * -1 + 2px);
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+}
+
+.dk-field__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  box-sizing: border-box;
+  width: 100%;
+  min-height: max(var(--dk-field-height), var(--touch-target-min, 44px));
+  height: max(var(--dk-field-height), var(--touch-target-min, 44px));
+  padding-inline: var(--dk-field-pad-x);
+  border: var(--border-width-default, 1px) solid var(--color-border-default, #d2d2d7);
+  border-radius: var(--dk-field-radius);
+  background: var(--color-surface-primary, #ffffff);
+  color: var(--color-text-primary, #1d1d1f);
+  transition:
+    border-color var(--dk-field-duration) var(--dk-field-ease),
+    background-color var(--dk-field-duration) var(--dk-field-ease);
+}
+
+.dk-field__hit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100%, var(--touch-target-min, 44px));
+  height: max(100%, var(--touch-target-min, 44px));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.dk-field__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: var(--dk-field-font-size);
+  line-height: var(--dk-field-line-height);
+  font-weight: var(--weight-regular, 400);
+  outline: none;
+  appearance: none;
+  /* Long content scrolls inside the field */
+  overflow-x: auto;
+  white-space: nowrap;
+  text-overflow: clip;
+}
+
+.dk-field__input::placeholder {
+  color: var(--color-text-tertiary, #86868b);
+  opacity: 1;
+}
+
+/* Keep caret / platform focus — outer ring is on control */
+.dk-field__input:focus {
+  outline: none;
+  caret-color: var(--color-accent-primary, #0071e3);
+}
+
+.dk-field__control:hover:not(:focus-within) {
+  border-color: var(--color-border-strong, #86868b);
+}
+
+.dk-field__control:focus-within {
+  border-color: var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: 0;
+}
+
+.dk-field--filled .dk-field__control {
+  background: var(--color-surface-primary, #ffffff);
+}
+
+.dk-field__affordance {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-field-affordance);
+  height: var(--dk-field-affordance);
+  color: var(--color-text-secondary, #6e6e73);
+  line-height: 1;
+}
+
+.dk-field__affordance > svg {
+  width: var(--dk-field-icon);
+  height: var(--dk-field-icon);
+  display: block;
+}
+
+.dk-field__affordance--leading {
+  /* Keep text space: compact leading slot */
+  width: var(--dk-field-icon);
+  margin-inline-end: calc(var(--space-1, 4px) * -1);
+}
+
+.dk-field__addon {
+  flex-shrink: 0;
+  max-width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--font-size-body-sm, 14px);
+  line-height: var(--line-height-body-sm, 20px);
+  font-weight: var(--weight-medium, 500);
+  user-select: none;
+}
+
+.dk-field__clear {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-field-affordance);
+  height: var(--dk-field-affordance);
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-surface-secondary, #f5f5f7);
+  color: var(--color-text-secondary, #6e6e73);
+  cursor: pointer;
+  appearance: none;
+}
+
+.dk-field__clear-hit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--touch-target-min, 44px);
+  height: var(--touch-target-min, 44px);
+  transform: translate(-50%, -50%);
+}
+
+.dk-field__clear > svg {
+  width: var(--icon-16, 16px);
+  height: var(--icon-16, 16px);
+  display: block;
+  pointer-events: none;
+}
+
+.dk-field__clear:hover {
+  background: var(--color-background-tertiary, #ececef);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-field__clear:focus {
+  outline: none;
+}
+
+.dk-field__clear:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: 1px;
+}
+
+.dk-field__loading {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-field-affordance);
+  height: var(--dk-field-affordance);
+}
+
+.dk-field__spinner {
+  box-sizing: border-box;
+  width: var(--dk-field-icon);
+  height: var(--dk-field-icon);
+  border: 2px solid var(--color-border-default, #d2d2d7);
+  border-right-color: var(--color-accent-primary, #0071e3);
+  border-radius: var(--radius-full, 9999px);
+  animation: dk-field-spin var(--duration-medium, 300ms) linear infinite;
+}
+
+@keyframes dk-field-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Validation — border + icon + message (not color alone) */
+.dk-field--error .dk-field__control {
+  border-color: var(--color-error-border, var(--color-error, #d70015));
+  background: var(--color-error-bg, #ffebee);
+}
+
+.dk-field--error .dk-field__control:focus-within {
+  border-color: var(--color-error, #d70015);
+  outline-color: var(--color-error, #d70015);
+}
+
+.dk-field--error .dk-field__affordance--status {
+  color: var(--color-error, #d70015);
+}
+
+.dk-field--success .dk-field__control {
+  border-color: var(--color-success-border, var(--color-success, #248a3d));
+  background: var(--color-success-bg, #e8f8ed);
+}
+
+.dk-field--success .dk-field__control:focus-within {
+  border-color: var(--color-success, #248a3d);
+  outline-color: var(--color-success, #248a3d);
+}
+
+.dk-field--success .dk-field__affordance--status {
+  color: var(--color-success, #248a3d);
+}
+
+.dk-field--warning .dk-field__control {
+  border-color: var(--color-warning-border, var(--color-warning, #ff9f0a));
+  background: var(--color-warning-bg, #fff4e5);
+}
+
+.dk-field--warning .dk-field__control:focus-within {
+  border-color: var(--color-warning, #ff9f0a);
+  outline-color: var(--color-warning, #ff9f0a);
+}
+
+.dk-field--warning .dk-field__affordance--status {
+  color: var(--color-warning, #b25000);
+}
+
+.dk-field--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+  pointer-events: none;
+}
+
+.dk-field--disabled .dk-field__control {
+  background: var(--color-surface-secondary, #fafafa);
+  cursor: not-allowed;
+}
+
+.dk-field--readonly .dk-field__control {
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-field--readonly .dk-field__input {
+  cursor: default;
+}
+
+.dk-field--loading .dk-field__input {
+  cursor: progress;
+}
+
+.dk-field__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+  margin: 0;
+  margin-block-start: calc(var(--dk-field-message-gap) - var(--dk-field-label-gap));
+  min-width: 0;
+}
+
+.dk-field--stable-messages .dk-field__footer {
+  min-height: var(--dk-field-meta-line);
+}
+
+.dk-field__messages {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.dk-field__message {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-1, 4px);
+  margin: 0;
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+}
+
+.dk-field__message-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--icon-14, 14px);
+  height: var(--icon-14, 14px);
+  margin-block-start: 1px;
+}
+
+.dk-field__message-icon > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dk-field__message--error {
+  color: var(--color-error-fg, var(--color-error, #d70015));
+}
+
+.dk-field__message--success {
+  color: var(--color-success-fg, var(--color-success, #248a3d));
+}
+
+.dk-field__message--warning {
+  color: var(--color-warning-fg, var(--color-warning, #b25000));
+}
+
+.dk-field__message--help {
+  color: var(--color-text-tertiary, #86868b);
+}
+
+.dk-field__count {
+  flex-shrink: 0;
+  margin: 0;
+  color: var(--color-text-tertiary, #86868b);
+  font-size: var(--dk-field-meta-size);
+  line-height: var(--dk-field-meta-line);
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+}
+
+.dk-field__count--limit {
+  color: var(--color-error, #d70015);
+  font-weight: var(--weight-medium, 500);
+}
+
+/* Sizes — height from control tokens; type stays readable (16/24 at md+) */
+.dk-field--xs {
+  --dk-field-height: var(--control-height-xs, 28px);
+  --dk-field-pad-x: var(--space-2, 8px);
+  --dk-field-radius: var(--radius-3, 8px);
+  --dk-field-font-size: var(--font-size-body-sm, 14px);
+  --dk-field-line-height: var(--line-height-body-sm, 20px);
+  --dk-field-icon: var(--icon-14, 14px);
+  --dk-field-affordance: var(--space-4, 16px);
+}
+
+.dk-field--sm {
+  --dk-field-height: var(--control-height-sm, 32px);
+  --dk-field-pad-x: var(--space-2, 8px);
+  --dk-field-radius: var(--radius-4, 10px);
+  --dk-field-font-size: var(--font-size-body-sm, 14px);
+  --dk-field-line-height: var(--line-height-body-sm, 20px);
+  --dk-field-icon: var(--icon-16, 16px);
+}
+
+.dk-field--md {
+  --dk-field-height: var(--control-height-md, 40px);
+  --dk-field-pad-x: var(--space-3, 12px);
+}
+
+.dk-field--lg {
+  --dk-field-height: var(--control-height-lg, 48px);
+  --dk-field-pad-x: var(--space-4, 16px);
+  --dk-field-radius: var(--radius-6, 14px);
+  --dk-field-icon: var(--icon-20, 20px);
+  --dk-field-affordance: var(--space-6, 24px);
+}
+
+.dk-field--xl {
+  --dk-field-height: var(--control-height-xl, 56px);
+  --dk-field-pad-x: var(--space-4, 16px);
+  --dk-field-radius: var(--radius-7, 16px);
+  --dk-field-font-size: var(--font-size-body-lg, 17px);
+  --dk-field-line-height: var(--line-height-body-lg, 26px);
+  --dk-field-icon: var(--icon-24, 24px);
+  --dk-field-affordance: var(--space-6, 24px);
+}
+
+@media (max-width: 479px) {
+  .dk-field__control {
+    min-height: max(var(--dk-field-height), 44px);
+    height: max(var(--dk-field-height), 44px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-field__control {
+    transition-duration: var(--duration-fast, 120ms);
+  }
+
+  .dk-field__spinner {
+    animation: none;
+    border-right-color: currentColor;
+    opacity: 0.55;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dk-field__control {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+
+  .dk-field__control:focus-within {
+    outline-width: var(--border-width-emphasis, 2px);
+  }
+}
+
+[data-theme="dark"] .dk-field__control,
+.dark .dk-field__control {
+  background: var(--color-surface-primary, #2c2c2e);
+}
+
+[data-theme="dark"] .dk-field--disabled .dk-field__control,
+.dark .dk-field--disabled .dk-field__control,
+[data-theme="dark"] .dk-field--readonly .dk-field__control,
+.dark .dk-field--readonly .dk-field__control {
+  background: var(--color-surface-secondary, #3a3a3c);
+}
+
+[data-theme="dark"] .dk-field__clear,
+.dark .dk-field__clear {
+  background: var(--color-surface-secondary, #3a3a3c);
+}
+
+/* Autofill — keep readable without breaking theme */
+.dk-field__input:-webkit-autofill,
+.dk-field__input:-webkit-autofill:hover,
+.dk-field__input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-text-primary, #1d1d1f);
+  caret-color: var(--color-accent-primary, #0071e3);
+  transition: background-color 99999s ease-out;
+  box-shadow: none;
+}

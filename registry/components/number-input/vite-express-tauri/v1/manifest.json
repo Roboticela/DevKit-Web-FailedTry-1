@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/NumberInput.tsx",
+      "destination": "src/components/ui/NumberInput.tsx"
+    },
+    {
+      "source": "files/src/styles/number-input.css",
+      "destination": "src/styles/number-input.css"
+    },
+    {
+      "source": "files/docs/NUMBER_INPUT.md",
+      "destination": "docs/devkit/NUMBER_INPUT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

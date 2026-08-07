@@ -1,6 +1,6 @@
 # Roboticela DevKit — Monorepo
 
-> Reusable UI component system. Layer 1 **Interaction Controls** has 10 empty stubs (IDs 001–010). Other subgroups reserved.
+> Reusable UI component system. Layer 1 **Interaction Controls** (001–010) ready; **Form Controls** 011–020 ready. Other subgroups reserved.
 
 ---
 
@@ -20,7 +20,7 @@ Opens `http://localhost:5173` — shows reserved group/subgroups (0 packages).
 
 | Layer | IDs | Category | Scope |
 |-------|-----|----------|--------|
-| 1 Foundation | 1–100 | `foundation` | Interaction Controls: 10 stubs (001–010) |
+| 1 Foundation | 1–100 | `foundation` | Interaction Controls 001–010 ready; Form Controls 011–020 ready |
 | 2 Basic | 101–500 | `basic` | — |
 | 3 Composite | 501–1500 | `composite` | — |
 | 4 Advanced | 1501–2500 | `advanced` | — |
@@ -42,14 +42,28 @@ Opens `http://localhost:5173` — shows reserved group/subgroups (0 packages).
 | 006 | `floating-action-button` | Floating Action Button | ready (`1.0.0`) |
 | 007 | `toggle-button` | Toggle Button | ready (`1.0.0`) |
 | 008 | `segmented-control` | Segmented Control | ready (`1.0.0`) |
-| 009 | `command-button` | Command Button | stub |
+| 009 | `command-button` | Command Button | ready (`1.0.0`) |
 | 010 | `action-menu-trigger` | Action Menu Trigger | ready (`1.0.0`) |
+
+#### Form Controls (`form-controls`) — IDs 011–020
+
+| ID | Package | Display name | Status |
+|----|---------|--------------|--------|
+| 011 | `text-input` | Text Input | ready (`1.0.0`) |
+| 012 | `textarea` | Textarea | ready (`1.0.0`) |
+| 013 | `search-field` | Search Field | ready (`1.0.0`) |
+| 014 | `number-input` | Number Input | ready (`1.0.0`) |
+| 015 | `password-input` | Password Input | ready (`1.0.0`) |
+| 016 | `otp-input` | OTP / Verification Input | ready (`1.0.0`) |
+| 017 | `date-input` | Date Input | ready (`1.0.0`) |
+| 018 | `time-input` | Time Input | ready (`1.0.0`) |
+| 019 | `date-time-input` | Date & Time Input | ready (`1.0.0`) |
+| 020 | `input-group` | Input Group | ready (`1.0.0`) |
 
 Other subgroups are reserved with no packages yet:
 
 | Subgroup ID | Name |
 |-------------|------|
-| `form-controls` | Form Controls |
 | `selection-controls` | Selection Controls |
 | `navigation-controls` | Navigation Controls |
 | `feedback-status` | Feedback & Status |

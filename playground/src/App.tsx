@@ -16,6 +16,17 @@ import { FloatingActionButton } from "../../registry/components/floating-action-
 import { ToggleButton } from "../../registry/components/toggle-button/vite-express-tauri/v1/files/src/components/ui/ToggleButton";
 import { SegmentedControl } from "../../registry/components/segmented-control/vite-express-tauri/v1/files/src/components/ui/SegmentedControl";
 import { ActionMenuTrigger } from "../../registry/components/action-menu-trigger/vite-express-tauri/v1/files/src/components/ui/ActionMenuTrigger";
+import { CommandButton } from "../../registry/components/command-button/vite-express-tauri/v1/files/src/components/ui/CommandButton";
+import { TextInput } from "../../registry/components/text-input/vite-express-tauri/v1/files/src/components/ui/TextInput";
+import { Textarea } from "../../registry/components/textarea/vite-express-tauri/v1/files/src/components/ui/Textarea";
+import { SearchField } from "../../registry/components/search-field/vite-express-tauri/v1/files/src/components/ui/SearchField";
+import { NumberInput } from "../../registry/components/number-input/vite-express-tauri/v1/files/src/components/ui/NumberInput";
+import { PasswordInput } from "../../registry/components/password-input/vite-express-tauri/v1/files/src/components/ui/PasswordInput";
+import { OtpInput } from "../../registry/components/otp-input/vite-express-tauri/v1/files/src/components/ui/OtpInput";
+import { DateInput } from "../../registry/components/date-input/vite-express-tauri/v1/files/src/components/ui/DateInput";
+import { TimeInput } from "../../registry/components/time-input/vite-express-tauri/v1/files/src/components/ui/TimeInput";
+import { DateTimeInput } from "../../registry/components/date-time-input/vite-express-tauri/v1/files/src/components/ui/DateTimeInput";
+import { InputGroup } from "../../registry/components/input-group/vite-express-tauri/v1/files/src/components/ui/InputGroup";
 import catalog from "./foundation-catalog.json";
 
 type CatalogComponent = {
@@ -937,6 +948,144 @@ function DuplicateIcon() {
   );
 }
 
+function SearchIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="5.25" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M12 12l3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function CommandButtonLab() {
+  const [active, setActive] = useState("open");
+  const [ran, setRan] = useState("—");
+
+  return (
+    <section className="catalog-group" aria-labelledby="command-button-lab-heading">
+      <h2 id="command-button-lab-heading">009 Command Button</h2>
+      <p className="catalog-group-desc">
+        Workflow action with optional description, shortcut hint, status, and
+        trailing affordance. Built for command palettes — shortcuts hide on
+        mobile; keyboard activation is first-class.
+      </p>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Palette row (role=option)</h3>
+        <div
+          className="lab-palette"
+          role="listbox"
+          aria-label="Demo commands"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--space-1)",
+            maxWidth: "28rem",
+            padding: "var(--space-2)",
+            border: "var(--border-width-default) solid var(--color-border-default)",
+            borderRadius: "var(--radius-6)",
+            background: "var(--color-surface-primary)",
+          }}
+        >
+          <CommandButton
+            role="option"
+            commandId="open"
+            label="Open file"
+            description="Browse the workspace"
+            leadingIcon={<SearchIcon />}
+            shortcut={["⌘", "O"]}
+            selected={active === "open"}
+            fullWidth
+            onClick={() => {
+              setActive("open");
+              setRan("Open file");
+            }}
+          />
+          <CommandButton
+            role="option"
+            commandId="duplicate"
+            label="Duplicate"
+            description="Copy the current document"
+            leadingIcon={<DuplicateIcon />}
+            shortcut={["⌘", "D"]}
+            selected={active === "duplicate"}
+            fullWidth
+            onClick={() => {
+              setActive("duplicate");
+              setRan("Duplicate");
+            }}
+          />
+          <CommandButton
+            role="option"
+            commandId="edit"
+            label="Rename"
+            description="Change the display name"
+            leadingIcon={<EditIcon />}
+            shortcut={["↵"]}
+            trailingAffordance={<ChevronIcon />}
+            status="info"
+            statusLabel="Has unsaved changes"
+            selected={active === "edit"}
+            fullWidth
+            onClick={() => {
+              setActive("edit");
+              setRan("Rename");
+            }}
+          />
+          <CommandButton
+            role="option"
+            commandId="delete"
+            label="Delete"
+            description="Move to trash"
+            leadingIcon={<TrashIcon />}
+            shortcut={["⌘", "⌫"]}
+            variant="destructive"
+            status="error"
+            statusLabel="Destructive"
+            selected={active === "delete"}
+            fullWidth
+            onClick={() => {
+              setActive("delete");
+              setRan("Delete");
+            }}
+          />
+        </div>
+        <p className="catalog-group-meta">Last run: {ran}</p>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Standalone + states</h3>
+        <div className="lab-row">
+          <CommandButton
+            label="Save"
+            shortcut={["⌘", "S"]}
+            variant="outline"
+            leadingIcon={<EditIcon />}
+            onClick={() => setRan("Save")}
+          />
+          <CommandButton label="Loading" loading leadingIcon={<SearchIcon />} />
+          <CommandButton label="Disabled" disabled shortcut={["⌘", "K"]} />
+          <CommandButton
+            label="Selected"
+            selected
+            shortcut={["⌘", "P"]}
+            leadingIcon={<SearchIcon />}
+          />
+        </div>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Sizes</h3>
+        <div className="lab-row">
+          <CommandButton size="sm" label="Small" shortcut={["⌘", "1"]} />
+          <CommandButton size="md" label="Medium" shortcut={["⌘", "2"]} />
+          <CommandButton size="lg" label="Large" shortcut={["⌘", "3"]} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ActionMenuTriggerLab() {
   const [last, setLast] = useState("—");
 
@@ -1090,6 +1239,1074 @@ function ActionMenuTriggerLab() {
   );
 }
 
+function MailIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <rect x="2.5" y="4.5" width="13" height="9" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M3 5.5 9 10l6-4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function UserIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <circle cx="9" cy="6" r="2.75" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M3.5 14.5c1.2-2.4 3-3.5 5.5-3.5s4.3 1.1 5.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function TextInputLab() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("bad@");
+  const [website, setWebsite] = useState("roboticela.com");
+  const [bio, setBio] = useState("Short");
+
+  return (
+    <section className="catalog-group" aria-labelledby="text-input-lab-heading">
+      <h2 id="text-input-lab-heading">011 Text Input</h2>
+      <p className="catalog-group-desc">
+        Foundational single-line field. Visible label (not floating). Semantic
+        types share one visual identity. Validation uses border + icon + message.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Basic + clear</h3>
+        <TextInput
+          label="Display name"
+          description="Shown on your public profile"
+          placeholder="Jane Cooper"
+          value={name}
+          onValueChange={setName}
+          clearable
+          optional
+          helpText="You can change this later"
+          leadingIcon={<UserIcon />}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Semantic types</h3>
+        <TextInput
+          label="Email"
+          type="email"
+          required
+          value={email}
+          onValueChange={setEmail}
+          validation="error"
+          errorMessage="Enter a valid email address"
+          leadingIcon={<MailIcon />}
+          clearable
+        />
+        <TextInput
+          label="Website"
+          type="url"
+          value={website}
+          onValueChange={setWebsite}
+          validation="success"
+          successMessage="Looks good"
+          prefix="https://"
+        />
+        <TextInput label="Phone" type="tel" placeholder="+1 555 0100" defaultValue="" />
+        <TextInput
+          label="Username"
+          type="username"
+          placeholder="jane"
+          leadingIcon={<UserIcon />}
+          defaultValue=""
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Counter, loading, read-only, disabled</h3>
+        <TextInput
+          label="Tagline"
+          value={bio}
+          onValueChange={setBio}
+          maxLength={24}
+          clearable
+        />
+        <TextInput label="Checking availability" defaultValue="jane" loading />
+        <TextInput label="Account ID" defaultValue="acct_1842" readOnly />
+        <TextInput label="Locked field" defaultValue="Cannot edit" disabled />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Sizes</h3>
+        <div className="lab-row">
+          <TextInput size="sm" label="SM" defaultValue="Small" fullWidth={false} />
+          <TextInput size="md" label="MD" defaultValue="Medium" fullWidth={false} />
+          <TextInput size="lg" label="LG" defaultValue="Large" fullWidth={false} />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TextareaLab() {
+  const [notes, setNotes] = useState("");
+  const [bio, setBio] = useState(
+    "DevKit Form Controls keep multi-line entry calm and predictable."
+  );
+  const [grow, setGrow] = useState("Type to grow…\n");
+
+  return (
+    <section className="catalog-group" aria-labelledby="textarea-lab-heading">
+      <h2 id="textarea-lab-heading">012 Textarea</h2>
+      <p className="catalog-group-desc">
+        Multi-line sibling of Text Input. Default min height 96px. Auto-grow
+        expands to a max then scrolls — it will not push the page without bound.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "32rem" }}>
+        <h3 className="catalog-subgroup-title">Fixed (96px)</h3>
+        <Textarea
+          label="Notes"
+          description="Visible label, shared field chrome"
+          placeholder="Write a short note…"
+          value={notes}
+          onValueChange={setNotes}
+          minHeight="sm"
+          optional
+          helpText="Default padding 12px · text 16/24"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "32rem" }}>
+        <h3 className="catalog-subgroup-title">Auto-grow (96 → 240)</h3>
+        <Textarea
+          label="Expanding reply"
+          resize="auto"
+          minHeight="sm"
+          maxHeight="xl"
+          value={grow}
+          onValueChange={setGrow}
+          maxLength={280}
+          helpText="Grows with content, then scrolls internally"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "32rem" }}>
+        <h3 className="catalog-subgroup-title">Manual resize + counter</h3>
+        <Textarea
+          label="Bio"
+          resize="vertical"
+          minHeight="md"
+          maxHeight="xl"
+          value={bio}
+          onValueChange={setBio}
+          maxLength={160}
+          minLength={12}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "32rem" }}>
+        <h3 className="catalog-subgroup-title">Validation & states</h3>
+        <Textarea
+          label="Feedback"
+          defaultValue="Too short"
+          validation="error"
+          errorMessage="Please write at least two sentences"
+          minHeight="sm"
+        />
+        <Textarea
+          label="Approved copy"
+          defaultValue="Looks complete and publish-ready."
+          validation="success"
+          successMessage="Ready to publish"
+          minHeight="sm"
+        />
+        <Textarea label="Saving…" defaultValue="Draft content" loading minHeight="sm" />
+        <Textarea label="Read-only" defaultValue="Locked transcript" readOnly minHeight="sm" />
+        <Textarea label="Disabled" defaultValue="Cannot edit" disabled minHeight="sm" />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "32rem" }}>
+        <h3 className="catalog-subgroup-title">Height presets</h3>
+        <Textarea label="128px (md)" height="md" defaultValue="Medium block" />
+        <Textarea label="160px (lg)" height="lg" defaultValue="Large block" />
+      </div>
+    </section>
+  );
+}
+
+function SearchFieldLab() {
+  const [query, setQuery] = useState("");
+  const [debounced, setDebounced] = useState("");
+  const [submitted, setSubmitted] = useState("—");
+  const [loading, setLoading] = useState(false);
+  const [resultsStatus, setResultsStatus] = useState<
+    "idle" | "available" | "empty"
+  >("idle");
+
+  const runSearch = (value: string) => {
+    setSubmitted(value || "(empty)");
+    if (!value.trim()) {
+      setResultsStatus("idle");
+      setLoading(false);
+      return;
+    }
+    setLoading(true);
+    setResultsStatus("idle");
+    window.setTimeout(() => {
+      setLoading(false);
+      setResultsStatus(value.toLowerCase().includes("void") ? "empty" : "available");
+    }, 700);
+  };
+
+  return (
+    <section className="catalog-group" aria-labelledby="search-field-lab-heading">
+      <h2 id="search-field-lab-heading">013 Search Field</h2>
+      <p className="catalog-group-desc">
+        Specialized find control — distinct from Text Input. Leading search icon,
+        clear when populated, reserved loading slot. Hosts own instant / debounce /
+        submit / async behavior.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Submit + async status</h3>
+        <SearchField
+          label="Find components"
+          placeholder="Try “button” or “void”"
+          value={query}
+          onValueChange={setQuery}
+          onSearch={runSearch}
+          loading={loading}
+          resultsStatus={resultsStatus}
+          resultsStatusLabel={
+            resultsStatus === "available"
+              ? "Results available"
+              : resultsStatus === "empty"
+                ? "No results"
+                : undefined
+          }
+          helpText="Enter submits · Escape clears"
+        />
+        <p className="catalog-group-meta">Last submit: {submitted}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Debounced (300ms)</h3>
+        <SearchField
+          label="Live filter"
+          placeholder="Type to debounce…"
+          defaultValue=""
+          onDebouncedChange={setDebounced}
+          debounceMs={300}
+          hideLabel
+          aria-label="Live filter"
+        />
+        <p className="catalog-group-meta">Debounced value: {debounced || "—"}</p>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Toolbar (desktop compact)</h3>
+        <div
+          className="lab-row"
+          style={{
+            padding: "var(--space-3)",
+            border: "var(--border-width-default) solid var(--color-border-default)",
+            borderRadius: "var(--radius-6)",
+            background: "var(--color-surface-primary)",
+            justifyContent: "flex-end",
+          }}
+        >
+          <SearchField
+            appearance="toolbar"
+            size="sm"
+            label="Toolbar search"
+            hideLabel
+            placeholder="Search docs"
+            fullWidth={false}
+            defaultValue=""
+          />
+        </div>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <SearchField label="Disabled" defaultValue="Cannot search" disabled />
+        <SearchField label="Loading" defaultValue="button" loading />
+      </div>
+    </section>
+  );
+}
+
+function NumberInputLab() {
+  const [qty, setQty] = useState<number | null>(2);
+  const [price, setPrice] = useState<number | null>(12.5);
+  const [raw, setRaw] = useState("");
+  const [temp, setTemp] = useState<number | null>(null);
+
+  return (
+    <section className="catalog-group" aria-labelledby="number-input-lab-heading">
+      <h2 id="number-input-lab-heading">014 Number Input</h2>
+      <p className="catalog-group-desc">
+        Numeric entry with distinct empty (<code>null</code>) vs zero. Optional
+        steppers; typing and arrows remain first-class. No reformat while focused.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "20rem" }}>
+        <h3 className="catalog-subgroup-title">Integer + stepper</h3>
+        <NumberInput
+          label="Quantity"
+          value={qty}
+          onValueChange={setQty}
+          min={0}
+          max={99}
+          step={1}
+          stepper
+          positiveOnly
+          helpText={`Committed: ${qty === null ? "empty (null)" : qty}`}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "20rem" }}>
+        <h3 className="catalog-subgroup-title">Decimal currency (prefix)</h3>
+        <NumberInput
+          label="Price"
+          value={price}
+          onValueChange={setPrice}
+          onRawChange={setRaw}
+          decimal
+          precision={2}
+          min={0}
+          step={0.25}
+          stepper
+          prefix="$"
+          locale="en-US"
+          helpText={`Raw while editing shown in meta · raw="${raw}"`}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "20rem" }}>
+        <h3 className="catalog-subgroup-title">Percent + empty vs zero</h3>
+        <NumberInput
+          label="Discount"
+          value={temp}
+          onValueChange={setTemp}
+          decimal
+          precision={1}
+          min={0}
+          max={100}
+          positiveOnly
+          suffix="%"
+          optional
+          helpText={
+            temp === null
+              ? "Empty (null) — not zero"
+              : temp === 0
+                ? "Zero"
+                : `Value ${temp}`
+          }
+        />
+        <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
+          <button type="button" onClick={() => setTemp(null)}>
+            Set empty
+          </button>
+          <button type="button" onClick={() => setTemp(0)}>
+            Set zero
+          </button>
+        </div>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "20rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <NumberInput label="Invalid range" defaultValue={150} min={0} max={100} validation="error" errorMessage="Must be 0–100" />
+        <NumberInput label="Loading" defaultValue={4} loading />
+        <NumberInput label="Read-only" defaultValue={42} readOnly />
+        <NumberInput label="Disabled" defaultValue={7} disabled />
+      </div>
+    </section>
+  );
+}
+
+function PasswordInputLab() {
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+
+  const mismatch =
+    confirm.length > 0 && password.length > 0 && confirm !== password;
+
+  return (
+    <section className="catalog-group" aria-labelledby="password-input-lab-heading">
+      <h2 id="password-input-lab-heading">015 Password Input</h2>
+      <p className="catalog-group-desc">
+        Masked by default with an accessible show/hide control. Strength stays
+        outside the primitive via <code>strengthSlot</code>. Password managers
+        keep working through purpose-based autocomplete.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "24rem" }}>
+        <h3 className="catalog-subgroup-title">Create + confirm</h3>
+        <PasswordInput
+          label="New password"
+          purpose="new"
+          required
+          value={password}
+          onValueChange={setPassword}
+          requirements={
+            <ul>
+              <li>At least 8 characters</li>
+              <li>Include a number</li>
+            </ul>
+          }
+          strengthSlot={
+            <p
+              className="catalog-group-meta"
+              style={{ margin: 0 }}
+              aria-live="polite"
+            >
+              Strength slot (compose later):{" "}
+              {password.length === 0
+                ? "—"
+                : password.length < 8
+                  ? "Too short"
+                  : "Ready for a real indicator"}
+            </p>
+          }
+        />
+        <PasswordInput
+          label="Confirm password"
+          purpose="confirm"
+          required
+          value={confirm}
+          onValueChange={setConfirm}
+          validation={mismatch ? "error" : "none"}
+          errorMessage={mismatch ? "Passwords do not match" : undefined}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "24rem" }}>
+        <h3 className="catalog-subgroup-title">Sign-in (current)</h3>
+        <PasswordInput
+          label="Password"
+          purpose="current"
+          placeholder="Enter your password"
+          defaultValue=""
+          helpText="Show/hide uses type=button and aria-pressed"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "24rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <PasswordInput label="Loading" defaultValue="secret" loading />
+        <PasswordInput label="Disabled" defaultValue="secret" disabled />
+        <PasswordInput
+          label="Paste disabled"
+          purpose="new"
+          allowPaste={false}
+          helpText="allowPaste=false for strict security policies"
+          defaultValue=""
+        />
+      </div>
+    </section>
+  );
+}
+
+function OtpInputLab() {
+  const [code, setCode] = useState("");
+  const [status, setStatus] = useState<"none" | "error" | "success">("none");
+  const [alpha, setAlpha] = useState("");
+
+  return (
+    <section className="catalog-group" aria-labelledby="otp-input-lab-heading">
+      <h2 id="otp-input-lab-heading">016 OTP / Verification Input</h2>
+      <p className="catalog-group-desc">
+        Six-digit default with multi-cell visuals and one logical value. Paste a
+        full code at once. Invalid state does not wipe the entry.
+      </p>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Default (6 numeric)</h3>
+        <OtpInput
+          label="Verification code"
+          description="Paste 123456 or type digit by digit"
+          value={code}
+          onValueChange={(next) => {
+            setCode(next);
+            setStatus("none");
+          }}
+          onComplete={(next) => {
+            setStatus(next === "123456" ? "success" : "error");
+          }}
+          validation={status}
+          errorMessage={status === "error" ? "Incorrect code — entry kept" : undefined}
+          successMessage={status === "success" ? "Verified" : undefined}
+          helpText={status === "none" ? "Try complete code 123456" : undefined}
+          autoFocus
+        />
+        <p className="catalog-group-meta">Value: {code || "(empty)"}</p>
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Lengths</h3>
+        <OtpInput label="4-digit PIN" length={4} defaultValue="" />
+        <OtpInput label="8-digit code" length={8} defaultValue="" />
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">Alphanumeric</h3>
+        <OtpInput
+          label="Invite code"
+          mode="alphanumeric"
+          length={6}
+          value={alpha}
+          onValueChange={setAlpha}
+          helpText="Letters and digits"
+        />
+      </div>
+
+      <div className="lab-block">
+        <h3 className="catalog-subgroup-title">States</h3>
+        <OtpInput label="Loading" defaultValue="482910" loading />
+        <OtpInput label="Disabled" defaultValue="482910" disabled />
+      </div>
+    </section>
+  );
+}
+
+function DateInputLab() {
+  const [iso, setIso] = useState<string | null>("2026-08-07");
+  const [raw, setRaw] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [locale, setLocale] = useState("en-US");
+
+  return (
+    <section className="catalog-group" aria-labelledby="date-input-lab-heading">
+      <h2 id="date-input-lab-heading">017 Date Input</h2>
+      <p className="catalog-group-desc">
+        Locale-aware calendar date with manual typing and a calendar trigger that
+        opens an external picker slot — no embedded calendar. Values are ISO{" "}
+        <code>YYYY-MM-DD</code>; typed text is not rewritten while focused.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Controlled + picker slot</h3>
+        <DateInput
+          label="Event date"
+          value={iso}
+          onValueChange={setIso}
+          onRawChange={setRaw}
+          locale={locale}
+          min="2026-01-01"
+          max="2026-12-31"
+          clearable
+          showCalendarTrigger
+          pickerOpen={pickerOpen}
+          onOpenPicker={() => setPickerOpen((o) => !o)}
+          pickerSlot={
+            pickerOpen ? (
+              <div
+                role="dialog"
+                aria-label="Date picker placeholder"
+                style={{
+                  marginTop: "var(--space-2)",
+                  padding: "var(--space-3)",
+                  border: "1px solid var(--color-border-default)",
+                  borderRadius: "var(--radius-5)",
+                  background: "var(--color-surface-secondary)",
+                }}
+              >
+                <p className="catalog-group-meta" style={{ margin: 0 }}>
+                  Placeholder Date Picker — compose a real picker later.
+                </p>
+                <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIso("2026-08-15");
+                      setPickerOpen(false);
+                    }}
+                  >
+                    Pick Aug 15
+                  </button>
+                  <button type="button" onClick={() => setPickerOpen(false)}>
+                    Close
+                  </button>
+                </div>
+              </div>
+            ) : null
+          }
+          helpText={`ISO: ${iso ?? "null"} · raw while editing: "${raw}"`}
+        />
+        <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
+          <button type="button" onClick={() => setLocale("en-US")}>
+            en-US
+          </button>
+          <button type="button" onClick={() => setLocale("en-GB")}>
+            en-GB
+          </button>
+          <button type="button" onClick={() => setLocale("de-DE")}>
+            de-DE
+          </button>
+          <button type="button" onClick={() => setLocale("ar-SA")}>
+            ar-SA
+          </button>
+        </div>
+        <p className="catalog-group-meta">Locale: {locale}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Disabled dates</h3>
+        <DateInput
+          label="Weekdays only"
+          defaultValue={null}
+          locale="en-GB"
+          clearable
+          showCalendarTrigger
+          onOpenPicker={() => undefined}
+          isDateDisabled={(d) => {
+            const [y, m, day] = d.split("-").map(Number);
+            const wd = new Date(y, m - 1, day).getDay();
+            return wd === 0 || wd === 6;
+          }}
+          helpText="Weekends rejected on commit (blur / Enter)"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Invalid kept for correction</h3>
+        <DateInput
+          label="Birth date"
+          defaultValue={null}
+          locale="en-GB"
+          validation="error"
+          errorMessage="Enter a valid date"
+          helpText="Invalid typed text stays until you fix it"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <DateInput label="Required" required defaultValue={null} showCalendarTrigger />
+        <DateInput label="Optional" optional defaultValue="2026-03-01" clearable />
+        <DateInput label="Read-only" readOnly defaultValue="2026-08-07" />
+        <DateInput label="Loading" defaultValue="2026-08-07" loading />
+        <DateInput label="Disabled" defaultValue="2026-08-07" disabled />
+        <DateInput
+          label="Success"
+          defaultValue="2026-08-07"
+          validation="success"
+          successMessage="Looks good"
+        />
+      </div>
+    </section>
+  );
+}
+
+function TimeInputLab() {
+  const [time, setTime] = useState<string | null>("14:30");
+  const [raw, setRaw] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [hourCycle, setHourCycle] = useState<"auto" | "h12" | "h23">("auto");
+  const [locale, setLocale] = useState("en-US");
+
+  return (
+    <section className="catalog-group" aria-labelledby="time-input-lab-heading">
+      <h2 id="time-input-lab-heading">018 Time Input</h2>
+      <p className="catalog-group-desc">
+        Locale-aware time with hours + minutes by default. Display follows{" "}
+        <code>locale</code> / <code>hourCycle</code> — AM/PM only when applicable.
+        Clock trigger opens an external picker slot; <code>native</code> keeps
+        DevKit chrome and opens the platform picker from the clock control.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Controlled + picker slot</h3>
+        <TimeInput
+          label="Start time"
+          value={time}
+          onValueChange={setTime}
+          onRawChange={setRaw}
+          locale={locale}
+          hourCycle={hourCycle}
+          min="08:00"
+          max="18:00"
+          step={900}
+          clearable
+          showPickerTrigger
+          pickerOpen={pickerOpen}
+          onOpenPicker={() => setPickerOpen((o) => !o)}
+          pickerSlot={
+            pickerOpen ? (
+              <div
+                role="dialog"
+                aria-label="Time picker placeholder"
+                style={{
+                  marginTop: "var(--space-2)",
+                  padding: "var(--space-3)",
+                  border: "1px solid var(--color-border-default)",
+                  borderRadius: "var(--radius-5)",
+                  background: "var(--color-surface-secondary)",
+                }}
+              >
+                <p className="catalog-group-meta" style={{ margin: 0 }}>
+                  Placeholder Time Picker — compose a real picker later.
+                </p>
+                <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTime("09:00");
+                      setPickerOpen(false);
+                    }}
+                  >
+                    09:00
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setTime("16:45");
+                      setPickerOpen(false);
+                    }}
+                  >
+                    16:45
+                  </button>
+                  <button type="button" onClick={() => setPickerOpen(false)}>
+                    Close
+                  </button>
+                </div>
+              </div>
+            ) : null
+          }
+          helpText={`Value: ${time ?? "null"} · raw: "${raw}" · step 15m · ArrowUp/Down`}
+        />
+        <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
+          <button type="button" onClick={() => setLocale("en-US")}>
+            en-US
+          </button>
+          <button type="button" onClick={() => setLocale("en-GB")}>
+            en-GB
+          </button>
+          <button type="button" onClick={() => setLocale("de-DE")}>
+            de-DE
+          </button>
+          <button type="button" onClick={() => setLocale("ja-JP")}>
+            ja-JP
+          </button>
+        </div>
+        <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
+          <button type="button" onClick={() => setHourCycle("auto")}>
+            auto
+          </button>
+          <button type="button" onClick={() => setHourCycle("h12")}>
+            h12
+          </button>
+          <button type="button" onClick={() => setHourCycle("h23")}>
+            h23
+          </button>
+        </div>
+        <p className="catalog-group-meta">
+          locale={locale} · hourCycle={hourCycle}
+        </p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">With seconds</h3>
+        <TimeInput
+          label="Precise time"
+          defaultValue="14:30:45"
+          withSeconds
+          hourCycle="h23"
+          step={1}
+          clearable
+          helpText="HH:mm:ss · step 1 second"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Platform picker (DevKit chrome)</h3>
+        <TimeInput
+          label="Meeting time"
+          defaultValue="10:15"
+          native
+          min="06:00"
+          max="22:00"
+          step={300}
+          clearable
+          helpText="Same DevKit field — clock opens platform picker when supported"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <TimeInput label="Required" required defaultValue={null} />
+        <TimeInput label="Optional" optional defaultValue="12:00" clearable />
+        <TimeInput label="Read-only" readOnly defaultValue="14:30" />
+        <TimeInput label="Loading" defaultValue="14:30" loading />
+        <TimeInput label="Disabled" defaultValue="14:30" disabled />
+        <TimeInput
+          label="Invalid"
+          defaultValue={null}
+          validation="error"
+          errorMessage="Enter a valid time"
+        />
+      </div>
+    </section>
+  );
+}
+
+function DateTimeInputLab() {
+  const [value, setValue] = useState<string | null>("2026-08-07T14:30");
+  const [parts, setParts] = useState<{ date: string | null; time: string | null }>({
+    date: "2026-08-07",
+    time: "14:30",
+  });
+  const [withSeconds, setWithSeconds] = useState(false);
+  const [showTz, setShowTz] = useState(false);
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="date-time-input-lab-heading">
+      <h2 id="date-time-input-lab-heading">019 Date &amp; Time Input</h2>
+      <p className="catalog-group-desc">
+        One coherent temporal value. Default is date + hours + minutes. Seconds and
+        timezone stay progressive. Stacks on mobile; horizontal from tablet up.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Default (date + time)</h3>
+        <DateTimeInput
+          label="Appointment"
+          description="Both date and time are part of this value"
+          value={value}
+          onValueChange={setValue}
+          onPartsChange={setParts}
+          clearable
+          required
+          min="2026-01-01T08:00"
+          max="2026-12-31T18:00"
+          withSeconds={withSeconds}
+          showTimeZone={showTz}
+          timeZone="America/New_York"
+          advancedOpen={advancedOpen}
+          onAdvancedOpenChange={setAdvancedOpen}
+          advancedSlot={
+            <div>
+              <p className="catalog-group-meta" style={{ marginTop: 0 }}>
+                Advanced slot — compose timezone pickers or offsets here.
+              </p>
+              <label className="lab-row">
+                <input
+                  type="checkbox"
+                  checked={withSeconds}
+                  onChange={(e) => setWithSeconds(e.target.checked)}
+                />
+                Include seconds
+              </label>
+              <label className="lab-row">
+                <input
+                  type="checkbox"
+                  checked={showTz}
+                  onChange={(e) => setShowTz(e.target.checked)}
+                />
+                Show timezone indicator
+              </label>
+            </div>
+          }
+          helpText={`Value: ${value ?? "null (incomplete or empty)"}`}
+        />
+        <p className="catalog-group-meta">
+          Parts — date: {parts.date ?? "null"} · time: {parts.time ?? "null"}
+        </p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Modes</h3>
+        <DateTimeInput
+          label="Date only"
+          mode="date"
+          defaultValue="2026-08-07"
+          clearable
+        />
+        <DateTimeInput
+          label="Time only"
+          mode="time"
+          defaultValue="09:15"
+          clearable
+          hourCycle="h12"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Always stacked</h3>
+        <DateTimeInput
+          label="Mobile-style"
+          orientation="vertical"
+          defaultValue="2026-08-07T10:00"
+          clearable
+          helpText="orientation=vertical"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <DateTimeInput label="Read-only" readOnly defaultValue="2026-08-07T14:30" />
+        <DateTimeInput label="Loading" loading defaultValue="2026-08-07T14:30" />
+        <DateTimeInput label="Disabled" disabled defaultValue="2026-08-07T14:30" />
+        <DateTimeInput
+          label="Invalid"
+          defaultValue={null}
+          validation="error"
+          errorMessage="Choose a valid date and time"
+        />
+      </div>
+    </section>
+  );
+}
+
+function InputGroupLab() {
+  const [domain, setDomain] = useState("example.com");
+  const [amount, setAmount] = useState<number | null>(42);
+  const [query, setQuery] = useState("");
+
+  return (
+    <section className="catalog-group" aria-labelledby="input-group-lab-heading">
+      <h2 id="input-group-lab-heading">020 Input Group</h2>
+      <p className="catalog-group-desc">
+        Joins an input with related prefixes, suffixes, icons, units, or actions.
+        Shared shell when attached; each interactive child keeps its own focus and
+        accessibility. Not a generic layout tool.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Prefix — https:// + domain</h3>
+        <InputGroup label="Website" description="Scheme is fixed; enter the host">
+          <InputGroup.Addon>https://</InputGroup.Addon>
+          <InputGroup.Input>
+            <TextInput
+              label="Domain"
+              hideLabel
+              value={domain}
+              onValueChange={setDomain}
+              placeholder="example.com"
+            />
+          </InputGroup.Input>
+        </InputGroup>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Currency + unit</h3>
+        <InputGroup label="Amount" helpText="Currency and unit are contextual addons">
+          <InputGroup.Addon>$</InputGroup.Addon>
+          <InputGroup.Input>
+            <NumberInput
+              label="Amount"
+              hideLabel
+              value={amount}
+              onValueChange={setAmount}
+              min={0}
+              decimal
+              precision={2}
+            />
+          </InputGroup.Input>
+          <InputGroup.Addon position="end">USD</InputGroup.Addon>
+        </InputGroup>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Search + action</h3>
+        <InputGroup label="Find docs">
+          <InputGroup.Input>
+            <SearchField
+              label="Query"
+              hideLabel
+              value={query}
+              onValueChange={setQuery}
+              placeholder="Search…"
+            />
+          </InputGroup.Input>
+          <InputGroup.Button>
+            <Button type="button" variant="primary">
+              Search
+            </Button>
+          </InputGroup.Button>
+        </InputGroup>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Icon + verification action</h3>
+        <InputGroup label="Email" required>
+          <InputGroup.Icon>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" width="18" height="18">
+              <rect
+                x="3.25"
+                y="5.25"
+                width="13.5"
+                height="9.5"
+                rx="1.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+              />
+              <path
+                d="M4 6.5 10 11l6-4.5"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </InputGroup.Icon>
+          <InputGroup.Input>
+            <TextInput
+              label="Email"
+              hideLabel
+              type="email"
+              defaultValue=""
+              placeholder="you@company.com"
+            />
+          </InputGroup.Input>
+          <InputGroup.Button>
+            <Button type="button" variant="secondary">
+              Verify
+            </Button>
+          </InputGroup.Button>
+        </InputGroup>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <InputGroup
+          label="Invalid group"
+          validation="error"
+          errorMessage="Enter a valid domain"
+        >
+          <InputGroup.Addon>https://</InputGroup.Addon>
+          <InputGroup.Input>
+            <TextInput label="Domain" hideLabel defaultValue="not a domain" />
+          </InputGroup.Input>
+        </InputGroup>
+        <InputGroup label="Loading" loading>
+          <InputGroup.Addon>$</InputGroup.Addon>
+          <InputGroup.Input>
+            <NumberInput label="Amount" hideLabel defaultValue={10} />
+          </InputGroup.Input>
+        </InputGroup>
+        <InputGroup label="Disabled" disabled>
+          <InputGroup.Addon>https://</InputGroup.Addon>
+          <InputGroup.Input>
+            <TextInput label="Domain" hideLabel defaultValue="example.com" />
+          </InputGroup.Input>
+        </InputGroup>
+        <InputGroup label="Read-only" readOnly>
+          <InputGroup.Addon>$</InputGroup.Addon>
+          <InputGroup.Input>
+            <NumberInput label="Amount" hideLabel defaultValue={99} readOnly />
+          </InputGroup.Input>
+          <InputGroup.Addon position="end">USD</InputGroup.Addon>
+        </InputGroup>
+      </div>
+    </section>
+  );
+}
+
 export function App() {
   return (
     <div className="playground">
@@ -1097,8 +2314,8 @@ export function App() {
         <div>
           <h1>DevKit</h1>
           <p>
-            Layer 1 Interaction Controls — through Action Menu Trigger (010) ready;
-            Command Button (009) remains a stub.
+            Layer 1 — Interaction Controls 001–010 ready; Form Controls 011–020
+            complete.
           </p>
         </div>
       </header>
@@ -1111,7 +2328,18 @@ export function App() {
       <FabLab />
       <ToggleButtonLab />
       <SegmentedControlLab />
+      <CommandButtonLab />
       <ActionMenuTriggerLab />
+      <TextInputLab />
+      <TextareaLab />
+      <SearchFieldLab />
+      <NumberInputLab />
+      <PasswordInputLab />
+      <OtpInputLab />
+      <DateInputLab />
+      <TimeInputLab />
+      <DateTimeInputLab />
+      <InputGroupLab />
 
       {groups.map((group) => (
         <section
