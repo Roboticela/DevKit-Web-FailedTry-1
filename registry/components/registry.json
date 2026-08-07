@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updatedAt": "2026-08-07",
+  "updatedAt": "2026-08-08",
   "components": [
     {
       "id": 1,
@@ -330,6 +330,34 @@
     },
     {
       "id": 13,
+      "name": "search-field",
+      "displayName": "Search Field",
+      "description": "Specialized search entry with leading search icon, optional clear, reserved loading slot, host-driven instant/debounce/submit hooks, and results-status signals — without embedding suggestions or results UI.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "search-field",
+        "form",
+        "search",
+        "a11y"
+      ]
+    },
+    {
+      "id": 14,
       "name": "date-input",
       "displayName": "Date Input",
       "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker — ISO YYYY-MM-DD values.",
@@ -356,7 +384,7 @@
       ]
     },
     {
-      "id": 14,
+      "id": 15,
       "name": "time-input",
       "displayName": "Time Input",
       "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, and a clock trigger that composes with an external Time Picker — values as HH:mm / HH:mm:ss.",
@@ -383,7 +411,7 @@
       ]
     },
     {
-      "id": 15,
+      "id": 16,
       "name": "date-time-input",
       "displayName": "Date & Time Input",
       "description": "Coherent date + time composition with modes (date / time / datetime), progressive seconds and timezone disclosure, shared validation shell, and responsive stacking — composes Date Input and Time Input.",
@@ -410,7 +438,7 @@
       ]
     },
     {
-      "id": 16,
+      "id": 17,
       "name": "input-group",
       "displayName": "Input Group",
       "description": "Compositional primitive that joins an input with related prefixes, suffixes, icons, units, currency, or actions — attached borders, independent focus, responsive stacking. Not a generic layout component.",
@@ -437,7 +465,7 @@
       ]
     },
     {
-      "id": 17,
+      "id": 18,
       "name": "checkbox",
       "displayName": "Checkbox",
       "description": "Independent boolean or multi-select item with checked, unchecked, and derived indeterminate states — 20px visual at MD, ≥44×44 hit, clickable label, error/required/optional.",
@@ -464,7 +492,7 @@
       ]
     },
     {
-      "id": 18,
+      "id": 19,
       "name": "checkbox-group",
       "displayName": "Checkbox Group",
       "description": "Related independent multi-select choices with group label, description, validation, optional select-all (derived indeterminate), and vertical/horizontal/responsive layouts.",
@@ -491,7 +519,7 @@
       ]
     },
     {
-      "id": 19,
+      "id": 20,
       "name": "toast",
       "displayName": "Toast",
       "description": "Temporary event feedback with variants, action, dismiss, configurable auto-dismiss, queued viewport placement, safe-area awareness, and subtle reduced-motion-safe animation.",
@@ -517,7 +545,59 @@
       ]
     },
     {
-      "id": 20,
+      "id": 21,
+      "name": "alert",
+      "displayName": "Alert",
+      "description": "Persistent contextual feedback — informational/success/warning/error/neutral with icon, optional title, message, actions, opt-in dismiss, compact/standard density, and appropriate live regions.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "alert",
+        "a11y"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "badge",
+      "displayName": "Badge",
+      "description": "Compact attached indicator for counts, short labels, categories, and unread marks — numeric overflow (99+), text/dot/icon-label, soft or pill radius, RTL-safe overlay anchoring.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "badge",
+        "a11y"
+      ]
+    },
+    {
+      "id": 23,
       "name": "spinner",
       "displayName": "Spinner",
       "description": "Indeterminate activity indicator (xs–xl) with subtle motion, reduced-motion static fallback, accessible status text, and composition-friendly inline/block layouts — no page overlay.",
@@ -543,7 +623,59 @@
       ]
     },
     {
-      "id": 21,
+      "id": 24,
+      "name": "progress-bar",
+      "displayName": "Progress Bar",
+      "description": "Measurable determinate or indeterminate progress with label, optional percentage, status text, compact/standard density, semantic progressbar roles, and reduced-motion-safe animation.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "progress-bar",
+        "a11y"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "skeleton",
+      "displayName": "Skeleton",
+      "description": "Structural content placeholders (text, title, avatar, thumbnail, rectangle) with grouped composition, calm opacity pulse, and reduced-motion static fallback — non-interactive.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "skeleton",
+        "a11y"
+      ]
+    },
+    {
+      "id": 26,
       "name": "tooltip",
       "displayName": "Tooltip",
       "description": "Brief supplementary information on hover, focus, or touch long-press — non-interactive, viewport-aware placement, role=tooltip.",
@@ -569,7 +701,7 @@
       ]
     },
     {
-      "id": 22,
+      "id": 27,
       "name": "dropdown-menu",
       "displayName": "Dropdown Menu",
       "description": "Command-oriented action menu with shortcuts, destructive items, nested submenus, checkbox/radio items, type-ahead, and mobile sheet adaptation.",
@@ -595,7 +727,33 @@
       ]
     },
     {
-      "id": 23,
+      "id": 28,
+      "name": "alert-dialog",
+      "displayName": "Alert Dialog",
+      "description": "High-priority alertdialog for destructive or critical decisions — deliberate action required, safe-action focus, never dismissed by outside click.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "alert-dialog",
+        "a11y"
+      ]
+    },
+    {
+      "id": 29,
       "name": "text",
       "displayName": "Text",
       "description": "Fundamental typography primitive — tokenized size/weight/color, semantic `as` independent of style, wrap by default, opt-in truncate/clamp/transform.",
@@ -621,7 +779,7 @@
       ]
     },
     {
-      "id": 24,
+      "id": 30,
       "name": "heading",
       "displayName": "Heading",
       "description": "Semantic h1–h6 with visual size independent of level — subtitle, alignment, wrap-by-default, opt-in truncate, responsive typography tokens.",
@@ -647,7 +805,7 @@
       ]
     },
     {
-      "id": 25,
+      "id": 31,
       "name": "paragraph",
       "displayName": "Paragraph",
       "description": "Readable body content — standard/lead/secondary via tokens, comfortable line-height, reading measure, modest consecutive rhythm, accessible inline links.",
@@ -673,7 +831,7 @@
       ]
     },
     {
-      "id": 26,
+      "id": 32,
       "name": "label",
       "displayName": "Label",
       "description": "Concise control/content identification — htmlFor association, required/optional not color-only, wraps long labels, readable token sizes. Not Caption.",
@@ -699,7 +857,7 @@
       ]
     },
     {
-      "id": 27,
+      "id": 33,
       "name": "caption",
       "displayName": "Caption",
       "description": "Secondary explanatory text — short/multiline, readable caption tokens, figcaption or aria-describedby association. Not Label; not for primary instructions or sole warnings.",
@@ -725,7 +883,7 @@
       ]
     },
     {
-      "id": 28,
+      "id": 34,
       "name": "link",
       "displayName": "Link",
       "description": "Navigation anchor — inline/standalone, underline not color-only, opt-in external mark, visited/focus/hover, wraps long URLs. Not a Button.",
@@ -751,7 +909,7 @@
       ]
     },
     {
-      "id": 29,
+      "id": 35,
       "name": "action-button-group",
       "displayName": "Button Group",
       "description": "Clusters related Button actions with joined/separated layout, compact/standard density, horizontal/vertical orientation, and wrap/stack overflow. Each button stays independently focusable and disableable. Prefer Action Group for large sets.",
@@ -778,7 +936,7 @@
       ]
     },
     {
-      "id": 30,
+      "id": 36,
       "name": "icon-button-group",
       "displayName": "Icon Button Group",
       "description": "Clusters related Icon Button actions — horizontal/vertical, joined/separated, wrap/stack. Selected/disabled/active via Icon Button. Accessible labels required. Prefer Overflow Action for large sets.",
@@ -804,7 +962,7 @@
       ]
     },
     {
-      "id": 31,
+      "id": 37,
       "name": "action-split-button",
       "displayName": "Split Button",
       "description": "Primary action + menu trigger composition. Uses Button styles; menu via Dropdown Menu + ActionSplitMenuTrigger — menu not implemented inside. Independent primary/menu disabled states; touch-safe trigger.",
@@ -831,7 +989,7 @@
       ]
     },
     {
-      "id": 32,
+      "id": 38,
       "name": "action-segmented-control",
       "displayName": "Segmented Control",
       "description": "Small mutually exclusive choice set (2–5). Single selection with fill+border+weight selected state. Overflow wrap/stack/scroll (scroll opt-in; no auto-dropdown). RTL-aware keyboard. Optional semantic icons.",
@@ -858,7 +1016,7 @@
       ]
     },
     {
-      "id": 33,
+      "id": 39,
       "name": "action-group",
       "displayName": "Action Group",
       "description": "Flexible semantic action cluster with mixed treatments — primary/secondary/icon/menu/destructive via composed primitives. Responsive wrap/stack; hidden items leave no gaps; overflow slot for Overflow Action handoff.",
@@ -884,7 +1042,7 @@
       ]
     },
     {
-      "id": 34,
+      "id": 40,
       "name": "tabs",
       "displayName": "Tabs",
       "description": "Switch between a small set of related peer views — underline/surface/pill indicators, automatic or manual activation, scrollable overflow, semantic tab panels.",
@@ -910,7 +1068,7 @@
       ]
     },
     {
-      "id": 35,
+      "id": 41,
       "name": "tab-bar",
       "displayName": "Tab Bar",
       "description": "Persistent primary navigation for 2–5 destinations — icons, labels, badges, safe-area bottom/top placement, keyboard and screen-reader friendly.",
@@ -932,6 +1090,84 @@
         "foundations-interface-primitives",
         "navigation-controls",
         "tab-bar",
+        "a11y"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "card",
+      "displayName": "Card",
+      "description": "Flexible surface for grouping related content — composable header/body/footer/media, quiet default elevation, interactive and selected states.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "card",
+        "a11y"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "list",
+      "displayName": "List",
+      "description": "Container for ordered or unordered collections — density, optional dividers, grouping, single/multiple/none selection, keyboard navigation. Empty via Empty State.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "list",
+        "a11y"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "list-item",
+      "displayName": "List Item",
+      "description": "Atomic list content row — leading, primary, secondary, trailing regions; single/two/multi-line; density; clear interactive vs trailing-action models.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "list-item",
         "a11y"
       ]
     }

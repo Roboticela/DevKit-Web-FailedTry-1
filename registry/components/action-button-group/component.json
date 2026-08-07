@@ -1,5 +1,5 @@
 {
-  "id": 29,
+  "id": 35,
   "name": "action-button-group",
   "displayName": "Button Group",
   "description": "Clusters related Button actions with joined/separated layout, compact/standard density, horizontal/vertical orientation, and wrap/stack overflow. Each button stays independently focusable and disableable. Prefer Action Group for large sets.",

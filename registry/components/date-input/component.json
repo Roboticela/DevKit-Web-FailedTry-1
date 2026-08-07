@@ -1,5 +1,5 @@
 {
-  "id": 13,
+  "id": 14,
   "name": "date-input",
   "displayName": "Date Input",
   "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker — ISO YYYY-MM-DD values.",

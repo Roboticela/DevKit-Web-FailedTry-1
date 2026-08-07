@@ -1,4 +1,4 @@
-import { DevKitConfig } from "./config.js";
+import type { DevKitConfig } from "./config.js";
 
 // ── Colour math ───────────────────────────────────────────────────────────────
 

@@ -1,5 +1,5 @@
 {
-  "id": 23,
+  "id": 29,
   "name": "text",
   "displayName": "Text",
   "description": "Fundamental typography primitive — tokenized size/weight/color, semantic `as` independent of style, wrap by default, opt-in truncate/clamp/transform.",

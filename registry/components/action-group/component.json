@@ -1,5 +1,5 @@
 {
-  "id": 33,
+  "id": 39,
   "name": "action-group",
   "displayName": "Action Group",
   "description": "Flexible semantic action cluster with mixed treatments — primary/secondary/icon/menu/destructive via composed primitives. Responsive wrap/stack; hidden items leave no gaps; overflow slot for Overflow Action handoff.",

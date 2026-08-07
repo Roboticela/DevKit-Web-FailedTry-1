@@ -1,5 +1,5 @@
 {
-  "id": 20,
+  "id": 23,
   "name": "spinner",
   "displayName": "Spinner",
   "description": "Indeterminate activity indicator (xs–xl) with subtle motion, reduced-motion static fallback, accessible status text, and composition-friendly inline/block layouts — no page overlay.",

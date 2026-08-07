@@ -1,5 +1,5 @@
 {
-  "id": 34,
+  "id": 40,
   "name": "tabs",
   "displayName": "Tabs",
   "description": "Switch between a small set of related peer views — underline/surface/pill indicators, automatic or manual activation, scrollable overflow, semantic tab panels.",

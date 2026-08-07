@@ -6,7 +6,7 @@ Reusable UI system. Components catalog is populated; pages and scaffolds are rea
 
 | Category | Directory | Status |
 |----------|-----------|--------|
-| Components | `registry/components` | 35 packages |
+| Components | `registry/components` | 44 packages |
 | Pages | `registry/pages` | empty |
 | Scaffolds | `registry/scaffolds` | empty |
 
@@ -18,7 +18,7 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:5173` — Components / Pages / Scaffolds.
+Opens `http://localhost:5173` — searchable catalog with package detail pages, live previews, and theme controls.
 
 ## Registry Server
 

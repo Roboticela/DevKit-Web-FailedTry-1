@@ -1,5 +1,5 @@
 {
-  "id": 17,
+  "id": 18,
   "name": "checkbox",
   "displayName": "Checkbox",
   "description": "Independent boolean or multi-select item with checked, unchecked, and derived indeterminate states — 20px visual at MD, ≥44×44 hit, clickable label, error/required/optional.",

@@ -1,5 +1,5 @@
 {
-  "id": 32,
+  "id": 38,
   "name": "action-segmented-control",
   "displayName": "Segmented Control",
   "description": "Small mutually exclusive choice set (2–5). Single selection with fill+border+weight selected state. Overflow wrap/stack/scroll (scroll opt-in; no auto-dropdown). RTL-aware keyboard. Optional semantic icons.",

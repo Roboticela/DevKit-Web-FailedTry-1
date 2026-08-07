@@ -1,5 +1,5 @@
 {
-  "id": 24,
+  "id": 30,
   "name": "heading",
   "displayName": "Heading",
   "description": "Semantic h1–h6 with visual size independent of level — subtitle, alignment, wrap-by-default, opt-in truncate, responsive typography tokens.",

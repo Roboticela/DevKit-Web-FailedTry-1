@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/SearchField.tsx",
+      "destination": "components/ui/SearchField.tsx"
+    },
+    {
+      "source": "files/styles/search-field.css",
+      "destination": "styles/search-field.css"
+    },
+    {
+      "source": "files/docs/SEARCH_FIELD.md",
+      "destination": "docs/devkit/SEARCH_FIELD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

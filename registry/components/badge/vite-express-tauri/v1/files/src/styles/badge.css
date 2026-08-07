@@ -1,0 +1,292 @@
+/* Badge (ID 043) — Feedback & Status
+ * Compact attached indicator for counts / short labels / dots.
+ * Not for long messages. No gradients. No box-shadows.
+ * Overlay uses logical inset (RTL-safe).
+ */
+
+.dk-badge-anchor {
+  --dk-badge-offset: 2px;
+  position: relative;
+  display: inline-flex;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+.dk-badge-anchor__host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.dk-badge {
+  --dk-badge-height: 20px;
+  --dk-badge-pad-x: 8px;
+  --dk-badge-font-size: 11px;
+  --dk-badge-line-height: 14px;
+  --dk-badge-icon: 12px;
+  --dk-badge-dot: 8px;
+  --dk-badge-radius: var(--radius-2, 6px);
+  --dk-badge-bg: var(--color-surface-secondary, #f5f5f7);
+  --dk-badge-fg: var(--color-text-secondary, #6e6e73);
+  --dk-badge-border: var(--color-border-default, #d2d2d7);
+
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-sizing: border-box;
+  min-height: var(--dk-badge-height);
+  max-width: 100%;
+  margin: 0;
+  padding: 0 var(--dk-badge-pad-x);
+  border: var(--border-width-default, 1px) solid var(--dk-badge-border);
+  border-radius: var(--dk-badge-radius);
+  background: var(--dk-badge-bg);
+  color: var(--dk-badge-fg);
+  font-family: var(--font-sans, inherit);
+  font-size: var(--dk-badge-font-size);
+  line-height: var(--dk-badge-line-height);
+  font-weight: var(--weight-semibold, 600);
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.dk-badge--sm {
+  --dk-badge-height: 16px;
+  --dk-badge-pad-x: 6px;
+  --dk-badge-font-size: 10px;
+  --dk-badge-line-height: 12px;
+  --dk-badge-icon: 10px;
+  --dk-badge-dot: 6px;
+}
+
+.dk-badge--md {
+  --dk-badge-height: 20px;
+  --dk-badge-pad-x: 8px;
+}
+
+.dk-badge--shape-soft {
+  --dk-badge-radius: var(--radius-2, 6px);
+}
+
+.dk-badge--shape-rounded {
+  --dk-badge-radius: var(--radius-3, 8px);
+}
+
+.dk-badge--shape-pill {
+  --dk-badge-radius: var(--radius-full, 9999px);
+}
+
+.dk-badge--neutral {
+  --dk-badge-bg: var(--color-surface-secondary, #f5f5f7);
+  --dk-badge-fg: var(--color-text-secondary, #6e6e73);
+  --dk-badge-border: var(--color-border-default, #d2d2d7);
+}
+
+.dk-badge--accent {
+  --dk-badge-bg: var(--color-accent-subtle, #e5f1fb);
+  --dk-badge-fg: var(--color-accent-primary, #0071e3);
+  --dk-badge-border: var(--color-accent-border, #99c9f0);
+}
+
+.dk-badge--positive {
+  --dk-badge-bg: var(--color-success-subtle, #e4f6e8);
+  --dk-badge-fg: var(--color-success, #1f8b4c);
+  --dk-badge-border: var(--color-success-border, #8fd19a);
+}
+
+.dk-badge--warning {
+  --dk-badge-bg: var(--color-warning-subtle, #fff4e0);
+  --dk-badge-fg: var(--color-warning, #b67800);
+  --dk-badge-border: var(--color-warning-border, #f0c36d);
+}
+
+.dk-badge--negative {
+  --dk-badge-bg: var(--color-error-subtle, #fce8ea);
+  --dk-badge-fg: var(--color-error, #d70015);
+  --dk-badge-border: var(--color-error-border, #f0a0a8);
+}
+
+.dk-badge--inverse {
+  --dk-badge-bg: var(--color-text-primary, #1d1d1f);
+  --dk-badge-fg: var(--color-text-inverse, #ffffff);
+  --dk-badge-border: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-badge--numeric {
+  min-width: var(--dk-badge-height);
+  padding-inline: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dk-badge--dot {
+  width: var(--dk-badge-dot);
+  height: var(--dk-badge-dot);
+  min-height: var(--dk-badge-dot);
+  min-width: var(--dk-badge-dot);
+  padding: 0;
+  border-radius: var(--radius-full, 9999px);
+  background: var(--dk-badge-fg);
+  border-color: var(--color-surface-primary, #ffffff);
+}
+
+.dk-badge--dot .dk-badge__dot-core {
+  display: none;
+}
+
+.dk-badge__label {
+  display: block;
+  max-width: 12ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dk-badge__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: var(--dk-badge-icon);
+  height: var(--dk-badge-icon);
+  color: currentColor;
+}
+
+.dk-badge__icon > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Attached overlay — sit on the corner without covering the control face */
+.dk-badge--overlay {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dk-badge-anchor--top-end .dk-badge--overlay {
+  inset-block-start: calc(-1 * var(--dk-badge-offset));
+  inset-inline-end: calc(-1 * var(--dk-badge-offset));
+  transform: translate(35%, -35%);
+}
+
+.dk-badge-anchor--top-start .dk-badge--overlay {
+  inset-block-start: calc(-1 * var(--dk-badge-offset));
+  inset-inline-start: calc(-1 * var(--dk-badge-offset));
+  transform: translate(-35%, -35%);
+}
+
+.dk-badge-anchor--bottom-end .dk-badge--overlay {
+  inset-block-end: calc(-1 * var(--dk-badge-offset));
+  inset-inline-end: calc(-1 * var(--dk-badge-offset));
+  transform: translate(35%, 35%);
+}
+
+.dk-badge-anchor--bottom-start .dk-badge--overlay {
+  inset-block-end: calc(-1 * var(--dk-badge-offset));
+  inset-inline-start: calc(-1 * var(--dk-badge-offset));
+  transform: translate(-35%, 35%);
+}
+
+[dir="rtl"] .dk-badge-anchor--top-end .dk-badge--overlay {
+  transform: translate(-35%, -35%);
+}
+
+[dir="rtl"] .dk-badge-anchor--top-start .dk-badge--overlay {
+  transform: translate(35%, -35%);
+}
+
+[dir="rtl"] .dk-badge-anchor--bottom-end .dk-badge--overlay {
+  transform: translate(-35%, 35%);
+}
+
+[dir="rtl"] .dk-badge-anchor--bottom-start .dk-badge--overlay {
+  transform: translate(35%, 35%);
+}
+
+.dk-badge-anchor--top-end .dk-badge--dot.dk-badge--overlay,
+.dk-badge-anchor--top-start .dk-badge--dot.dk-badge--overlay,
+.dk-badge-anchor--bottom-end .dk-badge--dot.dk-badge--overlay,
+.dk-badge-anchor--bottom-start .dk-badge--dot.dk-badge--overlay {
+  transform: none;
+}
+
+.dk-badge-anchor--top-end .dk-badge--dot.dk-badge--overlay {
+  inset-block-start: 0;
+  inset-inline-end: 0;
+}
+
+.dk-badge-anchor--top-start .dk-badge--dot.dk-badge--overlay {
+  inset-block-start: 0;
+  inset-inline-start: 0;
+}
+
+.dk-badge-anchor--bottom-end .dk-badge--dot.dk-badge--overlay {
+  inset-block-end: 0;
+  inset-inline-end: 0;
+}
+
+.dk-badge-anchor--bottom-start .dk-badge--dot.dk-badge--overlay {
+  inset-block-end: 0;
+  inset-inline-start: 0;
+}
+
+@media (prefers-contrast: more) {
+  .dk-badge {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+
+  .dk-badge--dot {
+    outline: var(--border-width-emphasis, 2px) solid
+      var(--color-text-primary, #1d1d1f);
+    outline-offset: 0;
+  }
+}
+
+[data-theme="dark"] .dk-badge--neutral,
+.dark .dk-badge--neutral {
+  --dk-badge-bg: var(--color-surface-secondary, #3a3a3c);
+  --dk-badge-fg: var(--color-text-secondary, #a1a1a6);
+  --dk-badge-border: var(--color-border-default, #48484a);
+}
+
+[data-theme="dark"] .dk-badge--accent,
+.dark .dk-badge--accent {
+  --dk-badge-bg: var(--color-accent-subtle, #00263d);
+  --dk-badge-fg: var(--color-accent-primary, #0a84ff);
+  --dk-badge-border: var(--color-accent-border, #004d7a);
+}
+
+[data-theme="dark"] .dk-badge--positive,
+.dark .dk-badge--positive {
+  --dk-badge-bg: var(--color-success-subtle, #0d2a18);
+  --dk-badge-fg: var(--color-success, #30d158);
+  --dk-badge-border: var(--color-success-border, #1a5c32);
+}
+
+[data-theme="dark"] .dk-badge--warning,
+.dark .dk-badge--warning {
+  --dk-badge-bg: var(--color-warning-subtle, #2a1f00);
+  --dk-badge-fg: var(--color-warning, #ffd60a);
+  --dk-badge-border: var(--color-warning-border, #6b4e00);
+}
+
+[data-theme="dark"] .dk-badge--negative,
+.dark .dk-badge--negative {
+  --dk-badge-bg: var(--color-error-subtle, #3a1215);
+  --dk-badge-fg: var(--color-error, #ff453a);
+  --dk-badge-border: var(--color-error-border, #7a1f28);
+}
+
+[data-theme="dark"] .dk-badge--inverse,
+.dark .dk-badge--inverse {
+  --dk-badge-bg: var(--color-text-primary, #f5f5f7);
+  --dk-badge-fg: var(--color-text-inverse, #1c1c1e);
+  --dk-badge-border: var(--color-text-primary, #f5f5f7);
+}
+
+[data-theme="dark"] .dk-badge--dot,
+.dark .dk-badge--dot {
+  border-color: var(--color-surface-primary, #1c1c1e);
+}

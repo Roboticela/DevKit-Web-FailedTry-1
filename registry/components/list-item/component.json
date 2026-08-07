@@ -1,0 +1,47 @@
+{
+  "id": 44,
+  "name": "list-item",
+  "displayName": "List Item",
+  "description": "Atomic list content row — leading, primary, secondary, trailing regions; single/two/multi-line; density; clear interactive vs trailing-action models.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "data-display-primitives",
+  "subgroupName": "Data Display",
+  "kind": "component",
+  "layer": 1,
+  "icon": "rows-3",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "data-display-primitives",
+    "list-item",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

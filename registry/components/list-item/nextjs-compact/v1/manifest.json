@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ListItem.tsx",
+      "destination": "components/ui/ListItem.tsx"
+    },
+    {
+      "source": "files/styles/list-item.css",
+      "destination": "styles/list-item.css"
+    },
+    {
+      "source": "files/docs/LIST-ITEM.md",
+      "destination": "docs/devkit/LIST-ITEM.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

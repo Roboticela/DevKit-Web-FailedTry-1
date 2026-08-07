@@ -3,3 +3,10 @@ alwaysApply: true
 ---
 
 All the components/scaffolds/pages must reuse each other instead of again and again create one thing. Everything must be used from registry instead of creating new. EVERYTHING MUST BE REUSABLE AND YOU MUST NOT CREATE THINGS YOURSELF UNLESS I TELL EXPLICITLY.
+
+Never recreate an existing primitive if it already exists in the registry.
+Always check the registry first and compose components from existing ones.
+Every interactive element must include a meaningful icon. Never use plain text where an icon improves recognition.
+Icons must be semantic and consistent across the authentication system.
+Components must support loading, disabled, error, success, focus, hover, keyboard navigation, accessibility, and responsive behavior where applicable.
+Every component should expose variants, sizes, states, slots, and composition APIs instead of hardcoded implementations.

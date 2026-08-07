@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ProgressBar.tsx",
+      "destination": "components/ui/ProgressBar.tsx"
+    },
+    {
+      "source": "files/styles/progress-bar.css",
+      "destination": "styles/progress-bar.css"
+    },
+    {
+      "source": "files/docs/PROGRESS_BAR.md",
+      "destination": "docs/devkit/PROGRESS_BAR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

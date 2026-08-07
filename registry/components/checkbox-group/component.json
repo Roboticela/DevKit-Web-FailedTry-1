@@ -1,5 +1,5 @@
 {
-  "id": 18,
+  "id": 19,
   "name": "checkbox-group",
   "displayName": "Checkbox Group",
   "description": "Related independent multi-select choices with group label, description, validation, optional select-all (derived indeterminate), and vertical/horizontal/responsive layouts.",

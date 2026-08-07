@@ -1,5 +1,5 @@
 {
-  "id": 14,
+  "id": 15,
   "name": "time-input",
   "displayName": "Time Input",
   "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, and a clock trigger that composes with an external Time Picker — values as HH:mm / HH:mm:ss.",
