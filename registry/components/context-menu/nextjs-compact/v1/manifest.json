@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContextMenu.tsx",
+      "destination": "components/ui/ContextMenu.tsx"
+    },
+    {
+      "source": "files/styles/context-menu.css",
+      "destination": "styles/context-menu.css"
+    },
+    {
+      "source": "files/docs/CONTEXT-MENU.md",
+      "destination": "docs/devkit/CONTEXT-MENU.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

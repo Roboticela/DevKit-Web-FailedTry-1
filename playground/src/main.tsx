@@ -51,6 +51,16 @@ import "../../registry/components/progress-circle/vite-express-tauri/v1/files/sr
 import "../../registry/components/spinner/vite-express-tauri/v1/files/src/styles/spinner.css";
 import "../../registry/components/skeleton/vite-express-tauri/v1/files/src/styles/skeleton.css";
 import "../../registry/components/empty-state/vite-express-tauri/v1/files/src/styles/empty-state.css";
+import "../../registry/components/tooltip/vite-express-tauri/v1/files/src/styles/tooltip.css";
+import "../../registry/components/popover/vite-express-tauri/v1/files/src/styles/popover.css";
+import "../../registry/components/dropdown-menu/vite-express-tauri/v1/files/src/styles/dropdown-menu.css";
+import "../../registry/components/context-menu/vite-express-tauri/v1/files/src/styles/context-menu.css";
+import "../../registry/components/menu/vite-express-tauri/v1/files/src/styles/menu.css";
+import "../../registry/components/dialog/vite-express-tauri/v1/files/src/styles/dialog.css";
+import "../../registry/components/alert-dialog/vite-express-tauri/v1/files/src/styles/alert-dialog.css";
+import "../../registry/components/drawer/vite-express-tauri/v1/files/src/styles/drawer.css";
+import "../../registry/components/bottom-sheet/vite-express-tauri/v1/files/src/styles/bottom-sheet.css";
+import "../../registry/components/modal-surface/vite-express-tauri/v1/files/src/styles/modal-surface.css";
 import { App } from "./App";
 
 createRoot(document.getElementById("root")!).render(

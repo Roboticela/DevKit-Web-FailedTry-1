@@ -1634,6 +1634,326 @@
         "empty-state",
         "a11y"
       ]
+    },
+    {
+      "id": 51,
+      "name": "tooltip",
+      "displayName": "Tooltip",
+      "description": "Brief supplementary information on hover, focus, or touch long-press — non-interactive, viewport-aware placement, role=tooltip.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "message-circle",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "tooltip",
+        "a11y"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "popover",
+      "displayName": "Popover",
+      "description": "Contextual interactive surface anchored to a trigger — configurable dismissal, optional arrow, viewport-aware placement, modal or non-modal focus.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "panel",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "popover",
+        "a11y"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "dropdown-menu",
+      "displayName": "Dropdown Menu",
+      "description": "Command-oriented action menu with shortcuts, destructive items, nested submenus, checkbox/radio items, type-ahead, and mobile sheet adaptation.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "menu",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "dropdown-menu",
+        "a11y"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "context-menu",
+      "displayName": "Context Menu",
+      "description": "Contextual actions for an object or region — right-click, long-press, keyboard equivalent; viewport-safe positioning; not in the tree when closed.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "mouse-pointer",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "context-menu",
+        "a11y"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "menu",
+      "displayName": "Menu",
+      "description": "Generalized accessible command collection — semantics, keyboard, type-ahead, and item states. No positioning (parent overlay places it).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "list",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "menu",
+        "a11y"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "dialog",
+      "displayName": "Dialog",
+      "description": "Modal surface for focused interaction — header/content/footer, focus trap, configurable dismiss, responsive sizes, scrollable body with sticky actions.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "app-window",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "dialog",
+        "a11y"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "alert-dialog",
+      "displayName": "Alert Dialog",
+      "description": "High-priority alertdialog for destructive or critical decisions — deliberate action required, safe-action focus, never dismissed by outside click.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "alert-triangle",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "alert-dialog",
+        "a11y"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "drawer",
+      "displayName": "Drawer",
+      "description": "Temporary side-entering surface for navigation, filters, and supporting content — modal/non-modal, RTL-aware sides, mobile sheet transformation, swipe dismiss.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "panel-right",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "drawer",
+        "a11y"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "bottom-sheet",
+      "displayName": "Bottom Sheet",
+      "description": "Touch-oriented temporary surface from the bottom — compact to full height, drag/Escape/outside dismiss, modal/non-modal/persistent, desktop dialog fallback.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "panel-bottom",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "bottom-sheet",
+        "a11y"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "modal-surface",
+      "displayName": "Modal Surface",
+      "description": "Generic elevated temporary surface — backdrop, focus, positioning, dismissal, and responsive sizing without forced chrome. Foundation for Dialog and Alert Dialog.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "overlay-primitives",
+      "subgroupName": "Overlays & Surfaces",
+      "kind": "component",
+      "layer": 1,
+      "icon": "app-window",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "overlay-primitives",
+        "modal-surface",
+        "a11y"
+      ]
     }
   ]
 }

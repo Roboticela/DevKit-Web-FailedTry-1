@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Dialog.tsx",
+      "destination": "src/components/ui/Dialog.tsx"
+    },
+    {
+      "source": "files/src/styles/dialog.css",
+      "destination": "src/styles/dialog.css"
+    },
+    {
+      "source": "files/docs/DIALOG.md",
+      "destination": "docs/devkit/DIALOG.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Popover.tsx",
+      "destination": "src/components/ui/Popover.tsx"
+    },
+    {
+      "source": "files/src/styles/popover.css",
+      "destination": "src/styles/popover.css"
+    },
+    {
+      "source": "files/docs/POPOVER.md",
+      "destination": "docs/devkit/POPOVER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

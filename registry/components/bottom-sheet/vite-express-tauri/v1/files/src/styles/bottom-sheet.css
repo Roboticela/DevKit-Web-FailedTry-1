@@ -1,0 +1,325 @@
+/* Bottom Sheet (ID 059) — Overlays & Surfaces
+ * Touch-oriented surface from the bottom. Desktop may use dialog-like panel.
+ * Safe-area aware. Vertical motion only. No heavy shadows. No gradients.
+ */
+
+.dk-bottom-sheet-root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-drawer, 700);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dk-bottom-sheet-root--modal,
+.dk-bottom-sheet-root:not(.dk-bottom-sheet-root--bg-interactive) {
+  pointer-events: auto;
+}
+
+.dk-bottom-sheet-root--bg-interactive {
+  pointer-events: none;
+}
+
+.dk-bottom-sheet-root--bg-interactive .dk-bottom-sheet {
+  pointer-events: auto;
+}
+
+.dk-bottom-sheet-root--desktop-dialog {
+  align-items: center;
+}
+
+.dk-bottom-sheet__scrim {
+  position: absolute;
+  inset: 0;
+  background: var(--color-scrim, rgba(0, 0, 0, 0.4));
+  pointer-events: auto;
+  animation: dk-bottom-sheet-scrim-in var(--duration-quick, 160ms)
+    var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+}
+
+html[data-transparency="reduce"] .dk-bottom-sheet__scrim {
+  background: #000000;
+  opacity: 0.55;
+}
+
+.dk-bottom-sheet {
+  --dk-bs-bg: var(--elevation-3-bg, var(--color-surface-floating, #fff));
+  --dk-bs-fg: var(--color-text-primary, #1d1d1f);
+  --dk-bs-muted: var(--color-text-secondary, #6e6e73);
+  --dk-bs-border: var(--elevation-3-border, var(--color-border-default, #d2d2d7));
+  --dk-bs-height: 40vh;
+  --dk-bs-max-height: min(92vh, 100%);
+  --dk-bs-radius: var(--radius-7, 16px) var(--radius-7, 16px) 0 0;
+  --dk-bs-duration: var(--duration-medium, 300ms);
+  --dk-bs-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: var(--dk-bs-height);
+  max-height: var(--dk-bs-max-height);
+  pointer-events: auto;
+  color: var(--dk-bs-fg);
+  background: var(--dk-bs-bg);
+  border: var(--border-width-default, 1px) solid var(--dk-bs-border);
+  border-bottom: none;
+  border-radius: var(--dk-bs-radius);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  outline: none;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  animation: dk-bottom-sheet-in var(--dk-bs-duration) var(--dk-bs-ease);
+}
+
+.dk-bottom-sheet *,
+.dk-bottom-sheet *::before,
+.dk-bottom-sheet *::after {
+  box-sizing: border-box;
+}
+
+.dk-bottom-sheet--compact {
+  --dk-bs-height: min(32vh, 16rem);
+}
+
+.dk-bottom-sheet--standard {
+  --dk-bs-height: min(48vh, 24rem);
+}
+
+.dk-bottom-sheet--expanded {
+  --dk-bs-height: min(72vh, 36rem);
+}
+
+.dk-bottom-sheet--full {
+  --dk-bs-height: var(--dk-bs-max-height);
+  border-radius: 0;
+}
+
+/* Desktop dialog-like — not a forced mobile sheet */
+.dk-bottom-sheet--dialog {
+  width: min(28rem, calc(100% - 2rem));
+  height: auto;
+  max-height: min(80vh, 40rem);
+  margin: var(--space-4, 16px);
+  border-radius: var(--radius-4, 10px);
+  border-bottom: var(--border-width-default, 1px) solid var(--dk-bs-border);
+  padding-bottom: 0;
+  animation: dk-bottom-sheet-dialog-in var(--duration-quick, 160ms)
+    var(--dk-bs-ease);
+}
+
+.dk-bottom-sheet__header {
+  flex-shrink: 0;
+  padding: var(--space-2, 8px) var(--space-4, 16px) var(--space-3, 12px);
+  border-bottom: var(--border-width-default, 1px) solid
+    var(--color-border-subtle, var(--dk-bs-border));
+  background: var(--dk-bs-bg);
+}
+
+.dk-bottom-sheet__handle {
+  width: 2.5rem;
+  height: 0.25rem;
+  margin: var(--space-1, 4px) auto var(--space-3, 12px);
+  border-radius: var(--radius-full, 999px);
+  background: var(--dk-bs-border);
+  touch-action: none;
+  cursor: grab;
+}
+
+.dk-bottom-sheet__heading-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+}
+
+.dk-bottom-sheet__heading {
+  min-width: 0;
+  flex: 1;
+}
+
+.dk-bottom-sheet__title {
+  margin: 0;
+  font-size: var(--font-size-heading-3, 18px);
+  font-weight: var(--weight-semibold, 600);
+  line-height: var(--line-height-body, 24px);
+  overflow-wrap: anywhere;
+}
+
+.dk-bottom-sheet__description {
+  margin: var(--space-1, 4px) 0 0;
+  color: var(--dk-bs-muted);
+  font-size: var(--font-size-body-sm, 14px);
+  line-height: var(--line-height-body-sm, 20px);
+  overflow-wrap: anywhere;
+}
+
+.dk-bottom-sheet__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--touch-target-min, 44px);
+  height: var(--touch-target-min, 44px);
+  margin: calc(var(--space-2, 8px) * -1);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-2, 6px);
+  background: transparent;
+  color: var(--dk-bs-muted);
+  cursor: pointer;
+}
+
+.dk-bottom-sheet__close:hover {
+  color: var(--dk-bs-fg);
+  background: var(--color-surface-secondary, #f5f5f7);
+}
+
+.dk-bottom-sheet__close:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--color-focus, #0071e3);
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+/* Scroll the sheet body — not the page behind */
+.dk-bottom-sheet__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-4, 16px);
+}
+
+.dk-bottom-sheet__content {
+  font-size: var(--font-size-body-sm, 14px);
+  line-height: var(--line-height-body-sm, 20px);
+  overflow-wrap: anywhere;
+}
+
+.dk-bottom-sheet__footer {
+  flex-shrink: 0;
+  padding: var(--space-3, 12px) var(--space-4, 16px) var(--space-4, 16px);
+  border-top: var(--border-width-default, 1px) solid
+    var(--color-border-subtle, var(--dk-bs-border));
+  background: var(--dk-bs-bg);
+}
+
+.dk-bottom-sheet__footer--sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+.dk-bottom-sheet--dialog .dk-bottom-sheet__footer {
+  padding-bottom: var(--space-4, 16px);
+}
+
+.dk-bottom-sheet__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2, 8px);
+}
+
+.dk-bottom-sheet__action--primary {
+  order: 2;
+}
+
+.dk-bottom-sheet__action--secondary {
+  order: 1;
+}
+
+@media (max-width: 479px) {
+  .dk-bottom-sheet__actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .dk-bottom-sheet__action--primary,
+  .dk-bottom-sheet__action--secondary {
+    width: 100%;
+  }
+
+  .dk-bottom-sheet__action--primary > *,
+  .dk-bottom-sheet__action--secondary > * {
+    width: 100%;
+  }
+}
+
+@keyframes dk-bottom-sheet-scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dk-bottom-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes dk-bottom-sheet-dialog-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+[data-theme="dark"] .dk-bottom-sheet,
+.dk-bottom-sheet[data-theme="dark"] {
+  --dk-bs-bg: var(--elevation-3-bg, var(--color-surface-floating, #48484a));
+  --dk-bs-fg: var(--color-text-primary, #f5f5f7);
+  --dk-bs-muted: var(--color-text-secondary, #aeaeb2);
+  --dk-bs-border: var(--elevation-3-border, var(--color-border-default, #636366));
+}
+
+[data-theme="dark"] .dk-bottom-sheet__close:hover,
+.dk-bottom-sheet[data-theme="dark"] .dk-bottom-sheet__close:hover {
+  background: var(--color-surface-secondary, #3a3a3c);
+}
+
+[data-theme="hc"] .dk-bottom-sheet,
+.dk-bottom-sheet[data-theme="hc"],
+[data-contrast="high"] .dk-bottom-sheet {
+  --dk-bs-bg: Canvas;
+  --dk-bs-fg: CanvasText;
+  --dk-bs-muted: CanvasText;
+  --dk-bs-border: CanvasText;
+  border-width: 2px;
+}
+
+[data-theme="hc"] .dk-bottom-sheet__scrim,
+[data-contrast="high"] .dk-bottom-sheet__scrim {
+  background: CanvasText;
+  opacity: 0.35;
+}
+
+[dir="rtl"] .dk-bottom-sheet {
+  text-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-bottom-sheet,
+  .dk-bottom-sheet__scrim,
+  .dk-bottom-sheet--dialog {
+    animation: none !important;
+  }
+}
+
+html[data-motion="reduce"] .dk-bottom-sheet,
+html[data-motion="reduce"] .dk-bottom-sheet__scrim {
+  animation: none !important;
+}

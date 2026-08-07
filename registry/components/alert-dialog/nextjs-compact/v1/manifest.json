@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/AlertDialog.tsx",
+      "destination": "components/ui/AlertDialog.tsx"
+    },
+    {
+      "source": "files/styles/alert-dialog.css",
+      "destination": "styles/alert-dialog.css"
+    },
+    {
+      "source": "files/docs/ALERT-DIALOG.md",
+      "destination": "docs/devkit/ALERT-DIALOG.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Menu.tsx",
+      "destination": "components/ui/Menu.tsx"
+    },
+    {
+      "source": "files/styles/menu.css",
+      "destination": "styles/menu.css"
+    },
+    {
+      "source": "files/docs/MENU.md",
+      "destination": "docs/devkit/MENU.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

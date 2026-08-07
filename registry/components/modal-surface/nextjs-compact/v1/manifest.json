@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ModalSurface.tsx",
+      "destination": "components/ui/ModalSurface.tsx"
+    },
+    {
+      "source": "files/styles/modal-surface.css",
+      "destination": "styles/modal-surface.css"
+    },
+    {
+      "source": "files/docs/MODAL-SURFACE.md",
+      "destination": "docs/devkit/MODAL-SURFACE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

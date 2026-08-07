@@ -1,0 +1,47 @@
+{
+  "id": 55,
+  "name": "menu",
+  "displayName": "Menu",
+  "description": "Generalized accessible command collection — semantics, keyboard, type-ahead, and item states. No positioning (parent overlay places it).",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "overlay-primitives",
+  "subgroupName": "Overlays & Surfaces",
+  "kind": "component",
+  "layer": 1,
+  "icon": "list",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "overlay-primitives",
+    "menu",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

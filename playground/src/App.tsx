@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import { PlaygroundToolbar } from "./PlaygroundToolbar";
 import {
   Button,
   type ButtonSize,
@@ -95,6 +96,43 @@ import type {
   EmptyStateSize,
   EmptyStateVariant,
 } from "../../registry/components/empty-state/vite-express-tauri/v1/files/src/components/ui/EmptyState";
+import { Tooltip } from "../../registry/components/tooltip/vite-express-tauri/v1/files/src/components/ui/Tooltip";
+import type { TooltipPlacement } from "../../registry/components/tooltip/vite-express-tauri/v1/files/src/components/ui/Tooltip";
+import { Popover } from "../../registry/components/popover/vite-express-tauri/v1/files/src/components/ui/Popover";
+import type { PopoverPlacement } from "../../registry/components/popover/vite-express-tauri/v1/files/src/components/ui/Popover";
+import {
+  DropdownMenu,
+  type DropdownMenuEntry,
+  type DropdownMenuPresentation,
+} from "../../registry/components/dropdown-menu/vite-express-tauri/v1/files/src/components/ui/DropdownMenu";
+import {
+  ContextMenu,
+  type ContextMenuEntry,
+} from "../../registry/components/context-menu/vite-express-tauri/v1/files/src/components/ui/ContextMenu";
+import {
+  Menu,
+  type MenuEntry,
+  type MenuSize,
+} from "../../registry/components/menu/vite-express-tauri/v1/files/src/components/ui/Menu";
+import { Dialog } from "../../registry/components/dialog/vite-express-tauri/v1/files/src/components/ui/Dialog";
+import type { DialogSize } from "../../registry/components/dialog/vite-express-tauri/v1/files/src/components/ui/Dialog";
+import { AlertDialog } from "../../registry/components/alert-dialog/vite-express-tauri/v1/files/src/components/ui/AlertDialog";
+import type { AlertDialogTone } from "../../registry/components/alert-dialog/vite-express-tauri/v1/files/src/components/ui/AlertDialog";
+import { Drawer } from "../../registry/components/drawer/vite-express-tauri/v1/files/src/components/ui/Drawer";
+import type {
+  DrawerSide,
+  DrawerSize,
+} from "../../registry/components/drawer/vite-express-tauri/v1/files/src/components/ui/Drawer";
+import { BottomSheet } from "../../registry/components/bottom-sheet/vite-express-tauri/v1/files/src/components/ui/BottomSheet";
+import type {
+  BottomSheetSize,
+  BottomSheetVariant,
+} from "../../registry/components/bottom-sheet/vite-express-tauri/v1/files/src/components/ui/BottomSheet";
+import { ModalSurface } from "../../registry/components/modal-surface/vite-express-tauri/v1/files/src/components/ui/ModalSurface";
+import type {
+  ModalSurfacePosition,
+  ModalSurfaceSize,
+} from "../../registry/components/modal-surface/vite-express-tauri/v1/files/src/components/ui/ModalSurface";
 import { countrySelectOptions, countryDialOptions, getCountry } from "./data/countries";
 import {
   evaluatePhone,
@@ -5899,15 +5937,1177 @@ function EmptyStateLab() {
   );
 }
 
+function TooltipLab() {
+  const [placement, setPlacement] = useState<TooltipPlacement>("auto");
+  const [clicks, setClicks] = useState(0);
+
+  return (
+    <section className="catalog-group" aria-labelledby="tooltip-lab-heading">
+      <h2 id="tooltip-lab-heading">051 Tooltip</h2>
+      <p className="catalog-group-desc">
+        Brief supplementary text on hover, focus, or touch long-press.
+        Non-interactive — no focus trap. Stays in viewport with auto flip.
+        Not for critical instructions or primary labels.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Placement"
+          presentation="listbox"
+          options={[
+            { value: "auto", label: "Auto" },
+            { value: "top", label: "Top" },
+            { value: "bottom", label: "Bottom" },
+            { value: "left", label: "Left" },
+            { value: "right", label: "Right" },
+          ]}
+          value={placement}
+          onValueChange={(v) => setPlacement(v as TooltipPlacement)}
+        />
+
+        <div
+          style={{
+            marginBlockStart: 16,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: 120,
+            border: "1px solid var(--color-border-default, #cbd5e1)",
+            padding: 24,
+          }}
+        >
+          <Tooltip content="Download the report as CSV" placement={placement}>
+            <IconButton
+              label="Download"
+              tooltip={false}
+              icon={
+                <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+                  <path
+                    d="M10 3v9m0 0l-3.5-3.5M10 12l3.5-3.5M4 16h12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              }
+            />
+          </Tooltip>
+
+          <Tooltip
+            content="Autosave keeps a recent copy. You can still export manually."
+            placement={placement}
+          >
+            <Button variant="quiet" size="sm">
+              Autosave
+            </Button>
+          </Tooltip>
+
+          <Tooltip content="Activates on short tap — long-press shows this tip." placement={placement}>
+            <Button
+              size="sm"
+              onClick={() => setClicks((n) => n + 1)}
+            >
+              Action ({clicks})
+            </Button>
+          </Tooltip>
+        </div>
+
+        <p className="catalog-meta" style={{ marginBlockStart: 8 }}>
+          Hover or focus desktop controls. On touch, long-press the action button —
+          short taps still count.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function PopoverLab() {
+  const [placement, setPlacement] = useState<PopoverPlacement>("auto");
+  const [arrow, setArrow] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [showClose, setShowClose] = useState(true);
+  const [closeOutside, setCloseOutside] = useState(true);
+  const [unreadOnly, setUnreadOnly] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="popover-lab-heading">
+      <h2 id="popover-lab-heading">052 Popover</h2>
+      <p className="catalog-group-desc">
+        Contextual interactive surface anchored to a trigger. Unlike Tooltip, may
+        contain controls. Configurable outside-click, Escape, and close button.
+        Non-modal by default (no focus trap).
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Placement"
+          presentation="listbox"
+          options={[
+            { value: "auto", label: "Auto" },
+            { value: "top", label: "Top" },
+            { value: "bottom", label: "Bottom" },
+            { value: "left", label: "Left" },
+            { value: "right", label: "Right" },
+          ]}
+          value={placement}
+          onValueChange={(v) => setPlacement(v as PopoverPlacement)}
+        />
+
+        <div
+          style={{
+            marginBlock: 12,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+          }}
+        >
+          <Switch label="Arrow" checked={arrow} onCheckedChange={setArrow} />
+          <Switch label="Modal" checked={modal} onCheckedChange={setModal} />
+          <Switch
+            label="Close button"
+            checked={showClose}
+            onCheckedChange={setShowClose}
+          />
+          <Switch
+            label="Outside click"
+            checked={closeOutside}
+            onCheckedChange={setCloseOutside}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: 160,
+            border: "1px solid var(--color-border-default, #cbd5e1)",
+            padding: 24,
+          }}
+        >
+          <Popover
+            open={open}
+            onOpenChange={setOpen}
+            placement={placement}
+            arrow={arrow}
+            modal={modal}
+            showCloseButton={showClose}
+            closeOnOutsideClick={closeOutside}
+            title="Filters"
+            content={
+              <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <Switch
+                  label="Unread only"
+                  checked={unreadOnly}
+                  onCheckedChange={setUnreadOnly}
+                />
+                <p style={{ margin: 0, color: "var(--color-text-secondary)" }}>
+                  Adjust filters without leaving the page. Long lists scroll inside
+                  the surface.
+                </p>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      setOpen(false);
+                    }}
+                  >
+                    Apply
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="quiet"
+                    onClick={() => {
+                      setUnreadOnly(false);
+                      setOpen(false);
+                    }}
+                  >
+                    Reset
+                  </Button>
+                </div>
+              </div>
+            }
+          >
+            <Button size="sm">Open filters</Button>
+          </Popover>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DocIcon() {
+  return (
+    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true">
+      <path
+        d="M6 3.5h5l3 3V16.5H6v-13z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function DropdownMenuLab() {
+  const [presentation, setPresentation] =
+    useState<DropdownMenuPresentation>("auto");
+  const [starred, setStarred] = useState(false);
+  const [view, setView] = useState<"list" | "grid">("list");
+  const [lastAction, setLastAction] = useState("—");
+
+  const items: DropdownMenuEntry[] = [
+    {
+      id: "edit",
+      label: "Edit",
+      icon: <DocIcon />,
+      shortcut: "⌘E",
+      onSelect: () => setLastAction("Edit"),
+    },
+    {
+      id: "duplicate",
+      label: "Duplicate",
+      shortcut: "⌘D",
+      onSelect: () => setLastAction("Duplicate"),
+    },
+    {
+      id: "move",
+      label: "Move",
+      children: [
+        {
+          id: "inbox",
+          label: "Inbox",
+          onSelect: () => setLastAction("Move → Inbox"),
+        },
+        {
+          id: "archive-folder",
+          label: "Archive",
+          onSelect: () => setLastAction("Move → Archive"),
+        },
+      ],
+    },
+    { type: "separator" },
+    {
+      id: "starred",
+      type: "checkbox",
+      label: "Starred",
+      checked: starred,
+      onCheckedChange: setStarred,
+    },
+    {
+      id: "view-list",
+      type: "radio",
+      name: "view",
+      label: "List view",
+      checked: view === "list",
+      onSelect: () => setView("list"),
+    },
+    {
+      id: "view-grid",
+      type: "radio",
+      name: "view",
+      label: "Grid view",
+      checked: view === "grid",
+      onSelect: () => setView("grid"),
+    },
+    { type: "separator" },
+    {
+      id: "archive",
+      label: "Archive",
+      onSelect: () => setLastAction("Archive"),
+    },
+    {
+      id: "delete",
+      label: "Delete",
+      destructive: true,
+      shortcut: "⌫",
+      onSelect: () => setLastAction("Delete"),
+    },
+    {
+      id: "disabled",
+      label: "Share (unavailable)",
+      disabled: true,
+    },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="dropdown-menu-lab-heading">
+      <h2 id="dropdown-menu-lab-heading">053 Dropdown Menu</h2>
+      <p className="catalog-group-desc">
+        Command-oriented action collection — not a form container. Supports
+        shortcuts, nested submenus, checkbox/radio items, type-ahead, and a
+        touch sheet on narrow viewports.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Presentation"
+          presentation="listbox"
+          options={[
+            { value: "auto", label: "Auto" },
+            { value: "menu", label: "Menu" },
+            { value: "sheet", label: "Sheet" },
+          ]}
+          value={presentation}
+          onValueChange={(v) => setPresentation(v as DropdownMenuPresentation)}
+        />
+
+        <div
+          style={{
+            marginBlockStart: 16,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+            alignItems: "center",
+          }}
+        >
+          <DropdownMenu
+            label="Document actions"
+            presentation={presentation}
+            items={items}
+          >
+            <Button size="sm">Actions</Button>
+          </DropdownMenu>
+
+          <p className="catalog-meta" style={{ margin: 0 }}>
+            Last action: {lastAction}
+            {starred ? " · Starred" : ""}
+            {` · ${view} view`}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContextMenuLab() {
+  const [open, setOpen] = useState(false);
+  const [lastAction, setLastAction] = useState("—");
+
+  const items: ContextMenuEntry[] = [
+    {
+      id: "open",
+      label: "Open",
+      shortcut: "↵",
+      onSelect: () => setLastAction("Open"),
+    },
+    {
+      id: "rename",
+      label: "Rename",
+      onSelect: () => setLastAction("Rename"),
+    },
+    {
+      id: "share",
+      label: "Share",
+      children: [
+        {
+          id: "copy-link",
+          label: "Copy link",
+          onSelect: () => setLastAction("Share → Copy link"),
+        },
+        {
+          id: "email",
+          label: "Email",
+          onSelect: () => setLastAction("Share → Email"),
+        },
+      ],
+    },
+    { type: "separator" },
+    {
+      id: "archive",
+      label: "Archive",
+      onSelect: () => setLastAction("Archive"),
+    },
+    {
+      id: "delete",
+      label: "Delete",
+      destructive: true,
+      onSelect: () => setLastAction("Delete"),
+    },
+    {
+      id: "locked",
+      label: "Move (locked)",
+      disabled: true,
+    },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="context-menu-lab-heading">
+      <h2 id="context-menu-lab-heading">054 Context Menu</h2>
+      <p className="catalog-group-desc">
+        Actions for a specific object or region. Right-click, long-press, or
+        Shift+F10 / ContextMenu key. Also open from an explicit button — never
+        rely on right-click alone. Closed menus are not in the a11y tree.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 12 }}>
+          <Button size="sm" onClick={() => setOpen(true)}>
+            Actions
+          </Button>
+          <p className="catalog-meta" style={{ margin: 0, alignSelf: "center" }}>
+            Last action: {lastAction}
+          </p>
+        </div>
+
+        <ContextMenu
+          label="File actions"
+          items={items}
+          open={open}
+          onOpenChange={setOpen}
+        >
+          <div
+            tabIndex={0}
+            style={{
+              border: "1px dashed var(--color-border-default, #cbd5e1)",
+              padding: 24,
+              minHeight: 120,
+              color: "var(--color-text-secondary)",
+              outline: "none",
+            }}
+          >
+            Focus this region, then Shift+F10 — or right-click / long-press.
+            <br />
+            Project brief.pdf
+          </div>
+        </ContextMenu>
+      </div>
+    </section>
+  );
+}
+
+function MenuLab() {
+  const [size, setSize] = useState<MenuSize>("md");
+  const [submenuMode, setSubmenuMode] = useState<"defer" | "inline">("inline");
+  const [starred, setStarred] = useState(false);
+  const [align, setAlign] = useState<"start" | "end">("start");
+  const [last, setLast] = useState("—");
+  const [flyout, setFlyout] = useState<{
+    items: MenuEntry[];
+    label: string;
+    style: CSSProperties;
+    parentId: string;
+  } | null>(null);
+
+  const items: MenuEntry[] = [
+    { type: "label", id: "file", label: "File" },
+    {
+      id: "open",
+      label: "Open",
+      shortcut: "⌘O",
+      onSelect: () => setLast("Open"),
+    },
+    {
+      id: "save",
+      label: "Save a copy with a deliberately long localized label",
+      shortcut: "⌘S",
+      onSelect: () => setLast("Save"),
+    },
+    {
+      id: "move",
+      label: "Move to",
+      children: [
+        {
+          id: "inbox",
+          label: "Inbox",
+          onSelect: () => setLast("Move → Inbox"),
+        },
+        {
+          id: "archive",
+          label: "Archive",
+          onSelect: () => setLast("Move → Archive"),
+        },
+      ],
+    },
+    { type: "separator" },
+    { type: "label", id: "view", label: "View" },
+    {
+      id: "star",
+      type: "checkbox",
+      label: "Starred",
+      checked: starred,
+      onCheckedChange: setStarred,
+      keepOpen: true,
+    },
+    {
+      id: "align-start",
+      type: "radio",
+      name: "align",
+      label: "Align start",
+      checked: align === "start",
+      onSelect: () => setAlign("start"),
+      keepOpen: true,
+    },
+    {
+      id: "align-end",
+      type: "radio",
+      name: "align",
+      label: "Align end",
+      checked: align === "end",
+      onSelect: () => setAlign("end"),
+      keepOpen: true,
+    },
+    { type: "separator" },
+    {
+      id: "delete",
+      label: "Delete",
+      destructive: true,
+      shortcut: "⌫",
+      onSelect: () => setLast("Delete"),
+    },
+    { id: "share", label: "Share (unavailable)", disabled: true },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="menu-lab-heading">
+      <h2 id="menu-lab-heading">055 Menu</h2>
+      <p className="catalog-group-desc">
+        Generalized command collection — semantics and keyboard only. Parent
+        supplies layout (here: a static panel). Foundation for Dropdown Menu and
+        Context Menu. Active state uses a cue bar, not background alone.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 12 }}>
+          <SegmentedControl
+            label="Size"
+            size="sm"
+            equalWidth={false}
+            options={[
+              { id: "sm", label: "Sm" },
+              { id: "md", label: "Md" },
+              { id: "lg", label: "Lg" },
+            ]}
+            value={size}
+            onValueChange={(id) => setSize(id as MenuSize)}
+          />
+          <SegmentedControl
+            label="Submenu"
+            size="sm"
+            equalWidth={false}
+            options={[
+              { id: "inline", label: "Inline" },
+              { id: "defer", label: "Defer" },
+            ]}
+            value={submenuMode}
+            onValueChange={(id) => {
+              setSubmenuMode(id as "defer" | "inline");
+              setFlyout(null);
+            }}
+          />
+        </div>
+
+        <p className="catalog-meta" style={{ marginBottom: 8 }}>
+          Last: {last}
+          {starred ? " · Starred" : ""} · align {align}
+        </p>
+
+        {/* Parent-owned layout — Menu does not position itself */}
+        <div
+          style={{
+            position: "relative",
+            display: "inline-block",
+            maxWidth: "100%",
+          }}
+        >
+          <Menu
+            label="Document menu"
+            size={size}
+            items={items}
+            submenuMode={submenuMode}
+            openSubmenuId={flyout?.parentId ?? null}
+            style={{ width: "min(20rem, 100%)" }}
+            onClose={() => setFlyout(null)}
+            onSubmenuClose={() => setFlyout(null)}
+            onSubmenuOpen={(req) => {
+              if (submenuMode !== "defer") return;
+              const rect = req.trigger.getBoundingClientRect();
+              const parent = req.trigger.closest(
+                '[style*="position: relative"]'
+              ) as HTMLElement | null;
+              const root = parent?.getBoundingClientRect();
+              setFlyout({
+                parentId: req.parentId,
+                label: req.label,
+                items: req.items,
+                style: {
+                  position: "absolute",
+                  top: root ? rect.top - root.top : 0,
+                  left: root ? rect.right - root.left + 4 : rect.width + 4,
+                  zIndex: 2,
+                  width: "12rem",
+                },
+              });
+            }}
+          />
+
+          {flyout ? (
+            <Menu
+              label={flyout.label}
+              size={size}
+              items={flyout.items}
+              style={flyout.style}
+              autoFocus
+              onClose={() => setFlyout(null)}
+              onAction={() => setFlyout(null)}
+            />
+          ) : null}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DialogLab() {
+  const [open, setOpen] = useState(false);
+  const [size, setSize] = useState<DialogSize>("md");
+  const [loading, setLoading] = useState(false);
+  const [showError, setShowError] = useState(false);
+  const [outsideClose, setOutsideClose] = useState(false);
+  const [name, setName] = useState("Project North");
+  const [longContent, setLongContent] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="dialog-lab-heading">
+      <h2 id="dialog-lab-heading">056 Dialog</h2>
+      <p className="catalog-group-desc">
+        Modal focused interaction — header, scrollable content, sticky footer.
+        Focus trap + restore. Outside click does not close by default. Prefer
+        Popover when interruption is unnecessary.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "sm", label: "Small" },
+            { value: "md", label: "Medium" },
+            { value: "lg", label: "Large" },
+            { value: "fullscreen", label: "Fullscreen" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as DialogSize)}
+        />
+
+        <div
+          style={{
+            marginBlock: 12,
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 16,
+          }}
+        >
+          <Switch
+            label="Loading"
+            checked={loading}
+            onCheckedChange={setLoading}
+          />
+          <Switch
+            label="Error"
+            checked={showError}
+            onCheckedChange={setShowError}
+          />
+          <Switch
+            label="Outside click closes"
+            checked={outsideClose}
+            onCheckedChange={setOutsideClose}
+          />
+          <Switch
+            label="Long content"
+            checked={longContent}
+            onCheckedChange={setLongContent}
+          />
+        </div>
+
+        <Button size="sm" onClick={() => setOpen(true)}>
+          Open dialog
+        </Button>
+
+        <Dialog
+          open={open}
+          onOpenChange={setOpen}
+          size={size}
+          title="Rename project"
+          description="Choose a clear name your team will recognize."
+          loading={loading}
+          error={
+            showError
+              ? "That name is already in use. Try another."
+              : undefined
+          }
+          closeOnOutsideClick={outsideClose}
+          primaryAction={
+            <Button
+              size="sm"
+              disabled={loading}
+              onClick={() => setOpen(false)}
+            >
+              Save
+            </Button>
+          }
+          secondaryAction={
+            <Button
+              size="sm"
+              variant="quiet"
+              disabled={loading}
+              onClick={() => setOpen(false)}
+            >
+              Cancel
+            </Button>
+          }
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <TextInput
+              label="Name"
+              value={name}
+              onValueChange={setName}
+            />
+            {longContent
+              ? Array.from({ length: 12 }, (_, i) => (
+                  <p key={i} style={{ margin: 0, color: "var(--color-text-secondary)" }}>
+                    Supporting detail line {i + 1}. Long content scrolls in the
+                    body while footer actions stay reachable.
+                  </p>
+                ))
+              : (
+                <p style={{ margin: 0, color: "var(--color-text-secondary)" }}>
+                  Destructive flows should use a destructive Button variant in
+                  the primary slot when appropriate.
+                </p>
+              )}
+          </div>
+        </Dialog>
+      </div>
+    </section>
+  );
+}
+
+function AlertDialogLab() {
+  const [open, setOpen] = useState(false);
+  const [tone, setTone] = useState<AlertDialogTone>("destructive");
+  const [escapeBehavior, setEscapeBehavior] = useState<"cancel" | "none">(
+    "cancel"
+  );
+  const [last, setLast] = useState("—");
+
+  return (
+    <section className="catalog-group" aria-labelledby="alert-dialog-lab-heading">
+      <h2 id="alert-dialog-lab-heading">057 Alert Dialog</h2>
+      <p className="catalog-group-desc">
+        High-priority confirmation — outside click never dismisses. Focus starts
+        on Cancel (safe), not the destructive action. Prefer specific labels
+        over OK / Yes. Not for routine info.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Tone"
+          presentation="listbox"
+          options={[
+            { value: "destructive", label: "Destructive" },
+            { value: "warning", label: "Warning" },
+            { value: "critical", label: "Critical" },
+          ]}
+          value={tone}
+          onValueChange={(v) => setTone(v as AlertDialogTone)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <SegmentedControl
+            label="Escape"
+            size="sm"
+            equalWidth={false}
+            options={[
+              { id: "cancel", label: "Cancel" },
+              { id: "none", label: "None" },
+            ]}
+            value={escapeBehavior}
+            onValueChange={(id) =>
+              setEscapeBehavior(id as "cancel" | "none")
+            }
+          />
+        </div>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center" }}>
+          <Button size="sm" variant="destructive" onClick={() => setOpen(true)}>
+            Delete project…
+          </Button>
+          <p className="catalog-meta" style={{ margin: 0 }}>
+            Last choice: {last}
+          </p>
+        </div>
+
+        <AlertDialog
+          open={open}
+          onOpenChange={setOpen}
+          tone={tone}
+          escapeBehavior={escapeBehavior}
+          title="Delete this project?"
+          description="This permanently removes the project and its files. This cannot be undone."
+          cancelAction={
+            <Button
+              size="sm"
+              variant="quiet"
+              onClick={() => {
+                setLast("Cancel");
+                setOpen(false);
+              }}
+            >
+              Cancel
+            </Button>
+          }
+          action={
+            <Button
+              size="sm"
+              variant="destructive"
+              onClick={() => {
+                setLast("Delete project");
+                setOpen(false);
+              }}
+            >
+              Delete project
+            </Button>
+          }
+        />
+      </div>
+    </section>
+  );
+}
+
+function DrawerLab() {
+  const [open, setOpen] = useState(false);
+  const [side, setSide] = useState<DrawerSide>("right");
+  const [size, setSize] = useState<DrawerSize>("md");
+  const [modal, setModal] = useState(true);
+  const [allowBg, setAllowBg] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="drawer-lab-heading">
+      <h2 id="drawer-lab-heading">058 Drawer</h2>
+      <p className="catalog-group-desc">
+        Side-entering temporary surface for filters, settings, and supporting
+        content. Modal by default. On narrow viewports becomes a bottom sheet.
+        Swipe to dismiss. Close stays reachable while content scrolls.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginBottom: 12 }}>
+          <SegmentedControl
+            label="Side"
+            size="sm"
+            equalWidth={false}
+            options={[
+              { id: "left", label: "Left" },
+              { id: "right", label: "Right" },
+            ]}
+            value={side}
+            onValueChange={(id) => setSide(id as DrawerSide)}
+          />
+          <SegmentedControl
+            label="Size"
+            size="sm"
+            equalWidth={false}
+            options={[
+              { id: "sm", label: "Sm" },
+              { id: "md", label: "Md" },
+              { id: "lg", label: "Lg" },
+            ]}
+            value={size}
+            onValueChange={(id) => setSize(id as DrawerSize)}
+          />
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 12 }}>
+          <Switch label="Modal" checked={modal} onCheckedChange={setModal} />
+          <Switch
+            label="Allow background (non-modal)"
+            checked={allowBg}
+            onCheckedChange={setAllowBg}
+            disabled={modal}
+          />
+        </div>
+
+        <Button size="sm" onClick={() => setOpen(true)}>
+          Open drawer
+        </Button>
+
+        <Drawer
+          open={open}
+          onOpenChange={setOpen}
+          side={side}
+          size={size}
+          modal={modal}
+          allowBackgroundInteraction={!modal && allowBg}
+          title="Filters"
+          description="Narrow the list without leaving the page."
+          primaryAction={
+            <Button size="sm" onClick={() => setOpen(false)}>
+              Apply
+            </Button>
+          }
+          secondaryAction={
+            <Button size="sm" variant="quiet" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+          }
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <Switch label="Unread only" defaultChecked={false} />
+            <Switch label="Has attachments" defaultChecked={false} />
+            <TextInput label="Contains text" />
+            {Array.from({ length: 8 }, (_, i) => (
+              <p
+                key={i}
+                style={{ margin: 0, color: "var(--color-text-secondary)" }}
+              >
+                Supporting filter note {i + 1}. Long content scrolls inside the
+                drawer.
+              </p>
+            ))}
+          </div>
+        </Drawer>
+      </div>
+    </section>
+  );
+}
+
+function BottomSheetLab() {
+  const [open, setOpen] = useState(false);
+  const [size, setSize] = useState<BottomSheetSize>("standard");
+  const [variant, setVariant] = useState<BottomSheetVariant>("modal");
+  const [forceSheet, setForceSheet] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="bottom-sheet-lab-heading">
+      <h2 id="bottom-sheet-lab-heading">059 Bottom Sheet</h2>
+      <p className="catalog-group-desc">
+        Touch-oriented surface from the bottom. Drag is optional — close,
+        Escape, and outside tap also dismiss (except persistent). On desktop
+        (≥1024px) presents as a dialog-like panel unless forced to sheet.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "standard", label: "Standard" },
+            { value: "expanded", label: "Expanded" },
+            { value: "full", label: "Full height" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as BottomSheetSize)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Variant"
+            presentation="listbox"
+            options={[
+              { value: "modal", label: "Modal" },
+              { value: "non-modal", label: "Non-modal" },
+              { value: "persistent", label: "Persistent" },
+            ]}
+            value={variant}
+            onValueChange={(v) => setVariant(v as BottomSheetVariant)}
+          />
+        </div>
+        <div style={{ marginBottom: 12 }}>
+          <Switch
+            label="Force sheet on desktop"
+            checked={forceSheet}
+            onCheckedChange={setForceSheet}
+          />
+        </div>
+
+        <Button size="sm" onClick={() => setOpen(true)}>
+          Open bottom sheet
+        </Button>
+
+        <BottomSheet
+          open={open}
+          onOpenChange={setOpen}
+          size={size}
+          variant={variant}
+          desktopPresentation={forceSheet ? "sheet" : "auto"}
+          title="Share options"
+          description="Choose how to share this item."
+          primaryAction={
+            <Button size="sm" onClick={() => setOpen(false)}>
+              Copy link
+            </Button>
+          }
+          secondaryAction={
+            <Button size="sm" variant="quiet" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
+          }
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+            <TextInput label="Recipient" />
+            <p style={{ margin: 0, color: "var(--color-text-secondary)" }}>
+              Long content scrolls inside the sheet. The page behind stays put.
+              On mobile, drag the handle down to dismiss — or use Close / Cancel.
+            </p>
+            {Array.from({ length: 6 }, (_, i) => (
+              <p
+                key={i}
+                style={{ margin: 0, color: "var(--color-text-secondary)" }}
+              >
+                Detail line {i + 1}.
+              </p>
+            ))}
+          </div>
+        </BottomSheet>
+      </div>
+    </section>
+  );
+}
+
+function ModalSurfaceLab() {
+  const [open, setOpen] = useState(false);
+  const [size, setSize] = useState<ModalSurfaceSize>("md");
+  const [position, setPosition] = useState<ModalSurfacePosition>("center");
+  const [modal, setModal] = useState(true);
+  const [outside, setOutside] = useState(false);
+  const titleId = "modal-surface-lab-title";
+
+  return (
+    <section className="catalog-group" aria-labelledby="modal-surface-lab-heading">
+      <h2 id="modal-surface-lab-heading">060 Modal Surface</h2>
+      <p className="catalog-group-desc">
+        Generic elevated surface with backdrop, focus, positioning, and
+        dismissal — no forced title or actions. Compose Header / Body / Footer
+        slots yourself. Foundation for Dialog and Alert Dialog.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "sm", label: "Small" },
+            { value: "md", label: "Medium" },
+            { value: "lg", label: "Large" },
+            { value: "fullscreen", label: "Fullscreen" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as ModalSurfaceSize)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Position"
+            presentation="listbox"
+            options={[
+              { value: "center", label: "Centered" },
+              { value: "top", label: "Top-aligned" },
+              { value: "bottom", label: "Bottom-aligned" },
+            ]}
+            value={position}
+            onValueChange={(v) => setPosition(v as ModalSurfacePosition)}
+          />
+        </div>
+        <div style={{ marginBottom: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+          <Switch label="Modal behavior" checked={modal} onCheckedChange={setModal} />
+          <Switch
+            label="Close on outside click"
+            checked={outside}
+            onCheckedChange={setOutside}
+          />
+        </div>
+
+        <Button size="sm" onClick={() => setOpen(true)}>
+          Open modal surface
+        </Button>
+
+        <ModalSurface
+          open={open}
+          onOpenChange={setOpen}
+          size={size}
+          position={position}
+          modal={modal}
+          closeOnOutsideClick={outside}
+          aria-labelledby={titleId}
+        >
+          <ModalSurface.Header>
+            <h2
+              id={titleId}
+              style={{
+                margin: 0,
+                fontSize: "var(--font-size-heading-3, 18px)",
+                fontWeight: 600,
+              }}
+            >
+              Composed content
+            </h2>
+            <p
+              style={{
+                margin: "4px 0 0",
+                color: "var(--color-text-secondary)",
+                fontSize: "var(--font-size-body-sm, 14px)",
+              }}
+            >
+              Title and actions are consumer-owned — not built into the surface.
+            </p>
+          </ModalSurface.Header>
+          <ModalSurface.Body>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <TextInput label="Example field" />
+              <p style={{ margin: 0, color: "var(--color-text-secondary)" }}>
+                Forms, lists, media, or custom layouts go here. The body scrolls
+                when content is long; scroll lock prevents page jump behind the
+                surface.
+              </p>
+              {Array.from({ length: 4 }, (_, i) => (
+                <p
+                  key={i}
+                  style={{ margin: 0, color: "var(--color-text-secondary)" }}
+                >
+                  Scrollable line {i + 1}.
+                </p>
+              ))}
+            </div>
+          </ModalSurface.Body>
+          <ModalSurface.Footer>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                justifyContent: "flex-end",
+              }}
+            >
+              <Button size="sm" variant="quiet" onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+              <Button size="sm" onClick={() => setOpen(false)}>
+                Confirm
+              </Button>
+            </div>
+          </ModalSurface.Footer>
+        </ModalSurface>
+      </div>
+    </section>
+  );
+}
+
 export function App() {
   return (
     <div className="playground">
+      <PlaygroundToolbar />
+
       <header className="playground-header">
         <div>
           <h1>DevKit</h1>
           <p>
             Layer 1 — Interaction 001–010; Form 011–020; Selection 021–030;
-            Navigation 031–040; Feedback 041–050 ready.
+            Navigation 031–040; Feedback 041–050; Overlays 051–060 ready.
           </p>
         </div>
       </header>
@@ -5963,6 +7163,16 @@ export function App() {
       <SpinnerLab />
       <SkeletonLab />
       <EmptyStateLab />
+      <TooltipLab />
+      <PopoverLab />
+      <DropdownMenuLab />
+      <ContextMenuLab />
+      <MenuLab />
+      <DialogLab />
+      <AlertDialogLab />
+      <DrawerLab />
+      <BottomSheetLab />
+      <ModalSurfaceLab />
 
       {groups.map((group) => (
         <section

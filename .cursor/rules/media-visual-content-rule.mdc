@@ -1,0 +1,241 @@
+---
+alwaysApply: true
+---
+
+Create Group 08 — Media & Visual Content for the DevKit.
+
+This group belongs to:
+
+Layer 01 — Foundations & Interface Primitives.
+
+Existing groups:
+
+Group 01 — Interaction Controls
+Group 02 — Form Controls
+Group 03 — Selection Controls
+Group 04 — Navigation Controls
+Group 05 — Feedback & Status
+Group 06 — Overlays & Surfaces
+Group 07 — Data Display
+
+Use the DevKit Core Design Constitution as the immutable global foundation.
+
+Do not redefine global design tokens.
+
+Inherit all existing:
+- colors
+- semantic colors
+- typography
+- spacing
+- sizing
+- control dimensions
+- radius
+- borders
+- elevation
+- shadows
+- iconography
+- motion
+- breakpoints
+- responsive behavior
+- accessibility
+- focus treatment
+- touch targets
+- density
+- Light theme
+- Dark theme
+- High Contrast
+- RTL
+- localization
+- reduced motion
+- reduced transparency
+
+Create exactly these 10 components:
+
+071 Image
+072 Thumbnail
+073 Media Object
+074 Icon Container
+075 Illustration
+076 Cover Media
+077 Media Preview
+078 Image Placeholder
+079 Media Overlay
+080 Media Metadata
+
+These are reusable media primitives.
+
+Do not create:
+- complete image galleries
+- carousels
+- complete video players
+- image editors
+- file managers
+- media libraries
+- photo grids
+- full-screen lightboxes
+- complete profile pages
+- complete product cards
+
+Those belong to higher-level component groups.
+
+The media system must prioritize:
+clarity
+correct proportions
+fast perception
+accessibility
+responsive behavior
+content integrity
+
+Never distort visual content merely to fit a container.
+
+Support:
+natural aspect ratio
+fixed aspect ratio
+responsive aspect ratio
+object-fit behavior
+object-position
+cropping
+containment
+
+The consuming component must be able to choose between:
+contain
+cover
+natural
+cropped
+
+Images must not unexpectedly stretch.
+
+Support:
+- raster images
+- vector illustrations
+- thumbnails
+- avatars
+- previews
+- decorative media
+- content media
+
+All meaningful images must support alternative text.
+
+Decorative images must be identifiable as decorative.
+
+Do not force alt text onto purely decorative graphics.
+
+When an image fails to load:
+provide an appropriate fallback.
+
+Do not display broken-image artifacts as the final visual experience.
+
+Support:
+loading
+loaded
+error
+empty
+placeholder
+
+Image loading must avoid unnecessary layout shift.
+
+Where dimensions are known:
+reserve the appropriate aspect-ratio space before the media loads.
+
+Do not use visual media as the only communication method for important information.
+
+Textual information must remain available where necessary.
+
+Support:
+Light
+Dark
+High Contrast
+
+Media treatments must maintain sufficient contrast for:
+labels
+overlays
+controls
+metadata
+
+Do not place white text directly over complex imagery without an appropriate contrast strategy.
+
+Do not add gradients merely for decoration.
+
+If an overlay gradient is used to improve readability:
+keep it subtle and purposeful.
+
+Media should feel:
+refined,
+natural,
+high-quality,
+balanced,
+and content-first.
+
+Avoid:
+heavy frames
+unnecessary borders
+large shadows
+excessive rounded containers
+decorative gradients
+fake glass effects
+visual noise
+
+All components must support:
+
+Mobile
+Tablet
+Desktop
+Large Desktop
+Ultra Wide
+
+Support:
+
+Mouse
+Keyboard
+Touch
+Stylus
+Screen readers
+
+where relevant.
+
+Support:
+
+LTR
+RTL
+Localization
+Dynamic text
+Reduced motion
+Reduced transparency
+
+Interactive media must have:
+visible focus
+appropriate semantic behavior
+minimum effective touch target
+
+Do not make decorative media interactive.
+
+Do not make every image clickable by default.
+
+Media must remain usable at:
+high zoom
+large text
+narrow screens
+wide screens
+high contrast
+
+Test:
+portrait images
+landscape images
+square images
+extreme aspect ratios
+very large images
+very small images
+missing images
+slow-loading images
+broken images
+transparent images
+dark images
+bright images
+localized metadata
+RTL
+mobile
+desktop
+high contrast
+dark mode
+light mode
+reduced motion

@@ -1,0 +1,241 @@
+/* Popover (ID 052) — Overlays & Surfaces
+ * Contextual interactive surface. Anchored. Configurable dismissal.
+ * No box-shadow. No gradients. Uses --z-popover from the overlay scale.
+ */
+
+.dk-popover-anchor {
+  display: inline-flex;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.dk-popover-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-popover, 500) - 1);
+  background: var(--color-scrim, rgba(0, 0, 0, 0.4));
+  pointer-events: auto;
+}
+
+html[data-transparency="reduce"] .dk-popover-backdrop {
+  background: #000000;
+  opacity: 0.55;
+}
+
+.dk-popover {
+  --dk-popover-bg: var(--elevation-3-bg, var(--color-surface-elevated, #fff));
+  --dk-popover-fg: var(--color-text-primary, #0f172a);
+  --dk-popover-muted: var(--color-text-secondary, #64748b);
+  --dk-popover-border: var(
+    --elevation-3-border,
+    var(--color-border-default, #cbd5e1)
+  );
+  --dk-popover-radius: var(--radius-3, 8px);
+  --dk-popover-pad: var(--space-3, 0.75rem);
+  --dk-popover-z: var(--z-popover, 500);
+  --dk-popover-arrow-size: 8px;
+  --dk-popover-arrow-offset: 50%;
+  --dk-popover-duration: var(--duration-fast, 120ms);
+  --dk-popover-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+
+  box-sizing: border-box;
+  position: fixed;
+  z-index: var(--dk-popover-z);
+  display: flex;
+  flex-direction: column;
+  min-width: 8rem;
+  width: max-content;
+  max-width: min(20rem, calc(100vw - 16px));
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: var(--border-width-default, 1px) solid var(--dk-popover-border);
+  border-radius: var(--dk-popover-radius);
+  background: var(--dk-popover-bg);
+  color: var(--dk-popover-fg);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--font-size-sm, 0.875rem);
+  line-height: var(--line-height-normal, 1.5);
+  outline: none;
+}
+
+.dk-popover *,
+.dk-popover *::before,
+.dk-popover *::after {
+  box-sizing: border-box;
+}
+
+.dk-popover--open {
+  animation: dk-popover-in var(--dk-popover-duration) var(--dk-popover-ease);
+}
+
+.dk-popover__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-2, 0.5rem);
+  flex-shrink: 0;
+  padding-block: var(--space-2, 0.5rem) var(--space-1, 0.25rem);
+  padding-inline: var(--dk-popover-pad);
+  border-bottom: var(--border-width-default, 1px) solid
+    var(--color-border-subtle, var(--dk-popover-border));
+}
+
+.dk-popover__title {
+  margin: 0;
+  padding-block: var(--space-1, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: var(--line-height-snug, 1.35);
+  color: var(--dk-popover-fg);
+  overflow-wrap: anywhere;
+}
+
+.dk-popover__title-spacer {
+  flex: 1;
+}
+
+.dk-popover__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--touch-target-min, 44px);
+  height: var(--touch-target-min, 44px);
+  margin: calc(var(--space-1, 0.25rem) * -1);
+  margin-inline-end: calc(var(--space-2, 0.5rem) * -1);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-2, 6px);
+  background: transparent;
+  color: var(--dk-popover-muted);
+  cursor: pointer;
+}
+
+.dk-popover__close:hover {
+  color: var(--dk-popover-fg);
+  background: var(--color-surface-secondary, #f1f5f9);
+}
+
+.dk-popover__close:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--color-focus, #2563eb);
+  outline-offset: var(--focus-ring-offset, 2px);
+}
+
+.dk-popover__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: var(--dk-popover-pad);
+  -webkit-overflow-scrolling: touch;
+}
+
+.dk-popover__header + .dk-popover__body {
+  padding-block-start: var(--space-2, 0.5rem);
+}
+
+/* Modest arrow — points at trigger, not decorative */
+.dk-popover__arrow {
+  position: absolute;
+  width: var(--dk-popover-arrow-size);
+  height: var(--dk-popover-arrow-size);
+  background: var(--dk-popover-bg);
+  border: var(--border-width-default, 1px) solid var(--dk-popover-border);
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+.dk-popover--top .dk-popover__arrow {
+  bottom: calc(var(--dk-popover-arrow-size) / -2);
+  left: var(--dk-popover-arrow-offset);
+  margin-inline-start: calc(var(--dk-popover-arrow-size) / -2);
+  border-block-start: none;
+  border-inline-start: none;
+}
+
+.dk-popover--bottom .dk-popover__arrow {
+  top: calc(var(--dk-popover-arrow-size) / -2);
+  left: var(--dk-popover-arrow-offset);
+  margin-inline-start: calc(var(--dk-popover-arrow-size) / -2);
+  border-block-end: none;
+  border-inline-end: none;
+}
+
+.dk-popover--left .dk-popover__arrow {
+  right: calc(var(--dk-popover-arrow-size) / -2);
+  top: var(--dk-popover-arrow-offset);
+  margin-block-start: calc(var(--dk-popover-arrow-size) / -2);
+  border-block-start: none;
+  border-inline-end: none;
+}
+
+.dk-popover--right .dk-popover__arrow {
+  left: calc(var(--dk-popover-arrow-size) / -2);
+  top: var(--dk-popover-arrow-offset);
+  margin-block-start: calc(var(--dk-popover-arrow-size) / -2);
+  border-block-end: none;
+  border-inline-start: none;
+}
+
+@keyframes dk-popover-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-popover,
+.dk-popover[data-theme="dark"] {
+  --dk-popover-bg: var(--elevation-3-bg, var(--color-surface-elevated, #3a3a3c));
+  --dk-popover-fg: var(--color-text-primary, #f1f5f9);
+  --dk-popover-muted: var(--color-text-secondary, #aeaeb2);
+  --dk-popover-border: var(
+    --elevation-3-border,
+    var(--color-border-default, #636366)
+  );
+}
+
+[data-theme="dark"] .dk-popover__close:hover,
+.dk-popover[data-theme="dark"] .dk-popover__close:hover {
+  background: var(--color-surface-secondary, #48484a);
+}
+
+[data-theme="hc"] .dk-popover,
+.dk-popover[data-theme="hc"],
+[data-contrast="high"] .dk-popover {
+  --dk-popover-bg: Canvas;
+  --dk-popover-fg: CanvasText;
+  --dk-popover-muted: CanvasText;
+  --dk-popover-border: CanvasText;
+  border-width: 2px;
+}
+
+[data-theme="hc"] .dk-popover-backdrop,
+[data-contrast="high"] .dk-popover-backdrop {
+  background: CanvasText;
+  opacity: 0.35;
+}
+
+/* ——— RTL ——— */
+
+[dir="rtl"] .dk-popover,
+.dk-popover[dir="rtl"] {
+  text-align: start;
+}
+
+/* ——— Reduced motion ——— */
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-popover--open {
+    animation: none !important;
+  }
+}
+
+html[data-motion="reduce"] .dk-popover--open {
+  animation: none !important;
+}

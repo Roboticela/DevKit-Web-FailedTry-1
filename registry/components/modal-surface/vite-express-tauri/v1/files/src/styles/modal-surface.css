@@ -1,0 +1,270 @@
+/* Modal Surface (ID 060) — Overlays & Surfaces
+ * Generic elevated temporary surface. Composable slots only — no chrome.
+ * No box-shadow. No gradients. Z-index: --z-modal.
+ */
+
+.dk-modal-surface-root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal, 800);
+  display: flex;
+  pointer-events: none;
+}
+
+.dk-modal-surface-root--modal,
+.dk-modal-surface-root:not(.dk-modal-surface-root--bg-interactive) {
+  pointer-events: auto;
+}
+
+.dk-modal-surface-root--bg-interactive {
+  pointer-events: none;
+}
+
+.dk-modal-surface-root--bg-interactive .dk-modal-surface {
+  pointer-events: auto;
+}
+
+.dk-modal-surface__backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--color-scrim, rgba(0, 0, 0, 0.45));
+  pointer-events: auto;
+  animation: dk-modal-surface-backdrop-in var(--duration-quick, 160ms)
+    var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+}
+
+html[data-transparency="reduce"] .dk-modal-surface__backdrop {
+  background: #000000;
+  opacity: 0.55;
+}
+
+.dk-modal-surface__viewport {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  pointer-events: auto;
+  padding: var(--space-4, 16px);
+  padding-top: max(var(--space-4, 16px), env(safe-area-inset-top, 0px));
+  padding-bottom: max(var(--space-4, 16px), env(safe-area-inset-bottom, 0px));
+  padding-inline-start: max(
+    var(--space-4, 16px),
+    env(safe-area-inset-left, 0px)
+  );
+  padding-inline-end: max(
+    var(--space-4, 16px),
+    env(safe-area-inset-right, 0px)
+  );
+}
+
+.dk-modal-surface__viewport--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.dk-modal-surface__viewport--top {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.dk-modal-surface__viewport--bottom {
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.dk-modal-surface {
+  --dk-ms-bg: var(--elevation-4-bg, var(--color-surface-floating, #fff));
+  --dk-ms-fg: var(--color-text-primary, #1d1d1f);
+  --dk-ms-muted: var(--color-text-secondary, #6e6e73);
+  --dk-ms-border: var(
+    --elevation-4-border,
+    var(--color-border-default, #d2d2d7)
+  );
+  --dk-ms-radius: var(--radius-4, 10px);
+  --dk-ms-width: 28rem;
+  --dk-ms-max-height: min(90vh, 40rem);
+  --dk-ms-duration: var(--duration-quick, 160ms);
+  --dk-ms-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: min(100%, var(--dk-ms-width));
+  max-height: var(--dk-ms-max-height);
+  overflow: hidden;
+  color: var(--dk-ms-fg);
+  background: var(--dk-ms-bg);
+  border: var(--border-width-default, 1px) solid var(--dk-ms-border);
+  border-radius: var(--dk-ms-radius);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  outline: none;
+  pointer-events: auto;
+  animation: dk-modal-surface-in var(--dk-ms-duration) var(--dk-ms-ease);
+}
+
+.dk-modal-surface *,
+.dk-modal-surface *::before,
+.dk-modal-surface *::after {
+  box-sizing: border-box;
+}
+
+.dk-modal-surface--sm {
+  --dk-ms-width: 20rem;
+  --dk-ms-max-height: min(80vh, 24rem);
+}
+
+.dk-modal-surface--md {
+  --dk-ms-width: 28rem;
+  --dk-ms-max-height: min(90vh, 40rem);
+}
+
+.dk-modal-surface--lg {
+  --dk-ms-width: 40rem;
+  --dk-ms-max-height: min(92vh, 48rem);
+}
+
+.dk-modal-surface--fullscreen {
+  --dk-ms-width: 100%;
+  --dk-ms-max-height: 100%;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  border-radius: 0;
+  border: none;
+  border-inline: var(--border-width-default, 1px) solid var(--dk-ms-border);
+}
+
+.dk-modal-surface--top {
+  margin-block-start: 0;
+  animation-name: dk-modal-surface-in-top;
+}
+
+.dk-modal-surface--bottom {
+  margin-block-end: 0;
+  animation-name: dk-modal-surface-in-bottom;
+}
+
+/* Optional region slots — consumers own content; no forced chrome */
+.dk-modal-surface__header {
+  flex-shrink: 0;
+  padding: var(--space-4, 16px);
+  border-bottom: var(--border-width-default, 1px) solid
+    var(--color-border-subtle, var(--dk-ms-border));
+  background: var(--dk-ms-bg);
+}
+
+.dk-modal-surface__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-4, 16px);
+  font-size: var(--font-size-body-sm, 14px);
+  line-height: var(--line-height-body-sm, 20px);
+  overflow-wrap: anywhere;
+}
+
+.dk-modal-surface__footer {
+  flex-shrink: 0;
+  padding: var(--space-3, 12px) var(--space-4, 16px) var(--space-4, 16px);
+  border-top: var(--border-width-default, 1px) solid
+    var(--color-border-subtle, var(--dk-ms-border));
+  background: var(--dk-ms-bg);
+}
+
+@media (max-width: 479px) {
+  .dk-modal-surface--lg:not(.dk-modal-surface--fullscreen) {
+    --dk-ms-width: 100%;
+    --dk-ms-max-height: min(94vh, 100%);
+  }
+
+  .dk-modal-surface__viewport--center .dk-modal-surface--lg {
+    align-self: stretch;
+  }
+}
+
+@keyframes dk-modal-surface-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dk-modal-surface-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dk-modal-surface-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dk-modal-surface-in-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-theme="dark"] .dk-modal-surface,
+.dk-modal-surface[data-theme="dark"] {
+  --dk-ms-bg: var(--elevation-4-bg, var(--color-surface-floating, #48484a));
+  --dk-ms-fg: var(--color-text-primary, #f5f5f7);
+  --dk-ms-muted: var(--color-text-secondary, #aeaeb2);
+  --dk-ms-border: var(--elevation-4-border, var(--color-border-default, #636366));
+}
+
+[data-theme="hc"] .dk-modal-surface,
+.dk-modal-surface[data-theme="hc"],
+[data-contrast="high"] .dk-modal-surface {
+  --dk-ms-bg: Canvas;
+  --dk-ms-fg: CanvasText;
+  --dk-ms-muted: CanvasText;
+  --dk-ms-border: CanvasText;
+  border-width: 2px;
+}
+
+[data-theme="hc"] .dk-modal-surface__backdrop,
+[data-contrast="high"] .dk-modal-surface__backdrop {
+  background: CanvasText;
+  opacity: 0.35;
+}
+
+[dir="rtl"] .dk-modal-surface {
+  text-align: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-modal-surface,
+  .dk-modal-surface__backdrop {
+    animation: none !important;
+  }
+}
+
+html[data-motion="reduce"] .dk-modal-surface,
+html[data-motion="reduce"] .dk-modal-surface__backdrop {
+  animation: none !important;
+}

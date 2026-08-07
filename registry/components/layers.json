@@ -499,9 +499,94 @@
             },
             {
               "id": "overlay-primitives",
-              "name": "Overlay Primitives",
-              "description": "Modals, drawers, sheets, popovers, and floating layers.",
-              "components": []
+              "name": "Overlays & Surfaces",
+              "description": "Tooltips, popovers, menus, dialogs, drawers, sheets, and modal surfaces.",
+              "components": [
+                {
+                  "id": 51,
+                  "name": "tooltip",
+                  "displayName": "Tooltip",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 52,
+                  "name": "popover",
+                  "displayName": "Popover",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 53,
+                  "name": "dropdown-menu",
+                  "displayName": "Dropdown Menu",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 54,
+                  "name": "context-menu",
+                  "displayName": "Context Menu",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 55,
+                  "name": "menu",
+                  "displayName": "Menu",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 56,
+                  "name": "dialog",
+                  "displayName": "Dialog",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 57,
+                  "name": "alert-dialog",
+                  "displayName": "Alert Dialog",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 58,
+                  "name": "drawer",
+                  "displayName": "Drawer",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 59,
+                  "name": "bottom-sheet",
+                  "displayName": "Bottom Sheet",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 60,
+                  "name": "modal-surface",
+                  "displayName": "Modal Surface",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                }
+              ],
+              "idRange": {
+                "min": 51,
+                "max": 60
+              }
             },
             {
               "id": "data-display-primitives",

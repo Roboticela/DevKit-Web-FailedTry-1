@@ -1,0 +1,47 @@
+{
+  "id": 60,
+  "name": "modal-surface",
+  "displayName": "Modal Surface",
+  "description": "Generic elevated temporary surface — backdrop, focus, positioning, dismissal, and responsive sizing without forced chrome. Foundation for Dialog and Alert Dialog.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "overlay-primitives",
+  "subgroupName": "Overlays & Surfaces",
+  "kind": "component",
+  "layer": 1,
+  "icon": "app-window",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "overlay-primitives",
+    "modal-surface",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

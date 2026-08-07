@@ -415,8 +415,79 @@
         },
         {
           "id": "overlay-primitives",
-          "name": "Overlay Primitives",
-          "components": []
+          "name": "Overlays & Surfaces",
+          "components": [
+            {
+              "id": 51,
+              "name": "tooltip",
+              "displayName": "Tooltip",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 52,
+              "name": "popover",
+              "displayName": "Popover",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 53,
+              "name": "dropdown-menu",
+              "displayName": "Dropdown Menu",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 54,
+              "name": "context-menu",
+              "displayName": "Context Menu",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 55,
+              "name": "menu",
+              "displayName": "Menu",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 56,
+              "name": "dialog",
+              "displayName": "Dialog",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 57,
+              "name": "alert-dialog",
+              "displayName": "Alert Dialog",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 58,
+              "name": "drawer",
+              "displayName": "Drawer",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 59,
+              "name": "bottom-sheet",
+              "displayName": "Bottom Sheet",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 60,
+              "name": "modal-surface",
+              "displayName": "Modal Surface",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
         },
         {
           "id": "data-display-primitives",

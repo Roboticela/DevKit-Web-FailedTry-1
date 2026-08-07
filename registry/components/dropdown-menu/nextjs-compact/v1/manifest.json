@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/DropdownMenu.tsx",
+      "destination": "components/ui/DropdownMenu.tsx"
+    },
+    {
+      "source": "files/styles/dropdown-menu.css",
+      "destination": "styles/dropdown-menu.css"
+    },
+    {
+      "source": "files/docs/DROPDOWN-MENU.md",
+      "destination": "docs/devkit/DROPDOWN-MENU.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}
