@@ -34,9 +34,12 @@ export interface ComponentEntry {
   description: string;
   /** Layer slug for components; free-form topic for scaffolds. */
   category: string;
-  /** Layer 1 subgroup (e.g. design-tokens, layout-system). */
+  /** Parent group (e.g. foundations-interface-primitives). */
   group?: string;
   groupName?: string;
+  /** Subgroup within a parent group (e.g. interaction-controls). */
+  subgroup?: string;
+  subgroupName?: string;
   /** `component` = reusable UI; `scaffold` = full feature (empty for now). */
   kind: PackageKind;
   /** 1 Foundation … 5 Templates — set on reusable components. */

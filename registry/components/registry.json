@@ -1,5 +1,336 @@
 {
   "version": "1",
   "updatedAt": "2026-08-07T00:00:00Z",
-  "components": []
+  "components": [
+    {
+      "id": 1,
+      "name": "button",
+      "displayName": "Button",
+      "description": "Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "button",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "icon-button",
+      "displayName": "Icon Button",
+      "description": "Icon Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "icon-button",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "button-group",
+      "displayName": "Button Group",
+      "description": "Button Group - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "button-group",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "split-button",
+      "displayName": "Split Button",
+      "description": "Split Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "split-button",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "link-button",
+      "displayName": "Link Button",
+      "description": "Link Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "link-button",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "floating-action-button",
+      "displayName": "Floating Action Button",
+      "description": "Floating Action Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "floating-action-button",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "toggle-button",
+      "displayName": "Toggle Button",
+      "description": "Toggle Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "toggle-button",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "segmented-control",
+      "displayName": "Segmented Control",
+      "description": "Segmented Control - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "segmented-control",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "command-button",
+      "displayName": "Command Button",
+      "description": "Command Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "command-button",
+        "interaction",
+        "stub"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "action-menu-trigger",
+      "displayName": "Action Menu Trigger",
+      "description": "Action Menu Trigger - empty Interaction Controls stub (Foundations & Interface Primitives).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "interaction-controls",
+      "subgroupName": "Interaction Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": true,
+      "latestVersion": "0.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "interaction-controls",
+        "action-menu-trigger",
+        "interaction",
+        "stub"
+      ]
+    }
+  ]
 }

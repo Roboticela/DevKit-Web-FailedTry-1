@@ -1,19 +1,182 @@
 {
   "version": "1",
+  "updatedAt": "2026-08-07T00:00:00Z",
+  "description": "Five-layer reusable UI component catalog. Scaffolds (kind=scaffold) remain supported but empty for now.",
+  "kinds": {
+    "component": "Reusable UI packages selectable by layer. Available for both templates.",
+    "scaffold": "Full-feature packages (routes, APIs, flows). Reserved; catalog empty for now."
+  },
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
   "layers": [
     {
       "layer": 1,
       "id": "foundation",
       "name": "Foundation",
-      "idRange": { "min": 1, "max": 100 },
-      "description": "Empty — no foundation packages registered.",
-      "groups": []
+      "idRange": {
+        "min": 1,
+        "max": 100
+      },
+      "description": "Fundamental building blocks for every higher-level component.",
+      "groups": [
+        {
+          "id": "foundations-interface-primitives",
+          "name": "Foundations & Interface Primitives",
+          "description": "The fundamental building blocks used to construct every higher-level component.",
+          "templates": [
+            "nextjs-compact",
+            "vite-express-tauri"
+          ],
+          "subgroups": [
+            {
+              "id": "interaction-controls",
+              "name": "Interaction Controls",
+              "description": "Buttons, links, and other press/click primitives.",
+              "components": [
+                {
+                  "id": 1,
+                  "name": "button",
+                  "displayName": "Button",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 2,
+                  "name": "icon-button",
+                  "displayName": "Icon Button",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 3,
+                  "name": "button-group",
+                  "displayName": "Button Group",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 4,
+                  "name": "split-button",
+                  "displayName": "Split Button",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 5,
+                  "name": "link-button",
+                  "displayName": "Link Button",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 6,
+                  "name": "floating-action-button",
+                  "displayName": "Floating Action Button",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 7,
+                  "name": "toggle-button",
+                  "displayName": "Toggle Button",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 8,
+                  "name": "segmented-control",
+                  "displayName": "Segmented Control",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 9,
+                  "name": "command-button",
+                  "displayName": "Command Button",
+                  "fileKind": "tsx",
+                  "stub": true
+                },
+                {
+                  "id": 10,
+                  "name": "action-menu-trigger",
+                  "displayName": "Action Menu Trigger",
+                  "fileKind": "tsx",
+                  "stub": true
+                }
+              ],
+              "idRange": {
+                "min": 1,
+                "max": 10
+              }
+            },
+            {
+              "id": "form-controls",
+              "name": "Form Controls",
+              "description": "Text inputs, textareas, and related field primitives.",
+              "components": []
+            },
+            {
+              "id": "selection-controls",
+              "name": "Selection Controls",
+              "description": "Checkboxes, radios, switches, and choice primitives.",
+              "components": []
+            },
+            {
+              "id": "navigation-controls",
+              "name": "Navigation Controls",
+              "description": "Tabs, breadcrumbs, menus, and wayfinding primitives.",
+              "components": []
+            },
+            {
+              "id": "feedback-status",
+              "name": "Feedback & Status",
+              "description": "Alerts, badges, progress, and status indicators.",
+              "components": []
+            },
+            {
+              "id": "content-display",
+              "name": "Content & Display",
+              "description": "Typography, avatars, dividers, and content presentation primitives.",
+              "components": []
+            },
+            {
+              "id": "layout-primitives",
+              "name": "Layout Primitives",
+              "description": "Stack, grid, spacer, container, and structural layout primitives.",
+              "components": []
+            },
+            {
+              "id": "overlay-primitives",
+              "name": "Overlay Primitives",
+              "description": "Modals, drawers, sheets, popovers, and floating layers.",
+              "components": []
+            },
+            {
+              "id": "data-display-primitives",
+              "name": "Data Display Primitives",
+              "description": "Tables, lists, metrics, and structured data presentation.",
+              "components": []
+            },
+            {
+              "id": "media-primitives",
+              "name": "Media Primitives",
+              "description": "Image, video, icon, and media presentation primitives.",
+              "components": []
+            }
+          ]
+        }
+      ]
     },
     {
       "layer": 2,
       "id": "basic",
       "name": "Basic",
-      "idRange": { "min": 101, "max": 500 },
+      "idRange": {
+        "min": 101,
+        "max": 500
+      },
       "description": "Empty — no basic packages registered.",
       "groups": []
     },
@@ -21,7 +184,10 @@
       "layer": 3,
       "id": "composite",
       "name": "Composite",
-      "idRange": { "min": 501, "max": 1500 },
+      "idRange": {
+        "min": 501,
+        "max": 1500
+      },
       "description": "Empty — no composite packages registered.",
       "groups": []
     },
@@ -29,7 +195,10 @@
       "layer": 4,
       "id": "advanced",
       "name": "Advanced",
-      "idRange": { "min": 1501, "max": 2500 },
+      "idRange": {
+        "min": 1501,
+        "max": 2500
+      },
       "description": "Empty — no advanced packages registered.",
       "groups": []
     },
@@ -37,7 +206,10 @@
       "layer": 5,
       "id": "templates",
       "name": "Templates",
-      "idRange": { "min": 2501, "max": 3000 },
+      "idRange": {
+        "min": 2501,
+        "max": 3000
+      },
       "description": "Empty — no template packages registered.",
       "groups": []
     }

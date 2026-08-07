@@ -1,0 +1,57 @@
+---
+description: Master prompt for generating DevKit components under the Design Constitution
+globs: registry/components/**/*
+alwaysApply: false
+---
+
+# DevKit Component Generator
+
+When creating or editing registry components, apply this master prompt (constitution §100). Full token scales live in `.cursor/rules/design-main-rule.mdc`.
+
+```text
+You are designing a production-grade component for a world-class original design system.
+
+The DevKit Core Design Constitution is the single source of truth for all visual, interaction, responsive, accessibility, motion, spacing, typography, color, radius, elevation, material, density, and layout decisions.
+
+The visual quality target is Apple-class craftsmanship without copying Apple's proprietary interface, assets, exact layouts, or branded implementation.
+
+The component must feel exceptionally refined, calm, premium, precise, fluid, intelligent, and beautiful.
+
+Use the exact global design tokens defined by the Constitution. Never invent arbitrary spacing, colors, typography, radius, elevations, animation durations, breakpoints, or control dimensions.
+
+The canonical spatial system is based on a 4px base unit and an 8px primary rhythm.
+
+Use the canonical responsive tiers:
+Compact 0–479px, Mobile 480–767px, Tablet 768–1023px, Desktop 1024–1279px,
+Large Desktop 1280–1535px, XL Desktop 1536–1919px, Ultra Wide 1920px+.
+
+The component must be mobile-first but must not simply scale between devices. It must intelligently transform its information architecture, layout, density, interaction model, and available actions according to available space and input method.
+
+Support Light, Dark, High Contrast, Custom Brand, Reduced Motion, Reduced Transparency, Compact Density, Comfortable Density, Spacious Density, LTR, RTL, localization, dynamic text scaling, keyboard, mouse, touch, stylus, and screen readers.
+
+Use semantic color, typography, spacing, radius, elevation (tonal — no box-shadow), and motion tokens. Do not use gradients.
+
+The component must have a clear visual hierarchy with one primary purpose and appropriately subordinate secondary actions.
+
+Do not use visual decoration unless it improves comprehension, hierarchy, interaction, or emotional quality.
+
+Do not use excessive cards, borders, glass effects, badges, icons, or animation.
+
+Use whitespace, typography, tonal contrast, proportion, and surface hierarchy as the primary tools for visual refinement.
+
+Every interactive element must have appropriate default, hover (where applicable), focus, pressed, selected, disabled, loading, success, warning, and error states.
+
+Every component must have appropriate loading, empty, error, overflow, long-content, permission, localization, accessibility, and responsive behaviors where relevant.
+
+All interactive targets must meet the global touch-target requirements. Focus states must remain visible. Color must never be the sole method of communicating state. Motion must respect reduced-motion preferences.
+
+Do not create separate components for mobile, tablet, desktop, light mode, dark mode, or accessibility modes.
+
+Do not duplicate an existing component under another name. Do not split obvious sub-elements unless they have meaningful standalone reuse.
+
+Before finalizing, quality-review: visual hierarchy, spacing, typography, color, proportion, optical alignment, interaction, motion, responsive behavior, accessibility, keyboard, touch, stylus, RTL, localization, loading, empty, error, long content, performance, and theme compatibility.
+
+The standard is not "functional." The standard is: beautiful, precise, accessible, responsive, intuitive, fast, consistent, and exceptionally refined.
+```
+
+Document anatomy per constitution §91 when specifying a new component.

@@ -20,6 +20,8 @@ export interface ComponentEntry {
   category: string;
   group?: string;
   groupName?: string;
+  subgroup?: string;
+  subgroupName?: string;
   /** `component` = reusable UI; `scaffold` = full feature. Omitted in older indexes = scaffold. */
   kind?: PackageKind;
   layer?: ComponentLayer;

@@ -8,7 +8,12 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 function rgbToHex(r: number, g: number, b: number): string {
-  return "#" + [r, g, b].map((v) => Math.max(0, Math.min(255, v)).toString(16).padStart(2, "0")).join("");
+  return (
+    "#" +
+    [r, g, b]
+      .map((v) => Math.max(0, Math.min(255, Math.round(v))).toString(16).padStart(2, "0"))
+      .join("")
+  );
 }
 
 function lighten(hex: string, amount: number): string {
@@ -38,201 +43,561 @@ function contrastRatio(hex1: string, hex2: string): number {
 }
 
 function accessibleTextColor(bg: string): string {
-  return contrastRatio(bg, "#ffffff") >= 4.5 ? "#ffffff" : "#111827";
+  return contrastRatio(bg, "#ffffff") >= 4.5 ? "#ffffff" : "#1d1d1f";
 }
 
-// ── Presets ───────────────────────────────────────────────────────────────────
+function accentScale(primary: string) {
+  return {
+    50: lighten(primary, 0.92),
+    100: lighten(primary, 0.84),
+    200: lighten(primary, 0.68),
+    300: lighten(primary, 0.48),
+    400: lighten(primary, 0.24),
+    500: primary,
+    600: darken(primary, 0.12),
+    700: darken(primary, 0.24),
+    800: darken(primary, 0.36),
+    900: darken(primary, 0.48),
+  };
+}
 
-const PRESETS: Record<string, { primary: string; secondary: string; radius: string }> = {
-  default:   { primary: "#6366f1", secondary: "#f59e0b", radius: "md" },
-  minimal:   { primary: "#475569", secondary: "#0ea5e9", radius: "sm" },
-  bold:      { primary: "#7c3aed", secondary: "#ec4899", radius: "lg" },
-  playful:   { primary: "#10b981", secondary: "#f97316", radius: "full" },
-  corporate: { primary: "#1d4ed8", secondary: "#374151", radius: "none" },
+// ── Presets (constitution §82 branding — accent + radius personality) ─────────
+
+const SYSTEM_SANS =
+  '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
+const SYSTEM_MONO =
+  'ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace';
+
+/** Radius personality → base step used for --radius-* scale (§18, §85). */
+const RADIUS_PERSONALITY: Record<string, "sharp" | "balanced" | "soft"> = {
+  none: "sharp",
+  sm: "sharp",
+  md: "balanced",
+  lg: "soft",
+  xl: "soft",
+  full: "soft",
+  sharp: "sharp",
+  balanced: "balanced",
+  soft: "soft",
 };
 
-const RADIUS_MAP: Record<string, string> = {
-  none: "0",
-  sm:   "0.25rem",
-  md:   "0.5rem",
-  lg:   "0.75rem",
-  xl:   "1rem",
-  full: "9999px",
+const PRESETS: Record<
+  string,
+  { primary: string; secondary: string; radius: "sharp" | "balanced" | "soft" }
+> = {
+  default: { primary: "#0071e3", secondary: "#86868b", radius: "balanced" },
+  minimal: { primary: "#424245", secondary: "#0071e3", radius: "sharp" },
+  bold: { primary: "#0a84ff", secondary: "#ff375f", radius: "soft" },
+  playful: { primary: "#30d158", secondary: "#ff9f0a", radius: "soft" },
+  corporate: { primary: "#1d4ed8", secondary: "#515154", radius: "sharp" },
 };
 
-// ── Token generator ───────────────────────────────────────────────────────────
+/** Constitution §18 radius scale, shifted by personality. */
+function radiusTokens(personality: "sharp" | "balanced" | "soft"): Record<string, string> {
+  const balanced = {
+    0: "0px",
+    1: "4px",
+    2: "6px",
+    3: "8px",
+    4: "10px",
+    5: "12px",
+    6: "14px",
+    7: "16px",
+    8: "20px",
+    9: "24px",
+    10: "28px",
+    full: "9999px",
+  };
+  if (personality === "balanced") return balanced;
+  if (personality === "sharp") {
+    return {
+      0: "0px",
+      1: "2px",
+      2: "4px",
+      3: "6px",
+      4: "8px",
+      5: "10px",
+      6: "12px",
+      7: "14px",
+      8: "16px",
+      9: "20px",
+      10: "24px",
+      full: "9999px",
+    };
+  }
+  return {
+    0: "0px",
+    1: "6px",
+    2: "8px",
+    3: "10px",
+    4: "12px",
+    5: "14px",
+    6: "16px",
+    7: "20px",
+    8: "24px",
+    9: "28px",
+    10: "32px",
+    full: "9999px",
+  };
+}
+
+// ── Token generator (Design Constitution §§01–38) ──────────────────────────────
 
 export function generateThemeCSS(config: DevKitConfig): string {
   const theme = config.theme ?? {};
   const preset = PRESETS[theme.preset ?? "default"] ?? PRESETS.default;
 
-  const primary   = theme.colors?.primary   ?? preset.primary;
+  const primary = theme.colors?.primary ?? preset.primary;
   const secondary = theme.colors?.secondary ?? preset.secondary;
-  const radiusKey = theme.radius            ?? preset.radius;
-  const baseRadius = RADIUS_MAP[radiusKey] ?? RADIUS_MAP.md;
+  const radiusKey = theme.radius ?? preset.radius;
+  const personality =
+    RADIUS_PERSONALITY[radiusKey] ??
+    (preset.radius as "sharp" | "balanced" | "soft");
+  const radii = radiusTokens(personality);
+  const accent = accentScale(primary);
+  const accentOn = accessibleTextColor(primary);
 
-  const radii = {
-    sm:   radiusKey === "none" ? "0" : `calc(${baseRadius} * 0.5)`,
-    md:   baseRadius,
-    lg:   radiusKey === "none" ? "0" : `calc(${baseRadius} * 1.5)`,
-    xl:   radiusKey === "none" ? "0" : `calc(${baseRadius} * 2)`,
-    "2xl":radiusKey === "none" ? "0" : `calc(${baseRadius} * 3)`,
-    full: "9999px",
-  };
+  const fontSans = theme.fonts?.sans;
+  const fontMono = theme.fonts?.mono;
+  const fontDisplay = theme.fonts?.display;
 
-  const fontSans    = theme.fonts?.sans    ?? "Inter";
-  const fontMono    = theme.fonts?.mono    ?? "JetBrains Mono";
-  const fontDisplay = theme.fonts?.display ?? fontSans;
+  const useSystemSans = !fontSans || fontSans === "system" || fontSans === "system-ui";
+  const useSystemMono = !fontMono || fontMono === "system" || fontMono === "system-ui";
+  const useSystemDisplay =
+    !fontDisplay || fontDisplay === "system" || fontDisplay === "system-ui" || fontDisplay === fontSans;
 
   const googleFonts: string[] = [];
-  if (fontSans !== "system-ui") googleFonts.push(fontSans);
-  if (fontMono !== fontSans)    googleFonts.push(fontMono);
-  if (fontDisplay !== fontSans) googleFonts.push(fontDisplay);
+  if (!useSystemSans && fontSans) googleFonts.push(fontSans);
+  if (!useSystemMono && fontMono && fontMono !== fontSans) googleFonts.push(fontMono);
+  if (!useSystemDisplay && fontDisplay && fontDisplay !== fontSans) googleFonts.push(fontDisplay);
 
   const imports = [...new Set(googleFonts)]
-    .map((f) => `@import url('https://fonts.googleapis.com/css2?family=${f.replace(/ /g, "+")}:wght@400;500;600;700;800&display=swap');`)
+    .map(
+      (f) =>
+        `@import url('https://fonts.googleapis.com/css2?family=${f.replace(/ /g, "+")}:wght@400;500;600;700;800&display=swap');`
+    )
     .join("\n");
 
+  const fontFamilySans = useSystemSans
+    ? SYSTEM_SANS
+    : `'${fontSans}', ${SYSTEM_SANS}`;
+  const fontFamilyMono = useSystemMono
+    ? SYSTEM_MONO
+    : `'${fontMono}', ${SYSTEM_MONO}`;
+  const fontFamilyDisplay = useSystemDisplay
+    ? fontFamilySans
+    : `'${fontDisplay}', ${SYSTEM_SANS}`;
+
+  const date = new Date().toISOString().split("T")[0];
+
   return `/* ── DevKit Managed Theme Block — do not edit below this line ── */
-/* ── Generated by @roboticela/devkit on ${new Date().toISOString().split("T")[0]} ── */
+/* ── Generated by @roboticela/devkit on ${date} ── */
+/* ── Tokens follow DevKit Design Constitution (.cursor/rules/design-main-rule.mdc) ── */
 
-${imports}
-
+${imports ? imports + "\n" : ""}
 :root {
-  /* ── Brand: Primary ── */
-  --color-primary:         ${primary};
-  --color-primary-hover:   ${darken(primary, 0.1)};
-  --color-primary-active:  ${darken(primary, 0.2)};
-  --color-primary-subtle:  ${lighten(primary, 0.9)};
-  --color-primary-text:    ${accessibleTextColor(primary)};
+  /* ── Spacing (§01) — 4px base / 8px rhythm ── */
+  --space-0: 0px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-14: 56px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+  --space-40: 160px;
+  --space-48: 192px;
+  --space-64: 256px;
 
-  /* ── Brand: Secondary ── */
-  --color-secondary:       ${secondary};
-  --color-secondary-hover: ${darken(secondary, 0.1)};
-  --color-secondary-subtle:${lighten(secondary, 0.9)};
-  --color-secondary-text:  ${accessibleTextColor(secondary)};
+  /* ── Section spacing roles (§05) ── */
+  --section-tight: var(--space-6);
+  --section-normal: var(--space-8);
+  --section-large: var(--space-12);
+  --section-major: var(--space-16);
+  --section-hero: var(--space-20);
+  --section-hero-large: var(--space-24);
 
-  /* ── Neutral / Surface ── */
-  --color-bg:              #ffffff;
-  --color-bg-subtle:       #f9fafb;
-  --color-bg-muted:        #f3f4f6;
-  --color-border:          #e5e7eb;
-  --color-border-strong:   #d1d5db;
+  /* ── Breakpoints (§02) — use in @media / JS ── */
+  --bp-mobile: 480px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-large: 1280px;
+  --bp-xl: 1536px;
+  --bp-ultra: 1920px;
 
-  /* ── Text ── */
-  --color-text:            #111827;
-  --color-text-muted:      #6b7280;
-  --color-text-subtle:     #9ca3af;
-  --color-text-inverse:    #ffffff;
+  /* ── Containers (§03) ── */
+  --container-xs: 480px;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 960px;
+  --container-xl: 1200px;
+  --container-2xl: 1440px;
+  --container-3xl: 1600px;
+  --container-full: 100%;
+  --container-app: var(--container-2xl);
+  --container-reading: 720px;
+  --container-form: 640px;
+  --container-dialog: 720px;
 
-  /* ── Semantic ── */
-  --color-success:         #10b981;
-  --color-success-subtle:  #ecfdf5;
-  --color-success-text:    #065f46;
-  --color-warning:         #f59e0b;
-  --color-warning-subtle:  #fffbeb;
-  --color-warning-text:    #92400e;
-  --color-error:           #ef4444;
-  --color-error-subtle:    #fef2f2;
-  --color-error-text:      #991b1b;
-  --color-info:            #3b82f6;
-  --color-info-subtle:     #eff6ff;
-  --color-info-text:       #1e40af;
+  /* ── Page padding roles (§04) — override per media query in app CSS ── */
+  --page-padding: var(--space-4);
 
-  /* ── Overlay ── */
-  --color-overlay:         rgba(0,0,0,0.5);
-  --color-shadow:          rgba(0,0,0,0.08);
+  /* ── Neutral primitives (§11) — light ── */
+  --neutral-0: #ffffff;
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f7;
+  --neutral-150: #ececef;
+  --neutral-200: #e8e8ed;
+  --neutral-300: #d2d2d7;
+  --neutral-400: #c7c7cc;
+  --neutral-500: #86868b;
+  --neutral-600: #6e6e73;
+  --neutral-700: #515154;
+  --neutral-800: #424245;
+  --neutral-850: #3a3a3c;
+  --neutral-900: #1d1d1f;
+  --neutral-950: #141416;
+  --neutral-1000: #000000;
 
-  /* ── Typography ── */
-  --font-sans:    '${fontSans}', system-ui, -apple-system, sans-serif;
-  --font-mono:    '${fontMono}', 'Fira Code', monospace;
-  --font-display: '${fontDisplay}', sans-serif;
+  /* ── Accent scale (§14) ── */
+  --accent-50: ${accent[50]};
+  --accent-100: ${accent[100]};
+  --accent-200: ${accent[200]};
+  --accent-300: ${accent[300]};
+  --accent-400: ${accent[400]};
+  --accent-500: ${accent[500]};
+  --accent-600: ${accent[600]};
+  --accent-700: ${accent[700]};
+  --accent-800: ${accent[800]};
+  --accent-900: ${accent[900]};
 
-  --text-xs:   0.75rem;
-  --text-sm:   0.875rem;
-  --text-base: 1rem;
-  --text-lg:   1.125rem;
-  --text-xl:   1.25rem;
-  --text-2xl:  1.5rem;
-  --text-3xl:  1.875rem;
-  --text-4xl:  2.25rem;
-  --text-5xl:  3rem;
-  --text-6xl:  3.75rem;
+  /* ── Semantic surfaces / text / border (§12) ── */
+  --color-background-primary: var(--neutral-100);
+  --color-background-secondary: var(--neutral-50);
+  --color-background-tertiary: var(--neutral-150);
 
-  --weight-normal:    400;
-  --weight-medium:    500;
-  --weight-semibold:  600;
-  --weight-bold:      700;
+  --color-surface-primary: var(--neutral-0);
+  --color-surface-secondary: var(--neutral-50);
+  --color-surface-tertiary: var(--neutral-100);
+  --color-surface-elevated: var(--neutral-0);
+  --color-surface-floating: var(--neutral-0);
+
+  --color-text-primary: var(--neutral-900);
+  --color-text-secondary: var(--neutral-600);
+  --color-text-tertiary: var(--neutral-500);
+  --color-text-quaternary: var(--neutral-400);
+  --color-text-disabled: var(--neutral-400);
+  --color-text-inverse: var(--neutral-0);
+
+  --color-border-subtle: var(--neutral-200);
+  --color-border-default: var(--neutral-300);
+  --color-border-strong: var(--neutral-400);
+
+  --color-accent-primary: var(--accent-500);
+  --color-accent-secondary: ${secondary};
+  --color-accent-hover: var(--accent-400);
+  --color-accent-pressed: var(--accent-600);
+  --color-accent-subtle: var(--accent-100);
+  --color-accent-on: ${accentOn};
+
+  --color-success: #248a3d;
+  --color-success-bg: #e8f8ed;
+  --color-success-border: #34c759;
+  --color-success-fg: #1b5e2a;
+
+  --color-warning: #b25000;
+  --color-warning-bg: #fff4e5;
+  --color-warning-border: #ff9f0a;
+  --color-warning-fg: #6b3200;
+
+  --color-error: #d70015;
+  --color-error-bg: #ffebee;
+  --color-error-border: #ff3b30;
+  --color-error-fg: #8b000e;
+
+  --color-info: #0071e3;
+  --color-info-bg: #e8f2fc;
+  --color-info-border: #64d2ff;
+  --color-info-fg: #003d7a;
+
+  --color-focus: var(--accent-500);
+  --color-selection: ${lighten(primary, 0.75)};
+  --color-scrim: rgba(0, 0, 0, 0.45);
+
+  /* ── Typography (§06–09) ── */
+  --font-sans: ${fontFamilySans};
+  --font-display: ${fontFamilyDisplay};
+  --font-mono: ${fontFamilyMono};
+  --font-text: var(--font-sans);
+  --font-numeric: var(--font-sans);
+  --font-code: var(--font-mono);
+
+  --font-size-display-1: 64px;
+  --font-size-display-2: 56px;
+  --font-size-display-3: 48px;
+  --font-size-title-1: 40px;
+  --font-size-title-2: 32px;
+  --font-size-title-3: 28px;
+  --font-size-heading-1: 24px;
+  --font-size-heading-2: 20px;
+  --font-size-heading-3: 18px;
+  --font-size-body-lg: 17px;
+  --font-size-body: 16px;
+  --font-size-body-sm: 14px;
+  --font-size-label: 14px;
+  --font-size-caption: 12px;
+  --font-size-micro: 11px;
+  --font-size-metric-xl: 48px;
+  --font-size-metric-lg: 36px;
+  --font-size-metric-md: 28px;
+  --font-size-metric-sm: 20px;
+
+  --line-height-display-1: 68px;
+  --line-height-display-2: 60px;
+  --line-height-display-3: 52px;
+  --line-height-title-1: 48px;
+  --line-height-title-2: 40px;
+  --line-height-title-3: 36px;
+  --line-height-heading-1: 32px;
+  --line-height-heading-2: 28px;
+  --line-height-heading-3: 24px;
+  --line-height-body-lg: 26px;
+  --line-height-body: 24px;
+  --line-height-body-sm: 20px;
+  --line-height-label: 20px;
+  --line-height-caption: 16px;
+  --line-height-micro: 14px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
   --weight-extrabold: 800;
 
-  --leading-tight:   1.25;
-  --leading-snug:    1.375;
-  --leading-normal:  1.5;
-  --leading-relaxed: 1.625;
+  --tracking-display: -0.03em;
+  --tracking-large-title: -0.025em;
+  --tracking-title: -0.02em;
+  --tracking-heading: -0.015em;
+  --tracking-body: 0;
+  --tracking-label: 0;
+  --tracking-caption: 0.01em;
+  --tracking-micro: 0.015em;
+  --tracking-caps: 0.05em;
 
-  /* ── Border Radius ── */
-  --radius-sm:   ${radii.sm};
-  --radius-md:   ${radii.md};
-  --radius-lg:   ${radii.lg};
-  --radius-xl:   ${radii.xl};
-  --radius-2xl:  ${radii["2xl"]};
+  /* ── Radius (§18) — personality: ${personality} ── */
+  --radius-0: ${radii[0]};
+  --radius-1: ${radii[1]};
+  --radius-2: ${radii[2]};
+  --radius-3: ${radii[3]};
+  --radius-4: ${radii[4]};
+  --radius-5: ${radii[5]};
+  --radius-6: ${radii[6]};
+  --radius-7: ${radii[7]};
+  --radius-8: ${radii[8]};
+  --radius-9: ${radii[9]};
+  --radius-10: ${radii[10]};
   --radius-full: ${radii.full};
+  --radius-control: var(--radius-4);
+  --radius-button: var(--radius-5);
+  --radius-card: var(--radius-7);
+  --radius-panel: var(--radius-8);
+  --radius-dialog: var(--radius-8);
+  --radius-sheet: var(--radius-9);
 
-  /* ── Spacing ── */
-  --space-1:  0.25rem;  --space-2:  0.5rem;   --space-3:  0.75rem;
-  --space-4:  1rem;     --space-6:  1.5rem;   --space-8:  2rem;
-  --space-10: 2.5rem;   --space-12: 3rem;     --space-16: 4rem;
-  --space-20: 5rem;     --space-24: 6rem;
+  /* ── Control heights (§20) ── */
+  --control-height-xs: 28px;
+  --control-height-sm: 32px;
+  --control-height-md: 40px;
+  --control-height-lg: 48px;
+  --control-height-xl: 56px;
+  --touch-target-min: 44px;
+  --touch-target: 48px;
 
-  /* ── Shadows ── */
-  --shadow-sm:  0 1px 2px var(--color-shadow);
-  --shadow-md:  0 4px 6px -1px var(--color-shadow);
-  --shadow-lg:  0 10px 15px -3px var(--color-shadow);
-  --shadow-xl:  0 20px 25px -5px var(--color-shadow);
+  /* ── Icon sizes (§22) ── */
+  --icon-12: 12px;
+  --icon-14: 14px;
+  --icon-16: 16px;
+  --icon-18: 18px;
+  --icon-20: 20px;
+  --icon-24: 24px;
+  --icon-28: 28px;
+  --icon-32: 32px;
+  --icon-40: 40px;
+  --icon-48: 48px;
 
-  /* ── Transitions ── */
-  --transition-fast:   150ms ease;
-  --transition-normal: 200ms ease;
-  --transition-slow:   300ms ease;
+  /* ── Border (§29) ── */
+  --border-width-subtle: 1px;
+  --border-width-default: 1px;
+  --border-width-strong: 1px;
+  --border-width-emphasis: 2px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
 
-  /* ── Z-Index ── */
-  --z-dropdown: 1000;  --z-sticky: 1100;  --z-overlay: 1200;
-  --z-modal:    1300;  --z-toast:  1400;  --z-tooltip: 1500;
+  /* ── Elevation (§28) — tonal only (no drop shadows) ── */
+  --elevation-0-bg: var(--color-background-primary);
+  --elevation-1-bg: var(--color-surface-primary);
+  --elevation-1-border: var(--color-border-subtle);
+  --elevation-2-bg: var(--color-surface-elevated);
+  --elevation-2-border: var(--color-border-default);
+  --elevation-3-bg: var(--color-surface-floating);
+  --elevation-3-border: var(--color-border-default);
+  --elevation-4-bg: var(--color-surface-floating);
+  --elevation-4-border: var(--color-border-strong);
+  --elevation-5-scrim: var(--color-scrim);
+
+  /* ── Motion (§31–32) ── */
+  --duration-instant: 0ms;
+  --duration-micro: 80ms;
+  --duration-fast: 120ms;
+  --duration-quick: 160ms;
+  --duration-standard: 200ms;
+  --duration-smooth: 240ms;
+  --duration-medium: 300ms;
+  --duration-large: 400ms;
+  --duration-dramatic: 500ms;
+
+  --ease-standard: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0, 0, 0.2, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --ease-spring: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --ease-linear: linear;
+
+  /* ── Blur (§35) — opt-in materials only ── */
+  --blur-sm: 8px;
+  --blur-md: 16px;
+  --blur-lg: 24px;
+  --blur-xl: 32px;
+  --blur-2xl: 48px;
+
+  /* ── Opacity (§36) ── */
+  --opacity-0: 0;
+  --opacity-5: 0.05;
+  --opacity-8: 0.08;
+  --opacity-10: 0.1;
+  --opacity-12: 0.12;
+  --opacity-16: 0.16;
+  --opacity-24: 0.24;
+  --opacity-32: 0.32;
+  --opacity-50: 0.5;
+  --opacity-64: 0.64;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-100: 1;
+  --opacity-disabled: 0.5;
+
+  /* ── Z-index (§38) ── */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-navigation: 200;
+  --z-floating: 300;
+  --z-dropdown: 400;
+  --z-popover: 500;
+  --z-tooltip: 600;
+  --z-drawer: 700;
+  --z-modal: 800;
+  --z-critical: 900;
+  --z-system: 1000;
+
+  /* ── Density (§83) — comfortable default ── */
+  --density-scale: 1;
+  --radius-personality: ${personality};
 }
 ${
   theme.darkMode !== false
     ? `
+[data-theme="dark"],
 .dark {
-  --color-primary:         ${lighten(primary, 0.2)};
-  --color-primary-hover:   ${primary};
-  --color-primary-subtle:  ${darken(primary, 0.7)};
-  --color-primary-text:    #ffffff;
+  --neutral-0: #1c1c1e;
+  --neutral-50: #2c2c2e;
+  --neutral-100: #3a3a3c;
+  --neutral-150: #48484a;
+  --neutral-200: #545456;
+  --neutral-300: #636366;
+  --neutral-400: #8e8e93;
+  --neutral-500: #98989d;
+  --neutral-600: #aeaeb2;
+  --neutral-700: #c7c7cc;
+  --neutral-800: #d1d1d6;
+  --neutral-850: #e5e5ea;
+  --neutral-900: #f5f5f7;
+  --neutral-950: #fafafa;
+  --neutral-1000: #ffffff;
 
-  --color-bg:              #0f172a;
-  --color-bg-subtle:       #1e293b;
-  --color-bg-muted:        #334155;
-  --color-border:          #334155;
-  --color-border-strong:   #475569;
+  --color-background-primary: #1c1c1e;
+  --color-background-secondary: #000000;
+  --color-background-tertiary: #2c2c2e;
 
-  --color-text:            #f1f5f9;
-  --color-text-muted:      #94a3b8;
-  --color-text-subtle:     #64748b;
-  --color-text-inverse:    #0f172a;
+  --color-surface-primary: #2c2c2e;
+  --color-surface-secondary: #3a3a3c;
+  --color-surface-tertiary: #48484a;
+  --color-surface-elevated: #3a3a3c;
+  --color-surface-floating: #48484a;
 
-  --color-success:         #34d399;
-  --color-success-subtle:  #064e3b;
-  --color-warning:         #fbbf24;
-  --color-warning-subtle:  #451a03;
-  --color-error:           #f87171;
-  --color-error-subtle:    #450a0a;
-  --color-info:            #60a5fa;
-  --color-info-subtle:     #1e3a5f;
-  --color-overlay:         rgba(0,0,0,0.7);
-  --color-shadow:          rgba(0,0,0,0.3);
+  --color-text-primary: #f5f5f7;
+  --color-text-secondary: #aeaeb2;
+  --color-text-tertiary: #8e8e93;
+  --color-text-quaternary: #636366;
+  --color-text-disabled: #636366;
+  --color-text-inverse: #1c1c1e;
+
+  --color-border-subtle: #3a3a3c;
+  --color-border-default: #48484a;
+  --color-border-strong: #636366;
+
+  --color-accent-primary: ${lighten(primary, 0.18)};
+  --color-accent-hover: ${lighten(primary, 0.28)};
+  --color-accent-pressed: ${primary};
+  --color-accent-subtle: ${darken(primary, 0.55)};
+  --color-accent-on: #ffffff;
+
+  --color-success: #30d158;
+  --color-success-bg: #0d2818;
+  --color-success-border: #30d158;
+  --color-success-fg: #d8ffe4;
+
+  --color-warning: #ff9f0a;
+  --color-warning-bg: #2a1a00;
+  --color-warning-border: #ff9f0a;
+  --color-warning-fg: #ffe6bf;
+
+  --color-error: #ff453a;
+  --color-error-bg: #2a0606;
+  --color-error-border: #ff453a;
+  --color-error-fg: #ffd4d1;
+
+  --color-info: #64d2ff;
+  --color-info-bg: #00263d;
+  --color-info-border: #64d2ff;
+  --color-info-fg: #d6f3ff;
+
+  --color-scrim: rgba(0, 0, 0, 0.55);
+  --color-selection: ${darken(primary, 0.45)};
 }
 `
     : ""
 }
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-micro: 0ms;
+    --duration-fast: 0ms;
+    --duration-quick: 80ms;
+    --duration-standard: 100ms;
+    --duration-smooth: 120ms;
+    --duration-medium: 120ms;
+    --duration-large: 120ms;
+    --duration-dramatic: 120ms;
+  }
+}
+
 /* ── End DevKit Managed Theme Block ── */
 
 /* Your custom styles go here — DevKit will never modify below this line */

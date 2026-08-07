@@ -1,6 +1,6 @@
 # Roboticela DevKit — Monorepo
 
-> Empty reusable UI component system. No components or scaffolds are registered yet.
+> Reusable UI component system. Layer 1 **Interaction Controls** has 10 empty stubs (IDs 001–010). Other subgroups reserved.
 
 ---
 
@@ -12,7 +12,7 @@ npm install
 npm run dev
 ```
 
-Opens `http://localhost:5173` — empty catalog.
+Opens `http://localhost:5173` — shows reserved group/subgroups (0 packages).
 
 ---
 
@@ -20,13 +20,46 @@ Opens `http://localhost:5173` — empty catalog.
 
 | Layer | IDs | Category | Scope |
 |-------|-----|----------|--------|
-| 1 Foundation | 1–100 | `foundation` | — |
+| 1 Foundation | 1–100 | `foundation` | Interaction Controls: 10 stubs (001–010) |
 | 2 Basic | 101–500 | `basic` | — |
 | 3 Composite | 501–1500 | `composite` | — |
 | 4 Advanced | 1501–2500 | `advanced` | — |
 | 5 Templates | 2501–3000 | `templates` | — |
 
-Components live under `registry/components/`. The index is empty: `registry/components/registry.json`.
+### Layer 1 — Group 1
+
+**Foundations & Interface Primitives** (`foundations-interface-primitives`) — available for `nextjs-compact` and `vite-express-tauri`.
+
+#### Interaction Controls (`interaction-controls`) — IDs 001–010 (stubs)
+
+| ID | Package | Display name |
+|----|---------|--------------|
+| 001 | `button` | Button |
+| 002 | `icon-button` | Icon Button |
+| 003 | `button-group` | Button Group |
+| 004 | `split-button` | Split Button |
+| 005 | `link-button` | Link Button |
+| 006 | `floating-action-button` | Floating Action Button |
+| 007 | `toggle-button` | Toggle Button |
+| 008 | `segmented-control` | Segmented Control |
+| 009 | `command-button` | Command Button |
+| 010 | `action-menu-trigger` | Action Menu Trigger |
+
+Other subgroups are reserved with no packages yet:
+
+| Subgroup ID | Name |
+|-------------|------|
+| `form-controls` | Form Controls |
+| `selection-controls` | Selection Controls |
+| `navigation-controls` | Navigation Controls |
+| `feedback-status` | Feedback & Status |
+| `content-display` | Content & Display |
+| `layout-primitives` | Layout Primitives |
+| `overlay-primitives` | Overlay Primitives |
+| `data-display-primitives` | Data Display Primitives |
+| `media-primitives` | Media Primitives |
+
+Structure: `registry/components/layers.json`. Index: `registry/components/registry.json`.
 
 ---
 
@@ -56,4 +89,13 @@ Local registry: `DEVKIT_REGISTRY=http://localhost:4000`
 
 ## Design language
 
-See [`.cursor/rule/design-rule.md`](.cursor/rule/design-rule.md). Historical architecture notes: [`devkit-plan.md`](devkit-plan.md).
+DevKit UI follows the **Design Constitution** (Apple-class craft, semantic tokens, no magic values):
+
+| Doc | Role |
+|-----|------|
+| [`.cursor/rules/design-main-rule.mdc`](.cursor/rules/design-main-rule.mdc) | Full constitution §§01–100 (spacing, type, color, radius, motion, a11y, generator prompt) |
+| [`.cursor/rule/design-rule.md`](.cursor/rule/design-rule.md) | Always-on summary for agents |
+| [`.cursor/rules/devkit-design.mdc`](.cursor/rules/devkit-design.mdc) | Cursor always-apply rule |
+| [`.cursor/rules/component-generator.mdc`](.cursor/rules/component-generator.mdc) | Component authoring prompt (§100) |
+
+`devkit theme apply` emits constitution CSS variables (`--space-*`, `--radius-*`, `--color-*`, type, motion, z-index). Defaults: system fonts, accent `#0071e3`, radius personality `balanced`. No box-shadow or gradient tokens.

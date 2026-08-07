@@ -364,15 +364,17 @@ devkit theme list
 devkit theme audit
 ```
 
-**Built-in presets:**
+**Built-in presets** (Design Constitution — system fonts, tonal elevation, no shadow/gradient tokens):
 
-| Preset | Primary | Secondary | Radius | Style |
-|--------|---------|-----------|--------|-------|
-| `default` | Indigo `#6366f1` | Amber `#f59e0b` | `md` | Modern SaaS |
-| `minimal` | Slate `#475569` | Sky `#0ea5e9` | `sm` | Clean, editorial |
-| `bold` | Violet `#7c3aed` | Pink `#ec4899` | `lg` | Vibrant, expressive |
-| `playful` | Emerald `#10b981` | Orange `#f97316` | `full` | Friendly, rounded |
-| `corporate` | Blue `#1d4ed8` | Gray `#374151` | `none` | Formal, enterprise |
+| Preset | Primary | Secondary | Radius personality | Style |
+|--------|---------|-----------|--------------------|-------|
+| `default` | System Blue `#0071e3` | Neutral `#86868b` | `balanced` | Calm, premium |
+| `minimal` | Neutral `#424245` | Blue `#0071e3` | `sharp` | Restrained |
+| `bold` | Bright Blue `#0a84ff` | Rose `#ff375f` | `soft` | Expressive |
+| `playful` | Green `#30d158` | Amber `#ff9f0a` | `soft` | Friendly |
+| `corporate` | Deep Blue `#1d4ed8` | Gray `#515154` | `sharp` | Formal |
+
+Generated CSS includes constitution scales: `--space-*`, `--radius-0…10`, `--color-background-*` / `--color-surface-*` / `--color-text-*`, typography, motion durations, and semantic z-index. See `.cursor/rules/design-main-rule.mdc`.
 
 ---
 
@@ -441,7 +443,9 @@ DevKit does not magic-merge hand-edited source files. The supported pattern is: 
   },
   "theme": {
     "preset": "bold",
-    "colors": { "primary": "#7c3aed", "secondary": "#ec4899" }
+    "colors": { "primary": "#0a84ff", "secondary": "#ff375f" },
+    "fonts": { "sans": "system", "mono": "system" },
+    "radius": "soft"
   }
 }
 ```
@@ -473,14 +477,14 @@ The single source of truth for all component configuration. Committed to git. Se
   "theme": {
     "preset": "default",
     "colors": {
-      "primary": "#6366f1",
-      "secondary": "#f59e0b"
+      "primary": "#0071e3",
+      "secondary": "#86868b"
     },
     "fonts": {
-      "sans": "Inter",
-      "mono": "JetBrains Mono"
+      "sans": "system",
+      "mono": "system"
     },
-    "radius": "md",
+    "radius": "balanced",
     "darkMode": true,
     "darkModeStrategy": "class"
   },

@@ -20,6 +20,7 @@ export interface DevKitConfig {
     preset?: string;
     colors?: { primary?: string; secondary?: string };
     fonts?: { sans?: string; mono?: string; display?: string };
+    /** Radius personality: sharp | balanced | soft (or legacy none/sm/md/lg/xl/full). */
     radius?: string;
     darkMode?: boolean;
     darkModeStrategy?: "class" | "media";
@@ -90,9 +91,9 @@ export function defaultConfig(template: DevKitConfig["template"], siteName: stri
     site: { name: siteName, url: siteUrl },
     theme: {
       preset: "default",
-      colors: { primary: "#6366f1", secondary: "#f59e0b" },
-      fonts: { sans: "Inter", mono: "JetBrains Mono", display: "Inter" },
-      radius: "md",
+      colors: { primary: "#0071e3", secondary: "#86868b" },
+      fonts: { sans: "system", mono: "system", display: "system" },
+      radius: "balanced",
       darkMode: true,
       darkModeStrategy: "class",
     },

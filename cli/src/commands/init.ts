@@ -37,11 +37,11 @@ export async function initCommand(cwd = process.cwd()) {
   const preset = await select({
     message: "Theme preset",
     options: [
-      { value: "default",   label: "Default    — Indigo" },
-      { value: "minimal",   label: "Minimal    — Slate" },
-      { value: "bold",      label: "Bold       — Violet" },
-      { value: "playful",   label: "Playful    — Emerald" },
-      { value: "corporate", label: "Corporate  — Blue" },
+      { value: "default",   label: "Default    — System Blue (balanced)" },
+      { value: "minimal",   label: "Minimal    — Neutral (sharp)" },
+      { value: "bold",      label: "Bold       — Bright Blue (soft)" },
+      { value: "playful",   label: "Playful    — Green (soft)" },
+      { value: "corporate", label: "Corporate  — Deep Blue (sharp)" },
     ],
   }) as string;
 

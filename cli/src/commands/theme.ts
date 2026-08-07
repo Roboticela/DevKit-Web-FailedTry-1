@@ -65,13 +65,14 @@ export function themeSetCommand(key: string, value: string, cwd = process.cwd())
 export function themeListCommand(cwd = process.cwd()) {
   const config = readConfig(cwd);
   const t = config.theme ?? {};
+  const primary = t.colors?.primary ?? "#0071e3";
   log.blank();
   console.log(`  ${chalk.bold("Preset")}          ${t.preset ?? "default"}`);
-  console.log(`  ${chalk.bold("Primary")}         ${chalk.hex(t.colors?.primary ?? "#6366f1")(t.colors?.primary ?? "#6366f1 (preset)")}`);
+  console.log(`  ${chalk.bold("Primary")}         ${chalk.hex(primary)(t.colors?.primary ?? "#0071e3 (preset)")}`);
   console.log(`  ${chalk.bold("Secondary")}       ${t.colors?.secondary ?? "(preset)"}`);
-  console.log(`  ${chalk.bold("Font sans")}       ${t.fonts?.sans ?? "Inter"}`);
-  console.log(`  ${chalk.bold("Font mono")}       ${t.fonts?.mono ?? "JetBrains Mono"}`);
-  console.log(`  ${chalk.bold("Radius")}          ${t.radius ?? "md"}`);
+  console.log(`  ${chalk.bold("Font sans")}       ${t.fonts?.sans ?? "system"}`);
+  console.log(`  ${chalk.bold("Font mono")}       ${t.fonts?.mono ?? "system"}`);
+  console.log(`  ${chalk.bold("Radius")}          ${t.radius ?? "balanced"}`);
   console.log(`  ${chalk.bold("Dark mode")}       ${t.darkMode !== false ? "enabled" : "disabled"}`);
   log.blank();
 }

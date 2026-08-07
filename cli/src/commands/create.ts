@@ -35,11 +35,11 @@ const TEMPLATES = [
 ];
 
 const PRESETS = [
-  { value: "default",   label: "Default    — Indigo + Amber    — Modern SaaS" },
-  { value: "minimal",   label: "Minimal    — Slate + Sky       — Clean, editorial" },
-  { value: "bold",      label: "Bold       — Violet + Pink     — Vibrant, expressive" },
-  { value: "playful",   label: "Playful    — Emerald + Orange  — Friendly, rounded" },
-  { value: "corporate", label: "Corporate  — Blue + Gray       — Formal, enterprise" },
+  { value: "default",   label: "Default    — System Blue      — Balanced, Apple-class" },
+  { value: "minimal",   label: "Minimal    — Neutral Gray     — Sharp, restrained" },
+  { value: "bold",      label: "Bold       — Bright Blue      — Soft radius, expressive" },
+  { value: "playful",   label: "Playful    — Green + Amber    — Soft, friendly" },
+  { value: "corporate", label: "Corporate  — Deep Blue        — Sharp, formal" },
 ];
 
 interface CreatePickerOption {
@@ -113,7 +113,7 @@ export async function createCommand(projectName: string | undefined, opts: Creat
   const primaryColor = opts.primary ?? (opts.yes ? undefined : await text({
     message: "Primary brand color (hex, leave blank to use preset)",
     placeholder: "(leave blank for preset default)",
-    validate: (v) => v && !/^#[0-9a-fA-F]{6}$/.test(v) ? "Enter a valid hex like #6366f1 or leave blank" : undefined,
+    validate: (v) => v && !/^#[0-9a-fA-F]{6}$/.test(v) ? "Enter a valid hex like #0071e3 or leave blank" : undefined,
   }) as string | undefined);
 
   const doGit = opts.git ?? (opts.yes ? true : await confirm({ message: "Initialize a git repository?" }) as boolean);

@@ -1,11 +1,140 @@
 {
   "version": "1",
   "updatedAt": "2026-08-07T00:00:00Z",
-  "description": "Empty DevKit — no components or scaffolds registered.",
+  "description": "DevKit component catalog - groups and subgroups. Packages are empty stubs until implemented.",
   "kinds": {
-    "component": "Reusable UI packages selectable by layer.",
+    "component": "Reusable UI packages selectable by layer. Available for both templates.",
     "scaffold": "Full-feature packages (routes, APIs, flows)."
   },
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
   "scaffolds": [],
-  "groups": []
+  "groups": [
+    {
+      "id": "foundations-interface-primitives",
+      "name": "Foundations & Interface Primitives",
+      "layer": 1,
+      "category": "foundation",
+      "description": "The fundamental building blocks used to construct every higher-level component.",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "subgroups": [
+        {
+          "id": "interaction-controls",
+          "name": "Interaction Controls",
+          "components": [
+            {
+              "id": 1,
+              "name": "button",
+              "displayName": "Button",
+              "stub": true
+            },
+            {
+              "id": 2,
+              "name": "icon-button",
+              "displayName": "Icon Button",
+              "stub": true
+            },
+            {
+              "id": 3,
+              "name": "button-group",
+              "displayName": "Button Group",
+              "stub": true
+            },
+            {
+              "id": 4,
+              "name": "split-button",
+              "displayName": "Split Button",
+              "stub": true
+            },
+            {
+              "id": 5,
+              "name": "link-button",
+              "displayName": "Link Button",
+              "stub": true
+            },
+            {
+              "id": 6,
+              "name": "floating-action-button",
+              "displayName": "Floating Action Button",
+              "stub": true
+            },
+            {
+              "id": 7,
+              "name": "toggle-button",
+              "displayName": "Toggle Button",
+              "stub": true
+            },
+            {
+              "id": 8,
+              "name": "segmented-control",
+              "displayName": "Segmented Control",
+              "stub": true
+            },
+            {
+              "id": 9,
+              "name": "command-button",
+              "displayName": "Command Button",
+              "stub": true
+            },
+            {
+              "id": 10,
+              "name": "action-menu-trigger",
+              "displayName": "Action Menu Trigger",
+              "stub": true
+            }
+          ]
+        },
+        {
+          "id": "form-controls",
+          "name": "Form Controls",
+          "components": []
+        },
+        {
+          "id": "selection-controls",
+          "name": "Selection Controls",
+          "components": []
+        },
+        {
+          "id": "navigation-controls",
+          "name": "Navigation Controls",
+          "components": []
+        },
+        {
+          "id": "feedback-status",
+          "name": "Feedback & Status",
+          "components": []
+        },
+        {
+          "id": "content-display",
+          "name": "Content & Display",
+          "components": []
+        },
+        {
+          "id": "layout-primitives",
+          "name": "Layout Primitives",
+          "components": []
+        },
+        {
+          "id": "overlay-primitives",
+          "name": "Overlay Primitives",
+          "components": []
+        },
+        {
+          "id": "data-display-primitives",
+          "name": "Data Display Primitives",
+          "components": []
+        },
+        {
+          "id": "media-primitives",
+          "name": "Media Primitives",
+          "components": []
+        }
+      ]
+    }
+  ]
 }

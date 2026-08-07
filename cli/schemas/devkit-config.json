@@ -31,27 +31,36 @@
     },
     "theme": {
       "type": "object",
+      "description": "Theme tokens follow DevKit Design Constitution (.cursor/rules/design-main-rule.mdc). Generated CSS uses --space-*, --radius-*, --color-*, typography, motion, and z-index scales.",
       "additionalProperties": true,
       "properties": {
-        "preset": { "type": "string" },
+        "preset": {
+          "type": "string",
+          "enum": ["default", "minimal", "bold", "playful", "corporate"],
+          "description": "Accent + radius personality preset"
+        },
         "colors": {
           "type": "object",
           "properties": {
-            "primary": { "type": "string" },
-            "secondary": { "type": "string" }
+            "primary": { "type": "string", "description": "Accent 500 / brand primary (hex)" },
+            "secondary": { "type": "string", "description": "Secondary accent (hex)" }
           },
           "additionalProperties": true
         },
         "fonts": {
           "type": "object",
           "properties": {
-            "sans": { "type": "string" },
-            "mono": { "type": "string" },
-            "display": { "type": "string" }
+            "sans": { "type": "string", "description": "Text font family name, or \"system\" for constitution stack" },
+            "mono": { "type": "string", "description": "Code font family name, or \"system\"" },
+            "display": { "type": "string", "description": "Display font family name, or \"system\"" }
           },
           "additionalProperties": true
         },
-        "radius": { "type": "string" },
+        "radius": {
+          "type": "string",
+          "description": "Radius personality: sharp | balanced | soft (aliases: none/sm→sharp, md→balanced, lg/xl/full→soft)",
+          "enum": ["sharp", "balanced", "soft", "none", "sm", "md", "lg", "xl", "full"]
+        },
         "darkMode": { "type": "boolean" },
         "darkModeStrategy": { "type": "string", "enum": ["class", "media"] }
       }
