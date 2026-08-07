@@ -2,13 +2,13 @@
   "id": 40,
   "name": "gradient-tokens",
   "displayName": "Gradient Tokens",
-  "description": "Gradient slots (--gradient-*) default to none; override on custom themes. Companion package for the Theme Engine.",
+  "description": "Gradient Tokens — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "theme-engine",
   "groupName": "Theme Engine",
   "kind": "component",
   "layer": 1,
-  "icon": "sun",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "css",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

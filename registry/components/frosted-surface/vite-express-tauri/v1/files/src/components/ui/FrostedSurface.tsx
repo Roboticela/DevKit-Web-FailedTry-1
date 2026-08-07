@@ -1,13 +1,10 @@
 import * as React from "react";
-import { Surface, type SurfaceProps } from "./Surface";
 
-export type FrostedSurfaceProps = Omit<SurfaceProps, "material">;
+export interface FrostedSurfaceProps {
+  children?: React.ReactNode;
+}
 
-/** Frosted glass surface — thicker material + stronger blur. */
-export function FrostedSurface({
-  variant = "card",
-  elevation = 3,
-  ...props
-}: FrostedSurfaceProps) {
-  return <Surface variant={variant} material="frosted" elevation={elevation} {...props} />;
+/** Frosted Surface — empty stub (Layer 1 Foundation). */
+export function FrostedSurface(_props: FrostedSurfaceProps = {}) {
+  return null;
 }

@@ -1,33 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/icon-system.css",
-      "destination": "styles/icon-system.css"
-    },
-    {
-      "source": "files/components/ui/icon-registry.ts",
-      "destination": "components/ui/icon-registry.ts"
-    },
-    {
       "source": "files/components/ui/Icon.tsx",
       "destination": "components/ui/Icon.tsx"
-    },
-    {
-      "source": "files/components/ui/IconExtras.tsx",
-      "destination": "components/ui/IconExtras.tsx"
-    },
-    {
-      "source": "files/docs/ICONS.md",
-      "destination": "docs/devkit/ICONS.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "color-tokens"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

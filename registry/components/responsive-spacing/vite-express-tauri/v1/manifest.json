@@ -1,34 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/responsive-spacing.css",
-      "destination": "src/styles/responsive-spacing.css"
-    },
-    {
-      "source": "files/src/styles/responsive-spacing.tailwind.css",
-      "destination": "src/styles/responsive-spacing.tailwind.css"
-    },
-    {
-      "source": "files/src/styles/density-system.css",
-      "destination": "src/styles/density-system.css"
-    },
-    {
-      "source": "files/src/components/ui/DensityProvider.tsx",
-      "destination": "src/components/ui/DensityProvider.tsx"
-    },
-    {
-      "source": "files/src/components/ui/Space.tsx",
-      "destination": "src/components/ui/Space.tsx"
-    },
-    {
-      "source": "files/docs/SPACING.md",
-      "destination": "docs/devkit/SPACING.md"
-    },
-    {
-      "source": "files/docs/DENSITY.md",
-      "destination": "docs/devkit/DENSITY.md"
+      "source": "files/src/components/ui/ResponsiveSpacing.tsx",
+      "destination": "src/components/ui/ResponsiveSpacing.tsx"
     }
   ],
   "injections": [],

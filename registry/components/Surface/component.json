@@ -2,20 +2,19 @@
   "id": 18,
   "name": "surface",
   "displayName": "Surface",
-  "description": "Surface System — enterprise visual layers (page/card/modal/sheet/tooltip/dropdown/menu/side-panel) with semantic elevation, materials, interactive press, and paint containment.",
+  "description": "Surface — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
   "kind": "component",
   "layer": 1,
-  "icon": "layers",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "layout-system",
-    "surface",
-    "surface-system"
+    "surface"
   ],
   "templates": [
     "nextjs-compact",
@@ -25,15 +24,15 @@
     "web",
     "desktop"
   ],
-  "hasVariants": true,
-  "stub": false,
+  "hasVariants": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

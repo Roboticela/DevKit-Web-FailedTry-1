@@ -1,8 +1,7 @@
-/* Line height tokens — companion aliases */
+/* Line Height Tokens — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
+ */
+
 :root {
-  --dk-leading-tight: var(--leading-tight);
-  --dk-leading-snug: var(--leading-snug);
-  --dk-leading-normal: var(--leading-normal);
-  --dk-leading-relaxed: var(--leading-relaxed);
-  --dk-leading-loose: var(--leading-loose);
+  /* reserved */
 }

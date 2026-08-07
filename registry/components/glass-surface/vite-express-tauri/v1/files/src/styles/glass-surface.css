@@ -1,8 +1,0 @@
-/**
- * glass-surface — companion to surface
- * GlassSurface — translucent blur material. Part of the Surface System.
- * Prefer importing surface-system.css once at the app root.
- */
-:root {
-  --dk-surface-companion-glass-surface: 1;
-}

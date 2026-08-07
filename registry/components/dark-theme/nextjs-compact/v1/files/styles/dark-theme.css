@@ -1,9 +1,7 @@
-/**
- * Dark Theme — Theme Engine profile.
- * Requires: color-tokens.css, theme-engine.css
- * Apply: <html data-theme="dark"> or class "dark" (ThemeProvider)
+/* Dark Theme — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
  */
-[data-theme="dark"],
-.dark {
-  color-scheme: dark;
+
+:root {
+  /* reserved */
 }

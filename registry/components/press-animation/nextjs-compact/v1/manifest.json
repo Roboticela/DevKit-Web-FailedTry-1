@@ -1,29 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/Motion.tsx",
-      "destination": "components/ui/Motion.tsx"
-    },
-    {
-      "source": "files/components/ui/MotionPresets.tsx",
-      "destination": "components/ui/MotionPresets.tsx"
-    },
-    {
       "source": "files/components/ui/PressAnimation.tsx",
       "destination": "components/ui/PressAnimation.tsx"
-    },
-    {
-      "source": "files/styles/press-animation.css",
-      "destination": "styles/press-animation.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "motion-tokens"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

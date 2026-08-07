@@ -1,6 +1,0 @@
-/**
- * separator — companion to rounded-corner (Shape System)
- * Separator — alias of Divider. Part of the Shape System.
- * Prefer importing shape-system.css once at the app root.
- */
-:root { --dk-shape-companion-separator: 1; }

@@ -1,9 +1,0 @@
-/**
- * distribution-utilities — companion to responsive-spacing
- * Use Alignment System (alignment-utilities) — .dk-justify-* / distribute presets.
- * Prefer importing responsive-spacing.css once at the app root.
- */
-:root {
-  /* alias marker — tokens live in responsive-spacing */
-  --dk-spacing-companion-distribution-utilities: 1;
-}

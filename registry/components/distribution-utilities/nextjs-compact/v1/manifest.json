@@ -1,10 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/distribution-utilities.css",
-      "destination": "styles/distribution-utilities.css"
+      "source": "files/components/ui/DistributionUtilities.tsx",
+      "destination": "components/ui/DistributionUtilities.tsx"
     }
   ],
   "injections": [],

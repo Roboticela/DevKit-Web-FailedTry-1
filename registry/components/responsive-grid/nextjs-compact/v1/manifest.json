@@ -1,22 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/responsive-grid.css",
-      "destination": "styles/responsive-grid.css"
-    },
-    {
-      "source": "files/styles/responsive-grid.tailwind.css",
-      "destination": "styles/responsive-grid.tailwind.css"
-    },
-    {
       "source": "files/components/ui/ResponsiveGrid.tsx",
       "destination": "components/ui/ResponsiveGrid.tsx"
-    },
-    {
-      "source": "files/docs/GRID.md",
-      "destination": "docs/devkit/GRID.md"
     }
   ],
   "injections": [],

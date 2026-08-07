@@ -1,25 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/stack-system.css",
-      "destination": "src/styles/stack-system.css"
-    },
-    {
       "source": "files/src/components/ui/StackLayout.tsx",
       "destination": "src/components/ui/StackLayout.tsx"
-    },
-    {
-      "source": "files/docs/STACK.md",
-      "destination": "docs/devkit/STACK.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "responsive-spacing"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

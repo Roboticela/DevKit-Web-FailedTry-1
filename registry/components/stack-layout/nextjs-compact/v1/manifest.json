@@ -1,25 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/stack-system.css",
-      "destination": "styles/stack-system.css"
-    },
-    {
       "source": "files/components/ui/StackLayout.tsx",
       "destination": "components/ui/StackLayout.tsx"
-    },
-    {
-      "source": "files/docs/STACK.md",
-      "destination": "docs/devkit/STACK.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "responsive-spacing"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

@@ -1,38 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/motion-system.css",
-      "destination": "styles/motion-system.css"
-    },
-    {
       "source": "files/styles/motion-tokens.css",
       "destination": "styles/motion-tokens.css"
-    },
-    {
-      "source": "files/components/ui/Motion.tsx",
-      "destination": "components/ui/Motion.tsx"
-    },
-    {
-      "source": "files/components/ui/MotionPresets.tsx",
-      "destination": "components/ui/MotionPresets.tsx"
-    },
-    {
-      "source": "files/components/ui/useReducedMotion.ts",
-      "destination": "components/ui/useReducedMotion.ts"
-    },
-    {
-      "source": "files/docs/MOTION.md",
-      "destination": "docs/devkit/MOTION.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "color-tokens",
-      "dynamic-theme"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

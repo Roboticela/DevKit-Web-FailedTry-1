@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/CircleShape.tsx",
       "destination": "components/ui/CircleShape.tsx"
-    },
-    {
-      "source": "files/styles/circle-shape.css",
-      "destination": "styles/circle-shape.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "rounded-corner"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

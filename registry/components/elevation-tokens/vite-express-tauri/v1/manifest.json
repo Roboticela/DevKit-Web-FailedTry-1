@@ -1,30 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/elevation-system.css",
-      "destination": "src/styles/elevation-system.css"
-    },
-    {
-      "source": "files/src/components/ui/Elevation.tsx",
-      "destination": "src/components/ui/Elevation.tsx"
-    },
-    {
-      "source": "files/src/components/ui/ShadowLayer.tsx",
-      "destination": "src/components/ui/ShadowLayer.tsx"
-    },
-    {
-      "source": "files/docs/ELEVATION.md",
-      "destination": "docs/devkit/ELEVATION.md"
+      "source": "files/src/styles/elevation-tokens.css",
+      "destination": "src/styles/elevation-tokens.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "color-tokens",
-      "dynamic-theme"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

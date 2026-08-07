@@ -1,18 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/visibility-system.css",
-      "destination": "styles/visibility-system.css"
-    },
-    {
       "source": "files/components/ui/ResponsiveVisibility.tsx",
       "destination": "components/ui/ResponsiveVisibility.tsx"
-    },
-    {
-      "source": "files/docs/VISIBILITY.md",
-      "destination": "docs/devkit/VISIBILITY.md"
     }
   ],
   "injections": [],

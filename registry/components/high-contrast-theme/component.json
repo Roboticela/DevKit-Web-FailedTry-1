@@ -1,47 +1,43 @@
-﻿{
-    "id":  33,
-    "name":  "high-contrast-theme",
-    "displayName":  "High Contrast Theme",
-    "description":  "High Contrast Theme — companion to color-tokens.",
-    "category":  "foundation",
-    "group":  "theme-engine",
-    "groupName":  "Theme Engine",
-    "kind":  "component",
-    "layer":  1,
-    "icon":  "square",
-    "author":  "Roboticela",
-    "license":  "MIT",
-    "tags":  [
-                 "foundation",
-                 "theme-engine",
-                 "high-contrast-theme"
-             ],
-    "templates":  [
-                      "nextjs-compact",
-                      "vite-express-tauri"
-                  ],
-    "platforms":  [
-                      "web",
-                      "desktop"
-                  ],
-    "hasVariants":  false,
-    "stub":  false,
-    "fileKind":  "css",
-    "versions":  {
-                     "latest":  "1.0.0",
-                     "stable":  "1.0.0",
-                     "history":  [
-                                     {
-                                         "version":  "1.0.0",
-                                         "releaseDate":  "2026-08-06",
-                                         "breaking":  false
-                                     }
-                                 ]
-                 },
-    "requiredConfig":  [
-
-                       ],
-    "optionalConfig":  [
-
-                       ]
+{
+  "id": 33,
+  "name": "high-contrast-theme",
+  "displayName": "High Contrast Theme",
+  "description": "High Contrast Theme — empty Layer 1 foundation stub.",
+  "category": "foundation",
+  "group": "theme-engine",
+  "groupName": "Theme Engine",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "theme-engine",
+    "high-contrast-theme"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": true,
+  "fileKind": "css",
+  "versions": {
+    "latest": "0.0.0",
+    "stable": "0.0.0",
+    "history": [
+      {
+        "version": "0.0.0",
+        "releaseDate": "2026-08-06",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
 }

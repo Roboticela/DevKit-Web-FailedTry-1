@@ -1,5 +1,0 @@
-/**
- * page-transition — companion to motion-tokens
- * Prefer importing motion-system.css once.
- */
-:root { --dk-motion-companion-page-transition: 1; }

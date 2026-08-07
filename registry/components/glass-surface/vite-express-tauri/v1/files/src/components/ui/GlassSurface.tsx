@@ -1,13 +1,10 @@
 import * as React from "react";
-import { Surface, type SurfaceProps } from "./Surface";
 
-export type GlassSurfaceProps = Omit<SurfaceProps, "material">;
+export interface GlassSurfaceProps {
+  children?: React.ReactNode;
+}
 
-/** Translucent glass surface — blur + thin material token. */
-export function GlassSurface({
-  variant = "card",
-  elevation = 2,
-  ...props
-}: GlassSurfaceProps) {
-  return <Surface variant={variant} material="glass" elevation={elevation} {...props} />;
+/** Glass Surface — empty stub (Layer 1 Foundation). */
+export function GlassSurface(_props: GlassSurfaceProps = {}) {
+  return null;
 }

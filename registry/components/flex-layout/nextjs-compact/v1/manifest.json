@@ -1,25 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/flex-system.css",
-      "destination": "styles/flex-system.css"
-    },
-    {
       "source": "files/components/ui/FlexLayout.tsx",
       "destination": "components/ui/FlexLayout.tsx"
-    },
-    {
-      "source": "files/docs/FLEX.md",
-      "destination": "docs/devkit/FLEX.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "responsive-spacing"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

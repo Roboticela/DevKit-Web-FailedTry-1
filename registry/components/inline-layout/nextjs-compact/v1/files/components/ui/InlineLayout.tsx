@@ -1,27 +1,10 @@
 import * as React from "react";
 
-export interface InlineLayoutProps extends React.HTMLAttributes<HTMLDivElement> {
-  gap?: string;
-  as?: keyof React.JSX.IntrinsicElements;
+export interface InlineLayoutProps {
+  children?: React.ReactNode;
 }
 
-/** Horizontal wrapping inline cluster. */
-export function InlineLayout({
-  gap,
-  as = "div",
-  className = "",
-  style,
-  children,
-  ...props
-}: InlineLayoutProps) {
-  const Tag = as as React.ElementType;
-  return (
-    <Tag
-      className={`dk-inline ${className}`.trim()}
-      style={{ ...(gap ? { ["--inline-gap" as string]: gap } : null), ...style }}
-      {...props}
-    >
-      {children}
-    </Tag>
-  );
+/** Inline Layout — empty stub (Layer 1 Foundation). */
+export function InlineLayout(_props: InlineLayoutProps = {}) {
+  return null;
 }

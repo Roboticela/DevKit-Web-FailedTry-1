@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/Border.tsx",
       "destination": "src/components/ui/Border.tsx"
-    },
-    {
-      "source": "files/src/styles/border.css",
-      "destination": "src/styles/border.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "rounded-corner"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

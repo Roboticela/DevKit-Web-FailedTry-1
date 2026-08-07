@@ -1,10 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/content-width-manager.css",
-      "destination": "src/styles/content-width-manager.css"
+      "source": "files/src/components/ui/ContentWidthManager.tsx",
+      "destination": "src/components/ui/ContentWidthManager.tsx"
     }
   ],
   "injections": [],

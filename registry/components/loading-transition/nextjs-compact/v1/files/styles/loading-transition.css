@@ -1,5 +1,0 @@
-/**
- * loading-transition — companion to motion-tokens
- * Prefer importing motion-system.css once.
- */
-:root { --dk-motion-companion-loading-transition: 1; }

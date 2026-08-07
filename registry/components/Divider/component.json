@@ -2,13 +2,13 @@
   "id": 71,
   "name": "divider",
   "displayName": "Divider",
-  "description": "Divider — hairline separators. Part of the Shape System.",
+  "description": "Divider — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "shape-system",
   "groupName": "Shape System",
   "kind": "component",
   "layer": 1,
-  "icon": "circle",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

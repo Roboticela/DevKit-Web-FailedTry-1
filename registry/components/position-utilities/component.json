@@ -1,22 +1,20 @@
 {
   "id": 29,
   "name": "position-utilities",
-  "displayName": "Position System",
-  "description": "Position System — semantic static/relative/absolute/fixed/sticky/floating/anchor layers with FAB, sticky chrome, overlays, tooltips, badges, z-index tokens, safe-area, and collision-aware floating.",
+  "displayName": "Position Utilities",
+  "description": "Position Utilities — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
   "kind": "component",
   "layer": 1,
-  "icon": "move",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "spacing-system",
-    "position-utilities",
-    "position",
-    "floating"
+    "position-utilities"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,15 +24,15 @@
     "web",
     "desktop"
   ],
-  "hasVariants": true,
-  "stub": false,
+  "hasVariants": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/Border.tsx",
       "destination": "components/ui/Border.tsx"
-    },
-    {
-      "source": "files/styles/border.css",
-      "destination": "styles/border.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "rounded-corner"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

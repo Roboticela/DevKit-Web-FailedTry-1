@@ -1,25 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/components/ui/Surface.tsx",
-      "destination": "src/components/ui/Surface.tsx"
-    },
-    {
       "source": "files/src/components/ui/Overlay.tsx",
       "destination": "src/components/ui/Overlay.tsx"
-    },
-    {
-      "source": "files/src/styles/overlay.css",
-      "destination": "src/styles/overlay.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "surface"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

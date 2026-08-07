@@ -2,13 +2,13 @@
   "id": 57,
   "name": "social-icon",
   "displayName": "Social Icon",
-  "description": "SocialIcon — part of the Icon System.",
+  "description": "Social Icon — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "icon-system",
   "groupName": "Icon System",
   "kind": "component",
   "layer": 1,
-  "icon": "sparkles",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

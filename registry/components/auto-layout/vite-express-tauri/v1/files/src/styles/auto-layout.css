@@ -1,9 +1,0 @@
-/**
- * auto-layout — companion to responsive-spacing
- * Use .dk-space-stack / .dk-space-inline with spacing tokens.
- * Prefer importing responsive-spacing.css once at the app root.
- */
-:root {
-  /* alias marker — tokens live in responsive-spacing */
-  --dk-spacing-companion-auto-layout: 1;
-}

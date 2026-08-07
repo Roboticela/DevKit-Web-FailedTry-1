@@ -1,25 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/Surface.tsx",
-      "destination": "components/ui/Surface.tsx"
-    },
-    {
       "source": "files/components/ui/ShadowLayer.tsx",
       "destination": "components/ui/ShadowLayer.tsx"
-    },
-    {
-      "source": "files/styles/shadow-layer.css",
-      "destination": "styles/shadow-layer.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "surface"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

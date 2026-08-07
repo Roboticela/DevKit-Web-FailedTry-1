@@ -1,2 +1,7 @@
-/* Prefer elevation-system.css */
-@import "./elevation-system.css";
+/* Elevation Tokens — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
+ */
+
+:root {
+  /* reserved */
+}

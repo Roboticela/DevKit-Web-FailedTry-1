@@ -1,22 +1,20 @@
 {
   "id": 27,
   "name": "alignment-utilities",
-  "displayName": "Alignment System",
-  "description": "Alignment System — universal horizontal/vertical/baseline/self/content alignment with distribution (between/around/evenly), safe & adaptive presets, RTL-safe logical sides, responsive maps, and motion.",
+  "displayName": "Alignment Utilities",
+  "description": "Alignment Utilities — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
   "kind": "component",
   "layer": 1,
-  "icon": "move",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "spacing-system",
-    "alignment-utilities",
-    "alignment",
-    "responsive"
+    "alignment-utilities"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,15 +24,15 @@
     "web",
     "desktop"
   ],
-  "hasVariants": true,
-  "stub": false,
+  "hasVariants": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

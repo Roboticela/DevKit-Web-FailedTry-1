@@ -2,23 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DevKit Playground</title>
-    <script>
-      (function () {
-        try {
-          var k = "devkit-theme";
-          var t = localStorage.getItem(k) || "system";
-          var sys = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-          var r = t === "system" ? sys : t;
-          var d = document.documentElement;
-          d.setAttribute("data-theme", r);
-          d.classList.toggle("dark", r === "dark" || r === "high-contrast-dark");
-          if (r === "high-contrast") d.setAttribute("data-contrast", "high");
-          else d.removeAttribute("data-contrast");
-        } catch (e) {}
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -2,20 +2,19 @@
   "id": 34,
   "name": "dynamic-theme",
   "displayName": "Dynamic Theme",
-  "description": "Theme Engine — light/dark/high-contrast/system/custom themes with persistence, FOUC-safe boot, runtime CSS vars, elevation, motion, and blur profiles.",
+  "description": "Dynamic Theme — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "theme-engine",
   "groupName": "Theme Engine",
   "kind": "component",
   "layer": 1,
-  "icon": "sun",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "theme-engine",
-    "dynamic-theme",
-    "theme-provider"
+    "dynamic-theme"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,22 +25,19 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.theme",
-    "ui.themeStorageKey"
-  ]
+  "optionalConfig": []
 }

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
@@ -9,9 +9,7 @@
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "dynamic-theme"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

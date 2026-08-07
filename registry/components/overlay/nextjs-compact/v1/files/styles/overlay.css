@@ -1,8 +1,0 @@
-/**
- * overlay — companion to surface
- * Overlay — scrim + modal/sheet content. Part of the Surface System.
- * Prefer importing surface-system.css once at the app root.
- */
-:root {
-  --dk-surface-companion-overlay: 1;
-}

@@ -1,17 +1,7 @@
-/**
- * Semantic color aliases — maps status/domain roles to Color Token System.
- * Requires: color-tokens.css
- * Prefer --color-success, --color-danger, etc. directly; these are convenience aliases.
+/* Semantic Colors — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
  */
+
 :root {
-  --semantic-success: var(--color-success);
-  --semantic-warning: var(--color-warning);
-  --semantic-danger: var(--color-danger);
-  --semantic-error: var(--color-danger);
-  --semantic-info: var(--color-info);
-  --semantic-ai: var(--color-ai);
-  --semantic-automation: var(--color-automation);
-  --semantic-billing: var(--color-billing);
-  --semantic-security: var(--color-security);
-  --semantic-notifications: var(--color-notifications);
+  /* reserved */
 }

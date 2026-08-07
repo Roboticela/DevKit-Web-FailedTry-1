@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/AvatarShape.tsx",
       "destination": "components/ui/AvatarShape.tsx"
-    },
-    {
-      "source": "files/styles/avatar-shape.css",
-      "destination": "styles/avatar-shape.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "rounded-corner"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

@@ -1,26 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/padding-system.css",
-      "destination": "styles/padding-system.css"
-    },
-    {
-      "source": "files/styles/padding-system.tailwind.css",
-      "destination": "styles/padding-system.tailwind.css"
-    },
-    {
-      "source": "files/components/ui/Padding.tsx",
-      "destination": "components/ui/Padding.tsx"
-    },
-    {
       "source": "files/components/ui/PaddingUtilities.tsx",
       "destination": "components/ui/PaddingUtilities.tsx"
-    },
-    {
-      "source": "files/docs/PADDING.md",
-      "destination": "docs/devkit/PADDING.md"
     }
   ],
   "injections": [],

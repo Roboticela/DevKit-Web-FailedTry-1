@@ -1,8 +1,7 @@
-/* Font weight tokens — companion aliases for typography-tokens */
+/* Font Weight Tokens — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
+ */
+
 :root {
-  --dk-weight-regular: var(--font-weight-regular);
-  --dk-weight-medium: var(--font-weight-medium);
-  --dk-weight-semibold: var(--font-weight-semibold);
-  --dk-weight-bold: var(--font-weight-bold);
-  --dk-weight-heavy: var(--font-weight-heavy);
+  /* reserved */
 }

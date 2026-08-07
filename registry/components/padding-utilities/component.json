@@ -1,22 +1,20 @@
 {
   "id": 22,
   "name": "padding-utilities",
-  "displayName": "Responsive Padding",
-  "description": "Responsive Padding System — semantic internal spacing with density presets (none→spacious, hero, modal, card, dashboard, table, form, nav), logical sides, safe-area, motion, and layout integration.",
+  "displayName": "Padding Utilities",
+  "description": "Padding Utilities — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
   "kind": "component",
   "layer": 1,
-  "icon": "move",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "spacing-system",
-    "padding-utilities",
-    "padding",
-    "responsive"
+    "padding-utilities"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,22 +24,20 @@
     "web",
     "desktop"
   ],
-  "hasVariants": true,
-  "stub": false,
+  "hasVariants": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.density"
-  ]
+  "optionalConfig": []
 }

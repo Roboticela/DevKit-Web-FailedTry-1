@@ -1,29 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/Motion.tsx",
-      "destination": "components/ui/Motion.tsx"
-    },
-    {
-      "source": "files/components/ui/MotionPresets.tsx",
-      "destination": "components/ui/MotionPresets.tsx"
-    },
-    {
       "source": "files/components/ui/RippleAlternative.tsx",
       "destination": "components/ui/RippleAlternative.tsx"
-    },
-    {
-      "source": "files/styles/ripple-alternative.css",
-      "destination": "styles/ripple-alternative.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "motion-tokens"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

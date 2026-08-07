@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/Divider.tsx",
       "destination": "src/components/ui/Divider.tsx"
-    },
-    {
-      "source": "files/src/styles/divider.css",
-      "destination": "src/styles/divider.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "rounded-corner"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

@@ -2,13 +2,13 @@
   "id": 5,
   "name": "font-size-tokens",
   "displayName": "Font Size Tokens",
-  "description": "FontSizeTokens — companion aliases to typography-tokens.",
+  "description": "Font Size Tokens — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "design-tokens",
   "groupName": "Design Tokens",
   "kind": "component",
   "layer": 1,
-  "icon": "type",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -25,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "css",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

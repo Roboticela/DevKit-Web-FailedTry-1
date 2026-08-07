@@ -1,14 +1,7 @@
-/**
- * High Contrast Theme — Theme Engine profile.
- * Requires: color-tokens.css, theme-engine.css
- * Apply: data-theme="high-contrast" | data-contrast="high"
- * Dark HC: data-theme="high-contrast-dark"
+/* High Contrast Theme — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
  */
-[data-theme="high-contrast"],
-[data-contrast="high"] {
-  color-scheme: light;
-}
 
-[data-theme="high-contrast-dark"] {
-  color-scheme: dark;
+:root {
+  /* reserved */
 }

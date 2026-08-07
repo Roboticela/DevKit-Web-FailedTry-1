@@ -2,18 +2,18 @@
   "id": 99,
   "name": "theme-provider",
   "displayName": "Theme Provider",
-  "description": "Utilities re-export of the Theme Engine (dynamic-theme). Prefer dynamic-theme as the primary package.",
+  "description": "Theme Provider — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "utility-components",
   "groupName": "Utility Components",
   "kind": "component",
   "layer": 1,
-  "icon": "sun",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
-    "utility-helpers",
+    "utility-components",
     "theme-provider"
   ],
   "templates": [
@@ -25,21 +25,19 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.theme"
-  ]
+  "optionalConfig": []
 }

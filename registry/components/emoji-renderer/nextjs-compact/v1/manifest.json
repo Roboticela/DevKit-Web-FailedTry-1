@@ -1,33 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/icon-registry.ts",
-      "destination": "components/ui/icon-registry.ts"
-    },
-    {
-      "source": "files/components/ui/Icon.tsx",
-      "destination": "components/ui/Icon.tsx"
-    },
-    {
-      "source": "files/components/ui/IconExtras.tsx",
-      "destination": "components/ui/IconExtras.tsx"
-    },
-    {
       "source": "files/components/ui/EmojiRenderer.tsx",
       "destination": "components/ui/EmojiRenderer.tsx"
-    },
-    {
-      "source": "files/styles/emoji-renderer.css",
-      "destination": "styles/emoji-renderer.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "icon"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

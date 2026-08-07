@@ -1,22 +1,20 @@
 {
   "id": 23,
   "name": "gap-utilities",
-  "displayName": "Gap System",
-  "description": "Gap System — intelligent child spacing for Grid/Stack/Flex/Nav/Forms/Tables/Toolbars/Cards/Lists with semantic presets, responsive maps, density, nested inheritance, dividers, and motion.",
+  "displayName": "Gap Utilities",
+  "description": "Gap Utilities — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
   "kind": "component",
   "layer": 1,
-  "icon": "move",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "spacing-system",
-    "gap-utilities",
-    "gap",
-    "responsive"
+    "gap-utilities"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,22 +24,20 @@
     "web",
     "desktop"
   ],
-  "hasVariants": true,
-  "stub": false,
+  "hasVariants": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.density"
-  ]
+  "optionalConfig": []
 }

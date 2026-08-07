@@ -1,33 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/icon-registry.ts",
-      "destination": "components/ui/icon-registry.ts"
-    },
-    {
-      "source": "files/components/ui/Icon.tsx",
-      "destination": "components/ui/Icon.tsx"
-    },
-    {
-      "source": "files/components/ui/IconExtras.tsx",
-      "destination": "components/ui/IconExtras.tsx"
-    },
-    {
       "source": "files/components/ui/AiIcon.tsx",
       "destination": "components/ui/AiIcon.tsx"
-    },
-    {
-      "source": "files/styles/ai-icon.css",
-      "destination": "styles/ai-icon.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "icon"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

@@ -1,32 +1,10 @@
-export {
-  Position,
-  PositionUtilities,
-  PositionFab,
-  PositionStickyHeader,
-  PositionStickyFooter,
-  PositionFloatingNav,
-  PositionOverlay,
-  PositionModal,
-  PositionToast,
-  PositionBadge,
-  PositionTooltip,
-  PositionPopover,
-  PositionMenu,
-  PositionAnchor,
-  FloatingPosition,
-  useFloatingPosition,
-  positionClassName,
-} from "./Position";
+import * as React from "react";
 
-export type {
-  PositionMode,
-  PositionPreset,
-  PositionLayer,
-  PositionInset,
-  FloatPlacement,
-  PositionBreakpoint,
-  ResponsivePosition,
-  PositionProps,
-  FloatingPositionProps,
-  FloatingCoords,
-} from "./Position";
+export interface PositionUtilitiesProps {
+  children?: React.ReactNode;
+}
+
+/** Position Utilities — empty stub (Layer 1 Foundation). */
+export function PositionUtilities(_props: PositionUtilitiesProps = {}) {
+  return null;
+}

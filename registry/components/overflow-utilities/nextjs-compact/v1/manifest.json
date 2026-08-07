@@ -1,22 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/overflow-system.css",
-      "destination": "styles/overflow-system.css"
-    },
-    {
-      "source": "files/components/ui/Overflow.tsx",
-      "destination": "components/ui/Overflow.tsx"
-    },
-    {
       "source": "files/components/ui/OverflowUtilities.tsx",
       "destination": "components/ui/OverflowUtilities.tsx"
-    },
-    {
-      "source": "files/docs/OVERFLOW.md",
-      "destination": "docs/devkit/OVERFLOW.md"
     }
   ],
   "injections": [],

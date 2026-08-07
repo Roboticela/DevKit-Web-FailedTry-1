@@ -1,29 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/components/ui/Motion.tsx",
-      "destination": "src/components/ui/Motion.tsx"
-    },
-    {
-      "source": "files/src/components/ui/MotionPresets.tsx",
-      "destination": "src/components/ui/MotionPresets.tsx"
-    },
-    {
       "source": "files/src/components/ui/PageTransition.tsx",
       "destination": "src/components/ui/PageTransition.tsx"
-    },
-    {
-      "source": "files/src/styles/page-transition.css",
-      "destination": "src/styles/page-transition.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "motion-tokens"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

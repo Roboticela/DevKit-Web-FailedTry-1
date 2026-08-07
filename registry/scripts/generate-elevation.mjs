@@ -80,9 +80,9 @@ write(
     {
       id: 37,
       name: "elevation-tokens",
-      displayName: "Elevation Tokens",
+      displayName: "Elevation Token System",
       description:
-        "Shadow & Elevation System — subtle layered shadows, semantic roles, hover/press/focus states, adaptive dark mode.",
+        "Elevation Token System — tonal depth (no decorative shadows), semantic roles for cards/FAB/nav/sheets/drawers/modals/popovers/tooltips/overlays/notifications/AI, adaptive Light/Dark, hover/press, blur materials, contain-optimized rendering.",
       category: "foundation",
       group: "theme-engine",
       groupName: "Theme Engine",
@@ -91,7 +91,7 @@ write(
       icon: "layers",
       author: "Roboticela",
       license: "MIT",
-      tags: ["foundation", "theme-engine", "elevation-tokens", "shadow"],
+      tags: ["foundation", "theme-engine", "elevation-tokens", "depth", "a11y"],
       templates: ["nextjs-compact", "vite-express-tauri"],
       platforms: ["web", "desktop"],
       hasVariants: false,
@@ -100,7 +100,7 @@ write(
       versions: {
         latest: "1.0.0",
         stable: "1.0.0",
-        history: [{ version: "1.0.0", releaseDate: "2026-08-06", breaking: false }],
+        history: [{ version: "1.0.0", releaseDate: "2026-08-07", breaking: false }],
       },
       requiredConfig: [],
       optionalConfig: ["ui.elevation"],
@@ -276,21 +276,21 @@ for (const entry of registry.components) {
   if (entry.name === "elevation-tokens") {
     entry.stub = false;
     entry.latestVersion = "1.0.0";
-    entry.displayName = "Elevation Tokens";
+    entry.displayName = "Elevation Token System";
     entry.description =
-      "Shadow & Elevation System — subtle layered shadows, semantic roles, hover/press/focus states, adaptive dark mode.";
+      "Elevation Token System — tonal depth, semantic floating roles, adaptive Light/Dark, blur materials, performance containment.";
     entry.icon = "layers";
-    entry.tags = ["foundation", "theme-engine", "elevation-tokens", "shadow"];
+    entry.tags = ["foundation", "theme-engine", "elevation-tokens", "depth", "a11y"];
   }
   if (entry.name === "shadow-layer") {
     entry.stub = false;
     entry.latestVersion = "1.0.0";
     entry.description =
-      "ShadowLayer — elevation depth band with subtle layered shadows. Part of the Shadow & Elevation System.";
+      "ShadowLayer — elevation depth band (tonal). Companion to the Elevation Token System.";
     entry.icon = "layers";
   }
 }
-registry.updatedAt = "2026-08-06T00:00:00Z";
+registry.updatedAt = "2026-08-07T00:00:00Z";
 write(registryPath, JSON.stringify(registry, null, 2) + "\n");
 
 console.log("Elevation system generated.");

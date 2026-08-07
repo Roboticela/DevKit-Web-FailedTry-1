@@ -7,6 +7,8 @@ npm run dev
 
 Opens **http://localhost:5173**
 
+- **Constraint Lab** — min/max/preferred sizing, presets, fluid/aspect, container queries, observe
+- **Order Lab** — semantic roles, breakpoint maps, drag/keyboard persist, app-state sequences
 - **Density Lab** — compact / comfortable / spacious / custom; cards, tables, nav, forms, scoped
 - **Overflow Lab** — scroll/fade, virtual lists, sync, lazy load
 - **Position Lab** — modes, FAB/sticky/toast presets, floating collision
@@ -28,9 +30,9 @@ Opens **http://localhost:5173**
 - **Motion Lab** — enter presets, stagger, hover/press, loading, skeleton, reduced-motion
 - **Elevation Lab** — levels 0–5, semantic roles, hover/press, adaptive dark shadows
 - **Shape Lab** — radius scale, semantic roles, circle/pill/avatar, nested radii
-- **Theme Lab** — system/manual themes, custom Midnight, runtime accent vars
+- **Theme Lab** — Light/Dark/High Contrast, Accent Color Engine, a11y prefs, import/export
 - **Spacing Lab** — scale, semantic roles, density modes
 - **Grid Lab** — responsive columns, equal height, autofit, nested, masonry
 - **Typography Lab** — full type scale
-- **Color Lab** — semantic color themes
+- **Color Lab** — Semantic Color System (20 domains × variants) + surfaces/charts
 - **Layer 1 Catalog** — all 100 foundation packages

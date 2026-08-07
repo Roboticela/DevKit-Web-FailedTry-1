@@ -22,7 +22,7 @@ function copy(from, to) {
 const nextRoot = join(COMP, "dynamic-theme/nextjs-compact/v1/files");
 const viteRoot = join(COMP, "dynamic-theme/vite-express-tauri/v1/files");
 
-const uiFiles = ["theme.ts", "ThemeProvider.tsx", "ThemeScript.tsx"];
+const uiFiles = ["theme.ts", "ThemeProvider.tsx", "ThemeScript.tsx", "DynamicTheme.tsx"];
 
 copy(join(nextRoot, "styles/theme-engine.css"), join(viteRoot, "src/styles/theme-engine.css"));
 copy(join(nextRoot, "docs/THEME.md"), join(viteRoot, "docs/THEME.md"));
@@ -31,11 +31,313 @@ for (const f of uiFiles) {
 }
 
 // Sync light / dark / HC activators
-for (const name of ["light-theme", "dark-theme", "high-contrast-theme"]) {
-  const src = join(COMP, name, "nextjs-compact/v1/files/styles", `${name}.css`);
-  if (existsSync(src)) {
-    copy(src, join(COMP, name, "vite-express-tauri/v1/files/src/styles", `${name}.css`));
+{
+  const name = "light-theme";
+  const nextL = join(COMP, name, "nextjs-compact/v1/files");
+  const viteL = join(COMP, name, "vite-express-tauri/v1/files");
+  copy(join(nextL, "styles/light-theme.css"), join(viteL, "src/styles/light-theme.css"));
+  if (existsSync(join(nextL, "docs/LIGHT.md"))) {
+    copy(join(nextL, "docs/LIGHT.md"), join(viteL, "docs/LIGHT.md"));
   }
+  if (existsSync(join(nextL, "components/ui/LightTheme.ts"))) {
+    copy(
+      join(nextL, "components/ui/LightTheme.ts"),
+      join(viteL, "src/components/ui/LightTheme.ts")
+    );
+  }
+  write(
+    join(COMP, name, "nextjs-compact/v1/manifest.json"),
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        template: "nextjs-compact",
+        files: [
+          { source: "files/styles/light-theme.css", destination: "styles/light-theme.css" },
+          { source: "files/components/ui/LightTheme.ts", destination: "components/ui/LightTheme.ts" },
+          { source: "files/docs/LIGHT.md", destination: "docs/devkit/LIGHT.md" },
+        ],
+        injections: [],
+        dependencies: { frontend: ["color-tokens", "dynamic-theme"] },
+        envVars: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+  write(
+    join(COMP, name, "vite-express-tauri/v1/manifest.json"),
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        template: "vite-express-tauri",
+        files: [
+          {
+            source: "files/src/styles/light-theme.css",
+            destination: "src/styles/light-theme.css",
+          },
+          {
+            source: "files/src/components/ui/LightTheme.ts",
+            destination: "src/components/ui/LightTheme.ts",
+          },
+          { source: "files/docs/LIGHT.md", destination: "docs/devkit/LIGHT.md" },
+        ],
+        injections: [],
+        dependencies: { frontend: ["color-tokens", "dynamic-theme"] },
+        envVars: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+  write(
+    join(COMP, name, "component.json"),
+    JSON.stringify(
+      {
+        id: 31,
+        name: "light-theme",
+        displayName: "Light Theme",
+        description:
+          "Apple HIG–inspired Light Theme — soft layered neutrals, semantic roles for page/card/nav/table/modal/AI, WCAG-friendly contrast, surface hierarchy without heavy chrome.",
+        category: "foundation",
+        group: "theme-engine",
+        groupName: "Theme Engine",
+        kind: "component",
+        layer: 1,
+        icon: "sun",
+        author: "Roboticela",
+        license: "MIT",
+        tags: ["foundation", "theme-engine", "light-theme", "hig", "a11y"],
+        templates: ["nextjs-compact", "vite-express-tauri"],
+        platforms: ["web", "desktop"],
+        hasVariants: false,
+        stub: false,
+        fileKind: "css",
+        versions: {
+          latest: "1.0.0",
+          stable: "1.0.0",
+          history: [{ version: "1.0.0", releaseDate: "2026-08-07", breaking: false }],
+        },
+        requiredConfig: [],
+        optionalConfig: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+}
+
+// Sync dark-theme profile (parallel to light-theme)
+{
+  const name = "dark-theme";
+  const nextD = join(COMP, name, "nextjs-compact/v1/files");
+  const viteD = join(COMP, name, "vite-express-tauri/v1/files");
+  copy(join(nextD, "styles/dark-theme.css"), join(viteD, "src/styles/dark-theme.css"));
+  if (existsSync(join(nextD, "docs/DARK.md"))) {
+    copy(join(nextD, "docs/DARK.md"), join(viteD, "docs/DARK.md"));
+  }
+  if (existsSync(join(nextD, "components/ui/DarkTheme.ts"))) {
+    copy(
+      join(nextD, "components/ui/DarkTheme.ts"),
+      join(viteD, "src/components/ui/DarkTheme.ts")
+    );
+  }
+  write(
+    join(COMP, name, "nextjs-compact/v1/manifest.json"),
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        template: "nextjs-compact",
+        files: [
+          { source: "files/styles/dark-theme.css", destination: "styles/dark-theme.css" },
+          { source: "files/components/ui/DarkTheme.ts", destination: "components/ui/DarkTheme.ts" },
+          { source: "files/docs/DARK.md", destination: "docs/devkit/DARK.md" },
+        ],
+        injections: [],
+        dependencies: { frontend: ["color-tokens", "dynamic-theme"] },
+        envVars: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+  write(
+    join(COMP, name, "vite-express-tauri/v1/manifest.json"),
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        template: "vite-express-tauri",
+        files: [
+          {
+            source: "files/src/styles/dark-theme.css",
+            destination: "src/styles/dark-theme.css",
+          },
+          {
+            source: "files/src/components/ui/DarkTheme.ts",
+            destination: "src/components/ui/DarkTheme.ts",
+          },
+          { source: "files/docs/DARK.md", destination: "docs/devkit/DARK.md" },
+        ],
+        injections: [],
+        dependencies: { frontend: ["color-tokens", "dynamic-theme"] },
+        envVars: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+  write(
+    join(COMP, name, "component.json"),
+    JSON.stringify(
+      {
+        id: 32,
+        name: "dark-theme",
+        displayName: "Dark Theme",
+        description:
+          "Premium Dark Theme — deep layered graphite surfaces, luminous hairlines, calm accents, glass materials, adaptive charts, semantic roles for page/card/nav/table/modal/AI; designed for dark, not inverted light.",
+        category: "foundation",
+        group: "theme-engine",
+        groupName: "Theme Engine",
+        kind: "component",
+        layer: 1,
+        icon: "moon",
+        author: "Roboticela",
+        license: "MIT",
+        tags: ["foundation", "theme-engine", "dark-theme", "hig", "a11y", "glass"],
+        templates: ["nextjs-compact", "vite-express-tauri"],
+        platforms: ["web", "desktop"],
+        hasVariants: false,
+        stub: false,
+        fileKind: "css",
+        versions: {
+          latest: "1.0.0",
+          stable: "1.0.0",
+          history: [{ version: "1.0.0", releaseDate: "2026-08-07", breaking: false }],
+        },
+        requiredConfig: [],
+        optionalConfig: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+}
+
+// Sync high-contrast-theme profile (parallel to light / dark)
+{
+  const name = "high-contrast-theme";
+  const nextH = join(COMP, name, "nextjs-compact/v1/files");
+  const viteH = join(COMP, name, "vite-express-tauri/v1/files");
+  copy(
+    join(nextH, "styles/high-contrast-theme.css"),
+    join(viteH, "src/styles/high-contrast-theme.css")
+  );
+  if (existsSync(join(nextH, "docs/HIGH_CONTRAST.md"))) {
+    copy(join(nextH, "docs/HIGH_CONTRAST.md"), join(viteH, "docs/HIGH_CONTRAST.md"));
+  }
+  if (existsSync(join(nextH, "components/ui/HighContrastTheme.ts"))) {
+    copy(
+      join(nextH, "components/ui/HighContrastTheme.ts"),
+      join(viteH, "src/components/ui/HighContrastTheme.ts")
+    );
+  }
+  write(
+    join(COMP, name, "nextjs-compact/v1/manifest.json"),
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        template: "nextjs-compact",
+        files: [
+          {
+            source: "files/styles/high-contrast-theme.css",
+            destination: "styles/high-contrast-theme.css",
+          },
+          {
+            source: "files/components/ui/HighContrastTheme.ts",
+            destination: "components/ui/HighContrastTheme.ts",
+          },
+          {
+            source: "files/docs/HIGH_CONTRAST.md",
+            destination: "docs/devkit/HIGH_CONTRAST.md",
+          },
+        ],
+        injections: [],
+        dependencies: { frontend: ["color-tokens", "dynamic-theme"] },
+        envVars: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+  write(
+    join(COMP, name, "vite-express-tauri/v1/manifest.json"),
+    JSON.stringify(
+      {
+        version: "1.0.0",
+        template: "vite-express-tauri",
+        files: [
+          {
+            source: "files/src/styles/high-contrast-theme.css",
+            destination: "src/styles/high-contrast-theme.css",
+          },
+          {
+            source: "files/src/components/ui/HighContrastTheme.ts",
+            destination: "src/components/ui/HighContrastTheme.ts",
+          },
+          {
+            source: "files/docs/HIGH_CONTRAST.md",
+            destination: "docs/devkit/HIGH_CONTRAST.md",
+          },
+        ],
+        injections: [],
+        dependencies: { frontend: ["color-tokens", "dynamic-theme"] },
+        envVars: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
+  write(
+    join(COMP, name, "component.json"),
+    JSON.stringify(
+      {
+        id: 33,
+        name: "high-contrast-theme",
+        displayName: "High Contrast Theme",
+        description:
+          "Enterprise High Contrast Theme — AAA-oriented contrast, strong borders/focus, solid surfaces, heavier type, roomier controls; light + dark HC, forced-colors, semantic roles; runtime switch via Theme Engine.",
+        category: "foundation",
+        group: "theme-engine",
+        groupName: "Theme Engine",
+        kind: "component",
+        layer: 1,
+        icon: "contrast",
+        author: "Roboticela",
+        license: "MIT",
+        tags: [
+          "foundation",
+          "theme-engine",
+          "high-contrast-theme",
+          "a11y",
+          "wcag",
+          "enterprise",
+        ],
+        templates: ["nextjs-compact", "vite-express-tauri"],
+        platforms: ["web", "desktop"],
+        hasVariants: false,
+        stub: false,
+        fileKind: "css",
+        versions: {
+          latest: "1.0.0",
+          stable: "1.0.0",
+          history: [{ version: "1.0.0", releaseDate: "2026-08-07", breaking: false }],
+        },
+        requiredConfig: [],
+        optionalConfig: [],
+      },
+      null,
+      2
+    ) + "\n"
+  );
 }
 
 const filesNext = [
@@ -43,6 +345,7 @@ const filesNext = [
   { source: "files/components/ui/theme.ts", destination: "components/ui/theme.ts" },
   { source: "files/components/ui/ThemeProvider.tsx", destination: "components/ui/ThemeProvider.tsx" },
   { source: "files/components/ui/ThemeScript.tsx", destination: "components/ui/ThemeScript.tsx" },
+  { source: "files/components/ui/DynamicTheme.tsx", destination: "components/ui/DynamicTheme.tsx" },
   { source: "files/docs/THEME.md", destination: "docs/devkit/THEME.md" },
 ];
 
@@ -51,6 +354,7 @@ const filesVite = [
   { source: "files/src/components/ui/theme.ts", destination: "src/components/ui/theme.ts" },
   { source: "files/src/components/ui/ThemeProvider.tsx", destination: "src/components/ui/ThemeProvider.tsx" },
   { source: "files/src/components/ui/ThemeScript.tsx", destination: "src/components/ui/ThemeScript.tsx" },
+  { source: "files/src/components/ui/DynamicTheme.tsx", destination: "src/components/ui/DynamicTheme.tsx" },
   { source: "files/docs/THEME.md", destination: "docs/devkit/THEME.md" },
 ];
 
@@ -91,9 +395,9 @@ write(
     {
       id: 34,
       name: "dynamic-theme",
-      displayName: "Dynamic Theme",
+      displayName: "Theme Engine",
       description:
-        "Theme Engine — light/dark/high-contrast/system/custom themes with persistence, FOUC-safe boot, runtime CSS vars, elevation, motion, and blur profiles.",
+        "Theme Engine — light/dark/AMOLED/high-contrast/system plus brand, seasonal, and user themes; inheritance, import/export, org/workspace/page scopes, a11y prefs, FOUC-safe boot, runtime CSS vars.",
       category: "foundation",
       group: "theme-engine",
       groupName: "Theme Engine",
@@ -132,16 +436,8 @@ const companions = [
     id: 38,
     note: "Use --motion-* tokens from theme-engine.css; honor data-motion / prefers-reduced-motion.",
   },
-  {
-    name: "blur-tokens",
-    id: 39,
-    note: "Use .dk-material / .dk-blur-* from theme-engine.css.",
-  },
-  {
-    name: "gradient-tokens",
-    id: 40,
-    note: "Gradient slots (--gradient-*) default to none; override on custom themes.",
-  },
+  /* blur-tokens (id 39) owned by generate-blur.mjs — Blur & Material System */
+  /* gradient-tokens (id 40) owned by generate-gradient.mjs — Gradient Token System */
 ];
 
 for (const c of companions) {
@@ -373,11 +669,11 @@ const patch = {
   "dynamic-theme": {
     stub: false,
     latestVersion: "1.0.0",
-    displayName: "Dynamic Theme",
+    displayName: "Theme Engine",
     description:
-      "Theme Engine — light/dark/high-contrast/system/custom themes with persistence, FOUC-safe boot, runtime CSS vars, elevation, motion, and blur profiles.",
+      "Theme Engine — light/dark/AMOLED/high-contrast/system plus brand, seasonal, and user themes; inheritance, import/export, org/workspace/page scopes, a11y prefs, FOUC-safe boot, runtime CSS vars.",
     icon: "sun",
-    tags: ["foundation", "theme-engine", "dynamic-theme", "theme-provider"],
+    tags: ["foundation", "theme-engine", "dynamic-theme", "theme-provider", "amoled", "a11y"],
   },
   "elevation-tokens": {
     stub: false,
@@ -395,14 +691,20 @@ const patch = {
   "blur-tokens": {
     stub: false,
     latestVersion: "1.0.0",
-    description: "Use .dk-material / .dk-blur-* from theme-engine.css. Companion package for the Theme Engine.",
-    icon: "sun",
+    displayName: "Blur & Material System",
+    description:
+      "Blur & Material System — translucent, frosted glass, acrylic; semantic blur tokens; nav/modal/menu/panel/widget/AI/overlay; theme-adaptive a11y fallbacks.",
+    icon: "layers",
+    tags: ["foundation", "theme-engine", "blur-tokens", "material", "a11y"],
   },
   "gradient-tokens": {
     stub: false,
     latestVersion: "1.0.0",
-    description: "Gradient slots (--gradient-*) default to none; override on custom themes. Companion package for the Theme Engine.",
-    icon: "sun",
+    displayName: "Gradient Token System",
+    description:
+      "Gradient Token System — sparse premium washes; semantic hero/AI/analytics/premium/onboarding/auth/chart/badge/avatar/button/marketing; linear/radial/mesh/conic/animated; theme-aware a11y fallbacks.",
+    icon: "layers",
+    tags: ["foundation", "theme-engine", "gradient-tokens", "gradient", "a11y"],
   },
   "theme-provider": {
     stub: false,
@@ -413,17 +715,36 @@ const patch = {
   "light-theme": {
     stub: false,
     latestVersion: "1.0.0",
-    description: "Light theme activator profile for the Theme Engine.",
+    displayName: "Light Theme",
+    description:
+      "Apple HIG–inspired Light Theme — soft layered neutrals, semantic roles for page/card/nav/table/modal/AI, WCAG-friendly contrast, surface hierarchy without heavy chrome.",
+    icon: "sun",
+    tags: ["foundation", "theme-engine", "light-theme", "hig", "a11y"],
   },
   "dark-theme": {
     stub: false,
     latestVersion: "1.0.0",
-    description: "Dark theme activator profile for the Theme Engine.",
+    displayName: "Dark Theme",
+    description:
+      "Premium Dark Theme — deep layered graphite surfaces, luminous hairlines, calm accents, glass materials, adaptive charts, semantic roles for page/card/nav/table/modal/AI; designed for dark, not inverted light.",
+    icon: "moon",
+    tags: ["foundation", "theme-engine", "dark-theme", "hig", "a11y", "glass"],
   },
   "high-contrast-theme": {
     stub: false,
     latestVersion: "1.0.0",
-    description: "High contrast theme activator profile for the Theme Engine.",
+    displayName: "High Contrast Theme",
+    description:
+      "Enterprise High Contrast Theme — AAA-oriented contrast, strong borders/focus, solid surfaces, heavier type, roomier controls; light + dark HC, forced-colors, semantic roles; runtime switch via Theme Engine.",
+    icon: "contrast",
+    tags: [
+      "foundation",
+      "theme-engine",
+      "high-contrast-theme",
+      "a11y",
+      "wcag",
+      "enterprise",
+    ],
   },
 };
 

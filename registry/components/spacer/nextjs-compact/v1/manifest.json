@@ -1,25 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/spacer-system.css",
-      "destination": "styles/spacer-system.css"
-    },
-    {
       "source": "files/components/ui/Spacer.tsx",
       "destination": "components/ui/Spacer.tsx"
-    },
-    {
-      "source": "files/docs/SPACER.md",
-      "destination": "docs/devkit/SPACER.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "responsive-spacing"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

@@ -1,18 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/styles/typography-tokens.css",
       "destination": "src/styles/typography-tokens.css"
-    },
-    {
-      "source": "files/src/styles/typography-tokens.tailwind.css",
-      "destination": "src/styles/typography-tokens.tailwind.css"
-    },
-    {
-      "source": "files/docs/TYPOGRAPHY.md",
-      "destination": "docs/devkit/TYPOGRAPHY.md"
     }
   ],
   "injections": [],

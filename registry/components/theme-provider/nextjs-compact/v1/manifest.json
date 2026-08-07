@@ -1,19 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
-    {
-      "source": "files/components/ui/theme.ts",
-      "destination": "components/ui/theme.ts"
-    },
-    {
-      "source": "files/components/ui/ThemeEngine.tsx",
-      "destination": "components/ui/ThemeEngine.tsx"
-    },
-    {
-      "source": "files/components/ui/ThemeScript.tsx",
-      "destination": "components/ui/ThemeScript.tsx"
-    },
     {
       "source": "files/components/ui/ThemeProvider.tsx",
       "destination": "components/ui/ThemeProvider.tsx"
@@ -21,10 +9,7 @@
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "color-tokens",
-      "dynamic-theme"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

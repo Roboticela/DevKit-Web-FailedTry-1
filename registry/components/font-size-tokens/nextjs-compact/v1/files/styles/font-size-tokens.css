@@ -1,8 +1,7 @@
-/* Font size tokens — companion aliases for typography-tokens semantic sizes */
+/* Font Size Tokens — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
+ */
+
 :root {
-  --dk-size-display: var(--text-display-size);
-  --dk-size-hero: var(--text-hero-size);
-  --dk-size-page-title: var(--text-page-title-size);
-  --dk-size-body: var(--text-body-size);
-  --dk-size-caption: var(--text-caption-size);
+  /* reserved */
 }

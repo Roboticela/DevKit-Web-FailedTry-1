@@ -2,21 +2,19 @@
   "id": 13,
   "name": "stack-layout",
   "displayName": "Stack Layout",
-  "description": "Stack Layout — vertical, horizontal, and inline stacks with token spacing, responsive direction, separators, nested rhythm, motion, and virtualization.",
+  "description": "Stack Layout — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
   "kind": "component",
   "layer": 1,
-  "icon": "layout",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "layout-system",
-    "stack-layout",
-    "stack",
-    "spacing"
+    "stack-layout"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,22 +24,20 @@
     "web",
     "desktop"
   ],
-  "hasVariants": true,
-  "stub": false,
+  "hasVariants": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.density"
-  ]
+  "optionalConfig": []
 }

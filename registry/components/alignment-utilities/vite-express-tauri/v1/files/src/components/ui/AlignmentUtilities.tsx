@@ -1,28 +1,10 @@
-export {
-  Align,
-  AlignmentUtilities,
-  AlignStart,
-  AlignCenter,
-  AlignEnd,
-  AlignStretch,
-  AlignBetween,
-  AlignAround,
-  AlignEvenly,
-  AlignBaseline,
-  AlignSafe,
-  AlignAdaptive,
-  alignClassName,
-} from "./Align";
+import * as React from "react";
 
-export type {
-  AlignValue,
-  JustifyValue,
-  ContentValue,
-  PlaceValue,
-  TextAlignValue,
-  AlignPreset,
-  AlignBreakpoint,
-  ResponsiveAlign,
-  AlignDisplay,
-  AlignProps,
-} from "./Align";
+export interface AlignmentUtilitiesProps {
+  children?: React.ReactNode;
+}
+
+/** Alignment Utilities — empty stub (Layer 1 Foundation). */
+export function AlignmentUtilities(_props: AlignmentUtilitiesProps = {}) {
+  return null;
+}

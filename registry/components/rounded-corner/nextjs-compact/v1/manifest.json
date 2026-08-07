@@ -1,46 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/shape-system.css",
-      "destination": "styles/shape-system.css"
-    },
-    {
       "source": "files/components/ui/RoundedCorner.tsx",
       "destination": "components/ui/RoundedCorner.tsx"
-    },
-    {
-      "source": "files/components/ui/CircleShape.tsx",
-      "destination": "components/ui/CircleShape.tsx"
-    },
-    {
-      "source": "files/components/ui/PillShape.tsx",
-      "destination": "components/ui/PillShape.tsx"
-    },
-    {
-      "source": "files/components/ui/AvatarShape.tsx",
-      "destination": "components/ui/AvatarShape.tsx"
-    },
-    {
-      "source": "files/components/ui/Border.tsx",
-      "destination": "components/ui/Border.tsx"
-    },
-    {
-      "source": "files/components/ui/Divider.tsx",
-      "destination": "components/ui/Divider.tsx"
-    },
-    {
-      "source": "files/docs/SHAPE.md",
-      "destination": "docs/devkit/SHAPE.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "color-tokens",
-      "responsive-spacing"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

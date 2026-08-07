@@ -1,12 +1,7 @@
-/**
- * Gradient Tokens — companion to Theme Engine (dynamic-theme).
- * Slots --gradient-brand / surface / accent / overlay default to none.
- * Override on custom themes via ThemeProvider registerTheme({ vars }).
+/* Gradient Tokens — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
  */
+
 :root {
-  --dk-gradient-companion: 1;
-  --gradient-brand: none;
-  --gradient-surface: none;
-  --gradient-accent: none;
-  --gradient-overlay: none;
+  /* reserved */
 }

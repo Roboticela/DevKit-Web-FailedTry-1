@@ -1,34 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/responsive-spacing.css",
-      "destination": "styles/responsive-spacing.css"
-    },
-    {
-      "source": "files/styles/responsive-spacing.tailwind.css",
-      "destination": "styles/responsive-spacing.tailwind.css"
-    },
-    {
-      "source": "files/styles/density-system.css",
-      "destination": "styles/density-system.css"
-    },
-    {
-      "source": "files/components/ui/DensityProvider.tsx",
-      "destination": "components/ui/DensityProvider.tsx"
-    },
-    {
-      "source": "files/components/ui/Space.tsx",
-      "destination": "components/ui/Space.tsx"
-    },
-    {
-      "source": "files/docs/SPACING.md",
-      "destination": "docs/devkit/SPACING.md"
-    },
-    {
-      "source": "files/docs/DENSITY.md",
-      "destination": "docs/devkit/DENSITY.md"
+      "source": "files/components/ui/ResponsiveSpacing.tsx",
+      "destination": "components/ui/ResponsiveSpacing.tsx"
     }
   ],
   "injections": [],

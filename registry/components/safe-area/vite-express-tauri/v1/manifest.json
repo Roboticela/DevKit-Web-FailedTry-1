@@ -1,18 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/safe-area-system.css",
-      "destination": "src/styles/safe-area-system.css"
-    },
-    {
       "source": "files/src/components/ui/SafeArea.tsx",
       "destination": "src/components/ui/SafeArea.tsx"
-    },
-    {
-      "source": "files/docs/SAFE_AREA.md",
-      "destination": "docs/devkit/SAFE_AREA.md"
     }
   ],
   "injections": [],

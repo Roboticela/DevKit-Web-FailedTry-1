@@ -1,26 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/margin-system.css",
-      "destination": "src/styles/margin-system.css"
-    },
-    {
-      "source": "files/src/styles/margin-system.tailwind.css",
-      "destination": "src/styles/margin-system.tailwind.css"
-    },
-    {
-      "source": "files/src/components/ui/Margin.tsx",
-      "destination": "src/components/ui/Margin.tsx"
-    },
-    {
       "source": "files/src/components/ui/MarginUtilities.tsx",
       "destination": "src/components/ui/MarginUtilities.tsx"
-    },
-    {
-      "source": "files/docs/MARGIN.md",
-      "destination": "docs/devkit/MARGIN.md"
     }
   ],
   "injections": [],

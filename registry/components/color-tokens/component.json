@@ -2,40 +2,42 @@
   "id": 1,
   "name": "color-tokens",
   "displayName": "Color Tokens",
-  "description": "Semantic color token system (light, dark, high-contrast) for backgrounds, surfaces, text, actions, status domains, charts, interaction, overlays, and materials. Apple HIG–inspired foundation.",
+  "description": "Color Tokens — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "design-tokens",
   "groupName": "Design Tokens",
   "kind": "component",
   "layer": 1,
-  "icon": "palette",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "design-tokens",
-    "color-tokens",
-    "theme",
-    "accessibility",
-    "tailwind"
+    "color-tokens"
   ],
-  "templates": ["nextjs-compact", "vite-express-tauri"],
-  "platforms": ["web", "desktop"],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "css",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
-        "breaking": false,
-        "notes": "Complete semantic color system with light, dark, and high-contrast themes."
+        "breaking": false
       }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": ["ui.theme", "ui.contrast"]
+  "optionalConfig": []
 }

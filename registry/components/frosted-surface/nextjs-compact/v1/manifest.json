@@ -1,25 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/components/ui/Surface.tsx",
-      "destination": "components/ui/Surface.tsx"
-    },
-    {
       "source": "files/components/ui/FrostedSurface.tsx",
       "destination": "components/ui/FrostedSurface.tsx"
-    },
-    {
-      "source": "files/styles/frosted-surface.css",
-      "destination": "styles/frosted-surface.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "surface"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

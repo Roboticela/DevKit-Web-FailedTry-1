@@ -2,13 +2,13 @@
   "id": 51,
   "name": "icon",
   "displayName": "Icon",
-  "description": "Icon System — consistent stroke icons with outlined/filled/duotone/status variants, searchable registry, a11y labels, and text alignment.",
+  "description": "Icon — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "icon-system",
   "groupName": "Icon System",
   "kind": "component",
   "layer": 1,
-  "icon": "sparkles",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
@@ -24,15 +24,15 @@
     "web",
     "desktop"
   ],
-  "hasVariants": true,
-  "stub": false,
+  "hasVariants": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

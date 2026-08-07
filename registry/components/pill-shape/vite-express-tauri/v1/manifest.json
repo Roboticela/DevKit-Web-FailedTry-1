@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/PillShape.tsx",
       "destination": "src/components/ui/PillShape.tsx"
-    },
-    {
-      "source": "files/src/styles/pill-shape.css",
-      "destination": "src/styles/pill-shape.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "rounded-corner"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

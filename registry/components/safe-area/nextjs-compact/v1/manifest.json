@@ -1,18 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/safe-area-system.css",
-      "destination": "styles/safe-area-system.css"
-    },
-    {
       "source": "files/components/ui/SafeArea.tsx",
       "destination": "components/ui/SafeArea.tsx"
-    },
-    {
-      "source": "files/docs/SAFE_AREA.md",
-      "destination": "docs/devkit/SAFE_AREA.md"
     }
   ],
   "injections": [],

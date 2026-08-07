@@ -1,5 +1,0 @@
-/**
- * ripple-alternative — companion to motion-tokens
- * Prefer importing motion-system.css once.
- */
-:root { --dk-motion-companion-ripple-alternative: 1; }

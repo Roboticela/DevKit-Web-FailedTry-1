@@ -1,2 +1,10 @@
-export { BrandIcon } from "./IconExtras";
-export { Icon, IconLabel } from "./Icon";
+import * as React from "react";
+
+export interface BrandIconProps {
+  children?: React.ReactNode;
+}
+
+/** Brand Icon — empty stub (Layer 1 Foundation). */
+export function BrandIcon(_props: BrandIconProps = {}) {
+  return null;
+}

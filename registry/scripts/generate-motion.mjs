@@ -22,7 +22,7 @@ function copy(from, to) {
 const nextRoot = join(COMP, "motion-tokens/nextjs-compact/v1/files");
 const viteRoot = join(COMP, "motion-tokens/vite-express-tauri/v1/files");
 
-const uiFiles = ["Motion.tsx", "MotionPresets.tsx", "useReducedMotion.ts"];
+const uiFiles = ["Motion.tsx", "MotionPresets.tsx", "useReducedMotion.ts", "motionTokens.ts"];
 
 copy(join(nextRoot, "styles/motion-system.css"), join(viteRoot, "src/styles/motion-system.css"));
 copy(join(nextRoot, "docs/MOTION.md"), join(viteRoot, "docs/MOTION.md"));
@@ -89,9 +89,9 @@ write(
     {
       id: 38,
       name: "motion-tokens",
-      displayName: "Motion Tokens",
+      displayName: "Motion Token System",
       description:
-        "Motion System — Apple-inspired purposeful animations, reduced-motion support, stagger, hover/press, loading, and success feedback.",
+        "Motion Token System — semantic Instant/Fast/Standard/Slow/Emphasized/Hover/Press/Expand/Collapse/Fade/Slide/Scale/Page/Notification/Loading/Success; reduced-motion, interruption, responsive timing, GPU optimization.",
       category: "foundation",
       group: "theme-engine",
       groupName: "Theme Engine",
@@ -100,7 +100,7 @@ write(
       icon: "zap",
       author: "Roboticela",
       license: "MIT",
-      tags: ["foundation", "theme-engine", "motion-tokens", "motion-system"],
+      tags: ["foundation", "theme-engine", "motion-tokens", "a11y", "animation"],
       templates: ["nextjs-compact", "vite-express-tauri"],
       platforms: ["web", "desktop"],
       hasVariants: false,
@@ -109,7 +109,7 @@ write(
       versions: {
         latest: "1.0.0",
         stable: "1.0.0",
-        history: [{ version: "1.0.0", releaseDate: "2026-08-06", breaking: false }],
+        history: [{ version: "1.0.0", releaseDate: "2026-08-07", breaking: false }],
       },
       requiredConfig: [],
       optionalConfig: ["ui.motion"],
@@ -243,10 +243,10 @@ for (const entry of registry.components) {
   entry.latestVersion = "1.0.0";
   entry.icon = "zap";
   if (entry.name === "motion-tokens") {
-    entry.displayName = "Motion Tokens";
+    entry.displayName = "Motion Token System";
     entry.description =
-      "Motion System — Apple-inspired purposeful animations, reduced-motion support, stagger, hover/press, loading, and success feedback.";
-    entry.tags = ["foundation", "theme-engine", "motion-tokens", "motion-system"];
+      "Motion Token System — semantic Instant/Fast/Standard/Slow/Emphasized/Hover/Press/Expand/Collapse/Fade/Slide/Scale/Page/Notification/Loading/Success; reduced-motion, interruption, responsive timing, GPU optimization.";
+    entry.tags = ["foundation", "theme-engine", "motion-tokens", "a11y", "animation"];
   } else {
     const c = companions.find((x) => x.name === entry.name);
     entry.description = `${c.export} — part of the Motion System (motion-tokens).`;

@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-08-06T00:00:00Z",
+  "updatedAt": "2026-08-07T00:00:00Z",
   "description": "Five-layer reusable UI component catalog. Scaffolds (kind=scaffold) remain supported but empty for now.",
   "kinds": {
     "component": "Reusable UI packages selectable by layer. Available for both templates.",

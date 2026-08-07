@@ -1,18 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/aspect-system.css",
-      "destination": "styles/aspect-system.css"
-    },
-    {
       "source": "files/components/ui/AspectRatio.tsx",
       "destination": "components/ui/AspectRatio.tsx"
-    },
-    {
-      "source": "files/docs/ASPECT.md",
-      "destination": "docs/devkit/ASPECT.md"
     }
   ],
   "injections": [],

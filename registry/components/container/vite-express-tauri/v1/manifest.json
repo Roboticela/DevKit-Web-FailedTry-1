@@ -1,26 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
-      "source": "files/src/styles/container-system.css",
-      "destination": "src/styles/container-system.css"
-    },
-    {
       "source": "files/src/components/ui/Container.tsx",
       "destination": "src/components/ui/Container.tsx"
-    },
-    {
-      "source": "files/docs/CONTAINER.md",
-      "destination": "docs/devkit/CONTAINER.md"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "responsive-spacing",
-      "responsive-grid"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

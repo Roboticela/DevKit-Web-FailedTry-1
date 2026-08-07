@@ -1,61 +1,10 @@
-export {
-  BREAKPOINTS,
-  BREAKPOINT_ORDER,
-  BREAKPOINT_ALIASES,
-  BREAKPOINT_EVENT,
-  BREAKPOINT_RESIZE_EVENT,
-  BREAKPOINT_LAYOUT_EVENT,
-  mq,
-  normalizeBreakpoint,
-  resolveBreakpoint,
-  breakpointMin,
-  breakpointMax,
-  matchesBreakpoint,
-  readBreakpointsFromCss,
-  configureBreakpointManager,
-  startBreakpointManager,
-  stopBreakpointManager,
-  getBreakpointSnapshot,
-  subscribeBreakpoints,
-  getBreakpointInitScript,
-  scheduleLayoutRecalc,
-  BreakpointProvider,
-  BreakpointManager,
-  BreakpointScript,
-  BreakpointMatch,
-  DeviceDetector,
-  useBreakpointSnapshot,
-  useBreakpoint,
-  useBreakpointMatch,
-  useBreakpointValue,
-  useMediaQuery,
-  useOrientation,
-  usePointer,
-  useHoverCapability,
-  useTouch,
-  usePrefersReducedMotion,
-  usePrefersReducedTransparency,
-  useFoldable,
-  useDensity,
-  useContainerQuery,
-  useLayoutRecalc,
-  useBreakpointEvent,
-} from "./BreakpointManager";
+import * as React from "react";
 
-export type {
-  Breakpoint,
-  BreakpointAlias,
-  BreakpointInput,
-  BreakpointSnapshot,
-  BreakpointListener,
-  BreakpointDirection,
-  BreakpointProviderProps,
-  BreakpointMatchProps,
-  DeviceDetectorProps,
-  ContainerQueryOptions,
-  Orientation,
-  PointerType,
-  HoverCapability,
-  ContrastPreference,
-  ColorSchemePreference,
-} from "./BreakpointManager";
+export interface DeviceDetectorProps {
+  children?: React.ReactNode;
+}
+
+/** Device Detector — empty stub (Layer 1 Foundation). */
+export function DeviceDetector(_props: DeviceDetectorProps = {}) {
+  return null;
+}

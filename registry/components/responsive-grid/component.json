@@ -2,21 +2,19 @@
   "id": 11,
   "name": "responsive-grid",
   "displayName": "Responsive Grid",
-  "description": "Mobile-first grid system with adaptive breakpoints, gutters, containers, nested grids, autofit, masonry, alignment, and safe-area aware layout.",
+  "description": "Responsive Grid — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "layout-system",
   "groupName": "Layout System",
   "kind": "component",
   "layer": 1,
-  "icon": "layout-grid",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "layout-system",
-    "responsive-grid",
-    "grid",
-    "container"
+    "responsive-grid"
   ],
   "templates": [
     "nextjs-compact",
@@ -27,14 +25,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }

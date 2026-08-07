@@ -1,21 +1,15 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/AvatarShape.tsx",
       "destination": "src/components/ui/AvatarShape.tsx"
-    },
-    {
-      "source": "files/src/styles/avatar-shape.css",
-      "destination": "src/styles/avatar-shape.css"
     }
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "rounded-corner"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

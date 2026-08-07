@@ -2,20 +2,19 @@
   "id": 24,
   "name": "responsive-spacing",
   "displayName": "Responsive Spacing",
-  "description": "Universal spacing scale with semantic roles, responsive rhythm, and Density System (compact / comfortable / spacious / custom) for app-wide UI density.",
+  "description": "Responsive Spacing — empty Layer 1 foundation stub.",
   "category": "foundation",
   "group": "spacing-system",
   "groupName": "Spacing System",
   "kind": "component",
   "layer": 1,
-  "icon": "move",
+  "icon": "square",
   "author": "Roboticela",
   "license": "MIT",
   "tags": [
     "foundation",
     "spacing-system",
-    "responsive-spacing",
-    "density"
+    "responsive-spacing"
   ],
   "templates": [
     "nextjs-compact",
@@ -26,21 +25,19 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": false,
+  "stub": true,
   "fileKind": "tsx",
   "versions": {
-    "latest": "1.0.0",
-    "stable": "1.0.0",
+    "latest": "0.0.0",
+    "stable": "0.0.0",
     "history": [
       {
-        "version": "1.0.0",
+        "version": "0.0.0",
         "releaseDate": "2026-08-06",
         "breaking": false
       }
     ]
   },
   "requiredConfig": [],
-  "optionalConfig": [
-    "ui.density"
-  ]
+  "optionalConfig": []
 }

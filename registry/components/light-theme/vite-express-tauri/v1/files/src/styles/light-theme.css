@@ -1,9 +1,7 @@
-/**
- * Light Theme — Theme Engine profile.
- * Requires: color-tokens.css, theme-engine.css
- * Apply: <html data-theme="light"> (ThemeProvider)
+/* Light Theme — empty stub (Layer 1 Foundation)
+ * TODO: implement design tokens
  */
-:root,
-[data-theme="light"] {
-  color-scheme: light;
+
+:root {
+  /* reserved */
 }

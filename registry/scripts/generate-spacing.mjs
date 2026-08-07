@@ -120,23 +120,13 @@ write(
 
 const companions = [
   {
-    name: "content-width-manager",
-    id: 25,
-    note: "Use .dk-content-width* from responsive-spacing.",
-  },
-  {
-    name: "auto-layout",
-    id: 26,
-    note: "Use .dk-space-stack / .dk-space-inline with spacing tokens.",
-  },
-  {
     name: "distribution-utilities",
     id: 28,
     note: "Use Alignment System (alignment-utilities) — .dk-justify-* / distribute presets.",
   },
 ];
 
-/* 21–23 spacing · 27 align · 29 position · 30 overflow → generate-overflow.mjs */
+/* 21–23 spacing · 25 responsive-constraints (generate-constraints.mjs) · 26 ordering · 27 align · 29 position · 30 overflow */
 
 for (const c of companions) {
   const css = `/**

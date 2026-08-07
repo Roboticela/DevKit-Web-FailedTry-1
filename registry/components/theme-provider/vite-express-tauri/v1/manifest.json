@@ -1,19 +1,7 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "vite-express-tauri",
   "files": [
-    {
-      "source": "files/src/components/ui/theme.ts",
-      "destination": "src/components/ui/theme.ts"
-    },
-    {
-      "source": "files/src/components/ui/ThemeEngine.tsx",
-      "destination": "src/components/ui/ThemeEngine.tsx"
-    },
-    {
-      "source": "files/src/components/ui/ThemeScript.tsx",
-      "destination": "src/components/ui/ThemeScript.tsx"
-    },
     {
       "source": "files/src/components/ui/ThemeProvider.tsx",
       "destination": "src/components/ui/ThemeProvider.tsx"
@@ -21,10 +9,7 @@
   ],
   "injections": [],
   "dependencies": {
-    "frontend": [
-      "color-tokens",
-      "dynamic-theme"
-    ]
+    "frontend": []
   },
   "envVars": []
 }

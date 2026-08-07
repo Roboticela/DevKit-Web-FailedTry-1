@@ -1,26 +1,10 @@
 {
-  "version": "1.0.0",
+  "version": "0.0.0",
   "template": "nextjs-compact",
   "files": [
     {
-      "source": "files/styles/margin-system.css",
-      "destination": "styles/margin-system.css"
-    },
-    {
-      "source": "files/styles/margin-system.tailwind.css",
-      "destination": "styles/margin-system.tailwind.css"
-    },
-    {
-      "source": "files/components/ui/Margin.tsx",
-      "destination": "components/ui/Margin.tsx"
-    },
-    {
       "source": "files/components/ui/MarginUtilities.tsx",
       "destination": "components/ui/MarginUtilities.tsx"
-    },
-    {
-      "source": "files/docs/MARGIN.md",
-      "destination": "docs/devkit/MARGIN.md"
     }
   ],
   "injections": [],
