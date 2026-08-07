@@ -64,6 +64,8 @@ export interface SelectProps
   searchPlaceholder?: string;
   /** Empty-state copy when search yields no options. */
   noResultsLabel?: string;
+  /** Minimum popover width in px (useful for narrow triggers with long option labels). */
+  menuMinWidth?: number;
 }
 
 const SIZE_CLASS: Record<SelectSize, string> = {
@@ -218,6 +220,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       searchable: searchableProp,
       searchPlaceholder = "Search…",
       noResultsLabel = "No results",
+      menuMinWidth,
       id: idProp,
       className,
       ...rest

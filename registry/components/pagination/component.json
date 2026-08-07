@@ -1,0 +1,47 @@
+{
+  "id": 34,
+  "name": "pagination",
+  "displayName": "Pagination",
+  "description": "Navigate finite multi-page collections — previous/next/first/last, collapsing page numbers, compact mobile summary, accessible names, RTL-safe semantics.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "navigation-controls",
+  "subgroupName": "Navigation Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "navigation-controls",
+    "pagination",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

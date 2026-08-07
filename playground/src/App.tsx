@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import {
   Button,
   type ButtonSize,
@@ -37,7 +37,85 @@ import { Combobox } from "../../registry/components/combobox/vite-express-tauri/
 import { MultiSelect } from "../../registry/components/multi-select/vite-express-tauri/v1/files/src/components/ui/MultiSelect";
 import { ChoiceChips } from "../../registry/components/choice-chips/vite-express-tauri/v1/files/src/components/ui/ChoiceChips";
 import { Slider } from "../../registry/components/slider/vite-express-tauri/v1/files/src/components/ui/Slider";
-import { countrySelectOptions, getCountry } from "./data/countries";
+import { Tabs } from "../../registry/components/tabs/vite-express-tauri/v1/files/src/components/ui/Tabs";
+import type {
+  TabsActivation,
+  TabsIndicator,
+} from "../../registry/components/tabs/vite-express-tauri/v1/files/src/components/ui/Tabs";
+import { TabBar } from "../../registry/components/tab-bar/vite-express-tauri/v1/files/src/components/ui/TabBar";
+import type { TabBarPlacement } from "../../registry/components/tab-bar/vite-express-tauri/v1/files/src/components/ui/TabBar";
+import { Breadcrumbs } from "../../registry/components/breadcrumbs/vite-express-tauri/v1/files/src/components/ui/Breadcrumbs";
+import type { BreadcrumbsMobile } from "../../registry/components/breadcrumbs/vite-express-tauri/v1/files/src/components/ui/Breadcrumbs";
+import { Pagination } from "../../registry/components/pagination/vite-express-tauri/v1/files/src/components/ui/Pagination";
+import type { PaginationLayout } from "../../registry/components/pagination/vite-express-tauri/v1/files/src/components/ui/Pagination";
+import { Stepper } from "../../registry/components/stepper/vite-express-tauri/v1/files/src/components/ui/Stepper";
+import type {
+  StepperMode,
+  StepperOrientation,
+} from "../../registry/components/stepper/vite-express-tauri/v1/files/src/components/ui/Stepper";
+import { NavigationMenu } from "../../registry/components/navigation-menu/vite-express-tauri/v1/files/src/components/ui/NavigationMenu";
+import type { NavigationMenuDensity } from "../../registry/components/navigation-menu/vite-express-tauri/v1/files/src/components/ui/NavigationMenu";
+import { NavigationItem } from "../../registry/components/navigation-item/vite-express-tauri/v1/files/src/components/ui/NavigationItem";
+import type { NavigationItemIndicator } from "../../registry/components/navigation-item/vite-express-tauri/v1/files/src/components/ui/NavigationItem";
+import { BottomNavigation } from "../../registry/components/bottom-navigation/vite-express-tauri/v1/files/src/components/ui/BottomNavigation";
+import type { BottomNavigationKeyboardBehavior } from "../../registry/components/bottom-navigation/vite-express-tauri/v1/files/src/components/ui/BottomNavigation";
+import { AnchorNavigation } from "../../registry/components/anchor-navigation/vite-express-tauri/v1/files/src/components/ui/AnchorNavigation";
+import type { AnchorNavigationOrientation } from "../../registry/components/anchor-navigation/vite-express-tauri/v1/files/src/components/ui/AnchorNavigation";
+import { PreviousNextNavigation } from "../../registry/components/previous-next-navigation/vite-express-tauri/v1/files/src/components/ui/PreviousNextNavigation";
+import type {
+  PreviousNextBoundary,
+  PreviousNextLayout,
+} from "../../registry/components/previous-next-navigation/vite-express-tauri/v1/files/src/components/ui/PreviousNextNavigation";
+import { Alert } from "../../registry/components/alert/vite-express-tauri/v1/files/src/components/ui/Alert";
+import type { AlertVariant } from "../../registry/components/alert/vite-express-tauri/v1/files/src/components/ui/Alert";
+import { StatusIndicator } from "../../registry/components/status-indicator/vite-express-tauri/v1/files/src/components/ui/StatusIndicator";
+import type { StatusIndicatorAppearance } from "../../registry/components/status-indicator/vite-express-tauri/v1/files/src/components/ui/StatusIndicator";
+import { Badge } from "../../registry/components/badge/vite-express-tauri/v1/files/src/components/ui/Badge";
+import { Notification } from "../../registry/components/notification/vite-express-tauri/v1/files/src/components/ui/Notification";
+import type { NotificationDensity } from "../../registry/components/notification/vite-express-tauri/v1/files/src/components/ui/Notification";
+import {
+  Toast,
+  ToastProvider,
+  useToast,
+} from "../../registry/components/toast/vite-express-tauri/v1/files/src/components/ui/Toast";
+import type { ToastVariant } from "../../registry/components/toast/vite-express-tauri/v1/files/src/components/ui/Toast";
+import { ProgressBar } from "../../registry/components/progress-bar/vite-express-tauri/v1/files/src/components/ui/ProgressBar";
+import type { ProgressBarDensity } from "../../registry/components/progress-bar/vite-express-tauri/v1/files/src/components/ui/ProgressBar";
+import { ProgressCircle } from "../../registry/components/progress-circle/vite-express-tauri/v1/files/src/components/ui/ProgressCircle";
+import type { ProgressCircleSize } from "../../registry/components/progress-circle/vite-express-tauri/v1/files/src/components/ui/ProgressCircle";
+import { Spinner } from "../../registry/components/spinner/vite-express-tauri/v1/files/src/components/ui/Spinner";
+import type { SpinnerSize } from "../../registry/components/spinner/vite-express-tauri/v1/files/src/components/ui/Spinner";
+import {
+  Skeleton,
+  SkeletonGroup,
+} from "../../registry/components/skeleton/vite-express-tauri/v1/files/src/components/ui/Skeleton";
+import type { SkeletonSize } from "../../registry/components/skeleton/vite-express-tauri/v1/files/src/components/ui/Skeleton";
+import { EmptyState } from "../../registry/components/empty-state/vite-express-tauri/v1/files/src/components/ui/EmptyState";
+import type {
+  EmptyStateSize,
+  EmptyStateVariant,
+} from "../../registry/components/empty-state/vite-express-tauri/v1/files/src/components/ui/EmptyState";
+import { countrySelectOptions, countryDialOptions, getCountry } from "./data/countries";
+import {
+  evaluatePhone,
+  exampleNationalNumber,
+  formatNationalAsYouType,
+} from "./data/phone";
+import {
+  AddressIcon,
+  CityIcon,
+  CountyIcon,
+  GlobeIcon,
+  PinIcon,
+  PostalIcon,
+  RegionIcon,
+  countyFieldLabel,
+  geoCityOptions,
+  geoCountryOptions,
+  geoCountyOptions,
+  geoStateOptions,
+  stateFieldLabel,
+} from "./data/geo";
 import { THEME_OPTIONS } from "./data/themes";
 import catalog from "./foundation-catalog.json";
 
@@ -965,6 +1043,52 @@ function SearchIcon() {
     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
       <circle cx="8" cy="8" r="5.25" stroke="currentColor" strokeWidth="1.5" />
       <path d="M12 12l3.5 3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function HomeIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4.5 10.5 12 4.75l7.5 5.75V19a1.25 1.25 0 0 1-1.25 1.25H5.75A1.25 1.25 0 0 1 4.5 19v-8.5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+      <path d="M9.5 20.25V14h5v6.25" stroke="currentColor" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function InboxIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M4.75 7.5h14.5v9.25A1.75 1.75 0 0 1 17.5 18.5h-11A1.75 1.75 0 0 1 4.75 16.75V7.5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M4.75 12.5h3.4l1.35 2h5l1.35-2h3.4"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ProfileIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="9" r="3.25" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M5.75 18.5c1.4-2.4 3.55-3.75 6.25-3.75s4.85 1.35 6.25 3.75"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -2082,6 +2206,38 @@ function InputGroupLab() {
   const [domain, setDomain] = useState("example.com");
   const [amount, setAmount] = useState<number | null>(42);
   const [query, setQuery] = useState("");
+  const [phoneCountry, setPhoneCountry] = useState<string | null>("pk");
+  const [phoneNational, setPhoneNational] = useState("");
+  const [phoneTouched, setPhoneTouched] = useState(false);
+
+  const dialOptions = useMemo(() => countryDialOptions(), []);
+  const phoneCountryCode = phoneCountry ?? "pk";
+  const phoneEval = useMemo(
+    () => evaluatePhone(phoneCountryCode, phoneNational),
+    [phoneCountryCode, phoneNational]
+  );
+  const phonePlaceholder = exampleNationalNumber(phoneCountryCode) || "Phone number";
+
+  const onPhoneCountryChange = (next: string | null) => {
+    const code = next ?? "pk";
+    setPhoneCountry(code);
+    setPhoneNational((prev) => (prev ? formatNationalAsYouType(code, prev) : ""));
+  };
+
+  const onPhoneNationalChange = (next: string) => {
+    setPhoneNational(formatNationalAsYouType(phoneCountryCode, next));
+  };
+
+  const phoneValidation =
+    !phoneTouched && phoneEval.state !== "valid"
+      ? "none"
+      : phoneEval.state === "valid"
+        ? "success"
+        : phoneEval.state === "invalid"
+          ? "error"
+          : phoneEval.state === "incomplete" && phoneTouched
+            ? "warning"
+            : "none";
 
   return (
     <section className="catalog-group" aria-labelledby="input-group-lab-heading">
@@ -2091,6 +2247,57 @@ function InputGroupLab() {
         Shared shell when attached; each interactive child keeps its own focus and
         accessibility. Not a generic layout tool.
       </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Phone — country code + number</h3>
+        <InputGroup
+          label="Mobile number"
+          description="Dial code Select + national number — formatted and validated with libphonenumber-js"
+          required
+          validation={phoneValidation}
+          errorMessage={phoneValidation === "error" ? phoneEval.message ?? undefined : undefined}
+          warningMessage={
+            phoneValidation === "warning" ? phoneEval.message ?? undefined : undefined
+          }
+          successMessage={
+            phoneValidation === "success" ? phoneEval.message ?? undefined : undefined
+          }
+          helpText={
+            phoneValidation === "none"
+              ? "Brackets and spacing appear as you type for the selected country"
+              : undefined
+          }
+        >
+          <InputGroup.Input className="dk-input-group__input--dial">
+            <Select
+              label="Country calling code"
+              hideLabel
+              presentation="listbox"
+              searchable
+              searchPlaceholder="Search country or code…"
+              options={dialOptions}
+              value={phoneCountry}
+              onValueChange={onPhoneCountryChange}
+              listLabel="Country calling code"
+              menuMinWidth={280}
+            />
+          </InputGroup.Input>
+          <InputGroup.Input className="dk-input-group__input--phone">
+            <TextInput
+              label="Phone number"
+              hideLabel
+              type="tel"
+              inputMode="tel"
+              autoComplete="tel-national"
+              value={phoneNational}
+              onValueChange={onPhoneNationalChange}
+              onBlur={() => setPhoneTouched(true)}
+              placeholder={phonePlaceholder}
+              clearable
+            />
+          </InputGroup.Input>
+        </InputGroup>
+      </div>
 
       <div className="lab-block" style={{ maxWidth: "28rem" }}>
         <h3 className="catalog-subgroup-title">Prefix — https:// + domain</h3>
@@ -2768,18 +2975,238 @@ const FRUIT_OPTIONS = [
   { value: "strawberry", label: "Strawberry" },
 ];
 
-const CITY_DB = [
-  { value: "khi", label: "Karachi" },
-  { value: "lhr", label: "Lahore" },
-  { value: "isb", label: "Islamabad" },
-  { value: "dxb", label: "Dubai" },
-  { value: "auh", label: "Abu Dhabi" },
-  { value: "ryd", label: "Riyadh" },
-  { value: "jed", label: "Jeddah" },
-  { value: "lon", label: "London" },
-  { value: "nyc", label: "New York" },
-  { value: "tyo", label: "Tokyo" },
-];
+const GEO_COUNTRY_OPTIONS = geoCountryOptions();
+
+function AddressLocationLab() {
+  const [country, setCountry] = useState<string | null>("PK");
+  const [region, setRegion] = useState<string | null>(null);
+  const [county, setCounty] = useState<string | null>(null);
+  const [countyInput, setCountyInput] = useState("");
+  const [city, setCity] = useState<string | null>(null);
+  const [cityInput, setCityInput] = useState("");
+  const [street, setStreet] = useState("");
+  const [line2, setLine2] = useState("");
+  const [postal, setPostal] = useState("");
+
+  const regionOptions = useMemo(() => geoStateOptions(country), [country]);
+  const countyOptions = useMemo(
+    () => geoCountyOptions(country, region),
+    [country, region]
+  );
+  const cityOptions = useMemo(
+    () => geoCityOptions(country, region),
+    [country, region]
+  );
+
+  const onCountryChange = (next: string | null) => {
+    setCountry(next);
+    setRegion(null);
+    setCounty(null);
+    setCountyInput("");
+    setCity(null);
+    setCityInput("");
+  };
+
+  const onRegionChange = (next: string | null) => {
+    setRegion(next);
+    setCounty(null);
+    setCountyInput("");
+    setCity(null);
+    setCityInput("");
+  };
+
+  const regionLabel = stateFieldLabel(country);
+  const countyLabel = countyFieldLabel(country);
+  const selectedCountry = GEO_COUNTRY_OPTIONS.find((c) => c.value === country);
+  const selectedRegion = regionOptions.find((r) => r.value === region);
+  const selectedCity = cityOptions.find((c) => c.value === city);
+
+  return (
+    <section className="catalog-group" aria-labelledby="address-location-lab-heading">
+      <h2 id="address-location-lab-heading">Address &amp; location</h2>
+      <p className="catalog-group-desc">
+        Cascading country → {regionLabel.toLowerCase()} → {countyLabel.toLowerCase()} →
+        city, powered by <code>country-state-city</code> (all countries, regions, and
+        cities). Searchable Selects and Comboboxes with icons; county/district also
+        allows a custom value when your locale needs one.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Full address cascade</h3>
+        <Select
+          label="Country"
+          description={`${GEO_COUNTRY_OPTIONS.length} countries`}
+          presentation="listbox"
+          searchable
+          searchPlaceholder="Search countries…"
+          options={GEO_COUNTRY_OPTIONS}
+          value={country}
+          onValueChange={onCountryChange}
+          clearable
+          leadingIcon={<GlobeIcon />}
+          required
+        />
+        <Select
+          label={regionLabel}
+          description={
+            country
+              ? `${regionOptions.length} regions in ${selectedCountry?.label ?? country}`
+              : "Choose a country first"
+          }
+          presentation="listbox"
+          searchable
+          searchPlaceholder={`Search ${regionLabel.toLowerCase()}…`}
+          options={regionOptions}
+          value={region}
+          onValueChange={onRegionChange}
+          clearable
+          disabled={!country || regionOptions.length === 0}
+          leadingIcon={<RegionIcon />}
+          placeholder={
+            !country
+              ? "Select a country…"
+              : regionOptions.length === 0
+                ? "No regions for this country"
+                : "Select…"
+          }
+        />
+        <Combobox
+          label={countyLabel}
+          description="Optional — type a county or district (not always in the geo dataset)"
+          options={countyOptions}
+          value={county}
+          onValueChange={setCounty}
+          inputValue={countyInput}
+          onInputChange={setCountyInput}
+          allowsCustomValue
+          clearable
+          leadingIcon={<CountyIcon />}
+          placeholder="County / district"
+          disabled={!country}
+          helpText={
+            county || countyInput
+              ? `County: ${countyOptions.find((o) => o.value === county)?.label ?? county ?? countyInput}`
+              : "Regions that are counties (e.g. UK) are listed in the field above"
+          }
+        />
+        <Combobox
+          label="City / town"
+          description={
+            country
+              ? `${cityOptions.length} cities${
+                  selectedRegion ? ` in ${selectedRegion.label}` : " in country"
+                }`
+              : "Choose a country first"
+          }
+          options={cityOptions}
+          value={city}
+          onValueChange={setCity}
+          inputValue={cityInput}
+          onInputChange={setCityInput}
+          clearable
+          leadingIcon={<CityIcon />}
+          placeholder="Search cities…"
+          disabled={!country}
+          noResultsLabel="No cities match"
+          helpText={
+            selectedCity
+              ? `City: ${selectedCity.label}`
+              : cityOptions.length > 500
+                ? "Large list — type to filter"
+                : undefined
+          }
+        />
+        <TextInput
+          label="Street address"
+          description="Building, street, and number"
+          value={street}
+          onValueChange={setStreet}
+          placeholder="123 Main Street"
+          leadingIcon={<AddressIcon />}
+          clearable
+        />
+        <TextInput
+          label="Apartment, suite, unit"
+          optional
+          value={line2}
+          onValueChange={setLine2}
+          placeholder="Apt / suite / floor"
+          leadingIcon={<PinIcon />}
+          clearable
+        />
+        <TextInput
+          label="Postal / ZIP code"
+          value={postal}
+          onValueChange={setPostal}
+          placeholder="Postal code"
+          leadingIcon={<PostalIcon />}
+          clearable
+          autoComplete="postal-code"
+        />
+        <p className="catalog-group-meta">
+          {[
+            street || null,
+            line2 || null,
+            selectedCity?.label || cityInput || null,
+            (countyOptions.find((o) => o.value === county)?.label ??
+              county ??
+              countyInput) || null,
+            selectedRegion?.label || null,
+            selectedCountry?.label || null,
+            postal || null,
+          ]
+            .filter(Boolean)
+            .join(", ") || "Address summary appears as you fill the fields"}
+        </p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">City Combobox only (all in country)</h3>
+        <CountryCityComboboxDemo />
+      </div>
+    </section>
+  );
+}
+
+function CountryCityComboboxDemo() {
+  const [country, setCountry] = useState<string | null>("PK");
+  const [city, setCity] = useState<string | null>(null);
+  const [cityInput, setCityInput] = useState("");
+  const cities = useMemo(() => geoCityOptions(country, null), [country]);
+
+  useEffect(() => {
+    setCity(null);
+    setCityInput("");
+  }, [country]);
+
+  return (
+    <>
+      <Select
+        label="Country"
+        presentation="listbox"
+        searchable
+        options={GEO_COUNTRY_OPTIONS}
+        value={country}
+        onValueChange={setCountry}
+        leadingIcon={<GlobeIcon />}
+      />
+      <Combobox
+        label="City"
+        description={`All ${cities.length} cities in this country — type to filter`}
+        options={cities}
+        value={city}
+        onValueChange={setCity}
+        inputValue={cityInput}
+        onInputChange={setCityInput}
+        leadingIcon={<CityIcon />}
+        clearable
+        placeholder="Search all cities…"
+      />
+    </>
+  );
+}
+
+const CITY_DB = geoCityOptions("PK", null);
 
 function ComboboxLab() {
   const [fruit, setFruit] = useState<string | null>(null);
@@ -2870,8 +3297,8 @@ function ComboboxLab() {
       <div className="lab-block" style={{ maxWidth: "28rem" }}>
         <h3 className="catalog-subgroup-title">Async suggestions</h3>
         <Combobox
-          label="City"
-          description="Simulated remote filter — loading slot does not shift layout"
+          label="City (Pakistan — async filter demo)"
+          description={`Simulated remote filter over ${CITY_DB.length} cities — loading slot reserved`}
           filter={false}
           options={cityOptions}
           loading={cityLoading}
@@ -2879,8 +3306,10 @@ function ComboboxLab() {
           onValueChange={setCity}
           inputValue={cityInput}
           onInputChange={onCityInput}
+          leadingIcon={<CityIcon />}
           noResultsLabel="No cities match that query"
           helpText={city ? `Selected: ${city}` : undefined}
+          clearable
         />
         <Combobox
           label="Disabled"
@@ -3250,6 +3679,2226 @@ function SliderLab() {
   );
 }
 
+function TabsLab() {
+  const [section, setSection] = useState("overview");
+  const [indicator, setIndicator] = useState<TabsIndicator>("underline");
+  const [activation, setActivation] = useState<TabsActivation>("automatic");
+  const [scrollTab, setScrollTab] = useState("tab-1");
+
+  return (
+    <section className="catalog-group" aria-labelledby="tabs-lab-heading">
+      <h2 id="tabs-lab-heading">031 Tabs</h2>
+      <p className="catalog-group-desc">
+        Related peer views in one context — not site-wide navigation. Default
+        horizontal with scroll on narrow widths; wrap only when configured. Active
+        state uses underline, surface, or pill — never color alone.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Basic + indicators</h3>
+        <SegmentedControl
+          label="Indicator"
+          options={[
+            { id: "underline", label: "Underline" },
+            { id: "surface", label: "Surface" },
+            { id: "pill", label: "Pill" },
+          ]}
+          value={indicator}
+          onValueChange={(id) => setIndicator(id as TabsIndicator)}
+        />
+        <Tabs
+          label="Project sections"
+          indicator={indicator}
+          activation={activation}
+          value={section}
+          onValueChange={setSection}
+          items={[
+            {
+              id: "overview",
+              label: "Overview",
+              panel: (
+                <p style={{ margin: 0 }}>
+                  High-level summary of the project health, owners, and recent
+                  activity.
+                </p>
+              ),
+            },
+            {
+              id: "activity",
+              label: "Activity",
+              icon: <ListIcon />,
+              panel: (
+                <p style={{ margin: 0 }}>
+                  Timeline of commits, comments, and status changes for this
+                  workspace.
+                </p>
+              ),
+            },
+            {
+              id: "files",
+              label: "Files",
+              icon: <GridIcon />,
+              panel: (
+                <p style={{ margin: 0 }}>
+                  Documents and assets attached to this project context.
+                </p>
+              ),
+            },
+            {
+              id: "settings",
+              label: "Settings",
+              disabled: true,
+              panel: <p style={{ margin: 0 }}>Disabled destination.</p>,
+            },
+            {
+              id: "sync",
+              label: "Sync",
+              loading: true,
+              panel: <p style={{ margin: 0 }}>Loading tab cannot activate.</p>,
+            },
+          ]}
+        />
+        <p className="catalog-group-meta">Active: {section}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Activation model</h3>
+        <SegmentedControl
+          label="Activation"
+          options={[
+            { id: "automatic", label: "Automatic" },
+            { id: "manual", label: "Manual" },
+          ]}
+          value={activation}
+          onValueChange={(id) => setActivation(id as TabsActivation)}
+        />
+        <Tabs
+          label="Manual vs automatic demo"
+          indicator="underline"
+          activation={activation}
+          defaultValue="general"
+          items={[
+            {
+              id: "general",
+              label: "General",
+              panel: (
+                <p style={{ margin: 0 }}>
+                  {activation === "manual"
+                    ? "Arrow keys move focus; Enter or Space activates."
+                    : "Arrow keys move focus and activate immediately."}
+                </p>
+              ),
+            },
+            {
+              id: "privacy",
+              label: "Privacy",
+              panel: <p style={{ margin: 0 }}>Privacy preferences for this account.</p>,
+            },
+            {
+              id: "notify",
+              label: "Notifications",
+              panel: <p style={{ margin: 0 }}>Email and push notification controls.</p>,
+            },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Scrollable (narrow)</h3>
+        <Tabs
+          label="Many related views"
+          overflow="scroll"
+          indicator="underline"
+          value={scrollTab}
+          onValueChange={setScrollTab}
+          items={Array.from({ length: 10 }, (_, i) => ({
+            id: `tab-${i + 1}`,
+            label: `Section ${String(i + 1).padStart(2, "0")}`,
+            panel: (
+              <p style={{ margin: 0 }}>
+                Panel for section {i + 1}. Labels stay readable; the list scrolls
+                horizontally instead of wrapping.
+              </p>
+            ),
+          }))}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Icon-only + wrap</h3>
+        <Tabs
+          label="View mode"
+          indicator="pill"
+          overflow="wrap"
+          defaultValue="list"
+          items={[
+            {
+              id: "list",
+              label: "List view",
+              icon: <ListIcon />,
+              iconOnly: true,
+              panel: <p style={{ margin: 0 }}>List layout for dense scanning.</p>,
+            },
+            {
+              id: "grid",
+              label: "Grid view",
+              icon: <GridIcon />,
+              iconOnly: true,
+              panel: <p style={{ margin: 0 }}>Grid layout for visual browsing.</p>,
+            },
+            {
+              id: "board",
+              label: "Board view",
+              icon: <EditIcon />,
+              iconOnly: true,
+              panel: <p style={{ margin: 0 }}>Board columns for workflow status.</p>,
+            },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function TabBarLab() {
+  const [dest, setDest] = useState("home");
+  const [placement, setPlacement] = useState<TabBarPlacement>("contextual");
+
+  return (
+    <section className="catalog-group" aria-labelledby="tab-bar-lab-heading">
+      <h2 id="tab-bar-lab-heading">032 Tab Bar</h2>
+      <p className="catalog-group-desc">
+        Persistent primary destinations (2–5) in a bounded app — related to Tabs,
+        optimized for navigation. Icons reinforce labels; badges carry counts.
+        Bottom placement respects safe-area insets without fighting system gestures.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Placement</h3>
+        <SegmentedControl
+          label="Placement"
+          options={[
+            { id: "contextual", label: "Contextual" },
+            { id: "bottom", label: "Bottom" },
+            { id: "top", label: "Top" },
+            { id: "auto", label: "Auto" },
+          ]}
+          value={placement}
+          onValueChange={(id) => setPlacement(id as TabBarPlacement)}
+        />
+        <div
+          style={{
+            position: "relative",
+            minHeight: placement === "bottom" || placement === "auto" ? "12rem" : undefined,
+            border: "1px solid var(--color-border-default, #d2d2d7)",
+            borderRadius: "12px",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {(placement === "top" || placement === "auto") && (
+            <TabBar
+              label="Primary"
+              placement={placement === "auto" ? "top" : placement}
+              safeArea={false}
+              value={dest}
+              onValueChange={setDest}
+              items={[
+                { id: "home", label: "Home", icon: <HomeIcon /> },
+                { id: "search", label: "Search", icon: <SearchIcon /> },
+                { id: "inbox", label: "Inbox", icon: <InboxIcon />, badge: 3 },
+                { id: "profile", label: "Profile", icon: <ProfileIcon /> },
+              ]}
+            />
+          )}
+          <div style={{ flex: 1, padding: "16px" }}>
+            <p className="catalog-group-meta" style={{ margin: 0 }}>
+              Active destination: <strong>{dest}</strong>
+            </p>
+            <p style={{ margin: "8px 0 0", color: "var(--color-text-secondary, #6e6e73)" }}>
+              Compact chrome for Home, Search, Inbox, and Profile — not for unrelated
+              actions.
+            </p>
+          </div>
+          {(placement === "bottom" || placement === "contextual") && (
+            <TabBar
+              label="Primary"
+              placement={placement}
+              safeArea={placement === "bottom"}
+              value={dest}
+              onValueChange={setDest}
+              items={[
+                { id: "home", label: "Home", icon: <HomeIcon /> },
+                { id: "search", label: "Search", icon: <SearchIcon /> },
+                { id: "inbox", label: "Inbox", icon: <InboxIcon />, badge: 12 },
+                { id: "profile", label: "Profile", icon: <ProfileIcon /> },
+                {
+                  id: "more",
+                  label: "More",
+                  icon: <MoreIcon />,
+                  disabled: true,
+                },
+              ]}
+            />
+          )}
+        </div>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Three destinations</h3>
+        <TabBar
+          label="Workspace"
+          placement="contextual"
+          defaultValue="work"
+          items={[
+            { id: "work", label: "Work", icon: <GridIcon /> },
+            { id: "list", label: "List", icon: <ListIcon />, badge: "9+" },
+            { id: "you", label: "You", icon: <ProfileIcon /> },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Icon-only (clear meanings)</h3>
+        <TabBar
+          label="Views"
+          placement="contextual"
+          defaultValue="home"
+          items={[
+            { id: "home", label: "Home", icon: <HomeIcon />, iconOnly: true },
+            { id: "search", label: "Search", icon: <SearchIcon />, iconOnly: true },
+            {
+              id: "inbox",
+              label: "Inbox",
+              icon: <InboxIcon />,
+              iconOnly: true,
+              badge: 2,
+            },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function BreadcrumbsLab() {
+  const [last, setLast] = useState("—");
+  const [mobile, setMobile] = useState<BreadcrumbsMobile>("full");
+
+  const longTrail = [
+    { id: "home", label: "Home", href: "#home" },
+    { id: "catalog", label: "Catalog", href: "#catalog" },
+    { id: "electronics", label: "Electronics", href: "#electronics" },
+    { id: "audio", label: "Audio", href: "#audio" },
+    { id: "headphones", label: "Headphones", href: "#headphones" },
+    { id: "current", label: "Studio Pro Wireless" },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="breadcrumbs-lab-heading">
+      <h2 id="breadcrumbs-lab-heading">033 Breadcrumbs</h2>
+      <p className="catalog-group-desc">
+        Hierarchical location — linked ancestors, non-linked current page, quiet
+        separators. Long paths collapse intermediate levels into a discoverable
+        overflow menu rather than clipping without recovery.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Basic</h3>
+        <h1 style={{ margin: "0 0 8px", fontSize: "1.5rem", fontWeight: 600 }}>
+          Studio Pro Wireless
+        </h1>
+        <Breadcrumbs
+          showHomeIcon
+          onItemNavigate={(item) => setLast(item.label)}
+          items={[
+            { id: "home", label: "Home", href: "#home" },
+            { id: "products", label: "Products", href: "#products" },
+            { id: "audio", label: "Audio", href: "#audio" },
+            { id: "current", label: "Studio Pro Wireless" },
+          ]}
+        />
+        <p className="catalog-group-meta">Last ancestor activated: {last}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Long path + overflow</h3>
+        <Breadcrumbs
+          showHomeIcon
+          collapse="auto"
+          maxVisible={4}
+          itemsAfterCollapse={2}
+          onItemNavigate={(item) => setLast(item.label)}
+          items={longTrail}
+        />
+        <p className="catalog-group-meta">
+          Opens as Home › … › Headphones › Studio Pro Wireless — use … to reach
+          hidden ancestors.
+        </p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Mobile presentations</h3>
+        <SegmentedControl
+          label="Mobile mode"
+          options={[
+            { id: "full", label: "Full" },
+            { id: "ancestor", label: "Ancestor" },
+            { id: "back", label: "Back" },
+          ]}
+          value={mobile}
+          onValueChange={(id) => setMobile(id as BreadcrumbsMobile)}
+        />
+        <Breadcrumbs
+          mobile={mobile}
+          showHomeIcon
+          onItemNavigate={(item) => setLast(item.label)}
+          items={[
+            { id: "home", label: "Home", href: "#home" },
+            { id: "products", label: "Products", href: "#products" },
+            { id: "current", label: "Studio Pro Wireless" },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function PaginationLab() {
+  const [page, setPage] = useState(4);
+  const [pageLarge, setPageLarge] = useState(12);
+  const [layout, setLayout] = useState<PaginationLayout>("expanded");
+  const [pageSize, setPageSize] = useState<string | null>("10");
+
+  return (
+    <section className="catalog-group" aria-labelledby="pagination-lab-heading">
+      <h2 id="pagination-lab-heading">034 Pagination</h2>
+      <p className="catalog-group-desc">
+        Navigate finite multi-page collections. Large page counts collapse with
+        ellipses. Compact mode shows Previous · Page X of N · Next on narrow
+        layouts. Previous/Next keep their meaning in RTL.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <h3 className="catalog-subgroup-title">Expanded</h3>
+        <Pagination
+          page={page}
+          pageCount={12}
+          onPageChange={setPage}
+          layout="expanded"
+          showFirstLast
+        />
+        <p className="catalog-group-meta">Page {page} of 12</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <h3 className="catalog-subgroup-title">Large set (collapsed numbers)</h3>
+        <Pagination
+          page={pageLarge}
+          pageCount={50}
+          onPageChange={setPageLarge}
+          layout="expanded"
+          showFirstLast
+        />
+        <p className="catalog-group-meta">Page {pageLarge} of 50</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Layout</h3>
+        <SegmentedControl
+          label="Layout"
+          options={[
+            { id: "expanded", label: "Expanded" },
+            { id: "compact", label: "Compact" },
+            { id: "auto", label: "Auto" },
+          ]}
+          value={layout}
+          onValueChange={(id) => setLayout(id as PaginationLayout)}
+        />
+        <Pagination
+          page={page}
+          pageCount={20}
+          onPageChange={setPage}
+          layout={layout}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <h3 className="catalog-subgroup-title">With page-size composition</h3>
+        <Pagination
+          page={page}
+          pageCount={20}
+          onPageChange={setPage}
+          layout="expanded"
+          pageSizeControl={
+            <Select
+              label="Rows per page"
+              hideLabel
+              presentation="listbox"
+              options={[
+                { value: "10", label: "10 / page" },
+                { value: "25", label: "25 / page" },
+                { value: "50", label: "50 / page" },
+              ]}
+              value={pageSize}
+              onValueChange={setPageSize}
+              searchable={false}
+            />
+          }
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Disabled edges</h3>
+        <Pagination page={1} pageCount={8} onPageChange={() => {}} layout="expanded" />
+        <Pagination
+          page={8}
+          pageCount={8}
+          onPageChange={() => {}}
+          layout="compact"
+        />
+      </div>
+    </section>
+  );
+}
+
+function SettingsIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="M12 3.75v2.5M12 17.75v2.5M3.75 12h2.5M17.75 12h2.5M6.4 6.4l1.77 1.77M15.83 15.83l1.77 1.77M17.6 6.4l-1.77 1.77M8.17 15.83l-1.77 1.77"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function StepperLab() {
+  const [step, setStep] = useState("shipping");
+  const [orientation, setOrientation] = useState<StepperOrientation>("horizontal");
+  const [mode, setMode] = useState<StepperMode>("linear");
+
+  return (
+    <section className="catalog-group" aria-labelledby="stepper-lab-heading">
+      <h2 id="stepper-lab-heading">035 Stepper</h2>
+      <p className="catalog-group-desc">
+        Ordered stages for workflows and setup. Completed is explicit — not merely
+        visited. Linear blocks future steps; non-linear allows jumping. Set{" "}
+        <code>interactive=&#123;false&#125;</code> for informational progress.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <h3 className="catalog-subgroup-title">Checkout (linear)</h3>
+        <SegmentedControl
+          label="Orientation"
+          options={[
+            { id: "horizontal", label: "Horizontal" },
+            { id: "vertical", label: "Vertical" },
+            { id: "compact", label: "Compact" },
+            { id: "auto", label: "Auto" },
+          ]}
+          value={orientation}
+          onValueChange={(id) => setOrientation(id as StepperOrientation)}
+        />
+        <Stepper
+          label="Checkout"
+          orientation={orientation}
+          mode="linear"
+          value={step}
+          onValueChange={setStep}
+          steps={[
+            {
+              id: "cart",
+              label: "Cart",
+              description: "Review items",
+            },
+            {
+              id: "shipping",
+              label: "Shipping",
+              description: "Address & method",
+            },
+            {
+              id: "payment",
+              label: "Payment",
+              description: "Billing details",
+            },
+            {
+              id: "review",
+              label: "Review",
+              description: "Confirm order",
+            },
+          ]}
+        />
+        <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={step === "cart"}
+            onClick={() => {
+              const order = ["cart", "shipping", "payment", "review"];
+              const i = order.indexOf(step);
+              if (i > 0) setStep(order[i - 1]!);
+            }}
+          >
+            Back
+          </Button>
+          <Button
+            type="button"
+            variant="primary"
+            disabled={step === "review"}
+            onClick={() => {
+              const order = ["cart", "shipping", "payment", "review"];
+              const i = order.indexOf(step);
+              if (i < order.length - 1) setStep(order[i + 1]!);
+            }}
+          >
+            Continue
+          </Button>
+        </div>
+        <p className="catalog-group-meta">Current: {step}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <h3 className="catalog-subgroup-title">Non-linear + error</h3>
+        <SegmentedControl
+          label="Mode"
+          options={[
+            { id: "linear", label: "Linear" },
+            { id: "non-linear", label: "Non-linear" },
+          ]}
+          value={mode}
+          onValueChange={(id) => setMode(id as StepperMode)}
+        />
+        <Stepper
+          label="Account setup"
+          orientation="horizontal"
+          mode={mode}
+          defaultValue="profile"
+          steps={[
+            { id: "account", label: "Account" },
+            { id: "profile", label: "Profile" },
+            {
+              id: "security",
+              label: "Security",
+              description: "Fix verification",
+              status: "error",
+            },
+            { id: "done", label: "Done", disabled: true },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Informational only</h3>
+        <Stepper
+          label="Sync progress"
+          interactive={false}
+          orientation="vertical"
+          value="upload"
+          steps={[
+            { id: "prepare", label: "Prepare files", status: "completed" },
+            { id: "upload", label: "Upload", status: "current", description: "In progress" },
+            { id: "verify", label: "Verify", status: "upcoming" },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function NavigationMenuLab() {
+  const [active, setActive] = useState("home");
+  const [density, setDensity] = useState<NavigationMenuDensity>("expanded");
+
+  return (
+    <section className="catalog-group" aria-labelledby="nav-menu-lab-heading">
+      <h2 id="nav-menu-lab-heading">036 Navigation Menu</h2>
+      <p className="catalog-group-desc">
+        Hierarchical destinations — shell-independent. Compose inside your own
+        sidebar, drawer, or sheet. Depth via indent and type; expand branches with
+        chevrons or arrow keys. Recommended ≤ 3 visible levels.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "18rem" }}>
+        <h3 className="catalog-subgroup-title">Workspace</h3>
+        <SegmentedControl
+          label="Density"
+          options={[
+            { id: "expanded", label: "Expanded" },
+            { id: "collapsed", label: "Collapsed" },
+          ]}
+          value={density}
+          onValueChange={(id) => setDensity(id as NavigationMenuDensity)}
+        />
+        <NavigationMenu
+          label="Workspace"
+          density={density}
+          value={active}
+          onValueChange={setActive}
+          groups={[
+            {
+              id: "main",
+              label: "Main",
+              items: [
+                { id: "home", label: "Home", icon: <HomeIcon />, href: "#home" },
+                {
+                  id: "projects",
+                  label: "Projects",
+                  icon: <GridIcon />,
+                  defaultExpanded: true,
+                  children: [
+                    { id: "active", label: "Active", href: "#active" },
+                    {
+                      id: "archived",
+                      label: "Archived",
+                      children: [
+                        { id: "2024", label: "2024", href: "#2024" },
+                        { id: "2023", label: "2023", href: "#2023" },
+                      ],
+                    },
+                  ],
+                },
+                {
+                  id: "inbox",
+                  label: "Inbox",
+                  icon: <InboxIcon />,
+                  badge: 12,
+                  href: "#inbox",
+                },
+              ],
+            },
+            {
+              id: "account",
+              label: "Account",
+              items: [
+                {
+                  id: "profile",
+                  label: "Profile",
+                  icon: <ProfileIcon />,
+                  href: "#profile",
+                },
+                {
+                  id: "settings",
+                  label: "Settings",
+                  icon: <SettingsIcon />,
+                  badge: { label: "New", tone: "accent" },
+                  href: "#settings",
+                },
+                {
+                  id: "billing",
+                  label: "Billing",
+                  icon: <SettingsIcon />,
+                  disabled: true,
+                },
+              ],
+            },
+          ]}
+        />
+        <p className="catalog-group-meta">Active: {active}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "18rem" }}>
+        <h3 className="catalog-subgroup-title">Host drawer mock (same data)</h3>
+        <p className="catalog-group-desc">
+          The menu does not own drawer chrome — this bordered region stands in for
+          a host sheet.
+        </p>
+        <div
+          style={{
+            border: "1px solid var(--color-border-default, #d2d2d7)",
+            borderRadius: 8,
+            padding: 8,
+            maxHeight: 320,
+            overflow: "auto",
+          }}
+        >
+          <NavigationMenu
+            label="Mobile destinations"
+            size="sm"
+            defaultValue="home"
+            items={[
+              { id: "home", label: "Home", icon: <HomeIcon />, href: "#m-home" },
+              { id: "inbox", label: "Inbox", icon: <InboxIcon />, badge: 3 },
+              {
+                id: "more",
+                label: "More",
+                icon: <GridIcon />,
+                defaultExpanded: true,
+                children: [
+                  { id: "team", label: "Team" },
+                  { id: "help", label: "Help" },
+                ],
+              },
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NavigationItemLab() {
+  const [active, setActive] = useState("home");
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [indicator, setIndicator] =
+    useState<NavigationItemIndicator>("start");
+
+  return (
+    <section className="catalog-group" aria-labelledby="nav-item-lab-heading">
+      <h2 id="nav-item-lab-heading">037 Navigation Item</h2>
+      <p className="catalog-group-desc">
+        Atomic destination — link for URLs, expandable for submenus, selectable
+        button for SPA hosts. Not for arbitrary actions (use Button). Full labels
+        stay discoverable when truncated via <code>title</code>.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">States &amp; composition</h3>
+        <SegmentedControl
+          label="Active indicator"
+          options={[
+            { id: "start", label: "Start" },
+            { id: "underline", label: "Underline" },
+            { id: "none", label: "None" },
+          ]}
+          value={indicator}
+          onValueChange={(id) => setIndicator(id as NavigationItemIndicator)}
+        />
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <NavigationItem
+            label="Home"
+            icon={<HomeIcon />}
+            href="#ni-home"
+            active={active === "home"}
+            indicator={indicator}
+            onSelect={() => setActive("home")}
+          />
+          <NavigationItem
+            label="Inbox"
+            description="Unread messages"
+            icon={<InboxIcon />}
+            badge={12}
+            href="#ni-inbox"
+            active={active === "inbox"}
+            indicator={indicator}
+            onSelect={() => setActive("inbox")}
+          />
+          <NavigationItem
+            label="Projects"
+            icon={<GridIcon />}
+            expandable
+            expanded={moreOpen}
+            onExpandedChange={setMoreOpen}
+            indicator={indicator}
+          />
+          {moreOpen ? (
+            <div style={{ paddingInlineStart: 16 }}>
+              <NavigationItem
+                label="Active"
+                href="#ni-active"
+                size="sm"
+                indicator={indicator}
+                active={active === "active"}
+                onSelect={() => setActive("active")}
+              />
+              <NavigationItem
+                label="Archived"
+                href="#ni-archived"
+                size="sm"
+                indicator={indicator}
+                active={active === "archived"}
+                onSelect={() => setActive("archived")}
+              />
+            </div>
+          ) : null}
+          <NavigationItem
+            label="Documentation"
+            icon={<SettingsIcon />}
+            href="https://example.com"
+            external
+            indicator={indicator}
+          />
+          <NavigationItem
+            label="Billing"
+            icon={<ProfileIcon />}
+            disabled
+            indicator={indicator}
+          />
+          <NavigationItem
+            label="Visited docs"
+            href="#ni-visited"
+            visited
+            indicator={indicator}
+          />
+        </div>
+        <p className="catalog-group-meta">Active: {active}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "22rem" }}>
+        <h3 className="catalog-subgroup-title">Multiline &amp; truncate</h3>
+        <NavigationItem
+          label="Einstellungen für Benachrichtigungen und Privatsphäre"
+          description="Localized long label wraps instead of clipping silently"
+          layout="multiline"
+          icon={<SettingsIcon />}
+          href="#ni-settings"
+        />
+        <NavigationItem
+          label="Very long single-line destination that needs discovery"
+          truncate
+          icon={<InboxIcon />}
+          href="#ni-long"
+          badge={{ label: "New", tone: "accent" }}
+          style={{ marginTop: 8 }}
+        />
+      </div>
+    </section>
+  );
+}
+
+function BottomNavigationLab() {
+  const [active, setActive] = useState("home");
+  const [keyboardOpen, setKeyboardOpen] = useState(false);
+  const [keyboardBehavior, setKeyboardBehavior] =
+    useState<BottomNavigationKeyboardBehavior>("hide");
+
+  return (
+    <section className="catalog-group" aria-labelledby="bottom-nav-lab-heading">
+      <h2 id="bottom-nav-lab-heading">038 Bottom Navigation</h2>
+      <p className="catalog-group-desc">
+        Mobile primary destinations (3–5) with icon + label. Edge-integrated with
+        a top border — not floating. Yields when the keyboard opens so inputs stay
+        uncovered. Distinct from Tab Bar (032), which also supports top/contextual
+        placement.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "24rem" }}>
+        <h3 className="catalog-subgroup-title">Phone frame</h3>
+        <SegmentedControl
+          label="Keyboard behavior"
+          options={[
+            { id: "hide", label: "Hide" },
+            { id: "persist", label: "Persist" },
+            { id: "none", label: "None" },
+          ]}
+          value={keyboardBehavior}
+          onValueChange={(id) =>
+            setKeyboardBehavior(id as BottomNavigationKeyboardBehavior)
+          }
+        />
+        <div style={{ marginBlock: 8 }}>
+          <Switch
+            label="Simulate keyboard open"
+            checked={keyboardOpen}
+            onCheckedChange={setKeyboardOpen}
+          />
+        </div>
+        <div
+          style={{
+            position: "relative",
+            border: "1px solid var(--color-border-default, #d2d2d7)",
+            borderRadius: 12,
+            overflow: "hidden",
+            background: "var(--color-surface-secondary, #f5f5f7)",
+            minHeight: 360,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            className="dk-scroll"
+            style={{
+              flex: 1,
+              padding: 16,
+              paddingBottom: keyboardOpen && keyboardBehavior === "hide" ? 16 : 72,
+              overflow: "auto",
+            }}
+          >
+            <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5 }}>
+              Application content. Active: <strong>{active}</strong>. Hosts should
+              pad scroll regions above the bar (~56px + safe-area) so content is
+              not obscured.
+            </p>
+            {keyboardOpen ? (
+              <TextInput
+                label="Compose"
+                placeholder="Type while keyboard is open…"
+                style={{ marginTop: 12 }}
+                autoFocus
+              />
+            ) : null}
+          </div>
+          <BottomNavigation
+            label="Primary"
+            value={active}
+            onValueChange={setActive}
+            keyboardBehavior={keyboardBehavior}
+            keyboardOpen={keyboardOpen}
+            safeArea={false}
+            style={{ position: "relative" }}
+            items={[
+              { id: "home", label: "Home", icon: <HomeIcon />, href: "#bn-home" },
+              {
+                id: "inbox",
+                label: "Inbox",
+                icon: <InboxIcon />,
+                badge: 8,
+                href: "#bn-inbox",
+              },
+              {
+                id: "search",
+                label: "Search",
+                icon: <SearchIcon />,
+                href: "#bn-search",
+              },
+              {
+                id: "profile",
+                label: "Profile",
+                icon: <ProfileIcon />,
+                href: "#bn-profile",
+              },
+              {
+                id: "settings",
+                label: "Settings",
+                icon: <SettingsIcon />,
+                disabled: true,
+              },
+            ]}
+          />
+        </div>
+        <p className="catalog-group-meta">
+          Active: {active} · keyboard simulated: {keyboardOpen ? "yes" : "no"}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function AnchorNavigationLab() {
+  const [orientation, setOrientation] =
+    useState<AnchorNavigationOrientation>("horizontal");
+  const [active, setActive] = useState<string | null>("overview");
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [scrollRoot, setScrollRoot] = useState<Element | null>(null);
+
+  useEffect(() => {
+    setScrollRoot(contentRef.current);
+  }, []);
+
+  const sections = [
+    {
+      id: "overview",
+      title: "Overview",
+      body: "Anchor Navigation uses real hash links so open-in-new-tab, copy-link, and no-JS fallbacks keep working. Scroll sync is a progressive enhancement.",
+    },
+    {
+      id: "features",
+      title: "Features",
+      body: "Sticky mode measures its own height for scroll margin. Active state updates as you scroll when scrollSync is enabled.",
+    },
+    {
+      id: "pricing",
+      title: "Pricing",
+      body: "Horizontal overflow scrolls with full-size targets — not a tiny cramped strip. Vertical mode suits side-of-page “on this page” lists.",
+    },
+    {
+      id: "faq",
+      title: "FAQ",
+      body: "Smooth scrolling respects prefers-reduced-motion and falls back to immediate scrolling. Focused section content clears sticky chrome via scroll margin.",
+    },
+    {
+      id: "support",
+      title: "Support",
+      body: "Keyboard arrows move between anchors. RTL reverses horizontal arrow behavior. High contrast strengthens the active indicator.",
+    },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="anchor-nav-lab-heading">
+      <h2 id="anchor-nav-lab-heading">039 Anchor Navigation</h2>
+      <p className="catalog-group-desc">
+        In-page section wayfinding. Real <code>&lt;a href="#…"&gt;</code> links,
+        scroll sync, sticky offset, horizontal or vertical. Reduced motion uses
+        immediate scrolling.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <SegmentedControl
+          label="Orientation"
+          options={[
+            { id: "horizontal", label: "Horizontal" },
+            { id: "vertical", label: "Vertical" },
+            { id: "auto", label: "Auto" },
+          ]}
+          value={orientation}
+          onValueChange={(id) =>
+            setOrientation(id as AnchorNavigationOrientation)
+          }
+        />
+
+        <div
+          style={
+            {
+              marginTop: 12,
+              border: "1px solid var(--color-border-default, #d2d2d7)",
+              borderRadius: 12,
+              overflow: "hidden",
+              display: orientation === "vertical" ? "grid" : "block",
+              gridTemplateColumns:
+                orientation === "vertical" ? "11rem 1fr" : undefined,
+              maxHeight: 420,
+              ["--dk-anchor-nav-offset"]:
+                orientation === "horizontal" ? "52px" : "0px",
+            } as CSSProperties
+          }
+        >
+          <div
+            style={{
+              position: orientation === "vertical" ? "relative" : undefined,
+              borderInlineEnd:
+                orientation === "vertical"
+                  ? "1px solid var(--color-border-default, #d2d2d7)"
+                  : undefined,
+            }}
+          >
+            <AnchorNavigation
+              label="On this page"
+              sticky={orientation !== "vertical"}
+              orientation={orientation}
+              overflow="scroll"
+              value={active}
+              onValueChange={setActive}
+              scrollRoot={scrollRoot}
+              items={sections.map((s) => ({ id: s.id, label: s.title }))}
+              style={
+                orientation === "vertical"
+                  ? { position: "sticky", top: 0, maxHeight: 420 }
+                  : undefined
+              }
+            />
+          </div>
+
+          <div
+            ref={contentRef}
+            className="dk-scroll"
+            style={{
+              maxHeight: 420,
+              overflow: "auto",
+              padding: 16,
+              background: "var(--color-surface-secondary, #f5f5f7)",
+            }}
+          >
+            {sections.map((section) => (
+              <section
+                key={section.id}
+                id={section.id}
+                className="dk-anchor-nav-target"
+                style={{
+                  marginBottom: 24,
+                  paddingBottom: 24,
+                  borderBottom:
+                    "1px solid var(--color-border-default, #d2d2d7)",
+                  minHeight: 140,
+                }}
+              >
+                <h3 style={{ margin: "0 0 8px", fontSize: 16 }}>{section.title}</h3>
+                <p style={{ margin: 0, fontSize: 14, lineHeight: 1.5 }}>
+                  {section.body}
+                </p>
+              </section>
+            ))}
+          </div>
+        </div>
+        <p className="catalog-group-meta">Active section: {active ?? "—"}</p>
+      </div>
+    </section>
+  );
+}
+
+function PreviousNextNavigationLab() {
+  const [page, setPage] = useState(1);
+  const [boundary, setBoundary] = useState<PreviousNextBoundary>("disable");
+  const [layout, setLayout] = useState<PreviousNextLayout>("auto");
+
+  const pages = [
+    { id: 0, title: "Introduction", href: "#pn-intro" },
+    { id: 1, title: "Installation", href: "#pn-install" },
+    {
+      id: 2,
+      title:
+        "Configuring authentication providers and session persistence across devices",
+      href: "#pn-auth",
+    },
+    { id: 3, title: "Deploy", href: "#pn-deploy" },
+  ];
+
+  const current = pages[page]!;
+  const prevPage = pages[page - 1];
+  const nextPage = pages[page + 1];
+
+  return (
+    <section className="catalog-group" aria-labelledby="prev-next-lab-heading">
+      <h2 id="prev-next-lab-heading">040 Previous / Next Navigation</h2>
+      <p className="catalog-group-desc">
+        Sequential docs/articles/tutorials. Real links for destinations. RTL may
+        flip placement — Previous and Next meaning stay the same. Boundary ends
+        disable or hide.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <SegmentedControl
+          label="Position"
+          options={pages.map((p, i) => ({
+            id: String(i),
+            label: String(i + 1),
+          }))}
+          value={String(page)}
+          onValueChange={(id) => setPage(Number(id))}
+        />
+        <SegmentedControl
+          label="Boundary"
+          options={[
+            { id: "disable", label: "Disable" },
+            { id: "hide", label: "Hide" },
+          ]}
+          value={boundary}
+          onValueChange={(id) => setBoundary(id as PreviousNextBoundary)}
+        />
+        <SegmentedControl
+          label="Layout"
+          options={[
+            { id: "auto", label: "Auto" },
+            { id: "split", label: "Split" },
+            { id: "stack", label: "Stack" },
+          ]}
+          value={layout}
+          onValueChange={(id) => setLayout(id as PreviousNextLayout)}
+        />
+
+        <div
+          style={{
+            marginTop: 12,
+            padding: 16,
+            border: "1px solid var(--color-border-default, #d2d2d7)",
+            borderRadius: 12,
+            background: "var(--color-surface-secondary, #f5f5f7)",
+          }}
+        >
+          <h3 style={{ margin: "0 0 8px", fontSize: 16 }}>{current.title}</h3>
+          <p style={{ margin: "0 0 16px", fontSize: 14, lineHeight: 1.5 }}>
+            Page {page + 1} of {pages.length}. Use Previous / Next to move through
+            the sequence.
+          </p>
+          <PreviousNextNavigation
+            boundary={boundary}
+            layout={layout}
+            previous={
+              prevPage
+                ? {
+                    href: prevPage.href,
+                    title: prevPage.title,
+                    onSelect: (e) => {
+                      e.preventDefault();
+                      setPage(page - 1);
+                    },
+                  }
+                : null
+            }
+            next={
+              nextPage
+                ? {
+                    href: nextPage.href,
+                    title: nextPage.title,
+                    onSelect: (e) => {
+                      e.preventDefault();
+                      setPage(page + 1);
+                    },
+                  }
+                : null
+            }
+          />
+        </div>
+        <p className="catalog-group-meta">
+          Position: {page === 0 ? "first" : page === pages.length - 1 ? "last" : "middle"}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function AlertLab() {
+  const [variant, setVariant] = useState<AlertVariant>("informational");
+  const [dismissed, setDismissed] = useState(false);
+  const [density, setDensity] = useState<"standard" | "compact">("standard");
+
+  return (
+    <section className="catalog-group" aria-labelledby="alert-lab-heading">
+      <h2 id="alert-lab-heading">041 Alert</h2>
+      <p className="catalog-group-desc">
+        Persistent contextual feedback — not a toast. Status via icon + text +
+        surface. Dismiss only when appropriate; persistent conditions use{" "}
+        <code>live=&quot;off&quot;</code> and stay non-dismissible.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <SegmentedControl
+          label="Variant"
+          options={[
+            { id: "informational", label: "Info" },
+            { id: "success", label: "Success" },
+            { id: "warning", label: "Warning" },
+            { id: "error", label: "Error" },
+            { id: "neutral", label: "Neutral" },
+          ]}
+          value={variant}
+          onValueChange={(id) => setVariant(id as AlertVariant)}
+        />
+        <SegmentedControl
+          label="Density"
+          options={[
+            { id: "standard", label: "Standard" },
+            { id: "compact", label: "Compact" },
+          ]}
+          value={density}
+          onValueChange={(id) => setDensity(id as "standard" | "compact")}
+        />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 12 }}>
+          <Alert variant={variant} density={density} title="Account update available">
+            Review the new privacy settings before they take effect next week.
+          </Alert>
+
+          <Alert variant={variant} density={density}>
+            Message-only alert — no title required for short notices.
+          </Alert>
+
+          <Alert
+            variant="error"
+            density={density}
+            title="Couldn’t save changes"
+            actions={[
+              { label: "Retry", emphasis: "primary", onClick: () => undefined },
+              {
+                label: "Contact support",
+                href: "#support",
+                emphasis: "tertiary",
+              },
+            ]}
+          >
+            The server returned an unexpected error. Your draft is still saved
+            locally and has not been lost.
+          </Alert>
+
+          <Alert
+            variant="informational"
+            density={density}
+            live="off"
+            title="Read-only archive"
+          >
+            Persistent condition — not dismissible. Dismissal would falsely imply
+            the archive mode ended.
+          </Alert>
+
+          {!dismissed ? (
+            <Alert
+              variant="success"
+              density={density}
+              title="Invite sent"
+              dismissible
+              onDismiss={() => setDismissed(true)}
+              actions={[
+                { label: "View invite", href: "#invite", emphasis: "secondary" },
+              ]}
+            >
+              Dismissal is appropriate here — the notice is contextual, not a
+              standing system condition.
+            </Alert>
+          ) : (
+            <Button type="button" variant="secondary" onClick={() => setDismissed(false)}>
+              Show dismissible alert again
+            </Button>
+          )}
+
+          <Alert variant="warning" density={density} title="Long localized message">
+            Your subscription renews on 12 March 2027. If payment fails, access to
+            shared workspaces, automated exports, and API keys may be paused until
+            billing is updated. Contact your organization admin if you do not manage
+            billing for this account.
+          </Alert>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StatusIndicatorLab() {
+  const [appearance, setAppearance] =
+    useState<StatusIndicatorAppearance>("dot-text");
+
+  const rows: Array<{
+    status: string;
+    label: string;
+    tone: "neutral" | "positive" | "warning" | "negative" | "informational";
+    details?: string;
+    preferIcon?: boolean;
+  }> = [
+    { status: "active", label: "Active", tone: "positive" },
+    { status: "inactive", label: "Inactive", tone: "neutral" },
+    {
+      status: "pending",
+      label: "Awaiting verification",
+      tone: "warning",
+      details: "Submitted 2 hours ago",
+      preferIcon: true,
+    },
+    { status: "processing", label: "Processing", tone: "informational" },
+    { status: "completed", label: "Completed", tone: "positive", preferIcon: true },
+    { status: "failed", label: "Failed", tone: "negative", preferIcon: true },
+    { status: "draft", label: "Draft", tone: "neutral" },
+    { status: "archived", label: "Archived", tone: "neutral" },
+    { status: "online", label: "Online", tone: "positive" },
+    { status: "offline", label: "Offline", tone: "negative", preferIcon: true },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="status-lab-heading">
+      <h2 id="status-lab-heading">042 Status Indicator</h2>
+      <p className="catalog-group-desc">
+        Compact entity/process state. Host vocabulary maps onto DevKit tones —
+        not hardcoded “Active/Draft” primitives. Prefer icon + text for important
+        states. Labels wrap; they are not truncated into fragments.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <SegmentedControl
+          label="Appearance"
+          options={[
+            { id: "dot-text", label: "Dot + text" },
+            { id: "icon-text", label: "Icon + text" },
+            { id: "text", label: "Text" },
+            { id: "dot", label: "Dot" },
+          ]}
+          value={appearance}
+          onValueChange={(id) =>
+            setAppearance(id as StatusIndicatorAppearance)
+          }
+        />
+
+        <ul
+          style={{
+            listStyle: "none",
+            margin: "12px 0 0",
+            padding: 0,
+            display: "flex",
+            flexDirection: "column",
+            gap: 10,
+          }}
+        >
+          {rows.map((row) => (
+            <li
+              key={row.status}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "space-between",
+                gap: 16,
+                padding: "8px 0",
+                borderBottom: "1px solid var(--color-border-default, #d2d2d7)",
+              }}
+            >
+              <code style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>
+                {row.status}
+              </code>
+              <StatusIndicator
+                status={row.status}
+                label={row.label}
+                tone={row.tone}
+                details={row.details}
+                appearance={
+                  appearance === "dot-text" && row.preferIcon
+                    ? "icon-text"
+                    : appearance
+                }
+              />
+            </li>
+          ))}
+        </ul>
+
+        <div style={{ marginTop: 16 }}>
+          <h3 className="catalog-subgroup-title">Long localized label</h3>
+          <StatusIndicator
+            status="pending-review"
+            tone="warning"
+            appearance="icon-text"
+            label="Awaiting verification from organization administrator"
+            details="Usually completes within one business day"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BadgeLab() {
+  const [count, setCount] = useState(3);
+
+  return (
+    <section className="catalog-group" aria-labelledby="badge-lab-heading">
+      <h2 id="badge-lab-heading">043 Badge</h2>
+      <p className="catalog-group-desc">
+        Compact attached indicator for counts and short labels — not long
+        messages. Numeric overflow uses configurable max (default 99+). Critical
+        information must not rely on a badge alone.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Standalone</h3>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
+          <Badge label="Beta" tone="accent" />
+          <Badge label="New" tone="positive" shape="soft" />
+          <Badge label="Docs" tone="neutral" appearance="icon-label" icon={<InboxIcon />} />
+          <Badge appearance="dot" tone="negative" accessibleLabel="Unread" />
+        </div>
+
+        <h3 className="catalog-subgroup-title" style={{ marginTop: 16 }}>
+          Numeric overflow
+        </h3>
+        <SegmentedControl
+          label="Count"
+          options={[
+            { id: "0", label: "0" },
+            { id: "1", label: "1" },
+            { id: "9", label: "9" },
+            { id: "99", label: "99" },
+            { id: "100", label: "100" },
+            { id: "1200", label: "1200" },
+          ]}
+          value={String(count)}
+          onValueChange={(id) => setCount(Number(id))}
+        />
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 12, alignItems: "center", marginTop: 8 }}>
+          <Badge count={count} tone="negative" max={99} showZero accessibleLabel={`${count} items`} />
+          <Badge count={count} tone="accent" max={999} />
+          <span className="catalog-group-meta">max=99 vs max=999</span>
+        </div>
+
+        <h3 className="catalog-subgroup-title" style={{ marginTop: 16 }}>
+          Attached to icon button
+        </h3>
+        <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+          <Badge
+            count={count}
+            tone="negative"
+            max={99}
+            accessibleLabel={`${count} unread messages`}
+          >
+            <IconButton label="Inbox" variant="outlined">
+              <InboxIcon />
+            </IconButton>
+          </Badge>
+          <Badge appearance="dot" tone="accent" accessibleLabel="Has updates">
+            <IconButton label="Notifications" variant="outlined">
+              <ProfileIcon />
+            </IconButton>
+          </Badge>
+          <Badge label="Pro" tone="accent" shape="soft" decorative>
+            <Button type="button" variant="secondary" size="sm">
+              Workspace
+            </Button>
+          </Badge>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CheckCircleIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <circle cx="10" cy="10" r="7.25" stroke="currentColor" strokeWidth="1.5" />
+      <path
+        d="m6.75 10.25 2.25 2.25 4.25-4.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function NotificationLab() {
+  const [density, setDensity] = useState<NotificationDensity>("comfortable");
+  const [items, setItems] = useState([
+    {
+      id: "invite",
+      unread: true,
+      title: "Team invitation",
+      description: "Alex invited you to join Design Systems.",
+      timestamp: Date.now() - 5 * 60 * 1000,
+      tone: "informational" as const,
+    },
+    {
+      id: "export",
+      unread: true,
+      title: "Export completed",
+      description:
+        "customers-q1.csv is ready. The file includes localized columns and will expire in 7 days.",
+      timestamp: Date.now() - 2 * 60 * 60 * 1000,
+      tone: "positive" as const,
+    },
+    {
+      id: "security",
+      unread: false,
+      title: "Security event",
+      description: "A new sign-in from Chrome on Windows was recorded.",
+      timestamp: Date.now() - 3 * 24 * 60 * 60 * 1000,
+      tone: "warning" as const,
+    },
+  ]);
+
+  return (
+    <section className="catalog-group" aria-labelledby="notification-lab-heading">
+      <h2 id="notification-lab-heading">044 Notification</h2>
+      <p className="catalog-group-desc">
+        Reusable user-event item — not a notification center. Unread uses a mark +
+        typography, not background alone. Actions stay separate controls; the whole
+        row is not a single hit target.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <SegmentedControl
+          label="Density"
+          options={[
+            { id: "comfortable", label: "Comfortable" },
+            { id: "compact", label: "Compact" },
+          ]}
+          value={density}
+          onValueChange={(id) => setDensity(id as NotificationDensity)}
+        />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 12 }}>
+          {items.map((item) => (
+            <Notification
+              key={item.id}
+              density={density}
+              unread={item.unread}
+              tone={item.tone}
+              title={item.title}
+              description={item.description}
+              timestamp={item.timestamp}
+              timestampFormat="auto"
+              icon={
+                item.tone === "positive" ? (
+                  <CheckCircleIcon />
+                ) : (
+                  <InboxIcon />
+                )
+              }
+              truncateDescription={item.id === "export"}
+              primaryAction={
+                item.id === "invite"
+                  ? {
+                      label: "Accept",
+                      onClick: () =>
+                        setItems((prev) =>
+                          prev.map((row) =>
+                            row.id === item.id ? { ...row, unread: false } : row
+                          )
+                        ),
+                    }
+                  : undefined
+              }
+              secondaryAction={
+                item.id === "invite"
+                  ? { label: "Decline", emphasis: "secondary" }
+                  : item.id === "export"
+                    ? { label: "Download", href: "#download", emphasis: "primary" }
+                    : undefined
+              }
+              dismissible
+              onDismiss={() =>
+                setItems((prev) => prev.filter((row) => row.id !== item.id))
+              }
+            />
+          ))}
+
+          <Notification
+            density={density}
+            unread={false}
+            tone="neutral"
+            title="Payment received"
+            description="Invoice #1842 — $240.00"
+            timestamp={Date.now() - 40 * 24 * 60 * 60 * 1000}
+            timestampFormat="absolute"
+            avatar={
+              <span
+                style={{
+                  display: "grid",
+                  placeItems: "center",
+                  width: "100%",
+                  height: "100%",
+                  fontSize: 12,
+                  fontWeight: 600,
+                }}
+              >
+                JD
+              </span>
+            }
+            thumbnail={
+              <span
+                style={{
+                  display: "grid",
+                  placeItems: "center",
+                  width: "100%",
+                  height: "100%",
+                  fontSize: 10,
+                  color: "var(--color-text-tertiary)",
+                }}
+              >
+                PDF
+              </span>
+            }
+            titleHref="#payment"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ToastLabInner() {
+  const { publish, dismissAll } = useToast();
+  const [variant, setVariant] = useState<ToastVariant>("success");
+
+  return (
+    <>
+      <SegmentedControl
+        label="Variant"
+        options={[
+          { id: "neutral", label: "Neutral" },
+          { id: "informational", label: "Info" },
+          { id: "success", label: "Success" },
+          { id: "warning", label: "Warning" },
+          { id: "error", label: "Error" },
+        ]}
+        value={variant}
+        onValueChange={(id) => setVariant(id as ToastVariant)}
+      />
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={() =>
+            publish({
+              variant,
+              message:
+                variant === "success"
+                  ? "Changes published"
+                  : variant === "error"
+                    ? "Couldn’t save — try again"
+                    : variant === "warning"
+                      ? "Connection is unstable"
+                      : variant === "informational"
+                        ? "Export started"
+                        : "Link copied",
+              groupKey: variant === "success" ? "publish" : undefined,
+              action:
+                variant === "error"
+                  ? { label: "Retry", onClick: () => undefined }
+                  : variant === "success"
+                    ? { label: "View", href: "#view" }
+                    : undefined,
+            })
+          }
+        >
+          Show toast
+        </Button>
+        <Button
+          type="button"
+          variant="secondary"
+          onClick={() => {
+            publish({ variant: "neutral", message: "Saved" });
+            publish({ variant: "informational", message: "Export started" });
+            publish({ variant: "success", message: "Copied" });
+            publish({ variant: "warning", message: "Still syncing…" });
+          }}
+        >
+          Queue several
+        </Button>
+        <Button type="button" variant="quiet" onClick={() => dismissAll()}>
+          Dismiss all
+        </Button>
+      </div>
+
+      <div style={{ marginTop: 16, maxWidth: "24rem" }}>
+        <h3 className="catalog-subgroup-title">Standalone preview</h3>
+        <Toast
+          variant="success"
+          message="Saved"
+          duration={null}
+          dismissible
+        />
+      </div>
+    </>
+  );
+}
+
+function ToastLab() {
+  return (
+    <section className="catalog-group" aria-labelledby="toast-lab-heading">
+      <h2 id="toast-lab-heading">045 Toast</h2>
+      <p className="catalog-group-desc">
+        Temporary feedback — not for sustained critical state (use Alert). Errors
+        default to persistent. Provider queues toasts (max 3 visible) and places
+        them with safe-area clearance; optional bottom offset for bottom nav.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <ToastProvider placement="auto" maxVisible={3} bottomOffset={0}>
+          <ToastLabInner />
+        </ToastProvider>
+      </div>
+    </section>
+  );
+}
+
+function ProgressBarLab() {
+  const [value, setValue] = useState(45);
+  const [density, setDensity] = useState<ProgressBarDensity>("standard");
+
+  return (
+    <section className="catalog-group" aria-labelledby="progress-bar-lab-heading">
+      <h2 id="progress-bar-lab-heading">046 Progress Bar</h2>
+      <p className="catalog-group-desc">
+        Measurable progress toward a known end. Prefer Spinner when no value
+        exists. Show percentages only when meaningful — otherwise use status text
+        like “Uploading…”.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <SegmentedControl
+          label="Density"
+          options={[
+            { id: "standard", label: "Standard" },
+            { id: "compact", label: "Compact" },
+          ]}
+          value={density}
+          onValueChange={(id) => setDensity(id as ProgressBarDensity)}
+        />
+        <SegmentedControl
+          label="Value"
+          options={[
+            { id: "0", label: "0%" },
+            { id: "25", label: "25%" },
+            { id: "50", label: "50%" },
+            { id: "75", label: "75%" },
+            { id: "100", label: "100%" },
+          ]}
+          value={String(value)}
+          onValueChange={(id) => setValue(Number(id))}
+        />
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 20, marginTop: 16 }}>
+          <ProgressBar
+            density={density}
+            label="Uploading report"
+            value={value}
+            showValue
+            description="12 of 28 files"
+            meta="About 1 min left"
+          />
+
+          <ProgressBar
+            density={density}
+            label="Install"
+            value={value}
+            tone="positive"
+            showValue
+          />
+
+          <ProgressBar
+            density={density}
+            label="Preparing export"
+            value={null}
+            description="Uploading…"
+          />
+
+          <ProgressBar
+            density={density}
+            label="Custom range"
+            min={0}
+            max={50}
+            value={Math.round((value / 100) * 50)}
+            showValue
+            formatValue={(v, _min, max) => `${v} / ${max}`}
+            tone="warning"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProgressCircleLab() {
+  const [value, setValue] = useState(65);
+  const [size, setSize] = useState<ProgressCircleSize>("md");
+
+  return (
+    <section className="catalog-group" aria-labelledby="progress-circle-lab-heading">
+      <h2 id="progress-circle-lab-heading">047 Progress Circle</h2>
+      <p className="catalog-group-desc">
+        Compact measurable progress when horizontal space is limited. Arc maps
+        accurately to the value. Not decorative — prefer Spinner when there is no
+        progress value.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "32rem" }}>
+        <SegmentedControl
+          label="Size"
+          options={[
+            { id: "sm", label: "SM 24" },
+            { id: "md", label: "MD 40" },
+            { id: "lg", label: "LG 64" },
+          ]}
+          value={size}
+          onValueChange={(id) => setSize(id as ProgressCircleSize)}
+        />
+        <SegmentedControl
+          label="Value"
+          options={[
+            { id: "0", label: "0%" },
+            { id: "25", label: "25%" },
+            { id: "50", label: "50%" },
+            { id: "65", label: "65%" },
+            { id: "100", label: "100%" },
+          ]}
+          value={String(value)}
+          onValueChange={(id) => setValue(Number(id))}
+        />
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 24,
+            alignItems: "flex-start",
+            marginTop: 16,
+          }}
+        >
+          <ProgressCircle
+            size={size}
+            label="Sync"
+            value={value}
+            showValue
+          />
+          <ProgressCircle
+            size={size}
+            label="Upload"
+            value={value}
+            tone="positive"
+            showValue
+          />
+          <ProgressCircle
+            size={size}
+            label="Preparing"
+            value={null}
+            description="Working…"
+          />
+          <ProgressCircle
+            size="sm"
+            label="Badge slot"
+            hideLabel
+            value={value}
+            tone="warning"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SpinnerLab() {
+  const [size, setSize] = useState<SpinnerSize>("md");
+
+  return (
+    <section className="catalog-group" aria-labelledby="spinner-lab-heading">
+      <h2 id="spinner-lab-heading">048 Spinner</h2>
+      <p className="catalog-group-desc">
+        Indeterminate activity when duration is unknown. Use Progress Bar/Circle
+        for measurable progress. No page overlay in the primitive — hosts compose
+        placement and set <code>aria-busy</code> on the busy region.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <SegmentedControl
+          label="Size"
+          options={[
+            { id: "xs", label: "XS" },
+            { id: "sm", label: "SM" },
+            { id: "md", label: "MD" },
+            { id: "lg", label: "LG" },
+            { id: "xl", label: "XL" },
+          ]}
+          value={size}
+          onValueChange={(id) => setSize(id as SpinnerSize)}
+        />
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 20,
+            alignItems: "center",
+            marginTop: 16,
+          }}
+        >
+          <Spinner size={size} label="Loading" />
+          <Spinner
+            size={size}
+            label="Saving"
+            labelMode="visible"
+            labelPlacement="end"
+          />
+          <Spinner
+            size={size}
+            layout="block"
+            label="Loading workspace"
+            labelMode="visible"
+            labelPlacement="bottom"
+            style={{ width: "8rem" }}
+          />
+        </div>
+
+        <h3 className="catalog-subgroup-title" style={{ marginTop: 20 }}>
+          Button composition
+        </h3>
+        <Button type="button" variant="primary" disabled aria-busy="true">
+          <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            <Spinner size="xs" labelMode="none" tone="inverse" />
+            Saving…
+          </span>
+        </Button>
+
+        <h3 className="catalog-subgroup-title" style={{ marginTop: 20 }}>
+          Host overlay region (not built into Spinner)
+        </h3>
+        <div
+          role="status"
+          aria-busy="true"
+          aria-label="Loading content"
+          style={{
+            border: "1px solid var(--color-border-default, #d2d2d7)",
+            borderRadius: 8,
+            padding: 24,
+            background: "var(--color-surface-secondary, #f5f5f7)",
+            minHeight: 120,
+            display: "grid",
+            placeItems: "center",
+          }}
+        >
+          <Spinner
+            size="lg"
+            layout="block"
+            label="Loading"
+            labelMode="visible"
+            labelPlacement="bottom"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SkeletonLab() {
+  const [size, setSize] = useState<SkeletonSize>("md");
+  const [animated, setAnimated] = useState(true);
+
+  return (
+    <section className="catalog-group" aria-labelledby="skeleton-lab-heading">
+      <h2 id="skeleton-lab-heading">049 Skeleton</h2>
+      <p className="catalog-group-desc">
+        Structural placeholders that match expected content geometry. Not for
+        empty/error states. Calm opacity pulse (static under reduced motion).
+        Non-interactive.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <SegmentedControl
+          label="Size"
+          options={[
+            { id: "sm", label: "Small" },
+            { id: "md", label: "Medium" },
+            { id: "lg", label: "Large" },
+          ]}
+          value={size}
+          onValueChange={(id) => setSize(id as SkeletonSize)}
+        />
+        <div style={{ marginBlock: 8 }}>
+          <Switch
+            label="Animated"
+            checked={animated}
+            onCheckedChange={setAnimated}
+          />
+        </div>
+
+        <SkeletonGroup label="Loading profile card" gap="md">
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              gap: 12,
+            }}
+          >
+            <Skeleton shape="avatar" size={size} animated={animated} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <Skeleton shape="title" size={size} animated={animated} />
+              <div style={{ height: 8 }} />
+              <Skeleton
+                shape="text"
+                size={size}
+                lines={3}
+                animated={animated}
+              />
+            </div>
+          </div>
+          <Skeleton
+            shape="rectangle"
+            size={size}
+            height={size === "sm" ? 96 : size === "lg" ? 160 : 120}
+            animated={animated}
+          />
+          <Skeleton shape="thumbnail" size={size} animated={animated} />
+        </SkeletonGroup>
+      </div>
+    </section>
+  );
+}
+
+const EMPTY_VARIANT_COPY: Record<
+  EmptyStateVariant,
+  { title: string; description: string; primary?: string; secondary?: string }
+> = {
+  default: {
+    title: "No items",
+    description: "Nothing is available in this area yet.",
+  },
+  "first-use": {
+    title: "No projects yet",
+    description: "Create a project to start organizing your work.",
+    primary: "Create project",
+    secondary: "Learn more",
+  },
+  "no-results": {
+    title: "No results",
+    description: "Try a different search term or clear filters.",
+    primary: "Clear search",
+  },
+  filtered: {
+    title: "No matching items",
+    description: "Nothing matches the current filters.",
+    primary: "Reset filters",
+  },
+  completed: {
+    title: "All caught up",
+    description: "There is nothing left in this queue.",
+  },
+  permission: {
+    title: "Content unavailable",
+    description: "You may not have access to view items here.",
+    primary: "Request access",
+  },
+};
+
+function EmptyStateLab() {
+  const [variant, setVariant] = useState<EmptyStateVariant>("first-use");
+  const [size, setSize] = useState<EmptyStateSize>("standard");
+  const [showActions, setShowActions] = useState(true);
+  const copy = EMPTY_VARIANT_COPY[variant];
+
+  return (
+    <section className="catalog-group" aria-labelledby="empty-state-lab-heading">
+      <h2 id="empty-state-lab-heading">050 Empty State</h2>
+      <p className="catalog-group-desc">
+        Calm placeholder when a content area has nothing to show. Distinct from
+        loading (Spinner/Skeleton) and error (Alert). Actions use DevKit Button —
+        omit when no next step is useful. Host owns all copy.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Variant"
+          presentation="listbox"
+          options={[
+            { value: "default", label: "Default" },
+            { value: "first-use", label: "First use" },
+            { value: "no-results", label: "No results" },
+            { value: "filtered", label: "Filtered" },
+            { value: "completed", label: "Completed" },
+            { value: "permission", label: "Permission" },
+          ]}
+          value={variant}
+          onValueChange={(v) => setVariant(v as EmptyStateVariant)}
+        />
+        <div style={{ marginBlock: 8 }}>
+          <SegmentedControl
+            label="Size"
+            options={[
+              { id: "compact", label: "Compact" },
+              { id: "standard", label: "Standard" },
+              { id: "large", label: "Large" },
+            ]}
+            value={size}
+            onValueChange={(id) => setSize(id as EmptyStateSize)}
+          />
+        </div>
+        <div style={{ marginBlock: 8 }}>
+          <Switch
+            label="Show actions"
+            checked={showActions}
+            onCheckedChange={setShowActions}
+          />
+        </div>
+
+        <div
+          style={{
+            border: "1px solid var(--color-border, #e2e8f0)",
+            padding: 8,
+            minHeight: 200,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <EmptyState
+            variant={variant}
+            size={size}
+            title={copy.title}
+            description={copy.description}
+            primaryAction={
+              showActions && copy.primary ? (
+                <Button size="sm">{copy.primary}</Button>
+              ) : undefined
+            }
+            secondaryAction={
+              showActions && copy.secondary ? (
+                <Button size="sm" variant="quiet">
+                  {copy.secondary}
+                </Button>
+              ) : undefined
+            }
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function App() {
   return (
     <div className="playground">
@@ -3257,8 +5906,8 @@ export function App() {
         <div>
           <h1>DevKit</h1>
           <p>
-            Layer 1 — Interaction Controls 001–010; Form Controls 011–020;
-            Selection Controls 021–030 ready.
+            Layer 1 — Interaction 001–010; Form 011–020; Selection 021–030;
+            Navigation 031–040; Feedback 041–050 ready.
           </p>
         </div>
       </header>
@@ -3289,10 +5938,31 @@ export function App() {
       <RadioGroupLab />
       <SwitchLab />
       <SelectLab />
+      <AddressLocationLab />
       <ComboboxLab />
       <MultiSelectLab />
       <ChoiceChipsLab />
       <SliderLab />
+      <TabsLab />
+      <TabBarLab />
+      <BreadcrumbsLab />
+      <PaginationLab />
+      <StepperLab />
+      <NavigationMenuLab />
+      <NavigationItemLab />
+      <BottomNavigationLab />
+      <AnchorNavigationLab />
+      <PreviousNextNavigationLab />
+      <AlertLab />
+      <StatusIndicatorLab />
+      <BadgeLab />
+      <NotificationLab />
+      <ToastLab />
+      <ProgressBarLab />
+      <ProgressCircleLab />
+      <SpinnerLab />
+      <SkeletonLab />
+      <EmptyStateLab />
 
       {groups.map((group) => (
         <section

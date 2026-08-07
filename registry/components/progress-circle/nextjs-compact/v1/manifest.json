@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ProgressCircle.tsx",
+      "destination": "components/ui/ProgressCircle.tsx"
+    },
+    {
+      "source": "files/styles/progress-circle.css",
+      "destination": "styles/progress-circle.css"
+    },
+    {
+      "source": "files/docs/PROGRESS_CIRCLE.md",
+      "destination": "docs/devkit/PROGRESS_CIRCLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

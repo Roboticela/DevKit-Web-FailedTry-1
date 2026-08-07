@@ -1,0 +1,47 @@
+{
+  "id": 31,
+  "name": "tabs",
+  "displayName": "Tabs",
+  "description": "Switch between a small set of related peer views — underline/surface/pill indicators, automatic or manual activation, scrollable overflow, semantic tab panels.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "navigation-controls",
+  "subgroupName": "Navigation Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "navigation-controls",
+    "tabs",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

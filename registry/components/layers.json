@@ -307,13 +307,183 @@
               "id": "navigation-controls",
               "name": "Navigation Controls",
               "description": "Tabs, breadcrumbs, menus, and wayfinding primitives.",
-              "components": []
+              "components": [
+                {
+                  "id": 31,
+                  "name": "tabs",
+                  "displayName": "Tabs",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 32,
+                  "name": "tab-bar",
+                  "displayName": "Tab Bar",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 33,
+                  "name": "breadcrumbs",
+                  "displayName": "Breadcrumbs",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 34,
+                  "name": "pagination",
+                  "displayName": "Pagination",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 35,
+                  "name": "stepper",
+                  "displayName": "Stepper",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 36,
+                  "name": "navigation-menu",
+                  "displayName": "Navigation Menu",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 37,
+                  "name": "navigation-item",
+                  "displayName": "Navigation Item",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 38,
+                  "name": "bottom-navigation",
+                  "displayName": "Bottom Navigation",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 39,
+                  "name": "anchor-navigation",
+                  "displayName": "Anchor Navigation",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 40,
+                  "name": "previous-next-navigation",
+                  "displayName": "Previous / Next Navigation",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                }
+              ],
+              "idRange": {
+                "min": 31,
+                "max": 40
+              }
             },
             {
               "id": "feedback-status",
               "name": "Feedback & Status",
               "description": "Alerts, badges, progress, and status indicators.",
-              "components": []
+              "components": [
+                {
+                  "id": 41,
+                  "name": "alert",
+                  "displayName": "Alert",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 42,
+                  "name": "status-indicator",
+                  "displayName": "Status Indicator",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 43,
+                  "name": "badge",
+                  "displayName": "Badge",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 44,
+                  "name": "notification",
+                  "displayName": "Notification",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 45,
+                  "name": "toast",
+                  "displayName": "Toast",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 46,
+                  "name": "progress-bar",
+                  "displayName": "Progress Bar",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 47,
+                  "name": "progress-circle",
+                  "displayName": "Progress Circle",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 48,
+                  "name": "spinner",
+                  "displayName": "Spinner",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 49,
+                  "name": "skeleton",
+                  "displayName": "Skeleton",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 50,
+                  "name": "empty-state",
+                  "displayName": "Empty State",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                }
+              ],
+              "idRange": {
+                "min": 41,
+                "max": 50
+              }
             },
             {
               "id": "content-display",

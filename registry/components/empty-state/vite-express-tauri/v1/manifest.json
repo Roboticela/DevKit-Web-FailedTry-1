@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/EmptyState.tsx",
+      "destination": "src/components/ui/EmptyState.tsx"
+    },
+    {
+      "source": "files/src/styles/empty-state.css",
+      "destination": "src/styles/empty-state.css"
+    },
+    {
+      "source": "files/docs/EMPTY-STATE.md",
+      "destination": "docs/devkit/EMPTY-STATE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

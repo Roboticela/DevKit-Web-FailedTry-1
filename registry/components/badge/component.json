@@ -1,0 +1,47 @@
+{
+  "id": 43,
+  "name": "badge",
+  "displayName": "Badge",
+  "description": "Compact attached indicator for counts, short labels, categories, and unread marks — numeric overflow (99+), text/dot/icon-label, soft or pill radius, RTL-safe overlay anchoring.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "feedback-status",
+  "subgroupName": "Feedback & Status",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "feedback-status",
+    "badge",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

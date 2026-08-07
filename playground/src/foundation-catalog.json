@@ -254,12 +254,154 @@
         {
           "id": "navigation-controls",
           "name": "Navigation Controls",
-          "components": []
+          "components": [
+            {
+              "id": 31,
+              "name": "tabs",
+              "displayName": "Tabs",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 32,
+              "name": "tab-bar",
+              "displayName": "Tab Bar",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 33,
+              "name": "breadcrumbs",
+              "displayName": "Breadcrumbs",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 34,
+              "name": "pagination",
+              "displayName": "Pagination",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 35,
+              "name": "stepper",
+              "displayName": "Stepper",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 36,
+              "name": "navigation-menu",
+              "displayName": "Navigation Menu",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 37,
+              "name": "navigation-item",
+              "displayName": "Navigation Item",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 38,
+              "name": "bottom-navigation",
+              "displayName": "Bottom Navigation",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 39,
+              "name": "anchor-navigation",
+              "displayName": "Anchor Navigation",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 40,
+              "name": "previous-next-navigation",
+              "displayName": "Previous / Next Navigation",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
         },
         {
           "id": "feedback-status",
           "name": "Feedback & Status",
-          "components": []
+          "components": [
+            {
+              "id": 41,
+              "name": "alert",
+              "displayName": "Alert",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 42,
+              "name": "status-indicator",
+              "displayName": "Status Indicator",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 43,
+              "name": "badge",
+              "displayName": "Badge",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 44,
+              "name": "notification",
+              "displayName": "Notification",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 45,
+              "name": "toast",
+              "displayName": "Toast",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 46,
+              "name": "progress-bar",
+              "displayName": "Progress Bar",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 47,
+              "name": "progress-circle",
+              "displayName": "Progress Circle",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 48,
+              "name": "spinner",
+              "displayName": "Spinner",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 49,
+              "name": "skeleton",
+              "displayName": "Skeleton",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 50,
+              "name": "empty-state",
+              "displayName": "Empty State",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
         },
         {
           "id": "content-display",

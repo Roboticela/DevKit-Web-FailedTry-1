@@ -994,6 +994,646 @@
         "form",
         "a11y"
       ]
+    },
+    {
+      "id": 31,
+      "name": "tabs",
+      "displayName": "Tabs",
+      "description": "Switch between a small set of related peer views — underline/surface/pill indicators, automatic or manual activation, scrollable overflow, semantic tab panels.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "tabs",
+        "a11y"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "tab-bar",
+      "displayName": "Tab Bar",
+      "description": "Persistent primary navigation for 2–5 destinations — icons, labels, badges, safe-area bottom/top placement, keyboard and screen-reader friendly.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "tab-bar",
+        "a11y"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "breadcrumbs",
+      "displayName": "Breadcrumbs",
+      "description": "Hierarchical location trail — linked ancestors, non-linked current page, quiet separators, intelligent overflow with discoverable hidden levels, compact mobile modes.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "breadcrumbs",
+        "a11y"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "pagination",
+      "displayName": "Pagination",
+      "description": "Navigate finite multi-page collections — previous/next/first/last, collapsing page numbers, compact mobile summary, accessible names, RTL-safe semantics.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "pagination",
+        "a11y"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "stepper",
+      "displayName": "Stepper",
+      "description": "Ordered workflow stages — completed/current/upcoming/disabled/error, horizontal/vertical/compact, linear or non-linear navigation, informational or interactive.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "stepper",
+        "a11y"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "navigation-menu",
+      "displayName": "Navigation Menu",
+      "description": "Shell-independent hierarchical destinations — groups, nested expandable items, icons, badges, expanded/collapsed density, keyboard tree navigation.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "navigation-menu",
+        "a11y"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "navigation-item",
+      "displayName": "Navigation Item",
+      "description": "Atomic navigation destination — icon, label, badge, secondary text, active/disclosure/external indicators; link or expandable semantics; usable alone or inside navigation composites.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "navigation-item",
+        "a11y"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "bottom-navigation",
+      "displayName": "Bottom Navigation",
+      "description": "Mobile bottom primary destinations (3–5) with icon+label, badges, safe-area, and keyboard-aware yielding so the bar does not cover focused inputs.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "bottom-navigation",
+        "a11y"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "anchor-navigation",
+      "displayName": "Anchor Navigation",
+      "description": "In-page section wayfinding with real hash links, scroll sync, sticky mode, horizontal/vertical layouts, overflow scrolling, and reduced-motion-aware smooth scroll.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "anchor-navigation",
+        "a11y"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "previous-next-navigation",
+      "displayName": "Previous / Next Navigation",
+      "description": "Sequential Previous/Next wayfinding with optional labels, destination titles, and icons. RTL flips placement not meaning; link semantics for document destinations; boundary disable/hide.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "navigation-controls",
+      "subgroupName": "Navigation Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "navigation-controls",
+        "previous-next-navigation",
+        "a11y"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "alert",
+      "displayName": "Alert",
+      "description": "Persistent contextual feedback — informational/success/warning/error/neutral with icon, optional title, message, actions, opt-in dismiss, compact/standard density, and appropriate live regions.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "alert",
+        "a11y"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "status-indicator",
+      "displayName": "Status Indicator",
+      "description": "Compact entity/process status with host vocabulary mapped to DevKit tones (neutral/positive/warning/negative/informational); dot+text, icon+text, or text-only — not a large pill.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "status-indicator",
+        "a11y"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "badge",
+      "displayName": "Badge",
+      "description": "Compact attached indicator for counts, short labels, categories, and unread marks — numeric overflow (99+), text/dot/icon-label, soft or pill radius, RTL-safe overlay anchoring.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "badge",
+        "a11y"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "notification",
+      "displayName": "Notification",
+      "description": "Reusable user-event item with icon/avatar, title, description, localized timestamp, unread/read distinction, separate actions, dismiss, and optional thumbnail — not a notification center.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "notification",
+        "a11y"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "toast",
+      "displayName": "Toast",
+      "description": "Temporary event feedback with variants, action, dismiss, configurable auto-dismiss, queued viewport placement, safe-area awareness, and subtle reduced-motion-safe animation.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "toast",
+        "a11y"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "progress-bar",
+      "displayName": "Progress Bar",
+      "description": "Measurable determinate or indeterminate progress with label, optional percentage, status text, compact/standard density, semantic progressbar roles, and reduced-motion-safe animation.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "progress-bar",
+        "a11y"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "progress-circle",
+      "displayName": "Progress Circle",
+      "description": "Compact circular measurable progress (sm/md/lg) with determinate arc accuracy, restrained indeterminate motion, optional center value, and semantic progressbar roles.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "progress-circle",
+        "a11y"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "spinner",
+      "displayName": "Spinner",
+      "description": "Indeterminate activity indicator (xs–xl) with subtle motion, reduced-motion static fallback, accessible status text, and composition-friendly inline/block layouts — no page overlay.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "spinner",
+        "a11y"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "skeleton",
+      "displayName": "Skeleton",
+      "description": "Structural content placeholders (text, title, avatar, thumbnail, rectangle) with grouped composition, calm opacity pulse, and reduced-motion static fallback — non-interactive.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "skeleton",
+        "a11y"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "empty-state",
+      "displayName": "Empty State",
+      "description": "Calm content-area placeholder when there is nothing to show — distinct from loading and error; optional illustration, title, description, and DevKit action slots.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "feedback-status",
+      "subgroupName": "Feedback & Status",
+      "kind": "component",
+      "layer": 1,
+      "icon": "inbox",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "feedback-status",
+        "empty-state",
+        "a11y"
+      ]
     }
   ]
 }

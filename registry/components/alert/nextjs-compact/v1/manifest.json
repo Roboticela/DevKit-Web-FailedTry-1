@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Alert.tsx",
+      "destination": "components/ui/Alert.tsx"
+    },
+    {
+      "source": "files/styles/alert.css",
+      "destination": "styles/alert.css"
+    },
+    {
+      "source": "files/docs/ALERT.md",
+      "destination": "docs/devkit/ALERT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

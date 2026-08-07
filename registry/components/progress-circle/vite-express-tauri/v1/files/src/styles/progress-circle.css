@@ -1,0 +1,229 @@
+/* Progress Circle (ID 047) — Feedback & Status
+ * Compact measurable progress. Track remains visible; arc is accurate.
+ * No gradients. No box-shadows. Crisp at SM. Restrained indeterminate motion.
+ */
+
+.dk-progress-circle {
+  --dk-progress-circle-size: 40px;
+  --dk-progress-circle-stroke: 3.5px;
+  --dk-progress-circle-track: var(--color-surface-secondary, #e8e8ed);
+  --dk-progress-circle-arc: var(--color-accent-primary, #0071e3);
+  --dk-progress-circle-track-border: var(--color-border-default, #d2d2d7);
+  --dk-progress-circle-label-size: var(--font-size-caption, 12px);
+  --dk-progress-circle-label-line: var(--line-height-caption, 16px);
+  --dk-progress-circle-center-size: 11px;
+  --dk-progress-circle-duration: 1.1s;
+  --dk-progress-circle-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  color: var(--color-text-primary, #1d1d1f);
+  font-family: var(--font-sans, inherit);
+  vertical-align: middle;
+}
+
+.dk-progress-circle--sm {
+  --dk-progress-circle-size: 24px;
+  --dk-progress-circle-stroke: 2.5px;
+  --dk-progress-circle-center-size: 9px;
+}
+
+.dk-progress-circle--md {
+  --dk-progress-circle-size: 40px;
+  --dk-progress-circle-stroke: 3.5px;
+  --dk-progress-circle-center-size: 11px;
+}
+
+.dk-progress-circle--lg {
+  --dk-progress-circle-size: 64px;
+  --dk-progress-circle-stroke: 4.5px;
+  --dk-progress-circle-center-size: 13px;
+  --dk-progress-circle-label-size: var(--font-size-label, 14px);
+  --dk-progress-circle-label-line: var(--line-height-label, 20px);
+}
+
+.dk-progress-circle--neutral {
+  --dk-progress-circle-arc: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-progress-circle--informational {
+  --dk-progress-circle-arc: var(--color-accent-primary, #0071e3);
+}
+
+.dk-progress-circle--positive {
+  --dk-progress-circle-arc: var(--color-success, #1f8b4c);
+}
+
+.dk-progress-circle--warning {
+  --dk-progress-circle-arc: var(--color-warning, #b67800);
+}
+
+.dk-progress-circle--negative {
+  --dk-progress-circle-arc: var(--color-error, #d70015);
+}
+
+.dk-progress-circle__label {
+  max-width: 12rem;
+  text-align: center;
+  font-size: var(--dk-progress-circle-label-size);
+  line-height: var(--dk-progress-circle-label-line);
+  font-weight: var(--weight-medium, 500);
+  overflow-wrap: anywhere;
+}
+
+.dk-progress-circle__graphic {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-progress-circle-size);
+  height: var(--dk-progress-circle-size);
+  flex-shrink: 0;
+}
+
+.dk-progress-circle__svg {
+  display: block;
+  width: var(--dk-progress-circle-size);
+  height: var(--dk-progress-circle-size);
+  overflow: visible;
+}
+
+.dk-progress-circle__track {
+  stroke: var(--dk-progress-circle-track);
+  /* Keep track readable vs page — border via second visual cue in HC */
+  opacity: 1;
+}
+
+.dk-progress-circle__arc {
+  stroke: var(--dk-progress-circle-arc);
+  transition: stroke-dashoffset var(--duration-quick, 160ms)
+    var(--dk-progress-circle-ease);
+}
+
+.dk-progress-circle--indeterminate .dk-progress-circle__arc {
+  transition: none;
+}
+
+.dk-progress-circle__center {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  color: var(--color-text-primary, #1d1d1f);
+  font-size: var(--dk-progress-circle-center-size);
+  line-height: 1;
+  font-weight: var(--weight-semibold, 600);
+  font-variant-numeric: tabular-nums;
+  /* Keep center label short — never long copy */
+  max-width: 85%;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.dk-progress-circle__description {
+  max-width: 12rem;
+  margin: 0;
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--dk-progress-circle-label-size);
+  line-height: var(--dk-progress-circle-label-line);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.dk-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes dk-progress-circle-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Rotate the SVG for indeterminate — keeps stroke-dash setup intact */
+.dk-progress-circle--indeterminate .dk-progress-circle__svg {
+  animation: dk-progress-circle-spin var(--dk-progress-circle-duration) linear
+    infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-progress-circle__arc {
+    transition: none;
+  }
+
+  .dk-progress-circle--indeterminate .dk-progress-circle__svg {
+    animation: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dk-progress-circle__track {
+    stroke: var(--color-border-strong, #aeaeb2);
+    stroke-width: calc(var(--dk-progress-circle-stroke) + 0.5px);
+  }
+
+  .dk-progress-circle__arc {
+    stroke-width: calc(var(--dk-progress-circle-stroke) + 0.5px);
+  }
+}
+
+[data-theme="dark"] .dk-progress-circle,
+.dark .dk-progress-circle {
+  color: var(--color-text-primary, #f5f5f7);
+}
+
+[data-theme="dark"] .dk-progress-circle__track,
+.dark .dk-progress-circle__track {
+  stroke: var(--color-surface-secondary, #3a3a3c);
+}
+
+[data-theme="dark"] .dk-progress-circle__center,
+.dark .dk-progress-circle__center {
+  color: var(--color-text-primary, #f5f5f7);
+}
+
+[data-theme="dark"] .dk-progress-circle__description,
+.dark .dk-progress-circle__description {
+  color: var(--color-text-secondary, #a1a1a6);
+}
+
+[data-theme="dark"] .dk-progress-circle--neutral,
+.dark .dk-progress-circle--neutral {
+  --dk-progress-circle-arc: var(--color-text-secondary, #a1a1a6);
+}
+
+[data-theme="dark"] .dk-progress-circle--informational,
+.dark .dk-progress-circle--informational {
+  --dk-progress-circle-arc: var(--color-accent-primary, #0a84ff);
+}
+
+[data-theme="dark"] .dk-progress-circle--positive,
+.dark .dk-progress-circle--positive {
+  --dk-progress-circle-arc: var(--color-success, #30d158);
+}
+
+[data-theme="dark"] .dk-progress-circle--warning,
+.dark .dk-progress-circle--warning {
+  --dk-progress-circle-arc: var(--color-warning, #ffd60a);
+}
+
+[data-theme="dark"] .dk-progress-circle--negative,
+.dark .dk-progress-circle--negative {
+  --dk-progress-circle-arc: var(--color-error, #ff453a);
+}

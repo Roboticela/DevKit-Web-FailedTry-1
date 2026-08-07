@@ -31,6 +31,26 @@ import "../../registry/components/combobox/vite-express-tauri/v1/files/src/style
 import "../../registry/components/multi-select/vite-express-tauri/v1/files/src/styles/multi-select.css";
 import "../../registry/components/choice-chips/vite-express-tauri/v1/files/src/styles/choice-chips.css";
 import "../../registry/components/slider/vite-express-tauri/v1/files/src/styles/slider.css";
+import "../../registry/components/tabs/vite-express-tauri/v1/files/src/styles/tabs.css";
+import "../../registry/components/tab-bar/vite-express-tauri/v1/files/src/styles/tab-bar.css";
+import "../../registry/components/breadcrumbs/vite-express-tauri/v1/files/src/styles/breadcrumbs.css";
+import "../../registry/components/pagination/vite-express-tauri/v1/files/src/styles/pagination.css";
+import "../../registry/components/stepper/vite-express-tauri/v1/files/src/styles/stepper.css";
+import "../../registry/components/navigation-menu/vite-express-tauri/v1/files/src/styles/navigation-menu.css";
+import "../../registry/components/navigation-item/vite-express-tauri/v1/files/src/styles/navigation-item.css";
+import "../../registry/components/bottom-navigation/vite-express-tauri/v1/files/src/styles/bottom-navigation.css";
+import "../../registry/components/anchor-navigation/vite-express-tauri/v1/files/src/styles/anchor-navigation.css";
+import "../../registry/components/previous-next-navigation/vite-express-tauri/v1/files/src/styles/previous-next-navigation.css";
+import "../../registry/components/alert/vite-express-tauri/v1/files/src/styles/alert.css";
+import "../../registry/components/status-indicator/vite-express-tauri/v1/files/src/styles/status-indicator.css";
+import "../../registry/components/badge/vite-express-tauri/v1/files/src/styles/badge.css";
+import "../../registry/components/notification/vite-express-tauri/v1/files/src/styles/notification.css";
+import "../../registry/components/toast/vite-express-tauri/v1/files/src/styles/toast.css";
+import "../../registry/components/progress-bar/vite-express-tauri/v1/files/src/styles/progress-bar.css";
+import "../../registry/components/progress-circle/vite-express-tauri/v1/files/src/styles/progress-circle.css";
+import "../../registry/components/spinner/vite-express-tauri/v1/files/src/styles/spinner.css";
+import "../../registry/components/skeleton/vite-express-tauri/v1/files/src/styles/skeleton.css";
+import "../../registry/components/empty-state/vite-express-tauri/v1/files/src/styles/empty-state.css";
 import { App } from "./App";
 
 createRoot(document.getElementById("root")!).render(

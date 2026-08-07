@@ -1,0 +1,250 @@
+/* Breadcrumbs (ID 033) — Navigation Controls
+ * Hierarchical location. Subordinate to page title. No decorative shell.
+ * No gradients. No box-shadows. ≥44×44 overflow / back controls.
+ */
+
+.dk-breadcrumbs {
+  --dk-bc-font-size: var(--font-size-caption, 12px);
+  --dk-bc-line-height: var(--line-height-caption, 16px);
+  --dk-bc-gap: var(--space-1, 4px);
+  --dk-bc-icon: var(--icon-14, 14px);
+  --dk-bc-sep: var(--icon-14, 14px);
+  --dk-bc-duration: var(--duration-quick, 160ms);
+  --dk-bc-ease: var(--ease-standard, cubic-bezier(0.25, 0.1, 0.25, 1));
+  --dk-bc-radius: var(--radius-3, 8px);
+
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  margin-block-end: var(--space-3, 12px);
+  padding: 0;
+  color: var(--color-text-secondary, #6e6e73);
+  font-family: var(--font-sans, inherit);
+  font-size: var(--dk-bc-font-size);
+  line-height: var(--dk-bc-line-height);
+}
+
+.dk-breadcrumbs:last-child {
+  margin-block-end: 0;
+}
+
+.dk-breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dk-bc-gap);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dk-breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.dk-breadcrumbs__item--overflow {
+  position: relative;
+}
+
+.dk-breadcrumbs__separator {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-tertiary, #86868b);
+}
+
+.dk-breadcrumbs__sep-icon {
+  width: var(--dk-bc-sep);
+  height: var(--dk-bc-sep);
+  display: block;
+}
+
+[dir="rtl"] .dk-breadcrumbs__sep-icon,
+[dir="rtl"] .dk-breadcrumbs__back-icon > svg {
+  transform: scaleX(-1);
+}
+
+.dk-breadcrumbs__link,
+.dk-breadcrumbs__back,
+.dk-breadcrumbs__overflow,
+.dk-breadcrumbs__menu-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  box-sizing: border-box;
+  min-height: max(28px, var(--touch-target-min, 44px));
+  margin: 0;
+  padding: 0 var(--space-1, 4px);
+  border: 0;
+  border-radius: var(--dk-bc-radius);
+  background: transparent;
+  color: var(--color-text-secondary, #6e6e73);
+  font: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color var(--dk-bc-duration) var(--dk-bc-ease);
+}
+
+.dk-breadcrumbs__link:hover,
+.dk-breadcrumbs__back:hover,
+.dk-breadcrumbs__overflow:hover,
+.dk-breadcrumbs__menu-item:hover {
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-breadcrumbs__link:focus,
+.dk-breadcrumbs__back:focus,
+.dk-breadcrumbs__overflow:focus,
+.dk-breadcrumbs__menu-item:focus {
+  outline: none;
+}
+
+.dk-breadcrumbs__link:focus-visible,
+.dk-breadcrumbs__back:focus-visible,
+.dk-breadcrumbs__overflow:focus-visible,
+.dk-breadcrumbs__menu-item:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: 0;
+}
+
+.dk-breadcrumbs__current {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+  max-width: 100%;
+  color: var(--color-text-primary, #1d1d1f);
+  font-weight: var(--weight-medium, 500);
+}
+
+.dk-breadcrumbs__text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dk-breadcrumbs__icon,
+.dk-breadcrumbs__back-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-bc-icon);
+  height: var(--dk-bc-icon);
+  color: currentColor;
+}
+
+.dk-breadcrumbs__icon > svg,
+.dk-breadcrumbs__back-icon > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.dk-breadcrumbs__overflow {
+  min-width: var(--touch-target-min, 44px);
+  justify-content: center;
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: 0.04em;
+}
+
+.dk-breadcrumbs__back--disabled {
+  color: var(--color-text-disabled, #a1a1a6);
+  cursor: default;
+  pointer-events: none;
+}
+
+.dk-breadcrumbs__menu {
+  position: absolute;
+  inset-block-start: calc(100% + 4px);
+  inset-inline-start: 0;
+  z-index: 40;
+  box-sizing: border-box;
+  min-width: 10rem;
+  max-width: min(18rem, 80vw);
+  max-height: 16rem;
+  margin: 0;
+  padding: var(--space-1, 4px);
+  overflow: auto;
+  list-style: none;
+  border: var(--border-width-default, 1px) solid
+    var(--color-border-default, #d2d2d7);
+  border-radius: var(--radius-5, 12px);
+  background: var(--color-surface-primary, #ffffff);
+  overscroll-behavior: contain;
+}
+
+.dk-breadcrumbs__menu-item {
+  display: flex;
+  width: 100%;
+  min-height: max(36px, var(--touch-target-min, 44px));
+  padding-inline: var(--space-3, 12px);
+  text-align: start;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dk-breadcrumbs--sm {
+  --dk-bc-font-size: 11px;
+  --dk-bc-line-height: 14px;
+  --dk-bc-icon: 12px;
+  --dk-bc-sep: 12px;
+}
+
+.dk-breadcrumbs--md {
+  --dk-bc-font-size: var(--font-size-caption, 12px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-breadcrumbs__link,
+  .dk-breadcrumbs__back,
+  .dk-breadcrumbs__overflow,
+  .dk-breadcrumbs__menu-item {
+    transition: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .dk-breadcrumbs__menu {
+    border-width: var(--border-width-emphasis, 2px);
+  }
+
+  .dk-breadcrumbs__current {
+    font-weight: var(--weight-semibold, 600);
+  }
+}
+
+[data-theme="dark"] .dk-breadcrumbs,
+.dark .dk-breadcrumbs {
+  color: var(--color-text-secondary, #a1a1a6);
+}
+
+[data-theme="dark"] .dk-breadcrumbs__current,
+.dark .dk-breadcrumbs__current,
+[data-theme="dark"] .dk-breadcrumbs__link:hover,
+.dark .dk-breadcrumbs__link:hover,
+[data-theme="dark"] .dk-breadcrumbs__back:hover,
+.dark .dk-breadcrumbs__back:hover,
+[data-theme="dark"] .dk-breadcrumbs__overflow:hover,
+.dark .dk-breadcrumbs__overflow:hover,
+[data-theme="dark"] .dk-breadcrumbs__menu-item:hover,
+.dark .dk-breadcrumbs__menu-item:hover {
+  color: var(--color-text-primary, #f5f5f7);
+}
+
+[data-theme="dark"] .dk-breadcrumbs__menu,
+.dark .dk-breadcrumbs__menu {
+  background: var(--color-surface-primary, #2c2c2e);
+  border-color: var(--color-border-default, #48484a);
+}

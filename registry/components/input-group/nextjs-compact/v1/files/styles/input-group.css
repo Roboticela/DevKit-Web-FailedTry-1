@@ -289,7 +289,8 @@
 .dk-input-group__input > .dk-search,
 .dk-input-group__input > .dk-password,
 .dk-input-group__input > .dk-date,
-.dk-input-group__input > .dk-time {
+.dk-input-group__input > .dk-time,
+.dk-input-group__input > .dk-select {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -355,6 +356,8 @@
 .dk-input-group--attached .dk-input-group__input .dk-date__control:focus-within,
 .dk-input-group--attached .dk-input-group__input .dk-time__control:hover,
 .dk-input-group--attached .dk-input-group__input .dk-time__control:focus-within,
+.dk-input-group--attached .dk-input-group__input .dk-select__control:hover,
+.dk-input-group--attached .dk-input-group__input .dk-select__control:focus-within,
 .dk-input-group--attached .dk-input-group__input .dk-field--error .dk-field__control,
 .dk-input-group--attached .dk-input-group__input .dk-field--success .dk-field__control,
 .dk-input-group--attached .dk-input-group__input .dk-field--warning .dk-field__control,
@@ -363,6 +366,52 @@
   border: 0;
   outline: none;
   background: transparent;
+}
+
+/* Nested Select (e.g. phone country dial) — share shell; keep popup chrome */
+.dk-input-group--attached .dk-input-group__input .dk-select__control {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  height: 100%;
+  margin: 0;
+  padding-block: 0;
+  padding-inline: var(--dk-ig-pad-x);
+  border: 0;
+  border-radius: 0;
+  background: var(--color-surface-secondary, #f5f5f7);
+  outline: none;
+  transition: none;
+}
+
+.dk-input-group--attached .dk-input-group__input .dk-select__trigger {
+  min-width: 0;
+  padding-inline: 0;
+  font-size: var(--dk-ig-font-size);
+  line-height: var(--dk-ig-line-height);
+}
+
+.dk-input-group--attached .dk-input-group__input .dk-select__leading {
+  margin-inline-end: var(--space-1, 4px);
+}
+
+.dk-input-group--attached .dk-input-group__input .dk-select__clear {
+  margin-inline-end: var(--space-1, 4px);
+}
+
+.dk-input-group__input--dial {
+  flex: 0 0 auto;
+  width: 8.75rem;
+  max-width: 46%;
+}
+
+.dk-input-group__input--phone {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 /* No per-input focus ring — the group shell owns focus chrome */
@@ -658,7 +707,9 @@
 [data-theme="dark"] .dk-input-group__addon,
 .dark .dk-input-group__addon,
 [data-theme="dark"] .dk-input-group__icon,
-.dark .dk-input-group__icon {
+.dark .dk-input-group__icon,
+[data-theme="dark"] .dk-input-group--attached .dk-input-group__input .dk-select__control,
+.dark .dk-input-group--attached .dk-input-group__input .dk-select__control {
   background: var(--color-surface-secondary, #3a3a3c);
   color: var(--color-text-secondary, #a1a1a6);
 }

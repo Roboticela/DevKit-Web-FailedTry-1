@@ -1,0 +1,262 @@
+---
+alwaysApply: true
+---
+
+Create Group 05 — Feedback & Status for the DevKit.
+
+This group belongs to:
+
+Layer 01 — Foundations & Interface Primitives.
+
+Existing groups:
+
+Group 01 — Interaction Controls
+Group 02 — Form Controls
+Group 03 — Selection Controls
+Group 04 — Navigation Controls
+
+Use the DevKit Core Design Constitution as the immutable global foundation.
+
+Do not redefine global design tokens.
+
+Inherit all existing:
+- color tokens
+- semantic colors
+- typography
+- spacing
+- sizing
+- control heights
+- radius
+- borders
+- elevation
+- shadows
+- icon system
+- motion
+- breakpoints
+- responsive behavior
+- accessibility
+- focus behavior
+- touch-target rules
+- density
+- Light theme
+- Dark theme
+- High Contrast
+- RTL
+- localization
+- reduced motion
+- reduced transparency
+
+Create exactly these 10 components:
+
+041 Alert
+042 Status Indicator
+043 Badge
+044 Notification
+045 Toast
+046 Progress Bar
+047 Progress Circle
+048 Spinner
+049 Skeleton
+050 Empty State
+
+These must be production-grade reusable primitives.
+
+Do not create:
+- complete notification centers
+- complete dashboards
+- complete error pages
+- complete loading pages
+- application-specific status systems
+- page-level success screens
+- application-specific empty pages
+
+Those are higher-level compositions.
+
+The purpose of this group is to establish a unified feedback language.
+
+Users must always be able to understand, where applicable:
+
+- what happened
+- what is happening
+- whether something succeeded
+- whether something failed
+- whether something requires attention
+- whether an operation is still running
+- whether content is loading
+- whether there is currently no content
+
+Do not communicate status through color alone.
+
+Every meaningful status must have at least one additional communication method where necessary:
+- icon
+- text
+- shape
+- pattern
+- position
+- semantic accessibility state
+
+Use semantic status categories consistently:
+
+Informational
+Success
+Warning
+Error
+Neutral
+
+Do not use success styling for merely informational content.
+
+Do not use warning styling for ordinary neutral status.
+
+Do not use error styling simply to attract attention.
+
+Feedback should be proportional to the importance of the event.
+
+Use the following general hierarchy:
+
+Persistent important information:
+Alert
+
+Compact state:
+Status Indicator
+
+Small contextual state/count:
+Badge
+
+User-specific event/information:
+Notification
+
+Temporary event feedback:
+Toast
+
+Known measurable completion:
+Progress Bar / Progress Circle
+
+Indeterminate activity:
+Spinner
+
+Content placeholder:
+Skeleton
+
+No available content:
+Empty State
+
+Do not interchange these components merely because their visual appearance is similar.
+
+All components must support:
+
+Mobile
+Tablet
+Desktop
+Large Desktop
+Ultra Wide
+
+All components must support:
+
+Light
+Dark
+High Contrast
+
+All relevant components must support:
+
+Mouse
+Keyboard
+Touch
+Stylus
+Screen readers
+
+All components must support:
+
+LTR
+RTL
+Localization
+Dynamic text scaling
+Reduced motion
+Reduced transparency
+
+Feedback must never create unexpected layout shifts where avoidable.
+
+Messages may grow vertically when necessary.
+
+Never hide important information merely to preserve a fixed height.
+
+Long localized messages must remain readable.
+
+Do not force important status messages into single-line layouts.
+
+All icons must have meaningful semantic purposes.
+
+Do not use decorative icons that imply a status that does not exist.
+
+Animation must be restrained.
+
+Do not use:
+- bouncing
+- flashing
+- excessive pulsing
+- attention-grabbing animation
+- continuous decorative movement
+
+Respect reduced-motion preferences.
+
+Error and warning states must remain accessible to users with color-vision deficiencies.
+
+Persistent feedback must remain discoverable.
+
+Temporary feedback must not disappear before the user has had a reasonable opportunity to perceive it.
+
+Do not use Toast for critical information that the user must reliably act upon.
+
+Do not use Spinner when the amount of progress is known.
+
+Do not use Progress when the amount of progress is unknown.
+
+Do not use Skeleton when there is no expectation that content will appear.
+
+Do not use Empty State for loading.
+
+Do not use Empty State for errors.
+
+Do not use Alert for every minor event.
+
+The feedback system should feel:
+calm,
+precise,
+trustworthy,
+immediate,
+premium,
+and unobtrusive.
+
+All components must be composable with the previous groups.
+
+Test:
+
+short content
+long content
+localized content
+RTL
+large text
+high zoom
+screen reader
+keyboard-only use
+touch
+narrow mobile widths
+wide desktop widths
+dark mode
+light mode
+high contrast
+reduced motion
+reduced transparency
+
+Test all relevant states:
+
+neutral
+info
+success
+warning
+error
+loading
+complete
+empty
+disabled
+
+No feedback component should visually overpower the primary task unless the situation genuinely requires interruption.

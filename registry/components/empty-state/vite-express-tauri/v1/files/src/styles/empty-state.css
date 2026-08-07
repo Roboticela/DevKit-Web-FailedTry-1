@@ -1,0 +1,253 @@
+/* Empty State — calm content-area placeholder (empty ≠ loading ≠ error) */
+
+.dk-empty {
+  --dk-empty-pad-block: var(--space-6, 1.5rem);
+  --dk-empty-pad-inline: var(--space-4, 1rem);
+  --dk-empty-gap: var(--space-3, 0.75rem);
+  --dk-empty-title-size: var(--font-size-lg, 1.125rem);
+  --dk-empty-desc-size: var(--font-size-sm, 0.875rem);
+  --dk-empty-glyph-size: 2rem;
+  --dk-empty-max: 22rem;
+  --dk-empty-fg: var(--color-text, #0f172a);
+  --dk-empty-muted: var(--color-text-muted, #64748b);
+  --dk-empty-icon: var(--color-text-muted, #64748b);
+  --dk-empty-surface: transparent;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dk-empty-gap);
+  width: 100%;
+  max-width: var(--dk-empty-max);
+  margin-inline: auto;
+  padding-block: var(--dk-empty-pad-block);
+  padding-inline: var(--dk-empty-pad-inline);
+  text-align: center;
+  color: var(--dk-empty-fg);
+  background: var(--dk-empty-surface);
+  font-family: var(--font-sans, system-ui, sans-serif);
+}
+
+.dk-empty *,
+.dk-empty *::before,
+.dk-empty *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Density / size (layout chooses) ——— */
+
+.dk-empty--compact {
+  --dk-empty-pad-block: var(--space-4, 1rem);
+  --dk-empty-pad-inline: var(--space-3, 0.75rem);
+  --dk-empty-gap: var(--space-2, 0.5rem);
+  --dk-empty-title-size: var(--font-size-base, 1rem);
+  --dk-empty-desc-size: var(--font-size-xs, 0.75rem);
+  --dk-empty-glyph-size: 1.5rem;
+  --dk-empty-max: 18rem;
+}
+
+.dk-empty--standard {
+  --dk-empty-pad-block: var(--space-6, 1.5rem);
+  --dk-empty-gap: var(--space-3, 0.75rem);
+  --dk-empty-glyph-size: 2rem;
+  --dk-empty-max: 22rem;
+}
+
+.dk-empty--large {
+  --dk-empty-pad-block: var(--space-8, 2rem);
+  --dk-empty-pad-inline: var(--space-6, 1.5rem);
+  --dk-empty-gap: var(--space-4, 1rem);
+  --dk-empty-title-size: var(--font-size-xl, 1.25rem);
+  --dk-empty-desc-size: var(--font-size-base, 1rem);
+  --dk-empty-glyph-size: 2.5rem;
+  --dk-empty-max: 26rem;
+}
+
+/* Mobile: tighter vertical rhythm */
+@media (max-width: 639px) {
+  .dk-empty--standard {
+    --dk-empty-pad-block: var(--space-4, 1rem);
+    --dk-empty-gap: var(--space-2, 0.5rem);
+  }
+
+  .dk-empty--large {
+    --dk-empty-pad-block: var(--space-5, 1.25rem);
+    --dk-empty-gap: var(--space-3, 0.75rem);
+    --dk-empty-glyph-size: 2rem;
+  }
+}
+
+/* Desktop: more breathing room where appropriate */
+@media (min-width: 1024px) {
+  .dk-empty--standard {
+    --dk-empty-pad-block: var(--space-8, 2rem);
+  }
+
+  .dk-empty--large {
+    --dk-empty-pad-block: var(--space-10, 2.5rem);
+    --dk-empty-gap: var(--space-5, 1.25rem);
+  }
+}
+
+/* ——— Media / glyph (modest — reinforces situation, not decoration) ——— */
+
+.dk-empty__media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--dk-empty-icon);
+  line-height: 0;
+}
+
+.dk-empty__media img,
+.dk-empty__media svg:not(.dk-empty__glyph svg) {
+  display: block;
+  max-width: 5rem;
+  max-height: 5rem;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.dk-empty--compact .dk-empty__media img,
+.dk-empty--compact .dk-empty__media svg:not(.dk-empty__glyph svg) {
+  max-width: 3rem;
+  max-height: 3rem;
+}
+
+.dk-empty--large .dk-empty__media img,
+.dk-empty--large .dk-empty__media svg:not(.dk-empty__glyph svg) {
+  max-width: 6rem;
+  max-height: 6rem;
+}
+
+.dk-empty__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--dk-empty-glyph-size);
+  color: var(--dk-empty-icon);
+}
+
+.dk-empty__glyph svg {
+  display: block;
+}
+
+/* ——— Copy hierarchy: Title → Description ——— */
+
+.dk-empty__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1, 0.25rem);
+  min-width: 0;
+  width: 100%;
+}
+
+.dk-empty__title {
+  margin: 0;
+  font-size: var(--dk-empty-title-size);
+  font-weight: var(--font-weight-semibold, 600);
+  line-height: var(--line-height-snug, 1.35);
+  color: var(--dk-empty-fg);
+  overflow-wrap: anywhere;
+}
+
+.dk-empty__description {
+  margin: 0;
+  font-size: var(--dk-empty-desc-size);
+  font-weight: var(--font-weight-normal, 400);
+  line-height: var(--line-height-normal, 1.5);
+  color: var(--dk-empty-muted);
+  overflow-wrap: anywhere;
+  max-width: 36ch;
+}
+
+/* ——— Actions (DevKit Button / LinkButton slots) ——— */
+
+.dk-empty__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 0.5rem);
+  margin-block-start: var(--space-1, 0.25rem);
+}
+
+.dk-empty__extra {
+  margin-block-start: var(--space-1, 0.25rem);
+  font-size: var(--font-size-sm, 0.875rem);
+  color: var(--dk-empty-muted);
+}
+
+/* ——— Semantic variants (icon tone only — copy stays host-owned) ——— */
+
+.dk-empty--first-use {
+  --dk-empty-icon: var(--color-accent, #2563eb);
+}
+
+.dk-empty--no-results,
+.dk-empty--filtered {
+  --dk-empty-icon: var(--color-text-muted, #64748b);
+}
+
+.dk-empty--completed {
+  --dk-empty-icon: var(--color-success, #16a34a);
+}
+
+.dk-empty--permission {
+  --dk-empty-icon: var(--color-warning, #ca8a04);
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-empty,
+.dk-empty[data-theme="dark"] {
+  --dk-empty-fg: var(--color-text, #f1f5f9);
+  --dk-empty-muted: var(--color-text-muted, #94a3b8);
+  --dk-empty-icon: var(--color-text-muted, #94a3b8);
+}
+
+[data-theme="dark"] .dk-empty--first-use,
+.dk-empty[data-theme="dark"].dk-empty--first-use {
+  --dk-empty-icon: var(--color-accent, #60a5fa);
+}
+
+[data-theme="dark"] .dk-empty--completed,
+.dk-empty[data-theme="dark"].dk-empty--completed {
+  --dk-empty-icon: var(--color-success, #4ade80);
+}
+
+[data-theme="dark"] .dk-empty--permission,
+.dk-empty[data-theme="dark"].dk-empty--permission {
+  --dk-empty-icon: var(--color-warning, #facc15);
+}
+
+[data-theme="hc"] .dk-empty,
+.dk-empty[data-theme="hc"],
+[data-contrast="high"] .dk-empty {
+  --dk-empty-fg: CanvasText;
+  --dk-empty-muted: CanvasText;
+  --dk-empty-icon: CanvasText;
+  outline: 2px solid CanvasText;
+  outline-offset: 2px;
+}
+
+/* ——— RTL ——— */
+
+[dir="rtl"] .dk-empty,
+.dk-empty[dir="rtl"] {
+  text-align: center;
+}
+
+/* ——— Reduced motion ——— */
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-empty * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Notification.tsx",
+      "destination": "src/components/ui/Notification.tsx"
+    },
+    {
+      "source": "files/src/styles/notification.css",
+      "destination": "src/styles/notification.css"
+    },
+    {
+      "source": "files/docs/NOTIFICATION.md",
+      "destination": "docs/devkit/NOTIFICATION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

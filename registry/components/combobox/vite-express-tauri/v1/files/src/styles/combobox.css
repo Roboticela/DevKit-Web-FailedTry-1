@@ -293,8 +293,9 @@
 
 .dk-combobox__option {
   display: flex;
-  flex-direction: column;
-  gap: 2px;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-2, 8px);
   box-sizing: border-box;
   min-height: max(40px, var(--touch-target-min, 44px));
   padding: var(--space-2, 8px) var(--space-3, 12px);
@@ -306,6 +307,34 @@
 
 .dk-combobox__option + .dk-combobox__option {
   margin-block-start: 2px;
+}
+
+.dk-combobox__option-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--space-6, 24px);
+  height: var(--space-6, 24px);
+  color: var(--color-text-secondary, #6e6e73);
+  line-height: 1;
+}
+
+.dk-combobox__option-icon > svg,
+.dk-combobox__option-icon > img,
+.dk-combobox__option-icon .dk-country-flag {
+  width: 1.25em;
+  height: auto;
+  max-height: 100%;
+  display: block;
+}
+
+.dk-combobox__option-text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
 }
 
 .dk-combobox__option:hover:not(.dk-combobox__option--disabled) {

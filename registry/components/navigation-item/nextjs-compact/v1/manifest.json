@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/NavigationItem.tsx",
+      "destination": "components/ui/NavigationItem.tsx"
+    },
+    {
+      "source": "files/styles/navigation-item.css",
+      "destination": "styles/navigation-item.css"
+    },
+    {
+      "source": "files/docs/NAVIGATION_ITEM.md",
+      "destination": "docs/devkit/NAVIGATION_ITEM.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

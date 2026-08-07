@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Breadcrumbs.tsx",
+      "destination": "src/components/ui/Breadcrumbs.tsx"
+    },
+    {
+      "source": "files/src/styles/breadcrumbs.css",
+      "destination": "src/styles/breadcrumbs.css"
+    },
+    {
+      "source": "files/docs/BREADCRUMBS.md",
+      "destination": "docs/devkit/BREADCRUMBS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -15,6 +15,8 @@ export interface ComboboxOption {
   label: string;
   description?: string;
   disabled?: boolean;
+  /** Optional leading mark (flag, place icon, …). */
+  icon?: React.ReactNode;
 }
 
 export type ComboboxFilterFn = (
@@ -770,10 +772,17 @@ export const Combobox = React.forwardRef<HTMLInputElement, ComboboxProps>(
                   }}
                   onClick={() => selectOption(opt)}
                 >
-                  <span className="dk-combobox__option-label">{opt.label}</span>
-                  {opt.description ? (
-                    <span className="dk-combobox__option-desc">{opt.description}</span>
+                  {opt.icon ? (
+                    <span className="dk-combobox__option-icon" aria-hidden="true">
+                      {opt.icon}
+                    </span>
                   ) : null}
+                  <span className="dk-combobox__option-text">
+                    <span className="dk-combobox__option-label">{opt.label}</span>
+                    {opt.description ? (
+                      <span className="dk-combobox__option-desc">{opt.description}</span>
+                    ) : null}
+                  </span>
                 </li>
               );
             })}

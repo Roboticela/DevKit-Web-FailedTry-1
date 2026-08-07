@@ -1,0 +1,23 @@
+﻿{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/StatusIndicator.tsx",
+      "destination": "src/components/ui/StatusIndicator.tsx"
+    },
+    {
+      "source": "files/src/styles/status-indicator.css",
+      "destination": "src/styles/status-indicator.css"
+    },
+    {
+      "source": "files/docs/STATUS_INDICATOR.md",
+      "destination": "docs/devkit/STATUS_INDICATOR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

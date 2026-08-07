@@ -64,6 +64,8 @@ export interface SelectProps
   searchPlaceholder?: string;
   /** Empty-state copy when search yields no options. */
   noResultsLabel?: string;
+  /** Minimum popover width in px (useful for narrow triggers with long option labels). */
+  menuMinWidth?: number;
 }
 
 const SIZE_CLASS: Record<SelectSize, string> = {
@@ -218,6 +220,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       searchable: searchableProp,
       searchPlaceholder = "Search…",
       noResultsLabel = "No results",
+      menuMinWidth,
       id: idProp,
       className,
       ...rest
@@ -356,8 +359,9 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
       const spaceAbove = rect.top - gap - 8;
       const placeAbove = spaceBelow < 160 && spaceAbove > spaceBelow;
       const height = Math.min(maxH, placeAbove ? spaceAbove : spaceBelow);
-      // Match the field control width exactly (not the inner trigger alone).
-      const width = rect.width;
+      // Match the field control width exactly (not the inner trigger alone),
+      // but allow a wider menu when the trigger is intentionally narrow.
+      const width = Math.max(rect.width, menuMinWidth ?? 0);
       const left = clamp(rect.left, 8, window.innerWidth - width - 8);
       const top = placeAbove
         ? clamp(rect.top - gap - height, 8, window.innerHeight - height - 8)
@@ -374,7 +378,7 @@ export const Select = React.forwardRef<HTMLButtonElement, SelectProps>(
         boxSizing: "border-box",
         zIndex: 40,
       });
-    }, [isSearchable]);
+    }, [isSearchable, menuMinWidth]);
 
     const openListbox = React.useCallback(() => {
       if (disabled) return;

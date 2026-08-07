@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Notification.tsx",
+      "destination": "components/ui/Notification.tsx"
+    },
+    {
+      "source": "files/styles/notification.css",
+      "destination": "styles/notification.css"
+    },
+    {
+      "source": "files/docs/NOTIFICATION.md",
+      "destination": "docs/devkit/NOTIFICATION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

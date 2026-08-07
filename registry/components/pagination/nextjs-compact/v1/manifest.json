@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Pagination.tsx",
+      "destination": "components/ui/Pagination.tsx"
+    },
+    {
+      "source": "files/styles/pagination.css",
+      "destination": "styles/pagination.css"
+    },
+    {
+      "source": "files/docs/PAGINATION.md",
+      "destination": "docs/devkit/PAGINATION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}
