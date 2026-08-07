@@ -27,6 +27,7 @@ import { DateInput } from "../../registry/components/date-input/vite-express-tau
 import { TimeInput } from "../../registry/components/time-input/vite-express-tauri/v1/files/src/components/ui/TimeInput";
 import { DateTimeInput } from "../../registry/components/date-time-input/vite-express-tauri/v1/files/src/components/ui/DateTimeInput";
 import { InputGroup } from "../../registry/components/input-group/vite-express-tauri/v1/files/src/components/ui/InputGroup";
+import { Checkbox } from "../../registry/components/checkbox/vite-express-tauri/v1/files/src/components/ui/Checkbox";
 import catalog from "./foundation-catalog.json";
 
 type CatalogComponent = {
@@ -1775,7 +1776,6 @@ function OtpInputLab() {
 function DateInputLab() {
   const [iso, setIso] = useState<string | null>("2026-08-07");
   const [raw, setRaw] = useState("");
-  const [pickerOpen, setPickerOpen] = useState(false);
   const [locale, setLocale] = useState("en-US");
 
   return (
@@ -1783,12 +1783,12 @@ function DateInputLab() {
       <h2 id="date-input-lab-heading">017 Date Input</h2>
       <p className="catalog-group-desc">
         Locale-aware calendar date with manual typing and a calendar trigger that
-        opens an external picker slot — no embedded calendar. Values are ISO{" "}
+        opens a mobile wheel picker (rounded center selection). Values are ISO{" "}
         <code>YYYY-MM-DD</code>; typed text is not rewritten while focused.
       </p>
 
       <div className="lab-block" style={{ maxWidth: "22rem" }}>
-        <h3 className="catalog-subgroup-title">Controlled + picker slot</h3>
+        <h3 className="catalog-subgroup-title">Controlled + wheel picker</h3>
         <DateInput
           label="Event date"
           value={iso}
@@ -1799,41 +1799,6 @@ function DateInputLab() {
           max="2026-12-31"
           clearable
           showCalendarTrigger
-          pickerOpen={pickerOpen}
-          onOpenPicker={() => setPickerOpen((o) => !o)}
-          pickerSlot={
-            pickerOpen ? (
-              <div
-                role="dialog"
-                aria-label="Date picker placeholder"
-                style={{
-                  marginTop: "var(--space-2)",
-                  padding: "var(--space-3)",
-                  border: "1px solid var(--color-border-default)",
-                  borderRadius: "var(--radius-5)",
-                  background: "var(--color-surface-secondary)",
-                }}
-              >
-                <p className="catalog-group-meta" style={{ margin: 0 }}>
-                  Placeholder Date Picker — compose a real picker later.
-                </p>
-                <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIso("2026-08-15");
-                      setPickerOpen(false);
-                    }}
-                  >
-                    Pick Aug 15
-                  </button>
-                  <button type="button" onClick={() => setPickerOpen(false)}>
-                    Close
-                  </button>
-                </div>
-              </div>
-            ) : null
-          }
           helpText={`ISO: ${iso ?? "null"} · raw while editing: "${raw}"`}
         />
         <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
@@ -1861,13 +1826,12 @@ function DateInputLab() {
           locale="en-GB"
           clearable
           showCalendarTrigger
-          onOpenPicker={() => undefined}
           isDateDisabled={(d) => {
             const [y, m, day] = d.split("-").map(Number);
             const wd = new Date(y, m - 1, day).getDay();
             return wd === 0 || wd === 6;
           }}
-          helpText="Weekends rejected on commit (blur / Enter)"
+          helpText="Weekends rejected on commit (blur / Enter) and in the wheel"
         />
       </div>
 
@@ -1904,7 +1868,6 @@ function DateInputLab() {
 function TimeInputLab() {
   const [time, setTime] = useState<string | null>("14:30");
   const [raw, setRaw] = useState("");
-  const [pickerOpen, setPickerOpen] = useState(false);
   const [hourCycle, setHourCycle] = useState<"auto" | "h12" | "h23">("auto");
   const [locale, setLocale] = useState("en-US");
 
@@ -1914,12 +1877,11 @@ function TimeInputLab() {
       <p className="catalog-group-desc">
         Locale-aware time with hours + minutes by default. Display follows{" "}
         <code>locale</code> / <code>hourCycle</code> — AM/PM only when applicable.
-        Clock trigger opens an external picker slot; <code>native</code> keeps
-        DevKit chrome and opens the platform picker from the clock control.
+        Clock trigger opens a mobile wheel picker with a rounded center lens.
       </p>
 
       <div className="lab-block" style={{ maxWidth: "22rem" }}>
-        <h3 className="catalog-subgroup-title">Controlled + picker slot</h3>
+        <h3 className="catalog-subgroup-title">Controlled + wheel picker</h3>
         <TimeInput
           label="Start time"
           value={time}
@@ -1932,50 +1894,6 @@ function TimeInputLab() {
           step={900}
           clearable
           showPickerTrigger
-          pickerOpen={pickerOpen}
-          onOpenPicker={() => setPickerOpen((o) => !o)}
-          pickerSlot={
-            pickerOpen ? (
-              <div
-                role="dialog"
-                aria-label="Time picker placeholder"
-                style={{
-                  marginTop: "var(--space-2)",
-                  padding: "var(--space-3)",
-                  border: "1px solid var(--color-border-default)",
-                  borderRadius: "var(--radius-5)",
-                  background: "var(--color-surface-secondary)",
-                }}
-              >
-                <p className="catalog-group-meta" style={{ margin: 0 }}>
-                  Placeholder Time Picker — compose a real picker later.
-                </p>
-                <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTime("09:00");
-                      setPickerOpen(false);
-                    }}
-                  >
-                    09:00
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setTime("16:45");
-                      setPickerOpen(false);
-                    }}
-                  >
-                    16:45
-                  </button>
-                  <button type="button" onClick={() => setPickerOpen(false)}>
-                    Close
-                  </button>
-                </div>
-              </div>
-            ) : null
-          }
           helpText={`Value: ${time ?? "null"} · raw: "${raw}" · step 15m · ArrowUp/Down`}
         />
         <div className="lab-row" style={{ marginTop: "var(--space-2)" }}>
@@ -2017,27 +1935,14 @@ function TimeInputLab() {
           hourCycle="h23"
           step={1}
           clearable
-          helpText="HH:mm:ss · step 1 second"
-        />
-      </div>
-
-      <div className="lab-block" style={{ maxWidth: "22rem" }}>
-        <h3 className="catalog-subgroup-title">Platform picker (DevKit chrome)</h3>
-        <TimeInput
-          label="Meeting time"
-          defaultValue="10:15"
-          native
-          min="06:00"
-          max="22:00"
-          step={300}
-          clearable
-          helpText="Same DevKit field — clock opens platform picker when supported"
+          showPickerTrigger
+          helpText="HH:mm:ss · step 1 second · wheel includes seconds"
         />
       </div>
 
       <div className="lab-block" style={{ maxWidth: "22rem" }}>
         <h3 className="catalog-subgroup-title">States</h3>
-        <TimeInput label="Required" required defaultValue={null} />
+        <TimeInput label="Required" required defaultValue={null} showPickerTrigger />
         <TimeInput label="Optional" optional defaultValue="12:00" clearable />
         <TimeInput label="Read-only" readOnly defaultValue="14:30" />
         <TimeInput label="Loading" defaultValue="14:30" loading />
@@ -2307,6 +2212,94 @@ function InputGroupLab() {
   );
 }
 
+function CheckboxLab() {
+  const [marketing, setMarketing] = useState(false);
+  const [terms, setTerms] = useState(false);
+  const [parent, setParent] = useState(false);
+  const [childA, setChildA] = useState(true);
+  const [childB, setChildB] = useState(false);
+
+  const parentIndeterminate = childA !== childB;
+  const parentChecked = childA && childB;
+
+  return (
+    <section className="catalog-group" aria-labelledby="checkbox-lab-heading">
+      <h2 id="checkbox-lab-heading">021 Checkbox</h2>
+      <p className="catalog-group-desc">
+        Independent boolean or multi-select item. Label is clickable; visual box is
+        20px at MD with a ≥44×44 hit. Indeterminate is derived only — not a third
+        toggle value. Prefer Switch for immediate system settings.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Basic</h3>
+        <Checkbox
+          label="Send me product updates"
+          description="Occasional email about new features. Never spam."
+          checked={marketing}
+          onCheckedChange={setMarketing}
+          optional
+        />
+        <Checkbox
+          label="I agree to the terms of service"
+          checked={terms}
+          onCheckedChange={setTerms}
+          required
+          validation={!terms ? "error" : "none"}
+          errorMessage={!terms ? "You must accept the terms to continue" : undefined}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Indeterminate (derived)</h3>
+        <Checkbox
+          label="Select all notifications"
+          description="Parent reflects mixed child selection"
+          checked={parentChecked}
+          indeterminate={parentIndeterminate}
+          onCheckedChange={(next: boolean) => {
+            setParent(next);
+            setChildA(next);
+            setChildB(next);
+          }}
+        />
+        <div style={{ paddingInlineStart: "var(--space-8)", marginBlockStart: "var(--space-2)" }}>
+          <Checkbox label="Email alerts" checked={childA} onCheckedChange={setChildA} />
+          <Checkbox label="Push alerts" checked={childB} onCheckedChange={setChildB} />
+        </div>
+        <p className="catalog-group-meta">
+          parent checked={String(parentChecked)} · indeterminate={String(parentIndeterminate)} ·
+          stored parent={String(parent)}
+        </p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Long label alignment</h3>
+        <Checkbox
+          label="Keep my shopping cart items available across devices so I can continue checkout later from another browser or phone without losing selected options, quantities, or applied coupons."
+          description="Box aligns to the first line of the label, not the middle of the block."
+          defaultChecked
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <Checkbox label="Unchecked" defaultChecked={false} />
+        <Checkbox label="Checked" defaultChecked />
+        <Checkbox label="Indeterminate" indeterminate defaultChecked={false} />
+        <Checkbox label="Disabled unchecked" disabled />
+        <Checkbox label="Disabled checked" disabled defaultChecked />
+        <Checkbox label="Disabled indeterminate" disabled indeterminate />
+        <Checkbox
+          label="Invalid"
+          validation="error"
+          errorMessage="This option is required"
+        />
+      </div>
+    </section>
+  );
+}
+
 export function App() {
   return (
     <div className="playground">
@@ -2314,8 +2307,8 @@ export function App() {
         <div>
           <h1>DevKit</h1>
           <p>
-            Layer 1 — Interaction Controls 001–010 ready; Form Controls 011–020
-            complete.
+            Layer 1 — Interaction Controls 001–010; Form Controls 011–020;
+            Selection Controls 021 ready.
           </p>
         </div>
       </header>
@@ -2340,6 +2333,7 @@ export function App() {
       <TimeInputLab />
       <DateTimeInputLab />
       <InputGroupLab />
+      <CheckboxLab />
 
       {groups.map((group) => (
         <section

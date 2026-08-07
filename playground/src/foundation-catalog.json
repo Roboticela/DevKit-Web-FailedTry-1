@@ -178,7 +178,15 @@
         {
           "id": "selection-controls",
           "name": "Selection Controls",
-          "components": []
+          "components": [
+            {
+              "id": 21,
+              "name": "checkbox",
+              "displayName": "Checkbox",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
         },
         {
           "id": "navigation-controls",

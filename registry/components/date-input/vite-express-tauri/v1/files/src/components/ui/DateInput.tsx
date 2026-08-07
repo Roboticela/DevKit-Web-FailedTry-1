@@ -1,4 +1,5 @@
 import * as React from "react";
+import { DateWheelPicker } from "./DateWheelPicker";
 
 export type DateInputSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -55,18 +56,17 @@ export interface DateInputProps
   clearLabel?: string;
   onClear?: () => void;
   /**
-   * Show calendar trigger. Opens via `onOpenPicker` — does not embed a calendar.
-   * Compose with a future Date Picker.
+   * Show calendar trigger. Opens the built-in mobile wheel picker unless
+   * `pickerSlot` overrides it.
    */
   showCalendarTrigger?: boolean;
   calendarLabel?: string;
-  /** Whether an external picker is open (sets `aria-expanded`). */
+  /** Controlled open state for the picker. Omit for internal open state. */
   pickerOpen?: boolean;
-  /** Called when the calendar trigger is activated. */
+  /** Called when the calendar trigger is activated (toggle). */
   onOpenPicker?: () => void;
   /**
-   * Optional slot rendered after the field (e.g. anchored Date Picker).
-   * Kept outside the primitive’s core chrome.
+   * Optional slot rendered after the field — replaces the built-in wheel picker when set.
    */
   pickerSlot?: React.ReactNode;
 }
@@ -274,7 +274,7 @@ function compareIso(a: string, b: string): number {
  * Date Input (ID 017) — locale-aware calendar date field.
  *
  * Committed value is timezone-independent ISO `YYYY-MM-DD`.
- * Manual entry is first-class; calendar trigger opens an external Date Picker.
+ * Manual entry is first-class; calendar trigger opens a mobile wheel picker.
  */
 export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
   function DateInput(
@@ -311,7 +311,7 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       onClear,
       showCalendarTrigger = true,
       calendarLabel = "Open calendar",
-      pickerOpen = false,
+      pickerOpen: pickerOpenProp,
       onOpenPicker,
       pickerSlot,
       id: idProp,
@@ -385,6 +385,11 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       .join(" ");
 
     const inputRef = React.useRef<HTMLInputElement | null>(null);
+    const rootRef = React.useRef<HTMLDivElement | null>(null);
+    const isPickerControlled = pickerOpenProp !== undefined;
+    const [internalOpen, setInternalOpen] = React.useState(false);
+    const pickerOpen = isPickerControlled ? Boolean(pickerOpenProp) : internalOpen;
+
     const setRefs = React.useCallback(
       (node: HTMLInputElement | null) => {
         inputRef.current = node;
@@ -393,6 +398,37 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       },
       [ref]
     );
+
+    const setPickerOpen = React.useCallback(
+      (next: boolean) => {
+        if (!isPickerControlled) setInternalOpen(next);
+      },
+      [isPickerControlled]
+    );
+
+    const togglePicker = React.useCallback(() => {
+      onOpenPicker?.();
+      if (!isPickerControlled) setInternalOpen((open) => !open);
+    }, [isPickerControlled, onOpenPicker]);
+
+    React.useEffect(() => {
+      if (!pickerOpen) return;
+      const onPointerDown = (event: PointerEvent) => {
+        const target = event.target as Node | null;
+        if (rootRef.current && target && !rootRef.current.contains(target)) {
+          setPickerOpen(false);
+        }
+      };
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") setPickerOpen(false);
+      };
+      document.addEventListener("pointerdown", onPointerDown);
+      document.addEventListener("keydown", onKeyDown);
+      return () => {
+        document.removeEventListener("pointerdown", onPointerDown);
+        document.removeEventListener("keydown", onKeyDown);
+      };
+    }, [pickerOpen, setPickerOpen]);
 
     const commit = (next: DateInputValue) => {
       if (next && min && compareIso(next, min) < 0) {
@@ -434,8 +470,11 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       errorMessage ||
       (localInvalid ? "Enter a valid date" : undefined);
 
+    const showBuiltInPicker = pickerOpen && !pickerSlot;
+
     return (
       <div
+        ref={rootRef}
         className={cx(
           "dk-field",
           "dk-date",
@@ -547,11 +586,10 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
               if (event.defaultPrevented || disabled || readOnly || loading) return;
               if (
                 (event.key === "ArrowDown" || event.key === "F4") &&
-                showCalendarTrigger &&
-                onOpenPicker
+                showCalendarTrigger
               ) {
                 event.preventDefault();
-                onOpenPicker();
+                togglePicker();
               }
             }}
           />
@@ -582,7 +620,7 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
               aria-expanded={pickerOpen}
               aria-haspopup="dialog"
               disabled={disabled || readOnly}
-              onClick={() => onOpenPicker?.()}
+              onClick={() => togglePicker()}
             >
               <span className="dk-date__calendar-hit" aria-hidden="true" />
               <CalendarIcon />
@@ -591,6 +629,23 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
         </div>
 
         {pickerSlot ? <div className="dk-date__picker-slot">{pickerSlot}</div> : null}
+        {showBuiltInPicker ? (
+          <div className="dk-date__picker-slot">
+            <DateWheelPicker
+              value={committed}
+              locale={locale}
+              min={min}
+              max={max}
+              isDateDisabled={isDateDisabled}
+              onChange={(next) => {
+                commit(next);
+                setRaw(formatIso(locale, next));
+                onRawChange?.(formatIso(locale, next));
+              }}
+              onDone={() => setPickerOpen(false)}
+            />
+          </div>
+        ) : null}
 
         <div className="dk-field__footer">
           <div className="dk-field__messages">

@@ -2,7 +2,7 @@
   "id": 17,
   "name": "date-input",
   "displayName": "Date Input",
-  "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker — ISO YYYY-MM-DD values, no embedded calendar.",
+  "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that opens a mobile wheel picker — ISO YYYY-MM-DD values.",
   "category": "foundation",
   "group": "foundations-interface-primitives",
   "groupName": "Foundations & Interface Primitives",

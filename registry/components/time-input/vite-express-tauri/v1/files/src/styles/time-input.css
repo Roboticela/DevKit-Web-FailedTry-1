@@ -1,5 +1,5 @@
 /* Time Input (ID 018) — Form Controls
- * Locale-aware time field + clock trigger (picker composed externally).
+ * Locale-aware time field + mobile wheel picker.
  * No gradients. No box-shadows.
  */
 
@@ -140,21 +140,6 @@
 
 .dk-time__input:focus {
   outline: none;
-}
-
-/* Platform time input stays available for showPicker — never visible as browser chrome */
-.dk-time__native {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-  opacity: 0;
-  pointer-events: none;
 }
 
 .dk-time__control:hover:not(:focus-within) {
@@ -442,3 +427,160 @@
   border-color: var(--color-accent-primary, #64d2ff);
   color: var(--color-accent-primary, #64d2ff);
 }
+
+/* Mobile wheel picker — rounded center lens (no gradients / shadows) */
+.dk-wheel-panel {
+  box-sizing: border-box;
+  width: 100%;
+  margin-block-start: var(--space-2, 8px);
+  padding: var(--space-3, 12px) var(--space-2, 8px);
+  border: var(--border-width-default, 1px) solid var(--color-border-default, #d2d2d7);
+  border-radius: var(--radius-6, 16px);
+  background: var(--color-surface-secondary, #fafafa);
+}
+
+.dk-wheel-panel__columns {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-wheel-panel__done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: max(44px, var(--touch-target-min, 44px));
+  margin-block-start: var(--space-3, 12px);
+  padding-inline: var(--space-4, 16px);
+  border: var(--border-width-default, 1px) solid var(--color-accent-primary, #0071e3);
+  border-radius: var(--radius-full, 9999px);
+  background: var(--color-accent-subtle, #e8f2fc);
+  color: var(--color-accent-primary, #0071e3);
+  font-family: inherit;
+  font-size: var(--font-size-body, 16px);
+  font-weight: var(--weight-semibold, 600);
+  line-height: var(--line-height-body, 24px);
+  cursor: pointer;
+}
+
+.dk-wheel-panel__done:hover {
+  background: var(--color-surface-primary, #ffffff);
+}
+
+.dk-wheel-panel__done:focus {
+  outline: none;
+}
+
+.dk-wheel-panel__done:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: 2px;
+}
+
+.dk-wheel {
+  --dk-wheel-item: 44px;
+  --dk-wheel-visible: 5;
+  position: relative;
+  flex: 1 1 0;
+  min-width: 3.25rem;
+  max-width: 7.5rem;
+  height: calc(var(--dk-wheel-item) * var(--dk-wheel-visible));
+}
+
+.dk-wheel__lens {
+  position: absolute;
+  z-index: 1;
+  inset-inline: 4px;
+  top: 50%;
+  height: var(--dk-wheel-item);
+  transform: translateY(-50%);
+  border-radius: var(--radius-full, 9999px);
+  border: var(--border-width-default, 1px) solid var(--color-accent-primary, #0071e3);
+  background: var(--color-accent-subtle, #e8f2fc);
+  pointer-events: none;
+}
+
+.dk-wheel__scroller {
+  position: relative;
+  z-index: 2;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb, #c7c7cc) transparent;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+}
+
+.dk-wheel__scroller:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid
+    var(--color-focus, var(--color-accent-primary, #0071e3));
+  outline-offset: 2px;
+  border-radius: var(--radius-5, 12px);
+}
+
+.dk-wheel__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  scroll-snap-align: center;
+  color: var(--color-text-tertiary, #86868b);
+  font-size: var(--font-size-body, 16px);
+  font-weight: var(--weight-regular, 400);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0.55;
+}
+
+.dk-wheel__item--selected {
+  color: var(--color-text-primary, #1d1d1f);
+  font-weight: var(--weight-semibold, 600);
+  opacity: 1;
+}
+
+.dk-wheel__item--disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-wheel__scroller {
+    scroll-behavior: auto;
+  }
+}
+
+[data-theme="dark"] .dk-wheel-panel,
+.dark .dk-wheel-panel {
+  background: var(--color-surface-secondary, #2c2c2e);
+  border-color: var(--color-border-default, #48484a);
+}
+
+[data-theme="dark"] .dk-wheel__lens,
+.dark .dk-wheel__lens {
+  background: var(--color-accent-subtle, #00263d);
+  border-color: var(--color-accent-primary, #64d2ff);
+}
+
+[data-theme="dark"] .dk-wheel__item--selected,
+.dark .dk-wheel__item--selected {
+  color: var(--color-text-primary, #f5f5f7);
+}
+
+[data-theme="dark"] .dk-wheel-panel__done,
+.dark .dk-wheel-panel__done {
+  background: var(--color-accent-subtle, #00263d);
+  border-color: var(--color-accent-primary, #64d2ff);
+  color: var(--color-accent-primary, #64d2ff);
+}
+

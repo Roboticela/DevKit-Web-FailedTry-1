@@ -7,6 +7,10 @@
       "destination": "src/components/ui/DateInput.tsx"
     },
     {
+      "source": "files/src/components/ui/DateWheelPicker.tsx",
+      "destination": "src/components/ui/DateWheelPicker.tsx"
+    },
+    {
       "source": "files/src/styles/date-input.css",
       "destination": "src/styles/date-input.css"
     },

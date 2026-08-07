@@ -21,6 +21,7 @@ import "../../registry/components/date-input/vite-express-tauri/v1/files/src/sty
 import "../../registry/components/time-input/vite-express-tauri/v1/files/src/styles/time-input.css";
 import "../../registry/components/date-time-input/vite-express-tauri/v1/files/src/styles/date-time-input.css";
 import "../../registry/components/input-group/vite-express-tauri/v1/files/src/styles/input-group.css";
+import "../../registry/components/checkbox/vite-express-tauri/v1/files/src/styles/checkbox.css";
 import { App } from "./App";
 
 createRoot(document.getElementById("root")!).render(

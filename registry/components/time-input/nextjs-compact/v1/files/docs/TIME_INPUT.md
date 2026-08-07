@@ -1,6 +1,6 @@
 # Time Input (018)
 
-Locale-aware **time** field. Manual typing is first-class; the clock trigger opens a composed Time Picker (not embedded here).
+Locale-aware **time** field. Manual typing is first-class; the clock trigger opens a built-in mobile wheel picker with a rounded center selection lens.
 
 ## Value model
 
@@ -18,8 +18,8 @@ Locale-aware **time** field. Manual typing is first-class; the clock trigger ope
 |----|--------|
 | Default to hours + minutes | Require seconds unless needed |
 | Allow keyboard entry without a picker | Force picker-only interaction |
-| Use `native` so the DevKit clock opens the platform picker | Show browser-default `type="time"` chrome |
-| Compose Time Picker via `onOpenPicker` / `pickerSlot` | Assume US 12-hour format universally |
+| Use the built-in wheel picker from the clock trigger | Rely on browser `type="time"` chrome |
+| Override with `pickerSlot` only when composing a custom UI | Assume US 12-hour format universally |
 
 ## Features
 
@@ -27,7 +27,8 @@ Locale-aware **time** field. Manual typing is first-class; the clock trigger ope
 - `min`, `max`, `step` (seconds); ArrowUp / ArrowDown adjust by step
 - Clear, required / optional, validation messages
 - Accessible clock trigger (`aria-label`, `aria-expanded`, `type="button"`)
-- `native` — hidden `type="time"` + `showPicker()` behind DevKit chrome (visible field always custom)
+- Built-in mobile wheel picker (hour / minute / optional seconds / period)
+- `pickerSlot` replaces the built-in picker when provided
 - F4 / Alt+ArrowDown open picker when the clock trigger is shown
 
 ## States
@@ -38,5 +39,5 @@ empty · focused · filled · invalid · disabled · read-only · loading
 
 | Template | Files |
 |----------|-------|
-| `nextjs-compact` | `components/ui/TimeInput.tsx`, `styles/time-input.css` |
-| `vite-express-tauri` | `src/components/ui/TimeInput.tsx`, `src/styles/time-input.css` |
+| `nextjs-compact` | `components/ui/TimeInput.tsx`, `components/ui/TimeWheelPicker.tsx`, `styles/time-input.css` |
+| `vite-express-tauri` | `src/components/ui/TimeInput.tsx`, `src/components/ui/TimeWheelPicker.tsx`, `src/styles/time-input.css` |

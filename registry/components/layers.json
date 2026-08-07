@@ -216,7 +216,20 @@
               "id": "selection-controls",
               "name": "Selection Controls",
               "description": "Checkboxes, radios, switches, and choice primitives.",
-              "components": []
+              "components": [
+                {
+                  "id": 21,
+                  "name": "checkbox",
+                  "displayName": "Checkbox",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                }
+              ],
+              "idRange": {
+                "min": 21,
+                "max": 30
+              }
             },
             {
               "id": "navigation-controls",

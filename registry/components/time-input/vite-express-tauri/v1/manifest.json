@@ -7,6 +7,10 @@
       "destination": "src/components/ui/TimeInput.tsx"
     },
     {
+      "source": "files/src/components/ui/TimeWheelPicker.tsx",
+      "destination": "src/components/ui/TimeWheelPicker.tsx"
+    },
+    {
       "source": "files/src/styles/time-input.css",
       "destination": "src/styles/time-input.css"
     },

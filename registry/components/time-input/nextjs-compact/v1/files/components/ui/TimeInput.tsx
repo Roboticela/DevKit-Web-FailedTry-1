@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TimeWheelPicker } from "./TimeWheelPicker";
 
 export type TimeInputSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -70,22 +71,16 @@ export interface TimeInputProps
   clearLabel?: string;
   onClear?: () => void;
   /**
-   * Enable platform time picker via the DevKit clock trigger when supported
-   * (`HTMLInputElement.showPicker` + hidden `type="time"`).
-   * Visible chrome always uses DevKit design — never the browser-default time UI.
-   */
-  native?: boolean;
-  /**
-   * Show clock trigger. Opens via `onOpenPicker` — does not embed a time UI.
-   * Compose with a future Time Picker.
+   * Show clock trigger. Opens the built-in mobile wheel picker unless
+   * `pickerSlot` overrides it.
    */
   showPickerTrigger?: boolean;
   pickerLabel?: string;
-  /** Whether an external picker is open (sets `aria-expanded`). */
+  /** Controlled open state for the picker. Omit for internal open state. */
   pickerOpen?: boolean;
-  /** Called when the clock trigger is activated. */
+  /** Called when the clock trigger is activated (toggle). */
   onOpenPicker?: () => void;
-  /** Optional slot after the field (e.g. anchored Time Picker). */
+  /** Optional slot after the field — replaces the built-in wheel picker when set. */
   pickerSlot?: React.ReactNode;
 }
 
@@ -342,7 +337,7 @@ function withinRange(value: string, min?: string, max?: string): boolean {
  * Time Input (ID 018) — locale-aware time field.
  *
  * Committed value is timezone-independent `HH:mm` / `HH:mm:ss`.
- * Manual entry is first-class; clock trigger opens an external Time Picker.
+ * Manual entry is first-class; clock trigger opens a mobile wheel picker.
  */
 export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
   function TimeInput(
@@ -379,10 +374,9 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
       clearable = false,
       clearLabel = "Clear time",
       onClear,
-      native = false,
       showPickerTrigger = true,
       pickerLabel = "Open time picker",
-      pickerOpen = false,
+      pickerOpen: pickerOpenProp,
       onOpenPicker,
       pickerSlot,
       id: idProp,
@@ -458,7 +452,11 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
       .join(" ");
 
     const inputRef = React.useRef<HTMLInputElement | null>(null);
-    const nativeRef = React.useRef<HTMLInputElement | null>(null);
+    const rootRef = React.useRef<HTMLDivElement | null>(null);
+    const isPickerControlled = pickerOpenProp !== undefined;
+    const [internalOpen, setInternalOpen] = React.useState(false);
+    const pickerOpen = isPickerControlled ? Boolean(pickerOpenProp) : internalOpen;
+
     const setRefs = React.useCallback(
       (node: HTMLInputElement | null) => {
         inputRef.current = node;
@@ -467,6 +465,37 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
       },
       [ref]
     );
+
+    const setPickerOpen = React.useCallback(
+      (next: boolean) => {
+        if (!isPickerControlled) setInternalOpen(next);
+      },
+      [isPickerControlled]
+    );
+
+    const togglePicker = React.useCallback(() => {
+      onOpenPicker?.();
+      if (!isPickerControlled) setInternalOpen((open) => !open);
+    }, [isPickerControlled, onOpenPicker]);
+
+    React.useEffect(() => {
+      if (!pickerOpen) return;
+      const onPointerDown = (event: PointerEvent) => {
+        const target = event.target as Node | null;
+        if (rootRef.current && target && !rootRef.current.contains(target)) {
+          setPickerOpen(false);
+        }
+      };
+      const onKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") setPickerOpen(false);
+      };
+      document.addEventListener("pointerdown", onPointerDown);
+      document.addEventListener("keydown", onKeyDown);
+      return () => {
+        document.removeEventListener("pointerdown", onPointerDown);
+        document.removeEventListener("keydown", onKeyDown);
+      };
+    }, [pickerOpen, setPickerOpen]);
 
     const commit = (next: TimeInputValue, options?: { snap?: boolean }) => {
       if (next) {
@@ -528,35 +557,18 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
       setRaw(formatTime(locale, next, withSeconds, hourCycle));
     };
 
-    const openPlatformOrPicker = () => {
-      if (native && nativeRef.current) {
-        const el = nativeRef.current;
-        try {
-          if (typeof el.showPicker === "function") {
-            el.showPicker();
-            return;
-          }
-        } catch {
-          /* fall through */
-        }
-        el.focus();
-        el.click();
-        return;
-      }
-      onOpenPicker?.();
+    const openPicker = () => {
+      togglePicker();
     };
 
     const invalidMessage =
       errorMessage || (localInvalid ? "Enter a valid time" : undefined);
 
-    const nativeStep =
-      step > 0 ? (withSeconds ? String(step) : String(Math.max(step, 60))) : undefined;
-
-    /** Value for the hidden platform input (HH:mm or HH:mm:ss). */
-    const nativeValue = committed ?? "";
+    const showBuiltInPicker = pickerOpen && !pickerSlot;
 
     return (
       <div
+        ref={rootRef}
         className={cx(
           "dk-field",
           "dk-time",
@@ -569,7 +581,6 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
           committed === null && !raw.trim() && "dk-time--empty",
           resolvedValidation !== "none" && `dk-field--${resolvedValidation}`,
           reserveFooter && "dk-field--stable-messages",
-          native && "dk-time--native",
           className
         )}
         data-size={size}
@@ -579,7 +590,6 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
         data-validation={resolvedValidation}
         data-empty={committed === null && !raw.trim() ? true : undefined}
         data-loading={loading || undefined}
-        data-native={native || undefined}
         data-picker-open={pickerOpen || undefined}
       >
         {label ? (
@@ -693,45 +703,10 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
                 showPickerTrigger
               ) {
                 event.preventDefault();
-                openPlatformOrPicker();
+                openPicker();
               }
             }}
           />
-
-          {native ? (
-            <input
-              ref={nativeRef}
-              className="dk-time__native"
-              type="time"
-              tabIndex={-1}
-              aria-hidden="true"
-              disabled={disabled || readOnly || loading}
-              value={nativeValue}
-              min={min}
-              max={max}
-              step={nativeStep}
-              onChange={(event) => {
-                const next = event.target.value;
-                if (!next) {
-                  commit(null);
-                  setRaw("");
-                  onRawChange?.("");
-                  return;
-                }
-                const parts = parseCanonical(next);
-                if (!parts) return;
-                const canonical = toCanonical(
-                  parts.h,
-                  parts.m,
-                  withSeconds ? parts.s : 0,
-                  withSeconds
-                );
-                commit(canonical, { snap: true });
-                setRaw(formatTime(locale, canonical, withSeconds, hourCycle));
-                onRawChange?.(formatTime(locale, canonical, withSeconds, hourCycle));
-              }}
-            />
-          ) : null}
 
           {loading ? (
             <span className="dk-time__loading" role="status" aria-label={loadingLabel}>
@@ -759,7 +734,7 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
               aria-expanded={pickerOpen}
               aria-haspopup="dialog"
               disabled={disabled || readOnly}
-              onClick={() => openPlatformOrPicker()}
+              onClick={() => openPicker()}
             >
               <span className="dk-time__picker-hit" aria-hidden="true" />
               <ClockIcon />
@@ -768,6 +743,26 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
         </div>
 
         {pickerSlot ? <div className="dk-time__picker-slot">{pickerSlot}</div> : null}
+        {showBuiltInPicker ? (
+          <div className="dk-time__picker-slot">
+            <TimeWheelPicker
+              value={committed}
+              locale={locale}
+              hourCycle={hourCycle}
+              withSeconds={withSeconds}
+              min={min}
+              max={max}
+              step={step}
+              onChange={(next) => {
+                commit(next, { snap: true });
+                setRaw(formatTime(locale, next, withSeconds, hourCycle));
+                onRawChange?.(formatTime(locale, next, withSeconds, hourCycle));
+                setLocalInvalid(false);
+              }}
+              onDone={() => setPickerOpen(false)}
+            />
+          </div>
+        ) : null}
 
         <div className="dk-field__footer">
           <div className="dk-field__messages">

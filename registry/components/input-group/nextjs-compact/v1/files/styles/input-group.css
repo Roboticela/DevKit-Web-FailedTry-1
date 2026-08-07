@@ -102,6 +102,9 @@
   gap: var(--dk-ig-gap);
   width: 100%;
   min-width: 0;
+  box-sizing: border-box;
+  /* Match standalone field outer height (border-box includes the 1px border) */
+  height: var(--dk-ig-shell-height);
   min-height: var(--dk-ig-shell-height);
 }
 
@@ -153,6 +156,8 @@
 
 .dk-input-group--vertical .dk-input-group__segments {
   flex-direction: column;
+  height: auto;
+  min-height: 0;
 }
 
 .dk-input-group--responsive .dk-input-group__segments {
@@ -162,6 +167,8 @@
 @media (max-width: 479px) {
   .dk-input-group--responsive .dk-input-group__segments {
     flex-direction: column;
+    height: auto;
+    min-height: 0;
   }
 
   .dk-input-group--responsive.dk-input-group--attached .dk-input-group__addon,
@@ -171,7 +178,18 @@
     border-inline-start: 0;
     border-block-end: var(--border-width-default, 1px) solid
       var(--color-border-default, #d2d2d7);
-    min-height: var(--dk-ig-shell-height);
+  }
+
+  .dk-input-group--responsive.dk-input-group--attached .dk-input-group__addon,
+  .dk-input-group--responsive.dk-input-group--attached .dk-input-group__icon,
+  .dk-input-group--responsive.dk-input-group--attached .dk-input-group__button,
+  .dk-input-group--responsive.dk-input-group--attached .dk-input-group__input {
+    min-height: calc(
+      var(--dk-ig-shell-height) - (var(--border-width-default, 1px) * 2)
+    );
+    height: calc(
+      var(--dk-ig-shell-height) - (var(--border-width-default, 1px) * 2)
+    );
   }
 
   .dk-input-group--responsive.dk-input-group--attached
@@ -181,7 +199,19 @@
   }
 }
 
-/* Segments — equal height */
+.dk-input-group--vertical.dk-input-group--attached .dk-input-group__addon,
+.dk-input-group--vertical.dk-input-group--attached .dk-input-group__icon,
+.dk-input-group--vertical.dk-input-group--attached .dk-input-group__button,
+.dk-input-group--vertical.dk-input-group--attached .dk-input-group__input {
+  min-height: calc(
+    var(--dk-ig-shell-height) - (var(--border-width-default, 1px) * 2)
+  );
+  height: calc(
+    var(--dk-ig-shell-height) - (var(--border-width-default, 1px) * 2)
+  );
+}
+
+/* Segments — stretch to shell content box; shared text metrics with nested inputs */
 .dk-input-group__addon,
 .dk-input-group__icon {
   display: inline-flex;
@@ -189,14 +219,14 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  min-height: var(--dk-ig-shell-height);
+  min-height: 0;
   height: auto;
   align-self: stretch;
   padding-inline: var(--dk-ig-pad-x);
   color: var(--color-text-secondary, #6e6e73);
   font-size: var(--dk-ig-font-size);
   line-height: var(--dk-ig-line-height);
-  font-weight: var(--weight-medium, 500);
+  font-weight: var(--weight-regular, 400);
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
   background: var(--color-surface-secondary, #f5f5f7);
@@ -235,7 +265,8 @@
   display: flex;
   align-items: stretch;
   align-self: stretch;
-  min-height: var(--dk-ig-shell-height);
+  min-height: 0;
+  height: auto;
 }
 
 .dk-input-group__button {
@@ -243,7 +274,8 @@
   display: flex;
   align-items: stretch;
   align-self: stretch;
-  min-height: var(--dk-ig-shell-height);
+  min-height: 0;
+  height: auto;
 }
 
 /* Nested form controls — absorb ALL chrome into the group shell */
@@ -259,7 +291,8 @@
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
-  min-height: 100%;
+  min-height: 0;
+  height: 100%;
   margin: 0;
   margin-block-end: 0;
   gap: 0;
@@ -268,7 +301,13 @@
 .dk-input-group__input .dk-field__label-row,
 .dk-input-group__input .dk-field__description,
 .dk-input-group__input .dk-field__footer,
-.dk-input-group__input .dk-search__footer {
+.dk-input-group__input .dk-search__footer,
+.dk-input-group__input .dk-field__hit,
+.dk-input-group__input .dk-number__hit,
+.dk-input-group__input .dk-search__hit,
+.dk-input-group__input .dk-password__hit,
+.dk-input-group__input .dk-date__hit,
+.dk-input-group__input .dk-time__hit {
   display: none;
 }
 
@@ -279,9 +318,12 @@
 .dk-input-group--attached .dk-input-group__input .dk-password__control,
 .dk-input-group--attached .dk-input-group__input .dk-date__control,
 .dk-input-group--attached .dk-input-group__input .dk-time__control {
+  position: relative;
+  display: flex;
+  align-items: center;
   flex: 1 1 auto;
   width: 100%;
-  min-height: var(--dk-ig-shell-height);
+  min-height: 0;
   height: 100%;
   margin: 0;
   padding-block: 0;
@@ -331,27 +373,54 @@
 .dk-input-group--attached .dk-input-group__input .dk-search__input,
 .dk-input-group--attached .dk-input-group__input .dk-password__input,
 .dk-input-group--attached .dk-input-group__input .dk-date__input,
-.dk-input-group--attached .dk-input-group__input .dk-time__input {
-  height: 100%;
-  min-height: 0;
+.dk-input-group--attached .dk-input-group__input .dk-time__input,
+.dk-input-group--attached .dk-input-group__input input[type="text"],
+.dk-input-group--attached .dk-input-group__input input[type="number"],
+.dk-input-group--attached .dk-input-group__input input[type="search"],
+.dk-input-group--attached .dk-input-group__input input[type="email"],
+.dk-input-group--attached .dk-input-group__input input[type="url"],
+.dk-input-group--attached .dk-input-group__input input[type="tel"],
+.dk-input-group--attached .dk-input-group__input input[type="password"] {
+  /* Same text band as addons: fixed line box, flex-centered in the shell */
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  align-self: center;
+  width: 100%;
+  min-width: 0;
+  height: var(--dk-ig-line-height);
+  min-height: var(--dk-ig-line-height);
+  max-height: var(--dk-ig-line-height);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-text-primary, #1d1d1f);
+  font-family: inherit;
   font-size: var(--dk-ig-font-size);
   line-height: var(--dk-ig-line-height);
+  font-weight: var(--weight-regular, 400);
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 /* Nested number steppers / search trail stay inside the shared height */
 .dk-input-group--attached .dk-input-group__input .dk-number__steppers {
   align-self: stretch;
+  height: 100%;
   width: max(var(--space-8, 32px), 44px);
 }
 
+.dk-input-group--attached .dk-input-group__input .dk-search__icon,
 .dk-input-group--attached .dk-input-group__input .dk-search__trail,
 .dk-input-group--attached .dk-input-group__input .dk-field__clear,
 .dk-input-group--attached .dk-input-group__input .dk-number__clear,
-.dk-input-group--attached .dk-input-group__input .dk-search__clear {
+.dk-input-group--attached .dk-input-group__input .dk-search__clear,
+.dk-input-group--attached .dk-input-group__input .dk-field__affordance {
   flex-shrink: 0;
+  align-self: center;
 }
 
-/* Nested buttons — fill shell height; no independent border chrome */
+/* Nested buttons — fill shell content height; no independent border chrome */
 .dk-input-group--attached .dk-input-group__button > .dk-button,
 .dk-input-group--attached .dk-input-group__button > .dk-icon-button {
   display: inline-flex;
@@ -359,15 +428,19 @@
   justify-content: center;
   box-sizing: border-box;
   width: 100%;
-  min-height: var(--dk-ig-shell-height);
+  min-height: 0;
   height: 100%;
   margin: 0;
+  padding-block: 0;
   border-radius: 0;
   border-width: 0;
   border-style: solid;
   border-color: transparent;
   border-inline-start-width: var(--border-width-default, 1px);
   border-inline-start-color: var(--color-border-default, #d2d2d7);
+  font-size: var(--dk-ig-font-size);
+  line-height: var(--dk-ig-line-height);
+  font-weight: var(--weight-regular, 400);
 }
 
 .dk-input-group--attached .dk-input-group__button > .dk-button:focus,
