@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ChoiceChips.tsx",
+      "destination": "src/components/ui/ChoiceChips.tsx"
+    },
+    {
+      "source": "files/src/styles/choice-chips.css",
+      "destination": "src/styles/choice-chips.css"
+    },
+    {
+      "source": "files/docs/CHOICE_CHIPS.md",
+      "destination": "docs/devkit/CHOICE_CHIPS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { DateWheelPicker } from "./DateWheelPicker";
 
 export type DateInputSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -56,8 +55,7 @@ export interface DateInputProps
   clearLabel?: string;
   onClear?: () => void;
   /**
-   * Show calendar trigger. Opens the built-in mobile wheel picker unless
-   * `pickerSlot` overrides it.
+   * Show calendar trigger. Compose a Date Picker via `pickerSlot` / `onOpenPicker`.
    */
   showCalendarTrigger?: boolean;
   calendarLabel?: string;
@@ -65,9 +63,7 @@ export interface DateInputProps
   pickerOpen?: boolean;
   /** Called when the calendar trigger is activated (toggle). */
   onOpenPicker?: () => void;
-  /**
-   * Optional slot rendered after the field — replaces the built-in wheel picker when set.
-   */
+  /** Optional slot rendered after the field for an external Date Picker. */
   pickerSlot?: React.ReactNode;
 }
 
@@ -274,7 +270,7 @@ function compareIso(a: string, b: string): number {
  * Date Input (ID 017) — locale-aware calendar date field.
  *
  * Committed value is timezone-independent ISO `YYYY-MM-DD`.
- * Manual entry is first-class; calendar trigger opens a mobile wheel picker.
+ * Manual entry is first-class; calendar trigger composes with an external Date Picker.
  */
 export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
   function DateInput(
@@ -470,8 +466,6 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
       errorMessage ||
       (localInvalid ? "Enter a valid date" : undefined);
 
-    const showBuiltInPicker = pickerOpen && !pickerSlot;
-
     return (
       <div
         ref={rootRef}
@@ -629,23 +623,6 @@ export const DateInput = React.forwardRef<HTMLInputElement, DateInputProps>(
         </div>
 
         {pickerSlot ? <div className="dk-date__picker-slot">{pickerSlot}</div> : null}
-        {showBuiltInPicker ? (
-          <div className="dk-date__picker-slot">
-            <DateWheelPicker
-              value={committed}
-              locale={locale}
-              min={min}
-              max={max}
-              isDateDisabled={isDateDisabled}
-              onChange={(next) => {
-                commit(next);
-                setRaw(formatIso(locale, next));
-                onRawChange?.(formatIso(locale, next));
-              }}
-              onDone={() => setPickerOpen(false)}
-            />
-          </div>
-        ) : null}
 
         <div className="dk-field__footer">
           <div className="dk-field__messages">

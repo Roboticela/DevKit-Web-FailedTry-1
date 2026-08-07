@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/RadioGroup.tsx",
+      "destination": "components/ui/RadioGroup.tsx"
+    },
+    {
+      "source": "files/styles/radio-group.css",
+      "destination": "styles/radio-group.css"
+    },
+    {
+      "source": "files/docs/RADIO_GROUP.md",
+      "destination": "docs/devkit/RADIO_GROUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

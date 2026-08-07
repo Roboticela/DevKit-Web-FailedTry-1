@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Select.tsx",
+      "destination": "components/ui/Select.tsx"
+    },
+    {
+      "source": "files/styles/select.css",
+      "destination": "styles/select.css"
+    },
+    {
+      "source": "files/docs/SELECT.md",
+      "destination": "docs/devkit/SELECT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

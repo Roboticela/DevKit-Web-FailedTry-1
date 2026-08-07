@@ -22,6 +22,15 @@ import "../../registry/components/time-input/vite-express-tauri/v1/files/src/sty
 import "../../registry/components/date-time-input/vite-express-tauri/v1/files/src/styles/date-time-input.css";
 import "../../registry/components/input-group/vite-express-tauri/v1/files/src/styles/input-group.css";
 import "../../registry/components/checkbox/vite-express-tauri/v1/files/src/styles/checkbox.css";
+import "../../registry/components/checkbox-group/vite-express-tauri/v1/files/src/styles/checkbox-group.css";
+import "../../registry/components/radio/vite-express-tauri/v1/files/src/styles/radio.css";
+import "../../registry/components/radio-group/vite-express-tauri/v1/files/src/styles/radio-group.css";
+import "../../registry/components/switch/vite-express-tauri/v1/files/src/styles/switch.css";
+import "../../registry/components/select/vite-express-tauri/v1/files/src/styles/select.css";
+import "../../registry/components/combobox/vite-express-tauri/v1/files/src/styles/combobox.css";
+import "../../registry/components/multi-select/vite-express-tauri/v1/files/src/styles/multi-select.css";
+import "../../registry/components/choice-chips/vite-express-tauri/v1/files/src/styles/choice-chips.css";
+import "../../registry/components/slider/vite-express-tauri/v1/files/src/styles/slider.css";
 import { App } from "./App";
 
 createRoot(document.getElementById("root")!).render(

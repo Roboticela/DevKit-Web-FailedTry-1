@@ -215,12 +215,84 @@
             {
               "id": "selection-controls",
               "name": "Selection Controls",
-              "description": "Checkboxes, radios, switches, and choice primitives.",
+              "description": "Checkboxes, radios, switches, selects, comboboxes, chips, sliders, and choice primitives.",
               "components": [
                 {
                   "id": 21,
                   "name": "checkbox",
                   "displayName": "Checkbox",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 22,
+                  "name": "checkbox-group",
+                  "displayName": "Checkbox Group",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 23,
+                  "name": "radio",
+                  "displayName": "Radio",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 24,
+                  "name": "radio-group",
+                  "displayName": "Radio Group",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 25,
+                  "name": "switch",
+                  "displayName": "Switch",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 26,
+                  "name": "select",
+                  "displayName": "Select",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 27,
+                  "name": "combobox",
+                  "displayName": "Combobox",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 28,
+                  "name": "multi-select",
+                  "displayName": "Multi-Select",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 29,
+                  "name": "choice-chips",
+                  "displayName": "Choice Chips",
+                  "fileKind": "tsx",
+                  "stub": false,
+                  "latestVersion": "1.0.0"
+                },
+                {
+                  "id": 30,
+                  "name": "slider",
+                  "displayName": "Slider",
                   "fileKind": "tsx",
                   "stub": false,
                   "latestVersion": "1.0.0"

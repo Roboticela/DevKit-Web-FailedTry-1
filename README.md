@@ -1,6 +1,6 @@
 # Roboticela DevKit — Monorepo
 
-> Reusable UI component system. Layer 1 **Interaction Controls** (001–010) ready; **Form Controls** 011–020 ready; **Selection Controls** Checkbox (021) ready. Other subgroups reserved.
+> Reusable UI component system. Layer 1 **Interaction Controls** (001–010) ready; **Form Controls** 011–020 ready; **Selection Controls** 021–030 ready. Other subgroups reserved.
 
 ---
 
@@ -20,7 +20,7 @@ Opens `http://localhost:5173` — shows reserved group/subgroups (0 packages).
 
 | Layer | IDs | Category | Scope |
 |-------|-----|----------|--------|
-| 1 Foundation | 1–100 | `foundation` | Interaction Controls 001–010; Form Controls 011–020; Selection Controls 021 ready |
+| 1 Foundation | 1–100 | `foundation` | Interaction Controls 001–010; Form Controls 011–020; Selection Controls 021–030 ready |
 | 2 Basic | 101–500 | `basic` | — |
 | 3 Composite | 501–1500 | `composite` | — |
 | 4 Advanced | 1501–2500 | `advanced` | — |
@@ -65,6 +65,15 @@ Opens `http://localhost:5173` — shows reserved group/subgroups (0 packages).
 | ID | Package | Display name | Status |
 |----|---------|--------------|--------|
 | 021 | `checkbox` | Checkbox | ready (`1.0.0`) |
+| 022 | `checkbox-group` | Checkbox Group | ready (`1.0.0`) |
+| 023 | `radio` | Radio | ready (`1.0.0`) |
+| 024 | `radio-group` | Radio Group | ready (`1.0.0`) |
+| 025 | `switch` | Switch | ready (`1.0.0`) |
+| 026 | `select` | Select | ready (`1.0.0`) |
+| 027 | `combobox` | Combobox | ready (`1.0.0`) |
+| 028 | `multi-select` | Multi-Select | ready (`1.0.0`) |
+| 029 | `choice-chips` | Choice Chips | ready (`1.0.0`) |
+| 030 | `slider` | Slider | ready (`1.0.0`) |
 
 Other subgroups are reserved with no packages yet:
 

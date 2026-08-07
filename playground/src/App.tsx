@@ -28,6 +28,17 @@ import { TimeInput } from "../../registry/components/time-input/vite-express-tau
 import { DateTimeInput } from "../../registry/components/date-time-input/vite-express-tauri/v1/files/src/components/ui/DateTimeInput";
 import { InputGroup } from "../../registry/components/input-group/vite-express-tauri/v1/files/src/components/ui/InputGroup";
 import { Checkbox } from "../../registry/components/checkbox/vite-express-tauri/v1/files/src/components/ui/Checkbox";
+import { CheckboxGroup } from "../../registry/components/checkbox-group/vite-express-tauri/v1/files/src/components/ui/CheckboxGroup";
+import { Radio } from "../../registry/components/radio/vite-express-tauri/v1/files/src/components/ui/Radio";
+import { RadioGroup } from "../../registry/components/radio-group/vite-express-tauri/v1/files/src/components/ui/RadioGroup";
+import { Switch } from "../../registry/components/switch/vite-express-tauri/v1/files/src/components/ui/Switch";
+import { Select } from "../../registry/components/select/vite-express-tauri/v1/files/src/components/ui/Select";
+import { Combobox } from "../../registry/components/combobox/vite-express-tauri/v1/files/src/components/ui/Combobox";
+import { MultiSelect } from "../../registry/components/multi-select/vite-express-tauri/v1/files/src/components/ui/MultiSelect";
+import { ChoiceChips } from "../../registry/components/choice-chips/vite-express-tauri/v1/files/src/components/ui/ChoiceChips";
+import { Slider } from "../../registry/components/slider/vite-express-tauri/v1/files/src/components/ui/Slider";
+import { countrySelectOptions, getCountry } from "./data/countries";
+import { THEME_OPTIONS } from "./data/themes";
 import catalog from "./foundation-catalog.json";
 
 type CatalogComponent = {
@@ -1783,12 +1794,12 @@ function DateInputLab() {
       <h2 id="date-input-lab-heading">017 Date Input</h2>
       <p className="catalog-group-desc">
         Locale-aware calendar date with manual typing and a calendar trigger that
-        opens a mobile wheel picker (rounded center selection). Values are ISO{" "}
+        composes with an external Date Picker. Values are ISO{" "}
         <code>YYYY-MM-DD</code>; typed text is not rewritten while focused.
       </p>
 
       <div className="lab-block" style={{ maxWidth: "22rem" }}>
-        <h3 className="catalog-subgroup-title">Controlled + wheel picker</h3>
+        <h3 className="catalog-subgroup-title">Controlled</h3>
         <DateInput
           label="Event date"
           value={iso}
@@ -1831,7 +1842,7 @@ function DateInputLab() {
             const wd = new Date(y, m - 1, day).getDay();
             return wd === 0 || wd === 6;
           }}
-          helpText="Weekends rejected on commit (blur / Enter) and in the wheel"
+          helpText="Weekends rejected on commit (blur / Enter)"
         />
       </div>
 
@@ -1877,11 +1888,11 @@ function TimeInputLab() {
       <p className="catalog-group-desc">
         Locale-aware time with hours + minutes by default. Display follows{" "}
         <code>locale</code> / <code>hourCycle</code> — AM/PM only when applicable.
-        Clock trigger opens a mobile wheel picker with a rounded center lens.
+        Clock trigger composes with an external Time Picker.
       </p>
 
       <div className="lab-block" style={{ maxWidth: "22rem" }}>
-        <h3 className="catalog-subgroup-title">Controlled + wheel picker</h3>
+        <h3 className="catalog-subgroup-title">Controlled</h3>
         <TimeInput
           label="Start time"
           value={time}
@@ -1936,7 +1947,7 @@ function TimeInputLab() {
           step={1}
           clearable
           showPickerTrigger
-          helpText="HH:mm:ss · step 1 second · wheel includes seconds"
+          helpText="HH:mm:ss · step 1 second"
         />
       </div>
 
@@ -2300,6 +2311,933 @@ function CheckboxLab() {
   );
 }
 
+function CheckboxGroupLab() {
+  const [channels, setChannels] = useState<string[]>(["email"]);
+  const [perms, setPerms] = useState<string[]>([]);
+  const [days, setDays] = useState<string[]>(["mon", "wed"]);
+
+  return (
+    <section className="catalog-group" aria-labelledby="checkbox-group-lab-heading">
+      <h2 id="checkbox-group-lab-heading">022 Checkbox Group</h2>
+      <p className="catalog-group-desc">
+        Related independent multi-select choices. Optional select-all is derived
+        (checked / unchecked / indeterminate) — never a third persistent value.
+        Default layout is vertical; horizontal only when labels stay short.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Select all + items</h3>
+        <CheckboxGroup
+          label="Notification channels"
+          description="Choose how we may contact you"
+          name="channels"
+          value={channels}
+          onValueChange={setChannels}
+          selectAll
+          items={[
+            { value: "email", label: "Email", description: "Product updates and receipts" },
+            { value: "sms", label: "SMS", description: "Time-sensitive alerts only" },
+            { value: "push", label: "Push notifications" },
+            { value: "post", label: "Postal mail", disabled: true },
+          ]}
+        />
+        <p className="catalog-group-meta">Selected: {channels.join(", ") || "none"}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Required + error</h3>
+        <CheckboxGroup
+          label="Permissions"
+          required
+          value={perms}
+          onValueChange={setPerms}
+          validation={perms.length === 0 ? "error" : "none"}
+          errorMessage={perms.length === 0 ? "Select at least one permission" : undefined}
+          items={[
+            { value: "read", label: "Read" },
+            { value: "write", label: "Write" },
+            { value: "admin", label: "Admin" },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Horizontal (short labels)</h3>
+        <CheckboxGroup
+          label="Preferred days"
+          orientation="horizontal"
+          selectAll="Every day"
+          value={days}
+          onValueChange={setDays}
+          items={[
+            { value: "mon", label: "Mon" },
+            { value: "tue", label: "Tue" },
+            { value: "wed", label: "Wed" },
+            { value: "thu", label: "Thu" },
+            { value: "fri", label: "Fri" },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Disabled group</h3>
+        <CheckboxGroup
+          label="Legacy options"
+          disabled
+          defaultValue={["a"]}
+          items={[
+            { value: "a", label: "Option A" },
+            { value: "b", label: "Option B" },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function RadioLab() {
+  const [plan, setPlan] = useState("pro");
+  const [ship, setShip] = useState("standard");
+
+  return (
+    <section className="catalog-group" aria-labelledby="radio-lab-heading">
+      <h2 id="radio-lab-heading">023 Radio</h2>
+      <p className="catalog-group-desc">
+        Mutually exclusive choice within a set. Share a <code>name</code> (or use
+        Radio Group next) so arrow keys move between options. Do not use for
+        independent multi-select — use Checkbox instead.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Shared name set</h3>
+        <Radio
+          name="plan"
+          value="free"
+          label="Free"
+          description="Community support"
+          checked={plan === "free"}
+          onCheckedChange={() => setPlan("free")}
+        />
+        <Radio
+          name="plan"
+          value="pro"
+          label="Pro"
+          description="Priority support and higher limits"
+          checked={plan === "pro"}
+          onCheckedChange={() => setPlan("pro")}
+        />
+        <Radio
+          name="plan"
+          value="team"
+          label="Team"
+          description="Shared seats and admin controls"
+          checked={plan === "team"}
+          onCheckedChange={() => setPlan("team")}
+        />
+        <p className="catalog-group-meta">Selected: {plan}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Long label alignment</h3>
+        <Radio
+          name="ship-demo"
+          value="standard"
+          label="Standard shipping across regions with tracking updates emailed when the package leaves the warehouse and again when it is out for delivery."
+          description="Control aligns to the first line of the label."
+          checked={ship === "standard"}
+          onCheckedChange={() => setShip("standard")}
+        />
+        <Radio
+          name="ship-demo"
+          value="express"
+          label="Express"
+          checked={ship === "express"}
+          onCheckedChange={() => setShip("express")}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <Radio name="radio-states-a" value="u" label="Unselected" />
+        <Radio name="radio-states-b" value="s" label="Selected" defaultChecked />
+        <Radio name="radio-states-c" value="du" label="Disabled unselected" disabled />
+        <Radio
+          name="radio-states-d"
+          value="ds"
+          label="Disabled selected"
+          disabled
+          defaultChecked
+        />
+        <Radio
+          name="radio-states-e"
+          value="err"
+          label="Error"
+          validation="error"
+          errorMessage="Choose a valid option"
+        />
+      </div>
+    </section>
+  );
+}
+
+function RadioGroupLab() {
+  const [plan, setPlan] = useState<string | null>("pro");
+  const [size, setSize] = useState<string | null>("m");
+  const [theme, setTheme] = useState<string | null>(null);
+
+  return (
+    <section className="catalog-group" aria-labelledby="radio-group-lab-heading">
+      <h2 id="radio-group-lab-heading">024 Radio Group</h2>
+      <p className="catalog-group-desc">
+        Mutually exclusive options — only one selected. Tab enters/leaves the
+        group; arrows move and select; Space selects. Full option rows are the
+        target. Not for multi-select (use Checkbox Group).
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Vertical (default)</h3>
+        <RadioGroup
+          label="Plan"
+          description="Choose one billing plan"
+          name="billing-plan"
+          value={plan}
+          onValueChange={setPlan}
+          items={[
+            { value: "free", label: "Free", description: "Community support" },
+            { value: "pro", label: "Pro", description: "Priority support" },
+            {
+              value: "enterprise",
+              label: "Enterprise",
+              description: "Custom contracts",
+              disabled: true,
+            },
+          ]}
+        />
+        <p className="catalog-group-meta">Selected: {plan ?? "none"}</p>
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Horizontal (short labels)</h3>
+        <RadioGroup
+          label="Size"
+          orientation="horizontal"
+          value={size}
+          onValueChange={setSize}
+          items={[
+            { value: "s", label: "S" },
+            { value: "m", label: "M" },
+            { value: "l", label: "L" },
+            { value: "xl", label: "XL" },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Required + error</h3>
+        <RadioGroup
+          label="Theme"
+          required
+          value={theme}
+          onValueChange={setTheme}
+          validation={theme == null ? "error" : "none"}
+          errorMessage={theme == null ? "Select a theme to continue" : undefined}
+          items={[
+            { value: "light", label: "Light" },
+            { value: "dark", label: "Dark" },
+            { value: "system", label: "System" },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Disabled group</h3>
+        <RadioGroup
+          label="Legacy mode"
+          disabled
+          defaultValue="a"
+          items={[
+            { value: "a", label: "Option A" },
+            { value: "b", label: "Option B" },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function SwitchLab() {
+  const [wifi, setWifi] = useState(true);
+  const [notify, setNotify] = useState(false);
+  const [asyncOn, setAsyncOn] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const toggleAsync = (next: boolean) => {
+    setLoading(true);
+    window.setTimeout(() => {
+      setAsyncOn(next);
+      setLoading(false);
+    }, 900);
+  };
+
+  return (
+    <section className="catalog-group" aria-labelledby="switch-lab-heading">
+      <h2 id="switch-lab-heading">025 Switch</h2>
+      <p className="catalog-group-desc">
+        Immediate binary ON/OFF setting — not a Checkbox. Track is 48×28 at MD with
+        a ≥44×44 hit. Status text plus track color reinforce state beyond thumb
+        position. Loading locks interaction until the result settles.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Settings</h3>
+        <Switch
+          label="Wi‑Fi"
+          description="Connect to available networks automatically"
+          checked={wifi}
+          onCheckedChange={setWifi}
+        />
+        <Switch
+          label="Push notifications"
+          description="Alerts for mentions and replies"
+          checked={notify}
+          onCheckedChange={setNotify}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Async loading</h3>
+        <Switch
+          label="Sync in background"
+          description="Simulated save — control stays locked while updating"
+          checked={asyncOn}
+          loading={loading}
+          onCheckedChange={toggleAsync}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <Switch label="Off" defaultChecked={false} />
+        <Switch label="On" defaultChecked />
+        <Switch label="Disabled off" disabled />
+        <Switch label="Disabled on" disabled defaultChecked />
+        <Switch label="Loading" defaultChecked loading />
+        <Switch
+          label="Error"
+          validation="error"
+          errorMessage="Could not update this setting"
+          defaultChecked
+        />
+      </div>
+    </section>
+  );
+}
+
+const COUNTRY_OPTIONS = countrySelectOptions();
+
+const LARGE_OPTIONS = Array.from({ length: 40 }, (_, i) => ({
+  value: `opt-${i + 1}`,
+  label: `Option ${String(i + 1).padStart(2, "0")} — sample label that can wrap when very long`,
+  disabled: i === 3 || i === 17,
+}));
+
+function SelectLab() {
+  const [country, setCountry] = useState<string | null>("pk");
+  const [role, setRole] = useState<string | null>(null);
+  const [theme, setTheme] = useState<string | null>("system");
+  const [forced, setForced] = useState<string | null>(null);
+  const selectedCountry = getCountry(country);
+
+  return (
+    <section className="catalog-group" aria-labelledby="select-lab-heading">
+      <h2 id="select-lab-heading">026 Select</h2>
+      <p className="catalog-group-desc">
+        One choice from a predefined list — not a Combobox.{" "}
+        <code>presentation=&quot;auto&quot;</code> uses a native picker on compact/touch and a
+        listbox on desktop. Popup width matches the field control.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Basic</h3>
+        <Select
+          label="Country"
+          description="From countries module — flags in the list and trigger"
+          helpText={
+            selectedCountry
+              ? `${selectedCountry.flag} ${selectedCountry.name}`
+              : "Type-ahead works when the listbox is open on desktop"
+          }
+          options={COUNTRY_OPTIONS}
+          value={country}
+          onValueChange={setCountry}
+          clearable
+          presentation="listbox"
+        />
+        <Select
+          label="Role"
+          placeholder="Choose a role…"
+          required
+          presentation="listbox"
+          options={[
+            { value: "owner", label: "Owner", description: "Full workspace access" },
+            { value: "editor", label: "Editor", description: "Create and edit content" },
+            { value: "viewer", label: "Viewer", description: "Read-only" },
+            { value: "guest", label: "Guest", disabled: true },
+          ]}
+          value={role}
+          onValueChange={setRole}
+          errorMessage={!role ? "Select a role to continue" : undefined}
+          validation={!role ? "error" : "none"}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Presentation</h3>
+        <Select
+          label="Theme"
+          description="Appearance preference — listbox matches field width"
+          presentation="listbox"
+          options={THEME_OPTIONS}
+          value={theme}
+          onValueChange={setTheme}
+          helpText="Selected option shows a check mark, not color alone"
+        />
+        <Select
+          label="Timezone (native)"
+          presentation="native"
+          description="Forces the platform select UI"
+          options={[
+            { value: "utc", label: "UTC", description: "Coordinated Universal Time" },
+            { value: "pkt", label: "Asia/Karachi", description: "PKT · UTC+5" },
+            { value: "gst", label: "Asia/Dubai", description: "GST · UTC+4" },
+            { value: "est", label: "America/New_York", description: "Eastern Time" },
+            { value: "cet", label: "Europe/Berlin", description: "Central European Time" },
+            { value: "jst", label: "Asia/Tokyo", description: "Japan Standard Time" },
+          ]}
+          value={forced}
+          onValueChange={setForced}
+          clearable
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Large set</h3>
+        <Select
+          label="Many options"
+          presentation="listbox"
+          description="Scrollable listbox with viewport clamping"
+          options={LARGE_OPTIONS}
+          defaultValue="opt-12"
+        />
+        <Select label="Disabled" options={COUNTRY_OPTIONS} defaultValue="ae" disabled />
+        <Select
+          label="Success"
+          options={COUNTRY_OPTIONS}
+          defaultValue="pk"
+          validation="success"
+          successMessage="Country saved"
+        />
+      </div>
+    </section>
+  );
+}
+
+const FRUIT_OPTIONS = [
+  { value: "apple", label: "Apple", description: "Crisp orchard fruit" },
+  { value: "apricot", label: "Apricot" },
+  { value: "banana", label: "Banana" },
+  { value: "blueberry", label: "Blueberry" },
+  { value: "cherry", label: "Cherry" },
+  { value: "grape", label: "Grape" },
+  { value: "mango", label: "Mango" },
+  { value: "orange", label: "Orange" },
+  { value: "peach", label: "Peach" },
+  { value: "pear", label: "Pear" },
+  { value: "strawberry", label: "Strawberry" },
+];
+
+const CITY_DB = [
+  { value: "khi", label: "Karachi" },
+  { value: "lhr", label: "Lahore" },
+  { value: "isb", label: "Islamabad" },
+  { value: "dxb", label: "Dubai" },
+  { value: "auh", label: "Abu Dhabi" },
+  { value: "ryd", label: "Riyadh" },
+  { value: "jed", label: "Jeddah" },
+  { value: "lon", label: "London" },
+  { value: "nyc", label: "New York" },
+  { value: "tyo", label: "Tokyo" },
+];
+
+function ComboboxLab() {
+  const [fruit, setFruit] = useState<string | null>(null);
+  const [fruitInput, setFruitInput] = useState("");
+  const [tag, setTag] = useState<string | null>(null);
+  const [tagInput, setTagInput] = useState("");
+  const [city, setCity] = useState<string | null>(null);
+  const [cityInput, setCityInput] = useState("");
+  const [cityOptions, setCityOptions] = useState(CITY_DB);
+  const [cityLoading, setCityLoading] = useState(false);
+
+  const onCityInput = (next: string) => {
+    setCityInput(next);
+    setCityLoading(true);
+    window.setTimeout(() => {
+      const q = next.trim().toLowerCase();
+      setCityOptions(
+        CITY_DB.filter(
+          (c) => !q || c.label.toLowerCase().includes(q) || c.value.includes(q)
+        )
+      );
+      setCityLoading(false);
+    }, 450);
+  };
+
+  return (
+    <section className="catalog-group" aria-labelledby="combobox-lab-heading">
+      <h2 id="combobox-lab-heading">027 Combobox</h2>
+      <p className="catalog-group-desc">
+        Editable text plus suggestions — not a Select. Typed text stays visible even
+        when there are no matches. With{" "}
+        <code>allowsCustomValue=&#123;false&#125;</code>, free text is not auto-accepted
+        as a valid selection.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Filtered (predefined only)</h3>
+        <Combobox
+          label="Fruit"
+          description="Type to filter — Enter selects a highlighted option"
+          helpText={
+            fruit
+              ? `Selected value: ${fruit}`
+              : fruitInput
+                ? "Text entered; pick a suggestion to confirm"
+                : "No selection yet"
+          }
+          options={FRUIT_OPTIONS}
+          value={fruit}
+          onValueChange={setFruit}
+          inputValue={fruitInput}
+          onInputChange={setFruitInput}
+          clearable
+          leadingIcon={
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <circle cx="9" cy="9" r="5.25" stroke="currentColor" strokeWidth="1.5" />
+              <path
+                d="M13 13.5 16.25 16.75"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          }
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Free text</h3>
+        <Combobox
+          label="Tag"
+          description="Custom values allowed — Enter or blur commits typed text"
+          allowsCustomValue
+          options={[
+            { value: "ui", label: "ui" },
+            { value: "a11y", label: "a11y" },
+            { value: "forms", label: "forms" },
+            { value: "design-tokens", label: "design-tokens" },
+          ]}
+          value={tag}
+          onValueChange={setTag}
+          inputValue={tagInput}
+          onInputChange={setTagInput}
+          helpText={tag ? `Committed: ${tag}` : "Type a new tag or pick one"}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Async suggestions</h3>
+        <Combobox
+          label="City"
+          description="Simulated remote filter — loading slot does not shift layout"
+          filter={false}
+          options={cityOptions}
+          loading={cityLoading}
+          value={city}
+          onValueChange={setCity}
+          inputValue={cityInput}
+          onInputChange={onCityInput}
+          noResultsLabel="No cities match that query"
+          helpText={city ? `Selected: ${city}` : undefined}
+        />
+        <Combobox
+          label="Disabled"
+          options={FRUIT_OPTIONS}
+          defaultInputValue="Apple"
+          defaultValue="apple"
+          disabled
+        />
+        <Combobox
+          label="Error"
+          options={FRUIT_OPTIONS}
+          validation="error"
+          errorMessage="Choose a fruit from the list"
+          defaultInputValue="xyz"
+        />
+      </div>
+    </section>
+  );
+}
+
+const SKILL_OPTIONS = [
+  { value: "ts", label: "TypeScript", group: "languages" },
+  { value: "js", label: "JavaScript", group: "languages" },
+  { value: "py", label: "Python", group: "languages", disabled: true },
+  { value: "react", label: "React", group: "frameworks" },
+  { value: "vue", label: "Vue", group: "frameworks" },
+  { value: "svelte", label: "Svelte", group: "frameworks" },
+  { value: "a11y", label: "Accessibility", group: "practice" },
+  { value: "testing", label: "Testing", group: "practice" },
+  { value: "design", label: "Design systems", group: "practice" },
+];
+
+const LARGE_MULTI_OPTIONS = Array.from({ length: 120 }, (_, i) => ({
+  value: `item-${i + 1}`,
+  label: `Option ${String(i + 1).padStart(3, "0")}`,
+  group: i < 40 ? "A–D" : i < 80 ? "E–H" : "I–Z",
+  disabled: i === 4 || i === 55,
+}));
+
+function MultiSelectLab() {
+  const [skills, setSkills] = useState<string[]>(["ts", "react"]);
+  const [tags, setTags] = useState<string[]>(["a11y", "testing", "design", "ts", "js"]);
+  const [many, setMany] = useState<string[]>(["item-1", "item-2"]);
+  const [asyncOpts, setAsyncOpts] = useState(SKILL_OPTIONS);
+  const [asyncLoading, setAsyncLoading] = useState(false);
+  const [asyncVal, setAsyncVal] = useState<string[]>([]);
+
+  const onAsyncSearch = (q: string) => {
+    setAsyncLoading(true);
+    window.setTimeout(() => {
+      const needle = q.trim().toLowerCase();
+      setAsyncOpts(
+        SKILL_OPTIONS.filter(
+          (o) =>
+            !needle ||
+            o.label.toLowerCase().includes(needle) ||
+            o.value.includes(needle)
+        )
+      );
+      setAsyncLoading(false);
+    }, 350);
+  };
+
+  return (
+    <section className="catalog-group" aria-labelledby="multiselect-lab-heading">
+      <h2 id="multiselect-lab-heading">028 Multi-Select</h2>
+      <p className="catalog-group-desc">
+        Multiple choices from a predefined set. Selected values adapt between chips,
+        compact text, and a count summary so many selections never overflow
+        horizontally. Large lists virtualize past 80 options.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Grouped + chips</h3>
+        <MultiSelect
+          label="Skills"
+          description="Space toggles; Enter closes"
+          helpText={`${skills.length} selected`}
+          options={SKILL_OPTIONS}
+          groups={[
+            { id: "languages", label: "Languages" },
+            { id: "frameworks", label: "Frameworks" },
+            { id: "practice", label: "Practice" },
+          ]}
+          value={skills}
+          onValueChange={setSkills}
+          maxSelections={5}
+          maxExceededMessage="Choose up to 5 skills"
+          presentation="popover"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Many selections → count</h3>
+        <MultiSelect
+          label="Tags"
+          description="Auto display collapses to a count when chips would overwhelm"
+          options={SKILL_OPTIONS}
+          value={tags}
+          onValueChange={setTags}
+          maxVisibleChips={2}
+          minSelections={2}
+          minNotMetMessage="Pick at least two tags"
+          presentation="popover"
+        />
+        <MultiSelect
+          label="Count only"
+          displayMode="count"
+          options={SKILL_OPTIONS}
+          defaultValue={["react", "vue", "a11y"]}
+          presentation="popover"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Large set (virtualized)</h3>
+        <MultiSelect
+          label="120 options"
+          description="Search + windowed list"
+          options={LARGE_MULTI_OPTIONS}
+          value={many}
+          onValueChange={setMany}
+          presentation="popover"
+          virtualizeThreshold={80}
+        />
+        <MultiSelect
+          label="Async filter"
+          filter={false}
+          loading={asyncLoading}
+          options={asyncOpts}
+          value={asyncVal}
+          onValueChange={setAsyncVal}
+          onSearchChange={onAsyncSearch}
+          presentation="popover"
+          searchable
+          searchPlaceholder="Filter remotely…"
+          noResultsLabel="Nothing matched"
+        />
+        <MultiSelect
+          label="Error"
+          options={SKILL_OPTIONS}
+          validation="error"
+          errorMessage="Select at least one skill"
+          defaultValue={[]}
+          presentation="popover"
+        />
+      </div>
+    </section>
+  );
+}
+
+function ChoiceChipsLab() {
+  const [size, setSize] = useState<string | string[] | null>("md");
+  const [filters, setFilters] = useState<string | string[] | null>(["open", "mine"]);
+  const [priority, setPriority] = useState<string | string[] | null>("normal");
+
+  return (
+    <section className="catalog-group" aria-labelledby="choice-chips-lab-heading">
+      <h2 id="choice-chips-lab-heading">029 Choice Chips</h2>
+      <p className="catalog-group-desc">
+        Compact selection among a small related set — not a Button, Tag, Badge,
+        Checkbox, or Radio. Selected state uses a check mark, semibold label, and
+        emphasis border (not color alone). Chips wrap; hits stay ≥44×44.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Single selection</h3>
+        <ChoiceChips
+          label="Density"
+          description="Mutually exclusive — radiogroup semantics"
+          helpText={size ? `Selected: ${size}` : "None selected"}
+          selectionMode="single"
+          allowDeselect
+          value={size}
+          onValueChange={setSize}
+          options={[
+            { value: "sm", label: "Compact" },
+            { value: "md", label: "Comfortable" },
+            { value: "lg", label: "Spacious" },
+          ]}
+        />
+        <ChoiceChips
+          label="Priority"
+          selectionMode="single"
+          value={priority}
+          onValueChange={setPriority}
+          options={[
+            {
+              value: "low",
+              label: "Low",
+              icon: (
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M4 6.5 8 10.5 12 6.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              ),
+            },
+            { value: "normal", label: "Normal" },
+            {
+              value: "high",
+              label: "High",
+              icon: (
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M4 9.5 8 5.5 12 9.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              ),
+            },
+            { value: "blocked", label: "Blocked", disabled: true },
+          ]}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Multiple selection</h3>
+        <ChoiceChips
+          label="Filters"
+          description="Each chip toggles independently"
+          selectionMode="multiple"
+          value={filters}
+          onValueChange={setFilters}
+          options={[
+            { value: "open", label: "Open" },
+            { value: "mine", label: "Assigned to me" },
+            { value: "overdue", label: "Overdue" },
+            { value: "comments", label: "Has comments" },
+            { value: "attachments", label: "Has attachments" },
+          ]}
+          helpText={
+            Array.isArray(filters) && filters.length
+              ? `${filters.length} active`
+              : "No filters"
+          }
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <h3 className="catalog-subgroup-title">Wrapping + states</h3>
+        <ChoiceChips
+          label="Localized / longer labels"
+          description="Chips wrap instead of overflowing the page"
+          selectionMode="single"
+          defaultValue="en"
+          options={[
+            { value: "en", label: "English" },
+            { value: "ur", label: "اردو" },
+            { value: "ar", label: "العربية" },
+            { value: "de", label: "Deutsch (Deutschland)" },
+            { value: "fr", label: "Français (Canada)" },
+            { value: "ja", label: "日本語" },
+          ]}
+        />
+        <ChoiceChips
+          label="Disabled group"
+          options={[
+            { value: "a", label: "Alpha" },
+            { value: "b", label: "Beta" },
+          ]}
+          defaultValue="a"
+          disabled
+        />
+        <ChoiceChips
+          label="Error"
+          selectionMode="single"
+          validation="error"
+          errorMessage="Choose a delivery window"
+          options={[
+            { value: "am", label: "Morning" },
+            { value: "pm", label: "Afternoon" },
+            { value: "eve", label: "Evening" },
+          ]}
+        />
+      </div>
+    </section>
+  );
+}
+
+function SliderLab() {
+  const [volume, setVolume] = useState(42);
+  const [opacity, setOpacity] = useState(0.75);
+  const [temp, setTemp] = useState(21);
+  const [commits, setCommits] = useState(0);
+
+  return (
+    <section className="catalog-group" aria-labelledby="slider-lab-heading">
+      <h2 id="slider-lab-heading">030 Slider</h2>
+      <p className="catalog-group-desc">
+        Numeric continuous or stepped range — not for categorical choices. Thumb hit
+        is ≥44×44 while the visual may be smaller. Use{" "}
+        <code>onValueChange</code> for immediate UI; debounce expensive work, or listen
+        to <code>onValueCommit</code> on release.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Basic</h3>
+        <Slider
+          label="Volume"
+          description="Arrow keys step by 1; Page Up/Down jump by 10"
+          unit="%"
+          min={0}
+          max={100}
+          step={1}
+          value={volume}
+          onValueChange={setVolume}
+          onValueCommit={() => setCommits((c) => c + 1)}
+          helpText={`Commits: ${commits}`}
+        />
+        <Slider
+          label="Opacity"
+          description="Decimal step"
+          min={0}
+          max={1}
+          step={0.05}
+          value={opacity}
+          onValueChange={setOpacity}
+          unit=""
+          formatValue={(v) => v.toFixed(2)}
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">Precise input</h3>
+        <Slider
+          label="Temperature"
+          description="Slider plus numeric field for exact values"
+          min={16}
+          max={30}
+          step={0.5}
+          value={temp}
+          onValueChange={setTemp}
+          unit="°C"
+          showInput
+          inputLabel="Temperature"
+        />
+      </div>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <h3 className="catalog-subgroup-title">States</h3>
+        <Slider label="Disabled" defaultValue={30} disabled unit="%" />
+        <Slider
+          label="Error"
+          defaultValue={8}
+          min={0}
+          max={10}
+          validation="error"
+          errorMessage="Value is outside the safe operating range"
+        />
+        <Slider
+          label="Success"
+          defaultValue={100}
+          validation="success"
+          successMessage="Target reached"
+          unit="%"
+        />
+      </div>
+    </section>
+  );
+}
+
 export function App() {
   return (
     <div className="playground">
@@ -2308,7 +3246,7 @@ export function App() {
           <h1>DevKit</h1>
           <p>
             Layer 1 — Interaction Controls 001–010; Form Controls 011–020;
-            Selection Controls 021 ready.
+            Selection Controls 021–030 ready.
           </p>
         </div>
       </header>
@@ -2334,6 +3272,15 @@ export function App() {
       <DateTimeInputLab />
       <InputGroupLab />
       <CheckboxLab />
+      <CheckboxGroupLab />
+      <RadioLab />
+      <RadioGroupLab />
+      <SwitchLab />
+      <SelectLab />
+      <ComboboxLab />
+      <MultiSelectLab />
+      <ChoiceChipsLab />
+      <SliderLab />
 
       {groups.map((group) => (
         <section

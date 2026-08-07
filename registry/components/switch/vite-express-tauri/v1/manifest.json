@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Switch.tsx",
+      "destination": "src/components/ui/Switch.tsx"
+    },
+    {
+      "source": "files/src/styles/switch.css",
+      "destination": "src/styles/switch.css"
+    },
+    {
+      "source": "files/docs/SWITCH.md",
+      "destination": "docs/devkit/SWITCH.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

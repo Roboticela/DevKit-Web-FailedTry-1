@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Switch.tsx",
+      "destination": "components/ui/Switch.tsx"
+    },
+    {
+      "source": "files/styles/switch.css",
+      "destination": "styles/switch.css"
+    },
+    {
+      "source": "files/docs/SWITCH.md",
+      "destination": "docs/devkit/SWITCH.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Select.tsx",
+      "destination": "src/components/ui/Select.tsx"
+    },
+    {
+      "source": "files/src/styles/select.css",
+      "destination": "src/styles/select.css"
+    },
+    {
+      "source": "files/docs/SELECT.md",
+      "destination": "docs/devkit/SELECT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

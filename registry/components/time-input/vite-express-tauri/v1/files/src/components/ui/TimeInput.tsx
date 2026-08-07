@@ -1,5 +1,4 @@
 import * as React from "react";
-import { TimeWheelPicker } from "./TimeWheelPicker";
 
 export type TimeInputSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -71,8 +70,7 @@ export interface TimeInputProps
   clearLabel?: string;
   onClear?: () => void;
   /**
-   * Show clock trigger. Opens the built-in mobile wheel picker unless
-   * `pickerSlot` overrides it.
+   * Show clock trigger. Compose a Time Picker via `pickerSlot` / `onOpenPicker`.
    */
   showPickerTrigger?: boolean;
   pickerLabel?: string;
@@ -80,7 +78,7 @@ export interface TimeInputProps
   pickerOpen?: boolean;
   /** Called when the clock trigger is activated (toggle). */
   onOpenPicker?: () => void;
-  /** Optional slot after the field — replaces the built-in wheel picker when set. */
+  /** Optional slot after the field for an external Time Picker. */
   pickerSlot?: React.ReactNode;
 }
 
@@ -337,7 +335,7 @@ function withinRange(value: string, min?: string, max?: string): boolean {
  * Time Input (ID 018) — locale-aware time field.
  *
  * Committed value is timezone-independent `HH:mm` / `HH:mm:ss`.
- * Manual entry is first-class; clock trigger opens a mobile wheel picker.
+ * Manual entry is first-class; clock trigger composes with an external Time Picker.
  */
 export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
   function TimeInput(
@@ -564,8 +562,6 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
     const invalidMessage =
       errorMessage || (localInvalid ? "Enter a valid time" : undefined);
 
-    const showBuiltInPicker = pickerOpen && !pickerSlot;
-
     return (
       <div
         ref={rootRef}
@@ -743,26 +739,6 @@ export const TimeInput = React.forwardRef<HTMLInputElement, TimeInputProps>(
         </div>
 
         {pickerSlot ? <div className="dk-time__picker-slot">{pickerSlot}</div> : null}
-        {showBuiltInPicker ? (
-          <div className="dk-time__picker-slot">
-            <TimeWheelPicker
-              value={committed}
-              locale={locale}
-              hourCycle={hourCycle}
-              withSeconds={withSeconds}
-              min={min}
-              max={max}
-              step={step}
-              onChange={(next) => {
-                commit(next, { snap: true });
-                setRaw(formatTime(locale, next, withSeconds, hourCycle));
-                onRawChange?.(formatTime(locale, next, withSeconds, hourCycle));
-                setLocalInvalid(false);
-              }}
-              onDone={() => setPickerOpen(false)}
-            />
-          </div>
-        ) : null}
 
         <div className="dk-field__footer">
           <div className="dk-field__messages">

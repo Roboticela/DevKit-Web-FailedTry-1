@@ -537,7 +537,7 @@
       "id": 17,
       "name": "date-input",
       "displayName": "Date Input",
-      "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that opens a mobile wheel picker — ISO YYYY-MM-DD values.",
+      "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker — ISO YYYY-MM-DD values.",
       "category": "foundation",
       "group": "foundations-interface-primitives",
       "groupName": "Foundations & Interface Primitives",
@@ -570,7 +570,7 @@
       "id": 18,
       "name": "time-input",
       "displayName": "Time Input",
-      "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, and a clock trigger that opens a mobile wheel picker — values as HH:mm / HH:mm:ss.",
+      "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, and a clock trigger that composes with an external Time Picker — values as HH:mm / HH:mm:ss.",
       "category": "foundation",
       "group": "foundations-interface-primitives",
       "groupName": "Foundations & Interface Primitives",
@@ -694,6 +694,303 @@
         "foundations-interface-primitives",
         "selection-controls",
         "checkbox",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "checkbox-group",
+      "displayName": "Checkbox Group",
+      "description": "Related independent multi-select choices with group label, description, validation, optional select-all (derived indeterminate), and vertical/horizontal/responsive layouts.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "checkbox-group",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "radio",
+      "displayName": "Radio",
+      "description": "Mutually exclusive choice within a radio set — 20px circular control at MD, ≥44×44 hit, clickable label, selected ring + center dot, readable disabled state.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "radio",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "radio-group",
+      "displayName": "Radio Group",
+      "description": "Mutually exclusive option set with group label, description, validation, vertical/horizontal/responsive layouts, and Tab/arrow/Space keyboard behavior.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "radio-group",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "switch",
+      "displayName": "Switch",
+      "description": "Immediate binary ON/OFF setting — 48×28 track at MD, ≥44×44 hit, label/description/status, loading lockout, logical RTL thumb travel.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "switch",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "select",
+      "displayName": "Select",
+      "description": "Choose one option from a predefined list — adaptive native/listbox presentation, form-control trigger, keyboard and type-ahead, not a Combobox.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "select",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "combobox",
+      "displayName": "Combobox",
+      "description": "Editable text + suggestions for searchable type-ahead — filtering, async loading, free-text mode, anchored listbox; not a Select.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "combobox",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "multi-select",
+      "displayName": "Multi-Select",
+      "description": "Multiple selections from a predefined collection — adaptive chips/count display, search, select-all, max/min, grouped options, virtualized large lists.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "multi-select",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "choice-chips",
+      "displayName": "Choice Chips",
+      "description": "Compact single/multi selection among a small related set — check-mark selected state, wrapping layout, ≥44×44 hits; distinct from Button/Tag/Badge/Checkbox/Radio.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "choice-chips",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "slider",
+      "displayName": "Slider",
+      "description": "Numeric continuous/stepped range with single thumb — ≥44×44 hit, optional precise input, keyboard/pointer/touch; not for categorical choices.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "selection-controls",
+      "subgroupName": "Selection Controls",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": false,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "selection-controls",
+        "slider",
         "form",
         "a11y"
       ]

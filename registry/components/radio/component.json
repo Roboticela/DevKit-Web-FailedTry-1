@@ -1,0 +1,48 @@
+{
+  "id": 23,
+  "name": "radio",
+  "displayName": "Radio",
+  "description": "Mutually exclusive choice within a radio set — 20px circular control at MD, ≥44×44 hit, clickable label, selected ring + center dot, readable disabled state.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "selection-controls",
+  "subgroupName": "Selection Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "selection-controls",
+    "radio",
+    "form",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": false,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

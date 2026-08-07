@@ -185,6 +185,69 @@
               "displayName": "Checkbox",
               "stub": false,
               "latestVersion": "1.0.0"
+            },
+            {
+              "id": 22,
+              "name": "checkbox-group",
+              "displayName": "Checkbox Group",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 23,
+              "name": "radio",
+              "displayName": "Radio",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 24,
+              "name": "radio-group",
+              "displayName": "Radio Group",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 25,
+              "name": "switch",
+              "displayName": "Switch",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 26,
+              "name": "select",
+              "displayName": "Select",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 27,
+              "name": "combobox",
+              "displayName": "Combobox",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 28,
+              "name": "multi-select",
+              "displayName": "Multi-Select",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 29,
+              "name": "choice-chips",
+              "displayName": "Choice Chips",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 30,
+              "name": "slider",
+              "displayName": "Slider",
+              "stub": false,
+              "latestVersion": "1.0.0"
             }
           ]
         },
