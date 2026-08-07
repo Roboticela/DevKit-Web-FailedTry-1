@@ -7,7 +7,8 @@ npm run dev
 
 Opens **http://localhost:5173**
 
-- **001 Button** lab — variants, sizes, icons, loading, long label
-- Catalog of Foundations & Interface Primitives (stubs + ready)
+Empty catalog with three categories:
 
-Both templates: `nextjs-compact`, `vite-express-tauri`.
+- Components
+- Pages
+- Scaffolds

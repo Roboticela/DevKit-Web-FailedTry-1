@@ -1,54 +1,56 @@
 import { Hono } from "hono";
 import {
-  getRegistryIndex,
+  listPackages,
   getComponentMeta,
   resolveVersion,
   getManifest,
+  type PackageKind,
+  type CategoryId,
 } from "../lib/registry.js";
 
 const app = new Hono();
 
-function packageKind(comp: { kind?: "component" | "scaffold" }): "component" | "scaffold" {
-  return comp.kind === "component" ? "component" : "scaffold";
+function packageKind(comp: { kind?: PackageKind; category?: string }): PackageKind {
+  if (comp.kind === "component" || comp.kind === "page" || comp.kind === "scaffold") {
+    return comp.kind;
+  }
+  if (comp.category === "pages") return "page";
+  if (comp.category === "scaffolds") return "scaffold";
+  return "component";
+}
+
+function asCategory(value: string | undefined): CategoryId | undefined {
+  if (value === "components" || value === "pages" || value === "scaffolds") return value;
+  return undefined;
+}
+
+function asKind(value: string | undefined): PackageKind | undefined {
+  if (value === "component" || value === "page" || value === "scaffold") return value;
+  return undefined;
 }
 
 // GET /api/v1/components
 app.get("/", (c) => {
   const template = c.req.query("template");
-  const category = c.req.query("category");
-  const group = c.req.query("group");
-  const kind = c.req.query("kind") as "component" | "scaffold" | undefined;
-  const layerRaw = c.req.query("layer");
-  const layer = layerRaw ? Number(layerRaw) : undefined;
-  const index = getRegistryIndex();
+  const category = asCategory(c.req.query("category") ?? undefined);
+  const kind = asKind(c.req.query("kind") ?? undefined);
 
-  let list = index.components;
-  if (template) list = list.filter((comp) => comp.templates.includes(template));
-  if (category) list = list.filter((comp) => comp.category === category);
-  if (group) list = list.filter((comp) => comp.group === group);
-  if (kind === "component" || kind === "scaffold") {
-    list = list.filter((comp) => packageKind(comp) === kind);
-  }
-  if (layer === 1 || layer === 2 || layer === 3 || layer === 4 || layer === 5) {
-    list = list.filter((comp) => comp.layer === layer);
-  }
-
-  const withKind = list.map((comp) => ({
+  const list = listPackages({ template: template ?? undefined, category, kind }).map((comp) => ({
     ...comp,
     kind: packageKind(comp),
   }));
 
-  return c.json({ components: withKind, total: withKind.length });
+  return c.json({ components: list, total: list.length });
 });
 
 // GET /api/v1/components/:name
 app.get("/:name", (c) => {
   const { name } = c.req.param();
   const meta = getComponentMeta(name);
-  if (!meta) return c.json({ message: "Component not found" }, 404);
+  if (!meta) return c.json({ message: "Package not found" }, 404);
   return c.json({
     ...meta,
-    kind: packageKind(meta as { kind?: "component" | "scaffold" }),
+    kind: packageKind(meta as { kind?: PackageKind; category?: string }),
   });
 });
 
@@ -56,7 +58,7 @@ app.get("/:name", (c) => {
 app.get("/:name/versions", (c) => {
   const { name } = c.req.param();
   const meta = getComponentMeta(name);
-  if (!meta) return c.json({ message: "Component not found" }, 404);
+  if (!meta) return c.json({ message: "Package not found" }, 404);
   return c.json((meta["versions"] as { history: unknown[] }).history);
 });
 
@@ -64,7 +66,7 @@ app.get("/:name/versions", (c) => {
 app.get("/:name/variants", (c) => {
   const { name } = c.req.param();
   const meta = getComponentMeta(name);
-  if (!meta) return c.json({ message: "Component not found" }, 404);
+  if (!meta) return c.json({ message: "Package not found" }, 404);
   if (!meta["hasVariants"]) return c.json({ variants: [] });
   return c.json({ variants: meta["variants"] ?? [] });
 });
@@ -79,7 +81,7 @@ app.get("/:name/manifest", (c) => {
   if (!template) return c.json({ message: "template query param required" }, 400);
 
   const version = resolveVersion(name, versionReq);
-  if (!version) return c.json({ message: "Component or version not found" }, 404);
+  if (!version) return c.json({ message: "Package or version not found" }, 404);
 
   const manifest = getManifest(name, template, version, variant);
   if (!manifest) return c.json({ message: "Manifest not found for this template/version/variant" }, 404);

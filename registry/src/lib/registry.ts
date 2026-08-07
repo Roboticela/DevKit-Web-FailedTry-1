@@ -3,28 +3,40 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const COMPONENTS_DIR = join(__dirname, "../../components");
+const REGISTRY_ROOT = join(__dirname, "../..");
+
+export type PackageKind = "component" | "page" | "scaffold";
+export type CategoryId = "components" | "pages" | "scaffolds";
+
+const KIND_DIR: Record<PackageKind, CategoryId> = {
+  component: "components",
+  page: "pages",
+  scaffold: "scaffolds",
+};
 
 function readJson<T>(path: string): T {
   return JSON.parse(readFileSync(path, "utf-8")) as T;
 }
 
-export type PackageKind = "component" | "scaffold";
-export type ComponentLayer = 1 | 2 | 3 | 4 | 5;
+export interface CategoryEntry {
+  id: CategoryId;
+  name: string;
+  description: string;
+  directory: string;
+}
 
-export interface ComponentEntry {
+export interface CategoriesCatalog {
+  version: string;
+  categories: CategoryEntry[];
+}
+
+export interface RegistryPackage {
   id?: number;
   name: string;
   displayName: string;
   description: string;
-  category: string;
-  group?: string;
-  groupName?: string;
-  subgroup?: string;
-  subgroupName?: string;
-  /** `component` = reusable UI; `scaffold` = full feature. Omitted in older indexes = scaffold. */
-  kind?: PackageKind;
-  layer?: ComponentLayer;
+  category: CategoryId;
+  kind: PackageKind;
   stub?: boolean;
   templates: string[];
   platforms: string[];
@@ -34,42 +46,93 @@ export interface ComponentEntry {
   tags: string[];
 }
 
+/** @deprecated Use RegistryPackage — kept for route compatibility */
+export type ComponentEntry = RegistryPackage;
+
 export interface RegistryIndex {
   version: string;
   updatedAt: string;
-  components: ComponentEntry[];
+  components?: RegistryPackage[];
+  pages?: RegistryPackage[];
+  scaffolds?: RegistryPackage[];
 }
 
-export interface LayersCatalog {
-  version: string;
-  layers: {
-    layer: ComponentLayer;
-    id: string;
-    name: string;
-    idRange: { min: number; max: number };
-    description: string;
-    groups?: unknown[];
-  }[];
+export function getCategoriesCatalog(): CategoriesCatalog {
+  return readJson<CategoriesCatalog>(join(REGISTRY_ROOT, "categories.json"));
 }
 
-export function getRegistryIndex(): RegistryIndex {
-  return readJson<RegistryIndex>(join(COMPONENTS_DIR, "registry.json"));
+function categoryDir(category: CategoryId): string {
+  return join(REGISTRY_ROOT, category);
 }
 
-export function getLayersCatalog(): LayersCatalog | null {
-  const path = join(COMPONENTS_DIR, "layers.json");
-  if (!existsSync(path)) return null;
-  return readJson<LayersCatalog>(path);
+function packagesFromIndex(category: CategoryId, index: RegistryIndex): RegistryPackage[] {
+  const list =
+    category === "components"
+      ? index.components ?? []
+      : category === "pages"
+        ? index.pages ?? []
+        : index.scaffolds ?? [];
+
+  return list.map((pkg) => ({
+    ...pkg,
+    category,
+    kind:
+      pkg.kind ??
+      (category === "components" ? "component" : category === "pages" ? "page" : "scaffold"),
+  }));
+}
+
+export function getRegistryIndex(category: CategoryId = "components"): RegistryIndex {
+  return readJson<RegistryIndex>(join(categoryDir(category), "registry.json"));
+}
+
+export function listPackages(filters: {
+  category?: CategoryId;
+  kind?: PackageKind;
+  template?: string;
+} = {}): RegistryPackage[] {
+  const categories: CategoryId[] = filters.category
+    ? [filters.category]
+    : ["components", "pages", "scaffolds"];
+
+  let out: RegistryPackage[] = [];
+  for (const category of categories) {
+    const indexPath = join(categoryDir(category), "registry.json");
+    if (!existsSync(indexPath)) continue;
+    out = out.concat(packagesFromIndex(category, readJson<RegistryIndex>(indexPath)));
+  }
+
+  if (filters.kind) out = out.filter((pkg) => pkg.kind === filters.kind);
+  if (filters.template) {
+    out = out.filter((pkg) => pkg.templates.includes(filters.template!));
+  }
+  return out;
+}
+
+function resolvePackageDir(name: string): string | null {
+  for (const category of ["components", "pages", "scaffolds"] as CategoryId[]) {
+    const dir = join(categoryDir(category), name);
+    if (existsSync(join(dir, "component.json")) || existsSync(join(dir, "package.json"))) {
+      return dir;
+    }
+  }
+  return null;
 }
 
 export function getComponentMeta(name: string) {
-  const path = join(COMPONENTS_DIR, name, "component.json");
-  if (!existsSync(path)) return null;
-  return readJson<Record<string, unknown>>(path);
+  const dir = resolvePackageDir(name);
+  if (!dir) return null;
+  const componentPath = join(dir, "component.json");
+  const packagePath = join(dir, "package.json");
+  if (existsSync(componentPath)) return readJson<Record<string, unknown>>(componentPath);
+  if (existsSync(packagePath)) return readJson<Record<string, unknown>>(packagePath);
+  return null;
 }
 
 export function getManifest(name: string, template: string, version: string, variant?: string) {
-  const base = join(COMPONENTS_DIR, name, template, `v${version.split(".")[0]}`);
+  const dir = resolvePackageDir(name);
+  if (!dir) return null;
+  const base = join(dir, template, `v${version.split(".")[0]}`);
   const manifestPath = variant
     ? join(base, "variants", variant, "manifest.json")
     : join(base, "manifest.json");
@@ -84,4 +147,8 @@ export function resolveVersion(name: string, requested: string): string | null {
   if (requested === "latest") return versions.latest;
   const found = versions.history.find((h) => h.version === requested);
   return found ? found.version : null;
+}
+
+export function kindToCategory(kind: PackageKind): CategoryId {
+  return KIND_DIR[kind];
 }

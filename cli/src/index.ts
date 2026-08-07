@@ -67,13 +67,12 @@ program
 
 program
   .command("list")
-  .description("List all available components from the registry")
+  .description("List all available packages from the registry")
   .option("--template <id>",   "Filter by template")
-  .option("--kind <type>",     "Filter by kind: component (UI) or scaffold (full feature, empty for now)")
-  .option("--layer <n>",       "Filter by layer: 1–5 (foundation…templates)")
-  .option("--category <cat>",  "Filter by category (foundation | basic | composite | advanced | templates)")
-  .option("--group <id>",      "Filter by group/subgroup id (e.g. foundations-interface-primitives, interaction-controls)")
-  .option("--installed",       "Show only installed components")
+  .option("--kind <type>",     "Filter by kind: component | page | scaffold")
+  .option("--category <cat>",  "Filter by category: components | pages | scaffolds")
+  .option("--group <id>",      "Filter by group id")
+  .option("--installed",       "Show only installed packages")
   .action((opts) => listCommand(opts));
 
 // ── devkit info ───────────────────────────────────────────────────────────────
@@ -177,12 +176,12 @@ program.addHelpText("after", `
 ${chalk.bold("Examples:")}
   ${chalk.cyan("devkit create my-app")}                       Interactive project creation
   ${chalk.cyan("devkit create my-app --template=nextjs-compact --yes")}   Non-interactive
-  ${chalk.cyan("devkit add")}                                 Interactive component picker
-  ${chalk.cyan("devkit add tokens")}                          Install foundation tokens
-  ${chalk.cyan("devkit add typography")}                      Install typography primitive
-  ${chalk.cyan("devkit list --layer=1")}                      Browse Layer 1 foundation
-  ${chalk.cyan("devkit list --kind=scaffold")}                Scaffolds (empty for now)
-  ${chalk.cyan("devkit eject")}                               Pick component(s) to eject
+  ${chalk.cyan("devkit add")}                                 Interactive package picker
+  ${chalk.cyan("devkit list")}                                List all packages
+  ${chalk.cyan("devkit list --category=components")}          Components only
+  ${chalk.cyan("devkit list --kind=page")}                    Pages only
+  ${chalk.cyan("devkit list --kind=scaffold")}                Scaffolds only
+  ${chalk.cyan("devkit eject")}                               Pick package(s) to eject
   ${chalk.cyan("devkit theme set colors.primary #e11d48")}   Change primary color
   ${chalk.cyan("devkit doctor")}                              Check configuration
 

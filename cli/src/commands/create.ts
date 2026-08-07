@@ -52,14 +52,11 @@ async function getCreatePickerOptions(template: string, kind?: PackageKind): Pro
   const entries = await listComponents({ template, kind });
   return entries
     .slice()
-    .sort((a, b) => {
-      if (a.kind !== b.kind) return a.kind === "component" ? -1 : 1;
-      return a.name.localeCompare(b.name);
-    })
+    .sort((a, b) => a.name.localeCompare(b.name))
     .map((entry) => ({
       value: entry.name,
-      label: `${entry.name} (${entry.kind})`,
-      hint: entry.description,
+      label: entry.name,
+      hint: entry.description.length > 52 ? `${entry.description.slice(0, 49)}…` : entry.description,
     }));
 }
 
@@ -124,35 +121,29 @@ export async function createCommand(projectName: string | undefined, opts: Creat
     selectedComponents = opts.add.split(",").map((s) => s.trim()).filter(Boolean);
   } else if (!opts.yes) {
     try {
-      const componentOptions = await getCreatePickerOptions(template, "component");
-      const scaffoldOptions = await getCreatePickerOptions(template, "scaffold");
+      const kinds: { kind: PackageKind; label: string }[] = [
+        { kind: "component", label: "components" },
+        { kind: "page", label: "pages" },
+        { kind: "scaffold", label: "scaffolds" },
+      ];
 
-      const selectedUiComponents = componentOptions.length > 0
-        ? (await multiselect({
-            message: "Add components now? (space to select, enter to confirm)",
-            options: componentOptions,
-            required: false,
-          }) as string[])
-        : [];
-
-      if (componentOptions.length === 0) {
-        log.warn("No components available for this template.");
-      }
-
-      const selectedScaffolds = scaffoldOptions.length > 0
-        ? (await multiselect({
-            message: "Add scaffolds now? (space to select, enter to confirm)",
-            options: scaffoldOptions,
-            required: false,
-          }) as string[])
-        : [];
-
-      if (scaffoldOptions.length === 0) {
-        log.warn("No scaffolds available for this template.");
+      const selected: string[] = [];
+      for (const { kind, label } of kinds) {
+        const options = await getCreatePickerOptions(template, kind);
+        if (options.length === 0) {
+          log.warn(`No ${label} available for this template.`);
+          continue;
+        }
+        const picked = await multiselect({
+          message: `Add ${label} now? (space to select, enter to confirm)`,
+          options,
+          required: false,
+        }) as string[];
+        selected.push(...picked);
       }
 
       const seen = new Set<string>();
-      selectedComponents = [...selectedUiComponents, ...selectedScaffolds].filter((name) => {
+      selectedComponents = selected.filter((name) => {
         if (seen.has(name)) return false;
         seen.add(name);
         return true;

@@ -1,6 +1,6 @@
 import chalk from "chalk";
 import { listComponents } from "../lib/registry.js";
-import { normalizeKind, normalizeLayer, type PackageKind } from "../lib/component-entry.js";
+import { normalizeKind, normalizeCategory, type PackageKind } from "../lib/component-entry.js";
 import { readConfig, readLock } from "../lib/config.js";
 import { log } from "../lib/logger.js";
 
@@ -10,7 +10,6 @@ interface ListOptions {
   category?: string;
   group?: string;
   kind?: string;
-  layer?: string;
 }
 
 export async function listCommand(opts: ListOptions, cwd = process.cwd()) {
@@ -22,16 +21,16 @@ export async function listCommand(opts: ListOptions, cwd = process.cwd()) {
   let kindFilter: PackageKind | undefined;
   if (opts.kind) {
     const k = opts.kind.toLowerCase();
-    if (k === "component" || k === "scaffold") kindFilter = k;
+    if (k === "component" || k === "page" || k === "scaffold") kindFilter = k;
     else {
-      log.error(`Invalid --kind (use ${chalk.cyan("component")} or ${chalk.cyan("scaffold")})`);
+      log.error(`Invalid --kind (use ${chalk.cyan("component")}, ${chalk.cyan("page")}, or ${chalk.cyan("scaffold")})`);
       return;
     }
   }
 
-  const layerFilter = opts.layer ? normalizeLayer(opts.layer) : undefined;
-  if (opts.layer && !layerFilter) {
-    log.error(`Invalid --layer (use ${chalk.cyan("1")}–${chalk.cyan("5")})`);
+  const categoryFilter = opts.category ? normalizeCategory(opts.category) : undefined;
+  if (opts.category && !categoryFilter) {
+    log.error(`Invalid --category (use ${chalk.cyan("components")}, ${chalk.cyan("pages")}, or ${chalk.cyan("scaffolds")})`);
     return;
   }
 
@@ -39,8 +38,7 @@ export async function listCommand(opts: ListOptions, cwd = process.cwd()) {
     const components = await listComponents({
       template,
       kind: kindFilter,
-      layer: layerFilter,
-      category: opts.category,
+      category: categoryFilter,
       group: opts.group,
     });
     const lock = (() => { try { return readLock(cwd); } catch { return { lockVersion: 1, template: "", components: {} } satisfies import("../lib/config.js").DevKitLock; } })();
@@ -50,44 +48,40 @@ export async function listCommand(opts: ListOptions, cwd = process.cwd()) {
       : components;
 
     if (filtered.length === 0) {
-      log.info("No components found.");
+      log.info("No packages found.");
       return;
     }
 
     log.blank();
     const col = (s: string, w: number) => s.padEnd(w).slice(0, w);
 
-    const kindLabel = (k: string) =>
-      k === "component" ? chalk.magenta("component") : chalk.cyan("scaffold");
+    const kindLabel = (k: string) => {
+      if (k === "page") return chalk.yellow("page");
+      if (k === "scaffold") return chalk.cyan("scaffold");
+      return chalk.magenta("component");
+    };
 
     console.log(
       chalk.gray(
         "  " +
-          col("ID", 6) +
           col("Package", 28) +
-          col("Group", 22) +
-          col("Layer", 7) +
+          col("Category", 14) +
           col("Stub", 6) +
           "Installed"
       )
     );
-    console.log(chalk.gray("  " + "─".repeat(90)));
+    console.log(chalk.gray("  " + "─".repeat(70)));
 
     for (const comp of filtered) {
       const installed = lock.components[comp.name];
       const installedStr = installed ? chalk.green(`v${installed.version}`) : chalk.gray("-");
       const pk = normalizeKind(comp.kind);
-      const idStr = comp.id != null ? String(comp.id) : "-";
-      const layerStr = comp.layer != null ? String(comp.layer) : "-";
-      const groupStr = comp.group ?? "-";
       const stubStr = comp.stub ? "yes" : "no";
 
       console.log(
         "  " +
-        chalk.dim(col(idStr, 6)) +
         chalk.bold(col(comp.name, 28)) +
-        chalk.dim(col(groupStr, 22)) +
-        col(layerStr, 7) +
+        chalk.dim(col(String(comp.category), 14)) +
         col(stubStr === "yes" ? chalk.yellow(stubStr) : stubStr, 6) +
         " " +
         kindLabel(pk) +

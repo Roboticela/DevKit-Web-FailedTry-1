@@ -2,16 +2,15 @@ import type {
   ComponentEntry,
   PackageKind,
   ListComponentsFilters,
-  ComponentLayer,
 } from "./component-entry.js";
-import { normalizeKind, normalizeLayer } from "./component-entry.js";
+import { normalizeKind } from "./component-entry.js";
 import {
   getBundledComponentMeta,
   getBundledManifest,
   listBundledComponents,
 } from "./bundled-registry.js";
 
-export type { ComponentEntry, PackageKind, ListComponentsFilters, ComponentLayer };
+export type { ComponentEntry, PackageKind, ListComponentsFilters };
 
 const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com";
 
@@ -25,7 +24,6 @@ function componentsQuery(filters: ListComponentsFilters): string {
   const params = new URLSearchParams();
   if (filters.template) params.set("template", filters.template);
   if (filters.kind) params.set("kind", filters.kind);
-  if (filters.layer) params.set("layer", String(filters.layer));
   if (filters.category) params.set("category", filters.category);
   if (filters.group) params.set("group", filters.group);
   const s = params.toString();
@@ -39,15 +37,14 @@ export async function listComponents(filters: ListComponentsFilters = {}): Promi
   return data.components.map((c) => ({
     ...c,
     kind: normalizeKind(c.kind),
-    layer: normalizeLayer(c.layer),
   }));
 }
 
 export async function getComponentInfo(name: string): Promise<Record<string, unknown>> {
   const local = getBundledComponentMeta(name);
-  if (local) return { ...local, kind: normalizeKind(local.kind), layer: normalizeLayer(local.layer) };
+  if (local) return { ...local, kind: normalizeKind(local.kind) };
   const data = await get<Record<string, unknown>>(`/api/v1/components/${name}`);
-  return { ...data, kind: normalizeKind(data.kind), layer: normalizeLayer(data.layer) };
+  return { ...data, kind: normalizeKind(data.kind) };
 }
 
 export async function getManifest(

@@ -57,7 +57,7 @@ async function interactiveAddSelections(
   console.log();
   intro(chalk.cyan("Add components"));
 
-  const toPickerOptions = (kind: "component" | "scaffold") =>
+  const toPickerOptions = (kind: "component" | "page" | "scaffold") =>
     installable
       .filter((c) => c.kind === kind)
       .sort((a, b) => a.name.localeCompare(b.name))
@@ -67,58 +67,46 @@ async function interactiveAddSelections(
         hint: c.description.length > 52 ? `${c.description.slice(0, 49)}…` : c.description,
       }));
 
-  const componentOptions = toPickerOptions("component");
-  const scaffoldOptions = toPickerOptions("scaffold");
+  const kinds = [
+    { kind: "component" as const, label: "components" },
+    { kind: "page" as const, label: "pages" },
+    { kind: "scaffold" as const, label: "scaffolds" },
+  ];
 
-  const pickedComponentsRaw = componentOptions.length > 0
-    ? await multiselect({
-        message: "Select components to install (space to toggle, enter to confirm)",
-        options: componentOptions,
-        required: false,
-      })
-    : [];
-
-  if (isCancel(pickedComponentsRaw)) {
-    outro("Cancelled.");
-    return [];
-  }
-
-  if (componentOptions.length === 0) {
-    log.warn("No components available to install.");
-  }
-
-  const pickedScaffoldsRaw = scaffoldOptions.length > 0
-    ? await multiselect({
-        message: "Select scaffolds to install (space to toggle, enter to confirm)",
-        options: scaffoldOptions,
-        required: false,
-      })
-    : [];
-
-  if (isCancel(pickedScaffoldsRaw)) {
-    outro("Cancelled.");
-    return [];
-  }
-
-  if (scaffoldOptions.length === 0) {
-    log.warn("No scaffolds available to install.");
+  const picked: string[] = [];
+  for (const { kind, label } of kinds) {
+    const options = toPickerOptions(kind);
+    if (options.length === 0) {
+      log.warn(`No ${label} available to install.`);
+      continue;
+    }
+    const selected = await multiselect({
+      message: `Select ${label} to install (space to toggle, enter to confirm)`,
+      options,
+      required: false,
+    });
+    if (isCancel(selected)) {
+      outro("Cancelled.");
+      return [];
+    }
+    picked.push(...(selected as string[]));
   }
 
   const seen = new Set<string>();
-  const picked = [...(pickedComponentsRaw as string[]), ...(pickedScaffoldsRaw as string[])].filter((name) => {
+  const unique = picked.filter((name) => {
     if (seen.has(name)) return false;
     seen.add(name);
     return true;
   });
 
-  if (picked.length === 0) {
-    outro("No components selected.");
+  if (unique.length === 0) {
+    outro("No packages selected.");
     return [];
   }
 
   const results: { name: string; version: string; variant?: string }[] = [];
 
-  for (const compName of picked) {
+  for (const compName of unique) {
     const meta = installable.find((x) => x.name === compName)!;
     const variant = await pickVariantForComponent(meta, opts.variant);
     if (variant === "cancel") {
