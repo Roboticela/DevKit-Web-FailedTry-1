@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/SplitButton.tsx",
       "destination": "components/ui/SplitButton.tsx"
+    },
+    {
+      "source": "files/styles/split-button.css",
+      "destination": "styles/split-button.css"
+    },
+    {
+      "source": "files/docs/SPLIT_BUTTON.md",
+      "destination": "docs/devkit/SPLIT_BUTTON.md"
     }
   ],
   "injections": [],

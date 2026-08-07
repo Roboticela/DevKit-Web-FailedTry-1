@@ -1,14 +1,25 @@
 /**
  * Generate empty Interaction Controls stubs (IDs 1–10) for both templates.
+ * Skips packages listed in SKIP_IMPLEMENTED so real implementations are not overwritten.
  * Run: node scripts/generate-interaction-controls.mjs
  */
-import { mkdirSync, writeFileSync, readFileSync } from "fs";
+import { mkdirSync, writeFileSync, readFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const COMPONENTS = join(__dirname, "../components");
 const TODAY = "2026-08-07";
+
+/** Packages already implemented — generator must not overwrite their sources. */
+const SKIP_IMPLEMENTED = new Set([
+  "button",
+  "icon-button",
+  "button-group",
+  "split-button",
+  "link-button",
+  "floating-action-button",
+]);
 
 const GROUP = {
   id: "foundations-interface-primitives",
@@ -62,13 +73,49 @@ const catalog = [];
 const layerComponents = [];
 
 for (const [id, name, displayName] of ITEMS) {
+  const base = join(COMPONENTS, name);
+  const metaPath = join(base, "component.json");
+
+  if (SKIP_IMPLEMENTED.has(name) && existsSync(metaPath)) {
+    const meta = JSON.parse(readFileSync(metaPath, "utf8"));
+    catalog.push({
+      id: meta.id,
+      name: meta.name,
+      displayName: meta.displayName,
+      description: meta.description,
+      category: meta.category,
+      group: meta.group,
+      groupName: meta.groupName,
+      subgroup: meta.subgroup,
+      subgroupName: meta.subgroupName,
+      kind: meta.kind,
+      layer: meta.layer,
+      icon: meta.icon,
+      templates: meta.templates,
+      platforms: meta.platforms,
+      hasVariants: meta.hasVariants,
+      stub: meta.stub === true,
+      latestVersion: meta.versions?.latest ?? "1.0.0",
+      tags: meta.tags,
+    });
+    layerComponents.push({
+      id: meta.id,
+      name: meta.name,
+      displayName: meta.displayName,
+      fileKind: meta.fileKind ?? "tsx",
+      stub: meta.stub === true,
+      latestVersion: meta.versions?.latest ?? "1.0.0",
+    });
+    console.log(`skip implemented: ${name}`);
+    continue;
+  }
+
   const exportName = toPascal(name);
   const fileBase = `${exportName}.tsx`;
   const nextSource = `files/components/ui/${fileBase}`;
   const nextDest = `components/ui/${fileBase}`;
   const viteSource = `files/src/components/ui/${fileBase}`;
   const viteDest = `src/components/ui/${fileBase}`;
-  const base = join(COMPONENTS, name);
   const content = emptyTsx(exportName, displayName, id);
 
   write(join(base, "nextjs-compact", "v1", nextSource), content);
@@ -174,7 +221,6 @@ for (const [id, name, displayName] of ITEMS) {
     displayName,
     fileKind: "tsx",
     stub: true,
-
   });
 }
 
@@ -203,4 +249,4 @@ subgroup.idRange = { min: 1, max: 10 };
 
 write(layersPath, JSON.stringify(layers, null, 2) + "\n");
 
-console.log(`Generated ${ITEMS.length} Interaction Controls stubs (IDs 1–10).`);
+console.log(`Interaction Controls catalog synced (${catalog.length} packages).`);

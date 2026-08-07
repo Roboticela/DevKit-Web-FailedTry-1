@@ -2,7 +2,7 @@
   "id": 5,
   "name": "link-button",
   "displayName": "Link Button",
-  "description": "Link Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+  "description": "Action control with link-like appearance (always a button, never an anchor), inline/standalone layouts, optional icons and external indicator, and accessible focus/touch targets.",
   "category": "foundation",
   "group": "foundations-interface-primitives",
   "groupName": "Foundations & Interface Primitives",
@@ -19,7 +19,7 @@
     "interaction-controls",
     "link-button",
     "interaction",
-    "stub"
+    "a11y"
   ],
   "templates": [
     "nextjs-compact",
@@ -30,14 +30,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-07",
         "breaking": false
       }

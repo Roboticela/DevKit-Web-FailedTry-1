@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/ButtonGroup.tsx",
       "destination": "src/components/ui/ButtonGroup.tsx"
+    },
+    {
+      "source": "files/src/styles/button-group.css",
+      "destination": "src/styles/button-group.css"
+    },
+    {
+      "source": "files/docs/BUTTON_GROUP.md",
+      "destination": "docs/devkit/BUTTON_GROUP.md"
     }
   ],
   "injections": [],

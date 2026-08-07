@@ -30,20 +30,20 @@ Opens `http://localhost:5173` — shows reserved group/subgroups (0 packages).
 
 **Foundations & Interface Primitives** (`foundations-interface-primitives`) — available for `nextjs-compact` and `vite-express-tauri`.
 
-#### Interaction Controls (`interaction-controls`) — IDs 001–010 (stubs)
+#### Interaction Controls (`interaction-controls`) — IDs 001–010
 
-| ID | Package | Display name |
-|----|---------|--------------|
-| 001 | `button` | Button |
-| 002 | `icon-button` | Icon Button |
-| 003 | `button-group` | Button Group |
-| 004 | `split-button` | Split Button |
-| 005 | `link-button` | Link Button |
-| 006 | `floating-action-button` | Floating Action Button |
-| 007 | `toggle-button` | Toggle Button |
-| 008 | `segmented-control` | Segmented Control |
-| 009 | `command-button` | Command Button |
-| 010 | `action-menu-trigger` | Action Menu Trigger |
+| ID | Package | Display name | Status |
+|----|---------|--------------|--------|
+| 001 | `button` | Button | ready (`1.0.0`) |
+| 002 | `icon-button` | Icon Button | ready (`1.0.0`) |
+| 003 | `button-group` | Button Group | ready (`1.0.0`) |
+| 004 | `split-button` | Split Button | ready (`1.0.0`) |
+| 005 | `link-button` | Link Button | ready (`1.0.0`) |
+| 006 | `floating-action-button` | Floating Action Button | ready (`1.0.0`) |
+| 007 | `toggle-button` | Toggle Button | stub |
+| 008 | `segmented-control` | Segmented Control | stub |
+| 009 | `command-button` | Command Button | stub |
+| 010 | `action-menu-trigger` | Action Menu Trigger | stub |
 
 Other subgroups are reserved with no packages yet:
 

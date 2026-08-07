@@ -1,6 +1,6 @@
 {
   "version": "1",
-  "updatedAt": "2026-08-07T00:00:00Z",
+  "updatedAt": "2026-08-07T13:30:00Z",
   "description": "DevKit component catalog - groups and subgroups. Packages are empty stubs until implemented.",
   "kinds": {
     "component": "Reusable UI packages selectable by layer. Available for both templates.",
@@ -31,37 +31,43 @@
               "id": 1,
               "name": "button",
               "displayName": "Button",
-              "stub": true
+              "stub": false,
+              "latestVersion": "1.0.0"
             },
             {
               "id": 2,
               "name": "icon-button",
               "displayName": "Icon Button",
-              "stub": true
+              "stub": false,
+              "latestVersion": "1.0.0"
             },
             {
               "id": 3,
               "name": "button-group",
               "displayName": "Button Group",
-              "stub": true
+              "stub": false,
+              "latestVersion": "1.0.0"
             },
             {
               "id": 4,
               "name": "split-button",
               "displayName": "Split Button",
-              "stub": true
+              "stub": false,
+              "latestVersion": "1.0.0"
             },
             {
               "id": 5,
               "name": "link-button",
               "displayName": "Link Button",
-              "stub": true
+              "stub": false,
+              "latestVersion": "1.0.0"
             },
             {
               "id": 6,
               "name": "floating-action-button",
               "displayName": "Floating Action Button",
-              "stub": true
+              "stub": false,
+              "latestVersion": "1.0.0"
             },
             {
               "id": 7,

@@ -2,7 +2,7 @@
   "id": 2,
   "name": "icon-button",
   "displayName": "Icon Button",
-  "description": "Icon Button - empty Interaction Controls stub (Foundations & Interface Primitives).",
+  "description": "Compact icon-only action control with required accessible name, optional desktop tooltip, sizes XS–XL, six variants, selected/loading states, and ≥44×44 touch targets.",
   "category": "foundation",
   "group": "foundations-interface-primitives",
   "groupName": "Foundations & Interface Primitives",
@@ -19,7 +19,7 @@
     "interaction-controls",
     "icon-button",
     "interaction",
-    "stub"
+    "a11y"
   ],
   "templates": [
     "nextjs-compact",
@@ -30,14 +30,14 @@
     "desktop"
   ],
   "hasVariants": false,
-  "stub": true,
+  "stub": false,
   "fileKind": "tsx",
   "versions": {
-    "latest": "0.0.0",
-    "stable": "0.0.0",
+    "latest": "1.0.0",
+    "stable": "1.0.0",
     "history": [
       {
-        "version": "0.0.0",
+        "version": "1.0.0",
         "releaseDate": "2026-08-07",
         "breaking": false
       }

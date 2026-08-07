@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "nextjs-compact",
   "files": [
     {
       "source": "files/components/ui/IconButton.tsx",
       "destination": "components/ui/IconButton.tsx"
+    },
+    {
+      "source": "files/styles/icon-button.css",
+      "destination": "styles/icon-button.css"
+    },
+    {
+      "source": "files/docs/ICON_BUTTON.md",
+      "destination": "docs/devkit/ICON_BUTTON.md"
     }
   ],
   "injections": [],

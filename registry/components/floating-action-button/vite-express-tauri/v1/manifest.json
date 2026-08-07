@@ -1,10 +1,18 @@
 {
-  "version": "0.0.0",
+  "version": "1.0.0",
   "template": "vite-express-tauri",
   "files": [
     {
       "source": "files/src/components/ui/FloatingActionButton.tsx",
       "destination": "src/components/ui/FloatingActionButton.tsx"
+    },
+    {
+      "source": "files/src/styles/floating-action-button.css",
+      "destination": "src/styles/floating-action-button.css"
+    },
+    {
+      "source": "files/docs/FLOATING_ACTION_BUTTON.md",
+      "destination": "docs/devkit/FLOATING_ACTION_BUTTON.md"
     }
   ],
   "injections": [],

@@ -7,6 +7,7 @@ npm run dev
 
 Opens **http://localhost:5173**
 
-Shows **Foundations & Interface Primitives** with Interaction Controls stubs (001–010) and other empty subgroups. Both templates: `nextjs-compact`, `vite-express-tauri`.
+- **001 Button** lab — variants, sizes, icons, loading, long label
+- Catalog of Foundations & Interface Primitives (stubs + ready)
 
-Catalog source: `src/foundation-catalog.json` (mirrors `registry/components/layers.json`).
+Both templates: `nextjs-compact`, `vite-express-tauri`.
