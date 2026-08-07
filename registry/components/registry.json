@@ -1954,6 +1954,1130 @@
         "modal-surface",
         "a11y"
       ]
+    },
+    {
+      "id": 61,
+      "name": "card",
+      "displayName": "Card",
+      "description": "Flexible surface for grouping related content — composable header/body/footer/media, quiet default elevation, interactive and selected states.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "square",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "card",
+        "a11y"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "list",
+      "displayName": "List",
+      "description": "Container for ordered or unordered collections — density, optional dividers, grouping, single/multiple/none selection, keyboard navigation. Empty via Empty State.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "list",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "list",
+        "a11y"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "list-item",
+      "displayName": "List Item",
+      "description": "Atomic list content row — leading, primary, secondary, trailing regions; single/two/multi-line; density; clear interactive vs trailing-action models.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "rows-3",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "list-item",
+        "a11y"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "data-row",
+      "displayName": "Data Row",
+      "description": "Structured label/value fields for detail views and records — responsive stack/columns, leading/status/actions, optional dividers. Not a table row.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "columns-2",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "data-row",
+        "a11y"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "avatar",
+      "displayName": "Avatar",
+      "description": "Identity mark for person/organization/entity — image, initials, icon fallback, presence/status. Sizes map to control-height tokens.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "circle-user",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "avatar",
+        "a11y"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "avatar-group",
+      "displayName": "Avatar Group",
+      "description": "Compact multi-identity arrangement — modest overlap or separated, max visible, +N overflow with touch-friendly details. Only max avatars mount.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "users",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "avatar-group",
+        "a11y"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "key-value-pair",
+      "displayName": "Key-Value Pair",
+      "description": "Structured label + value metadata — secondary label, dominant value, horizontal/vertical/responsive, long-value overflow. Compose actions with Interaction Controls.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "text-cursor-input",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "key-value-pair",
+        "a11y"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "divider",
+      "displayName": "Divider",
+      "description": "Subtle structural separator — horizontal/vertical, full/inset/section/content-aligned. Vertical stretches with content. Optional semantic separator role.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "minus",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "divider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "timeline",
+      "displayName": "Timeline",
+      "description": "Chronological event sequence — vertical default, optional horizontal for short content, markers/connectors, status cues beyond connector color. Events not clickable by default.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "git-commit-horizontal",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "timeline",
+        "a11y"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "content-block",
+      "displayName": "Content Block",
+      "description": "Neutral structural grouping — heading, description, content, metadata, actions, optional divider. No card chrome. Lighter than Card.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "data-display-primitives",
+      "subgroupName": "Data Display",
+      "kind": "component",
+      "layer": 1,
+      "icon": "panel-top",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "data-display-primitives",
+        "content-block",
+        "a11y"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "image",
+      "displayName": "Image",
+      "description": "Fundamental visual-content primitive — alt/decorative, aspect ratio, object-fit, responsive sources, lazy/eager/priority, loading and non-breaking error fallback.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "image",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "image",
+        "a11y"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "thumbnail",
+      "displayName": "Thumbnail",
+      "description": "Compact visual preview — square/portrait/landscape, cover/contain by kind, selected/loading/error, sparse overlays (play, type, duration). Sizes use global tokens.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "gallery-thumbnails",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "thumbnail",
+        "a11y"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "media-object",
+      "displayName": "Media Object",
+      "description": "Media with adjacent text — leading/trailing media, title/description/metadata/status/actions, predictable media box, auto-stack on narrow, split interactivity when trailing controls exist.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "panel-left",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "media-object",
+        "a11y"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "icon-container",
+      "displayName": "Icon Container",
+      "description": "Controlled icon region — optically centered glyph, square/circle/rounded/transparent shapes, sm/md/lg via tokens, semantic tones, decorative by default.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "box",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "icon-container",
+        "a11y"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "illustration",
+      "displayName": "Illustration",
+      "description": "Presentation container for conceptual visuals — sm/md/lg/hero, contain/natural fit, alignment, decorative or labeled, no default animation (reduced-motion safe).",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "image",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "illustration",
+        "a11y"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "cover-media",
+      "displayName": "Cover Media",
+      "description": "Rectangular cover region with controlled cropping — cover/contain, focal points, compact/standard/wide/hero ratios, optional overlay/caption with solid contrast scrim.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "panorama",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "cover-media",
+        "a11y"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "media-preview",
+      "displayName": "Media Preview",
+      "description": "Larger media preview — image/video poster/document/audio/generic, loading states, optional title/meta, actions via DevKit controls. Not a lightbox or full player.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "monitor-play",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "media-preview",
+        "a11y"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "image-placeholder",
+      "displayName": "Image Placeholder",
+      "description": "Neutral media-region placeholder for loading/missing/unavailable/error — aspect-locked, optional icon/type/short message. Not Skeleton.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "image-off",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "image-placeholder",
+        "a11y"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "media-overlay",
+      "displayName": "Media Overlay",
+      "description": "Controlled content over media — top/bottom/corner/full, solid contrast scrim, play/status/duration/selection/title/actions. Hover enhances only.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "layers",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "media-overlay",
+        "a11y"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "media-metadata",
+      "displayName": "Media Metadata",
+      "description": "Secondary media details — type/dimensions/duration/size/date/author/status, compact/standard, wrap-friendly, localizable format helpers. Composable with media primitives.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "media-primitives",
+      "subgroupName": "Media & Visual Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "info",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "media-primitives",
+        "media-metadata",
+        "a11y"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "text",
+      "displayName": "Text",
+      "description": "Fundamental typography primitive — tokenized size/weight/color, semantic `as` independent of style, wrap by default, opt-in truncate/clamp/transform.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "type",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "text",
+        "a11y"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "heading",
+      "displayName": "Heading",
+      "description": "Semantic h1–h6 with visual size independent of level — subtitle, alignment, wrap-by-default, opt-in truncate, responsive typography tokens.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "heading",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "heading",
+        "a11y"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "paragraph",
+      "displayName": "Paragraph",
+      "description": "Readable body content — standard/lead/secondary via tokens, comfortable line-height, reading measure, modest consecutive rhythm, accessible inline links.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "align-left",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "paragraph",
+        "a11y"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "label",
+      "displayName": "Label",
+      "description": "Concise control/content identification — htmlFor association, required/optional not color-only, wraps long labels, readable token sizes. Not Caption.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "tag",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "label",
+        "a11y"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "caption",
+      "displayName": "Caption",
+      "description": "Secondary explanatory text — short/multiline, readable caption tokens, figcaption or aria-describedby association. Not Label; not for primary instructions or sole warnings.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "text-caption",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "caption",
+        "a11y"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "link",
+      "displayName": "Link",
+      "description": "Navigation anchor — inline/standalone, underline not color-only, opt-in external mark, visited/focus/hover, wraps long URLs. Not a Button.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "link",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "link",
+        "a11y"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "code",
+      "displayName": "Code",
+      "description": "Short inline monospace content — commands, identifiers, keyboard shortcuts. Compact; wrap or scroll for long tokens. No syntax highlighting.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "code",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "code",
+        "a11y"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "code-block",
+      "displayName": "Code Block",
+      "description": "Multiline source / preformatted content — language label, optional line numbers, copy via Icon Button, scroll/wrap, highlighted lines, collapse, loading/empty/error. Bounded height; LTR code in RTL UI. Syntax tokens not color-only.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "code-block",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "code-block",
+        "a11y"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "blockquote",
+      "displayName": "Blockquote",
+      "description": "Quoted content with optional author, source, and navigable source link. Distinguished via spacing, border, typography, and indentation — not oversized marks or testimonial chrome. RTL-aware; quote dir auto/ltr/rtl.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "blockquote",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "blockquote",
+        "a11y"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "number-display",
+      "displayName": "Number Display",
+      "description": "Locale-aware numeric display — integer, decimal, currency, percent, signed, unit, opt-in compact. Loading/unknown/N/A without layout shift. Tabular alignment; negative not color-only. Full value for screen readers. Not a metric card.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "typography-content",
+      "subgroupName": "Typography & Content",
+      "kind": "component",
+      "layer": 1,
+      "icon": "number-display",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "typography-content",
+        "number-display",
+        "a11y",
+        "i18n"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "action-button-group",
+      "displayName": "Button Group",
+      "description": "Clusters related Button actions with joined/separated layout, compact/standard density, horizontal/vertical orientation, and wrap/stack overflow. Each button stays independently focusable and disableable. Prefer Action Group for large sets.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "action-control-compositions",
+      "subgroupName": "Action & Control Compositions",
+      "kind": "component",
+      "layer": 1,
+      "icon": "button-group",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "button-group",
+        "action-button-group",
+        "a11y"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "icon-button-group",
+      "displayName": "Icon Button Group",
+      "description": "Clusters related Icon Button actions — horizontal/vertical, joined/separated, wrap/stack. Selected/disabled/active via Icon Button. Accessible labels required. Prefer Overflow Action for large sets.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "action-control-compositions",
+      "subgroupName": "Action & Control Compositions",
+      "kind": "component",
+      "layer": 1,
+      "icon": "icon-button-group",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "icon-button-group",
+        "a11y"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "action-split-button",
+      "displayName": "Split Button",
+      "description": "Primary action + menu trigger composition. Uses Button styles; menu via Dropdown Menu + ActionSplitMenuTrigger — menu not implemented inside. Independent primary/menu disabled states; touch-safe trigger.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "action-control-compositions",
+      "subgroupName": "Action & Control Compositions",
+      "kind": "component",
+      "layer": 1,
+      "icon": "split-button",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "split-button",
+        "action-split-button",
+        "a11y"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "action-segmented-control",
+      "displayName": "Segmented Control",
+      "description": "Small mutually exclusive choice set (2–5). Single selection with fill+border+weight selected state. Overflow wrap/stack/scroll (scroll opt-in; no auto-dropdown). RTL-aware keyboard. Optional semantic icons.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "action-control-compositions",
+      "subgroupName": "Action & Control Compositions",
+      "kind": "component",
+      "layer": 1,
+      "icon": "segmented-control",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "segmented-control",
+        "action-segmented-control",
+        "a11y"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "action-group",
+      "displayName": "Action Group",
+      "description": "Flexible semantic action cluster with mixed treatments — primary/secondary/icon/menu/destructive via composed primitives. Responsive wrap/stack; hidden items leave no gaps; overflow slot for Overflow Action handoff.",
+      "category": "foundation",
+      "group": "foundations-interface-primitives",
+      "groupName": "Foundations & Interface Primitives",
+      "subgroup": "action-control-compositions",
+      "subgroupName": "Action & Control Compositions",
+      "kind": "component",
+      "layer": 1,
+      "icon": "action-group",
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "stub": false,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "action-control-compositions",
+        "action-group",
+        "a11y"
+      ]
     }
   ]
 }

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Thumbnail.tsx",
+      "destination": "src/components/ui/Thumbnail.tsx"
+    },
+    {
+      "source": "files/src/styles/thumbnail.css",
+      "destination": "src/styles/thumbnail.css"
+    },
+    {
+      "source": "files/docs/THUMBNAIL.md",
+      "destination": "docs/devkit/THUMBNAIL.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

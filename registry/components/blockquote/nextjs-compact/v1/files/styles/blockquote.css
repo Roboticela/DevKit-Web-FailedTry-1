@@ -1,0 +1,169 @@
+/* Blockquote (ID 089) — Typography & Content
+ * Quoted content. Distinguished via spacing, border, typography, indentation.
+ * No oversized quotation marks as primary treatment.
+ * Citation is secondary. Source links use DevKit Link styles.
+ * Not a testimonial / marketing quote / review card.
+ * No box-shadow. No gradients.
+ */
+
+.dk-blockquote {
+  --dk-bq-fg: var(--color-text-primary, var(--color-text, #1d1d1f));
+  --dk-bq-muted: var(--color-text-secondary, #6e6e73);
+  --dk-bq-border: var(--color-border-strong, var(--color-border-subtle, #d2d2d7));
+  --dk-bq-gap: var(--space-3, 12px);
+  --dk-bq-indent: var(--space-4, 16px);
+  --dk-bq-edge: 3px;
+  --dk-bq-size: var(--font-size-body, var(--font-size-base, 16px));
+  --dk-bq-line: var(--line-height-body, 1.5);
+  --dk-bq-weight: var(--weight-regular, 400);
+  --dk-bq-cite-size: var(
+    --font-size-body-sm,
+    var(--font-size-sm, 0.875rem)
+  );
+  --dk-bq-measure: var(
+    --content-width-reading,
+    var(--reading-width, 65ch)
+  );
+
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+  margin: 0;
+  padding-block: var(--space-1, 4px);
+  padding-inline-start: calc(var(--dk-bq-indent) + var(--dk-bq-edge));
+  padding-inline-end: 0;
+  border: none;
+  border-inline-start: var(--dk-bq-edge) solid var(--dk-bq-border);
+  background: transparent;
+  color: var(--dk-bq-fg);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--dk-bq-size);
+  font-weight: var(--dk-bq-weight);
+  line-height: var(--dk-bq-line);
+}
+
+.dk-blockquote *,
+.dk-blockquote *::before,
+.dk-blockquote *::after {
+  box-sizing: border-box;
+}
+
+.dk-blockquote--measure-reading {
+  max-width: min(100%, var(--dk-bq-measure));
+}
+
+.dk-blockquote--measure-none {
+  max-width: 100%;
+}
+
+.dk-blockquote--compact {
+  --dk-bq-indent: var(--space-3, 12px);
+  --dk-bq-gap: var(--space-2, 8px);
+  --dk-bq-size: var(
+    --font-size-body-sm,
+    var(--font-size-body, 14px)
+  );
+  --dk-bq-cite-size: var(--font-size-xs, 0.75rem);
+}
+
+.dk-blockquote__body {
+  min-width: 0;
+}
+
+.dk-blockquote__quote,
+.dk-blockquote__body > p {
+  margin: 0;
+  max-width: 100%;
+  color: var(--dk-bq-fg);
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-align: start;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: manual;
+  white-space: normal;
+}
+
+.dk-blockquote__body > p + p {
+  margin-block-start: var(--dk-bq-gap);
+}
+
+/* ——— Citation (secondary) ——— */
+
+.dk-blockquote__footer {
+  display: block;
+  margin-block-start: var(--dk-bq-gap);
+  color: var(--dk-bq-muted);
+  font-size: var(--dk-bq-cite-size);
+  font-weight: var(--weight-regular, 400);
+  font-style: normal;
+  line-height: var(--line-height-body-sm, 1.45);
+  text-align: start;
+  overflow-wrap: break-word;
+}
+
+.dk-blockquote__mark {
+  font-style: normal;
+}
+
+.dk-blockquote__citation {
+  font-style: normal;
+}
+
+.dk-blockquote__author {
+  font-style: normal;
+  font-weight: var(--weight-medium, 500);
+  color: var(--dk-bq-muted);
+}
+
+.dk-blockquote__source {
+  font-style: normal;
+}
+
+.dk-blockquote__source-link {
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.dk-blockquote__sep {
+  font-style: normal;
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-blockquote {
+  --dk-bq-fg: var(--color-text-primary, #f5f5f7);
+  --dk-bq-muted: var(--color-text-secondary, #a1a1a6);
+  --dk-bq-border: var(--color-border-strong, var(--color-border-subtle, #636366));
+}
+
+[data-theme="hc"] .dk-blockquote,
+[data-contrast="high"] .dk-blockquote {
+  --dk-bq-fg: CanvasText;
+  --dk-bq-muted: CanvasText;
+  --dk-bq-border: CanvasText;
+  --dk-bq-edge: 4px;
+}
+
+[data-theme="hc"] .dk-blockquote__footer,
+[data-contrast="high"] .dk-blockquote__footer {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+[data-theme="hc"] .dk-blockquote__author,
+[data-contrast="high"] .dk-blockquote__author {
+  font-weight: var(--weight-bold, 700);
+  text-decoration: none;
+}
+
+/* ——— RTL / bidirectional ———
+ * Logical border + padding flip with direction.
+ * Quote body may set dir=auto|ltr|rtl independently of surrounding UI.
+ */
+
+[dir="rtl"] .dk-blockquote {
+  text-align: start;
+}

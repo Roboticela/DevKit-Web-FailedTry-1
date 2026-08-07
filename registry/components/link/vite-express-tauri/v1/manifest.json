@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Link.tsx",
+      "destination": "src/components/ui/Link.tsx"
+    },
+    {
+      "source": "files/src/styles/link.css",
+      "destination": "src/styles/link.css"
+    },
+    {
+      "source": "files/docs/LINK.md",
+      "destination": "docs/devkit/LINK.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,47 @@
+{
+  "id": 69,
+  "name": "timeline",
+  "displayName": "Timeline",
+  "description": "Chronological event sequence — vertical default, optional horizontal for short content, markers/connectors, status cues beyond connector color. Events not clickable by default.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "data-display-primitives",
+  "subgroupName": "Data Display",
+  "kind": "component",
+  "layer": 1,
+  "icon": "git-commit-horizontal",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "data-display-primitives",
+    "timeline",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

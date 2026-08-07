@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/KeyValuePair.tsx",
+      "destination": "src/components/ui/KeyValuePair.tsx"
+    },
+    {
+      "source": "files/src/styles/key-value-pair.css",
+      "destination": "src/styles/key-value-pair.css"
+    },
+    {
+      "source": "files/docs/KEY-VALUE-PAIR.md",
+      "destination": "docs/devkit/KEY-VALUE-PAIR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

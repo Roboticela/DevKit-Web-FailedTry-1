@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/MediaObject.tsx",
+      "destination": "src/components/ui/MediaObject.tsx"
+    },
+    {
+      "source": "files/src/styles/media-object.css",
+      "destination": "src/styles/media-object.css"
+    },
+    {
+      "source": "files/docs/MEDIA-OBJECT.md",
+      "destination": "docs/devkit/MEDIA-OBJECT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/CoverMedia.tsx",
+      "destination": "src/components/ui/CoverMedia.tsx"
+    },
+    {
+      "source": "files/src/styles/cover-media.css",
+      "destination": "src/styles/cover-media.css"
+    },
+    {
+      "source": "files/docs/COVER-MEDIA.md",
+      "destination": "docs/devkit/COVER-MEDIA.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

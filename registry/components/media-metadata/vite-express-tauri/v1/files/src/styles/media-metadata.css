@@ -1,0 +1,130 @@
+/* Media Metadata (ID 080) — Media & Visual Content
+ * Secondary info for media. Compact / standard. Wraps on narrow viewports.
+ * Muted typography — never dominate title/content. No color-only meaning.
+ * No box-shadow. No gradients.
+ */
+
+.dk-media-metadata {
+  --dk-mm-gap: var(--space-2, 8px);
+  --dk-mm-sep-gap: var(--space-2, 8px);
+  --dk-mm-size: var(--font-size-caption, 12px);
+  --dk-mm-line: var(--line-height-caption, 1.3);
+  --dk-mm-fg: var(--color-text-secondary, #6e6e73);
+  --dk-mm-sep: var(--color-text-tertiary, #86868b);
+  --dk-mm-weight: var(--weight-regular, 400);
+
+  box-sizing: border-box;
+  display: block;
+  max-width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  color: var(--dk-mm-fg);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--dk-mm-size);
+  font-weight: var(--dk-mm-weight);
+  line-height: var(--dk-mm-line);
+}
+
+.dk-media-metadata *,
+.dk-media-metadata *::before,
+.dk-media-metadata *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Density ——— */
+
+.dk-media-metadata--compact {
+  --dk-mm-gap: var(--space-1, 4px);
+  --dk-mm-sep-gap: var(--space-1, 4px);
+  --dk-mm-size: 11px;
+  --dk-mm-line: 1.25;
+}
+
+.dk-media-metadata--standard {
+  --dk-mm-gap: var(--space-2, 8px);
+  --dk-mm-sep-gap: var(--space-2, 8px);
+  --dk-mm-size: var(--font-size-caption, 12px);
+}
+
+/* ——— List: wrap / stack — never force one line ——— */
+
+.dk-media-metadata__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--dk-mm-sep-gap);
+  row-gap: var(--dk-mm-gap);
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 40rem) {
+  .dk-media-metadata__list {
+    /* Allow natural wrapping; stack-like when items are long */
+    row-gap: var(--space-1, 4px);
+  }
+}
+
+.dk-media-metadata__item {
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.dk-media-metadata__value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.dk-media-metadata__sep {
+  flex: 0 0 auto;
+  color: var(--dk-mm-sep);
+  user-select: none;
+}
+
+/* Tabular nums for duration / size / dimensions */
+.dk-media-metadata__item--duration .dk-media-metadata__value,
+.dk-media-metadata__item--size .dk-media-metadata__value,
+.dk-media-metadata__item--dimensions .dk-media-metadata__value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Status remains text — tone optional via host; never color alone */
+.dk-media-metadata__item--status .dk-media-metadata__value {
+  font-weight: var(--weight-medium, 500);
+}
+
+.dk-media-metadata__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-media-metadata {
+  --dk-mm-fg: var(--color-text-secondary, #a1a1a6);
+  --dk-mm-sep: var(--color-text-tertiary, #86868b);
+}
+
+[data-theme="hc"] .dk-media-metadata,
+[data-contrast="high"] .dk-media-metadata {
+  --dk-mm-fg: CanvasText;
+  --dk-mm-sep: CanvasText;
+}
+
+/* ——— RTL ——— */
+
+[dir="rtl"] .dk-media-metadata {
+  text-align: start;
+}

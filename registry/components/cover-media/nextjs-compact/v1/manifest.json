@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/CoverMedia.tsx",
+      "destination": "components/ui/CoverMedia.tsx"
+    },
+    {
+      "source": "files/styles/cover-media.css",
+      "destination": "styles/cover-media.css"
+    },
+    {
+      "source": "files/docs/COVER-MEDIA.md",
+      "destination": "docs/devkit/COVER-MEDIA.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

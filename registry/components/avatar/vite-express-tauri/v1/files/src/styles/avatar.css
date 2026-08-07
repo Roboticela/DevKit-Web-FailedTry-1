@@ -1,0 +1,358 @@
+/* Avatar (ID 065) — Data Display
+ * Identity mark: image → initials → icon. Presence not color-only.
+ * Sizes map to control-height / space tokens. No box-shadow. No gradients.
+ */
+
+.dk-avatar {
+  --dk-av-size: var(--control-height-md, 40px);
+  --dk-av-font: var(--font-size-caption, 12px);
+  --dk-av-icon: calc(var(--dk-av-size) * 0.45);
+  --dk-av-radius: var(--radius-full, 999px);
+  --dk-av-bg: var(--color-surface-secondary, #f5f5f7);
+  --dk-av-fg: var(--color-text-secondary, #6e6e73);
+  --dk-av-border: var(--color-border-subtle, #e5e5ea);
+  --dk-av-presence: var(--space-2, 8px);
+  --dk-av-presence-offset: 0px;
+
+  position: relative;
+  box-sizing: border-box;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-av-size);
+  height: var(--dk-av-size);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: none;
+  vertical-align: middle;
+}
+
+.dk-avatar *,
+.dk-avatar *::before,
+.dk-avatar *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Sizes → global tokens ——— */
+
+.dk-avatar--xs {
+  --dk-av-size: var(--control-height-xs, 28px);
+  --dk-av-font: 0.625rem;
+  --dk-av-presence: 6px;
+}
+
+.dk-avatar--sm {
+  --dk-av-size: var(--control-height-sm, 32px);
+  --dk-av-font: var(--font-size-caption, 12px);
+  --dk-av-presence: 7px;
+}
+
+.dk-avatar--md {
+  --dk-av-size: var(--control-height-md, 40px);
+  --dk-av-font: var(--font-size-caption, 12px);
+  --dk-av-presence: var(--space-2, 8px);
+}
+
+.dk-avatar--lg {
+  --dk-av-size: var(--control-height-lg, 48px);
+  --dk-av-font: var(--font-size-body-sm, 14px);
+  --dk-av-presence: 10px;
+}
+
+.dk-avatar--xl {
+  --dk-av-size: var(--control-height-xl, 56px);
+  --dk-av-font: var(--font-size-body, 16px);
+  --dk-av-presence: var(--space-3, 12px);
+}
+
+.dk-avatar--2xl {
+  --dk-av-size: var(--space-16, 64px);
+  --dk-av-font: var(--font-size-body, 16px);
+  --dk-av-presence: var(--space-3, 12px);
+}
+
+/* ——— Shape ——— */
+
+.dk-avatar--circle .dk-avatar__surface {
+  --dk-av-radius: var(--radius-full, 999px);
+}
+
+.dk-avatar--rounded .dk-avatar__surface {
+  --dk-av-radius: var(--radius-3, 8px);
+}
+
+.dk-avatar--square .dk-avatar__surface {
+  --dk-av-radius: var(--radius-1, 4px);
+}
+
+.dk-avatar--organization .dk-avatar__surface {
+  --dk-av-bg: var(--color-surface-secondary, #f5f5f7);
+}
+
+/* ——— Surface ——— */
+
+.dk-avatar__surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--dk-av-radius);
+  background: var(--dk-av-bg);
+  color: var(--dk-av-fg);
+  border: var(--border-width-default, 1px) solid var(--dk-av-border);
+}
+
+.dk-avatar__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  aspect-ratio: 1 / 1;
+}
+
+.dk-avatar__initials {
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--dk-av-font);
+  font-weight: var(--weight-semibold, 600);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--dk-av-fg);
+  user-select: none;
+  overflow-wrap: normal;
+}
+
+.dk-avatar__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--dk-av-icon);
+  color: var(--dk-av-fg);
+  line-height: 0;
+}
+
+.dk-avatar__icon svg {
+  display: block;
+  width: 1em;
+  height: 1em;
+}
+
+/* ——— Presence — shape + glyph, not color alone ———
+ * Anchored to the end-block corner, offset so it does not cover the face center.
+ */
+
+.dk-avatar__presence {
+  position: absolute;
+  inset-block-end: var(--dk-av-presence-offset);
+  inset-inline-end: var(--dk-av-presence-offset);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-av-presence);
+  height: var(--dk-av-presence);
+  border-radius: var(--radius-full, 999px);
+  border: 2px solid var(--color-surface-primary, #fff);
+  background: var(--color-surface-primary, #fff);
+  color: var(--dk-av-fg);
+  font-size: calc(var(--dk-av-presence) * 0.7);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.dk-avatar__presence-glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  font-size: inherit;
+  font-weight: var(--weight-bold, 700);
+}
+
+.dk-avatar__presence--online .dk-avatar__presence-glyph {
+  background: var(--color-success, #34c759);
+  color: var(--color-success, #34c759);
+  border-radius: var(--radius-full, 999px);
+  /* Filled circle — shape communicates online */
+  font-size: 0;
+}
+
+.dk-avatar__presence--online .dk-avatar__presence-glyph::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: currentColor;
+}
+
+.dk-avatar__presence--offline .dk-avatar__presence-glyph {
+  background: var(--color-surface-primary, #fff);
+  color: var(--color-text-secondary, #6e6e73);
+  box-shadow: none;
+  border: 2px solid currentColor;
+  border-radius: var(--radius-full, 999px);
+  font-size: 0;
+}
+
+.dk-avatar__presence--busy .dk-avatar__presence-glyph {
+  background: var(--color-danger, #ff3b30);
+  color: var(--color-danger, #ff3b30);
+  border-radius: var(--radius-1, 4px);
+  font-size: 0;
+}
+
+.dk-avatar__presence--busy .dk-avatar__presence-glyph::before {
+  content: "";
+  width: 55%;
+  height: 55%;
+  background: var(--color-surface-primary, #fff);
+  border-radius: 1px;
+}
+
+.dk-avatar__presence--away .dk-avatar__presence-glyph {
+  background: var(--color-warning, #ff9f0a);
+  color: var(--color-surface-primary, #fff);
+  border-radius: var(--radius-full, 999px);
+  font-size: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.dk-avatar__presence--away .dk-avatar__presence-glyph::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-warning, #ff9f0a);
+  border-radius: inherit;
+}
+
+.dk-avatar__presence--away .dk-avatar__presence-glyph::after {
+  /* Half-moon cut — shape communicates away */
+  content: "";
+  position: absolute;
+  inset-block-start: -15%;
+  inset-inline-end: -15%;
+  width: 70%;
+  height: 70%;
+  border-radius: inherit;
+  background: var(--color-surface-primary, #fff);
+}
+
+.dk-avatar__presence--unknown .dk-avatar__presence-glyph {
+  background: var(--color-surface-secondary, #f5f5f7);
+  color: var(--color-text-secondary, #6e6e73);
+  border: 1px solid currentColor;
+  border-radius: var(--radius-full, 999px);
+  font-size: calc(var(--dk-av-presence) * 0.65);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-weight: var(--weight-bold, 700);
+}
+
+/* Optional status badge — end-start corner so it does not collide with presence */
+.dk-avatar__status {
+  position: absolute;
+  inset-block-end: var(--dk-av-presence-offset);
+  inset-inline-start: var(--dk-av-presence-offset);
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 50%;
+  pointer-events: none;
+  line-height: 0;
+}
+
+.dk-avatar__status:not(:empty) {
+  /* Keep status away from center face area */
+  transform: translate(-10%, 10%);
+}
+
+[dir="rtl"] .dk-avatar__status:not(:empty) {
+  transform: translate(10%, 10%);
+}
+
+.dk-avatar--interactive {
+  cursor: pointer;
+}
+
+.dk-avatar--interactive:focus-visible {
+  outline: var(--focus-ring-width, 2px) solid var(--color-focus, #0071e3);
+  outline-offset: var(--focus-ring-offset, 2px);
+  border-radius: var(--dk-av-radius);
+}
+
+.dk-avatar--interactive:focus-visible .dk-avatar__surface {
+  outline: none;
+}
+
+[data-theme="dark"] .dk-avatar,
+.dk-avatar[data-theme="dark"] {
+  --dk-av-bg: var(--color-surface-secondary, #3a3a3c);
+  --dk-av-fg: var(--color-text-secondary, #aeaeb2);
+  --dk-av-border: var(--color-border-subtle, #48484a);
+}
+
+[data-theme="dark"] .dk-avatar__presence,
+.dk-avatar[data-theme="dark"] .dk-avatar__presence {
+  border-color: var(--color-surface-primary, #2c2c2e);
+  background: var(--color-surface-primary, #2c2c2e);
+}
+
+[data-theme="hc"] .dk-avatar,
+.dk-avatar[data-theme="hc"],
+[data-contrast="high"] .dk-avatar {
+  --dk-av-bg: Canvas;
+  --dk-av-fg: CanvasText;
+  --dk-av-border: CanvasText;
+}
+
+[data-theme="hc"] .dk-avatar__surface,
+[data-contrast="high"] .dk-avatar__surface {
+  border-width: 2px;
+}
+
+[data-theme="hc"] .dk-avatar__presence,
+[data-contrast="high"] .dk-avatar__presence {
+  border-color: Canvas;
+  border-width: 2px;
+}
+
+[data-theme="hc"] .dk-avatar__presence--online .dk-avatar__presence-glyph,
+[data-contrast="high"] .dk-avatar__presence--online .dk-avatar__presence-glyph {
+  background: CanvasText;
+  color: CanvasText;
+}
+
+[data-theme="hc"] .dk-avatar__presence--busy .dk-avatar__presence-glyph,
+[data-contrast="high"] .dk-avatar__presence--busy .dk-avatar__presence-glyph {
+  background: CanvasText;
+}
+
+[data-theme="hc"] .dk-avatar__presence--busy .dk-avatar__presence-glyph::before,
+[data-contrast="high"] .dk-avatar__presence--busy .dk-avatar__presence-glyph::before {
+  background: Canvas;
+}
+
+[data-theme="hc"] .dk-avatar__presence--away .dk-avatar__presence-glyph::before,
+[data-contrast="high"] .dk-avatar__presence--away .dk-avatar__presence-glyph::before {
+  background: CanvasText;
+}
+
+[data-theme="hc"] .dk-avatar__presence--away .dk-avatar__presence-glyph::after,
+[data-contrast="high"] .dk-avatar__presence--away .dk-avatar__presence-glyph::after {
+  background: Canvas;
+}
+
+[dir="rtl"] .dk-avatar {
+  /* Presence stays on inline-end via logical properties */
+}

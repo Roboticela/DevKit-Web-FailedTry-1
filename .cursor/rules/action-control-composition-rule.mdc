@@ -1,0 +1,189 @@
+---
+alwaysApply: true
+---
+
+
+Create Group 10 — Action & Control Compositions for the DevKit.
+
+This group belongs to:
+
+Layer 01 — Foundations & Interface Primitives.
+
+Existing groups:
+
+Group 01 — Interaction Controls
+Group 02 — Form Controls
+Group 03 — Selection Controls
+Group 04 — Navigation Controls
+Group 05 — Feedback & Status
+Group 06 — Overlays & Surfaces
+Group 07 — Data Display
+Group 08 — Media & Visual Content
+Group 09 — Typography & Content
+
+Use the DevKit Core Design Constitution as the immutable global foundation.
+
+Do not redefine global tokens.
+
+Inherit:
+- typography
+- spacing
+- colors
+- semantic colors
+- sizing
+- control heights
+- radius
+- borders
+- shadows
+- elevation
+- iconography
+- motion
+- breakpoints
+- focus treatment
+- touch targets
+- accessibility
+- density
+- Light theme
+- Dark theme
+- High Contrast
+- RTL
+- localization
+- reduced motion
+- reduced transparency
+
+Create exactly these 10 components:
+
+091 Button Group
+092 Icon Button Group
+093 Split Button
+094 Segmented Control
+095 Action Group
+096 Action Bar
+097 Floating Action
+098 Overflow Action
+099 Command Action
+100 Destructive Action Group
+
+These are action-composition primitives.
+
+They must compose existing controls rather than recreate their internal button behavior.
+
+Do not create:
+- complete toolbars
+- complete navigation bars
+- complete command palettes
+- complete contextual menus
+- application-specific toolbars
+- dashboard action areas
+- page headers
+- complete mobile bottom navigation
+
+Those belong to higher-level groups.
+
+The components must work across:
+
+Mobile
+Tablet
+Desktop
+Large Desktop
+Ultra Wide
+
+Support:
+Mouse
+Keyboard
+Touch
+Stylus
+Screen readers
+
+Support:
+Light
+Dark
+High Contrast
+RTL
+Localization
+Dynamic text
+Browser zoom
+Reduced motion
+Reduced transparency
+
+Every interactive control must provide:
+default
+hover where applicable
+focus
+pressed
+disabled
+selected where applicable
+
+Do not rely only on hover because touch devices do not have hover.
+
+Every touch-accessible action must respect the global minimum effective touch target.
+
+Do not create tiny controls simply to fit more actions.
+
+Action hierarchy must be obvious.
+
+Primary actions must visually dominate secondary actions.
+
+Secondary actions must not visually compete with destructive or primary actions.
+
+Avoid:
+unnecessary gradients
+heavy shadows
+excessive borders
+large decorative surfaces
+excessive pill styling
+random icon usage
+
+Every icon must communicate a recognizable action or state.
+
+Do not add icons merely for decoration.
+
+Icons must have accessible names when they communicate meaning.
+
+Icon-only controls must have accessible labels.
+
+Do not use an icon-only control when a text label is necessary for discoverability.
+
+Actions must have predictable ordering.
+
+On narrow screens:
+actions may wrap
+actions may collapse
+secondary actions may move into overflow
+
+Do not allow primary actions to disappear into overflow unless explicitly configured.
+
+Support localization.
+
+Text can become significantly longer in other languages.
+
+Do not design around fixed button widths.
+
+Support RTL using logical layout properties.
+
+Do not manually reverse icon placement when the icon itself is directional unless the semantic meaning requires mirroring.
+
+Actions that open menus must clearly communicate that a menu exists.
+
+Actions that trigger immediate operations must not visually resemble menu triggers.
+
+Keyboard interaction must follow established platform conventions.
+
+Do not invent unusual keyboard behavior.
+
+Focus must remain visible after keyboard navigation.
+
+Destructive actions require stronger confirmation when the operation is irreversible.
+
+Do not turn every destructive action into a confirmation dialog automatically; the consuming component decides the appropriate confirmation pattern.
+
+The components must remain generic enough to compose into future:
+toolbars
+editors
+tables
+dashboards
+detail pages
+settings
+AI interfaces
+mobile actions
+contextual actions

@@ -1,0 +1,377 @@
+/* Code Block (ID 088) — Typography & Content
+ * Multiline source / preformatted content. Global --font-mono.
+ * Default overflow: horizontal scroll (preserve formatting). Wrap is opt-in.
+ * Line numbers are visual only — never part of copied text.
+ * Code region is LTR; chrome is direction-aware.
+ * Syntax tokens: color + weight/style — never color alone.
+ * No box-shadow. No gradients.
+ */
+
+.dk-code-block {
+  --dk-code-block-fg: var(--color-text-primary, var(--color-text, #1d1d1f));
+  --dk-code-block-muted: var(--color-text-secondary, #6e6e73);
+  --dk-code-block-bg: var(--color-surface-secondary, #f5f5f7);
+  --dk-code-block-chrome-bg: var(--color-surface-primary, #ffffff);
+  --dk-code-block-border: var(--color-border-subtle, #e5e5ea);
+  --dk-code-block-highlight-bg: var(--color-surface-tertiary, #ebebf0);
+  --dk-code-block-highlight-edge: var(--color-border-strong, #1d1d1f);
+  --dk-code-block-error-fg: var(--color-text-danger, #b42318);
+  --dk-code-block-radius: var(--radius-2, 8px);
+  --dk-code-block-pad: var(--space-3, 12px);
+  --dk-code-block-gap: var(--space-2, 8px);
+  --dk-code-block-line-height: var(--line-height-code, 1.55);
+  --dk-code-block-font-size: var(--font-size-sm, 0.875rem);
+  --dk-code-block-gutter: 2.75rem;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin: 0;
+  border: var(--border-width-default, 1px) solid var(--dk-code-block-border);
+  border-radius: var(--dk-code-block-radius);
+  background: var(--dk-code-block-bg);
+  color: var(--dk-code-block-fg);
+  overflow: hidden;
+}
+
+.dk-code-block *,
+.dk-code-block *::before,
+.dk-code-block *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Chrome (RTL-aware surrounding UI) ——— */
+
+.dk-code-block__chrome {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--dk-code-block-gap);
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--dk-code-block-pad);
+  border-block-end: var(--border-width-default, 1px) solid var(--dk-code-block-border);
+  background: var(--dk-code-block-chrome-bg);
+}
+
+.dk-code-block__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--dk-code-block-gap);
+  min-width: 0;
+}
+
+.dk-code-block__language {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  color: var(--dk-code-block-muted);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--font-size-xs, 0.75rem);
+  font-weight: var(--weight-medium, 500);
+  letter-spacing: 0.04em;
+  line-height: var(--line-height-tight, 1.25);
+  text-transform: uppercase;
+}
+
+.dk-code-block__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-1, 4px);
+  margin-inline-start: auto;
+}
+
+/* ——— Viewport (bounded; does not grow infinitely) ——— */
+
+.dk-code-block__viewport {
+  position: relative;
+  max-width: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  outline: none;
+}
+
+.dk-code-block__viewport:focus-visible {
+  outline: var(--border-width-focus, 2px) solid
+    var(--color-border-focus, var(--color-focus-ring, #0a84ff));
+  outline-offset: -2px;
+}
+
+.dk-code-block--overflow-scroll .dk-code-block__pre,
+.dk-code-block--overflow-scroll .dk-code-block__code,
+.dk-code-block--overflow-scroll .dk-code-block__line-text {
+  white-space: pre;
+}
+
+.dk-code-block--overflow-wrap .dk-code-block__pre,
+.dk-code-block--overflow-wrap .dk-code-block__code,
+.dk-code-block--overflow-wrap .dk-code-block__line-text {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.dk-code-block__pre {
+  margin: 0;
+  padding: var(--dk-code-block-pad);
+  overflow: visible;
+  font-family: var(
+    --font-mono,
+    ui-monospace,
+    "Cascadia Code",
+    Menlo,
+    Consolas,
+    monospace
+  );
+  font-size: var(--dk-code-block-font-size);
+  font-weight: var(--weight-regular, 400);
+  line-height: var(--dk-code-block-line-height);
+  color: var(--dk-code-block-fg);
+  tab-size: 2;
+  unicode-bidi: isolate;
+}
+
+.dk-code-block__code {
+  display: block;
+  font: inherit;
+  color: inherit;
+}
+
+/* ——— Lines + optional gutter ——— */
+
+.dk-code-block__line {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: calc(var(--dk-code-block-line-height) * 1em);
+  padding-block: 0;
+  padding-inline: 0;
+}
+
+.dk-code-block--line-numbers .dk-code-block__line {
+  grid-template-columns: var(--dk-code-block-gutter) minmax(0, 1fr);
+  column-gap: var(--space-3, 12px);
+}
+
+.dk-code-block__line-no {
+  user-select: none;
+  text-align: end;
+  color: var(--dk-code-block-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.dk-code-block__line-text {
+  min-width: 0;
+}
+
+.dk-code-block__line--highlight {
+  background: var(--dk-code-block-highlight-bg);
+  border-inline-start: 3px solid var(--dk-code-block-highlight-edge);
+  margin-inline-start: -3px;
+  padding-inline-start: 3px;
+}
+
+.dk-code-block--line-numbers .dk-code-block__line--highlight {
+  margin-inline-start: 0;
+  padding-inline-start: 0;
+}
+
+.dk-code-block--line-numbers .dk-code-block__line--highlight .dk-code-block__line-no {
+  border-inline-start: 3px solid var(--dk-code-block-highlight-edge);
+  padding-inline-start: var(--space-1, 4px);
+}
+
+/* ——— Syntax token hooks (not color-only) ——— */
+
+.dk-code-block [data-dk-token="keyword"] {
+  font-weight: var(--weight-semibold, 600);
+  color: var(--color-text-primary, var(--dk-code-block-fg));
+  text-decoration: none;
+}
+
+.dk-code-block [data-dk-token="string"] {
+  font-style: italic;
+  color: var(--color-text-secondary, var(--dk-code-block-muted));
+}
+
+.dk-code-block [data-dk-token="comment"] {
+  font-style: italic;
+  opacity: 0.85;
+  color: var(--color-text-secondary, var(--dk-code-block-muted));
+}
+
+.dk-code-block [data-dk-token="number"] {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-primary, var(--dk-code-block-fg));
+}
+
+.dk-code-block [data-dk-token="punctuation"] {
+  color: var(--color-text-secondary, var(--dk-code-block-muted));
+}
+
+/* ——— Status surfaces ——— */
+
+.dk-code-block__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--dk-code-block-gap);
+  min-height: 6rem;
+  padding: var(--space-4, 16px);
+  color: var(--dk-code-block-muted);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--font-size-sm, 0.875rem);
+  text-align: center;
+}
+
+.dk-code-block__status--error {
+  color: var(--dk-code-block-error-fg);
+  font-weight: var(--weight-medium, 500);
+}
+
+.dk-code-block__status-spinner {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid var(--dk-code-block-border);
+  border-block-start-color: var(--dk-code-block-fg);
+  border-radius: 50%;
+  animation: dk-code-block-spin 0.8s linear infinite;
+}
+
+@keyframes dk-code-block-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-code-block__status-spinner {
+    animation: none;
+    border-color: var(--dk-code-block-fg);
+  }
+}
+
+/* ——— Collapse footer ——— */
+
+.dk-code-block__footer {
+  border-block-start: var(--border-width-default, 1px) solid var(--dk-code-block-border);
+  background: var(--dk-code-block-chrome-bg);
+}
+
+.dk-code-block__expand {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: var(--space-1, 4px);
+  width: 100%;
+  margin: 0;
+  padding-block: var(--space-2, 8px);
+  padding-inline: var(--dk-code-block-pad);
+  border: none;
+  background: transparent;
+  color: var(--dk-code-block-fg);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--weight-medium, 500);
+  line-height: var(--line-height-tight, 1.25);
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+.dk-code-block__expand:focus-visible {
+  outline: var(--border-width-focus, 2px) solid
+    var(--color-border-focus, var(--color-focus-ring, #0a84ff));
+  outline-offset: -2px;
+}
+
+.dk-code-block__expand-meta {
+  color: var(--dk-code-block-muted);
+  font-weight: var(--weight-regular, 400);
+  text-decoration: none;
+}
+
+/* ——— Live region (copy feedback) ——— */
+
+.dk-code-block__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-code-block {
+  position: relative;
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-code-block {
+  --dk-code-block-fg: var(--color-text-primary, #f5f5f7);
+  --dk-code-block-muted: var(--color-text-secondary, #a1a1a6);
+  --dk-code-block-bg: var(--color-surface-secondary, #1c1c1e);
+  --dk-code-block-chrome-bg: var(--color-surface-primary, #2c2c2e);
+  --dk-code-block-border: var(--color-border-subtle, #48484a);
+  --dk-code-block-highlight-bg: var(--color-surface-tertiary, #3a3a3c);
+  --dk-code-block-highlight-edge: var(--color-border-strong, #f5f5f7);
+  --dk-code-block-error-fg: var(--color-text-danger, #ff6961);
+}
+
+[data-theme="hc"] .dk-code-block,
+[data-contrast="high"] .dk-code-block {
+  --dk-code-block-fg: CanvasText;
+  --dk-code-block-muted: CanvasText;
+  --dk-code-block-bg: Canvas;
+  --dk-code-block-chrome-bg: Canvas;
+  --dk-code-block-border: CanvasText;
+  --dk-code-block-highlight-bg: Highlight;
+  --dk-code-block-highlight-edge: CanvasText;
+  --dk-code-block-error-fg: CanvasText;
+  border-width: var(--border-width-strong, 2px);
+}
+
+[data-theme="hc"] .dk-code-block__language,
+[data-contrast="high"] .dk-code-block__language {
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+[data-theme="hc"] .dk-code-block [data-dk-token],
+[data-contrast="high"] .dk-code-block [data-dk-token] {
+  color: CanvasText;
+}
+
+[data-theme="hc"] .dk-code-block [data-dk-token="keyword"],
+[data-contrast="high"] .dk-code-block [data-dk-token="keyword"] {
+  font-weight: var(--weight-bold, 700);
+  text-decoration: underline;
+}
+
+[data-theme="hc"] .dk-code-block [data-dk-token="string"],
+[data-contrast="high"] .dk-code-block [data-dk-token="string"] {
+  font-style: italic;
+}
+
+[data-theme="hc"] .dk-code-block [data-dk-token="comment"],
+[data-contrast="high"] .dk-code-block [data-dk-token="comment"] {
+  font-style: italic;
+  opacity: 1;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+/* ——— RTL: chrome follows UI; code stays LTR ——— */
+
+[dir="rtl"] .dk-code-block__pre {
+  text-align: left;
+}

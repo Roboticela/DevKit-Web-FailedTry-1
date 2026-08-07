@@ -1,0 +1,48 @@
+{
+  "id": 90,
+  "name": "number-display",
+  "displayName": "Number Display",
+  "description": "Locale-aware numeric display — integer, decimal, currency, percent, signed, unit, opt-in compact. Loading/unknown/N/A without layout shift. Tabular alignment; negative not color-only. Full value for screen readers. Not a metric card.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "typography-content",
+  "subgroupName": "Typography & Content",
+  "kind": "component",
+  "layer": 1,
+  "icon": "number-display",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "typography-content",
+    "number-display",
+    "a11y",
+    "i18n"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

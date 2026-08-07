@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/CodeBlock.tsx",
+      "destination": "src/components/ui/CodeBlock.tsx"
+    },
+    {
+      "source": "files/src/styles/code-block.css",
+      "destination": "src/styles/code-block.css"
+    },
+    {
+      "source": "files/docs/CODE_BLOCK.md",
+      "destination": "docs/devkit/CODE_BLOCK.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,47 @@
+{
+  "id": 73,
+  "name": "media-object",
+  "displayName": "Media Object",
+  "description": "Media with adjacent text — leading/trailing media, title/description/metadata/status/actions, predictable media box, auto-stack on narrow, split interactivity when trailing controls exist.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "media-primitives",
+  "subgroupName": "Media & Visual Content",
+  "kind": "component",
+  "layer": 1,
+  "icon": "panel-left",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "media-primitives",
+    "media-object",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

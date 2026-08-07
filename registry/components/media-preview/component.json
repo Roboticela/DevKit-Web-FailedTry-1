@@ -1,0 +1,47 @@
+{
+  "id": 77,
+  "name": "media-preview",
+  "displayName": "Media Preview",
+  "description": "Larger media preview — image/video poster/document/audio/generic, loading states, optional title/meta, actions via DevKit controls. Not a lightbox or full player.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "media-primitives",
+  "subgroupName": "Media & Visual Content",
+  "kind": "component",
+  "layer": 1,
+  "icon": "monitor-play",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "media-primitives",
+    "media-preview",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

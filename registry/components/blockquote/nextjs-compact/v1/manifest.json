@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Blockquote.tsx",
+      "destination": "components/ui/Blockquote.tsx"
+    },
+    {
+      "source": "files/styles/blockquote.css",
+      "destination": "styles/blockquote.css"
+    },
+    {
+      "source": "files/docs/BLOCKQUOTE.md",
+      "destination": "docs/devkit/BLOCKQUOTE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

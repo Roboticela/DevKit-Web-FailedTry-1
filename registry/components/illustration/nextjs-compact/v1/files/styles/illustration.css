@@ -1,0 +1,239 @@
+/* Illustration (ID 075) — Media & Visual Content
+ * Presentation container for conceptual assets. Contain / natural only.
+ * Modest by default; hero is the explicit large mode.
+ * No decorative frames. No box-shadow. No gradients. No default animation.
+ */
+
+.dk-illustration {
+  --dk-illust-max-inline: calc(var(--space-16, 4rem) * 3); /* md: 12rem */
+  --dk-illust-max-block: var(--dk-illust-max-inline);
+  --dk-illust-fg: var(--color-text-secondary, #6e6e73);
+  --dk-illust-surface: transparent;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: min(100%, var(--dk-illust-max-inline));
+  max-height: var(--dk-illust-max-block);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--dk-illust-surface);
+  color: var(--dk-illust-fg);
+  line-height: 0;
+  overflow: hidden;
+}
+
+.dk-illustration *,
+.dk-illustration *::before,
+.dk-illustration *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Sizes (token-derived; hero is the only dominating mode) ——— */
+
+.dk-illustration--sm {
+  --dk-illust-max-inline: calc(var(--space-16, 4rem) * 2); /* 8rem */
+  --dk-illust-max-block: var(--dk-illust-max-inline);
+}
+
+.dk-illustration--md {
+  --dk-illust-max-inline: calc(var(--space-16, 4rem) * 3); /* 12rem */
+  --dk-illust-max-block: var(--dk-illust-max-inline);
+}
+
+.dk-illustration--lg {
+  --dk-illust-max-inline: calc(var(--space-16, 4rem) * 4); /* 16rem */
+  --dk-illust-max-block: var(--dk-illust-max-inline);
+}
+
+.dk-illustration--hero {
+  --dk-illust-max-inline: 100%;
+  --dk-illust-max-block: calc(var(--space-24, 6rem) * 4); /* 24rem */
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ——— Alignment ——— */
+
+.dk-illustration--align-start {
+  margin-inline-end: auto;
+  margin-inline-start: 0;
+  align-items: flex-start;
+}
+
+.dk-illustration--align-center {
+  margin-inline: auto;
+  align-items: center;
+}
+
+.dk-illustration--align-end {
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+  align-items: flex-end;
+}
+
+/* ——— Media ——— */
+
+.dk-illustration__media,
+.dk-illustration__vector,
+.dk-illustration__fallback {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.dk-illustration__vector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+}
+
+.dk-illustration__vector > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  max-height: var(--dk-illust-max-block);
+}
+
+.dk-illustration__fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(var(--space-16, 4rem) * 2);
+  color: var(--dk-illust-fg);
+}
+
+.dk-illustration__fallback-mark {
+  display: inline-flex;
+  opacity: 0.55;
+}
+
+/* contain — fit box, preserve aspect, never stretch */
+.dk-illustration--fit-contain .dk-illustration__media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.dk-illustration--fit-contain:not([style*="aspect-ratio"]) .dk-illustration__media {
+  width: auto;
+  height: auto;
+  max-width: min(100%, var(--dk-illust-max-inline));
+  max-height: var(--dk-illust-max-block);
+  object-fit: contain;
+}
+
+.dk-illustration--fit-contain[style*="aspect-ratio"] {
+  width: min(100%, var(--dk-illust-max-inline));
+}
+
+.dk-illustration--fit-contain[style*="aspect-ratio"] .dk-illustration__media {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* natural — intrinsic size, capped by max */
+.dk-illustration--fit-natural .dk-illustration__media {
+  width: auto;
+  height: auto;
+  max-width: min(100%, var(--dk-illust-max-inline));
+  max-height: var(--dk-illust-max-block);
+  object-fit: none;
+}
+
+.dk-illustration--fit-natural .dk-illustration__vector > svg {
+  width: auto;
+  height: auto;
+  max-width: min(100%, var(--dk-illust-max-inline));
+  max-height: var(--dk-illust-max-block);
+}
+
+.dk-illustration--hero.dk-illustration--fit-contain:not([style*="aspect-ratio"])
+  .dk-illustration__media,
+.dk-illustration--hero.dk-illustration--fit-natural .dk-illustration__media {
+  max-width: 100%;
+}
+
+/* ——— Responsive: reduce visual height on mobile ——— */
+
+@media (max-width: 40rem) {
+  .dk-illustration--md {
+    --dk-illust-max-inline: calc(var(--space-16, 4rem) * 2.5);
+    --dk-illust-max-block: calc(var(--space-16, 4rem) * 2.5);
+  }
+
+  .dk-illustration--lg {
+    --dk-illust-max-inline: calc(var(--space-16, 4rem) * 3);
+    --dk-illust-max-block: calc(var(--space-16, 4rem) * 3);
+  }
+
+  .dk-illustration--hero {
+    --dk-illust-max-block: calc(var(--space-24, 6rem) * 2.5); /* 15rem */
+  }
+}
+
+/* Desktop: allow larger presentation where appropriate */
+@media (min-width: 64rem) {
+  .dk-illustration--lg {
+    --dk-illust-max-inline: calc(var(--space-20, 5rem) * 4); /* 20rem */
+    --dk-illust-max-block: var(--dk-illust-max-inline);
+  }
+
+  .dk-illustration--hero {
+    --dk-illust-max-block: calc(var(--space-24, 6rem) * 5); /* 30rem */
+  }
+}
+
+/* ——— Animation: off by default; respect reduced motion ——— */
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-illustration--animated,
+  .dk-illustration--animated *,
+  .dk-illustration--animated *::before,
+  .dk-illustration--animated *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+html[data-motion="reduce"] .dk-illustration--animated,
+html[data-motion="reduce"] .dk-illustration--animated *,
+html[data-motion="reduce"] .dk-illustration--animated *::before,
+html[data-motion="reduce"] .dk-illustration--animated *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-illustration {
+  --dk-illust-fg: var(--color-text-secondary, #a1a1a6);
+}
+
+[data-theme="hc"] .dk-illustration,
+[data-contrast="high"] .dk-illustration {
+  --dk-illust-fg: CanvasText;
+}
+
+/* ——— RTL ——— */
+
+[dir="rtl"] .dk-illustration--align-start {
+  margin-inline-end: auto;
+  margin-inline-start: 0;
+}
+
+[dir="rtl"] .dk-illustration--align-end {
+  margin-inline-start: auto;
+  margin-inline-end: 0;
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/MediaPreview.tsx",
+      "destination": "components/ui/MediaPreview.tsx"
+    },
+    {
+      "source": "files/styles/media-preview.css",
+      "destination": "styles/media-preview.css"
+    },
+    {
+      "source": "files/docs/MEDIA-PREVIEW.md",
+      "destination": "docs/devkit/MEDIA-PREVIEW.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/MediaObject.tsx",
+      "destination": "components/ui/MediaObject.tsx"
+    },
+    {
+      "source": "files/styles/media-object.css",
+      "destination": "styles/media-object.css"
+    },
+    {
+      "source": "files/docs/MEDIA-OBJECT.md",
+      "destination": "docs/devkit/MEDIA-OBJECT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

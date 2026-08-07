@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ActionSegmentedControl.tsx",
+      "destination": "src/components/ui/ActionSegmentedControl.tsx"
+    },
+    {
+      "source": "files/src/styles/action-segmented-control.css",
+      "destination": "src/styles/action-segmented-control.css"
+    },
+    {
+      "source": "files/docs/ACTION_SEGMENTED_CONTROL.md",
+      "destination": "docs/devkit/ACTION_SEGMENTED_CONTROL.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

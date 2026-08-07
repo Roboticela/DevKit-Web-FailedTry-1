@@ -1,0 +1,257 @@
+/* Icon Container (ID 074) — Media & Visual Content
+ * Quiet frame for icons. Optical centering (not pure math center).
+ * Default shape is transparent — do not force colored circles.
+ * No box-shadow. No gradients. Semantic colors via tokens only.
+ */
+
+.dk-icon-container {
+  --dk-ic-size: var(--control-height-sm, 32px);
+  --dk-ic-icon: var(--icon-20, 20px);
+  --dk-ic-radius: var(--radius-2, 6px);
+  --dk-ic-fg: var(--color-text-secondary, #6e6e73);
+  --dk-ic-bg: transparent;
+  --dk-ic-border: transparent;
+  /* Optical nudge — stroke icons sit slightly below geometric center */
+  --dk-ic-optical-y: 0.5px;
+
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--dk-ic-size);
+  height: var(--dk-ic-size);
+  min-width: var(--dk-ic-size);
+  min-height: var(--dk-ic-size);
+  margin: 0;
+  padding: 0;
+  border: var(--border-width-default, 1px) solid var(--dk-ic-border);
+  border-radius: var(--dk-ic-radius);
+  background: var(--dk-ic-bg);
+  color: var(--dk-ic-fg);
+  line-height: 0;
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.dk-icon-container *,
+.dk-icon-container *::before,
+.dk-icon-container *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Glyph (optically centered) ——— */
+
+.dk-icon-container__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--dk-ic-icon);
+  height: var(--dk-ic-icon);
+  font-size: var(--dk-ic-icon);
+  line-height: 1;
+  color: inherit;
+  transform: translateY(var(--dk-ic-optical-y));
+}
+
+.dk-icon-container__glyph > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* ——— Sizes → global tokens ——— */
+
+.dk-icon-container--sm {
+  --dk-ic-size: var(--control-height-xs, 28px);
+  --dk-ic-icon: var(--icon-16, 16px);
+  --dk-ic-optical-y: 0.4px;
+}
+
+.dk-icon-container--md {
+  --dk-ic-size: var(--control-height-sm, 32px);
+  --dk-ic-icon: var(--icon-20, 20px);
+  --dk-ic-optical-y: 0.5px;
+}
+
+.dk-icon-container--lg {
+  --dk-ic-size: var(--control-height-md, 40px);
+  --dk-ic-icon: var(--icon-24, 24px);
+  --dk-ic-optical-y: 0.6px;
+}
+
+/* ——— Shapes ——— */
+
+.dk-icon-container--transparent {
+  --dk-ic-bg: transparent;
+  --dk-ic-border: transparent;
+  --dk-ic-radius: 0;
+  border-width: 0;
+}
+
+.dk-icon-container--square {
+  --dk-ic-radius: var(--radius-1, 4px);
+}
+
+.dk-icon-container--rounded {
+  --dk-ic-radius: var(--radius-3, 8px);
+}
+
+.dk-icon-container--circle {
+  --dk-ic-radius: var(--radius-full, 9999px);
+}
+
+/* Framed shapes get a quiet surface so the container never outshouts the icon */
+.dk-icon-container--square,
+.dk-icon-container--rounded,
+.dk-icon-container--circle {
+  --dk-ic-bg: var(--color-surface-secondary, #f5f5f7);
+  --dk-ic-border: var(--color-border-subtle, var(--color-border-default, #d2d2d7));
+}
+
+/* ——— Semantic tones (token colors only) ——— */
+
+.dk-icon-container--neutral {
+  --dk-ic-fg: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-icon-container--positive {
+  --dk-ic-fg: var(--color-success, #1f8b4c);
+}
+
+.dk-icon-container--warning {
+  --dk-ic-fg: var(--color-warning, #b67800);
+}
+
+.dk-icon-container--negative {
+  --dk-ic-fg: var(--color-danger, var(--color-error, #d70015));
+}
+
+.dk-icon-container--informational {
+  --dk-ic-fg: var(--color-info, #0071e3);
+}
+
+/* Subtle tinted frames for non-transparent shapes + non-neutral tones */
+.dk-icon-container--square.dk-icon-container--positive,
+.dk-icon-container--rounded.dk-icon-container--positive,
+.dk-icon-container--circle.dk-icon-container--positive {
+  --dk-ic-bg: var(--color-success-subtle, #e4f6e8);
+  --dk-ic-border: var(--color-success-border, #8fd19a);
+}
+
+.dk-icon-container--square.dk-icon-container--warning,
+.dk-icon-container--rounded.dk-icon-container--warning,
+.dk-icon-container--circle.dk-icon-container--warning {
+  --dk-ic-bg: var(--color-warning-subtle, #fff4e0);
+  --dk-ic-border: var(--color-warning-border, #f0c36d);
+}
+
+.dk-icon-container--square.dk-icon-container--negative,
+.dk-icon-container--rounded.dk-icon-container--negative,
+.dk-icon-container--circle.dk-icon-container--negative {
+  --dk-ic-bg: var(--color-danger-subtle, var(--color-error-subtle, #fde8ea));
+  --dk-ic-border: var(--color-danger-border, var(--color-error-border, #f0a8b0));
+}
+
+.dk-icon-container--square.dk-icon-container--informational,
+.dk-icon-container--rounded.dk-icon-container--informational,
+.dk-icon-container--circle.dk-icon-container--informational {
+  --dk-ic-bg: var(--color-info-subtle, #e5f1fb);
+  --dk-ic-border: var(--color-info-border, #99c9f0);
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-icon-container {
+  --dk-ic-fg: var(--color-text-secondary, #a1a1a6);
+}
+
+[data-theme="dark"] .dk-icon-container--square,
+[data-theme="dark"] .dk-icon-container--rounded,
+[data-theme="dark"] .dk-icon-container--circle {
+  --dk-ic-bg: var(--color-surface-secondary, #2c2c2e);
+  --dk-ic-border: var(--color-border-subtle, var(--color-border-default, #48484a));
+}
+
+[data-theme="dark"] .dk-icon-container--positive {
+  --dk-ic-fg: var(--color-success, #30d158);
+}
+
+[data-theme="dark"] .dk-icon-container--warning {
+  --dk-ic-fg: var(--color-warning, #ffd60a);
+}
+
+[data-theme="dark"] .dk-icon-container--negative {
+  --dk-ic-fg: var(--color-danger, var(--color-error, #ff453a));
+}
+
+[data-theme="dark"] .dk-icon-container--informational {
+  --dk-ic-fg: var(--color-info, #0a84ff);
+}
+
+[data-theme="dark"] .dk-icon-container--square.dk-icon-container--positive,
+[data-theme="dark"] .dk-icon-container--rounded.dk-icon-container--positive,
+[data-theme="dark"] .dk-icon-container--circle.dk-icon-container--positive {
+  --dk-ic-bg: var(--color-success-subtle, #0d2a18);
+  --dk-ic-border: var(--color-success-border, #1a5c32);
+}
+
+[data-theme="dark"] .dk-icon-container--square.dk-icon-container--warning,
+[data-theme="dark"] .dk-icon-container--rounded.dk-icon-container--warning,
+[data-theme="dark"] .dk-icon-container--circle.dk-icon-container--warning {
+  --dk-ic-bg: var(--color-warning-subtle, #2a1f00);
+  --dk-ic-border: var(--color-warning-border, #6b4e00);
+}
+
+[data-theme="dark"] .dk-icon-container--square.dk-icon-container--negative,
+[data-theme="dark"] .dk-icon-container--rounded.dk-icon-container--negative,
+[data-theme="dark"] .dk-icon-container--circle.dk-icon-container--negative {
+  --dk-ic-bg: var(--color-danger-subtle, var(--color-error-subtle, #3b0a10));
+  --dk-ic-border: var(--color-danger-border, var(--color-error-border, #7a1a24));
+}
+
+[data-theme="dark"] .dk-icon-container--square.dk-icon-container--informational,
+[data-theme="dark"] .dk-icon-container--rounded.dk-icon-container--informational,
+[data-theme="dark"] .dk-icon-container--circle.dk-icon-container--informational {
+  --dk-ic-bg: var(--color-info-subtle, #00263d);
+  --dk-ic-border: var(--color-info-border, #004d7a);
+}
+
+[data-theme="hc"] .dk-icon-container,
+[data-contrast="high"] .dk-icon-container {
+  --dk-ic-fg: CanvasText;
+  --dk-ic-bg: Canvas;
+  --dk-ic-border: CanvasText;
+}
+
+[data-theme="hc"] .dk-icon-container--transparent,
+[data-contrast="high"] .dk-icon-container--transparent {
+  --dk-ic-bg: transparent;
+  --dk-ic-border: transparent;
+}
+
+[data-theme="hc"] .dk-icon-container--positive,
+[data-contrast="high"] .dk-icon-container--positive,
+[data-theme="hc"] .dk-icon-container--warning,
+[data-contrast="high"] .dk-icon-container--warning,
+[data-theme="hc"] .dk-icon-container--negative,
+[data-contrast="high"] .dk-icon-container--negative,
+[data-theme="hc"] .dk-icon-container--informational,
+[data-contrast="high"] .dk-icon-container--informational {
+  --dk-ic-fg: CanvasText;
+}
+
+/* ——— Reduced motion ——— */
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-icon-container,
+  .dk-icon-container__glyph {
+    transition: none !important;
+  }
+}
+
+html[data-motion="reduce"] .dk-icon-container,
+html[data-motion="reduce"] .dk-icon-container__glyph {
+  transition: none !important;
+}

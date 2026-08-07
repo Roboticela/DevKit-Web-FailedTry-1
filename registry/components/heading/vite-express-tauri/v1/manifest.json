@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Heading.tsx",
+      "destination": "src/components/ui/Heading.tsx"
+    },
+    {
+      "source": "files/src/styles/heading.css",
+      "destination": "src/styles/heading.css"
+    },
+    {
+      "source": "files/docs/HEADING.md",
+      "destination": "docs/devkit/HEADING.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

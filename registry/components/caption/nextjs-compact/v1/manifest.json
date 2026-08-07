@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Caption.tsx",
+      "destination": "components/ui/Caption.tsx"
+    },
+    {
+      "source": "files/styles/caption.css",
+      "destination": "styles/caption.css"
+    },
+    {
+      "source": "files/docs/CAPTION.md",
+      "destination": "docs/devkit/CAPTION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

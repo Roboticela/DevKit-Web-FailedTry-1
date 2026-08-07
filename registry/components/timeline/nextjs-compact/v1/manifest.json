@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Timeline.tsx",
+      "destination": "components/ui/Timeline.tsx"
+    },
+    {
+      "source": "files/styles/timeline.css",
+      "destination": "styles/timeline.css"
+    },
+    {
+      "source": "files/docs/TIMELINE.md",
+      "destination": "docs/devkit/TIMELINE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

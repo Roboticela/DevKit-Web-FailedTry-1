@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Heading.tsx",
+      "destination": "components/ui/Heading.tsx"
+    },
+    {
+      "source": "files/styles/heading.css",
+      "destination": "styles/heading.css"
+    },
+    {
+      "source": "files/docs/HEADING.md",
+      "destination": "docs/devkit/HEADING.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/AvatarGroup.tsx",
+      "destination": "components/ui/AvatarGroup.tsx"
+    },
+    {
+      "source": "files/styles/avatar-group.css",
+      "destination": "styles/avatar-group.css"
+    },
+    {
+      "source": "files/docs/AVATAR-GROUP.md",
+      "destination": "docs/devkit/AVATAR-GROUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

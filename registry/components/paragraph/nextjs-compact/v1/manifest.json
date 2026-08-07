@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Paragraph.tsx",
+      "destination": "components/ui/Paragraph.tsx"
+    },
+    {
+      "source": "files/styles/paragraph.css",
+      "destination": "styles/paragraph.css"
+    },
+    {
+      "source": "files/docs/PARAGRAPH.md",
+      "destination": "docs/devkit/PARAGRAPH.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

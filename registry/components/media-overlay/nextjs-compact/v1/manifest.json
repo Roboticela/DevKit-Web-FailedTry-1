@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/MediaOverlay.tsx",
+      "destination": "components/ui/MediaOverlay.tsx"
+    },
+    {
+      "source": "files/styles/media-overlay.css",
+      "destination": "styles/media-overlay.css"
+    },
+    {
+      "source": "files/docs/MEDIA-OVERLAY.md",
+      "destination": "docs/devkit/MEDIA-OVERLAY.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

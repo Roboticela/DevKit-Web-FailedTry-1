@@ -1,0 +1,124 @@
+/* Code (ID 087) — Typography & Content
+ * Short inline technical content. Global --font-mono only.
+ * No syntax highlighting. Compact — not a large container.
+ * Long strings: wrap or controlled scroll — do not break identifiers arbitrarily.
+ * No box-shadow. No gradients.
+ */
+
+.dk-code {
+  --dk-code-size: 0.92em;
+  --dk-code-line: inherit;
+  --dk-code-weight: var(--weight-regular, 400);
+  --dk-code-fg: var(--color-text-primary, var(--color-text, #1d1d1f));
+  --dk-code-bg: var(--color-surface-secondary, #f5f5f7);
+  --dk-code-border: var(--color-border-subtle, #e5e5ea);
+  --dk-code-pad-inline: var(--space-1, 4px);
+  --dk-code-radius: var(--radius-1, 4px);
+
+  box-sizing: border-box;
+  display: inline;
+  max-width: 100%;
+  margin: 0;
+  padding-block: 0.1em;
+  padding-inline: var(--dk-code-pad-inline);
+  border: var(--border-width-default, 1px) solid var(--dk-code-border);
+  border-radius: var(--dk-code-radius);
+  background: var(--dk-code-bg);
+  color: var(--dk-code-fg);
+  font-family: var(
+    --font-mono,
+    ui-monospace,
+    "Cascadia Code",
+    Menlo,
+    Consolas,
+    monospace
+  );
+  font-size: var(--dk-code-size);
+  font-weight: var(--dk-code-weight);
+  line-height: var(--dk-code-line);
+  letter-spacing: normal;
+  text-align: start;
+  vertical-align: baseline;
+  white-space: pre-wrap;
+}
+
+.dk-code *,
+.dk-code *::before,
+.dk-code *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Variants ——— */
+
+.dk-code--inline {
+  /* default compact chip */
+}
+
+.dk-code--identifier {
+  /* Same chrome; overflow defaults favor keeping the token intact */
+  font-variant-ligatures: none;
+}
+
+.dk-code--keyboard {
+  --dk-code-pad-inline: var(--space-2, 8px);
+  font-weight: var(--weight-medium, 500);
+  white-space: pre;
+}
+
+/* ——— Overflow ——— */
+
+.dk-code--overflow-wrap {
+  white-space: pre-wrap;
+  /* Prefer soft wrap points; avoid careless mid-token breaks when possible */
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.dk-code--overflow-nowrap {
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.dk-code--overflow-scroll {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: baseline;
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overflow-wrap: normal;
+  word-break: normal;
+  /* Keep meaning intact — scroll instead of mid-token breaks */
+  scrollbar-width: thin;
+}
+
+/* Keyboard shortcuts stay intact */
+.dk-code--keyboard.dk-code--overflow-wrap {
+  white-space: pre;
+  overflow-wrap: normal;
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-code {
+  --dk-code-fg: var(--color-text-primary, #f5f5f7);
+  --dk-code-bg: var(--color-surface-secondary, #2c2c2e);
+  --dk-code-border: var(--color-border-subtle, #48484a);
+}
+
+[data-theme="hc"] .dk-code,
+[data-contrast="high"] .dk-code {
+  --dk-code-fg: CanvasText;
+  --dk-code-bg: Canvas;
+  --dk-code-border: CanvasText;
+  outline: var(--border-width-default, 1px) solid CanvasText;
+  outline-offset: -1px;
+}
+
+/* ——— RTL ——— */
+
+[dir="rtl"] .dk-code {
+  text-align: start;
+  unicode-bidi: isolate;
+}

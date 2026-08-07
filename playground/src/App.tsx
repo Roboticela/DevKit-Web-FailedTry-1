@@ -133,6 +133,176 @@ import type {
   ModalSurfacePosition,
   ModalSurfaceSize,
 } from "../../registry/components/modal-surface/vite-express-tauri/v1/files/src/components/ui/ModalSurface";
+import { Card } from "../../registry/components/card/vite-express-tauri/v1/files/src/components/ui/Card";
+import type {
+  CardOrientation,
+  CardVariant,
+} from "../../registry/components/card/vite-express-tauri/v1/files/src/components/ui/Card";
+import { List } from "../../registry/components/list/vite-express-tauri/v1/files/src/components/ui/List";
+import type {
+  ListDensity,
+  ListSelectionMode,
+} from "../../registry/components/list/vite-express-tauri/v1/files/src/components/ui/List";
+import { ListItem } from "../../registry/components/list-item/vite-express-tauri/v1/files/src/components/ui/ListItem";
+import type {
+  ListItemDensity,
+  ListItemLines,
+} from "../../registry/components/list-item/vite-express-tauri/v1/files/src/components/ui/ListItem";
+import { DataRow } from "../../registry/components/data-row/vite-express-tauri/v1/files/src/components/ui/DataRow";
+import type {
+  DataRowDensity,
+  DataRowLayout,
+} from "../../registry/components/data-row/vite-express-tauri/v1/files/src/components/ui/DataRow";
+import { Avatar } from "../../registry/components/avatar/vite-express-tauri/v1/files/src/components/ui/Avatar";
+import type {
+  AvatarPresence,
+  AvatarSize,
+} from "../../registry/components/avatar/vite-express-tauri/v1/files/src/components/ui/Avatar";
+import { AvatarGroup } from "../../registry/components/avatar-group/vite-express-tauri/v1/files/src/components/ui/AvatarGroup";
+import type {
+  AvatarGroupLayout,
+  AvatarGroupSize,
+} from "../../registry/components/avatar-group/vite-express-tauri/v1/files/src/components/ui/AvatarGroup";
+import { KeyValuePair } from "../../registry/components/key-value-pair/vite-express-tauri/v1/files/src/components/ui/KeyValuePair";
+import type {
+  KeyValuePairOrientation,
+} from "../../registry/components/key-value-pair/vite-express-tauri/v1/files/src/components/ui/KeyValuePair";
+import { Divider } from "../../registry/components/divider/vite-express-tauri/v1/files/src/components/ui/Divider";
+import type {
+  DividerOrientation,
+  DividerVariant,
+} from "../../registry/components/divider/vite-express-tauri/v1/files/src/components/ui/Divider";
+import { Timeline } from "../../registry/components/timeline/vite-express-tauri/v1/files/src/components/ui/Timeline";
+import type {
+  TimelineOrientation,
+} from "../../registry/components/timeline/vite-express-tauri/v1/files/src/components/ui/Timeline";
+import { ContentBlock } from "../../registry/components/content-block/vite-express-tauri/v1/files/src/components/ui/ContentBlock";
+import type {
+  ContentBlockDensity,
+  ContentBlockHeaderLayout,
+} from "../../registry/components/content-block/vite-express-tauri/v1/files/src/components/ui/ContentBlock";
+import { Image } from "../../registry/components/image/vite-express-tauri/v1/files/src/components/ui/Image";
+import type {
+  ImageObjectFit,
+  ImageRadius,
+} from "../../registry/components/image/vite-express-tauri/v1/files/src/components/ui/Image";
+import { Thumbnail } from "../../registry/components/thumbnail/vite-express-tauri/v1/files/src/components/ui/Thumbnail";
+import type {
+  ThumbnailAspect,
+  ThumbnailSize,
+} from "../../registry/components/thumbnail/vite-express-tauri/v1/files/src/components/ui/Thumbnail";
+import { MediaObject } from "../../registry/components/media-object/vite-express-tauri/v1/files/src/components/ui/MediaObject";
+import type {
+  MediaObjectDensity,
+  MediaObjectLayout,
+  MediaObjectMediaPosition,
+  MediaObjectMediaSize,
+} from "../../registry/components/media-object/vite-express-tauri/v1/files/src/components/ui/MediaObject";
+import { IconContainer } from "../../registry/components/icon-container/vite-express-tauri/v1/files/src/components/ui/IconContainer";
+import type {
+  IconContainerShape,
+  IconContainerSize,
+  IconContainerTone,
+} from "../../registry/components/icon-container/vite-express-tauri/v1/files/src/components/ui/IconContainer";
+import { Illustration } from "../../registry/components/illustration/vite-express-tauri/v1/files/src/components/ui/Illustration";
+import type {
+  IllustrationAlign,
+  IllustrationFit,
+  IllustrationSize,
+} from "../../registry/components/illustration/vite-express-tauri/v1/files/src/components/ui/Illustration";
+import { CoverMedia } from "../../registry/components/cover-media/vite-express-tauri/v1/files/src/components/ui/CoverMedia";
+import type {
+  CoverMediaAspect,
+  CoverMediaFocal,
+  CoverMediaFit,
+} from "../../registry/components/cover-media/vite-express-tauri/v1/files/src/components/ui/CoverMedia";
+import { MediaPreview } from "../../registry/components/media-preview/vite-express-tauri/v1/files/src/components/ui/MediaPreview";
+import type {
+  MediaPreviewKind,
+  MediaPreviewSize,
+} from "../../registry/components/media-preview/vite-express-tauri/v1/files/src/components/ui/MediaPreview";
+import { ImagePlaceholder } from "../../registry/components/image-placeholder/vite-express-tauri/v1/files/src/components/ui/ImagePlaceholder";
+import type {
+  ImagePlaceholderAspect,
+  ImagePlaceholderState,
+} from "../../registry/components/image-placeholder/vite-express-tauri/v1/files/src/components/ui/ImagePlaceholder";
+import { MediaOverlay } from "../../registry/components/media-overlay/vite-express-tauri/v1/files/src/components/ui/MediaOverlay";
+import type {
+  MediaOverlayPlacement,
+  MediaOverlayProtection,
+} from "../../registry/components/media-overlay/vite-express-tauri/v1/files/src/components/ui/MediaOverlay";
+import {
+  MediaMetadata,
+  formatMediaDate,
+  formatMediaDimensions,
+  formatMediaDuration,
+  formatMediaFileSize,
+} from "../../registry/components/media-metadata/vite-express-tauri/v1/files/src/components/ui/MediaMetadata";
+import type { MediaMetadataDensity } from "../../registry/components/media-metadata/vite-express-tauri/v1/files/src/components/ui/MediaMetadata";
+import { Text } from "../../registry/components/text/vite-express-tauri/v1/files/src/components/ui/Text";
+import type {
+  TextAlign,
+  TextColor,
+  TextSize,
+  TextWeight,
+} from "../../registry/components/text/vite-express-tauri/v1/files/src/components/ui/Text";
+import { Heading } from "../../registry/components/heading/vite-express-tauri/v1/files/src/components/ui/Heading";
+import type {
+  HeadingAlign,
+  HeadingLevel,
+  HeadingSize,
+} from "../../registry/components/heading/vite-express-tauri/v1/files/src/components/ui/Heading";
+import { Paragraph } from "../../registry/components/paragraph/vite-express-tauri/v1/files/src/components/ui/Paragraph";
+import type {
+  ParagraphMeasure,
+  ParagraphVariant,
+} from "../../registry/components/paragraph/vite-express-tauri/v1/files/src/components/ui/Paragraph";
+import { Label } from "../../registry/components/label/vite-express-tauri/v1/files/src/components/ui/Label";
+import type { LabelSize } from "../../registry/components/label/vite-express-tauri/v1/files/src/components/ui/Label";
+import { Caption } from "../../registry/components/caption/vite-express-tauri/v1/files/src/components/ui/Caption";
+import type {
+  CaptionMode,
+  CaptionSize,
+} from "../../registry/components/caption/vite-express-tauri/v1/files/src/components/ui/Caption";
+import { Link } from "../../registry/components/link/vite-express-tauri/v1/files/src/components/ui/Link";
+import type { LinkVariant } from "../../registry/components/link/vite-express-tauri/v1/files/src/components/ui/Link";
+import { Code } from "../../registry/components/code/vite-express-tauri/v1/files/src/components/ui/Code";
+import type {
+  CodeOverflow,
+  CodeVariant,
+} from "../../registry/components/code/vite-express-tauri/v1/files/src/components/ui/Code";
+import { CodeBlock } from "../../registry/components/code-block/vite-express-tauri/v1/files/src/components/ui/CodeBlock";
+import type { CodeBlockOverflow } from "../../registry/components/code-block/vite-express-tauri/v1/files/src/components/ui/CodeBlock";
+import { Blockquote } from "../../registry/components/blockquote/vite-express-tauri/v1/files/src/components/ui/Blockquote";
+import type { BlockquoteSize } from "../../registry/components/blockquote/vite-express-tauri/v1/files/src/components/ui/Blockquote";
+import { NumberDisplay } from "../../registry/components/number-display/vite-express-tauri/v1/files/src/components/ui/NumberDisplay";
+import type {
+  NumberDisplayCompact,
+  NumberDisplayFormat,
+} from "../../registry/components/number-display/vite-express-tauri/v1/files/src/components/ui/NumberDisplay";
+import { ActionButtonGroup } from "../../registry/components/action-button-group/vite-express-tauri/v1/files/src/components/ui/ActionButtonGroup";
+import type {
+  ActionButtonGroupDensity,
+  ActionButtonGroupOrientation,
+  ActionButtonGroupOverflow,
+  ActionButtonGroupSeparation,
+} from "../../registry/components/action-button-group/vite-express-tauri/v1/files/src/components/ui/ActionButtonGroup";
+import { IconButtonGroup } from "../../registry/components/icon-button-group/vite-express-tauri/v1/files/src/components/ui/IconButtonGroup";
+import type {
+  IconButtonGroupDensity,
+  IconButtonGroupOrientation,
+  IconButtonGroupOverflow,
+  IconButtonGroupSeparation,
+} from "../../registry/components/icon-button-group/vite-express-tauri/v1/files/src/components/ui/IconButtonGroup";
+import {
+  ActionSplitButton,
+  ActionSplitMenuTrigger,
+} from "../../registry/components/action-split-button/vite-express-tauri/v1/files/src/components/ui/ActionSplitButton";
+import type { ActionSplitButtonVariant } from "../../registry/components/action-split-button/vite-express-tauri/v1/files/src/components/ui/ActionSplitButton";
+import { ActionSegmentedControl } from "../../registry/components/action-segmented-control/vite-express-tauri/v1/files/src/components/ui/ActionSegmentedControl";
+import type { ActionSegmentedControlOverflow } from "../../registry/components/action-segmented-control/vite-express-tauri/v1/files/src/components/ui/ActionSegmentedControl";
+import { ActionGroup } from "../../registry/components/action-group/vite-express-tauri/v1/files/src/components/ui/ActionGroup";
+import type { ActionGroupOrientation } from "../../registry/components/action-group/vite-express-tauri/v1/files/src/components/ui/ActionGroup";
 import { countrySelectOptions, countryDialOptions, getCountry } from "./data/countries";
 import {
   evaluatePhone,
@@ -7097,6 +7267,3748 @@ function ModalSurfaceLab() {
   );
 }
 
+function CardLab() {
+  const [variant, setVariant] = useState<CardVariant>("standard");
+  const [orientation, setOrientation] = useState<CardOrientation>("vertical");
+  const [interactive, setInteractive] = useState(false);
+  const [selected, setSelected] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="card-lab-heading">
+      <h2 id="card-lab-heading">061 Card</h2>
+      <p className="catalog-group-desc">
+        Flexible grouping surface. Default is quiet (subtle border). Compose
+        media, header, body, footer, and actions — none are mandatory. Prefer
+        title links when the card also has independent actions.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "44rem" }}>
+        <Select
+          label="Variant"
+          presentation="listbox"
+          options={[
+            { value: "standard", label: "Standard" },
+            { value: "compact", label: "Compact" },
+            { value: "elevated", label: "Elevated" },
+            { value: "outlined", label: "Outlined" },
+          ]}
+          value={variant}
+          onValueChange={(v) => setVariant(v as CardVariant)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Orientation"
+            presentation="listbox"
+            options={[
+              { value: "vertical", label: "Vertical" },
+              { value: "horizontal", label: "Horizontal" },
+              { value: "responsive", label: "Responsive" },
+            ]}
+            value={orientation}
+            onValueChange={(v) => setOrientation(v as CardOrientation)}
+          />
+        </div>
+        <div
+          style={{
+            marginBottom: 16,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          <Switch
+            label="Interactive"
+            checked={interactive}
+            onCheckedChange={setInteractive}
+          />
+          <Switch
+            label="Selected"
+            checked={selected}
+            onCheckedChange={setSelected}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gap: 16,
+            gridTemplateColumns: "repeat(auto-fit, minmax(16rem, 1fr))",
+          }}
+        >
+          <Card
+            variant={variant}
+            orientation={orientation}
+            interactive={interactive}
+            selected={selected}
+            onClick={interactive ? () => undefined : undefined}
+            aria-label={interactive ? "Project overview card" : undefined}
+          >
+            <Card.Media aspectRatio="16 / 9">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  height: "100%",
+                  minHeight: "6rem",
+                  color: "var(--color-text-secondary)",
+                  fontSize: "var(--font-size-body-sm, 14px)",
+                }}
+                aria-hidden="true"
+              >
+                Media
+              </div>
+            </Card.Media>
+            <Card.Content>
+              <Card.Header>
+                <Card.Status>
+                  <Badge label="Active" tone="positive" shape="soft" />
+                </Card.Status>
+                <Card.Title>Project overview</Card.Title>
+                <Card.Description>
+                  Group related content without forcing chrome. Padding follows
+                  the global spacing scale.
+                </Card.Description>
+                <Card.Metadata>Updated · 2 hours ago</Card.Metadata>
+              </Card.Header>
+              <Card.Body>
+                Body content grows with the text — avoid fixed heights that leave
+                empty space.
+              </Card.Body>
+              {!interactive ? (
+                <Card.Footer>
+                  <Card.Actions>
+                    <Button size="sm" variant="quiet">
+                      Details
+                    </Button>
+                    <Button size="sm">Open</Button>
+                  </Card.Actions>
+                </Card.Footer>
+              ) : null}
+            </Card.Content>
+          </Card>
+
+          <Card variant={variant}>
+            <Card.Header>
+              <Card.Title href="#card-title-only">Title-linked card</Card.Title>
+              <Card.Description>
+                Independent footer actions — only the title is a link, so nesting
+                stays correct.
+              </Card.Description>
+            </Card.Header>
+            <Card.Footer>
+              <Card.Actions>
+                <Button size="sm" variant="quiet">
+                  Share
+                </Button>
+                <Button size="sm">Edit</Button>
+              </Card.Actions>
+            </Card.Footer>
+          </Card>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ListLab() {
+  const [density, setDensity] = useState<ListDensity>("comfortable");
+  const [selectionMode, setSelectionMode] =
+    useState<ListSelectionMode>("multiple");
+  const [dividers, setDividers] = useState(false);
+  const [showEmpty, setShowEmpty] = useState(false);
+  const [selectedKeys, setSelectedKeys] = useState<Set<string>>(
+    () => new Set(["inbox"])
+  );
+
+  return (
+    <section className="catalog-group" aria-labelledby="list-lab-heading">
+      <h2 id="list-lab-heading">062 List</h2>
+      <p className="catalog-group-desc">
+        Container for related items — density, optional dividers, groups, and
+        single/multiple/none selection. Empty lists use Empty State. Keyboard:
+        Arrow Up/Down, Home/End, Enter, Space when interactive.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="Density"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "comfortable", label: "Comfortable" },
+            { value: "spacious", label: "Spacious" },
+          ]}
+          value={density}
+          onValueChange={(v) => setDensity(v as ListDensity)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Selection"
+            presentation="listbox"
+            options={[
+              { value: "none", label: "None (informational)" },
+              { value: "single", label: "Single" },
+              { value: "multiple", label: "Multiple" },
+            ]}
+            value={selectionMode}
+            onValueChange={(v) => setSelectionMode(v as ListSelectionMode)}
+          />
+        </div>
+        <div
+          style={{
+            marginBottom: 16,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          <Switch
+            label="Dividers between items"
+            checked={dividers}
+            onCheckedChange={setDividers}
+          />
+          <Switch
+            label="Show empty state"
+            checked={showEmpty}
+            onCheckedChange={setShowEmpty}
+          />
+        </div>
+
+        <List
+          density={density}
+          selectionMode={selectionMode}
+          dividers={dividers ? "between" : "none"}
+          selectedKeys={selectedKeys}
+          onSelectionChange={setSelectedKeys}
+          aria-label="Mailbox folders"
+          empty={
+            <EmptyState
+              title="No items"
+              description="This list is empty. Compose Empty State — do not invent a parallel empty UI."
+              variant="no-results"
+              size="compact"
+            />
+          }
+        >
+          {showEmpty ? null : (
+            <>
+              <List.Group label="Primary">
+                <List.Item itemKey="inbox" lines="two">
+                  <List.ItemLabel>Inbox</List.ItemLabel>
+                  <List.ItemDescription>
+                    Messages waiting for you
+                  </List.ItemDescription>
+                </List.Item>
+                <List.Item itemKey="starred" lines="one">
+                  <List.ItemLabel>Starred</List.ItemLabel>
+                </List.Item>
+              </List.Group>
+              <List.Divider />
+              <List.Group label="Other">
+                <List.Item itemKey="archive" lines="multi">
+                  <List.ItemLabel>Archive</List.ItemLabel>
+                  <List.ItemDescription>
+                    Older conversations you may still need. Descriptions wrap
+                    freely in multi-line mode without clipping important text.
+                  </List.ItemDescription>
+                </List.Item>
+                <List.Item itemKey="spam" lines="one" disabled>
+                  <List.ItemLabel>Spam (disabled)</List.ItemLabel>
+                </List.Item>
+              </List.Group>
+            </>
+          )}
+        </List>
+
+        {selectionMode !== "none" && !showEmpty ? (
+          <p
+            style={{
+              marginTop: 12,
+              color: "var(--color-text-secondary)",
+              fontSize: "var(--font-size-body-sm, 14px)",
+            }}
+          >
+            Selected:{" "}
+            {selectedKeys.size
+              ? Array.from(selectedKeys).join(", ")
+              : "none"}
+          </p>
+        ) : null}
+      </div>
+    </section>
+  );
+}
+
+function ListItemLab() {
+  const [density, setDensity] = useState<ListItemDensity>("comfortable");
+  const [lines, setLines] = useState<ListItemLines>("two");
+
+  return (
+    <section className="catalog-group" aria-labelledby="list-item-lab-heading">
+      <h2 id="list-item-lab-heading">063 List Item</h2>
+      <p className="catalog-group-desc">
+        Atomic content row — leading, primary, secondary, trailing. Primary stays
+        dominant. Whole-row links use semantic anchors; independent trailing
+        actions keep clicks unambiguous via title links.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="Density"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "comfortable", label: "Comfortable" },
+            { value: "spacious", label: "Spacious" },
+          ]}
+          value={density}
+          onValueChange={(v) => setDensity(v as ListItemDensity)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Lines"
+            presentation="listbox"
+            options={[
+              { value: "one", label: "Single-line" },
+              { value: "two", label: "Two-line" },
+              { value: "multi", label: "Multi-line" },
+            ]}
+            value={lines}
+            onValueChange={(v) => setLines(v as ListItemLines)}
+          />
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <ListItem
+            density={density}
+            lines={lines}
+            interactive
+            href="#list-item-nav"
+          >
+            <ListItem.Leading>
+              <span aria-hidden="true" style={{ fontSize: 18 }}>
+                ●
+              </span>
+            </ListItem.Leading>
+            <ListItem.Primary>
+              <ListItem.Title>Whole-row navigation</ListItem.Title>
+            </ListItem.Primary>
+            <ListItem.Secondary>
+              <ListItem.Description>
+                The entire item is an anchor — no nested buttons.
+              </ListItem.Description>
+              <ListItem.Metadata>Folder · Shared</ListItem.Metadata>
+            </ListItem.Secondary>
+            <ListItem.Trailing>
+              <ListItem.Disclosure />
+            </ListItem.Trailing>
+          </ListItem>
+
+          <ListItem
+            density={density}
+            lines={lines}
+            interactive
+            hasTrailingActions
+            selected
+          >
+            <ListItem.Leading>
+              <span
+                aria-hidden="true"
+                style={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: "50%",
+                  background: "var(--color-surface-secondary)",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: 12,
+                  fontWeight: 600,
+                }}
+              >
+                AL
+              </span>
+            </ListItem.Leading>
+            <ListItem.Primary>
+              <ListItem.Title href="#ada">Ada Lovelace</ListItem.Title>
+            </ListItem.Primary>
+            <ListItem.Secondary>
+              <ListItem.Description>
+                Mathematician and writer. Long names wrap rather than truncating
+                when multi-line is selected.
+              </ListItem.Description>
+              <ListItem.Timestamp dateTime="2026-08-07T12:00:00">
+                2 hours ago
+              </ListItem.Timestamp>
+            </ListItem.Secondary>
+            <ListItem.Trailing>
+              <Badge label="Active" tone="positive" shape="soft" />
+              <ListItem.Value>12</ListItem.Value>
+              <ListItem.Action>
+                <Button size="sm" variant="quiet">
+                  Message
+                </Button>
+              </ListItem.Action>
+            </ListItem.Trailing>
+          </ListItem>
+
+          <ListItem density={density} lines="one">
+            <ListItem.Leading>
+              <span aria-hidden="true">☑</span>
+            </ListItem.Leading>
+            <ListItem.Primary>
+              <ListItem.Label>Informational row</ListItem.Label>
+            </ListItem.Primary>
+            <ListItem.Trailing>
+              <ListItem.Value>$240</ListItem.Value>
+            </ListItem.Trailing>
+          </ListItem>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DataRowLab() {
+  const [density, setDensity] = useState<DataRowDensity>("comfortable");
+  const [layout, setLayout] = useState<DataRowLayout>("responsive");
+  const [dividers, setDividers] = useState(false);
+  const [interactive, setInteractive] = useState(false);
+  const [selected, setSelected] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="data-row-lab-heading">
+      <h2 id="data-row-lab-heading">064 Data Row</h2>
+      <p className="catalog-group-desc">
+        Structured label/value fields for detail views and records — not a table
+        row. Narrow screens stack pairs; wider screens align columns. Long
+        values wrap by default.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Density"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "comfortable", label: "Comfortable" },
+            { value: "spacious", label: "Spacious" },
+          ]}
+          value={density}
+          onValueChange={(v) => setDensity(v as DataRowDensity)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Layout"
+            presentation="listbox"
+            options={[
+              { value: "responsive", label: "Responsive" },
+              { value: "horizontal", label: "Horizontal" },
+              { value: "stacked", label: "Stacked" },
+            ]}
+            value={layout}
+            onValueChange={(v) => setLayout(v as DataRowLayout)}
+          />
+        </div>
+        <div
+          style={{
+            marginBottom: 16,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          <Switch
+            label="Dividers"
+            checked={dividers}
+            onCheckedChange={setDividers}
+          />
+          <Switch
+            label="Interactive"
+            checked={interactive}
+            onCheckedChange={setInteractive}
+          />
+          <Switch
+            label="Selected"
+            checked={selected}
+            onCheckedChange={setSelected}
+          />
+        </div>
+
+        <DataRow
+          density={density}
+          layout={layout}
+          dividers={dividers}
+          interactive={interactive}
+          selected={selected}
+          onActivate={interactive ? () => undefined : undefined}
+          aria-label="Contact record"
+        >
+          <DataRow.Leading>
+            <span
+              aria-hidden="true"
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                background: "var(--color-surface-secondary)",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 12,
+                fontWeight: 600,
+              }}
+            >
+              JS
+            </span>
+          </DataRow.Leading>
+          <DataRow.Field label="Name" value="John Smith" />
+          <DataRow.Field label="Status">
+            <Badge label="Active" tone="positive" shape="soft" />
+          </DataRow.Field>
+          <DataRow.Field
+            label="Created"
+            value="Aug 7, 2026"
+            valueType="date"
+          />
+          <DataRow.Field
+            label="Email"
+            value="john.smith@example.com"
+            valueType="email"
+          />
+          <DataRow.Field
+            label="Balance"
+            value="12,450.00"
+            valueType="number"
+          />
+          <DataRow.Field
+            label="Reference"
+            value="ord_7f3a9c2e1b8d4056"
+            valueType="id"
+          />
+          <DataRow.Status>
+            <Badge label="Verified" tone="accent" shape="soft" />
+          </DataRow.Status>
+          <DataRow.Actions>
+            <Button size="sm" variant="quiet">
+              Edit
+            </Button>
+            <Button size="sm">Open</Button>
+          </DataRow.Actions>
+        </DataRow>
+      </div>
+    </section>
+  );
+}
+
+function AvatarLab() {
+  const [size, setSize] = useState<AvatarSize>("md");
+  const [presence, setPresence] = useState<AvatarPresence | "none">("online");
+
+  return (
+    <section className="catalog-group" aria-labelledby="avatar-lab-heading">
+      <h2 id="avatar-lab-heading">065 Avatar</h2>
+      <p className="catalog-group-desc">
+        Identity mark with deterministic fallback (image → initials → icon).
+        Presence uses shape and labels, not color alone. Sizes map to
+        control-height tokens.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "xs", label: "XS" },
+            { value: "sm", label: "SM" },
+            { value: "md", label: "MD" },
+            { value: "lg", label: "LG" },
+            { value: "xl", label: "XL" },
+            { value: "2xl", label: "2XL" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as AvatarSize)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Presence"
+            presentation="listbox"
+            options={[
+              { value: "none", label: "None" },
+              { value: "online", label: "Online" },
+              { value: "offline", label: "Offline" },
+              { value: "busy", label: "Busy" },
+              { value: "away", label: "Away" },
+              { value: "unknown", label: "Unknown" },
+            ]}
+            value={presence}
+            onValueChange={(v) => setPresence(v as AvatarPresence | "none")}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: 16,
+            marginBottom: 20,
+          }}
+        >
+          <Avatar
+            size={size}
+            name="Ada Lovelace"
+            presence={presence === "none" ? undefined : presence}
+          />
+          <Avatar
+            size={size}
+            name="李雷"
+            presence={presence === "none" ? undefined : presence}
+          />
+          <Avatar
+            size={size}
+            name="Madonna"
+            presence={presence === "none" ? undefined : presence}
+          />
+          <Avatar
+            size={size}
+            entity="organization"
+            name="Roboticela"
+            presence={presence === "none" ? undefined : presence}
+          />
+          <Avatar
+            size={size}
+            entity="generic"
+            prefer="icon"
+            aria-label="Unknown identity"
+          />
+          <Avatar size={size} decorative name="Hidden from AT" />
+        </div>
+
+        <p
+          style={{
+            margin: "0 0 8px",
+            color: "var(--color-text-secondary)",
+            fontSize: "var(--font-size-body-sm, 14px)",
+          }}
+        >
+          Broken image falls through to initials:
+        </p>
+        <Avatar
+          size={size}
+          name="John Smith"
+          src="/this-image-does-not-exist.jpg"
+          presence={presence === "none" ? undefined : presence}
+        />
+      </div>
+    </section>
+  );
+}
+
+const AVATAR_GROUP_DEMO_NAMES = [
+  "Ada Lovelace",
+  "Grace Hopper",
+  "Alan Turing",
+  "Katherine Johnson",
+  "Hedy Lamarr",
+  "Margaret Hamilton",
+  "Tim Berners-Lee",
+  "Radia Perlman",
+  "Donald Knuth",
+  "Barbara Liskov",
+  "Dennis Ritchie",
+  "Ken Thompson",
+];
+
+function AvatarGroupLab() {
+  const [size, setSize] = useState<AvatarGroupSize>("md");
+  const [layout, setLayout] = useState<AvatarGroupLayout>("overlap");
+  const [compact, setCompact] = useState(false);
+  const [max, setMax] = useState(3);
+  const [count, setCount] = useState(5);
+
+  const identities = Array.from({ length: count }, (_, i) => ({
+    key: `ag-${i}`,
+    name: AVATAR_GROUP_DEMO_NAMES[i] ?? `Member ${i + 1}`,
+  }));
+  const overflowNames = identities.slice(max).map((i) => i.name);
+
+  return (
+    <section className="catalog-group" aria-labelledby="avatar-group-lab-heading">
+      <h2 id="avatar-group-lab-heading">066 Avatar Group</h2>
+      <p className="catalog-group-desc">
+        Compact multi-identity arrangement. Modest overlap keeps initials
+        readable. Overflow shows +N; activate it for details (touch-friendly —
+        not hover-only). Only max visible avatars mount.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "xs", label: "XS" },
+            { value: "sm", label: "SM" },
+            { value: "md", label: "MD" },
+            { value: "lg", label: "LG" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as AvatarGroupSize)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Layout"
+            presentation="listbox"
+            options={[
+              { value: "overlap", label: "Overlap" },
+              { value: "separated", label: "Separated" },
+            ]}
+            value={layout}
+            onValueChange={(v) => setLayout(v as AvatarGroupLayout)}
+          />
+        </div>
+        <div style={{ marginBottom: 12 }}>
+          <Select
+            label="Identities"
+            presentation="listbox"
+            options={[
+              { value: "2", label: "2" },
+              { value: "5", label: "5" },
+              { value: "12", label: "12 (overflow)" },
+              { value: "24", label: "24 (large — still max mount)" },
+            ]}
+            value={String(count)}
+            onValueChange={(v) => setCount(Number(v))}
+          />
+        </div>
+        <div style={{ marginBottom: 12 }}>
+          <Select
+            label="Max visible"
+            presentation="listbox"
+            options={[
+              { value: "2", label: "2" },
+              { value: "3", label: "3" },
+              { value: "5", label: "5" },
+            ]}
+            value={String(max)}
+            onValueChange={(v) => setMax(Number(v))}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Switch label="Compact" checked={compact} onCheckedChange={setCompact} />
+        </div>
+
+        <AvatarGroup
+          size={size}
+          layout={layout}
+          compact={compact}
+          max={max}
+          aria-label="Contributors"
+          items={identities}
+          renderItem={(item) => <Avatar name={item.name} size={size} />}
+          overflowTooltip={
+            overflowNames.length ? overflowNames.join(", ") : undefined
+          }
+          overflowDetails={
+            overflowNames.length ? (
+              <div>
+                <p style={{ margin: "0 0 8px", fontWeight: 600 }}>Also includes</p>
+                <ul style={{ margin: 0, paddingInlineStart: 18 }}>
+                  {overflowNames.map((n) => (
+                    <li key={n}>{n}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : undefined
+          }
+        />
+      </div>
+    </section>
+  );
+}
+
+function CopyGlyph() {
+  return (
+    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true">
+      <rect
+        x="7"
+        y="7"
+        width="9"
+        height="9"
+        rx="1.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M4 13V4.5A1.5 1.5 0 0 1 5.5 3H13"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function KeyValuePairLab() {
+  const [orientation, setOrientation] =
+    useState<KeyValuePairOrientation>("responsive");
+
+  return (
+    <section className="catalog-group" aria-labelledby="kvp-lab-heading">
+      <h2 id="kvp-lab-heading">067 Key-Value Pair</h2>
+      <p className="catalog-group-desc">
+        Label is secondary; value is dominant. Horizontal where space allows;
+        vertical on narrow screens or for complex values. Long values wrap —
+        compose copy with IconButton, not a custom control.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="Orientation"
+          presentation="listbox"
+          options={[
+            { value: "responsive", label: "Responsive" },
+            { value: "horizontal", label: "Horizontal" },
+            { value: "vertical", label: "Vertical" },
+          ]}
+          value={orientation}
+          onValueChange={(v) => setOrientation(v as KeyValuePairOrientation)}
+        />
+
+        <div
+          style={{
+            marginTop: 16,
+            display: "flex",
+            flexDirection: "column",
+            gap: 16,
+          }}
+        >
+          <KeyValuePair
+            orientation={orientation}
+            label="Email"
+            value="hello@example.com"
+            valueType="email"
+            action={
+              <IconButton
+                size="sm"
+                variant="subtle"
+                label="Copy email"
+                icon={<CopyGlyph />}
+                onClick={() => {
+                  void navigator.clipboard?.writeText("hello@example.com");
+                }}
+              />
+            }
+          />
+          <KeyValuePair
+            orientation={orientation}
+            label="Plan"
+            value="Professional"
+            status={<Badge label="Active" tone="positive" shape="soft" />}
+          />
+          <KeyValuePair
+            orientation={orientation}
+            label="Created"
+            value="August 7, 2026"
+            valueType="date"
+            description="Account creation date"
+          />
+          <KeyValuePair
+            orientation={orientation}
+            label="Website"
+            value="https://docs.example.com/products/roboticela/getting-started/overview"
+            valueType="url"
+          />
+          <KeyValuePair
+            orientation={orientation}
+            label="Address"
+            valueType="address"
+            value={"221B Baker Street\nLondon NW1 6XE\nUnited Kingdom"}
+          />
+          <KeyValuePair
+            orientation={orientation}
+            label="Reference"
+            value="ord_7f3a9c2e1b8d4056abcdef"
+            valueType="id"
+            overflow="clip"
+            description="Clip overflow is opt-in for dense IDs"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function DividerLab() {
+  const [orientation, setOrientation] =
+    useState<DividerOrientation>("horizontal");
+  const [variant, setVariant] = useState<DividerVariant>("full");
+  const [semantic, setSemantic] = useState(false);
+  const [tall, setTall] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="divider-lab-heading">
+      <h2 id="divider-lab-heading">068 Divider</h2>
+      <p className="catalog-group-desc">
+        Subtle structural separation — not decoration. Prefer spacing when it
+        is enough. Vertical dividers stretch with neighboring content (no fixed
+        height).
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Orientation"
+          presentation="listbox"
+          options={[
+            { value: "horizontal", label: "Horizontal" },
+            { value: "vertical", label: "Vertical" },
+          ]}
+          value={orientation}
+          onValueChange={(v) => setOrientation(v as DividerOrientation)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Variant"
+            presentation="listbox"
+            options={[
+              { value: "full", label: "Full width" },
+              { value: "inset", label: "Inset" },
+              { value: "section", label: "Section" },
+              { value: "content", label: "Content-aligned" },
+            ]}
+            value={variant}
+            onValueChange={(v) => setVariant(v as DividerVariant)}
+          />
+        </div>
+        <div
+          style={{
+            marginBottom: 16,
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+          }}
+        >
+          <Switch
+            label="Semantic section boundary"
+            checked={semantic}
+            onCheckedChange={setSemantic}
+          />
+          {orientation === "vertical" ? (
+            <Switch
+              label="Taller neighbor content"
+              checked={tall}
+              onCheckedChange={setTall}
+            />
+          ) : null}
+        </div>
+
+        {orientation === "horizontal" ? (
+          <div
+            style={{
+              border: "1px solid var(--color-border-subtle)",
+              borderRadius: 8,
+              paddingBlock: 8,
+            }}
+          >
+            <p style={{ margin: "0 16px", color: "var(--color-text-secondary)" }}>
+              Group A
+            </p>
+            <Divider
+              orientation="horizontal"
+              variant={variant}
+              semantic={semantic}
+              aria-label={semantic ? "Next section" : undefined}
+            />
+            <p style={{ margin: "0 16px", color: "var(--color-text-secondary)" }}>
+              Group B
+            </p>
+          </div>
+        ) : (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "stretch",
+              border: "1px solid var(--color-border-subtle)",
+              borderRadius: 8,
+              padding: 12,
+              gap: 0,
+            }}
+          >
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ margin: 0 }}>Primary pane</p>
+              <p
+                style={{
+                  margin: "8px 0 0",
+                  color: "var(--color-text-secondary)",
+                  fontSize: 14,
+                }}
+              >
+                Neighbor content
+                {tall
+                  ? " grows taller — the vertical divider stretches with it instead of staying a fixed height."
+                  : "."}
+              </p>
+              {tall
+                ? Array.from({ length: 4 }, (_, i) => (
+                    <p
+                      key={i}
+                      style={{
+                        margin: "8px 0 0",
+                        color: "var(--color-text-secondary)",
+                        fontSize: 14,
+                      }}
+                    >
+                      Extra line {i + 1}
+                    </p>
+                  ))
+                : null}
+            </div>
+            <Divider
+              orientation="vertical"
+              variant={variant}
+              semantic={semantic}
+              aria-label={semantic ? "Split panes" : undefined}
+            />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <p style={{ margin: 0 }}>Secondary pane</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function TimelineLab() {
+  const [orientation, setOrientation] =
+    useState<TimelineOrientation>("vertical");
+
+  return (
+    <section className="catalog-group" aria-labelledby="timeline-lab-heading">
+      <h2 id="timeline-lab-heading">069 Timeline</h2>
+      <p className="catalog-group-desc">
+        Ordered events with markers and thin connectors. Status uses marker
+        shape/glyph — not connector color alone. Vertical for rich content;
+        horizontal only for short events (becomes vertical on narrow screens).
+        Events are not clickable by default.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Orientation"
+          presentation="listbox"
+          options={[
+            { value: "vertical", label: "Vertical" },
+            { value: "horizontal", label: "Horizontal (short content)" },
+            { value: "responsive", label: "Responsive (vertical)" },
+          ]}
+          value={orientation}
+          onValueChange={(v) => setOrientation(v as TimelineOrientation)}
+        />
+
+        <div style={{ marginTop: 16 }}>
+          <Timeline orientation={orientation} aria-label="Shipment progress">
+            <Timeline.Item
+              status="completed"
+              timestamp="Aug 5, 2026 · 09:14"
+            >
+              <Timeline.Title>Order placed</Timeline.Title>
+              <Timeline.Description>
+                Payment confirmed and inventory reserved.
+              </Timeline.Description>
+            </Timeline.Item>
+            <Timeline.Item status="completed" timestamp="Aug 6, 2026 · 16:02">
+              <Timeline.Marker>
+                <Avatar name="Warehouse" size="xs" entity="organization" />
+              </Timeline.Marker>
+              <Timeline.Title>Packed at warehouse</Timeline.Title>
+              <Timeline.Description>
+                Long descriptions wrap freely and are not forced into narrow
+                fixed widths, even when the timeline is dense.
+              </Timeline.Description>
+              <Timeline.Metadata>Facility · SEA1</Timeline.Metadata>
+            </Timeline.Item>
+            <Timeline.Item status="current" timestamp="Aug 7, 2026 · 11:40">
+              <Timeline.Title>Out for delivery</Timeline.Title>
+              <Timeline.Description>
+                Carrier is en route to the delivery address.
+              </Timeline.Description>
+              <Timeline.Status>
+                <Badge label="In progress" tone="accent" shape="soft" />
+              </Timeline.Status>
+            </Timeline.Item>
+            <Timeline.Item status="warning" timestamp="Aug 7, 2026 · 12:05">
+              <Timeline.Title>Recipient unavailable</Timeline.Title>
+              <Timeline.Description>
+                Attempt recorded — will retry later today.
+              </Timeline.Description>
+            </Timeline.Item>
+            <Timeline.Item status="upcoming" showIndex>
+              <Timeline.Title>Delivered</Timeline.Title>
+              <Timeline.Description>Expected by end of day.</Timeline.Description>
+            </Timeline.Item>
+          </Timeline>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ContentBlockLab() {
+  const [density, setDensity] = useState<ContentBlockDensity>("standard");
+  const [headerLayout, setHeaderLayout] =
+    useState<ContentBlockHeaderLayout>("responsive");
+  const [divider, setDivider] = useState(true);
+
+  return (
+    <section className="catalog-group" aria-labelledby="content-block-lab-heading">
+      <h2 id="content-block-lab-heading">070 Content Block</h2>
+      <p className="catalog-group-desc">
+        Neutral structural grouping — spacing and hierarchy only. No card chrome
+        (no background, border, shadow, or large radius). Lighter than Card;
+        suitable inside pages, dialogs, drawers, and settings.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Density"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "standard", label: "Standard" },
+            { value: "spacious", label: "Spacious" },
+          ]}
+          value={density}
+          onValueChange={(v) => setDensity(v as ContentBlockDensity)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Header layout"
+            presentation="listbox"
+            options={[
+              { value: "responsive", label: "Responsive" },
+              { value: "inline", label: "Inline" },
+              { value: "stacked", label: "Stacked" },
+            ]}
+            value={headerLayout}
+            onValueChange={(v) =>
+              setHeaderLayout(v as ContentBlockHeaderLayout)
+            }
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Switch
+            label="Optional divider"
+            checked={divider}
+            onCheckedChange={setDivider}
+          />
+        </div>
+
+        <ContentBlock
+          density={density}
+          headerLayout={headerLayout}
+          divider={divider}
+          heading="Notification preferences"
+          description="Choose how you want to be reached. Long headings and descriptions wrap naturally without truncating important copy."
+          metadata="Last updated · Aug 7, 2026"
+          actions={
+            <>
+              <Button size="sm" variant="quiet">
+                Cancel
+              </Button>
+              <Button size="sm">Save</Button>
+            </>
+          }
+        >
+          <KeyValuePair
+            orientation="vertical"
+            label="Email"
+            value="hello@example.com"
+            valueType="email"
+          />
+          <div style={{ marginTop: 12 }}>
+            <KeyValuePair
+              orientation="vertical"
+              label="Plan"
+              value="Professional"
+            />
+          </div>
+        </ContentBlock>
+      </div>
+    </section>
+  );
+}
+
+function ImageLab() {
+  const [fit, setFit] = useState<ImageObjectFit>("cover");
+  const [radius, setRadius] = useState<ImageRadius>("none");
+  const [showBroken, setShowBroken] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="image-lab-heading">
+      <h2 id="image-lab-heading">071 Image</h2>
+      <p className="catalog-group-desc">
+        Fundamental visual primitive. Aspect ratio reserves space while loading.
+        Failed sources show a fallback — never browser broken-image artifacts.
+        Fill (distort) is opt-in only.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Object fit"
+          presentation="listbox"
+          options={[
+            { value: "cover", label: "Cover" },
+            { value: "contain", label: "Contain" },
+            { value: "fill", label: "Fill (explicit distortion)" },
+            { value: "none", label: "None / natural" },
+            { value: "scale-down", label: "Scale down" },
+          ]}
+          value={fit}
+          onValueChange={(v) => setFit(v as ImageObjectFit)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Radius"
+            presentation="listbox"
+            options={[
+              { value: "none", label: "None (default)" },
+              { value: "sm", label: "Small" },
+              { value: "md", label: "Medium" },
+              { value: "lg", label: "Large" },
+              { value: "full", label: "Full" },
+              { value: "square", label: "Square" },
+            ]}
+            value={radius}
+            onValueChange={(v) => setRadius(v as ImageRadius)}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Switch
+            label="Simulate broken source"
+            checked={showBroken}
+            onCheckedChange={setShowBroken}
+          />
+        </div>
+
+        <div style={{ display: "grid", gap: 16 }}>
+          <Image
+            src={
+              showBroken
+                ? "/this-image-does-not-exist.jpg"
+                : "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80"
+            }
+            alt="Abstract soft shapes"
+            aspectRatio="16 / 9"
+            objectFit={fit}
+            radius={radius}
+            loading="eager"
+            fallback={
+              <span style={{ color: "var(--color-text-secondary)" }}>
+                Image unavailable
+              </span>
+            }
+          />
+          <Image
+            decorative
+            src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=200&q=60"
+            aspectRatio="1"
+            objectFit="cover"
+            radius="full"
+            style={{ width: 64 }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ThumbnailLab() {
+  const [size, setSize] = useState<ThumbnailSize>("md");
+  const [aspect, setAspect] = useState<ThumbnailAspect>("square");
+  const [selected, setSelected] = useState(false);
+
+  const demoSrc =
+    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80";
+
+  return (
+    <section className="catalog-group" aria-labelledby="thumbnail-lab-heading">
+      <h2 id="thumbnail-lab-heading">072 Thumbnail</h2>
+      <p className="catalog-group-desc">
+        Compact previews for lists and media. Cover for photos; contain for
+        documents. Keep overlays sparse. Sizes map to control-height tokens.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "xs", label: "XS" },
+            { value: "sm", label: "SM" },
+            { value: "md", label: "MD" },
+            { value: "lg", label: "LG" },
+            { value: "xl", label: "XL" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as ThumbnailSize)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Aspect"
+            presentation="listbox"
+            options={[
+              { value: "square", label: "Square" },
+              { value: "portrait", label: "Portrait" },
+              { value: "landscape", label: "Landscape" },
+            ]}
+            value={aspect}
+            onValueChange={(v) => setAspect(v as ThumbnailAspect)}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Switch
+            label="Selected"
+            checked={selected}
+            onCheckedChange={setSelected}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "flex-end",
+            gap: 12,
+          }}
+        >
+          <Thumbnail
+            src={demoSrc}
+            alt="Abstract preview"
+            size={size}
+            aspect={aspect}
+            kind="image"
+            selected={selected}
+            showSelection
+            interactive
+            onActivate={() => setSelected((s) => !s)}
+          />
+          <Thumbnail
+            src={demoSrc}
+            alt="Video clip"
+            size={size}
+            aspect="landscape"
+            kind="video"
+            showPlay
+            duration="3:42"
+            interactive
+            aria-label="Play video clip"
+          />
+          <Thumbnail
+            size={size}
+            aspect="square"
+            kind="document"
+            fileType="PDF"
+            alt="Report.pdf"
+          />
+          <Thumbnail size={size} kind="file" alt="Attachment" />
+          <Thumbnail size={size} kind="generic" loading />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MediaObjectLab() {
+  const [density, setDensity] = useState<MediaObjectDensity>("comfortable");
+  const [mediaSize, setMediaSize] = useState<MediaObjectMediaSize>("md");
+  const [layout, setLayout] = useState<MediaObjectLayout>("auto");
+  const [mediaPosition, setMediaPosition] =
+    useState<MediaObjectMediaPosition>("leading");
+
+  const demoSrc =
+    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=400&q=80";
+
+  return (
+    <section className="catalog-group" aria-labelledby="media-object-lab-heading">
+      <h2 id="media-object-lab-heading">073 Media Object</h2>
+      <p className="catalog-group-desc">
+        Media with adjacent text. Fixed media box; body never collapses. Auto
+        stacks when narrow. Split interactivity when trailing controls exist.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Density"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "comfortable", label: "Comfortable" },
+            { value: "spacious", label: "Spacious" },
+          ]}
+          value={density}
+          onValueChange={(v) => setDensity(v as MediaObjectDensity)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Media size"
+            presentation="listbox"
+            options={[
+              { value: "xs", label: "XS" },
+              { value: "sm", label: "SM" },
+              { value: "md", label: "MD" },
+              { value: "lg", label: "LG" },
+              { value: "xl", label: "XL" },
+            ]}
+            value={mediaSize}
+            onValueChange={(v) => setMediaSize(v as MediaObjectMediaSize)}
+          />
+        </div>
+        <div style={{ marginBottom: 12 }}>
+          <Select
+            label="Layout"
+            presentation="listbox"
+            options={[
+              { value: "auto", label: "Auto" },
+              { value: "horizontal", label: "Horizontal" },
+              { value: "stack", label: "Stack" },
+            ]}
+            value={layout}
+            onValueChange={(v) => setLayout(v as MediaObjectLayout)}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Select
+            label="Media position"
+            presentation="listbox"
+            options={[
+              { value: "leading", label: "Leading" },
+              { value: "trailing", label: "Trailing" },
+            ]}
+            value={mediaPosition}
+            onValueChange={(v) =>
+              setMediaPosition(v as MediaObjectMediaPosition)
+            }
+          />
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <MediaObject
+            density={density}
+            mediaSize={mediaSize}
+            layout={layout}
+            mediaPosition={mediaPosition}
+            interactive
+            href="#media-object-person"
+            media={<Avatar name="Ada Lovelace" size="md" />}
+            title="Ada Lovelace"
+            description="Mathematician · Analytical Engine"
+            metadata="Online"
+          />
+
+          <MediaObject
+            density={density}
+            mediaSize={mediaSize}
+            layout={layout}
+            mediaPosition={mediaPosition}
+            interactive
+            hasTrailingActions
+          >
+            <MediaObject.Media>
+              <Thumbnail
+                src={demoSrc}
+                alt="Cover preview"
+                size="md"
+                aspect="square"
+              />
+            </MediaObject.Media>
+            <MediaObject.Body>
+              <MediaObject.Title href="#media-object-doc">
+                Quarterly report with an intentionally long title that must wrap
+                without collapsing the media region
+              </MediaObject.Title>
+              <MediaObject.Description>
+                Finance summary for Q3 — figures, notes, and shared comments.
+              </MediaObject.Description>
+              <MediaObject.Metadata>PDF · 2.4 MB</MediaObject.Metadata>
+              <MediaObject.Status>Shared</MediaObject.Status>
+            </MediaObject.Body>
+            <MediaObject.Trailing>
+              <MediaObject.Actions>
+                <IconButton
+                  label="More"
+                  variant="subtle"
+                  size="sm"
+                  icon={<MoreIcon />}
+                />
+              </MediaObject.Actions>
+            </MediaObject.Trailing>
+          </MediaObject>
+
+          <MediaObject
+            density={density}
+            mediaSize={mediaSize}
+            layout={layout}
+            mediaPosition={mediaPosition}
+            media={
+              <span aria-hidden="true" style={{ fontSize: 18 }}>
+                ▣
+              </span>
+            }
+            title="notes.txt"
+            metadata="Text file"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function IconContainerLab() {
+  const [size, setSize] = useState<IconContainerSize>("md");
+  const [shape, setShape] = useState<IconContainerShape>("transparent");
+  const [tone, setTone] = useState<IconContainerTone>("neutral");
+
+  const demoIcon = (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 3.5 14.2 9h5.8l-4.7 3.4 1.8 5.6L12 14.8 7 18l1.8-5.6L4 9h5.8L12 3.5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="icon-container-lab-heading"
+    >
+      <h2 id="icon-container-lab-heading">074 Icon Container</h2>
+      <p className="catalog-group-desc">
+        Quiet frame for icons. Optically centered. Default shape is transparent —
+        do not force colored circles. Tones use semantic tokens only.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "sm", label: "Small" },
+            { value: "md", label: "Medium" },
+            { value: "lg", label: "Large" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as IconContainerSize)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Shape"
+            presentation="listbox"
+            options={[
+              { value: "transparent", label: "Transparent" },
+              { value: "square", label: "Square" },
+              { value: "rounded", label: "Rounded square" },
+              { value: "circle", label: "Circle" },
+            ]}
+            value={shape}
+            onValueChange={(v) => setShape(v as IconContainerShape)}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Select
+            label="Tone"
+            presentation="listbox"
+            options={[
+              { value: "neutral", label: "Neutral" },
+              { value: "positive", label: "Positive" },
+              { value: "warning", label: "Warning" },
+              { value: "negative", label: "Negative" },
+              { value: "informational", label: "Informational" },
+            ]}
+            value={tone}
+            onValueChange={(v) => setTone(v as IconContainerTone)}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "center",
+            gap: 12,
+          }}
+        >
+          <IconContainer size={size} shape={shape} tone={tone} icon={demoIcon} />
+          <IconContainer
+            size={size}
+            shape="rounded"
+            tone="informational"
+            icon={demoIcon}
+          />
+          <IconContainer
+            size={size}
+            shape="circle"
+            tone="positive"
+            decorative={false}
+            label="Success"
+            icon={demoIcon}
+          />
+          <IconContainer
+            size={size}
+            shape="square"
+            tone="warning"
+            icon={demoIcon}
+          />
+          <IconContainer
+            size={size}
+            shape="transparent"
+            tone="negative"
+            icon={demoIcon}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function IllustrationLab() {
+  const [illSize, setIllSize] = useState<IllustrationSize>("md");
+  const [align, setAlign] = useState<IllustrationAlign>("center");
+  const [fit, setFit] = useState<IllustrationFit>("contain");
+
+  const emptySvg = (
+    <svg viewBox="0 0 160 120" fill="none" aria-hidden="true">
+      <rect
+        x="28"
+        y="28"
+        width="104"
+        height="72"
+        rx="8"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <path
+        d="M28 52h104M52 28v24M108 28v24"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+      <circle cx="80" cy="78" r="10" stroke="currentColor" strokeWidth="2" />
+      <path
+        d="M80 74v8M76 78h8"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="illustration-lab-heading"
+    >
+      <h2 id="illustration-lab-heading">075 Illustration</h2>
+      <p className="catalog-group-desc">
+        Presentation container for conceptual visuals. Contain/natural only —
+        never distort. Modest by default; hero is explicit. No default
+        animation.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "sm", label: "Small" },
+            { value: "md", label: "Medium" },
+            { value: "lg", label: "Large" },
+            { value: "hero", label: "Hero" },
+          ]}
+          value={illSize}
+          onValueChange={(v) => setIllSize(v as IllustrationSize)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Align"
+            presentation="listbox"
+            options={[
+              { value: "start", label: "Start" },
+              { value: "center", label: "Center" },
+              { value: "end", label: "End" },
+            ]}
+            value={align}
+            onValueChange={(v) => setAlign(v as IllustrationAlign)}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Select
+            label="Fit"
+            presentation="listbox"
+            options={[
+              { value: "contain", label: "Contain" },
+              { value: "natural", label: "Natural" },
+            ]}
+            value={fit}
+            onValueChange={(v) => setFit(v as IllustrationFit)}
+          />
+        </div>
+
+        <Illustration
+          size={illSize}
+          align={align}
+          fit={fit}
+          purpose="empty"
+          alt="Empty folder — nothing here yet"
+        >
+          {emptySvg}
+        </Illustration>
+
+        <div style={{ marginTop: 24 }}>
+          <Illustration
+            size="sm"
+            align="start"
+            purpose="success"
+            decorative
+          >
+            <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+              <circle
+                cx="32"
+                cy="32"
+                r="22"
+                stroke="currentColor"
+                strokeWidth="2"
+              />
+              <path
+                d="m22 33 7 7 14-16"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </Illustration>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CoverMediaLab() {
+  const [aspect, setAspect] = useState<CoverMediaAspect>("standard");
+  const [focal, setFocal] = useState<CoverMediaFocal>("top");
+  const [fit, setFit] = useState<CoverMediaFit>("cover");
+
+  const demoSrc =
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80";
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="cover-media-lab-heading"
+    >
+      <h2 id="cover-media-lab-heading">076 Cover Media</h2>
+      <p className="catalog-group-desc">
+        Fills a rectangle with controlled cropping. Focal points matter for
+        portraits — do not blind center-crop. Solid scrim for overlay text, not
+        a heavy gradient.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Aspect"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact (4:3)" },
+            { value: "standard", label: "Standard (16:9)" },
+            { value: "wide", label: "Wide (2:1)" },
+            { value: "hero", label: "Hero (21:9)" },
+          ]}
+          value={aspect}
+          onValueChange={(v) => setAspect(v as CoverMediaAspect)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Focal"
+            presentation="listbox"
+            options={[
+              { value: "top", label: "Top" },
+              { value: "center", label: "Center" },
+              { value: "bottom", label: "Bottom" },
+              { value: "left", label: "Left" },
+              { value: "right", label: "Right" },
+            ]}
+            value={focal}
+            onValueChange={(v) => setFocal(v as CoverMediaFocal)}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Select
+            label="Fit"
+            presentation="listbox"
+            options={[
+              { value: "cover", label: "Cover" },
+              { value: "contain", label: "Contain" },
+            ]}
+            value={fit}
+            onValueChange={(v) => setFit(v as CoverMediaFit)}
+          />
+        </div>
+
+        <CoverMedia
+          src={demoSrc}
+          alt="Team collaborating at a table"
+          aspect={aspect}
+          focal={focal}
+          objectFit={fit}
+          radius="sm"
+        >
+          <CoverMedia.Overlay>
+            <strong>Design systems meetup</strong>
+          </CoverMedia.Overlay>
+          <CoverMedia.Caption>Q3 kickoff workshop</CoverMedia.Caption>
+          <CoverMedia.Metadata>San Francisco · 2026</CoverMedia.Metadata>
+        </CoverMedia>
+      </div>
+    </section>
+  );
+}
+
+function MediaPreviewLab() {
+  const [kind, setKind] = useState<MediaPreviewKind>("video");
+  const [size, setSize] = useState<MediaPreviewSize>("md");
+
+  const demoSrc =
+    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80";
+
+  const playIcon = (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M7 5.5v9l8-4.5-8-4.5z" fill="currentColor" />
+    </svg>
+  );
+  const downloadIcon = (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M10 3.5v9M6.5 9.5 10 13l3.5-3.5M4.5 15.5h11"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+  const expandIcon = (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path
+        d="M4.5 8V4.5H8M12 4.5h3.5V8M15.5 12v3.5H12M8 15.5H4.5V12"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="media-preview-lab-heading"
+    >
+      <h2 id="media-preview-lab-heading">077 Media Preview</h2>
+      <p className="catalog-group-desc">
+        Larger preview — not a lightbox or full player. Video shows poster +
+        play mark. Actions compose IconButton.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="Kind"
+          presentation="listbox"
+          options={[
+            { value: "image", label: "Image" },
+            { value: "video", label: "Video" },
+            { value: "document", label: "Document" },
+            { value: "audio", label: "Audio" },
+            { value: "generic", label: "Generic" },
+          ]}
+          value={kind}
+          onValueChange={(v) => setKind(v as MediaPreviewKind)}
+        />
+        <div style={{ marginBlock: 12, marginBottom: 16 }}>
+          <Select
+            label="Size"
+            presentation="listbox"
+            options={[
+              { value: "sm", label: "Small" },
+              { value: "md", label: "Medium" },
+              { value: "lg", label: "Large" },
+            ]}
+            value={size}
+            onValueChange={(v) => setSize(v as MediaPreviewSize)}
+          />
+        </div>
+
+        <MediaPreview
+          kind={kind}
+          size={size}
+          src={kind === "document" || kind === "generic" ? undefined : demoSrc}
+          poster={kind === "video" ? demoSrc : undefined}
+          alt="Abstract media preview"
+          title={
+            kind === "video"
+              ? "Product demo"
+              : kind === "document"
+                ? "Quarterly report"
+                : kind === "audio"
+                  ? "Podcast episode"
+                  : "Preview asset"
+          }
+          type={
+            kind === "video"
+              ? "MP4"
+              : kind === "document"
+                ? "PDF"
+                : kind === "audio"
+                  ? "MP3"
+                  : "PNG"
+          }
+          duration={kind === "video" || kind === "audio" ? "3:42" : undefined}
+          fileSize="2.4 MB"
+          status={kind === "generic" ? "Unavailable" : "Ready"}
+          interactive
+          onOpen={() => undefined}
+        >
+          <MediaPreview.Actions>
+            <IconButton
+              label="Play"
+              size="sm"
+              variant="subtle"
+              icon={playIcon}
+            />
+            <IconButton
+              label="Download"
+              size="sm"
+              variant="subtle"
+              icon={downloadIcon}
+            />
+            <IconButton
+              label="Expand"
+              size="sm"
+              variant="subtle"
+              icon={expandIcon}
+            />
+          </MediaPreview.Actions>
+        </MediaPreview>
+      </div>
+    </section>
+  );
+}
+
+function ImagePlaceholderLab() {
+  const [state, setState] = useState<ImagePlaceholderState>("missing");
+  const [aspect, setAspect] = useState<ImagePlaceholderAspect>("landscape");
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="image-placeholder-lab-heading"
+    >
+      <h2 id="image-placeholder-lab-heading">078 Image Placeholder</h2>
+      <p className="catalog-group-desc">
+        Media region without available media — not Skeleton. Neutral unless
+        state is error. Aspect-locked to avoid layout shift.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="State"
+          presentation="listbox"
+          options={[
+            { value: "loading", label: "Loading" },
+            { value: "missing", label: "Missing" },
+            { value: "unavailable", label: "Unavailable" },
+            { value: "error", label: "Error" },
+          ]}
+          value={state}
+          onValueChange={(v) => setState(v as ImagePlaceholderState)}
+        />
+        <div style={{ marginBlock: 12, marginBottom: 16 }}>
+          <Select
+            label="Aspect"
+            presentation="listbox"
+            options={[
+              { value: "square", label: "Square" },
+              { value: "portrait", label: "Portrait" },
+              { value: "landscape", label: "Landscape" },
+              { value: "wide", label: "Wide" },
+            ]}
+            value={aspect}
+            onValueChange={(v) => setAspect(v as ImagePlaceholderAspect)}
+          />
+        </div>
+
+        <ImagePlaceholder
+          state={state}
+          aspect={aspect}
+          mediaType="image"
+          typeLabel="PNG"
+          message={
+            state === "error"
+              ? "Couldn’t load"
+              : state === "loading"
+                ? "Loading"
+                : state === "unavailable"
+                  ? "Unavailable"
+                  : "No image"
+          }
+        />
+      </div>
+    </section>
+  );
+}
+
+function MediaOverlayLab() {
+  const [placement, setPlacement] = useState<MediaOverlayPlacement>("bottom");
+  const [protection, setProtection] =
+    useState<MediaOverlayProtection>("subtle");
+
+  const demoSrc =
+    "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200&q=80";
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="media-overlay-lab-heading"
+    >
+      <h2 id="media-overlay-lab-heading">079 Media Overlay</h2>
+      <p className="catalog-group-desc">
+        Controlled content over media. Solid scrim for contrast — not a heavy
+        gradient. Hover enhances only; actions stay reachable.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Placement"
+          presentation="listbox"
+          options={[
+            { value: "top", label: "Top" },
+            { value: "bottom", label: "Bottom" },
+            { value: "corner", label: "Corner" },
+            { value: "full", label: "Full" },
+          ]}
+          value={placement}
+          onValueChange={(v) => setPlacement(v as MediaOverlayPlacement)}
+        />
+        <div style={{ marginBlock: 12, marginBottom: 16 }}>
+          <Select
+            label="Protection"
+            presentation="listbox"
+            options={[
+              { value: "none", label: "None" },
+              { value: "subtle", label: "Subtle" },
+              { value: "medium", label: "Medium" },
+            ]}
+            value={protection}
+            onValueChange={(v) => setProtection(v as MediaOverlayProtection)}
+          />
+        </div>
+
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            aspectRatio: "16 / 9",
+            overflow: "hidden",
+            borderRadius: "var(--radius-3, 8px)",
+          }}
+        >
+          <img
+            src={demoSrc}
+            alt=""
+            style={{
+              display: "block",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+          <MediaOverlay
+            placement={placement}
+            corner="end-end"
+            protection={protection}
+            showPlay={placement === "full"}
+            aria-label="Product demo overlay"
+          >
+            <MediaOverlay.Title>Product demo</MediaOverlay.Title>
+            <MediaOverlay.Metadata>Design systems meetup</MediaOverlay.Metadata>
+            <MediaOverlay.Duration>3:42</MediaOverlay.Duration>
+            <MediaOverlay.Status>Ready</MediaOverlay.Status>
+            <MediaOverlay.Action>
+              <IconButton
+                label="More"
+                size="sm"
+                variant="subtle"
+                icon={<MoreIcon />}
+              />
+            </MediaOverlay.Action>
+          </MediaOverlay>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function MediaMetadataLab() {
+  const [density, setDensity] = useState<MediaMetadataDensity>("standard");
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="media-metadata-lab-heading"
+    >
+      <h2 id="media-metadata-lab-heading">080 Media Metadata</h2>
+      <p className="catalog-group-desc">
+        Secondary media details. Wraps on narrow viewports. Localizable size,
+        duration, dimensions, and date helpers.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="Density"
+          presentation="listbox"
+          options={[
+            { value: "compact", label: "Compact" },
+            { value: "standard", label: "Standard" },
+          ]}
+          value={density}
+          onValueChange={(v) => setDensity(v as MediaMetadataDensity)}
+        />
+
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 16 }}>
+          <div>
+            <p className="catalog-group-desc" style={{ marginBottom: 8 }}>
+              Photo
+            </p>
+            <MediaMetadata density={density} aria-label="Photo details">
+              <MediaMetadata.Item kind="type">Photo</MediaMetadata.Item>
+              <MediaMetadata.Item kind="size">
+                {formatMediaFileSize(2_400_000)}
+              </MediaMetadata.Item>
+              <MediaMetadata.Item kind="dimensions">
+                {formatMediaDimensions(1920, 1080)}
+              </MediaMetadata.Item>
+            </MediaMetadata>
+          </div>
+
+          <div>
+            <p className="catalog-group-desc" style={{ marginBottom: 8 }}>
+              Video
+            </p>
+            <MediaMetadata density={density} aria-label="Video details">
+              <MediaMetadata.Item kind="type">Video</MediaMetadata.Item>
+              <MediaMetadata.Item kind="duration">
+                {formatMediaDuration(272)}
+              </MediaMetadata.Item>
+              <MediaMetadata.Item kind="custom" label="Resolution">
+                1080p
+              </MediaMetadata.Item>
+            </MediaMetadata>
+          </div>
+
+          <div>
+            <p className="catalog-group-desc" style={{ marginBottom: 8 }}>
+              Document
+            </p>
+            <MediaMetadata density={density} aria-label="Document details">
+              <MediaMetadata.Item kind="type">Document</MediaMetadata.Item>
+              <MediaMetadata.Item kind="custom" label="Format">
+                PDF
+              </MediaMetadata.Item>
+              <MediaMetadata.Item kind="custom" label="Pages">
+                2 pages
+              </MediaMetadata.Item>
+              <MediaMetadata.Item kind="date">
+                {formatMediaDate("2026-08-07")}
+              </MediaMetadata.Item>
+              <MediaMetadata.Item kind="author">Ada Lovelace</MediaMetadata.Item>
+              <MediaMetadata.Item kind="status" label="Status">
+                Shared
+              </MediaMetadata.Item>
+            </MediaMetadata>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HeadingLab() {
+  const [level, setLevel] = useState<HeadingLevel>(2);
+  const [size, setSize] = useState<HeadingSize | "auto">("auto");
+  const [align, setAlign] = useState<HeadingAlign>("start");
+
+  return (
+    <section className="catalog-group" aria-labelledby="heading-lab-heading">
+      <h2 id="heading-lab-heading">082 Heading</h2>
+      <p className="catalog-group-desc">
+        Semantic h1–h6 with visual size independent of level. Wrap by default —
+        do not truncate important titles. Hierarchy via size and weight, not
+        color alone.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Level (semantic)"
+          presentation="listbox"
+          options={[
+            { value: "1", label: "H1" },
+            { value: "2", label: "H2" },
+            { value: "3", label: "H3" },
+            { value: "4", label: "H4" },
+            { value: "5", label: "H5" },
+            { value: "6", label: "H6" },
+          ]}
+          value={String(level)}
+          onValueChange={(v) => setLevel(Number(v) as HeadingLevel)}
+        />
+        <div style={{ marginBlock: 12 }}>
+          <Select
+            label="Size (visual)"
+            presentation="listbox"
+            options={[
+              { value: "auto", label: "Auto from level" },
+              { value: "display", label: "Display" },
+              { value: "title", label: "Title" },
+              { value: "lg", label: "Large" },
+              { value: "md", label: "Medium" },
+              { value: "sm", label: "Small" },
+              { value: "xs", label: "Extra small" },
+            ]}
+            value={size}
+            onValueChange={(v) => setSize(v as HeadingSize | "auto")}
+          />
+        </div>
+        <div style={{ marginBottom: 16 }}>
+          <Select
+            label="Align"
+            presentation="listbox"
+            options={[
+              { value: "start", label: "Start" },
+              { value: "center", label: "Center" },
+              { value: "end", label: "End" },
+            ]}
+            value={align}
+            onValueChange={(v) => setAlign(v as HeadingAlign)}
+          />
+        </div>
+
+        <Heading
+          level={level}
+          size={size === "auto" ? undefined : size}
+          align={align}
+          subtitle="Visual size can diverge from semantic level when the layout requires it."
+        >
+          Product overview with a longer title that wraps naturally on narrow
+          widths
+        </Heading>
+
+        <div style={{ marginTop: 24, display: "flex", flexDirection: "column", gap: 12 }}>
+          <Heading level={2} size="md">
+            Section title sized like a typical H3
+          </Heading>
+          <Heading level={3} size="lg">
+            Subsection visually emphasized without changing outline logic
+          </Heading>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ParagraphLab() {
+  const [variant, setVariant] = useState<ParagraphVariant>("standard");
+  const [measure, setMeasure] = useState<ParagraphMeasure>("reading");
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="paragraph-lab-heading"
+    >
+      <h2 id="paragraph-lab-heading">083 Paragraph</h2>
+      <p className="catalog-group-desc">
+        Readable body content. Variants map to global tokens only. Reading
+        measure caps desktop width; consecutive paragraphs share modest rhythm.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "48rem" }}>
+        <Select
+          label="Variant"
+          presentation="listbox"
+          options={[
+            { value: "standard", label: "Standard" },
+            { value: "lead", label: "Lead" },
+            { value: "secondary", label: "Secondary" },
+          ]}
+          value={variant}
+          onValueChange={(v) => setVariant(v as ParagraphVariant)}
+        />
+        <div style={{ marginBlock: 12, marginBottom: 16 }}>
+          <Select
+            label="Measure"
+            presentation="listbox"
+            options={[
+              { value: "reading", label: "Reading" },
+              { value: "none", label: "None (full width)" },
+            ]}
+            value={measure}
+            onValueChange={(v) => setMeasure(v as ParagraphMeasure)}
+          />
+        </div>
+
+        <Paragraph variant="lead" measure={measure}>
+          Lead paragraphs introduce a section with slightly larger body type
+          from existing tokens — not an arbitrary size.
+        </Paragraph>
+        <Paragraph variant={variant} measure={measure}>
+          Use paragraphs for descriptions, instructions, and explanations.
+          Inline <a href="#paragraph-docs">links</a> stay underlined with visible
+          focus, and <strong>emphasis</strong> remains accessible. Long lines wrap
+          naturally without manual line breaks.
+        </Paragraph>
+        <Paragraph variant="secondary" measure={measure}>
+          Secondary paragraphs carry supporting notes in a quieter token color.
+        </Paragraph>
+      </div>
+    </section>
+  );
+}
+
+function LabelLab() {
+  const [size, setSize] = useState<LabelSize>("md");
+  const [required, setRequired] = useState(true);
+  const [optional, setOptional] = useState(false);
+  const [error, setError] = useState(false);
+
+  return (
+    <section className="catalog-group" aria-labelledby="label-lab-heading">
+      <h2 id="label-lab-heading">084 Label</h2>
+      <p className="catalog-group-desc">
+        Identifies controls and content — not Caption. Associates via htmlFor.
+        Required/optional are not color-only. Long labels wrap.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox"
+          options={[
+            { value: "sm", label: "Small" },
+            { value: "md", label: "Medium" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as LabelSize)}
+        />
+        <div style={{ marginBlock: 12, display: "flex", flexDirection: "column", gap: 8 }}>
+          <Switch
+            label="Required"
+            checked={required}
+            onCheckedChange={(v) => {
+              setRequired(v);
+              if (v) setOptional(false);
+            }}
+          />
+          <Switch
+            label="Optional"
+            checked={optional}
+            onCheckedChange={(v) => {
+              setOptional(v);
+              if (v) setRequired(false);
+            }}
+          />
+          <Switch label="Error context" checked={error} onCheckedChange={setError} />
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 12, marginTop: 8 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <Label
+              htmlFor="label-lab-email"
+              size={size}
+              required={required}
+              optional={optional}
+              error={error}
+            >
+              Email address
+            </Label>
+            <input
+              id="label-lab-email"
+              type="email"
+              placeholder="you@example.com"
+              required={required}
+              disabled={false}
+              aria-invalid={error || undefined}
+              style={{
+                boxSizing: "border-box",
+                width: "100%",
+                minHeight: "var(--control-height-md, 40px)",
+                paddingInline: "12px",
+                border: "1px solid var(--color-border-default, #d2d2d7)",
+                borderRadius: "var(--radius-2, 6px)",
+                font: "inherit",
+              }}
+            />
+          </div>
+
+          <Label size={size} required showRequiredLabel>
+            Visible required word
+          </Label>
+
+          <Label size={size}>
+            Preference name that may become quite long after localization and
+            should wrap instead of forcing a single cramped line
+          </Label>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CaptionLab() {
+  const [mode, setMode] = useState<CaptionMode>("multiline");
+  const [size, setSize] = useState<CaptionSize>("md");
+
+  return (
+    <section className="catalog-group" aria-labelledby="caption-lab-heading">
+      <h2 id="caption-lab-heading">085 Caption</h2>
+      <p className="catalog-group-desc">
+        Secondary explanatory text — not Label. Readable caption tokens.
+        Associate via figcaption or aria-describedby. Not for primary
+        instructions or sole warnings.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "28rem" }}>
+        <Select
+          label="Mode"
+          presentation="listbox"
+          options={[
+            { value: "short", label: "Short" },
+            { value: "multiline", label: "Multiline" },
+          ]}
+          value={mode}
+          onValueChange={(v) => setMode(v as CaptionMode)}
+        />
+        <div style={{ marginBlock: 12, marginBottom: 16 }}>
+          <Select
+            label="Size"
+            presentation="listbox"
+            options={[
+              { value: "sm", label: "Small" },
+              { value: "md", label: "Medium" },
+            ]}
+            value={size}
+            onValueChange={(v) => setSize(v as CaptionSize)}
+          />
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <figure style={{ margin: 0 }}>
+            <div
+              style={{
+                width: "100%",
+                aspectRatio: "16 / 9",
+                background: "var(--color-surface-secondary, #f5f5f7)",
+                borderRadius: "var(--radius-2, 6px)",
+              }}
+              role="img"
+              aria-label="Workshop photo placeholder"
+            />
+            <Caption as="figcaption" mode={mode} size={size} style={{ marginTop: 8 }}>
+              Design systems meetup — supporting image description
+            </Caption>
+          </figure>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <Label htmlFor="caption-lab-field">Display name</Label>
+            <input
+              id="caption-lab-field"
+              aria-describedby="caption-lab-hint"
+              style={{
+                boxSizing: "border-box",
+                width: "100%",
+                minHeight: "var(--control-height-md, 40px)",
+                paddingInline: "12px",
+                border: "1px solid var(--color-border-default, #d2d2d7)",
+                borderRadius: "var(--radius-2, 6px)",
+                font: "inherit",
+              }}
+            />
+            <Caption id="caption-lab-hint" mode="multiline" size={size}>
+              Shown on your public profile. Supporting hint only — not a primary
+              instruction.
+            </Caption>
+          </div>
+
+          <Caption mode="short" size={size}>
+            Updated 2 hours ago
+          </Caption>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LinkLab() {
+  const [variant, setVariant] = useState<LinkVariant>("inline");
+
+  return (
+    <section className="catalog-group" aria-labelledby="link-lab-heading">
+      <h2 id="link-lab-heading">086 Link</h2>
+      <p className="catalog-group-desc">
+        Real navigation anchors — not Button. Underline distinguishes links
+        without color alone. External icon is opt-in. Long URLs wrap.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <Select
+          label="Variant"
+          presentation="listbox"
+          options={[
+            { value: "inline", label: "Inline" },
+            { value: "standalone", label: "Standalone" },
+          ]}
+          value={variant}
+          onValueChange={(v) => setVariant(v as LinkVariant)}
+        />
+
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 16 }}>
+          <Paragraph measure="none">
+            Inline with body copy: read the{" "}
+            <Link href="#link-docs" variant={variant}>
+              documentation
+            </Link>{" "}
+            or jump to{" "}
+            <Link href="#section-api" variant={variant}>
+              API reference
+            </Link>
+            .
+          </Paragraph>
+
+          <Link href="/settings" variant="standalone">
+            Account settings
+          </Link>
+
+          <Link
+            href="https://example.com/docs"
+            variant="standalone"
+            target="_blank"
+            external
+          >
+            External documentation
+          </Link>
+
+          <Link
+            href="https://example.com/very/long/path/to/a/resource/that-should-wrap-without-breaking-layout"
+            variant="standalone"
+          >
+            https://example.com/very/long/path/to/a/resource/that-should-wrap-without-breaking-layout
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function CodeLab() {
+  const [variant, setVariant] = useState<CodeVariant>("inline");
+  const [overflow, setOverflow] = useState<CodeOverflow>("wrap");
+
+  return (
+    <section className="catalog-group" aria-labelledby="code-lab-heading">
+      <h2 id="code-lab-heading">087 Code</h2>
+      <p className="catalog-group-desc">
+        Short inline technical content — monospace only, no syntax highlighting.
+        Compact surface; long tokens wrap or scroll without careless breaks.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "36rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+          }}
+        >
+          <Select
+            label="Variant"
+            presentation="listbox"
+            options={[
+              { value: "inline", label: "Inline" },
+              { value: "identifier", label: "Identifier" },
+              { value: "keyboard", label: "Keyboard" },
+            ]}
+            value={variant}
+            onValueChange={(v) => setVariant(v as CodeVariant)}
+          />
+          <Select
+            label="Overflow"
+            presentation="listbox"
+            options={[
+              { value: "wrap", label: "Wrap" },
+              { value: "nowrap", label: "Nowrap" },
+              { value: "scroll", label: "Scroll" },
+            ]}
+            value={overflow}
+            onValueChange={(v) => setOverflow(v as CodeOverflow)}
+          />
+        </div>
+
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 16 }}>
+          <Paragraph measure="none">
+            Install with <Code variant={variant} overflow={overflow}>npm install</Code> then
+            set <Code variant="identifier">userId</Code>.
+          </Paragraph>
+
+          <Paragraph measure="none">
+            Query: <Code>SELECT *</Code> — open search with{" "}
+            <Code variant="keyboard">Ctrl + K</Code>.
+          </Paragraph>
+
+          <Paragraph measure="none">
+            Long identifier (scroll default):{" "}
+            <Code variant="identifier">
+              VeryLongPackageNamespace.InternalModule.exportNameThatMustStayIntact
+            </Code>
+          </Paragraph>
+
+          <Paragraph measure="none">
+            Controlled overflow demo:{" "}
+            <Code variant={variant} overflow={overflow}>
+              path/to/extremely/long/module/identifier-that-should-not-break-meaning
+            </Code>
+          </Paragraph>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const CODE_BLOCK_SAMPLE = `function greet(name: string) {
+  // Prefer explicit returns
+  const message = \`Hello, \${name}\`;
+  console.log(message);
+  return message;
+}
+
+export const userId = "u_01HXYZ";
+`;
+
+const CODE_BLOCK_LONG = Array.from({ length: 24 }, (_, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  return `line_${n}: value_${n}_and_a_very_long_token_that_should_scroll_horizontally_when_overflow_is_scroll`;
+}).join("\n");
+
+function CodeBlockCheckGlyph() {
+  return (
+    <svg viewBox="0 0 20 20" width="16" height="16" fill="none" aria-hidden="true">
+      <path
+        d="M4.5 10.5 8 14l7.5-8"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function CodeBlockLab() {
+  const [overflow, setOverflow] = useState<CodeBlockOverflow>("scroll");
+  const [lineNumbers, setLineNumbers] = useState("on");
+  const [demoState, setDemoState] = useState("idle");
+
+  return (
+    <section className="catalog-group" aria-labelledby="code-block-lab-heading">
+      <h2 id="code-block-lab-heading">088 Code Block</h2>
+      <p className="catalog-group-desc">
+        Multiline source — language label, optional line numbers (not copied),
+        copy via IconButton, scroll by default, optional wrap, highlighted lines,
+        collapse, and loading/empty/error. Code stays LTR.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+          }}
+        >
+          <Select
+            label="Overflow"
+            presentation="listbox"
+            options={[
+              { value: "scroll", label: "Scroll (default)" },
+              { value: "wrap", label: "Wrap" },
+            ]}
+            value={overflow}
+            onValueChange={(v) => setOverflow(v as CodeBlockOverflow)}
+          />
+          <Select
+            label="Line numbers"
+            presentation="listbox"
+            options={[
+              { value: "on", label: "On" },
+              { value: "off", label: "Off" },
+            ]}
+            value={lineNumbers}
+            onValueChange={setLineNumbers}
+          />
+          <Select
+            label="State"
+            presentation="listbox"
+            options={[
+              { value: "idle", label: "Idle" },
+              { value: "loading", label: "Loading" },
+              { value: "empty", label: "Empty" },
+              { value: "error", label: "Error" },
+            ]}
+            value={demoState}
+            onValueChange={setDemoState}
+          />
+        </div>
+
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 20 }}>
+          <CodeBlock
+            language="TypeScript"
+            showLineNumbers={lineNumbers === "on"}
+            overflow={overflow}
+            highlightedLines={[2, 6]}
+            defaultCollapsed
+            collapsedLines={6}
+            maxHeight="16rem"
+            state={
+              demoState === "idle"
+                ? undefined
+                : (demoState as "loading" | "empty" | "error")
+            }
+            code={demoState === "empty" ? "" : CODE_BLOCK_LONG}
+            copyAction={({ copy, copied, copyLabel, copiedLabel, disabled }) => (
+              <IconButton
+                size="sm"
+                variant="subtle"
+                label={copied ? copiedLabel : copyLabel}
+                icon={copied ? <CodeBlockCheckGlyph /> : <CopyGlyph />}
+                disabled={disabled}
+                onClick={() => {
+                  void copy();
+                }}
+              />
+            )}
+          />
+
+          <CodeBlock
+            language="ts"
+            showLineNumbers
+            overflow="scroll"
+            code={CODE_BLOCK_SAMPLE}
+            maxHeight="14rem"
+          >
+            <span className="dk-code-block__line">
+              <span className="dk-code-block__line-no" aria-hidden="true">
+                1
+              </span>
+              <span className="dk-code-block__line-text">
+                <span data-dk-token="keyword">function</span>{" "}
+                <span data-dk-token="punctuation">greet</span>
+                <span data-dk-token="punctuation">(</span>
+                name<span data-dk-token="punctuation">:</span> string
+                <span data-dk-token="punctuation">)</span>{" "}
+                <span data-dk-token="punctuation">{"{"}</span>
+              </span>
+            </span>
+            <span className="dk-code-block__line dk-code-block__line--highlight" data-line={2}>
+              <span className="dk-code-block__line-no" aria-hidden="true">
+                2
+              </span>
+              <span className="dk-code-block__line-text">
+                {"  "}
+                <span data-dk-token="comment">{"// Prefer explicit returns"}</span>
+              </span>
+            </span>
+            <span className="dk-code-block__line">
+              <span className="dk-code-block__line-no" aria-hidden="true">
+                3
+              </span>
+              <span className="dk-code-block__line-text">
+                {"  "}
+                <span data-dk-token="keyword">const</span> message ={" "}
+                <span data-dk-token="string">{"`Hello, ${name}`"}</span>
+                <span data-dk-token="punctuation">;</span>
+              </span>
+            </span>
+            <span className="dk-code-block__line">
+              <span className="dk-code-block__line-no" aria-hidden="true">
+                4
+              </span>
+              <span className="dk-code-block__line-text">
+                {"  "}console.log(message)
+                <span data-dk-token="punctuation">;</span>
+              </span>
+            </span>
+            <span className="dk-code-block__line">
+              <span className="dk-code-block__line-no" aria-hidden="true">
+                5
+              </span>
+              <span className="dk-code-block__line-text">
+                {"  "}
+                <span data-dk-token="keyword">return</span> message
+                <span data-dk-token="punctuation">;</span>
+              </span>
+            </span>
+            <span className="dk-code-block__line">
+              <span className="dk-code-block__line-no" aria-hidden="true">
+                6
+              </span>
+              <span className="dk-code-block__line-text">
+                <span data-dk-token="punctuation">{"}"}</span>
+              </span>
+            </span>
+          </CodeBlock>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BlockquoteLab() {
+  const [size, setSize] = useState<BlockquoteSize>("standard");
+
+  return (
+    <section className="catalog-group" aria-labelledby="blockquote-lab-heading">
+      <h2 id="blockquote-lab-heading">089 Blockquote</h2>
+      <p className="catalog-group-desc">
+        Quoted content — border, spacing, and typography only. Citation is
+        secondary. Source links use Link. Not a testimonial or marketing quote.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Size"
+          presentation="listbox" 
+          options={[
+            { value: "standard", label: "Standard" },
+            { value: "compact", label: "Compact" },
+          ]}
+          value={size}
+          onValueChange={(v) => setSize(v as BlockquoteSize)}
+        />
+
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 24 }}>
+          <Blockquote
+            size={size}
+            author="Ada Lovelace"
+            source="Notes on the Analytical Engine"
+            sourceHref="https://example.com/analytical-engine"
+            sourceExternal
+            cite="https://example.com/analytical-engine"
+          >
+            The Analytical Engine weaves algebraical patterns just as the Jacquard
+            loom weaves flowers and leaves. Long quotations wrap naturally on
+            narrow viewports without horizontal scrolling or forced truncation.
+          </Blockquote>
+
+          <Blockquote
+            size={size}
+            author="Design Constitution"
+            source={
+              <Link href="#typography-constitution" variant="inline">
+                Typography & Content
+              </Link>
+            }
+          >
+            Typography must prioritize readability, hierarchy, scannability,
+            consistency, accessibility, and localization.
+          </Blockquote>
+
+          <Blockquote
+            size={size}
+            dir="rtl"
+            author="مثال"
+            source="مصدر عربي"
+          >
+            هذا اقتباس طويل يجب أن يلتف بشكل طبيعي على الشاشات الضيقة مع الحفاظ على
+            حد الاقتباس المنطقي في واجهات من اليمين إلى اليسار.
+          </Blockquote>
+
+          <Blockquote size={size} measure="none">
+            A short unattributed quotation — still a blockquote, still restrained.
+          </Blockquote>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function NumberDisplayLab() {
+  const [locale, setLocale] = useState("en-US");
+  const [compact, setCompact] = useState<NumberDisplayCompact>("never");
+  const [format, setFormat] = useState<NumberDisplayFormat>("decimal");
+
+  return (
+    <section className="catalog-group" aria-labelledby="number-display-lab-heading">
+      <h2 id="number-display-lab-heading">090 Number Display</h2>
+      <p className="catalog-group-desc">
+        Locale-aware numbers — not a metric card. Compact only when configured.
+        Screen readers get the full value. Negatives stay clear without color alone.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+          }}
+        >
+          <Select
+            label="Locale"
+            presentation="listbox"
+            options={[
+              { value: "en-US", label: "en-US (1,234.56)" },
+              { value: "fr-FR", label: "fr-FR (1 234,56)" },
+              { value: "de-DE", label: "de-DE (1.234,56)" },
+              { value: "ar-EG", label: "ar-EG" },
+            ]}
+            value={locale}
+            onValueChange={setLocale}
+          />
+          <Select
+            label="Format"
+            presentation="listbox"
+            options={[
+              { value: "integer", label: "Integer" },
+              { value: "decimal", label: "Decimal" },
+              { value: "currency", label: "Currency" },
+              { value: "percent", label: "Percent" },
+              { value: "signed", label: "Signed" },
+            ]}
+            value={format}
+            onValueChange={(v) => setFormat(v as NumberDisplayFormat)}
+          />
+          <Select
+            label="Compact"
+            presentation="listbox"
+            options={[
+              { value: "never", label: "Never (default)" },
+              { value: "short", label: "Short (1.2K)" },
+              { value: "long", label: "Long" },
+            ]}
+            value={compact}
+            onValueChange={(v) => setCompact(v as NumberDisplayCompact)}
+          />
+        </div>
+
+        <div
+          style={{
+            marginTop: 20,
+            display: "grid",
+            gap: 20,
+            gridTemplateColumns: "repeat(auto-fit, minmax(8rem, 1fr))",
+            alignItems: "end",
+          }}
+        >
+          <NumberDisplay
+            label="Integer"
+            value={42}
+            format="integer"
+            locale={locale}
+            size="lg"
+          />
+          <NumberDisplay
+            label="Grouped"
+            value={1284}
+            format="integer"
+            locale={locale}
+            size="lg"
+          />
+          <NumberDisplay
+            label="Currency"
+            value={12450.5}
+            format="currency"
+            currency="USD"
+            locale={locale}
+            size="lg"
+          />
+          <NumberDisplay
+            label="Percent"
+            value={98.4}
+            format="percent"
+            percentAs="unit"
+            locale={locale}
+            maximumFractionDigits={1}
+            size="lg"
+          />
+        </div>
+
+        <div
+          style={{
+            marginTop: 20,
+            display: "grid",
+            gap: 20,
+            gridTemplateColumns: "repeat(auto-fit, minmax(8rem, 1fr))",
+            alignItems: "end",
+          }}
+        >
+          <NumberDisplay
+            label="Live format"
+            value={format === "percent" ? 12.7 : format === "currency" ? 12450.5 : 1234.56}
+            format={format}
+            currency="EUR"
+            percentAs="unit"
+            locale={locale}
+            compact={compact}
+            signDisplay={format === "signed" ? "exceptZero" : undefined}
+            size="lg"
+            trend={format === "signed" || format === "percent" ? "down" : undefined}
+            comparison={format === "signed" ? "vs prior" : undefined}
+          />
+          <NumberDisplay
+            label="Negative"
+            value={-12.7}
+            format="percent"
+            percentAs="unit"
+            locale={locale}
+            maximumFractionDigits={1}
+            size="lg"
+            tone="negative"
+            trend="down"
+            comparison="vs last week"
+          />
+          <NumberDisplay
+            label="Compact demo"
+            value={4_800_000}
+            format="decimal"
+            locale={locale}
+            compact="short"
+            size="lg"
+            context="Explicit compact only"
+          />
+          <NumberDisplay
+            label="Unit"
+            value={12.5}
+            format="unit"
+            unit="kilogram"
+            locale={locale}
+            size="lg"
+          />
+        </div>
+
+        <div
+          style={{
+            marginTop: 20,
+            display: "grid",
+            gap: 20,
+            gridTemplateColumns: "repeat(auto-fit, minmax(8rem, 1fr))",
+            alignItems: "end",
+          }}
+        >
+          <NumberDisplay label="Zero" value={0} format="integer" locale={locale} size="md" />
+          <NumberDisplay label="Loading" state="loading" loadingWidthCh={5} size="md" />
+          <NumberDisplay label="Unknown" state="unknown" size="md" />
+          <NumberDisplay label="N/A" state="unavailable" size="md" />
+        </div>
+
+        <div
+          style={{
+            marginTop: 24,
+            display: "grid",
+            gap: 8,
+            gridTemplateColumns: "1fr auto",
+            maxWidth: "16rem",
+            fontVariantNumeric: "tabular-nums",
+          }}
+        >
+          <span style={{ color: "var(--color-text-secondary, #6e6e73)" }}>Revenue</span>
+          <NumberDisplay
+            value={12450.5}
+            format="currency"
+            currency="USD"
+            locale={locale}
+            align="end"
+            tabular
+            size="sm"
+          />
+          <span style={{ color: "var(--color-text-secondary, #6e6e73)" }}>Refunds</span>
+          <NumberDisplay
+            value={-320}
+            format="currency"
+            currency="USD"
+            locale={locale}
+            align="end"
+            tabular
+            size="sm"
+            tone="negative"
+          />
+          <span style={{ color: "var(--color-text-secondary, #6e6e73)" }}>Net</span>
+          <NumberDisplay
+            value={12130.5}
+            format="currency"
+            currency="USD"
+            locale={locale}
+            align="end"
+            tabular
+            size="sm"
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ActionButtonGroupLab() {
+  const [orientation, setOrientation] =
+    useState<ActionButtonGroupOrientation>("horizontal");
+  const [density, setDensity] = useState<ActionButtonGroupDensity>("standard");
+  const [separation, setSeparation] =
+    useState<ActionButtonGroupSeparation>("joined");
+  const [overflow, setOverflow] =
+    useState<ActionButtonGroupOverflow>("wrap");
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="action-button-group-lab-heading"
+    >
+      <h2 id="action-button-group-lab-heading">091 Button Group</h2>
+      <p className="catalog-group-desc">
+        Action composition cluster — compose Button, keep each action independent.
+        Wrap or stack on narrow viewports. For 4+ actions prefer Action Group /
+        Overflow. Distinct from Interaction 003.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+          }}
+        >
+          <Select
+            label="Orientation"
+            presentation="listbox"
+            options={[
+              { value: "horizontal", label: "Horizontal" },
+              { value: "vertical", label: "Vertical" },
+            ]}
+            value={orientation}
+            onValueChange={(v) =>
+              setOrientation(v as ActionButtonGroupOrientation)
+            }
+          />
+          <Select
+            label="Density"
+            presentation="listbox"
+            options={[
+              { value: "standard", label: "Standard" },
+              { value: "compact", label: "Compact" },
+            ]}
+            value={density}
+            onValueChange={(v) => setDensity(v as ActionButtonGroupDensity)}
+          />
+          <Select
+            label="Separation"
+            presentation="listbox"
+            options={[
+              { value: "joined", label: "Joined" },
+              { value: "separated", label: "Separated" },
+            ]}
+            value={separation}
+            onValueChange={(v) =>
+              setSeparation(v as ActionButtonGroupSeparation)
+            }
+          />
+          <Select
+            label="Overflow"
+            presentation="listbox"
+            options={[
+              { value: "wrap", label: "Wrap" },
+              { value: "stack", label: "Stack" },
+            ]}
+            value={overflow}
+            onValueChange={(v) => setOverflow(v as ActionButtonGroupOverflow)}
+          />
+        </div>
+
+        <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 24 }}>
+          <div>
+            <h3 className="catalog-subgroup-title">Primary + secondary</h3>
+            <ActionButtonGroup
+              label="Save document"
+              orientation={orientation}
+              density={density}
+              separation={separation}
+              overflow={overflow}
+            >
+              <Button variant="secondary">Cancel</Button>
+              <Button variant="primary">Save</Button>
+            </ActionButtonGroup>
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">Three related actions</h3>
+            <ActionButtonGroup
+              label="View mode"
+              orientation={orientation}
+              density={density}
+              separation={separation}
+              overflow={overflow}
+            >
+              <Button variant="secondary">List</Button>
+              <Button variant="secondary">Grid</Button>
+              <Button variant="secondary" disabled>
+                Board
+              </Button>
+            </ActionButtonGroup>
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">Equal width</h3>
+            <ActionButtonGroup
+              label="Billing period"
+              orientation={orientation}
+              density={density}
+              separation={separation}
+              overflow={overflow}
+              equalWidth
+            >
+              <Button variant="secondary">Monthly</Button>
+              <Button variant="primary">Yearly</Button>
+            </ActionButtonGroup>
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">Long labels (localization)</h3>
+            <ActionButtonGroup
+              label="Export options"
+              orientation={orientation}
+              density={density}
+              separation="separated"
+              overflow={overflow}
+            >
+              <Button variant="secondary">Als PDF-Dokument exportieren</Button>
+              <Button variant="secondary">Als Tabelle speichern</Button>
+              <Button variant="primary">Freigeben</Button>
+            </ActionButtonGroup>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ZoomInIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <circle cx="8.5" cy="8.5" r="4.25" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M11.75 11.75 16 16" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+      <path d="M8.5 6.5v4M6.5 8.5h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function ZoomOutIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <circle cx="8.5" cy="8.5" r="4.25" stroke="currentColor" strokeWidth="1.75" />
+      <path d="M11.75 11.75 16 16" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+      <path d="M6.5 8.5h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function IconButtonGroupLab() {
+  const [orientation, setOrientation] =
+    useState<IconButtonGroupOrientation>("horizontal");
+  const [density, setDensity] = useState<IconButtonGroupDensity>("standard");
+  const [separation, setSeparation] =
+    useState<IconButtonGroupSeparation>("joined");
+  const [overflow, setOverflow] = useState<IconButtonGroupOverflow>("wrap");
+  const [view, setView] = useState<"list" | "grid">("list");
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="icon-button-group-lab-heading"
+    >
+      <h2 id="icon-button-group-lab-heading">092 Icon Button Group</h2>
+      <p className="catalog-group-desc">
+        Related icon-only actions via Icon Button — labels required, sizes from
+        the primitive. Selected uses surface + border + aria-pressed. Prefer
+        Overflow Action when the set grows large.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 12,
+            gridTemplateColumns: "repeat(auto-fit, minmax(10rem, 1fr))",
+          }}
+        >
+          <Select
+            label="Orientation"
+            presentation="listbox"
+            options={[
+              { value: "horizontal", label: "Horizontal" },
+              { value: "vertical", label: "Vertical" },
+            ]}
+            value={orientation}
+            onValueChange={(v) =>
+              setOrientation(v as IconButtonGroupOrientation)
+            }
+          />
+          <Select
+            label="Density"
+            presentation="listbox"
+            options={[
+              { value: "standard", label: "Standard" },
+              { value: "compact", label: "Compact" },
+            ]}
+            value={density}
+            onValueChange={(v) => setDensity(v as IconButtonGroupDensity)}
+          />
+          <Select
+            label="Separation"
+            presentation="listbox"
+            options={[
+              { value: "joined", label: "Joined" },
+              { value: "separated", label: "Separated" },
+            ]}
+            value={separation}
+            onValueChange={(v) =>
+              setSeparation(v as IconButtonGroupSeparation)
+            }
+          />
+          <Select
+            label="Overflow"
+            presentation="listbox"
+            options={[
+              { value: "wrap", label: "Wrap" },
+              { value: "stack", label: "Stack" },
+            ]}
+            value={overflow}
+            onValueChange={(v) => setOverflow(v as IconButtonGroupOverflow)}
+          />
+        </div>
+
+        <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 24 }}>
+          <div>
+            <h3 className="catalog-subgroup-title">Zoom controls</h3>
+            <IconButtonGroup
+              label="Zoom"
+              orientation={orientation}
+              density={density}
+              separation={separation}
+              overflow={overflow}
+            >
+              <IconButton label="Zoom out" variant="outlined" icon={<ZoomOutIcon />} />
+              <IconButton label="Zoom in" variant="outlined" icon={<ZoomInIcon />} />
+              <IconButton
+                label="Reset zoom"
+                variant="filled"
+                icon={<PlusIcon />}
+              />
+            </IconButtonGroup>
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">View switching (selected)</h3>
+            <IconButtonGroup
+              label="View mode"
+              orientation={orientation}
+              density={density}
+              separation={separation}
+              overflow={overflow}
+            >
+              <IconButton
+                label="List view"
+                variant="outlined"
+                icon={<ListIcon />}
+                selected={view === "list"}
+                onClick={() => setView("list")}
+              />
+              <IconButton
+                label="Grid view"
+                variant="outlined"
+                icon={<GridIcon />}
+                selected={view === "grid"}
+                onClick={() => setView("grid")}
+              />
+            </IconButtonGroup>
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">Formatting + disabled</h3>
+            <IconButtonGroup
+              label="Formatting"
+              orientation={orientation}
+              density={density}
+              separation={separation}
+              overflow={overflow}
+            >
+              <IconButton label="Add item" variant="outlined" icon={<PlusIcon />} />
+              <IconButton label="More options" variant="outlined" icon={<MoreIcon />} />
+              <IconButton
+                label="Delete"
+                variant="outlined"
+                icon={<TrashIcon />}
+                disabled
+              />
+            </IconButtonGroup>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ActionSplitButtonLab() {
+  const [variant, setVariant] = useState<ActionSplitButtonVariant>("primary");
+  const [last, setLast] = useState("—");
+  const [primaryOff, setPrimaryOff] = useState(false);
+
+  const saveItems: DropdownMenuEntry[] = [
+    {
+      id: "save",
+      label: "Save",
+      onSelect: () => setLast("Save"),
+    },
+    {
+      id: "save-as",
+      label: "Save as…",
+      onSelect: () => setLast("Save as…"),
+    },
+    {
+      id: "save-copy",
+      label: "Save a copy",
+      onSelect: () => setLast("Save a copy"),
+    },
+  ];
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="action-split-button-lab-heading"
+    >
+      <h2 id="action-split-button-lab-heading">093 Split Button</h2>
+      <p className="catalog-group-desc">
+        Primary runs immediately; chevron opens related alternatives via Dropdown
+        Menu. Menu is not built into the split. Regions disable independently.
+        Distinct from Interaction 004.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Variant"
+          presentation="listbox"
+          options={[
+            { value: "primary", label: "Primary" },
+            { value: "secondary", label: "Secondary" },
+            { value: "destructive", label: "Destructive" },
+          ]}
+          value={variant}
+          onValueChange={(v) => setVariant(v as ActionSplitButtonVariant)}
+        />
+
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 20 }}>
+          <ActionSplitButton
+            variant={variant}
+            onPrimaryClick={() => setLast("Primary: Save")}
+            primaryDisabled={primaryOff}
+            menu={
+              <DropdownMenu label="Save options" items={saveItems}>
+                <ActionSplitMenuTrigger
+                  label="More save options"
+                  variant={variant}
+                />
+              </DropdownMenu>
+            }
+          >
+            Save
+          </ActionSplitButton>
+
+          <ActionSplitButton
+            variant="secondary"
+            onPrimaryClick={() => setLast("Primary: Export")}
+            menu={
+              <DropdownMenu
+                label="Export options"
+                items={[
+                  {
+                    id: "pdf",
+                    label: "Export PDF",
+                    onSelect: () => setLast("Export PDF"),
+                  },
+                  {
+                    id: "csv",
+                    label: "Export CSV",
+                    onSelect: () => setLast("Export CSV"),
+                  },
+                ]}
+              >
+                <ActionSplitMenuTrigger
+                  label="More export options"
+                  variant="secondary"
+                />
+              </DropdownMenu>
+            }
+          >
+            Export
+          </ActionSplitButton>
+
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={primaryOff}
+              onChange={(e) => setPrimaryOff(e.target.checked)}
+            />
+            Disable primary only (menu stays available)
+          </label>
+
+          <p className="catalog-group-desc" aria-live="polite">
+            Last action: {last}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ActionSegmentedControlLab() {
+  const [range, setRange] = useState("week");
+  const [view, setView] = useState("list");
+  const [size, setSize] = useState("md");
+  const [overflow, setOverflow] =
+    useState<ActionSegmentedControlOverflow>("wrap");
+
+  return (
+    <section
+      className="catalog-group"
+      aria-labelledby="action-segmented-control-lab-heading"
+    >
+      <h2 id="action-segmented-control-lab-heading">094 Segmented Control</h2>
+      <p className="catalog-group-desc">
+        Small exclusive choices (2–5). Selected uses fill, border, and weight —
+        not color alone. Default overflow wraps; scroll is opt-in. Never
+        auto-converts to a dropdown. Distinct from Interaction 008.
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Overflow"
+          presentation="listbox"
+          options={[
+            { value: "wrap", label: "Wrap (default)" },
+            { value: "stack", label: "Stack" },
+            { value: "scroll", label: "Scroll (opt-in)" },
+          ]}
+          value={overflow}
+          onValueChange={(v) => setOverflow(v as ActionSegmentedControlOverflow)}
+        />
+
+        <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 24 }}>
+          <div>
+            <h3 className="catalog-subgroup-title">Day · Week · Month</h3>
+            <ActionSegmentedControl
+              label="Date range"
+              overflow={overflow}
+              value={range}
+              onValueChange={setRange}
+              options={[
+                { id: "day", label: "Day" },
+                { id: "week", label: "Week" },
+                { id: "month", label: "Month" },
+              ]}
+            />
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">List · Grid (icons)</h3>
+            <ActionSegmentedControl
+              label="View mode"
+              overflow={overflow}
+              value={view}
+              onValueChange={setView}
+              options={[
+                { id: "list", label: "List", icon: <ListIcon /> },
+                { id: "grid", label: "Grid", icon: <GridIcon /> },
+              ]}
+            />
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">Size + disabled segment</h3>
+            <ActionSegmentedControl
+              label="Control size"
+              overflow={overflow}
+              value={size}
+              onValueChange={setSize}
+              options={[
+                { id: "sm", label: "Small" },
+                { id: "md", label: "Medium" },
+                { id: "lg", label: "Large", disabled: true },
+              ]}
+            />
+          </div>
+
+          <div>
+            <h3 className="catalog-subgroup-title">Long localized labels</h3>
+            <ActionSegmentedControl
+              label="Export format"
+              overflow={overflow}
+              defaultValue="pdf"
+              options={[
+                { id: "pdf", label: "PDF-Dokument" },
+                { id: "sheet", label: "Tabelle" },
+                { id: "slide", label: "Präsentation" },
+              ]}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ActionGroupLab() {
+  const [orientation, setOrientation] =
+    useState<ActionGroupOrientation>("responsive");
+  const [showImport, setShowImport] = useState(true);
+  const [createLoading, setCreateLoading] = useState(false);
+  const [last, setLast] = useState("—");
+
+  const moreItems: DropdownMenuEntry[] = [
+    {
+      id: "duplicate",
+      label: "Duplicate",
+      onSelect: () => setLast("Duplicate"),
+    },
+    {
+      id: "archive",
+      label: "Archive",
+      onSelect: () => setLast("Archive"),
+    },
+    {
+      id: "delete",
+      label: "Delete",
+      destructive: true,
+      onSelect: () => setLast("Delete"),
+    },
+  ];
+
+  return (
+    <section className="catalog-group" aria-labelledby="action-group-lab-heading">
+      <h2 id="action-group-lab-heading">095 Action Group</h2>
+      <p className="catalog-group-desc">
+        Mixed action treatments — primary stays dominant; secondary and overflow
+        compose existing Buttons / menus. Hidden items leave no gaps. Responsive
+        stacks on narrow screens. Unlike Button Group (091).
+      </p>
+
+      <div className="lab-block" style={{ maxWidth: "40rem" }}>
+        <Select
+          label="Orientation"
+          presentation="listbox"
+          options={[
+            { value: "responsive", label: "Responsive (default)" },
+            { value: "horizontal", label: "Horizontal" },
+            { value: "vertical", label: "Vertical" },
+          ]}
+          value={orientation}
+          onValueChange={(v) => setOrientation(v as ActionGroupOrientation)}
+        />
+
+        <div style={{ marginTop: 20, display: "flex", flexDirection: "column", gap: 24 }}>
+          <ActionGroup label="Document actions" orientation={orientation}>
+            <ActionGroup.Primary>
+              <Button
+                variant="primary"
+                loading={createLoading}
+                onClick={() => {
+                  setCreateLoading(true);
+                  setLast("Create");
+                  window.setTimeout(() => setCreateLoading(false), 1200);
+                }}
+              >
+                Create
+              </Button>
+            </ActionGroup.Primary>
+            <ActionGroup.Item rank="secondary" hidden={!showImport}>
+              <Button
+                variant="secondary"
+                onClick={() => setLast("Import")}
+              >
+                Import
+              </Button>
+            </ActionGroup.Item>
+            <ActionGroup.Item rank="icon">
+              <IconButton
+                label="Add related"
+                variant="outlined"
+                icon={<PlusIcon />}
+                onClick={() => setLast("Add related")}
+              />
+            </ActionGroup.Item>
+            <ActionGroup.Overflow>
+              <DropdownMenu label="More actions" items={moreItems}>
+                <Button variant="secondary">More</Button>
+              </DropdownMenu>
+            </ActionGroup.Overflow>
+          </ActionGroup>
+
+          <label style={{ display: "flex", gap: 8, alignItems: "center" }}>
+            <input
+              type="checkbox"
+              checked={showImport}
+              onChange={(e) => setShowImport(e.target.checked)}
+            />
+            Show Import (hidden leaves no gap)
+          </label>
+
+          <ActionGroup
+            label="Destructive set"
+            orientation={orientation}
+            density="compact"
+          >
+            <ActionGroup.Item rank="secondary">
+              <Button variant="secondary" onClick={() => setLast("Keep")}>
+                Keep
+              </Button>
+            </ActionGroup.Item>
+            <ActionGroup.Item rank="destructive">
+              <Button
+                variant="destructive"
+                onClick={() => setLast("Delete forever")}
+              >
+                Delete forever
+              </Button>
+            </ActionGroup.Item>
+          </ActionGroup>
+
+          <p className="catalog-group-desc" aria-live="polite">
+            Last action: {last}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function App() {
   return (
     <div className="playground">
@@ -7107,7 +11019,7 @@ export function App() {
           <h1>DevKit</h1>
           <p>
             Layer 1 — Interaction 001–010; Form 011–020; Selection 021–030;
-            Navigation 031–040; Feedback 041–050; Overlays 051–060 ready.
+            Navigation 031–040; Feedback 041–050; Overlays 051–060; Data Display 061–070; Media 071–080; Typography 081–090; Actions 091–095 ready.
           </p>
         </div>
       </header>
@@ -7173,6 +11085,40 @@ export function App() {
       <DrawerLab />
       <BottomSheetLab />
       <ModalSurfaceLab />
+      <CardLab />
+      <ListLab />
+      <ListItemLab />
+      <DataRowLab />
+      <AvatarLab />
+      <AvatarGroupLab />
+      <KeyValuePairLab />
+      <DividerLab />
+      <TimelineLab />
+      <ContentBlockLab />
+      <ImageLab />
+      <ThumbnailLab />
+      <MediaObjectLab />
+      <IconContainerLab />
+      <IllustrationLab />
+      <CoverMediaLab />
+      <MediaPreviewLab />
+      <ImagePlaceholderLab />
+      <MediaOverlayLab />
+      <MediaMetadataLab />
+      <HeadingLab />
+      <ParagraphLab />
+      <LabelLab />
+      <CaptionLab />
+      <LinkLab />
+      <CodeLab />
+      <CodeBlockLab />
+      <BlockquoteLab />
+      <NumberDisplayLab />
+      <ActionButtonGroupLab />
+      <IconButtonGroupLab />
+      <ActionSplitButtonLab />
+      <ActionSegmentedControlLab />
+      <ActionGroupLab />
 
       {groups.map((group) => (
         <section

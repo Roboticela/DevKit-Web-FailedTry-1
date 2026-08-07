@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/KeyValuePair.tsx",
+      "destination": "components/ui/KeyValuePair.tsx"
+    },
+    {
+      "source": "files/styles/key-value-pair.css",
+      "destination": "styles/key-value-pair.css"
+    },
+    {
+      "source": "files/docs/KEY-VALUE-PAIR.md",
+      "destination": "docs/devkit/KEY-VALUE-PAIR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

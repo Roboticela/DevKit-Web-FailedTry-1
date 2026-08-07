@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Caption.tsx",
+      "destination": "src/components/ui/Caption.tsx"
+    },
+    {
+      "source": "files/src/styles/caption.css",
+      "destination": "src/styles/caption.css"
+    },
+    {
+      "source": "files/docs/CAPTION.md",
+      "destination": "docs/devkit/CAPTION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

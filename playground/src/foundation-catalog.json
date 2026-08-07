@@ -491,13 +491,272 @@
         },
         {
           "id": "data-display-primitives",
-          "name": "Data Display Primitives",
-          "components": []
+          "name": "Data Display",
+          "components": [
+            {
+              "id": 61,
+              "name": "card",
+              "displayName": "Card",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 62,
+              "name": "list",
+              "displayName": "List",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 63,
+              "name": "list-item",
+              "displayName": "List Item",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 64,
+              "name": "data-row",
+              "displayName": "Data Row",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 65,
+              "name": "avatar",
+              "displayName": "Avatar",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 66,
+              "name": "avatar-group",
+              "displayName": "Avatar Group",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 67,
+              "name": "key-value-pair",
+              "displayName": "Key-Value Pair",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 68,
+              "name": "divider",
+              "displayName": "Divider",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 69,
+              "name": "timeline",
+              "displayName": "Timeline",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 70,
+              "name": "content-block",
+              "displayName": "Content Block",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
         },
         {
           "id": "media-primitives",
-          "name": "Media Primitives",
-          "components": []
+          "name": "Media & Visual Content",
+          "components": [
+            {
+              "id": 71,
+              "name": "image",
+              "displayName": "Image",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 72,
+              "name": "thumbnail",
+              "displayName": "Thumbnail",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 73,
+              "name": "media-object",
+              "displayName": "Media Object",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 74,
+              "name": "icon-container",
+              "displayName": "Icon Container",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 75,
+              "name": "illustration",
+              "displayName": "Illustration",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 76,
+              "name": "cover-media",
+              "displayName": "Cover Media",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 77,
+              "name": "media-preview",
+              "displayName": "Media Preview",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 78,
+              "name": "image-placeholder",
+              "displayName": "Image Placeholder",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 79,
+              "name": "media-overlay",
+              "displayName": "Media Overlay",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 80,
+              "name": "media-metadata",
+              "displayName": "Media Metadata",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
+        },
+        {
+          "id": "typography-content",
+          "name": "Typography & Content",
+          "components": [
+            {
+              "id": 81,
+              "name": "text",
+              "displayName": "Text",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 82,
+              "name": "heading",
+              "displayName": "Heading",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 83,
+              "name": "paragraph",
+              "displayName": "Paragraph",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 84,
+              "name": "label",
+              "displayName": "Label",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 85,
+              "name": "caption",
+              "displayName": "Caption",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 86,
+              "name": "link",
+              "displayName": "Link",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 87,
+              "name": "code",
+              "displayName": "Code",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 88,
+              "name": "code-block",
+              "displayName": "Code Block",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 89,
+              "name": "blockquote",
+              "displayName": "Blockquote",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 90,
+              "name": "number-display",
+              "displayName": "Number Display",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
+        },
+        {
+          "id": "action-control-compositions",
+          "name": "Action & Control Compositions",
+          "components": [
+            {
+              "id": 91,
+              "name": "action-button-group",
+              "displayName": "Button Group",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 92,
+              "name": "icon-button-group",
+              "displayName": "Icon Button Group",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 93,
+              "name": "action-split-button",
+              "displayName": "Split Button",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 94,
+              "name": "action-segmented-control",
+              "displayName": "Segmented Control",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            },
+            {
+              "id": 95,
+              "name": "action-group",
+              "displayName": "Action Group",
+              "stub": false,
+              "latestVersion": "1.0.0"
+            }
+          ]
         }
       ]
     }

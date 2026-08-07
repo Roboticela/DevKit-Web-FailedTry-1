@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Illustration.tsx",
+      "destination": "components/ui/Illustration.tsx"
+    },
+    {
+      "source": "files/styles/illustration.css",
+      "destination": "styles/illustration.css"
+    },
+    {
+      "source": "files/docs/ILLUSTRATION.md",
+      "destination": "docs/devkit/ILLUSTRATION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

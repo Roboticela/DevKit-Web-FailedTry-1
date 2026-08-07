@@ -1,0 +1,250 @@
+/* Cover Media (ID 076) — Media & Visual Content
+ * Fills a defined rectangle with controlled cropping.
+ * Default fit: cover. Focal point configurable — do not blind center-crop.
+ * Aspect presets are ratios only. Radius via global tokens (default none).
+ * Text contrast: solid scrim (not a heavy gradient). No box-shadow.
+ */
+
+.dk-cover-media {
+  --dk-cover-fit: cover;
+  --dk-cover-position: center center;
+  --dk-cover-radius: 0;
+  --dk-cover-bg: var(--color-surface-secondary, #f5f5f7);
+  --dk-cover-fg: var(--color-text-primary, #1d1d1f);
+  --dk-cover-muted: var(--color-text-secondary, #6e6e73);
+  --dk-cover-on-media: var(--color-text-inverse, #ffffff);
+  --dk-cover-scrim: color-mix(
+    in srgb,
+    var(--color-surface-inverse, #000000) 42%,
+    transparent
+  );
+  --dk-cover-pad: var(--space-3, 12px);
+
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: var(--dk-cover-radius);
+  background: var(--dk-cover-bg);
+  color: var(--dk-cover-fg);
+  line-height: 0;
+}
+
+.dk-cover-media *,
+.dk-cover-media *::before,
+.dk-cover-media *::after {
+  box-sizing: border-box;
+}
+
+/* ——— Aspect presets (ratios only) ——— */
+
+.dk-cover-media--compact {
+  aspect-ratio: 4 / 3;
+}
+
+.dk-cover-media--standard {
+  aspect-ratio: 16 / 9;
+}
+
+.dk-cover-media--wide {
+  aspect-ratio: 2 / 1;
+}
+
+.dk-cover-media--hero {
+  aspect-ratio: 21 / 9;
+}
+
+/* Inline style aspect-ratio (custom / override) wins via specificity of style attr */
+
+/* Responsive: soften extreme hero/wide on narrow viewports */
+@media (max-width: 40rem) {
+  .dk-cover-media--wide {
+    aspect-ratio: 16 / 9;
+  }
+
+  .dk-cover-media--hero {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (min-width: 64rem) {
+  .dk-cover-media--hero {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+/* ——— Radius (global tokens; default none) ——— */
+
+.dk-cover-media--radius-none {
+  --dk-cover-radius: 0;
+}
+
+.dk-cover-media--radius-sm {
+  --dk-cover-radius: var(--radius-2, 6px);
+}
+
+.dk-cover-media--radius-md {
+  --dk-cover-radius: var(--radius-3, 8px);
+}
+
+/* ——— Media ——— */
+
+.dk-cover-media__media {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--dk-cover-fit, cover);
+  object-position: var(--dk-cover-position, center center);
+  border-radius: inherit;
+}
+
+.dk-cover-media--fit-contain .dk-cover-media__media {
+  object-fit: contain;
+}
+
+.dk-cover-media--fit-cover .dk-cover-media__media {
+  object-fit: cover;
+}
+
+.dk-cover-media--loading:not(.dk-cover-media--error)::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--dk-cover-bg);
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.dk-cover-media__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dk-cover-muted);
+  background: var(--dk-cover-bg);
+  line-height: 1;
+}
+
+.dk-cover-media__fallback-mark {
+  display: inline-flex;
+  opacity: 0.55;
+}
+
+/* ——— Contrast scrim (solid, not a gradient) ——— */
+
+.dk-cover-media__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: var(--dk-cover-scrim);
+  border-radius: inherit;
+}
+
+.dk-cover-media--scrim .dk-cover-media__content {
+  color: var(--dk-cover-on-media);
+}
+
+/* ——— Overlay / caption / metadata ——— */
+
+.dk-cover-media__content {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2, 8px);
+  padding: var(--dk-cover-pad);
+  line-height: var(--line-height-body, 1.4);
+  font-family: var(--font-sans, system-ui, sans-serif);
+  pointer-events: none;
+}
+
+.dk-cover-media__content > * {
+  pointer-events: auto;
+}
+
+.dk-cover-media__overlay {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+}
+
+.dk-cover-media__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1, 4px);
+  margin: 0;
+  padding: 0;
+}
+
+.dk-cover-media__caption {
+  margin: 0;
+  font-size: var(--font-size-body-sm, 14px);
+  font-weight: var(--weight-medium, 500);
+  overflow-wrap: anywhere;
+}
+
+.dk-cover-media__metadata {
+  margin: 0;
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--weight-regular, 400);
+  opacity: 0.9;
+  overflow-wrap: anywhere;
+}
+
+/* ——— Themes ——— */
+
+[data-theme="dark"] .dk-cover-media {
+  --dk-cover-bg: var(--color-surface-secondary, #2c2c2e);
+  --dk-cover-fg: var(--color-text-primary, #f5f5f7);
+  --dk-cover-muted: var(--color-text-secondary, #a1a1a6);
+  --dk-cover-scrim: color-mix(
+    in srgb,
+    var(--color-surface-inverse, #000000) 50%,
+    transparent
+  );
+}
+
+[data-theme="hc"] .dk-cover-media,
+[data-contrast="high"] .dk-cover-media {
+  --dk-cover-bg: Canvas;
+  --dk-cover-fg: CanvasText;
+  --dk-cover-muted: CanvasText;
+  --dk-cover-on-media: Canvas;
+  --dk-cover-scrim: CanvasText;
+  outline: var(--border-width-default, 1px) solid CanvasText;
+  outline-offset: -1px;
+}
+
+[data-theme="hc"] .dk-cover-media__scrim,
+[data-contrast="high"] .dk-cover-media__scrim {
+  opacity: 0.85;
+}
+
+/* ——— RTL ——— */
+
+[dir="rtl"] .dk-cover-media__content {
+  text-align: start;
+}
+
+/* ——— Reduced motion ——— */
+
+@media (prefers-reduced-motion: reduce) {
+  .dk-cover-media,
+  .dk-cover-media * {
+    transition: none !important;
+  }
+}
+
+html[data-motion="reduce"] .dk-cover-media,
+html[data-motion="reduce"] .dk-cover-media * {
+  transition: none !important;
+}

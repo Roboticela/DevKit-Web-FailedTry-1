@@ -1,0 +1,47 @@
+{
+  "id": 74,
+  "name": "icon-container",
+  "displayName": "Icon Container",
+  "description": "Controlled icon region — optically centered glyph, square/circle/rounded/transparent shapes, sm/md/lg via tokens, semantic tones, decorative by default.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "media-primitives",
+  "subgroupName": "Media & Visual Content",
+  "kind": "component",
+  "layer": 1,
+  "icon": "box",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "media-primitives",
+    "icon-container",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -1,0 +1,47 @@
+{
+  "id": 68,
+  "name": "divider",
+  "displayName": "Divider",
+  "description": "Subtle structural separator — horizontal/vertical, full/inset/section/content-aligned. Vertical stretches with content. Optional semantic separator role.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "data-display-primitives",
+  "subgroupName": "Data Display",
+  "kind": "component",
+  "layer": 1,
+  "icon": "minus",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "data-display-primitives",
+    "divider",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

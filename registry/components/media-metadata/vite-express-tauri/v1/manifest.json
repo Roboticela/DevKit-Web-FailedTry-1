@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/MediaMetadata.tsx",
+      "destination": "src/components/ui/MediaMetadata.tsx"
+    },
+    {
+      "source": "files/src/styles/media-metadata.css",
+      "destination": "src/styles/media-metadata.css"
+    },
+    {
+      "source": "files/docs/MEDIA-METADATA.md",
+      "destination": "docs/devkit/MEDIA-METADATA.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

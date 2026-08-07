@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ImagePlaceholder.tsx",
+      "destination": "components/ui/ImagePlaceholder.tsx"
+    },
+    {
+      "source": "files/styles/image-placeholder.css",
+      "destination": "styles/image-placeholder.css"
+    },
+    {
+      "source": "files/docs/IMAGE-PLACEHOLDER.md",
+      "destination": "docs/devkit/IMAGE-PLACEHOLDER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

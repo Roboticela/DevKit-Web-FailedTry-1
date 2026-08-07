@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/NumberDisplay.tsx",
+      "destination": "src/components/ui/NumberDisplay.tsx"
+    },
+    {
+      "source": "files/src/styles/number-display.css",
+      "destination": "src/styles/number-display.css"
+    },
+    {
+      "source": "files/docs/NUMBER_DISPLAY.md",
+      "destination": "docs/devkit/NUMBER_DISPLAY.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

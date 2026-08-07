@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Link.tsx",
+      "destination": "components/ui/Link.tsx"
+    },
+    {
+      "source": "files/styles/link.css",
+      "destination": "styles/link.css"
+    },
+    {
+      "source": "files/docs/LINK.md",
+      "destination": "docs/devkit/LINK.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}

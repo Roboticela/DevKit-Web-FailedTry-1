@@ -1,0 +1,47 @@
+{
+  "id": 64,
+  "name": "data-row",
+  "displayName": "Data Row",
+  "description": "Structured label/value fields for detail views and records — responsive stack/columns, leading/status/actions, optional dividers. Not a table row.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "data-display-primitives",
+  "subgroupName": "Data Display",
+  "kind": "component",
+  "layer": 1,
+  "icon": "columns-2",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "data-display-primitives",
+    "data-row",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

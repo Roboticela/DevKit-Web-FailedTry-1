@@ -1,0 +1,47 @@
+{
+  "id": 66,
+  "name": "avatar-group",
+  "displayName": "Avatar Group",
+  "description": "Compact multi-identity arrangement — modest overlap or separated, max visible, +N overflow with touch-friendly details. Only max avatars mount.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "data-display-primitives",
+  "subgroupName": "Data Display",
+  "kind": "component",
+  "layer": 1,
+  "icon": "users",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "data-display-primitives",
+    "avatar-group",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

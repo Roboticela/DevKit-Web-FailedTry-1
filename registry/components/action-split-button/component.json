@@ -1,0 +1,48 @@
+{
+  "id": 93,
+  "name": "action-split-button",
+  "displayName": "Split Button",
+  "description": "Primary action + menu trigger composition. Uses Button styles; menu via Dropdown Menu + ActionSplitMenuTrigger — menu not implemented inside. Independent primary/menu disabled states; touch-safe trigger.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "action-control-compositions",
+  "subgroupName": "Action & Control Compositions",
+  "kind": "component",
+  "layer": 1,
+  "icon": "split-button",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "action-control-compositions",
+    "split-button",
+    "action-split-button",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-07",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

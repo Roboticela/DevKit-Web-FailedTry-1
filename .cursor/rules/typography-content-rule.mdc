@@ -1,0 +1,207 @@
+---
+alwaysApply: true
+---
+
+Create Group 09 — Typography & Content for the DevKit.
+
+This group belongs to:
+
+Layer 01 — Foundations & Interface Primitives.
+
+Existing groups:
+
+Group 01 — Interaction Controls
+Group 02 — Form Controls
+Group 03 — Selection Controls
+Group 04 — Navigation Controls
+Group 05 — Feedback & Status
+Group 06 — Overlays & Surfaces
+Group 07 — Data Display
+Group 08 — Media & Visual Content
+
+Use the DevKit Core Design Constitution as the immutable global foundation.
+
+Do not redefine:
+- font families
+- font weights
+- font sizes
+- line heights
+- letter spacing
+- colors
+- semantic colors
+- spacing
+- breakpoints
+- radius
+- elevation
+- motion
+
+All typography must consume the global typography tokens.
+
+Create exactly these 10 components:
+
+081 Text
+082 Heading
+083 Paragraph
+084 Label
+085 Caption
+086 Link
+087 Code
+088 Code Block
+089 Blockquote
+090 Number Display
+
+These are semantic and visual content primitives.
+
+They must be usable inside:
+- cards
+- lists
+- forms
+- dialogs
+- navigation
+- tables
+- dashboards
+- settings
+- detail views
+- marketing surfaces
+- documentation
+- AI interfaces
+
+Do not create:
+- complete article pages
+- complete documentation pages
+- rich text editors
+- markdown editors
+- complete code editors
+- complete typography settings pages
+
+Those are higher-level components.
+
+Typography must prioritize:
+readability
+hierarchy
+scannability
+consistency
+accessibility
+localization
+
+Do not use typography as decoration.
+
+Do not create arbitrary font sizes per component.
+
+Do not use excessive font weights.
+
+Do not make everything bold.
+
+Use hierarchy through:
+size
+weight
+spacing
+position
+semantic structure
+
+Color should be secondary to typographic hierarchy.
+
+Do not rely on color alone to communicate meaning.
+
+All text components must support:
+- Light
+- Dark
+- High Contrast
+- RTL
+- localization
+- dynamic text scaling
+- browser zoom
+- accessibility technologies
+
+Text must remain usable at:
+200% zoom
+large system font settings
+long translations
+narrow mobile widths
+
+Do not assume English word lengths.
+
+Avoid fixed-width text containers unless explicitly required.
+
+Text wrapping must be intentional.
+
+Do not create accidental horizontal scrolling.
+
+Where truncation is used:
+it must be deliberate
+the full content must remain discoverable
+accessibility must preserve the full value
+
+Support:
+single-line
+multi-line
+long-form
+short-form
+
+where relevant.
+
+Typography must maintain readable line lengths.
+
+Do not create extremely wide paragraphs on desktop.
+
+Content containers should use the global reading-width tokens.
+
+Do not force all text into centered layouts.
+
+Default long-form reading content should generally use a comfortable reading measure.
+
+Support:
+LTR
+RTL
+
+Bidirectional text must render correctly.
+
+Mixed content such as:
+Arabic + English
+numbers + text
+URLs + text
+code + prose
+
+must remain understandable.
+
+Links must be distinguishable from surrounding text.
+
+Do not rely exclusively on color.
+
+Interactive text must have:
+hover
+focus
+visited where applicable
+pressed where applicable
+
+Focus must be clearly visible.
+
+Code must use a suitable monospace token from the global typography system.
+
+Do not introduce a random monospace font.
+
+Code content must preserve whitespace where required.
+
+Number Display must support:
+large values
+decimals
+currency
+percentages
+negative values
+localized number formats
+
+Do not hardcode formatting to one locale.
+
+Support:
+loading
+unknown
+not available
+zero
+negative
+very large values
+
+without creating visual instability.
+
+All text must remain accessible to screen readers.
+
+Decorative text should not create unnecessary accessibility output.

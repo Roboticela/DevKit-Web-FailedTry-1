@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContentBlock.tsx",
+      "destination": "components/ui/ContentBlock.tsx"
+    },
+    {
+      "source": "files/styles/content-block.css",
+      "destination": "styles/content-block.css"
+    },
+    {
+      "source": "files/docs/CONTENT-BLOCK.md",
+      "destination": "docs/devkit/CONTENT-BLOCK.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": []
+  },
+  "envVars": []
+}
