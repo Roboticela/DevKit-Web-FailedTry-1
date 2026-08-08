@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    { "source": "files/components/ui/LoginForm.tsx", "destination": "components/ui/LoginForm.tsx" },
+    { "source": "files/styles/login-form.css", "destination": "styles/login-form.css" },
+    { "source": "files/docs/LOGIN_FORM.md", "destination": "docs/devkit/LOGIN_FORM.md" }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card", "form", "text-input", "password-input", "password-visibility-toggle",
+      "checkbox", "link", "button", "alert", "icon", "continue-with-provider",
+      "authentication-loading", "authentication-error", "authentication-success"
+    ]
+  },
+  "envVars": []
+}

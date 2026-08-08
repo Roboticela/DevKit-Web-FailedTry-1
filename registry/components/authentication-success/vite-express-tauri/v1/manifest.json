@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/AuthenticationSuccess.tsx",
+      "destination": "src/components/ui/AuthenticationSuccess.tsx"
+    },
+    {
+      "source": "files/src/styles/authentication-success.css",
+      "destination": "src/styles/authentication-success.css"
+    },
+    {
+      "source": "files/docs/AUTHENTICATION_SUCCESS.md",
+      "destination": "docs/devkit/AUTHENTICATION_SUCCESS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert"
+    ]
+  },
+  "envVars": []
+}

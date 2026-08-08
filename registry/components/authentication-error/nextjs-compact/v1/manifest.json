@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/AuthenticationError.tsx",
+      "destination": "components/ui/AuthenticationError.tsx"
+    },
+    {
+      "source": "files/styles/authentication-error.css",
+      "destination": "styles/authentication-error.css"
+    },
+    {
+      "source": "files/docs/AUTHENTICATION_ERROR.md",
+      "destination": "docs/devkit/AUTHENTICATION_ERROR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/AuthenticationLoading.tsx",
+      "destination": "src/components/ui/AuthenticationLoading.tsx"
+    },
+    {
+      "source": "files/src/styles/authentication-loading.css",
+      "destination": "src/styles/authentication-loading.css"
+    },
+    {
+      "source": "files/docs/AUTHENTICATION_LOADING.md",
+      "destination": "docs/devkit/AUTHENTICATION_LOADING.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "spinner",
+      "skeleton"
+    ]
+  },
+  "envVars": []
+}

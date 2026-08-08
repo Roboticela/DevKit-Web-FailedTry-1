@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ForgotPassword.tsx",
+      "destination": "components/ui/ForgotPassword.tsx"
+    },
+    {
+      "source": "files/styles/forgot-password.css",
+      "destination": "styles/forgot-password.css"
+    },
+    {
+      "source": "files/docs/FORGOT_PASSWORD.md",
+      "destination": "docs/devkit/FORGOT_PASSWORD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "text-input",
+      "button",
+      "card",
+      "alert",
+      "action-segmented-control"
+    ]
+  },
+  "envVars": []
+}

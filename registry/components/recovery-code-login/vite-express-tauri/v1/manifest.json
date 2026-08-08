@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/RecoveryCodeLogin.tsx",
+      "destination": "src/components/ui/RecoveryCodeLogin.tsx"
+    },
+    {
+      "source": "files/src/styles/recovery-code-login.css",
+      "destination": "src/styles/recovery-code-login.css"
+    },
+    {
+      "source": "files/docs/RECOVERY_CODE_LOGIN.md",
+      "destination": "docs/devkit/RECOVERY_CODE_LOGIN.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "button",
+      "text-input",
+      "authentication-loading",
+      "authentication-error"
+    ]
+  },
+  "envVars": []
+}

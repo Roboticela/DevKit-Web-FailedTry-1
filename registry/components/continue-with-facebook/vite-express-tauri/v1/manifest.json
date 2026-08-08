@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithFacebook.tsx",
+      "destination": "src/components/ui/ContinueWithFacebook.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-facebook.css",
+      "destination": "src/styles/continue-with-facebook.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_FACEBOOK.md",
+      "destination": "docs/devkit/CONTINUE_WITH_FACEBOOK.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

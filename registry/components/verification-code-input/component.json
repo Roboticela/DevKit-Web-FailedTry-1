@@ -1,0 +1,53 @@
+{
+  "id": 63,
+  "name": "verification-code-input",
+  "displayName": "Verification Code Input",
+  "description": "Multi-cell auth code entry composing Text Input for every cell — auto-advance, paste, autofill, and flow presets for email, reset, authenticator, and 2FA.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "square",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "form-controls",
+    "verification",
+    "otp",
+    "2fa",
+    "authenticator",
+    "email-verification",
+    "password-reset",
+    "text-input",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/PasswordRequirements.tsx",
+      "destination": "components/ui/PasswordRequirements.tsx"
+    },
+    {
+      "source": "files/styles/password-requirements.css",
+      "destination": "styles/password-requirements.css"
+    },
+    {
+      "source": "files/docs/PASSWORD_REQUIREMENTS.md",
+      "destination": "docs/devkit/PASSWORD_REQUIREMENTS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "list",
+      "list-item"
+    ]
+  },
+  "envVars": []
+}

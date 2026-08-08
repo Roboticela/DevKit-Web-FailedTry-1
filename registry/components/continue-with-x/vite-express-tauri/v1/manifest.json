@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithX.tsx",
+      "destination": "src/components/ui/ContinueWithX.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-x.css",
+      "destination": "src/styles/continue-with-x.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_X.md",
+      "destination": "docs/devkit/CONTINUE_WITH_X.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContinueWithProvider.tsx",
+      "destination": "components/ui/ContinueWithProvider.tsx"
+    },
+    {
+      "source": "files/styles/continue-with-provider.css",
+      "destination": "styles/continue-with-provider.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_PROVIDER.md",
+      "destination": "docs/devkit/CONTINUE_WITH_PROVIDER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "button",
+      "icon",
+      "divider",
+      "tooltip"
+    ]
+  },
+  "envVars": []
+}

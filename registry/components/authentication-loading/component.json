@@ -1,0 +1,51 @@
+{
+  "id": 66,
+  "name": "authentication-loading",
+  "displayName": "Authentication Loading",
+  "description": "Auth-step progress UI composing Spinner and Skeleton — flow presets for sign-in, signup, reset, passkey, email verification, and session restoration.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "loader",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "form-controls",
+    "authentication",
+    "loading",
+    "spinner",
+    "skeleton",
+    "auth",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

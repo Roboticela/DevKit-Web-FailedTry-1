@@ -1,0 +1,47 @@
+/*
+ * Two-Factor Authentication — layout only. No box-shadows. No gradients.
+ */
+
+.dk-two-factor {
+  display: grid;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+  width: 100%;
+  max-width: 40rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-two-factor--full {
+  max-width: 40rem;
+}
+
+.dk-two-factor--compact {
+  max-width: 28rem;
+  gap: var(--space-3, 12px);
+}
+
+.dk-two-factor__change-method {
+  justify-self: start;
+}
+
+.dk-two-factor__verify,
+.dk-two-factor__backup {
+  display: grid;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+}
+
+.dk-two-factor__verify-footer {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .dk-two-factor,
+  .dk-two-factor--full,
+  .dk-two-factor--compact {
+    max-width: none;
+  }
+}

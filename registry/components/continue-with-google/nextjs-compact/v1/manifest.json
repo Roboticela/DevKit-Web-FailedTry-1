@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContinueWithGoogle.tsx",
+      "destination": "components/ui/ContinueWithGoogle.tsx"
+    },
+    {
+      "source": "files/styles/continue-with-google.css",
+      "destination": "styles/continue-with-google.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_GOOGLE.md",
+      "destination": "docs/devkit/CONTINUE_WITH_GOOGLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

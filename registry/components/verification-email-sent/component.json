@@ -1,0 +1,55 @@
+{
+  "id": 82,
+  "name": "verification-email-sent",
+  "displayName": "Verification Email Sent",
+  "description": "Email-sent confirmation composing Alert, Card, Button, Countdown Timer, and Resend Verification — destination address, link expiry, resend, open inbox, change email.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "mail",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "form-controls",
+    "auth",
+    "verification",
+    "email",
+    "resend",
+    "alert",
+    "card",
+    "button",
+    "countdown-timer",
+    "resend-verification",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

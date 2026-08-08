@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithMicrosoft.tsx",
+      "destination": "src/components/ui/ContinueWithMicrosoft.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-microsoft.css",
+      "destination": "src/styles/continue-with-microsoft.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_MICROSOFT.md",
+      "destination": "docs/devkit/CONTINUE_WITH_MICROSOFT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

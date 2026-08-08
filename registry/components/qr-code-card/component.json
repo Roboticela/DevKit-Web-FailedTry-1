@@ -1,0 +1,37 @@
+{
+  "id": 94,
+  "name": "qr-code-card",
+  "displayName": "QR Code Card",
+  "description": "Authenticator setup QR card composing Card, Button, Badge, Tooltip, and Icon — manual key, copy, refresh, loading, and expiration.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "qr-code",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "mfa",
+    "totp",
+    "authenticator",
+    "qr",
+    "card",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

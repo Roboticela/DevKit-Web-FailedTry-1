@@ -55,12 +55,13 @@ export async function doctorCommand(cwd = process.cwd()) {
     ok = false;
   }
 
-  // Registry reachability
+  // Bundled package registry
   const registryOk = await healthCheck();
   if (registryOk) {
-    log.success("Registry server reachable");
+    log.success("Bundled package registry available");
   } else {
-    log.warn("Registry server not reachable (offline mode)");
+    log.error("Bundled package registry missing — reinstall @roboticela/devkit");
+    ok = false;
   }
 
   log.blank();

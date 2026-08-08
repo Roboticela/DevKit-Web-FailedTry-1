@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/AccountLocked.tsx",
+      "destination": "src/components/ui/AccountLocked.tsx"
+    },
+    {
+      "source": "files/src/styles/account-locked.css",
+      "destination": "src/styles/account-locked.css"
+    },
+    {
+      "source": "files/docs/ACCOUNT_LOCKED.md",
+      "destination": "docs/devkit/ACCOUNT_LOCKED.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "button"
+    ]
+  },
+  "envVars": []
+}

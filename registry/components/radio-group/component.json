@@ -1,0 +1,29 @@
+{
+  "id": 92,
+  "name": "radio-group",
+  "displayName": "Radio Group",
+  "description": "Mutually exclusive single-select radio group with icon and trailing slots.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "selection-controls",
+  "subgroupName": "Selection Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "circle",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": ["foundation", "radio", "selection", "a11y"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -1,0 +1,37 @@
+{
+  "id": 91,
+  "name": "passkey-management",
+  "displayName": "Passkey Management",
+  "description": "Manage registered WebAuthn passkeys using Data Table, Card, Badge, Button, Dialog, and Empty State — device icons, rename/remove, filters, and search.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "key",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "passkey",
+    "webauthn",
+    "management",
+    "data-table",
+    "dialog",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

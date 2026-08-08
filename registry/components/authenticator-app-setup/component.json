@@ -1,0 +1,37 @@
+{
+  "id": 95,
+  "name": "authenticator-app-setup",
+  "displayName": "Authenticator App Setup",
+  "description": "TOTP authenticator enrollment composing QR Code Card, Verification Code Input, Button, Alert, Authentication Loading, Verification Success, and Verification Failed.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "shield",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "mfa",
+    "totp",
+    "authenticator",
+    "qr-code-card",
+    "verification-code-input",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

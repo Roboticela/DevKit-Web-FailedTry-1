@@ -7,16 +7,22 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const cliRoot = join(__dirname, "..");
 const entryPath = join(cliRoot, "dist/index.js");
 
-// Ship component payloads with the npm package (monorepo: copy from ../registry/components).
-const repoComponents = join(cliRoot, "..", "registry", "components");
-const bundleComponents = join(cliRoot, "registry", "components");
-if (existsSync(repoComponents)) {
-  rmSync(join(cliRoot, "registry"), { recursive: true, force: true });
-  mkdirSync(bundleComponents, { recursive: true });
-  cpSync(repoComponents, bundleComponents, { recursive: true });
-  console.log("  ✓ Bundled registry/components into cli/registry/");
+// Ship the full registry with the npm package (components, pages, scaffolds + index files).
+const repoRegistry = join(cliRoot, "..", "registry");
+const bundleRegistry = join(cliRoot, "registry");
+const registryParts = ["categories.json", "components", "pages", "scaffolds"];
+
+if (existsSync(join(repoRegistry, "categories.json")) || existsSync(join(repoRegistry, "components", "registry.json"))) {
+  rmSync(bundleRegistry, { recursive: true, force: true });
+  mkdirSync(bundleRegistry, { recursive: true });
+  for (const part of registryParts) {
+    const src = join(repoRegistry, part);
+    if (!existsSync(src)) continue;
+    cpSync(src, join(bundleRegistry, part), { recursive: true });
+  }
+  console.log("  ✓ Bundled registry (components, pages, scaffolds) into cli/registry/");
 } else {
-  console.log("  ℹ Skipped registry bundle (no ../registry/components — use monorepo or publish from repo root)");
+  console.log("  ℹ Skipped registry bundle (no ../registry — use monorepo or publish from repo root)");
 }
 
 const content = readFileSync(entryPath, "utf-8");

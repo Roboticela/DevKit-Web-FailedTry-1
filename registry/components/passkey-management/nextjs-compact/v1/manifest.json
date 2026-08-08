@@ -1,0 +1,33 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/PasskeyManagement.tsx",
+      "destination": "components/ui/PasskeyManagement.tsx"
+    },
+    {
+      "source": "files/styles/passkey-management.css",
+      "destination": "styles/passkey-management.css"
+    },
+    {
+      "source": "files/docs/PASSKEY_MANAGEMENT.md",
+      "destination": "docs/devkit/PASSKEY_MANAGEMENT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "badge",
+      "button",
+      "dialog",
+      "empty-state",
+      "data-table",
+      "text-input",
+      "tag",
+      "search-field"
+    ]
+  },
+  "envVars": []
+}

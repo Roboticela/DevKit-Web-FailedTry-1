@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithSlack.tsx",
+      "destination": "src/components/ui/ContinueWithSlack.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-slack.css",
+      "destination": "src/styles/continue-with-slack.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_SLACK.md",
+      "destination": "docs/devkit/CONTINUE_WITH_SLACK.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/PasswordStrength.tsx",
+      "destination": "components/ui/PasswordStrength.tsx"
+    },
+    {
+      "source": "files/styles/password-strength.css",
+      "destination": "styles/password-strength.css"
+    },
+    {
+      "source": "files/docs/PASSWORD_STRENGTH.md",
+      "destination": "docs/devkit/PASSWORD_STRENGTH.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "progress-bar",
+      "badge"
+    ]
+  },
+  "envVars": []
+}

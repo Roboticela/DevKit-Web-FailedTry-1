@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/DataTable.tsx",
+      "destination": "components/ui/DataTable.tsx"
+    },
+    {
+      "source": "files/styles/data-table.css",
+      "destination": "styles/data-table.css"
+    },
+    {
+      "source": "files/docs/DATA_TABLE.md",
+      "destination": "docs/devkit/DATA_TABLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": ["search-field", "empty-state"]
+  },
+  "envVars": []
+}

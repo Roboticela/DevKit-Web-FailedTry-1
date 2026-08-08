@@ -1,0 +1,8 @@
+/*
+ * Continue With LinkedIn — branding only.
+ * Layout comes from Continue With Provider.
+ */
+
+.dk-continue-with-provider[data-provider="linkedin"] .dk-continue-with-provider__icon {
+  color: #0a66c2;
+}

@@ -1,0 +1,81 @@
+/*
+ * Resend Verification — layout composition only.
+ * Button / Icon / Countdown Timer provide chrome.
+ * No box-shadows. No gradients.
+ */
+
+.dk-resend-verification {
+  display: grid;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-resend-verification--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+  pointer-events: none;
+}
+
+.dk-resend-verification__feedback {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.4;
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-resend-verification__feedback[data-status="success"] {
+  color: var(--color-success, #1b7f4a);
+}
+
+.dk-resend-verification__feedback[data-status="error"] {
+  color: var(--color-danger, #c62828);
+}
+
+.dk-resend-verification__body {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  align-items: stretch;
+}
+
+.dk-resend-verification--inline .dk-resend-verification__body {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+}
+
+.dk-resend-verification--compact .dk-resend-verification__body {
+  gap: var(--space-2, 8px);
+}
+
+.dk-resend-verification__timer {
+  min-width: 0;
+}
+
+.dk-resend-verification__timer--inactive {
+  display: none;
+}
+
+.dk-resend-verification__action {
+  min-width: 0;
+  display: grid;
+}
+
+.dk-resend-verification--inline .dk-resend-verification__action {
+  justify-items: end;
+}
+
+@media (max-width: 480px) {
+  .dk-resend-verification--inline .dk-resend-verification__body {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .dk-resend-verification--inline .dk-resend-verification__action {
+    justify-items: stretch;
+  }
+}

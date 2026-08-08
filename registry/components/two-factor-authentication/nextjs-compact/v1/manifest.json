@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    { "source": "files/components/ui/TwoFactorAuthentication.tsx", "destination": "components/ui/TwoFactorAuthentication.tsx" },
+    { "source": "files/styles/two-factor-authentication.css", "destination": "styles/two-factor-authentication.css" },
+    { "source": "files/docs/TWO_FACTOR_AUTHENTICATION.md", "destination": "docs/devkit/TWO_FACTOR_AUTHENTICATION.md" }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "select-authentication-method",
+      "verification-code-input",
+      "authenticator-app-setup",
+      "backup-codes",
+      "recovery-code-login",
+      "authentication-loading",
+      "authentication-success",
+      "authentication-error",
+      "button",
+      "countdown-timer"
+    ]
+  },
+  "envVars": []
+}

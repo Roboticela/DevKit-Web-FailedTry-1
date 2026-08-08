@@ -1,0 +1,106 @@
+/*
+ * Magic Link Login — layout composition only.
+ * Text Input / Button / Verification Email Sent / Continue With Provider provide chrome.
+ * No box-shadows. No gradients.
+ */
+
+.dk-magic-link-login {
+  display: grid;
+  min-width: 0;
+  width: 100%;
+  max-width: 28rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-magic-link-login--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+}
+
+.dk-magic-link-login__request,
+.dk-magic-link-login__confirmation,
+.dk-magic-link-login__form {
+  min-width: 0;
+  width: 100%;
+}
+
+.dk-magic-link-login__form {
+  display: grid;
+  gap: var(--space-4, 16px);
+}
+
+.dk-magic-link-login--compact .dk-magic-link-login__form {
+  gap: var(--space-3, 12px);
+}
+
+.dk-magic-link-login__intro {
+  display: grid;
+  gap: var(--space-2, 8px);
+}
+
+.dk-magic-link-login__title {
+  margin: 0;
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--weight-semibold, 600);
+  line-height: 1.3;
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-magic-link-login__description {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.45;
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-magic-link-login__email,
+.dk-magic-link-login__submit,
+.dk-magic-link-login__providers {
+  min-width: 0;
+}
+
+.dk-magic-link-login__email-strong {
+  font-weight: var(--weight-semibold, 600);
+  word-break: break-word;
+}
+
+.dk-magic-link-login--split .dk-magic-link-login__form {
+  gap: var(--space-4, 16px);
+}
+
+@media (min-width: 640px) {
+  .dk-magic-link-login--split {
+    max-width: 40rem;
+  }
+
+  .dk-magic-link-login--split .dk-magic-link-login__form {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    grid-template-areas:
+      "intro intro"
+      "email providers"
+      "submit providers";
+    align-items: start;
+  }
+
+  .dk-magic-link-login--split .dk-magic-link-login__intro {
+    grid-area: intro;
+  }
+
+  .dk-magic-link-login--split .dk-magic-link-login__email {
+    grid-area: email;
+  }
+
+  .dk-magic-link-login--split .dk-magic-link-login__submit {
+    grid-area: submit;
+  }
+
+  .dk-magic-link-login--split .dk-magic-link-login__providers {
+    grid-area: providers;
+  }
+}
+
+@media (max-width: 480px) {
+  .dk-magic-link-login {
+    max-width: none;
+  }
+}

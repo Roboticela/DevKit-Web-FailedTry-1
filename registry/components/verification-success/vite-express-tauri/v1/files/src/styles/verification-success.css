@@ -1,0 +1,61 @@
+/*
+ * Verification Success — layout composition only.
+ * Alert + Badge provide status chrome.
+ * No box-shadows. No gradients.
+ */
+
+.dk-verification-success {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-verification-success__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-verification-success__meta--banner {
+  margin-block-end: calc(var(--space-2, 8px) * -1);
+}
+
+.dk-verification-success__alert {
+  width: 100%;
+  min-width: 0;
+}
+
+.dk-verification-success__redirect-text {
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-verification-success--compact {
+  gap: var(--space-2, 8px);
+}
+
+.dk-verification-success--inline {
+  gap: var(--space-2, 8px);
+}
+
+.dk-verification-success--inline .dk-verification-success__meta {
+  justify-content: space-between;
+}
+
+.dk-verification-success--banner {
+  gap: var(--space-2, 8px);
+}
+
+@media (max-width: 479px) {
+  .dk-verification-success {
+    gap: var(--space-2, 8px);
+  }
+
+  .dk-verification-success__meta {
+    align-items: flex-start;
+  }
+}

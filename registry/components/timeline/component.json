@@ -1,0 +1,29 @@
+{
+  "id": 105,
+  "name": "timeline",
+  "displayName": "Timeline",
+  "description": "Chronological event rail composing Icon and Empty State for activity and audit surfaces.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "timeline",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": ["foundation", "timeline", "activity", "a11y"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -1,0 +1,8 @@
+/*
+ * Continue With Microsoft — branding only.
+ * Layout comes from Continue With Provider.
+ */
+
+.dk-continue-with-provider[data-provider="microsoft"] .dk-continue-with-provider__icon {
+  color: inherit;
+}

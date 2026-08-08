@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/SelectAuthenticationMethod.tsx",
+      "destination": "src/components/ui/SelectAuthenticationMethod.tsx"
+    },
+    {
+      "source": "files/src/styles/select-authentication-method.css",
+      "destination": "src/styles/select-authentication-method.css"
+    },
+    {
+      "source": "files/docs/SELECT_AUTHENTICATION_METHOD.md",
+      "destination": "docs/devkit/SELECT_AUTHENTICATION_METHOD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "button",
+      "radio-group",
+      "divider",
+      "icon",
+      "badge",
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

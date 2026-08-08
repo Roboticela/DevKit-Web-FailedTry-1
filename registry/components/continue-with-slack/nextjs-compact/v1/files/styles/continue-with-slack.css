@@ -1,0 +1,8 @@
+/*
+ * Continue With Slack — branding only.
+ * Layout comes from Continue With Provider.
+ */
+
+.dk-continue-with-provider[data-provider="slack"] .dk-continue-with-provider__icon {
+  color: inherit;
+}

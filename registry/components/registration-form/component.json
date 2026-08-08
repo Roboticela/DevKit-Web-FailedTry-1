@@ -1,0 +1,36 @@
+{
+  "id": 101,
+  "name": "registration-form",
+  "displayName": "Registration Form",
+  "description": "SaaS registration form composing Form, Text Input, Password Input, Password Strength, Password Checklist, Checkbox, Link, Card, Alert, Icon, Continue With Provider, and Authentication Loading/Error/Success.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "user-plus",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "registration",
+    "sign-up",
+    "password",
+    "oauth",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

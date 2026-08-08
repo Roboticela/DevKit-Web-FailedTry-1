@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/RegistrationForm.tsx",
+      "destination": "src/components/ui/RegistrationForm.tsx"
+    },
+    {
+      "source": "files/src/styles/registration-form.css",
+      "destination": "src/styles/registration-form.css"
+    },
+    {
+      "source": "files/docs/REGISTRATION_FORM.md",
+      "destination": "docs/devkit/REGISTRATION_FORM.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "form",
+      "text-input",
+      "password-input",
+      "password-visibility-toggle",
+      "password-strength",
+      "password-requirements",
+      "checkbox",
+      "link",
+      "button",
+      "alert",
+      "icon",
+      "continue-with-provider",
+      "authentication-loading",
+      "authentication-error",
+      "authentication-success"
+    ]
+  },
+  "envVars": []
+}

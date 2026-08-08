@@ -1,0 +1,35 @@
+{
+  "id": 103,
+  "name": "trusted-devices",
+  "displayName": "Trusted Devices",
+  "description": "Manage remembered authentication devices composing Card, Badge, Avatar, Button, Dialog, Empty State, and Icon.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "shield",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "devices",
+    "trusted",
+    "security",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

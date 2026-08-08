@@ -1,0 +1,36 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/SecurityEvents.tsx",
+      "destination": "src/components/ui/SecurityEvents.tsx"
+    },
+    {
+      "source": "files/src/styles/security-events.css",
+      "destination": "src/styles/security-events.css"
+    },
+    {
+      "source": "files/docs/SECURITY_EVENTS.md",
+      "destination": "docs/devkit/SECURITY_EVENTS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "badge",
+      "button",
+      "dialog",
+      "skeleton",
+      "icon",
+      "data-table",
+      "empty-state",
+      "search-field",
+      "action-segmented-control",
+      "tag",
+      "timeline"
+    ]
+  },
+  "envVars": []
+}

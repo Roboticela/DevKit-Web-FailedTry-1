@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/CountdownTimer.tsx",
+      "destination": "src/components/ui/CountdownTimer.tsx"
+    },
+    {
+      "source": "files/src/styles/countdown-timer.css",
+      "destination": "src/styles/countdown-timer.css"
+    },
+    {
+      "source": "files/docs/COUNTDOWN_TIMER.md",
+      "destination": "docs/devkit/COUNTDOWN_TIMER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "progress-bar",
+      "text",
+      "badge",
+      "icon-button"
+    ]
+  },
+  "envVars": []
+}

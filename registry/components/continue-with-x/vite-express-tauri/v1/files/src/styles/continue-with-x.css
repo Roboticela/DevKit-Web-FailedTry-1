@@ -1,0 +1,8 @@
+/*
+ * Continue With X — branding only.
+ * Layout comes from Continue With Provider.
+ */
+
+.dk-continue-with-provider[data-provider="x"] .dk-continue-with-provider__icon {
+  color: inherit;
+}

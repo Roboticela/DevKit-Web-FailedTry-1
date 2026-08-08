@@ -185,7 +185,7 @@ ${chalk.bold("Examples:")}
   ${chalk.cyan("devkit theme set colors.primary #e11d48")}   Change primary color
   ${chalk.cyan("devkit doctor")}                              Check configuration
 
-${chalk.dim("Registry:")} ${process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com"}
+${chalk.dim("Registry:")} bundled with @roboticela/devkit (no network server)
 `);
 
 program.parse();

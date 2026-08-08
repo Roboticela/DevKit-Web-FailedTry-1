@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContinueWithLinkedIn.tsx",
+      "destination": "components/ui/ContinueWithLinkedIn.tsx"
+    },
+    {
+      "source": "files/styles/continue-with-linkedin.css",
+      "destination": "styles/continue-with-linkedin.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_LINKEDIN.md",
+      "destination": "docs/devkit/CONTINUE_WITH_LINKEDIN.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

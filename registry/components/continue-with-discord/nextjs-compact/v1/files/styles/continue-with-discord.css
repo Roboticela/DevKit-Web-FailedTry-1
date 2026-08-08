@@ -1,0 +1,8 @@
+/*
+ * Continue With Discord — branding only.
+ * Layout comes from Continue With Provider.
+ */
+
+.dk-continue-with-provider[data-provider="discord"] .dk-continue-with-provider__icon {
+  color: #5865f2;
+}

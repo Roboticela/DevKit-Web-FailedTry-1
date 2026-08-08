@@ -1,0 +1,29 @@
+{
+  "id": 90,
+  "name": "data-table",
+  "displayName": "Data Table",
+  "description": "Sortable searchable data table composing Search Field and Empty State.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "collections",
+  "subgroupName": "Collections",
+  "kind": "component",
+  "layer": 1,
+  "icon": "table",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": ["foundation", "table", "data", "sort", "search", "a11y"],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

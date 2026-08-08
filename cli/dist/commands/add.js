@@ -34,8 +34,8 @@ async function interactiveAddSelections(config, opts, cwd) {
         all = await listComponents({ template: config.template });
     }
     catch (e) {
-        log.error(`Could not reach registry: ${e.message}`);
-        log.info("Check DEVKIT_REGISTRY or start the registry locally (see repo README).");
+        log.error(`Could not load registry: ${e.message}`);
+        log.info("The CLI uses the registry bundled in @roboticela/devkit — reinstall the package if this persists.");
         return null;
     }
     const installable = all.filter((c) => !isComponentInstalled(c.name, cwd));
@@ -53,49 +53,42 @@ async function interactiveAddSelections(config, opts, cwd) {
         label: c.name,
         hint: c.description.length > 52 ? `${c.description.slice(0, 49)}…` : c.description,
     }));
-    const componentOptions = toPickerOptions("component");
-    const scaffoldOptions = toPickerOptions("scaffold");
-    const pickedComponentsRaw = componentOptions.length > 0
-        ? await multiselect({
-            message: "Select components to install (space to toggle, enter to confirm)",
-            options: componentOptions,
+    const kinds = [
+        { kind: "component", label: "components" },
+        { kind: "page", label: "pages" },
+        { kind: "scaffold", label: "scaffolds" },
+    ];
+    const picked = [];
+    for (const { kind, label } of kinds) {
+        const options = toPickerOptions(kind);
+        if (options.length === 0) {
+            log.warn(`No ${label} available to install.`);
+            continue;
+        }
+        const selected = await multiselect({
+            message: `Select ${label} to install (space to toggle, enter to confirm)`,
+            options,
             required: false,
-        })
-        : [];
-    if (isCancel(pickedComponentsRaw)) {
-        outro("Cancelled.");
-        return [];
-    }
-    if (componentOptions.length === 0) {
-        log.warn("No components available to install.");
-    }
-    const pickedScaffoldsRaw = scaffoldOptions.length > 0
-        ? await multiselect({
-            message: "Select scaffolds to install (space to toggle, enter to confirm)",
-            options: scaffoldOptions,
-            required: false,
-        })
-        : [];
-    if (isCancel(pickedScaffoldsRaw)) {
-        outro("Cancelled.");
-        return [];
-    }
-    if (scaffoldOptions.length === 0) {
-        log.warn("No scaffolds available to install.");
+        });
+        if (isCancel(selected)) {
+            outro("Cancelled.");
+            return [];
+        }
+        picked.push(...selected);
     }
     const seen = new Set();
-    const picked = [...pickedComponentsRaw, ...pickedScaffoldsRaw].filter((name) => {
+    const unique = picked.filter((name) => {
         if (seen.has(name))
             return false;
         seen.add(name);
         return true;
     });
-    if (picked.length === 0) {
-        outro("No components selected.");
+    if (unique.length === 0) {
+        outro("No packages selected.");
         return [];
     }
     const results = [];
-    for (const compName of picked) {
+    for (const compName of unique) {
         const meta = installable.find((x) => x.name === compName);
         const variant = await pickVariantForComponent(meta, opts.variant);
         if (variant === "cancel") {
@@ -127,7 +120,7 @@ export async function addCommand(names, opts, cwd = process.cwd()) {
     let anyOk = false;
     for (const { name, version, variant } of todo) {
         if (isComponentInstalled(name, cwd)) {
-            log.warn(`${name} is already installed. Run 'devkit update ${name}' to update.`);
+            log.info(`${name} is already installed — skipping.`);
             continue;
         }
         if (opts.dryRun) {

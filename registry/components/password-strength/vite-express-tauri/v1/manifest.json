@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/PasswordStrength.tsx",
+      "destination": "src/components/ui/PasswordStrength.tsx"
+    },
+    {
+      "source": "files/src/styles/password-strength.css",
+      "destination": "src/styles/password-strength.css"
+    },
+    {
+      "source": "files/docs/PASSWORD_STRENGTH.md",
+      "destination": "docs/devkit/PASSWORD_STRENGTH.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "progress-bar",
+      "badge"
+    ]
+  },
+  "envVars": []
+}

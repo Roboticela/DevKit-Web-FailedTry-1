@@ -1,0 +1,179 @@
+/*
+ * Verification Code Input — layout composition only.
+ * Text Input / Label / Text / Alert / Spinner provide chrome.
+ * No box-shadows. No gradients. No raw input cells.
+ */
+
+.dk-verification-code {
+  display: grid;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  width: max-content;
+  max-width: 100%;
+  margin: 0;
+  margin-block-end: var(--space-4, 16px);
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-verification-code--full {
+  width: 100%;
+}
+
+.dk-verification-code:last-child {
+  margin-block-end: 0;
+}
+
+.dk-verification-code--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+}
+
+.dk-verification-code__label-row--sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-verification-code__description {
+  margin: 0;
+}
+
+.dk-verification-code__autofill {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  pointer-events: none;
+}
+
+.dk-verification-code__autofill .dk-field__footer,
+.dk-verification-code__autofill .dk-field__description {
+  display: none !important;
+}
+
+.dk-verification-code__control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-verification-code__cell {
+  width: 3rem;
+  margin: 0 !important;
+  flex: 0 0 auto;
+}
+
+.dk-verification-code__cell .dk-field__footer,
+.dk-verification-code__cell .dk-field__description {
+  display: none !important;
+}
+
+.dk-verification-code__cell .dk-field__control {
+  min-height: 3rem;
+  height: 3rem;
+  width: 3rem;
+  justify-content: center;
+  padding-inline: 0;
+}
+
+.dk-verification-code__cell .dk-field__input {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-size: var(--font-size-body, 16px);
+  font-weight: var(--weight-semibold, 600);
+  padding-inline: 0;
+  width: 100%;
+}
+
+.dk-verification-code__cell .dk-field__affordance--status {
+  display: none;
+}
+
+.dk-verification-code__cell--filled .dk-field__control {
+  border-color: var(--color-border-strong, #86868b);
+}
+
+.dk-verification-code--error .dk-verification-code__cell .dk-field__control {
+  border-color: var(--color-error, #d70015);
+}
+
+.dk-verification-code__loading {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: var(--space-1, 4px);
+}
+
+.dk-verification-code__sr-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-verification-code__alert {
+  max-width: 100%;
+}
+
+.dk-verification-code__help {
+  margin: 0;
+}
+
+.dk-verification-code__footer-slot {
+  min-width: 0;
+  width: 100%;
+}
+
+.dk-verification-code--sm .dk-verification-code__cell,
+.dk-verification-code .dk-field--sm.dk-verification-code__cell {
+  width: 2.5rem;
+}
+
+.dk-verification-code .dk-field--sm.dk-verification-code__cell .dk-field__control {
+  min-height: 2.5rem;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.dk-verification-code .dk-field--lg.dk-verification-code__cell {
+  width: 3.5rem;
+}
+
+.dk-verification-code .dk-field--lg.dk-verification-code__cell .dk-field__control {
+  min-height: 3.5rem;
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+@media (max-width: 479px) {
+  .dk-verification-code__control {
+    gap: var(--space-1, 4px);
+  }
+
+  .dk-verification-code__cell {
+    width: 2.75rem;
+  }
+
+  .dk-verification-code__cell .dk-field__control {
+    min-height: 2.75rem;
+    height: 2.75rem;
+    width: 2.75rem;
+  }
+}

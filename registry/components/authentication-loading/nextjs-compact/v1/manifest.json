@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/AuthenticationLoading.tsx",
+      "destination": "components/ui/AuthenticationLoading.tsx"
+    },
+    {
+      "source": "files/styles/authentication-loading.css",
+      "destination": "styles/authentication-loading.css"
+    },
+    {
+      "source": "files/docs/AUTHENTICATION_LOADING.md",
+      "destination": "docs/devkit/AUTHENTICATION_LOADING.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "spinner",
+      "skeleton"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,186 @@
+/*
+ * Backup Codes — layout only. No box-shadows. No gradients.
+ */
+
+.dk-backup-codes {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  max-width: 36rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-backup-codes__card {
+  min-width: 0;
+}
+
+.dk-backup-codes__header {
+  display: grid;
+  gap: var(--space-1, 4px);
+}
+
+.dk-backup-codes__heading {
+  display: grid;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-backup-codes__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-backup-codes__title-icon {
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-backup-codes__body {
+  display: grid;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+}
+
+.dk-backup-codes--compact .dk-backup-codes__body {
+  gap: var(--space-3, 12px);
+}
+
+.dk-backup-codes__warning {
+  min-width: 0;
+}
+
+.dk-backup-codes__list {
+  display: grid;
+  gap: var(--space-2, 8px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+}
+
+.dk-backup-codes__list--columns,
+.dk-backup-codes__list--grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dk-backup-codes__list--concealed .dk-backup-codes__code {
+  filter: blur(0);
+  letter-spacing: 0.12em;
+  user-select: none;
+}
+
+.dk-backup-codes__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+  padding: var(--space-3, 12px);
+  border: 1px solid var(--color-border, #d2d2d7);
+  border-radius: var(--radius-2, 6px);
+  background: var(--color-surface-secondary, #f5f5f7);
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.dk-backup-codes__item--used {
+  opacity: 0.55;
+}
+
+.dk-backup-codes__code {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: var(--font-size-sm, 14px);
+  letter-spacing: 0.06em;
+  color: var(--color-text-primary, #1d1d1f);
+  word-break: break-all;
+}
+
+.dk-backup-codes__item--used .dk-backup-codes__code {
+  text-decoration: line-through;
+}
+
+.dk-backup-codes__used {
+  flex-shrink: 0;
+  font-size: var(--font-size-caption, 12px);
+  color: var(--color-text-secondary, #6e6e73);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.dk-backup-codes__empty {
+  display: grid;
+  gap: var(--space-2, 8px);
+  justify-items: center;
+  text-align: center;
+  padding: var(--space-6, 24px) var(--space-4, 16px);
+  border: 1px dashed var(--color-border, #d2d2d7);
+  border-radius: var(--radius-3, 8px);
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-backup-codes__empty-title {
+  margin: 0;
+  font-weight: var(--weight-semibold, 600);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-backup-codes__empty-desc {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.45;
+}
+
+.dk-backup-codes__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.dk-backup-codes__ack {
+  margin-block-end: 0;
+}
+
+.dk-backup-codes__print {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 560px) {
+  .dk-backup-codes {
+    max-width: none;
+  }
+
+  .dk-backup-codes__list--columns,
+  .dk-backup-codes__list--grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dk-backup-codes__actions {
+    flex-direction: column;
+  }
+
+  .dk-backup-codes__actions .dk-button {
+    width: 100%;
+  }
+}
+
+@media print {
+  .dk-backup-codes__warning,
+  .dk-backup-codes__actions,
+  .dk-backup-codes__ack {
+    display: none !important;
+  }
+
+  .dk-backup-codes__list--concealed .dk-backup-codes__code {
+    letter-spacing: 0.06em;
+  }
+}

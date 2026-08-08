@@ -93,7 +93,7 @@ export async function listCommand(opts: ListOptions, cwd = process.cwd()) {
     log.info(`${filtered.length} package(s). Run ${chalk.cyan("devkit info <name>")} for details.`);
     log.blank();
   } catch (e) {
-    log.error(`Could not reach registry: ${(e as Error).message}`);
-    log.info("Is the registry server running? Start it with: cd registry && npm run dev");
+    log.error(`Could not load registry: ${(e as Error).message}`);
+    log.info("The CLI uses the registry bundled in @roboticela/devkit — reinstall the package if this persists.");
   }
 }

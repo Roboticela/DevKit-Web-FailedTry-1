@@ -5,17 +5,35 @@ import { fileURLToPath } from "url";
 import type { CategoryId, ComponentEntry, ListComponentsFilters } from "./component-entry.js";
 import { KIND_CATEGORY, normalizeKind } from "./component-entry.js";
 
+function readJsonFile<T>(path: string): T {
+  const raw = readFileSync(path, "utf-8").replace(/^\uFEFF/, "");
+  return JSON.parse(raw) as T;
+}
+
 /** Directory containing `dist/` (the published CLI package root). */
 export function getCliPackageRoot(fromImportMetaUrl = import.meta.url): string {
   return join(dirname(fileURLToPath(fromImportMetaUrl)), "..", "..");
 }
 
-function getRegistryRoot(fromImportMetaUrl = import.meta.url): string | null {
+function isRegistryRoot(dir: string): boolean {
+  return (
+    existsSync(join(dir, "categories.json")) ||
+    existsSync(join(dir, "components", "registry.json")) ||
+    existsSync(join(dir, "pages", "registry.json")) ||
+    existsSync(join(dir, "scaffolds", "registry.json"))
+  );
+}
+
+/**
+ * On-disk registry root shipped inside the npm package (`cli/registry`),
+ * or the monorepo sibling (`DevKit/registry`) when developing locally.
+ */
+export function getRegistryRoot(fromImportMetaUrl = import.meta.url): string | null {
   const pkgRoot = getCliPackageRoot(fromImportMetaUrl);
   const nested = join(pkgRoot, "registry");
   const sibling = join(pkgRoot, "..", "registry");
-  if (existsSync(join(nested, "categories.json"))) return nested;
-  if (existsSync(join(sibling, "categories.json"))) return sibling;
+  if (isRegistryRoot(nested)) return nested;
+  if (isRegistryRoot(sibling)) return sibling;
   return null;
 }
 
@@ -40,11 +58,11 @@ function categoryDirs(fromImportMetaUrl = import.meta.url): { category: Category
 }
 
 function readCategoryPackages(category: CategoryId, dir: string): ComponentEntry[] {
-  const index = JSON.parse(readFileSync(join(dir, "registry.json"), "utf-8")) as {
+  const index = readJsonFile<{
     components?: { name: string; templates: string[]; category?: string }[];
     pages?: { name: string; templates: string[]; category?: string }[];
     scaffolds?: { name: string; templates: string[]; category?: string }[];
-  };
+  }>(join(dir, "registry.json"));
   const entries =
     category === "components"
       ? index.components ?? []
@@ -108,7 +126,7 @@ function resolvePackageDir(name: string, fromImportMetaUrl = import.meta.url): s
 export function getBundledComponentMeta(name: string, fromImportMetaUrl = import.meta.url): Record<string, unknown> | null {
   const dir = resolvePackageDir(name, fromImportMetaUrl);
   if (!dir) return null;
-  return JSON.parse(readFileSync(join(dir, "component.json"), "utf-8")) as Record<string, unknown>;
+  return readJsonFile<Record<string, unknown>>(join(dir, "component.json"));
 }
 
 export function resolveBundledVersion(name: string, requested: string, fromImportMetaUrl = import.meta.url): string | null {
@@ -134,6 +152,25 @@ export function getBundledManifest(
   const base = join(dir, template, `v${resolved.split(".")[0]}`);
   const manifestPath = variant ? join(base, "variants", variant, "manifest.json") : join(base, "manifest.json");
   if (!existsSync(manifestPath)) return null;
-  const manifest = JSON.parse(readFileSync(manifestPath, "utf-8")) as Record<string, unknown>;
+  const manifest = readJsonFile<Record<string, unknown>>(manifestPath);
   return { name, template, version: resolved, variant: variant ?? null, manifest };
+}
+
+/** Absolute path to a bundled package version directory (for install / lock resolved). */
+export function getBundledPackageDir(
+  name: string,
+  template: string,
+  version: string,
+  variant?: string,
+  fromImportMetaUrl = import.meta.url
+): string | null {
+  const dir = resolvePackageDir(name, fromImportMetaUrl);
+  if (!dir) return null;
+  const resolved = resolveBundledVersion(name, version, fromImportMetaUrl);
+  if (!resolved) return null;
+  const major = `v${resolved.split(".")[0]}`;
+  const base = variant
+    ? join(dir, template, major, "variants", variant)
+    : join(dir, template, major);
+  return existsSync(base) ? base : null;
 }

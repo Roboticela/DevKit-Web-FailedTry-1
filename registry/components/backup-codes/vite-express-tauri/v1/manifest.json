@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/BackupCodes.tsx",
+      "destination": "src/components/ui/BackupCodes.tsx"
+    },
+    {
+      "source": "files/src/styles/backup-codes.css",
+      "destination": "src/styles/backup-codes.css"
+    },
+    {
+      "source": "files/docs/BACKUP_CODES.md",
+      "destination": "docs/devkit/BACKUP_CODES.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "button",
+      "dialog",
+      "alert",
+      "icon",
+      "checkbox"
+    ]
+  },
+  "envVars": []
+}

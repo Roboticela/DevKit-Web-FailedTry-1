@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/SessionExpired.tsx",
+      "destination": "src/components/ui/SessionExpired.tsx"
+    },
+    {
+      "source": "files/src/styles/session-expired.css",
+      "destination": "src/styles/session-expired.css"
+    },
+    {
+      "source": "files/docs/SESSION_EXPIRED.md",
+      "destination": "docs/devkit/SESSION_EXPIRED.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "button"
+    ]
+  },
+  "envVars": []
+}

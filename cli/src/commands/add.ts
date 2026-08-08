@@ -43,8 +43,8 @@ async function interactiveAddSelections(
   try {
     all = await listComponents({ template: config.template });
   } catch (e) {
-    log.error(`Could not reach registry: ${(e as Error).message}`);
-    log.info("Check DEVKIT_REGISTRY or start the registry locally (see repo README).");
+    log.error(`Could not load registry: ${(e as Error).message}`);
+    log.info("The CLI uses the registry bundled in @roboticela/devkit — reinstall the package if this persists.");
     return null;
   }
 
@@ -141,7 +141,7 @@ export async function addCommand(names: string[], opts: AddOptions, cwd = proces
 
   for (const { name, version, variant } of todo) {
     if (isComponentInstalled(name, cwd)) {
-      log.warn(`${name} is already installed. Run 'devkit update ${name}' to update.`);
+      log.info(`${name} is already installed — skipping.`);
       continue;
     }
 

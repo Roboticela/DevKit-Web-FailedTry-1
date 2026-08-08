@@ -1,0 +1,81 @@
+/*
+ * Account Locked — layout composition only.
+ * Alert + Button provide chrome and actions.
+ * No box-shadows. No gradients.
+ */
+
+.dk-account-locked {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-account-locked__inner {
+  min-width: 0;
+  width: 100%;
+  max-width: 32rem;
+}
+
+.dk-account-locked--page {
+  min-height: min(60vh, 28rem);
+  place-items: center;
+  padding: var(--space-4, 16px);
+}
+
+.dk-account-locked--page .dk-account-locked__inner {
+  max-width: 28rem;
+}
+
+.dk-account-locked--banner .dk-account-locked__inner {
+  max-width: none;
+}
+
+.dk-account-locked__alert {
+  width: 100%;
+}
+
+.dk-account-locked__hint,
+.dk-account-locked__reference {
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-account-locked__ref-id {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.95em;
+  word-break: break-all;
+}
+
+.dk-account-locked__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.dk-account-locked__actions--full {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.dk-account-locked--compact .dk-account-locked__inner {
+  max-width: 24rem;
+}
+
+@media (max-width: 479px) {
+  .dk-account-locked__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dk-account-locked__actions .dk-button {
+    width: 100%;
+  }
+
+  .dk-account-locked--page {
+    min-height: auto;
+    padding: var(--space-3, 12px);
+  }
+}

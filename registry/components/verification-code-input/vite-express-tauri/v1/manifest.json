@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/VerificationCodeInput.tsx",
+      "destination": "src/components/ui/VerificationCodeInput.tsx"
+    },
+    {
+      "source": "files/src/styles/verification-code-input.css",
+      "destination": "src/styles/verification-code-input.css"
+    },
+    {
+      "source": "files/docs/VERIFICATION_CODE_INPUT.md",
+      "destination": "docs/devkit/VERIFICATION_CODE_INPUT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "text-input",
+      "label",
+      "text",
+      "alert",
+      "spinner"
+    ]
+  },
+  "envVars": []
+}

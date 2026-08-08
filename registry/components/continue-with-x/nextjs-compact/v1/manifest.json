@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContinueWithX.tsx",
+      "destination": "components/ui/ContinueWithX.tsx"
+    },
+    {
+      "source": "files/styles/continue-with-x.css",
+      "destination": "styles/continue-with-x.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_X.md",
+      "destination": "docs/devkit/CONTINUE_WITH_X.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/VerificationEmailSent.tsx",
+      "destination": "components/ui/VerificationEmailSent.tsx"
+    },
+    {
+      "source": "files/styles/verification-email-sent.css",
+      "destination": "styles/verification-email-sent.css"
+    },
+    {
+      "source": "files/docs/VERIFICATION_EMAIL_SENT.md",
+      "destination": "docs/devkit/VERIFICATION_EMAIL_SENT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "card",
+      "button",
+      "countdown-timer",
+      "resend-verification"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ResetPassword.tsx",
+      "destination": "components/ui/ResetPassword.tsx"
+    },
+    {
+      "source": "files/styles/reset-password.css",
+      "destination": "styles/reset-password.css"
+    },
+    {
+      "source": "files/docs/RESET_PASSWORD.md",
+      "destination": "docs/devkit/RESET_PASSWORD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "password-input",
+      "password-visibility-toggle",
+      "password-strength", "password-requirements",
+      "button",
+      "card",
+      "alert"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/Dialog.tsx",
+      "destination": "components/ui/Dialog.tsx"
+    },
+    {
+      "source": "files/styles/dialog.css",
+      "destination": "styles/dialog.css"
+    },
+    {
+      "source": "files/docs/DIALOG.md",
+      "destination": "docs/devkit/DIALOG.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": { "frontend": [] },
+  "envVars": []
+}

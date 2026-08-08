@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/VerificationFailed.tsx",
+      "destination": "src/components/ui/VerificationFailed.tsx"
+    },
+    {
+      "source": "files/src/styles/verification-failed.css",
+      "destination": "src/styles/verification-failed.css"
+    },
+    {
+      "source": "files/docs/VERIFICATION_FAILED.md",
+      "destination": "docs/devkit/VERIFICATION_FAILED.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert"
+    ]
+  },
+  "envVars": []
+}

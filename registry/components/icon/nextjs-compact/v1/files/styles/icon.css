@@ -1,0 +1,41 @@
+/*
+ * Icon — size host for SVG marks.
+ * No box-shadows. No gradients.
+ */
+
+.dk-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+  color: currentColor;
+  box-sizing: border-box;
+}
+
+.dk-icon > svg,
+.dk-icon svg {
+  width: 1em;
+  height: 1em;
+  display: block;
+}
+
+.dk-icon--xs {
+  font-size: 12px;
+}
+
+.dk-icon--sm {
+  font-size: 16px;
+}
+
+.dk-icon--md {
+  font-size: 20px;
+}
+
+.dk-icon--lg {
+  font-size: 24px;
+}
+
+.dk-icon--xl {
+  font-size: 32px;
+}

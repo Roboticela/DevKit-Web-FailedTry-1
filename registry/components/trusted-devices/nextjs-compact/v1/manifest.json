@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    { "source": "files/components/ui/TrustedDevices.tsx", "destination": "components/ui/TrustedDevices.tsx" },
+    { "source": "files/styles/trusted-devices.css", "destination": "styles/trusted-devices.css" },
+    { "source": "files/docs/TRUSTED_DEVICES.md", "destination": "docs/devkit/TRUSTED_DEVICES.md" }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": ["card", "badge", "avatar", "button", "dialog", "empty-state", "icon", "text-input"]
+  },
+  "envVars": []
+}

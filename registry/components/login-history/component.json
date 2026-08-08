@@ -1,0 +1,35 @@
+{
+  "id": 104,
+  "name": "login-history",
+  "displayName": "Login History",
+  "description": "Authentication history composing Data Table, Badge, Avatar, Tooltip, Action Segmented Control (Filter), Search Field, Empty State, Skeleton, and Icon.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "history",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "history",
+    "login",
+    "audit",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/DataTable.tsx",
+      "destination": "src/components/ui/DataTable.tsx"
+    },
+    {
+      "source": "files/src/styles/data-table.css",
+      "destination": "src/styles/data-table.css"
+    },
+    {
+      "source": "files/docs/DATA_TABLE.md",
+      "destination": "docs/devkit/DATA_TABLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": ["search-field", "empty-state"]
+  },
+  "envVars": []
+}

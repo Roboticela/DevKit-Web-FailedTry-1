@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContinueWithApple.tsx",
+      "destination": "components/ui/ContinueWithApple.tsx"
+    },
+    {
+      "source": "files/styles/continue-with-apple.css",
+      "destination": "styles/continue-with-apple.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_APPLE.md",
+      "destination": "docs/devkit/CONTINUE_WITH_APPLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

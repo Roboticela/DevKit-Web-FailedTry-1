@@ -1,0 +1,130 @@
+/*
+ * Countdown Timer — layout composition only.
+ * Progress Bar / Text / Badge / Icon Button provide chrome.
+ * No box-shadows. No gradients.
+ */
+
+.dk-countdown-timer {
+  display: grid;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-countdown-timer--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+  pointer-events: none;
+}
+
+.dk-countdown-timer__label {
+  font-size: var(--font-size-caption, 12px);
+  font-weight: var(--weight-semibold, 600);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-countdown-timer__sr-only,
+.dk-countdown-timer__live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-countdown-timer__main {
+  display: grid;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-countdown-timer__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-countdown-timer__time {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.dk-countdown-timer__icon {
+  display: inline-flex;
+  color: var(--color-text-secondary, #6e6e73);
+  flex-shrink: 0;
+}
+
+.dk-countdown-timer__icon > svg,
+.dk-countdown-timer__icon svg {
+  width: 1.1em;
+  height: 1.1em;
+  display: block;
+}
+
+.dk-countdown-timer--expired .dk-countdown-timer__icon {
+  color: var(--color-error, #d70015);
+}
+
+.dk-countdown-timer--paused .dk-countdown-timer__icon {
+  color: var(--color-warning, #b25e09);
+}
+
+.dk-countdown-timer__progress {
+  width: 100%;
+}
+
+.dk-countdown-timer__controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1, 4px);
+}
+
+.dk-countdown-timer__expired {
+  min-width: 0;
+}
+
+.dk-countdown-timer--compact .dk-countdown-timer__main {
+  gap: var(--space-1, 4px);
+}
+
+.dk-countdown-timer--inline .dk-countdown-timer__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.dk-countdown-timer--inline .dk-countdown-timer__progress {
+  flex: 1 1 120px;
+  min-width: 96px;
+}
+
+.dk-countdown-timer--meter .dk-countdown-timer__main {
+  gap: var(--space-2, 8px);
+}
+
+@media (max-width: 479px) {
+  .dk-countdown-timer__status {
+    align-items: flex-start;
+  }
+
+  .dk-countdown-timer--inline .dk-countdown-timer__main {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

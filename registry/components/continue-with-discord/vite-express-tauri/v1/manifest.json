@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithDiscord.tsx",
+      "destination": "src/components/ui/ContinueWithDiscord.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-discord.css",
+      "destination": "src/styles/continue-with-discord.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_DISCORD.md",
+      "destination": "docs/devkit/CONTINUE_WITH_DISCORD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/RegisterPasskey.tsx",
+      "destination": "components/ui/RegisterPasskey.tsx"
+    },
+    {
+      "source": "files/styles/register-passkey.css",
+      "destination": "styles/register-passkey.css"
+    },
+    {
+      "source": "files/docs/REGISTER_PASSKEY.md",
+      "destination": "docs/devkit/REGISTER_PASSKEY.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "passkey-login",
+      "button",
+      "card",
+      "alert",
+      "authentication-loading",
+      "authentication-error",
+      "authentication-success"
+    ]
+  },
+  "envVars": []
+}

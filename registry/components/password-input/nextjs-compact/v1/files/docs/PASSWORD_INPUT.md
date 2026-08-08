@@ -21,15 +21,17 @@ Masked credential entry with an accessible show/hide control.
 
 ## Visibility toggle
 
+Composes **Password Visibility Toggle** → **Icon Button** (Eye / Eye Off).
+
 - Accessible name: “Show password” / “Hide password”
-- State: `aria-pressed`
+- State: `aria-pressed` via Icon Button `selected`
 - Restores selection / focus after type swap when the browser allows
-- Adequate contrast against the field surface
+- Do not restyle a custom button inside this field
 
 ## Composable slots
 
-- `requirements` — policy copy (not a strength engine)
-- `strengthSlot` — future Password Strength Indicator
+- `requirements` — compose **Password Checklist** (flow UI) or **Password Requirements** (raw checklist)
+- `strengthSlot` — compose **Password Strength** (Progress Bar + Badge)
 - `errorMessage` / `successMessage` / `helpText` — validation / help
 
 ## Paste

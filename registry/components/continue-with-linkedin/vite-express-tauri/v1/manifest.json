@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithLinkedIn.tsx",
+      "destination": "src/components/ui/ContinueWithLinkedIn.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-linkedin.css",
+      "destination": "src/styles/continue-with-linkedin.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_LINKEDIN.md",
+      "destination": "docs/devkit/CONTINUE_WITH_LINKEDIN.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

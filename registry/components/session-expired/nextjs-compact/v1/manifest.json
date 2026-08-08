@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/SessionExpired.tsx",
+      "destination": "components/ui/SessionExpired.tsx"
+    },
+    {
+      "source": "files/styles/session-expired.css",
+      "destination": "styles/session-expired.css"
+    },
+    {
+      "source": "files/docs/SESSION_EXPIRED.md",
+      "destination": "docs/devkit/SESSION_EXPIRED.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "button"
+    ]
+  },
+  "envVars": []
+}

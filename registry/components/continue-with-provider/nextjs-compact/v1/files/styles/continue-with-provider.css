@@ -1,0 +1,77 @@
+/*
+ * Continue With Provider — layout composition only.
+ * Button / Icon / Tooltip / Divider provide chrome.
+ * No box-shadows. No gradients.
+ */
+
+.dk-continue-with-provider {
+  display: grid;
+  min-width: 0;
+  width: max-content;
+  max-width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-continue-with-provider--full {
+  width: 100%;
+}
+
+.dk-continue-with-provider__button {
+  width: 100%;
+}
+
+.dk-continue-with-provider__icon {
+  color: currentColor;
+}
+
+.dk-continue-with-provider__sr-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dk-continue-with-provider-group {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dk-continue-with-provider-group__list {
+  display: grid;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-continue-with-provider-group--inline .dk-continue-with-provider-group__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.dk-continue-with-provider-group--inline .dk-continue-with-provider {
+  flex: 1 1 12rem;
+}
+
+@media (max-width: 479px) {
+  .dk-continue-with-provider-group--inline .dk-continue-with-provider-group__list {
+    flex-direction: column;
+  }
+
+  .dk-continue-with-provider-group--inline .dk-continue-with-provider {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .dk-continue-with-provider {
+    width: 100%;
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/QrCodeCard.tsx",
+      "destination": "components/ui/QrCodeCard.tsx"
+    },
+    {
+      "source": "files/styles/qr-code-card.css",
+      "destination": "styles/qr-code-card.css"
+    },
+    {
+      "source": "files/docs/QR_CODE_CARD.md",
+      "destination": "docs/devkit/QR_CODE_CARD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "button",
+      "badge",
+      "tooltip",
+      "icon",
+      "skeleton",
+      "countdown-timer"
+    ]
+  },
+  "envVars": []
+}

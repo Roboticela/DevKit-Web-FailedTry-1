@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/RegisterPasskey.tsx",
+      "destination": "src/components/ui/RegisterPasskey.tsx"
+    },
+    {
+      "source": "files/src/styles/register-passkey.css",
+      "destination": "src/styles/register-passkey.css"
+    },
+    {
+      "source": "files/docs/REGISTER_PASSKEY.md",
+      "destination": "docs/devkit/REGISTER_PASSKEY.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "passkey-login",
+      "button",
+      "card",
+      "alert",
+      "authentication-loading",
+      "authentication-error",
+      "authentication-success"
+    ]
+  },
+  "envVars": []
+}

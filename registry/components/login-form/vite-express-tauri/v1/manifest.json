@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/LoginForm.tsx",
+      "destination": "src/components/ui/LoginForm.tsx"
+    },
+    {
+      "source": "files/src/styles/login-form.css",
+      "destination": "src/styles/login-form.css"
+    },
+    {
+      "source": "files/docs/LOGIN_FORM.md",
+      "destination": "docs/devkit/LOGIN_FORM.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "form",
+      "text-input",
+      "password-input",
+      "password-visibility-toggle",
+      "checkbox",
+      "link",
+      "button",
+      "alert",
+      "icon",
+      "continue-with-provider",
+      "authentication-loading",
+      "authentication-error",
+      "authentication-success"
+    ]
+  },
+  "envVars": []
+}

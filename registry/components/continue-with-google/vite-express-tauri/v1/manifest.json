@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithGoogle.tsx",
+      "destination": "src/components/ui/ContinueWithGoogle.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-google.css",
+      "destination": "src/styles/continue-with-google.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_GOOGLE.md",
+      "destination": "docs/devkit/CONTINUE_WITH_GOOGLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

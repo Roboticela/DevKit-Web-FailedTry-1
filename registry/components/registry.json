@@ -6,7 +6,7 @@
       "id": 1,
       "name": "button",
       "displayName": "Button",
-      "description": "Foundational generic action control with sizes XS–XL, seven variants, loading that preserves layout, and full a11y (keyboard, focus, touch ≥44px, RTL, reduced motion).",
+      "description": "Foundational generic action control with sizes XS\u2013XL, seven variants, loading that preserves layout, and full a11y (keyboard, focus, touch \u226544px, RTL, reduced motion).",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -33,7 +33,7 @@
       "id": 2,
       "name": "icon-button",
       "displayName": "Icon Button",
-      "description": "Compact icon-only action control with required accessible name, optional desktop tooltip, sizes XS–XL, six variants, selected/loading states, and ≥44×44 touch targets.",
+      "description": "Compact icon-only action control with required accessible name, optional desktop tooltip, sizes XS\u2013XL, six variants, selected/loading states, and \u226544\u00d744 touch targets.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -87,7 +87,7 @@
       "id": 4,
       "name": "split-button",
       "displayName": "Split Button",
-      "description": "Primary action plus an independently focusable menu of alternatives, with loading-stable layout, keyboard menu navigation, and ≥44px menu trigger.",
+      "description": "Primary action plus an independently focusable menu of alternatives, with loading-stable layout, keyboard menu navigation, and \u226544px menu trigger.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -168,7 +168,7 @@
       "id": 7,
       "name": "command-button",
       "displayName": "Command Button",
-      "description": "Workflow action with label, description, shortcut hint, status, and trailing affordance — built for command palettes and menus with keyboard-first interaction.",
+      "description": "Workflow action with label, description, shortcut hint, status, and trailing affordance \u2014 built for command palettes and menus with keyboard-first interaction.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -224,7 +224,7 @@
       "id": 9,
       "name": "text-input",
       "displayName": "Text Input",
-      "description": "Foundational single-line textual field with visible label, semantic types (text/email/url/tel/search/username), validation messages, clear action, counter, prefix/suffix, and sizes XS–XL.",
+      "description": "Foundational single-line textual field with visible label, semantic types (text/email/url/tel/search/username), validation messages, clear action, counter, prefix/suffix, and sizes XS\u2013XL.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -251,7 +251,7 @@
       "id": 10,
       "name": "number-input",
       "displayName": "Number Input",
-      "description": "Numeric field with integer/decimal modes, min/max/step/precision, optional steppers, prefix/suffix, and distinct empty (null) vs zero semantics — without reformatting while typing.",
+      "description": "Numeric field with integer/decimal modes, min/max/step/precision, optional steppers, prefix/suffix, and distinct empty (null) vs zero semantics \u2014 without reformatting while typing.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -278,7 +278,7 @@
       "id": 11,
       "name": "password-input",
       "displayName": "Password Input",
-      "description": "Masked credential field with accessible show/hide, password-manager autocomplete by purpose (new/confirm/current), and composable requirements/strength slots — no built-in strength engine.",
+      "description": "Masked credential field with accessible show/hide, password-manager autocomplete by purpose (new/confirm/current), and composable requirements/strength slots \u2014 no built-in strength engine.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -302,37 +302,10 @@
       ]
     },
     {
-      "id": 12,
-      "name": "otp-input",
-      "displayName": "OTP / Verification Input",
-      "description": "Short verification code field with multi-cell visuals, one logical value, paste/autofill, auto-advance, and stable error messaging — default 6 digits, lengths 4–8.",
-      "category": "components",
-      "kind": "component",
-      "stub": false,
-      "templates": [
-        "nextjs-compact",
-        "vite-express-tauri"
-      ],
-      "platforms": [
-        "web",
-        "desktop"
-      ],
-      "hasVariants": false,
-      "latestVersion": "1.0.0",
-      "tags": [
-        "foundation",
-        "foundations-interface-primitives",
-        "form-controls",
-        "otp-input",
-        "form",
-        "a11y"
-      ]
-    },
-    {
       "id": 13,
       "name": "search-field",
       "displayName": "Search Field",
-      "description": "Specialized search entry with leading search icon, optional clear, reserved loading slot, host-driven instant/debounce/submit hooks, and results-status signals — without embedding suggestions or results UI.",
+      "description": "Specialized search entry with leading search icon, optional clear, reserved loading slot, host-driven instant/debounce/submit hooks, and results-status signals \u2014 without embedding suggestions or results UI.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -360,7 +333,7 @@
       "id": 14,
       "name": "date-input",
       "displayName": "Date Input",
-      "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker — ISO YYYY-MM-DD values.",
+      "description": "Locale-aware calendar date field with manual keyboard entry, clear, min/max/disabled dates, and a calendar trigger that composes with an external Date Picker \u2014 ISO YYYY-MM-DD values.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -387,7 +360,7 @@
       "id": 15,
       "name": "time-input",
       "displayName": "Time Input",
-      "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, and a clock trigger that composes with an external Time Picker — values as HH:mm / HH:mm:ss.",
+      "description": "Locale-aware time field with 12/24-hour display, optional seconds, min/max/step, clear, keyboard adjustment, and a clock trigger that composes with an external Time Picker \u2014 values as HH:mm / HH:mm:ss.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -414,7 +387,7 @@
       "id": 16,
       "name": "date-time-input",
       "displayName": "Date & Time Input",
-      "description": "Coherent date + time composition with modes (date / time / datetime), progressive seconds and timezone disclosure, shared validation shell, and responsive stacking — composes Date Input and Time Input.",
+      "description": "Coherent date + time composition with modes (date / time / datetime), progressive seconds and timezone disclosure, shared validation shell, and responsive stacking \u2014 composes Date Input and Time Input.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -441,7 +414,7 @@
       "id": 17,
       "name": "input-group",
       "displayName": "Input Group",
-      "description": "Compositional primitive that joins an input with related prefixes, suffixes, icons, units, currency, or actions — attached borders, independent focus, responsive stacking. Not a generic layout component.",
+      "description": "Compositional primitive that joins an input with related prefixes, suffixes, icons, units, currency, or actions \u2014 attached borders, independent focus, responsive stacking. Not a generic layout component.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -468,7 +441,7 @@
       "id": 18,
       "name": "checkbox",
       "displayName": "Checkbox",
-      "description": "Independent boolean or multi-select item with checked, unchecked, and derived indeterminate states — 20px visual at MD, ≥44×44 hit, clickable label, error/required/optional.",
+      "description": "Independent boolean or multi-select item with checked, unchecked, and derived indeterminate states \u2014 20px visual at MD, \u226544\u00d744 hit, clickable label, error/required/optional.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -548,7 +521,7 @@
       "id": 21,
       "name": "alert",
       "displayName": "Alert",
-      "description": "Persistent contextual feedback — informational/success/warning/error/neutral with icon, optional title, message, actions, opt-in dismiss, compact/standard density, and appropriate live regions.",
+      "description": "Persistent contextual feedback \u2014 informational/success/warning/error/neutral with icon, optional title, message, actions, opt-in dismiss, compact/standard density, and appropriate live regions.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -574,7 +547,7 @@
       "id": 22,
       "name": "badge",
       "displayName": "Badge",
-      "description": "Compact attached indicator for counts, short labels, categories, and unread marks — numeric overflow (99+), text/dot/icon-label, soft or pill radius, RTL-safe overlay anchoring.",
+      "description": "Compact attached indicator for counts, short labels, categories, and unread marks \u2014 numeric overflow (99+), text/dot/icon-label, soft or pill radius, RTL-safe overlay anchoring.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -600,7 +573,7 @@
       "id": 23,
       "name": "spinner",
       "displayName": "Spinner",
-      "description": "Indeterminate activity indicator (xs–xl) with subtle motion, reduced-motion static fallback, accessible status text, and composition-friendly inline/block layouts — no page overlay.",
+      "description": "Indeterminate activity indicator (xs\u2013xl) with subtle motion, reduced-motion static fallback, accessible status text, and composition-friendly inline/block layouts \u2014 no page overlay.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -652,7 +625,7 @@
       "id": 25,
       "name": "skeleton",
       "displayName": "Skeleton",
-      "description": "Structural content placeholders (text, title, avatar, thumbnail, rectangle) with grouped composition, calm opacity pulse, and reduced-motion static fallback — non-interactive.",
+      "description": "Structural content placeholders (text, title, avatar, thumbnail, rectangle) with grouped composition, calm opacity pulse, and reduced-motion static fallback \u2014 non-interactive.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -678,7 +651,7 @@
       "id": 26,
       "name": "tooltip",
       "displayName": "Tooltip",
-      "description": "Brief supplementary information on hover, focus, or touch long-press — non-interactive, viewport-aware placement, role=tooltip.",
+      "description": "Brief supplementary information on hover, focus, or touch long-press \u2014 non-interactive, viewport-aware placement, role=tooltip.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -730,7 +703,7 @@
       "id": 28,
       "name": "alert-dialog",
       "displayName": "Alert Dialog",
-      "description": "High-priority alertdialog for destructive or critical decisions — deliberate action required, safe-action focus, never dismissed by outside click.",
+      "description": "High-priority alertdialog for destructive or critical decisions \u2014 deliberate action required, safe-action focus, never dismissed by outside click.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -756,7 +729,7 @@
       "id": 29,
       "name": "text",
       "displayName": "Text",
-      "description": "Fundamental typography primitive — tokenized size/weight/color, semantic `as` independent of style, wrap by default, opt-in truncate/clamp/transform.",
+      "description": "Fundamental typography primitive \u2014 tokenized size/weight/color, semantic `as` independent of style, wrap by default, opt-in truncate/clamp/transform.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -782,7 +755,7 @@
       "id": 30,
       "name": "heading",
       "displayName": "Heading",
-      "description": "Semantic h1–h6 with visual size independent of level — subtitle, alignment, wrap-by-default, opt-in truncate, responsive typography tokens.",
+      "description": "Semantic h1\u2013h6 with visual size independent of level \u2014 subtitle, alignment, wrap-by-default, opt-in truncate, responsive typography tokens.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -808,7 +781,7 @@
       "id": 31,
       "name": "paragraph",
       "displayName": "Paragraph",
-      "description": "Readable body content — standard/lead/secondary via tokens, comfortable line-height, reading measure, modest consecutive rhythm, accessible inline links.",
+      "description": "Readable body content \u2014 standard/lead/secondary via tokens, comfortable line-height, reading measure, modest consecutive rhythm, accessible inline links.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -834,7 +807,7 @@
       "id": 32,
       "name": "label",
       "displayName": "Label",
-      "description": "Concise control/content identification — htmlFor association, required/optional not color-only, wraps long labels, readable token sizes. Not Caption.",
+      "description": "Concise control/content identification \u2014 htmlFor association, required/optional not color-only, wraps long labels, readable token sizes. Not Caption.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -860,7 +833,7 @@
       "id": 33,
       "name": "caption",
       "displayName": "Caption",
-      "description": "Secondary explanatory text — short/multiline, readable caption tokens, figcaption or aria-describedby association. Not Label; not for primary instructions or sole warnings.",
+      "description": "Secondary explanatory text \u2014 short/multiline, readable caption tokens, figcaption or aria-describedby association. Not Label; not for primary instructions or sole warnings.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -886,7 +859,7 @@
       "id": 34,
       "name": "link",
       "displayName": "Link",
-      "description": "Navigation anchor — inline/standalone, underline not color-only, opt-in external mark, visited/focus/hover, wraps long URLs. Not a Button.",
+      "description": "Navigation anchor \u2014 inline/standalone, underline not color-only, opt-in external mark, visited/focus/hover, wraps long URLs. Not a Button.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -939,7 +912,7 @@
       "id": 36,
       "name": "icon-button-group",
       "displayName": "Icon Button Group",
-      "description": "Clusters related Icon Button actions — horizontal/vertical, joined/separated, wrap/stack. Selected/disabled/active via Icon Button. Accessible labels required. Prefer Overflow Action for large sets.",
+      "description": "Clusters related Icon Button actions \u2014 horizontal/vertical, joined/separated, wrap/stack. Selected/disabled/active via Icon Button. Accessible labels required. Prefer Overflow Action for large sets.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -965,7 +938,7 @@
       "id": 37,
       "name": "action-split-button",
       "displayName": "Split Button",
-      "description": "Primary action + menu trigger composition. Uses Button styles; menu via Dropdown Menu + ActionSplitMenuTrigger — menu not implemented inside. Independent primary/menu disabled states; touch-safe trigger.",
+      "description": "Primary action + menu trigger composition. Uses Button styles; menu via Dropdown Menu + ActionSplitMenuTrigger \u2014 menu not implemented inside. Independent primary/menu disabled states; touch-safe trigger.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -992,7 +965,7 @@
       "id": 38,
       "name": "action-segmented-control",
       "displayName": "Segmented Control",
-      "description": "Small mutually exclusive choice set (2–5). Single selection with fill+border+weight selected state. Overflow wrap/stack/scroll (scroll opt-in; no auto-dropdown). RTL-aware keyboard. Optional semantic icons.",
+      "description": "Small mutually exclusive choice set (2\u20135). Single selection with fill+border+weight selected state. Overflow wrap/stack/scroll (scroll opt-in; no auto-dropdown). RTL-aware keyboard. Optional semantic icons.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1019,7 +992,7 @@
       "id": 39,
       "name": "action-group",
       "displayName": "Action Group",
-      "description": "Flexible semantic action cluster with mixed treatments — primary/secondary/icon/menu/destructive via composed primitives. Responsive wrap/stack; hidden items leave no gaps; overflow slot for Overflow Action handoff.",
+      "description": "Flexible semantic action cluster with mixed treatments \u2014 primary/secondary/icon/menu/destructive via composed primitives. Responsive wrap/stack; hidden items leave no gaps; overflow slot for Overflow Action handoff.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1045,7 +1018,7 @@
       "id": 40,
       "name": "tabs",
       "displayName": "Tabs",
-      "description": "Switch between a small set of related peer views — underline/surface/pill indicators, automatic or manual activation, scrollable overflow, semantic tab panels.",
+      "description": "Switch between a small set of related peer views \u2014 underline/surface/pill indicators, automatic or manual activation, scrollable overflow, semantic tab panels.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1071,7 +1044,7 @@
       "id": 41,
       "name": "tab-bar",
       "displayName": "Tab Bar",
-      "description": "Persistent primary navigation for 2–5 destinations — icons, labels, badges, safe-area bottom/top placement, keyboard and screen-reader friendly.",
+      "description": "Persistent primary navigation for 2\u20135 destinations \u2014 icons, labels, badges, safe-area bottom/top placement, keyboard and screen-reader friendly.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1097,7 +1070,7 @@
       "id": 42,
       "name": "card",
       "displayName": "Card",
-      "description": "Flexible surface for grouping related content — composable header/body/footer/media, quiet default elevation, interactive and selected states.",
+      "description": "Flexible surface for grouping related content \u2014 composable header/body/footer/media, quiet default elevation, interactive and selected states.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1123,7 +1096,7 @@
       "id": 43,
       "name": "list",
       "displayName": "List",
-      "description": "Container for ordered or unordered collections — density, optional dividers, grouping, single/multiple/none selection, keyboard navigation. Empty via Empty State.",
+      "description": "Container for ordered or unordered collections \u2014 density, optional dividers, grouping, single/multiple/none selection, keyboard navigation. Empty via Empty State.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1149,7 +1122,7 @@
       "id": 44,
       "name": "list-item",
       "displayName": "List Item",
-      "description": "Atomic list content row — leading, primary, secondary, trailing regions; single/two/multi-line; density; clear interactive vs trailing-action models.",
+      "description": "Atomic list content row \u2014 leading, primary, secondary, trailing regions; single/two/multi-line; density; clear interactive vs trailing-action models.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1175,7 +1148,7 @@
       "id": 45,
       "name": "brand",
       "displayName": "Brand",
-      "description": "Product and organization identity lockup — symbol, wordmark, or combined mark with optional descriptor.",
+      "description": "Product and organization identity lockup \u2014 symbol, wordmark, or combined mark with optional descriptor.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1203,7 +1176,7 @@
       "id": 46,
       "name": "avatar",
       "displayName": "Avatar",
-      "description": "Person or entity face with image, initials, or placeholder — optional presence status and badge slot.",
+      "description": "Person or entity face with image, initials, or placeholder \u2014 optional presence status and badge slot.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1259,7 +1232,7 @@
       "id": 48,
       "name": "tag",
       "displayName": "Tag",
-      "description": "Compact category and filter chip with icon, count, selectable and removable modes — distinct from Label and Badge.",
+      "description": "Compact category and filter chip with icon, count, selectable and removable modes \u2014 distinct from Label and Badge.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1315,7 +1288,7 @@
       "id": 50,
       "name": "surface",
       "displayName": "Surface",
-      "description": "Structural chrome container for navigation and panels — flat, subtle, elevated, or sticky via background and border only.",
+      "description": "Structural chrome container for navigation and panels \u2014 flat, subtle, elevated, or sticky via background and border only.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1343,7 +1316,7 @@
       "id": 51,
       "name": "nav-item",
       "displayName": "Nav Item",
-      "description": "Core navigation control with icon, label, description, and badge slots — current, selected, and disabled states.",
+      "description": "Core navigation control with icon, label, description, and badge slots \u2014 current, selected, and disabled states.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1398,7 +1371,7 @@
       "id": 53,
       "name": "navigation-drawer",
       "displayName": "Navigation Drawer",
-      "description": "Responsive overlay drawer for primary navigation on compact viewports — focus trap, Escape, and scrim dismiss.",
+      "description": "Responsive overlay drawer for primary navigation on compact viewports \u2014 focus trap, Escape, and scrim dismiss.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1426,7 +1399,7 @@
       "id": 54,
       "name": "navbar",
       "displayName": "Navbar",
-      "description": "Slot-based primary navigation composition for brand, primary links, search, actions, and account — responsive collapse below md.",
+      "description": "Slot-based primary navigation composition for brand, primary links, search, actions, and account \u2014 responsive collapse below md.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1454,7 +1427,7 @@
       "id": 55,
       "name": "theme-toggle",
       "displayName": "Theme Toggle",
-      "description": "Icon-based System / Light / Dark appearance control with a curated theme preset menu — not tabs.",
+      "description": "Icon-based System / Light / Dark appearance control with a curated theme preset menu \u2014 not tabs.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1482,7 +1455,7 @@
       "id": 56,
       "name": "color-palette",
       "displayName": "Color Palette",
-      "description": "Selectable color swatch radiogroup for accents — grid or popover trigger for toolbars.",
+      "description": "Selectable color swatch radiogroup for accents \u2014 grid or popover trigger for toolbars.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1510,7 +1483,7 @@
       "id": 57,
       "name": "nav-actions",
       "displayName": "Nav Actions",
-      "description": "Navbar utility spacing cluster for theme, links, and icon actions — consistent density gaps and optional mobile label collapse.",
+      "description": "Navbar utility spacing cluster for theme, links, and icon actions \u2014 consistent density gaps and optional mobile label collapse.",
       "category": "components",
       "kind": "component",
       "stub": false,
@@ -1532,6 +1505,1458 @@
         "navbar",
         "actions",
         "spacing",
+        "a11y"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "password-visibility-toggle",
+      "displayName": "Password Visibility Toggle",
+      "description": "Accessible show/hide control for password fields \u2014 composes Icon Button with Eye / Eye Off icons for login, register, reset, and change-password forms.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "password",
+        "visibility",
+        "auth",
+        "icon-button",
+        "a11y"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "password-strength",
+      "displayName": "Password Strength",
+      "description": "Live password quality meter composing Progress Bar and status Badge \u2014 pluggable algorithms, feedback, recommendations, and auth-form variants.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "password",
+        "strength",
+        "auth",
+        "progress-bar",
+        "badge",
+        "a11y"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "password-requirements",
+      "displayName": "Password Requirements",
+      "description": "Live password rule checklist composing List and List Item \u2014 customizable rules, success/error icons, and Password Input integration.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "password",
+        "requirements",
+        "auth",
+        "list",
+        "list-item",
+        "a11y"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "countdown-timer",
+      "displayName": "Countdown Timer",
+      "description": "Auth remaining-time UI composing Progress Bar, Text, Badge, and Icon Button \u2014 pause, reset, expiration callbacks for verification and email confirmation flows.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "countdown",
+        "timer",
+        "auth",
+        "otp",
+        "verification",
+        "email-confirmation",
+        "progress-bar",
+        "badge",
+        "a11y"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "verification-code-input",
+      "displayName": "Verification Code Input",
+      "description": "Multi-cell auth code entry composing Text Input for every cell \u2014 auto-advance, paste, autofill, and flow presets for email, reset, authenticator, and 2FA.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "verification",
+        "otp",
+        "2fa",
+        "authenticator",
+        "email-verification",
+        "password-reset",
+        "text-input",
+        "a11y"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "verification-success",
+      "displayName": "Verification Success",
+      "description": "Post-verification confirmation composing Alert and Badge \u2014 flow presets for email, phone, passkeys, and 2FA with optional redirect and actions.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "verification",
+        "success",
+        "auth",
+        "email-verification",
+        "phone-verification",
+        "passkeys",
+        "2fa",
+        "alert",
+        "badge",
+        "a11y"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "verification-failed",
+      "displayName": "Verification Failed",
+      "description": "Failed-verification messaging composing Alert \u2014 retry/resend actions and flow presets for email, phone, passkeys, 2FA, and password reset.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "verification",
+        "error",
+        "auth",
+        "retry",
+        "resend",
+        "alert",
+        "a11y"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "authentication-loading",
+      "displayName": "Authentication Loading",
+      "description": "Auth-step progress UI composing Spinner and Skeleton \u2014 flow presets for sign-in, signup, reset, passkey, email verification, and session restoration.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "authentication",
+        "loading",
+        "spinner",
+        "skeleton",
+        "auth",
+        "a11y"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "authentication-success",
+      "displayName": "Authentication Success",
+      "description": "Successful authentication confirmation composing Alert \u2014 flow presets for all auth methods with optional redirect countdown and Continue actions.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "authentication",
+        "success",
+        "auth",
+        "alert",
+        "redirect",
+        "a11y"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "authentication-error",
+      "displayName": "Authentication Error",
+      "description": "Failed authentication messaging composing Alert \u2014 retry and alternative-method actions across every auth workflow.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "authentication",
+        "error",
+        "auth",
+        "retry",
+        "alert",
+        "a11y"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "session-expired",
+      "displayName": "Session Expired",
+      "description": "Protected-route session expiry prompt composing Alert and Button \u2014 security/time icons, re-auth and secondary actions for idle, absolute, and revoked sessions.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "session",
+        "auth",
+        "expired",
+        "alert",
+        "button",
+        "a11y"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "account-locked",
+      "displayName": "Account Locked",
+      "description": "Enterprise account lockout prompt composing Alert and Button \u2014 security icons, recovery and support actions for attempts, admin, policy, and risk locks.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "account",
+        "locked",
+        "auth",
+        "enterprise",
+        "alert",
+        "button",
+        "a11y"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "icon",
+      "displayName": "Icon",
+      "description": "Decorative or semantic SVG/mark host with a size scale \u2014 foundation for provider marks and leading icons.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "icon",
+        "svg",
+        "a11y"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "continue-with-provider",
+      "displayName": "Continue With Provider",
+      "description": "Foundation for third-party auth buttons composing Button, Icon, Divider, and Tooltip \u2014 provider packages must extend this.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "sso",
+        "button",
+        "icon",
+        "a11y"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "continue-with-google",
+      "displayName": "Continue With Google",
+      "description": "Google OAuth button extending Continue With Provider \u2014 official Google mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "google",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "continue-with-microsoft",
+      "displayName": "Continue With Microsoft",
+      "description": "Microsoft OAuth button extending Continue With Provider \u2014 official Microsoft mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "microsoft",
+        "entra",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "continue-with-apple",
+      "displayName": "Continue With Apple",
+      "description": "Sign in with Apple button extending Continue With Provider \u2014 Apple mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "apple",
+        "sign-in-with-apple",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "continue-with-discord",
+      "displayName": "Continue With Discord",
+      "description": "Discord OAuth button extending Continue With Provider \u2014 Clyde mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "discord",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "continue-with-slack",
+      "displayName": "Continue With Slack",
+      "description": "Slack OAuth button extending Continue With Provider \u2014 Slack mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "slack",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "continue-with-linkedin",
+      "displayName": "Continue With LinkedIn",
+      "description": "LinkedIn OAuth button extending Continue With Provider \u2014 LinkedIn mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "linkedin",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "continue-with-x",
+      "displayName": "Continue With X",
+      "description": "X OAuth button extending Continue With Provider \u2014 X mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "x",
+        "twitter",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "continue-with-facebook",
+      "displayName": "Continue With Facebook",
+      "description": "Facebook OAuth button extending Continue With Provider \u2014 Facebook mark, shared auth states, no duplicated layout.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "oauth",
+        "facebook",
+        "meta",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "resend-verification",
+      "displayName": "Resend Verification",
+      "description": "Cooldown-gated auth resend composing Button, Icon, and Countdown Timer \u2014 email, OTP, password reset, magic link, and 2FA flows.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "verification",
+        "resend",
+        "otp",
+        "email-verification",
+        "password-reset",
+        "magic-link",
+        "two-factor",
+        "countdown-timer",
+        "button",
+        "icon",
+        "a11y"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "verification-email-sent",
+      "displayName": "Verification Email Sent",
+      "description": "Email-sent confirmation composing Alert, Card, Button, Countdown Timer, and Resend Verification \u2014 destination address, link expiry, resend, open inbox, change email.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "verification",
+        "email",
+        "resend",
+        "alert",
+        "card",
+        "button",
+        "countdown-timer",
+        "resend-verification",
+        "a11y"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "forgot-password",
+      "displayName": "Forgot Password",
+      "description": "Password recovery request form composing Text Input, Button, Card, and Alert \u2014 email entry, optional reset-link vs code, validation, and loading/success/error states.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "password",
+        "forgot-password",
+        "password-reset",
+        "email",
+        "text-input",
+        "button",
+        "card",
+        "alert",
+        "a11y"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "magic-link-login",
+      "displayName": "Magic Link Login",
+      "description": "Passwordless magic-link login composing Text Input, Button, and Verification Email Sent \u2014 request link, confirmation, expiry, resend, and optional providers.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "passwordless",
+        "magic-link",
+        "email",
+        "text-input",
+        "button",
+        "verification-email-sent",
+        "continue-with-provider",
+        "a11y"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "reset-password",
+      "displayName": "Reset Password",
+      "description": "Create/confirm password form composing Password Visibility Toggle, Strength, Checklist, Button, Card, and Alert \u2014 recovery, change, and onboarding flows.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "password",
+        "reset-password",
+        "password-change",
+        "onboarding",
+        "password-strength",
+        "a11y"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "passkey-login",
+      "displayName": "Passkey Login",
+      "description": "WebAuthn passkey login composing Button, Card, Alert, and Authentication Loading/Error/Success \u2014 platform authenticators, compatibility, cancel/timeout, and fallbacks.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "passwordless",
+        "passkey",
+        "webauthn",
+        "face-id",
+        "touch-id",
+        "windows-hello",
+        "security-key",
+        "authentication-loading",
+        "authentication-error",
+        "authentication-success",
+        "a11y"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "register-passkey",
+      "displayName": "Register Passkey",
+      "description": "WebAuthn passkey registration composing Passkey Login with Button, Card, Alert, and Authentication Loading/Error/Success \u2014 confirmation, compatibility, and ceremony without duplicated feedback.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "passwordless",
+        "passkey",
+        "webauthn",
+        "register",
+        "passkey-login",
+        "authentication-loading",
+        "authentication-error",
+        "authentication-success",
+        "a11y"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "empty-state",
+      "displayName": "Empty State",
+      "description": "Placeholder for empty regions \u2014 title, description, icon, and action slots.",
+      "category": "foundation",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "empty",
+        "feedback",
+        "a11y"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "dialog",
+      "displayName": "Dialog",
+      "description": "General modal dialog with title, body, and action slots \u2014 focus trap and Escape handling.",
+      "category": "foundation",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "dialog",
+        "modal",
+        "overlay",
+        "a11y"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "data-table",
+      "displayName": "Data Table",
+      "description": "Sortable searchable data table composing Search Field and Empty State.",
+      "category": "foundation",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "table",
+        "data",
+        "sort",
+        "search",
+        "a11y"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "passkey-management",
+      "displayName": "Passkey Management",
+      "description": "Manage registered WebAuthn passkeys using Data Table, Card, Badge, Button, Dialog, and Empty State \u2014 device icons, rename/remove, filters, and search.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "passwordless",
+        "passkey",
+        "webauthn",
+        "management",
+        "data-table",
+        "dialog",
+        "empty-state",
+        "a11y"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "radio-group",
+      "displayName": "Radio Group",
+      "description": "Mutually exclusive single-select radio group with icon and trailing slots.",
+      "category": "foundation",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "radio",
+        "selection",
+        "a11y"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "select-authentication-method",
+      "displayName": "Select Authentication Method",
+      "description": "Choose Password, Passkey, Authenticator App, Email/SMS code, Recovery Code, or Magic Link \u2014 composing Card, Button, Radio Group, Divider, and Icon.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "authentication",
+        "method",
+        "passkey",
+        "password",
+        "radio-group",
+        "a11y"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "qr-code-card",
+      "displayName": "QR Code Card",
+      "description": "Authenticator setup QR card composing Card, Button, Badge, Tooltip, and Icon \u2014 manual key, copy, refresh, loading, and expiration.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "mfa",
+        "totp",
+        "authenticator",
+        "qr",
+        "card",
+        "a11y"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "authenticator-app-setup",
+      "displayName": "Authenticator App Setup",
+      "description": "TOTP authenticator enrollment composing QR Code Card, Verification Code Input, Button, Alert, Authentication Loading, Verification Success, and Verification Failed.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "mfa",
+        "totp",
+        "authenticator",
+        "qr-code-card",
+        "verification-code-input",
+        "a11y"
+      ]
+    },
+    {
+      "id": 96,
+      "name": "backup-codes",
+      "displayName": "Backup Codes",
+      "description": "2FA recovery backup codes composing Card, Button, Dialog, Alert, and Icon \u2014 copy, download, print, regenerate with confirmation.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "mfa",
+        "2fa",
+        "backup",
+        "recovery",
+        "a11y"
+      ]
+    },
+    {
+      "id": 97,
+      "name": "recovery-code-login",
+      "displayName": "Recovery Code Login",
+      "description": "Emergency 2FA recovery code login composing Text Input, Button, Alert, Authentication Loading, and Authentication Error.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "mfa",
+        "2fa",
+        "recovery",
+        "backup",
+        "login",
+        "a11y"
+      ]
+    },
+    {
+      "id": 98,
+      "name": "two-factor-authentication",
+      "displayName": "Two-Factor Authentication",
+      "description": "Complete 2FA orchestrator composing Select Authentication Method, Verification Code Input, Authenticator App Setup, Backup Codes, Recovery Code Login, and Authentication Loading/Success/Error.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "mfa",
+        "2fa",
+        "totp",
+        "otp",
+        "passkey",
+        "recovery",
+        "orchestrator",
+        "a11y"
+      ]
+    },
+    {
+      "id": 99,
+      "name": "form",
+      "displayName": "Form",
+      "description": "Semantic form shell with header, fields, actions, and Alert error summary.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "form",
+        "a11y"
+      ]
+    },
+    {
+      "id": 100,
+      "name": "login-form",
+      "displayName": "Login Form",
+      "description": "SaaS login form composing Form, Text Input, Password Input, Checkbox, Link, Card, Alert, Icon, Continue With Provider, and Authentication Loading/Error/Success.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "login",
+        "sign-in",
+        "password",
+        "oauth",
+        "a11y"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "registration-form",
+      "displayName": "Registration Form",
+      "description": "SaaS registration form composing Form, Text Input, Password Input, Password Strength, Password Checklist, Checkbox, Link, Card, Alert, Icon, Continue With Provider, and Authentication Loading/Error/Success.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "registration",
+        "sign-up",
+        "password",
+        "oauth",
+        "a11y"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "active-sessions",
+      "displayName": "Active Sessions",
+      "description": "Manage authenticated sessions across devices composing Data Table, Card, Badge, Avatar, Button, Dialog, Dropdown Menu, Tooltip, Empty State, Skeleton, Icon, Authentication Loading, and Authentication Error.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "sessions",
+        "devices",
+        "security",
+        "a11y"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "trusted-devices",
+      "displayName": "Trusted Devices",
+      "description": "Manage remembered authentication devices composing Card, Badge, Avatar, Button, Dialog, Empty State, and Icon.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "devices",
+        "trusted",
+        "security",
+        "a11y"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "login-history",
+      "displayName": "Login History",
+      "description": "Authentication history composing Data Table, Badge, Avatar, Tooltip, Action Segmented Control (Filter), Search Field, Empty State, Skeleton, and Icon.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "history",
+        "login",
+        "audit",
+        "a11y"
+      ]
+    },
+    {
+      "id": 105,
+      "name": "timeline",
+      "displayName": "Timeline",
+      "description": "Chronological event rail composing Icon and Empty State for activity and audit surfaces.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "timeline",
+        "activity",
+        "a11y"
+      ]
+    },
+    {
+      "id": 106,
+      "name": "security-events",
+      "displayName": "Security Events",
+      "description": "Security account activity composing Data Table, Timeline, Badge, Action Segmented Control (Filter), Search Field, Empty State, Skeleton, Dialog, and Icon.",
+      "category": "components",
+      "kind": "component",
+      "stub": false,
+      "templates": [
+        "nextjs-compact",
+        "vite-express-tauri"
+      ],
+      "platforms": [
+        "web",
+        "desktop"
+      ],
+      "hasVariants": true,
+      "latestVersion": "1.0.0",
+      "tags": [
+        "foundation",
+        "foundations-interface-primitives",
+        "form-controls",
+        "auth",
+        "security",
+        "audit",
+        "timeline",
         "a11y"
       ]
     }

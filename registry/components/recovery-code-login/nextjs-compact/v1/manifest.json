@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    { "source": "files/components/ui/RecoveryCodeLogin.tsx", "destination": "components/ui/RecoveryCodeLogin.tsx" },
+    { "source": "files/styles/recovery-code-login.css", "destination": "styles/recovery-code-login.css" },
+    { "source": "files/docs/RECOVERY_CODE_LOGIN.md", "destination": "docs/devkit/RECOVERY_CODE_LOGIN.md" }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": ["alert", "button", "text-input", "authentication-loading", "authentication-error"]
+  },
+  "envVars": []
+}

@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Radio.tsx",
+      "destination": "src/components/ui/Radio.tsx"
+    },
+    {
+      "source": "files/src/components/ui/RadioGroup.tsx",
+      "destination": "src/components/ui/RadioGroup.tsx"
+    },
+    {
+      "source": "files/src/styles/radio.css",
+      "destination": "src/styles/radio.css"
+    },
+    {
+      "source": "files/src/styles/radio-group.css",
+      "destination": "src/styles/radio-group.css"
+    },
+    {
+      "source": "files/docs/RADIO_GROUP.md",
+      "destination": "docs/devkit/RADIO_GROUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": { "frontend": [] },
+  "envVars": []
+}

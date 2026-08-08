@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContinueWithMicrosoft.tsx",
+      "destination": "components/ui/ContinueWithMicrosoft.tsx"
+    },
+    {
+      "source": "files/styles/continue-with-microsoft.css",
+      "destination": "styles/continue-with-microsoft.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_MICROSOFT.md",
+      "destination": "docs/devkit/CONTINUE_WITH_MICROSOFT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

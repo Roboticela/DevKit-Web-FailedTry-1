@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/EmptyState.tsx",
+      "destination": "components/ui/EmptyState.tsx"
+    },
+    {
+      "source": "files/styles/empty-state.css",
+      "destination": "styles/empty-state.css"
+    },
+    {
+      "source": "files/docs/EMPTY_STATE.md",
+      "destination": "docs/devkit/EMPTY_STATE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": { "frontend": [] },
+  "envVars": []
+}

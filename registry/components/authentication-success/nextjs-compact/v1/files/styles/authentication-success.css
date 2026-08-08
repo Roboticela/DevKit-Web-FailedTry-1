@@ -1,0 +1,33 @@
+/*
+ * Authentication Success — layout composition only.
+ * Alert provides status chrome, icons, and actions.
+ * No box-shadows. No gradients.
+ */
+
+.dk-authentication-success {
+  display: grid;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-authentication-success__alert {
+  width: 100%;
+  min-width: 0;
+}
+
+.dk-authentication-success__redirect {
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-authentication-success--compact {
+  gap: var(--space-1, 4px);
+}
+
+@media (max-width: 479px) {
+  .dk-authentication-success {
+    gap: var(--space-2, 8px);
+  }
+}

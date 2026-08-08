@@ -10,3 +10,20 @@ Every interactive element must include a meaningful icon. Never use plain text w
 Icons must be semantic and consistent across the authentication system.
 Components must support loading, disabled, error, success, focus, hover, keyboard navigation, accessibility, and responsive behavior where applicable.
 Every component should expose variants, sizes, states, slots, and composition APIs instead of hardcoded implementations.
+
+Before implementing any page, inspect the component registry first.
+Never recreate a component already available in the registry or authentication library.
+Every page should be built by composing existing components.
+Every action, status, and section should include meaningful icons.
+Pages must support:
+Responsive layouts
+Keyboard accessibility
+Screen readers
+Loading states
+Empty states
+Error states
+Success states
+Mobile, tablet, and desktop layouts
+Theme support
+RTL support
+Every page should support multiple layout variants.

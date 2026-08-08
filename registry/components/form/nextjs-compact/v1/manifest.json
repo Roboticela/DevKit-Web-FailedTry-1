@@ -1,0 +1,12 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    { "source": "files/components/ui/Form.tsx", "destination": "components/ui/Form.tsx" },
+    { "source": "files/styles/form.css", "destination": "styles/form.css" },
+    { "source": "files/docs/FORM.md", "destination": "docs/devkit/FORM.md" }
+  ],
+  "injections": [],
+  "dependencies": { "frontend": ["alert"] },
+  "envVars": []
+}

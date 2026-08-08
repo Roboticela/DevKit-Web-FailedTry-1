@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/MagicLinkLogin.tsx",
+      "destination": "components/ui/MagicLinkLogin.tsx"
+    },
+    {
+      "source": "files/styles/magic-link-login.css",
+      "destination": "styles/magic-link-login.css"
+    },
+    {
+      "source": "files/docs/MAGIC_LINK_LOGIN.md",
+      "destination": "docs/devkit/MAGIC_LINK_LOGIN.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "text-input",
+      "button",
+      "verification-email-sent",
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

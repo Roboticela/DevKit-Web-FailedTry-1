@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/AuthenticatorAppSetup.tsx",
+      "destination": "src/components/ui/AuthenticatorAppSetup.tsx"
+    },
+    {
+      "source": "files/src/styles/authenticator-app-setup.css",
+      "destination": "src/styles/authenticator-app-setup.css"
+    },
+    {
+      "source": "files/docs/AUTHENTICATOR_APP_SETUP.md",
+      "destination": "docs/devkit/AUTHENTICATOR_APP_SETUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "button",
+      "qr-code-card",
+      "verification-code-input",
+      "authentication-loading",
+      "verification-success",
+      "verification-failed"
+    ]
+  },
+  "envVars": []
+}

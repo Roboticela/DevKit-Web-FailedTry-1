@@ -1,0 +1,80 @@
+/*
+ * Recovery Code Login — layout only. No box-shadows. No gradients.
+ */
+
+.dk-recovery-code-login {
+  display: grid;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+  width: 100%;
+  max-width: 28rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-recovery-code-login--full {
+  max-width: 28rem;
+}
+
+.dk-recovery-code-login--compact {
+  max-width: 24rem;
+  gap: var(--space-3, 12px);
+}
+
+.dk-recovery-code-login__header {
+  display: grid;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-recovery-code-login__title {
+  margin: 0;
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-recovery-code-login__description {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  line-height: 1.45;
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-recovery-code-login__guidance {
+  min-width: 0;
+}
+
+.dk-recovery-code-login__form {
+  display: grid;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+}
+
+.dk-recovery-code-login--compact .dk-recovery-code-login__form {
+  gap: var(--space-3, 12px);
+}
+
+.dk-recovery-code-login__input {
+  margin-block-end: 0;
+}
+
+.dk-recovery-code-login__input .dk-field__control input,
+.dk-recovery-code-login__input input {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dk-recovery-code-login__actions {
+  display: grid;
+  gap: var(--space-2, 8px);
+}
+
+@media (max-width: 480px) {
+  .dk-recovery-code-login,
+  .dk-recovery-code-login--full,
+  .dk-recovery-code-login--compact {
+    max-width: none;
+  }
+}

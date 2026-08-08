@@ -1,0 +1,92 @@
+/*
+ * Authentication Loading — layout composition only.
+ * Spinner + Skeleton / Skeleton Group provide chrome.
+ * No box-shadows. No gradients.
+ */
+
+.dk-authentication-loading {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  max-width: 24rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-authentication-loading__main {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  justify-items: stretch;
+}
+
+.dk-authentication-loading--inline .dk-authentication-loading__main {
+  justify-items: start;
+}
+
+.dk-authentication-loading__spinner {
+  justify-self: center;
+}
+
+.dk-authentication-loading--inline .dk-authentication-loading__spinner {
+  justify-self: start;
+}
+
+.dk-authentication-loading__spinner-row {
+  display: flex;
+  justify-content: center;
+}
+
+.dk-authentication-loading__description {
+  margin: 0;
+  text-align: center;
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: var(--font-size-caption, 12px);
+  line-height: var(--line-height-caption, 16px);
+}
+
+.dk-authentication-loading--inline .dk-authentication-loading__description {
+  text-align: start;
+}
+
+.dk-authentication-loading__skeleton {
+  width: 100%;
+  min-width: 0;
+}
+
+.dk-authentication-loading__code-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+  align-items: center;
+}
+
+.dk-authentication-loading__footer {
+  min-width: 0;
+  width: 100%;
+}
+
+.dk-authentication-loading--compact {
+  gap: var(--space-2, 8px);
+  max-width: 18rem;
+}
+
+.dk-authentication-loading--compact .dk-authentication-loading__main {
+  gap: var(--space-2, 8px);
+}
+
+.dk-authentication-loading--form .dk-authentication-loading__main {
+  gap: var(--space-3, 12px);
+}
+
+@media (max-width: 479px) {
+  .dk-authentication-loading {
+    max-width: 100%;
+    gap: var(--space-2, 8px);
+  }
+
+  .dk-authentication-loading__code-row {
+    gap: var(--space-1, 4px);
+  }
+}

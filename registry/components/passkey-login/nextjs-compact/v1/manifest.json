@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/PasskeyLogin.tsx",
+      "destination": "components/ui/PasskeyLogin.tsx"
+    },
+    {
+      "source": "files/styles/passkey-login.css",
+      "destination": "styles/passkey-login.css"
+    },
+    {
+      "source": "files/docs/PASSKEY_LOGIN.md",
+      "destination": "docs/devkit/PASSKEY_LOGIN.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "button",
+      "card",
+      "alert",
+      "authentication-loading",
+      "authentication-error",
+      "authentication-success"
+    ]
+  },
+  "envVars": []
+}

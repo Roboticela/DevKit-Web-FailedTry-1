@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ContinueWithSlack.tsx",
+      "destination": "components/ui/ContinueWithSlack.tsx"
+    },
+    {
+      "source": "files/styles/continue-with-slack.css",
+      "destination": "styles/continue-with-slack.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_SLACK.md",
+      "destination": "docs/devkit/CONTINUE_WITH_SLACK.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "continue-with-provider"
+    ]
+  },
+  "envVars": []
+}

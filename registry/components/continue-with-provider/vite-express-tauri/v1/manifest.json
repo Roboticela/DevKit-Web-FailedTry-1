@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ContinueWithProvider.tsx",
+      "destination": "src/components/ui/ContinueWithProvider.tsx"
+    },
+    {
+      "source": "files/src/styles/continue-with-provider.css",
+      "destination": "src/styles/continue-with-provider.css"
+    },
+    {
+      "source": "files/docs/CONTINUE_WITH_PROVIDER.md",
+      "destination": "docs/devkit/CONTINUE_WITH_PROVIDER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "button",
+      "icon",
+      "divider",
+      "tooltip"
+    ]
+  },
+  "envVars": []
+}

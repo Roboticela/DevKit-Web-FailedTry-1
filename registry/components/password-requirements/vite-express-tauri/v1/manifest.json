@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/PasswordRequirements.tsx",
+      "destination": "src/components/ui/PasswordRequirements.tsx"
+    },
+    {
+      "source": "files/src/styles/password-requirements.css",
+      "destination": "src/styles/password-requirements.css"
+    },
+    {
+      "source": "files/docs/PASSWORD_REQUIREMENTS.md",
+      "destination": "docs/devkit/PASSWORD_REQUIREMENTS.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "list",
+      "list-item"
+    ]
+  },
+  "envVars": []
+}

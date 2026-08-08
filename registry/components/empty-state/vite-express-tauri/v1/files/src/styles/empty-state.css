@@ -1,0 +1,63 @@
+/*
+ * Empty State — layout only. No box-shadows. No gradients.
+ */
+
+.dk-empty-state {
+  display: grid;
+  gap: var(--space-3, 12px);
+  justify-items: center;
+  text-align: center;
+  padding: var(--space-6, 24px) var(--space-4, 16px);
+  min-width: 0;
+  box-sizing: border-box;
+  font-family: var(--font-sans, inherit);
+}
+
+.dk-empty-state--compact {
+  padding: var(--space-4, 16px);
+  gap: var(--space-2, 8px);
+}
+
+.dk-empty-state--inline {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  justify-items: start;
+  text-align: start;
+  align-items: center;
+}
+
+.dk-empty-state__icon {
+  display: inline-flex;
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: 2rem;
+}
+
+.dk-empty-state__copy {
+  display: grid;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-empty-state__title {
+  margin: 0;
+  font-size: var(--font-size-md, 1rem);
+  font-weight: var(--weight-semibold, 600);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-empty-state__description {
+  margin: 0;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary, #6e6e73);
+  line-height: 1.45;
+}
+
+.dk-empty-state__actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+  justify-content: center;
+}
+
+.dk-empty-state--inline .dk-empty-state__actions {
+  justify-content: end;
+}

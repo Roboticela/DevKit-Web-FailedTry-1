@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/PasswordVisibilityToggle.tsx",
+      "destination": "src/components/ui/PasswordVisibilityToggle.tsx"
+    },
+    {
+      "source": "files/src/styles/password-visibility-toggle.css",
+      "destination": "src/styles/password-visibility-toggle.css"
+    },
+    {
+      "source": "files/docs/PASSWORD_VISIBILITY_TOGGLE.md",
+      "destination": "docs/devkit/PASSWORD_VISIBILITY_TOGGLE.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "icon-button"
+    ]
+  },
+  "envVars": []
+}

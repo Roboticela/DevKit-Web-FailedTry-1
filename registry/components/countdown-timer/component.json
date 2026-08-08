@@ -1,0 +1,54 @@
+{
+  "id": 62,
+  "name": "countdown-timer",
+  "displayName": "Countdown Timer",
+  "description": "Auth remaining-time UI composing Progress Bar, Text, Badge, and Icon Button — pause, reset, expiration callbacks for verification and email confirmation flows.",
+  "category": "foundation",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 1,
+  "icon": "timer",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "foundation",
+    "foundations-interface-primitives",
+    "form-controls",
+    "countdown",
+    "timer",
+    "auth",
+    "otp",
+    "verification",
+    "email-confirmation",
+    "progress-bar",
+    "badge",
+    "a11y"
+  ],
+  "templates": [
+    "nextjs-compact",
+    "vite-express-tauri"
+  ],
+  "platforms": [
+    "web",
+    "desktop"
+  ],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [
+      {
+        "version": "1.0.0",
+        "releaseDate": "2026-08-08",
+        "breaking": false
+      }
+    ]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

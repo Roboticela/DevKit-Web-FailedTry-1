@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/VerificationEmailSent.tsx",
+      "destination": "src/components/ui/VerificationEmailSent.tsx"
+    },
+    {
+      "source": "files/src/styles/verification-email-sent.css",
+      "destination": "src/styles/verification-email-sent.css"
+    },
+    {
+      "source": "files/docs/VERIFICATION_EMAIL_SENT.md",
+      "destination": "docs/devkit/VERIFICATION_EMAIL_SENT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "card",
+      "button",
+      "countdown-timer",
+      "resend-verification"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,21 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/Form.tsx",
+      "destination": "src/components/ui/Form.tsx"
+    },
+    {
+      "source": "files/src/styles/form.css",
+      "destination": "src/styles/form.css"
+    },
+    {
+      "source": "files/docs/FORM.md",
+      "destination": "docs/devkit/FORM.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": { "frontend": ["alert"] },
+  "envVars": []
+}

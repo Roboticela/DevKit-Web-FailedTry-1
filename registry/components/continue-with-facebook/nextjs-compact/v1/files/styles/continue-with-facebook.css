@@ -1,0 +1,8 @@
+/*
+ * Continue With Facebook — branding only.
+ * Layout comes from Continue With Provider.
+ */
+
+.dk-continue-with-provider[data-provider="facebook"] .dk-continue-with-provider__icon {
+  color: #1877f2;
+}

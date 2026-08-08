@@ -1,0 +1,32 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/TrustedDevices.tsx",
+      "destination": "src/components/ui/TrustedDevices.tsx"
+    },
+    {
+      "source": "files/src/styles/trusted-devices.css",
+      "destination": "src/styles/trusted-devices.css"
+    },
+    {
+      "source": "files/docs/TRUSTED_DEVICES.md",
+      "destination": "docs/devkit/TRUSTED_DEVICES.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "badge",
+      "avatar",
+      "button",
+      "dialog",
+      "empty-state",
+      "icon",
+      "text-input"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    { "source": "files/components/ui/LoginHistory.tsx", "destination": "components/ui/LoginHistory.tsx" },
+    { "source": "files/styles/login-history.css", "destination": "styles/login-history.css" },
+    { "source": "files/docs/LOGIN_HISTORY.md", "destination": "docs/devkit/LOGIN_HISTORY.md" }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card", "badge", "avatar", "button", "tooltip", "skeleton", "icon",
+      "data-table", "empty-state", "search-field", "action-segmented-control", "tag"
+    ]
+  },
+  "envVars": []
+}

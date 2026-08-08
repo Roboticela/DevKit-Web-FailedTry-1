@@ -1,0 +1,29 @@
+/*
+ * Authentication Error — layout composition only.
+ * Alert provides status chrome, icons, and actions.
+ * No box-shadows. No gradients.
+ */
+
+.dk-authentication-error {
+  display: grid;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-authentication-error__alert {
+  width: 100%;
+  min-width: 0;
+}
+
+.dk-authentication-error--compact {
+  gap: var(--space-1, 4px);
+}
+
+@media (max-width: 479px) {
+  .dk-authentication-error {
+    gap: var(--space-2, 8px);
+  }
+}

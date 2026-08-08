@@ -1,0 +1,37 @@
+{
+  "id": 93,
+  "name": "select-authentication-method",
+  "displayName": "Select Authentication Method",
+  "description": "Choose Password, Passkey, Authenticator App, Email/SMS code, Recovery Code, or Magic Link — composing Card, Button, Radio Group, Divider, and Icon.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "shield",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "authentication",
+    "method",
+    "passkey",
+    "password",
+    "radio-group",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

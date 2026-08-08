@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/ResendVerification.tsx",
+      "destination": "components/ui/ResendVerification.tsx"
+    },
+    {
+      "source": "files/styles/resend-verification.css",
+      "destination": "styles/resend-verification.css"
+    },
+    {
+      "source": "files/docs/RESEND_VERIFICATION.md",
+      "destination": "docs/devkit/RESEND_VERIFICATION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "button",
+      "icon",
+      "countdown-timer"
+    ]
+  },
+  "envVars": []
+}

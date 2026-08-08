@@ -1,0 +1,30 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/PasskeyLogin.tsx",
+      "destination": "src/components/ui/PasskeyLogin.tsx"
+    },
+    {
+      "source": "files/src/styles/passkey-login.css",
+      "destination": "src/styles/passkey-login.css"
+    },
+    {
+      "source": "files/docs/PASSKEY_LOGIN.md",
+      "destination": "docs/devkit/PASSKEY_LOGIN.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "button",
+      "card",
+      "alert",
+      "authentication-loading",
+      "authentication-error",
+      "authentication-success"
+    ]
+  },
+  "envVars": []
+}

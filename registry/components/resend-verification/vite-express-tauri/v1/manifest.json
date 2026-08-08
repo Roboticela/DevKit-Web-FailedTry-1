@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ResendVerification.tsx",
+      "destination": "src/components/ui/ResendVerification.tsx"
+    },
+    {
+      "source": "files/src/styles/resend-verification.css",
+      "destination": "src/styles/resend-verification.css"
+    },
+    {
+      "source": "files/docs/RESEND_VERIFICATION.md",
+      "destination": "docs/devkit/RESEND_VERIFICATION.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "button",
+      "icon",
+      "countdown-timer"
+    ]
+  },
+  "envVars": []
+}

@@ -1,0 +1,71 @@
+/*
+ * Register Passkey — layout composition only.
+ * Passkey Login owns the WebAuthn ceremony UI.
+ * Button / Card / Alert / Authentication Loading / Error / Success for confirm + probes.
+ * No box-shadows. No gradients.
+ */
+
+.dk-register-passkey {
+  display: grid;
+  min-width: 0;
+  width: 100%;
+  max-width: 28rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-register-passkey--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+  pointer-events: none;
+}
+
+.dk-register-passkey__card {
+  width: 100%;
+}
+
+.dk-register-passkey__body {
+  display: grid;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+}
+
+.dk-register-passkey__authenticators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2, 8px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dk-register-passkey__authenticator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-register-passkey__authenticator-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-register-passkey__actions {
+  display: grid;
+  gap: var(--space-2, 8px);
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .dk-register-passkey {
+    max-width: none;
+  }
+
+  .dk-register-passkey__authenticators {
+    grid-template-columns: 1fr;
+  }
+}

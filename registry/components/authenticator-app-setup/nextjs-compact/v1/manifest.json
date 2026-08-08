@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/AuthenticatorAppSetup.tsx",
+      "destination": "components/ui/AuthenticatorAppSetup.tsx"
+    },
+    {
+      "source": "files/styles/authenticator-app-setup.css",
+      "destination": "styles/authenticator-app-setup.css"
+    },
+    {
+      "source": "files/docs/AUTHENTICATOR_APP_SETUP.md",
+      "destination": "docs/devkit/AUTHENTICATOR_APP_SETUP.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert",
+      "button",
+      "qr-code-card",
+      "verification-code-input",
+      "authentication-loading",
+      "verification-success",
+      "verification-failed"
+    ]
+  },
+  "envVars": []
+}

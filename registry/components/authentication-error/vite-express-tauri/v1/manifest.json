@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/AuthenticationError.tsx",
+      "destination": "src/components/ui/AuthenticationError.tsx"
+    },
+    {
+      "source": "files/src/styles/authentication-error.css",
+      "destination": "src/styles/authentication-error.css"
+    },
+    {
+      "source": "files/docs/AUTHENTICATION_ERROR.md",
+      "destination": "docs/devkit/AUTHENTICATION_ERROR.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert"
+    ]
+  },
+  "envVars": []
+}

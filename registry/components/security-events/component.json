@@ -1,0 +1,35 @@
+{
+  "id": 106,
+  "name": "security-events",
+  "displayName": "Security Events",
+  "description": "Security account activity composing Data Table, Timeline, Badge, Action Segmented Control (Filter), Search Field, Empty State, Skeleton, Dialog, and Icon.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 2,
+  "icon": "shield",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "security",
+    "audit",
+    "timeline",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}

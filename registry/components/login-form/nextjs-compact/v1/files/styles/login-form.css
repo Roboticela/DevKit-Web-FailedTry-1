@@ -1,0 +1,85 @@
+/*
+ * Login Form — layout only. No box-shadows. No gradients.
+ */
+
+.dk-login-form {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  max-width: 28rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-login-form--full {
+  max-width: 28rem;
+}
+
+.dk-login-form--compact {
+  max-width: 24rem;
+}
+
+.dk-login-form__card {
+  min-width: 0;
+}
+
+.dk-login-form__header {
+  display: grid;
+  gap: var(--space-1, 4px);
+}
+
+.dk-login-form__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-login-form__title-icon {
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-login-form__body {
+  display: grid;
+  gap: var(--space-4, 16px);
+  min-width: 0;
+}
+
+.dk-login-form__form {
+  gap: var(--space-4, 16px);
+}
+
+.dk-login-form__options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-login-form__options > .dk-checkbox {
+  margin-block-end: 0;
+}
+
+.dk-login-form__forgot {
+  font-size: var(--font-size-sm, 14px);
+}
+
+.dk-login-form__split {
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .dk-login-form,
+  .dk-login-form--full,
+  .dk-login-form--compact {
+    max-width: none;
+  }
+
+  .dk-login-form__options {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

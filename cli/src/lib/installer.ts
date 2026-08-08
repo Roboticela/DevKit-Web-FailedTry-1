@@ -1,15 +1,11 @@
-import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, unlinkSync, createWriteStream } from "fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, writeFileSync, unlinkSync, rmSync } from "fs";
 import { join, dirname } from "path";
 import { execSync } from "child_process";
 import { createHash } from "crypto";
-import { x as extractTar } from "tar";
-import { pipeline } from "stream/promises";
-import { getBundledComponentsDir } from "./bundled-registry.js";
+import { getBundledComponentMeta, getBundledPackageDir } from "./bundled-registry.js";
 import { getManifest } from "./registry.js";
-import { readLock, writeLock } from "./config.js";
+import { isComponentInstalled, readLock, writeLock } from "./config.js";
 import { log } from "./logger.js";
-
-const REGISTRY_URL = process.env.DEVKIT_REGISTRY ?? "https://registry.devkit.roboticela.com";
 
 interface FileEntry {
   source: string;
@@ -36,6 +32,30 @@ function hashFile(path: string): string {
   return createHash("sha256").update(content).digest("hex");
 }
 
+function isRegistryPackage(name: string): boolean {
+  // Strip optional @version pin used in manifests/CLI (e.g. button@1.0.0)
+  const base = name.split("@")[0]!;
+  return getBundledComponentMeta(base) !== null;
+}
+
+function partitionDeps(names: string[]): { registry: string[]; npm: string[] } {
+  const registry: string[] = [];
+  const npm: string[] = [];
+  for (const raw of names) {
+    const base = raw.split("@")[0]!;
+    if (isRegistryPackage(base)) registry.push(raw);
+    else npm.push(raw);
+  }
+  return { registry, npm };
+}
+
+function npmInstall(packages: string[], cwd: string, dev = false): void {
+  if (packages.length === 0) return;
+  const flag = dev ? "-D " : "";
+  log.step(`npm install ${flag}${packages.join(" ")}`);
+  execSync(`npm install ${flag}${packages.join(" ")}`, { cwd, stdio: "inherit" });
+}
+
 /** Options for installing or updating a component. */
 export interface InstallOptions {
   /**
@@ -43,6 +63,11 @@ export interface InstallOptions {
    * Default: keep local edits (skip copy) and retain their hashes in the manifest.
    */
   force?: boolean;
+  /**
+   * When true, this install was requested as a transitive registry dependency.
+   * Already-installed packages are skipped instead of reinstalled.
+   */
+  asDependency?: boolean;
 }
 
 export async function installComponent(
@@ -51,129 +76,158 @@ export async function installComponent(
   version = "latest",
   variant: string | undefined,
   cwd = process.cwd(),
-  options: InstallOptions = {}
+  options: InstallOptions = {},
+  installing: Set<string> = new Set()
 ): Promise<void> {
   const force = options.force === true;
+  const asDependency = options.asDependency === true;
 
-  const lockAtStart = readLock(cwd);
-  const lockedComp = lockAtStart.components[name];
+  if (installing.has(name)) return;
+  if (asDependency && isComponentInstalled(name, cwd) && !force) return;
 
-  const existingManifestPath = join(cwd, ".devkit", `${name}.manifest.json`);
-  const previousByPath = new Map<string, { path: string; hash: string; userModified?: boolean }>();
-  if (existsSync(existingManifestPath)) {
-    try {
-      const existing = JSON.parse(readFileSync(existingManifestPath, "utf-8"));
-      for (const mf of existing.managedFiles ?? []) {
-        previousByPath.set(mf.path, mf);
+  installing.add(name);
+
+  try {
+    const lockAtStart = readLock(cwd);
+    const lockedComp = lockAtStart.components[name];
+
+    const existingManifestPath = join(cwd, ".devkit", `${name}.manifest.json`);
+    const previousByPath = new Map<string, { path: string; hash: string; userModified?: boolean }>();
+    if (existsSync(existingManifestPath)) {
+      try {
+        const existing = JSON.parse(readFileSync(existingManifestPath, "utf-8"));
+        for (const mf of existing.managedFiles ?? []) {
+          previousByPath.set(mf.path, mf);
+        }
+      } catch {
+        /* ignore */
       }
-    } catch {
-      /* ignore */
-    }
-  }
-
-  // 1. Fetch manifest from registry
-  const result = await getManifest(name, template, version, variant);
-  const manifest = result.manifest as unknown as Manifest;
-  const resolvedVersion = result.version;
-
-  // 2. Download component files from registry
-  const tmpDir = join(cwd, ".devkit", `.tmp-${name}`);
-  await downloadComponentFiles(name, template, resolvedVersion, variant, tmpDir);
-
-  // 3. Copy files into project
-  const managedFiles: Array<{ path: string; hash: string; userModified: boolean }> = [];
-
-  for (const fileEntry of manifest.files) {
-    const src = join(tmpDir, fileEntry.source);
-    const dest = join(cwd, fileEntry.destination);
-
-    // User-modified = on disk differs from last DevKit-installed hash (while component is locked)
-    let userModified = false;
-    if (!force && existsSync(dest) && lockedComp) {
-      const tracked = previousByPath.get(fileEntry.destination);
-      if (tracked && tracked.hash !== hashFile(dest)) userModified = true;
     }
 
-    if (userModified) {
-      log.warn(`Skipped (user-modified): ${fileEntry.destination}`);
-      managedFiles.push({
-        path: fileEntry.destination,
-        hash: hashFile(dest),
-        userModified: true,
-      });
-    } else {
-      if (force && existsSync(dest) && lockedComp) {
+    // 1. Read manifest from bundled package registry
+    const result = await getManifest(name, template, version, variant);
+    const manifest = result.manifest as unknown as Manifest;
+    const resolvedVersion = result.version;
+
+    // 2. Install registry package dependencies first (compose from registry — never npm)
+    const deps = manifest.dependencies ?? {};
+    const frontendParts = partitionDeps(deps.frontend ?? []);
+    const devFrontendParts = partitionDeps(deps.devFrontend ?? []);
+    const backendParts = partitionDeps(deps.backend ?? []);
+    const devBackendParts = partitionDeps(deps.devBackend ?? []);
+
+    const registryDeps = [
+      ...frontendParts.registry,
+      ...devFrontendParts.registry,
+      ...backendParts.registry,
+      ...devBackendParts.registry,
+    ];
+
+    for (const dep of registryDeps) {
+      const [depName, depVersion = "latest"] = dep.split("@");
+      if (!depName || depName === name) continue;
+      log.step(`Adding dependency ${depName}`);
+      await installComponent(depName, template, depVersion, undefined, cwd, { ...options, asDependency: true }, installing);
+    }
+
+    // 3. Copy component files from bundled registry
+    const tmpDir = join(cwd, ".devkit", `.tmp-${name}`);
+    const packageDir = getBundledPackageDir(name, template, resolvedVersion, variant);
+    if (!packageDir) {
+      const hint = variant ? ` (variant=${variant})` : "";
+      throw new Error(`Package files for '${name}'@${resolvedVersion}${hint} not found in the bundled registry.`);
+    }
+    mkdirSync(tmpDir, { recursive: true });
+    cpSync(packageDir, tmpDir, { recursive: true });
+
+    // 4. Copy files into project
+    const managedFiles: Array<{ path: string; hash: string; userModified: boolean }> = [];
+
+    for (const fileEntry of manifest.files) {
+      const src = join(tmpDir, fileEntry.source);
+      const dest = join(cwd, fileEntry.destination);
+
+      let userModified = false;
+      if (!force && existsSync(dest) && lockedComp) {
         const tracked = previousByPath.get(fileEntry.destination);
-        if (tracked && tracked.hash !== hashFile(dest)) {
-          log.warn(`Overwrote (user-modified, --force): ${fileEntry.destination}`);
+        if (tracked && tracked.hash !== hashFile(dest)) userModified = true;
+      }
+
+      if (userModified) {
+        log.warn(`Skipped (user-modified): ${fileEntry.destination}`);
+        managedFiles.push({
+          path: fileEntry.destination,
+          hash: hashFile(dest),
+          userModified: true,
+        });
+      } else {
+        if (force && existsSync(dest) && lockedComp) {
+          const tracked = previousByPath.get(fileEntry.destination);
+          if (tracked && tracked.hash !== hashFile(dest)) {
+            log.warn(`Overwrote (user-modified, --force): ${fileEntry.destination}`);
+          }
+        }
+        mkdirSync(dirname(dest), { recursive: true });
+        if (existsSync(src)) {
+          cpSync(src, dest);
+          const hash = hashFile(dest);
+          managedFiles.push({ path: fileEntry.destination, hash, userModified: false });
+          log.step(`Created ${fileEntry.destination}`);
         }
       }
-      mkdirSync(dirname(dest), { recursive: true });
-      if (existsSync(src)) {
-        cpSync(src, dest);
-        const hash = hashFile(dest);
-        managedFiles.push({ path: fileEntry.destination, hash, userModified: false });
-        log.step(`Created ${fileEntry.destination}`);
+    }
+
+    // 5. Apply injections
+    for (const injection of manifest.injections ?? []) {
+      applyInjection(injection, cwd);
+    }
+
+    // 6. Install real npm packages only (names that are not DevKit registry packages)
+    npmInstall(frontendParts.npm, cwd, false);
+    npmInstall(devFrontendParts.npm, cwd, true);
+    if (existsSync(join(cwd, "server"))) {
+      npmInstall(backendParts.npm, join(cwd, "server"), false);
+      npmInstall(devBackendParts.npm, join(cwd, "server"), true);
+    }
+
+    // 7. Write component manifest
+    const compManifest = {
+      name,
+      version: resolvedVersion,
+      template,
+      variant: variant ?? null,
+      installedAt: new Date().toISOString(),
+      managedFiles,
+      injections: manifest.injections ?? [],
+      dependencies: manifest.dependencies ?? {},
+      envVars: manifest.envVars ?? [],
+    };
+    mkdirSync(join(cwd, ".devkit"), { recursive: true });
+    writeFileSync(join(cwd, ".devkit", `${name}.manifest.json`), JSON.stringify(compManifest, null, 2) + "\n");
+
+    // 8. Update lock file
+    const lock = readLock(cwd);
+    lock.components[name] = {
+      version: resolvedVersion,
+      variant: variant ?? null,
+      resolved: `bundled:${name}@${resolvedVersion}/${template}${variant ? `/variants/${variant}` : ""}`,
+      installedAt: new Date().toISOString(),
+    };
+    writeLock(lock, cwd);
+
+    // 9. Print required env vars
+    if ((manifest.envVars?.length ?? 0) > 0) {
+      log.blank();
+      log.warn(`Required env vars for ${name}:`);
+      for (const envVar of manifest.envVars!) {
+        log.step(envVar);
       }
     }
-  }
 
-  // 4. Apply injections
-  for (const injection of manifest.injections ?? []) {
-    applyInjection(injection, cwd);
+    rmSync(tmpDir, { recursive: true, force: true });
+  } finally {
+    installing.delete(name);
   }
-
-  // 5. Install npm dependencies
-  const deps = manifest.dependencies ?? {};
-  if ((deps.frontend?.length ?? 0) > 0) {
-    log.step(`npm install ${deps.frontend!.join(" ")}`);
-    execSync(`npm install ${deps.frontend!.join(" ")}`, { cwd, stdio: "inherit" });
-  }
-  if ((deps.devFrontend?.length ?? 0) > 0) {
-    execSync(`npm install -D ${deps.devFrontend!.join(" ")}`, { cwd, stdio: "inherit" });
-  }
-  if ((deps.backend?.length ?? 0) > 0 && existsSync(join(cwd, "server"))) {
-    log.step(`npm install (server) ${deps.backend!.join(" ")}`);
-    execSync(`npm install ${deps.backend!.join(" ")}`, { cwd: join(cwd, "server"), stdio: "inherit" });
-  }
-
-  // 6. Write component manifest
-  const compManifest = {
-    name,
-    version: resolvedVersion,
-    template,
-    variant: variant ?? null,
-    installedAt: new Date().toISOString(),
-    managedFiles,
-    injections: manifest.injections ?? [],
-    dependencies: manifest.dependencies ?? {},
-    envVars: manifest.envVars ?? [],
-  };
-  mkdirSync(join(cwd, ".devkit"), { recursive: true });
-  writeFileSync(join(cwd, ".devkit", `${name}.manifest.json`), JSON.stringify(compManifest, null, 2) + "\n");
-
-  // 7. Update lock file
-  const lock = readLock(cwd);
-  lock.components[name] = {
-    version: resolvedVersion,
-    variant: variant ?? null,
-    resolved: `${REGISTRY_URL}/api/v1/components/${name}/download/${resolvedVersion}/${template}`,
-    installedAt: new Date().toISOString(),
-  };
-  writeLock(lock, cwd);
-
-  // 8. Print required env vars
-  if ((manifest.envVars?.length ?? 0) > 0) {
-    log.blank();
-    log.warn(`Required env vars for ${name}:`);
-    for (const envVar of manifest.envVars!) {
-      log.step(envVar);
-    }
-  }
-
-  // Cleanup temp dir
-  const { rmSync } = await import("fs");
-  rmSync(tmpDir, { recursive: true, force: true });
 }
 
 export function removeComponent(name: string, cwd = process.cwd()): void {
@@ -197,43 +251,6 @@ export function removeComponent(name: string, cwd = process.cwd()): void {
   writeLock(lock, cwd);
 }
 
-async function downloadComponentFiles(
-  name: string,
-  template: string,
-  version: string,
-  variant: string | undefined,
-  tmpDir: string
-): Promise<void> {
-  mkdirSync(tmpDir, { recursive: true });
-
-  // Prefer on-disk payloads (bundled in the npm package or monorepo sibling) before HTTP tarball.
-  const registryDir = getBundledComponentsDir();
-  const major = `v${version.split(".")[0]}`;
-  const compDir = registryDir
-    ? variant
-      ? join(registryDir, name, template, major, "variants", variant)
-      : join(registryDir, name, template, major)
-    : "";
-
-  if (compDir && existsSync(compDir)) {
-    cpSync(compDir, tmpDir, { recursive: true });
-  } else {
-    // Fallback: try to fetch a tarball from registry
-    const qs = new URLSearchParams({ template, version });
-    if (variant) qs.set("variant", variant);
-    const url = `${REGISTRY_URL}/api/v1/components/${name}/download?${qs}`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`Failed to download component ${name}: HTTP ${res.status}`);
-    const tmpTar = join(tmpDir, ".component.tar.gz");
-    const writer = createWriteStream(tmpTar);
-    // @ts-expect-error — Node stream
-    await pipeline(res.body, writer);
-    await extractTar({ file: tmpTar, cwd: tmpDir, strip: 0 });
-    const { unlinkSync } = await import("fs");
-    unlinkSync(tmpTar);
-  }
-}
-
 function applyInjection(injection: Injection, cwd: string): void {
   const filePath = join(cwd, injection.file);
   if (!existsSync(filePath)) {
@@ -242,12 +259,10 @@ function applyInjection(injection: Injection, cwd: string): void {
   }
   let content = readFileSync(filePath, "utf-8");
 
-  // Add import if not present
   if (injection.importLine && !content.includes(injection.importLine)) {
     content = injection.importLine + "\n" + content;
   }
 
-  // Add route or component line at marker
   if (injection.marker && injection.routeLine && content.includes(injection.marker)) {
     content = content.replace(injection.marker, `${injection.marker}\n      ${injection.routeLine}`);
   }

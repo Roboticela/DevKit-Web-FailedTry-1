@@ -1,0 +1,8 @@
+/*
+ * Continue With Apple — branding only.
+ * Layout comes from Continue With Provider.
+ */
+
+.dk-continue-with-provider[data-provider="apple"] .dk-continue-with-provider__icon {
+  color: inherit;
+}

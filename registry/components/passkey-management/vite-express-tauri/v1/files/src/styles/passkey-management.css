@@ -1,0 +1,109 @@
+/*
+ * Passkey Management — layout only. No box-shadows. No gradients.
+ */
+
+.dk-passkey-mgmt {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-passkey-mgmt__card {
+  min-width: 0;
+}
+
+.dk-passkey-mgmt__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+}
+
+.dk-passkey-mgmt__heading {
+  display: grid;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-passkey-mgmt__body {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+}
+
+.dk-passkey-mgmt--compact .dk-passkey-mgmt__header {
+  gap: var(--space-2, 8px);
+}
+
+.dk-passkey-mgmt__filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.dk-passkey-mgmt__identity {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-passkey-mgmt__device-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+  color: var(--color-text-secondary, #6e6e73);
+  font-size: 1.125rem;
+}
+
+.dk-passkey-mgmt__identity-copy {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.dk-passkey-mgmt__name-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-passkey-mgmt__name {
+  font-weight: var(--weight-medium, 500);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-passkey-mgmt__device-label {
+  font-size: var(--font-size-caption, 12px);
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-passkey-mgmt__actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-1, 4px);
+  justify-content: end;
+}
+
+.dk-passkey-mgmt__empty-actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+@media (max-width: 640px) {
+  .dk-passkey-mgmt__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dk-passkey-mgmt__actions {
+    justify-content: start;
+  }
+}

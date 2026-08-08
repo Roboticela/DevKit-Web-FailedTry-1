@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    { "source": "files/components/ui/ActiveSessions.tsx", "destination": "components/ui/ActiveSessions.tsx" },
+    { "source": "files/styles/active-sessions.css", "destination": "styles/active-sessions.css" },
+    { "source": "files/docs/ACTIVE_SESSIONS.md", "destination": "docs/devkit/ACTIVE_SESSIONS.md" }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card", "badge", "avatar", "button", "icon-button", "dialog", "dropdown-menu",
+      "tooltip", "skeleton", "icon", "data-table", "empty-state", "search-field", "tag",
+      "authentication-loading", "authentication-error"
+    ]
+  },
+  "envVars": []
+}

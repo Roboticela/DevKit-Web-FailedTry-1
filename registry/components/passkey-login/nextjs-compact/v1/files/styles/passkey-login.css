@@ -1,0 +1,89 @@
+/*
+ * Passkey Login — layout composition only.
+ * Button / Card / Alert / Authentication Loading / Error / Success provide chrome.
+ * No box-shadows. No gradients.
+ */
+
+.dk-passkey-login {
+  display: grid;
+  min-width: 0;
+  width: 100%;
+  max-width: 28rem;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-passkey-login--disabled {
+  opacity: var(--opacity-disabled, 0.5);
+  pointer-events: none;
+}
+
+.dk-passkey-login__card {
+  width: 100%;
+}
+
+.dk-passkey-login__header,
+.dk-passkey-login__body,
+.dk-passkey-login__footer {
+  min-width: 0;
+}
+
+.dk-passkey-login__body {
+  display: grid;
+  gap: var(--space-4, 16px);
+}
+
+.dk-passkey-login--compact .dk-passkey-login__body {
+  gap: var(--space-3, 12px);
+}
+
+.dk-passkey-login__intro {
+  display: grid;
+  gap: var(--space-2, 8px);
+}
+
+.dk-passkey-login__alert,
+.dk-passkey-login__status {
+  min-width: 0;
+}
+
+.dk-passkey-login__authenticators {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2, 8px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dk-passkey-login__authenticator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+  font-size: var(--font-size-sm, 14px);
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-passkey-login__authenticator-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-passkey-login__actions {
+  display: grid;
+  gap: var(--space-2, 8px);
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+@media (max-width: 480px) {
+  .dk-passkey-login {
+    max-width: none;
+  }
+
+  .dk-passkey-login__authenticators {
+    grid-template-columns: 1fr;
+  }
+}

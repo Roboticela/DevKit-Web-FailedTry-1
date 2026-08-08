@@ -1,0 +1,31 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/QrCodeCard.tsx",
+      "destination": "src/components/ui/QrCodeCard.tsx"
+    },
+    {
+      "source": "files/src/styles/qr-code-card.css",
+      "destination": "src/styles/qr-code-card.css"
+    },
+    {
+      "source": "files/docs/QR_CODE_CARD.md",
+      "destination": "docs/devkit/QR_CODE_CARD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "card",
+      "button",
+      "badge",
+      "tooltip",
+      "icon",
+      "skeleton",
+      "countdown-timer"
+    ]
+  },
+  "envVars": []
+}

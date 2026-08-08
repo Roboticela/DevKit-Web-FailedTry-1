@@ -1,0 +1,25 @@
+﻿{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/VerificationFailed.tsx",
+      "destination": "components/ui/VerificationFailed.tsx"
+    },
+    {
+      "source": "files/styles/verification-failed.css",
+      "destination": "styles/verification-failed.css"
+    },
+    {
+      "source": "files/docs/VERIFICATION_FAILED.md",
+      "destination": "docs/devkit/VERIFICATION_FAILED.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "alert"
+    ]
+  },
+  "envVars": []
+}

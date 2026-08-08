@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/CountdownTimer.tsx",
+      "destination": "components/ui/CountdownTimer.tsx"
+    },
+    {
+      "source": "files/styles/countdown-timer.css",
+      "destination": "styles/countdown-timer.css"
+    },
+    {
+      "source": "files/docs/COUNTDOWN_TIMER.md",
+      "destination": "docs/devkit/COUNTDOWN_TIMER.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "progress-bar",
+      "text",
+      "badge",
+      "icon-button"
+    ]
+  },
+  "envVars": []
+}

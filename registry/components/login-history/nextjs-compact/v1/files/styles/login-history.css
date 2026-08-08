@@ -1,0 +1,143 @@
+/*
+ * Login History — layout only. No box-shadows. No gradients.
+ */
+
+.dk-login-history {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+  width: 100%;
+  font-family: var(--font-sans, inherit);
+  box-sizing: border-box;
+}
+
+.dk-login-history__card {
+  min-width: 0;
+}
+
+.dk-login-history__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3, 12px);
+}
+
+.dk-login-history__heading {
+  display: grid;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+}
+
+.dk-login-history__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-login-history__title-icon {
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-login-history__body {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+}
+
+.dk-login-history__filters {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+}
+
+.dk-login-history__outcome-filter {
+  max-width: 28rem;
+}
+
+.dk-login-history__method-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2, 8px);
+}
+
+.dk-login-history__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+  min-width: 0;
+}
+
+.dk-login-history__identity-copy {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.dk-login-history__device-name {
+  font-weight: var(--weight-medium, 500);
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-login-history__device-kind {
+  font-size: var(--font-size-caption, 12px);
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-login-history__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1, 4px);
+  min-width: 0;
+  max-width: 100%;
+}
+
+.dk-login-history__meta-icon {
+  flex-shrink: 0;
+  color: var(--color-text-secondary, #6e6e73);
+}
+
+.dk-login-history__meta-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--color-text-primary, #1d1d1f);
+}
+
+.dk-login-history__meta-trigger {
+  display: inline-flex;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: help;
+}
+
+.dk-login-history__skeleton {
+  display: grid;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+}
+
+.dk-login-history__skeleton-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3, 12px);
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .dk-login-history__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dk-login-history__outcome-filter {
+    max-width: none;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "nextjs-compact",
+  "files": [
+    {
+      "source": "files/components/ui/VerificationCodeInput.tsx",
+      "destination": "components/ui/VerificationCodeInput.tsx"
+    },
+    {
+      "source": "files/styles/verification-code-input.css",
+      "destination": "styles/verification-code-input.css"
+    },
+    {
+      "source": "files/docs/VERIFICATION_CODE_INPUT.md",
+      "destination": "docs/devkit/VERIFICATION_CODE_INPUT.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "text-input",
+      "label",
+      "text",
+      "alert",
+      "spinner"
+    ]
+  },
+  "envVars": []
+}

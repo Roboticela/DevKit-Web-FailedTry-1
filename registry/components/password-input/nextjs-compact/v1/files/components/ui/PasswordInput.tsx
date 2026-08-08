@@ -1,4 +1,5 @@
 import * as React from "react";
+import { PasswordVisibilityToggle } from "../../../../../../../password-visibility-toggle/nextjs-compact/v1/files/components/ui/PasswordVisibilityToggle";
 
 export type PasswordInputSize = "xs" | "sm" | "md" | "lg" | "xl";
 
@@ -20,7 +21,7 @@ export interface PasswordInputProps
   label?: string;
   hideLabel?: boolean;
   description?: string;
-  /** Password requirements copy — separate from validation errors. */
+  /** Compose Password Requirements (List + List Item) — separate from validation errors. */
   requirements?: React.ReactNode;
   helpText?: string;
   errorMessage?: string;
@@ -125,43 +126,10 @@ function StatusIcon({ kind }: { kind: "error" | "success" | "warning" }) {
   );
 }
 
-function EyeIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M2.5 10S5.5 4.75 10 4.75 17.5 10 17.5 10 14.5 15.25 10 15.25 2.5 10 2.5 10Z"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
-      <circle cx="10" cy="10" r="2.25" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  );
-}
-
-function EyeOffIcon() {
-  return (
-    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        d="M3 3.5 17 16.5"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M8.2 8.35A2.25 2.25 0 0 0 11.6 11.8M5.1 5.4C3.55 6.55 2.5 8.2 2.5 10S5.5 15.25 10 15.25c1.35 0 2.55-.3 3.6-.75M8.05 4.95C8.68 4.82 9.33 4.75 10 4.75c4.5 0 7.5 5.25 7.5 5.25a12.4 12.4 0 0 1-1.55 1.9"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 /**
  * Password Input (ID 015) — masked credential entry with accessible show/hide.
  *
+ * Visibility composes Password Visibility Toggle (Icon Button).
  * Does not implement password strength scoring — compose via `strengthSlot`.
  */
 export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
@@ -275,16 +243,11 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
       .join(" ");
 
     const setVisible = (next: boolean) => {
-      if (!isVisibilityControlled) setUncontrolledVisible(next);
-      onVisibleChange?.(next);
-    };
-
-    const toggleVisibility = () => {
       const el = inputRef.current;
       const start = el?.selectionStart ?? null;
       const end = el?.selectionEnd ?? null;
-      const next = !visible;
-      setVisible(next);
+      if (!isVisibilityControlled) setUncontrolledVisible(next);
+      onVisibleChange?.(next);
       // Restore caret after type swap
       requestAnimationFrame(() => {
         const node = inputRef.current;
@@ -400,18 +363,18 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
           ) : null}
 
           {visibilityToggle && !loading ? (
-            <button
-              type="button"
+            <PasswordVisibilityToggle
               className="dk-password__visibility"
-              aria-label={visible ? hidePasswordLabel : showPasswordLabel}
-              aria-pressed={visible}
-              aria-controls={inputId}
+              size={size === "xl" ? "md" : size === "lg" ? "md" : size === "xs" ? "xs" : "sm"}
+              variant="subtle"
+              visible={visible}
+              onVisibleChange={setVisible}
+              showLabel={showPasswordLabel}
+              hideLabel={hidePasswordLabel}
+              controls={inputId}
               disabled={disabled}
-              onClick={toggleVisibility}
-            >
-              <span className="dk-password__visibility-hit" aria-hidden="true" />
-              {visible ? <EyeOffIcon /> : <EyeIcon />}
-            </button>
+              readOnly={readOnly}
+            />
           ) : null}
         </div>
 

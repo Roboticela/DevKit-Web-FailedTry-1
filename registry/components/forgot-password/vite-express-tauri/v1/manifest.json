@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0",
+  "template": "vite-express-tauri",
+  "files": [
+    {
+      "source": "files/src/components/ui/ForgotPassword.tsx",
+      "destination": "src/components/ui/ForgotPassword.tsx"
+    },
+    {
+      "source": "files/src/styles/forgot-password.css",
+      "destination": "src/styles/forgot-password.css"
+    },
+    {
+      "source": "files/docs/FORGOT_PASSWORD.md",
+      "destination": "docs/devkit/FORGOT_PASSWORD.md"
+    }
+  ],
+  "injections": [],
+  "dependencies": {
+    "frontend": [
+      "text-input",
+      "button",
+      "card",
+      "alert",
+      "action-segmented-control"
+    ]
+  },
+  "envVars": []
+}

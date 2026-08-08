@@ -1,0 +1,39 @@
+{
+  "id": 98,
+  "name": "two-factor-authentication",
+  "displayName": "Two-Factor Authentication",
+  "description": "Complete 2FA orchestrator composing Select Authentication Method, Verification Code Input, Authenticator App Setup, Backup Codes, Recovery Code Login, and Authentication Loading/Success/Error.",
+  "category": "components",
+  "group": "foundations-interface-primitives",
+  "groupName": "Foundations & Interface Primitives",
+  "subgroup": "form-controls",
+  "subgroupName": "Form Controls",
+  "kind": "component",
+  "layer": 3,
+  "icon": "shield",
+  "author": "Roboticela",
+  "license": "MIT",
+  "tags": [
+    "auth",
+    "mfa",
+    "2fa",
+    "totp",
+    "otp",
+    "passkey",
+    "recovery",
+    "orchestrator",
+    "a11y"
+  ],
+  "templates": ["nextjs-compact", "vite-express-tauri"],
+  "platforms": ["web", "desktop"],
+  "hasVariants": true,
+  "stub": false,
+  "fileKind": "tsx",
+  "versions": {
+    "latest": "1.0.0",
+    "stable": "1.0.0",
+    "history": [{ "version": "1.0.0", "releaseDate": "2026-08-08", "breaking": false }]
+  },
+  "requiredConfig": [],
+  "optionalConfig": []
+}
